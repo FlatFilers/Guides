@@ -2,64 +2,61 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Documentation Starter Kit",
   "logo": {
-    "dark": "/logo/dark.png",
-    "light": "/logo/light.png"
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
   },
   "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0069ED",
-    "light": "#4D9CFF",
-    "dark": "#0050B4"
+    "primary": "#3B2FC9",
+    "light": "#6673FF",
+    "dark": "#3B2FC9",
+    "background": {
+      "dark": "#000",
+      "light": "#fff"
+    } 
   },
   "topbarLinks": [
     {
-      "name": "Documentation",
-      "url": "https://mintlify.com/docs"
+      "name": "Create account",
+      "url": "https://dashboard.flatfile.com"
     }
   ],
   "topbarCtaButton": {
-    "name": "Get Started",
-    "url": "https://github.com/mintlify/starter"
+    "name": "Sign in",
+    "url": "https://dashboard.flatfile.com"
   },
   "anchors": [
     {
+      "name": "Plugins",
+      "icon": "plug",
+      "url": "plugins"
+    },
+    {
       "name": "API Reference",
       "icon": "rectangle-terminal",
-      "url": "api-reference"
-    },
-    {
-      "name": "Changelog",
-      "icon": "list",
-      "url": "https://mintlify.com"
-    },
-    {
-      "name": "Community",
-      "icon": "discord",
-      "url": "https://mintlify.com/community"
+      "url": "https://flatfile.stoplight.io/docs/v10/"
     }
   ],
   "navigation": [
     {
-      "group": "Home",
-      "pages": ["introduction", "features"]
+      "group": "Getting Started",
+      "pages": ["overview", "concepts", "quickstart"]
     },
     {
-      "group": "API Documentation",
-      "pages": ["api-reference/authentication"]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/update",
-        "api-reference/endpoint/delete"
-      ]
+      "group": "Getting Started",
+      "pages": ["plugins/overview"]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
-  }
+    "github": "https://github.com/FlatFilers",
+    "twitter": "https://twitter.com/flatfilers/",
+    "linkedin": "https://linkedin.com/company/flatfile",
+    "facebook": "https://facebook.com/flatfilers/",
+    "discord": "https://discord.gg/jbTtMKseas"
+  },
+  "analytics": {
+    "gtm": {
+        "tagId": "GTM-W673X2W"
+    }
+}
 }
