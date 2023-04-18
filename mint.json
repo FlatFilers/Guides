@@ -11,9 +11,9 @@
     "light": "#6673FF",
     "dark": "#3B2FC9",
     "background": {
-      "dark": "#000",
+      "dark": "#0f1117",
       "light": "#fff"
-    } 
+    }
   },
   "topbarLinks": [
     {
@@ -25,7 +25,7 @@
     "name": "Sign in",
     "url": "https://dashboard.flatfile.com"
   },
-  
+
   "anchors": [
     {
       "name": "Blueprint",
@@ -55,17 +55,17 @@
     },
     {
       "group": "Getting Started",
-      "pages": ["getting-started/quickstart", "getting-started/handling-data", 
+      "pages": ["getting-started/quickstart", "getting-started/handling-data",
           "getting-started/using-actions", "getting-started/embedding"]
     },
     {
       "group": "Security",
-      "pages": ["security/authentication", "security/publishable-keys", 
+      "pages": ["security/authentication", "security/publishable-keys",
           "security/roles-and-permissions"]
     },
     {
       "group": "Concepts",
-      "pages": ["concepts/workbooks", "concepts/spaces", 
+      "pages": ["concepts/workbooks", "concepts/spaces",
           "concepts/agents", "concepts/jobs", "concepts/events"]
     },
     {
@@ -74,7 +74,7 @@
     },
     {
       "group": "More scenarios",
-      "pages": ["use-cases/headless", "use-cases/workflows", 
+      "pages": ["use-cases/headless", "use-cases/workflows",
           "use-cases/ephemeral"]
     },
     {
@@ -83,12 +83,17 @@
     },
     {
       "group": "Blueprint",
+<<<<<<< Updated upstream
       "pages": ["blueprint/overview", "blueprint/schema", "blueprint/properties", 
           "blueprint/constraints", "blueprint/relationships", "blueprint/access"]
+=======
+      "pages": ["blueprint/overview", "blueprint/properties",
+          "blueprint/constraints", "blueprints/relationships", "blueprint/access"]
+>>>>>>> Stashed changes
     },
     {
       "group": "Developer Tools",
-      "pages": ["developer-tools/overview", "developer-tools/deploying", 
+      "pages": ["developer-tools/overview", "developer-tools/deploying",
           "developer-tools/ci-integration", "developer-tools/environment"]
     }
   ],

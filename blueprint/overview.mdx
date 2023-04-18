@@ -1,34 +1,56 @@
 ---
-title: Overview
-description: "Flatfile is the missing API for data exchange, import, and migration."
+title: Blueprint
+description: "A powerful DDL (Data Definition Language) created by Flatfile with a focus on validation and data preparation."
 ---
 
-<img src="/images/banner.png" />
+## Terms
 
-## Setting up
+- **Blueprint** — A collection of sheets that describe a complete dataset
+- **Sheet** — A collection of fields that describe a single entity (eg. a person, a product, a company).
+- **Field** — Describes an attribute of the entity (eg. name, email) and how it should behave.
+
+
+<RequestExample>
+```json Blueprint Example
+{
+  "sheets": [
+    {
+      "key": "products",
+      "label": "Products",
+      "description": "A list of products available for sale",
+      "fields": [
+        {
+          "key": "code",
+          "label": "Product Code",
+          "type": "string"
+        },
+        {
+          "key": "description",
+          "type": "string"
+        },
+        {
+          "key": "price",
+          "type": "number"
+        }
+      ]
+    }
+  ]
+}
+```
+</RequestExample>
+
 
 <CardGroup cols={2}>
-  <Card title="Edit Your Docs" icon="pen-to-square" href="https://mintlify.com/docs/quickstart">
-    Get your docs set up locally for easy development.
+  <Card title="Field Types" icon="input-text" href="/blueprint/properties">
+    Learn about the different field types and how to use them.
   </Card>
-  <Card title="Preview Changes" icon="image" href="https://mintlify.com/docs/development">
-    Preview your changes before you push to make sure they're perfect.
+  <Card title="Constraints" icon="ruler-combined" href="/blueprint/constraints">
+    Learn about the available constraints and how they work.
   </Card>
-</CardGroup>
-
-## Make it yours
-Update your docs to your brand and add valuable content for the best user conversion. 
-<CardGroup cols={2}>
-  <Card title="Customize Style" icon="palette" href="https://mintlify.com/docs/settings/global" >
-    Customize your docs to your company's colors and brands.
+  <Card title="Relationships" icon="diagram-nested" href="/blueprint/relationships">
+    Establish connections between sheets and fields.
   </Card>
-  <Card title="Reference APIs" icon="code" href="https://mintlify.com/docs/api-playground/openapi" >
-    Automatically generate endpoints from an OpenAPI spec.
-  </Card>
-  <Card title="Add Components" icon="screwdriver-wrench" href="https://mintlify.com/docs/components/accordion">
-    Build interactive features and designs to guide your users.
-  </Card>
-  <Card title="Get Inspiration" icon="stars" href="https://mintlify.com/showcase">
-    Check out our showcase of our favorite documentation. 
+  <Card title="Access" icon="shield-halved" href="/blueprint/access">
+    Configure field, sheet, and workbook level user capabilities.
   </Card>
 </CardGroup>
