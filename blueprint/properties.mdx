@@ -1,34 +1,165 @@
 ---
-title: Properties
-description: "Flatfile is the missing API for data exchange, import, and migration."
+title: Types
+description: "Learn more about each supported field type: `string`, `number`, `boolean`, `date`, `enum`, `reference`"
 ---
 
-<img src="/images/banner.png" />
+## Default Options
+Each field has the following configuration options. Read the documentation for each type as there may be additional configuration options.
 
-## Setting up
+<ParamField path="key" type="string" required>
+  The system name of this field. Primarily informs JSON and egress structures.
+</ParamField>
 
-<CardGroup cols={2}>
-  <Card title="Edit Your Docs" icon="pen-to-square" href="https://mintlify.com/docs/quickstart">
-    Get your docs set up locally for easy development.
-  </Card>
-  <Card title="Preview Changes" icon="image" href="https://mintlify.com/docs/development">
-    Preview your changes before you push to make sure they're perfect.
-  </Card>
-</CardGroup>
+<ParamField path="type" required>
+  One of `string`, `number`, `boolean`, `date`, `enum`, `reference`. Defines the handling of this property.
+</ParamField>
 
-## Make it yours
-Update your docs to your brand and add valuable content for the best user conversion. 
-<CardGroup cols={2}>
-  <Card title="Customize Style" icon="palette" href="https://mintlify.com/docs/settings/global" >
-    Customize your docs to your company's colors and brands.
-  </Card>
-  <Card title="Reference APIs" icon="code" href="https://mintlify.com/docs/api-playground/openapi" >
-    Automatically generate endpoints from an OpenAPI spec.
-  </Card>
-  <Card title="Add Components" icon="screwdriver-wrench" href="https://mintlify.com/docs/components/accordion">
-    Build interactive features and designs to guide your users.
-  </Card>
-  <Card title="Get Inspiration" icon="stars" href="https://mintlify.com/showcase">
-    Check out our showcase of our favorite documentation. 
-  </Card>
-</CardGroup>
+<ParamField path="label" default="key" type="string">
+  A user-facing descriptive label designed to be displayed in the UI such as a table header.
+</ParamField>
+
+<ParamField path="description" type="string">
+  A long form description of the property intended to be displayed to an end user.
+</ParamField>
+
+<ParamField path="constraints" default="[]" type="array">
+  An array of system level Validation Rules meant to be applied after hooks are run.
+</ParamField>
+
+<ParamField path="config" default="{}" type="object">
+  Configuration relevant to the type of column. See property documentation below.
+</ParamField>
+
+<ParamField path="multi" default="false" type="boolean">
+  Will allow multiple values and store / provide the values in an array if set. Not all field types support arrays.
+</ParamField>
+
+<ParamField path="meta" default="{}" type="object">
+  Arbitrary object of values to pass through to hooks and egress
+</ParamField>
+---------
+
+
+## `string` _(default)_
+
+Defines a property that should be stored and read as a basic string.
+
+```json
+{
+  "key": "currency",
+  "label": "Product Code",
+  "type": "string"
+},
+```
+
+
+## `number`
+
+Defines a property that should be stored and read as either an integer or floating point number. Database engines should look at the configuration to determine ideal storage format.
+
+
+
+<ParamField path="config.decimal_places" default="0" type="number">
+  The number of decimal places to preserve accuracy to. Overages should be automatically rounded with a warning. A hook can pre-format to accomplish floor or ceil.
+</ParamField>
+
+```json
+  {
+    "key": "price",
+    "label": "Retail Price",
+    "type": "number",
+    "config": {
+      "decimal_places": 2
+    }
+  },
+```
+
+## `reference`
+
+Defines a reference to another sheet. Links should be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
+
+<ParamField path="config.ref" required>
+  The full path reference to another sheet/table configuration. Must be in the same workbook.
+</ParamField>
+<ParamField path="config.relationship" required>
+  The type of relationship this defines. Can be one of `has-many` or `has-one`
+</ParamField>
+
+
+## `enum`
+
+Defines an enumerated list of options for the user to select from. Matching tooling attempts to resolve incoming data assigment to a valid option. The maximum number of options for this list is `100`. For larger lists, users should use the `reference` or future `lookup` types.
+
+
+<ParamField path="config.allow_custom" default="false" type="boolean">
+  Permit the user to create new options for this specific field.
+</ParamField>
+
+<ParamField path="config.options" required>
+  An array of valid options the user can select from
+</ParamField>
+
+
+<Expandable title="options" type="array" defaultOpen={true}>
+
+<ParamField path="value" required>
+  The value or ID of this option. This value will be sent in egress
+</ParamField>
+
+<ParamField path="label" default="value" type="string">
+  A visual label for this option, defaults to value if not provided
+</ParamField>
+
+<ParamField path="color" type="string">
+  An optional color to assign this option
+</ParamField>
+
+<ParamField path="icon" type="string">
+  A reference pointer to a previously registered icon
+</ParamField>
+
+<ParamField path="meta" type="object">
+  An arbitrary JSON object to be associated with this option and made available to hooks
+</ParamField>
+</Expandable>
+
+```json
+{
+  "key": "status",
+  "label": "Status",
+  "type": "enum",
+  "config": {
+    "options": [
+      {
+        "value": "active"
+      },
+      {
+        "value": "inactive",
+        "label": "Disabled",
+        "color": "#ff0000",
+        "icon": "fa fa-ban",
+        "meta": {
+          "foo": "bar"
+        }
+      }
+    ]
+  }
+},
+```
+
+
+## `boolean`
+
+A `true` or `false` value type. Matching engines should attempt to resolve all common ways of representing this value and it should usually be displayed as a checkbox.
+
+```json
+{
+  "key": "is_active",
+  "label": "Active",
+  "type": "boolean"
+}
+```
+
+## `date`
+
+Store a field as a GMT date. Data hooks must convert this value into a `YYYY-MM-DD` format in order for it to be considered a valid value. Datetime should be a separate and future supported value as it must consider timezone.
