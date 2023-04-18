@@ -1,5 +1,5 @@
 ---
-title: 1. Meet the Workbook
+title: 1. Meet the workbook
 description: "Learn how to create your first Workbook in Flatfile."
 ---
 A workbook in Flatfile replaces the spreadsheet template you may share 
@@ -21,7 +21,7 @@ href="#hello">
     <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
 </a>
 
-<a href="https://dashboard.flatfile.com" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in CodeSandbox</a>
+<a href="https://stackblitz.com/edit/flatfile-typescript-sdk-pgxzgt?file=app.ts" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in Rep.lit</a>
 
 
 <img src="..//images/quickstart/workbook.png" caption="The Flatfile Workbook"/>
@@ -54,29 +54,63 @@ Flatfile supports using over 999 different schema DDLs. For this tutorial we're 
 - `@flatfile/plugin-openapi`
 - `@flatfile/plugin-graphql`
 
+### Create a Workbook
 
 ```jsx  workbooks.create
-import { Flatfile, FlatfileClient } from '@flatfile/api-beta';
+import { FlatfileClient } from '@flatfile/api';
 
 void main();
 
-//create a new client
 async function main() {
   const flatfile = new FlatfileClient({
-    publishableKey: 'pk_1234567',
+    publishableKey: '1234', //find this at dashboard.flatfile.com
   });
 
-const createWorkbook = await flatfile.workbooks.create(spaceId, {
-  sheets: [{
-    name: 'Contact',
-    fields: [
-      { key: 'name', label: 'Full Name' },
-      { key: 'email', label: 'Email Address' },
-      { key: 'birth_date', label: 'Birth Date', type: 'date' }
-    ]
-  }]
-})
-
+  // Create a Workbook
+  const createWorkbook = await flatfile.workbooks.create({
+    name: 'My Workbook 1',
+    //define your schema
+    blueprint: {
+      sheets: [
+        {
+          name: 'My Sheet 1',
+          description: 'hello',
+          slug: 'slug1',
+          fields: [
+            {
+              key: 'firstName',
+              type: 'string',
+              label: 'First Name',
+              description: 'The first name of the customer',
+              constraints: [
+                {
+                  type: 'required',
+                },
+              ],
+            },
+            {
+              key: 'lastName',
+              type: 'string',
+              label: 'Last Name',
+              description: 'The last name of the customer',
+              constraints: [
+                {
+                  type: 'required',
+                },
+              ],
+            },
+            {
+              key: 'fullName',
+              type: 'string',
+              label: 'Full Name',
+              description: 'The full name of the customer',
+            },
+          ],
+        },
+      ],
+    }
+  });
+}
 ```
 
 ### Next Steps

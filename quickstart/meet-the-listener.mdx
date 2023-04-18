@@ -1,85 +1,27 @@
 ---
-title: 2. Meet the Listener
-description: "Learn how to create your first Workbook in Flatfile."
+title: 2. Listen for events
+description: "Learn how to listen for and respond to Events in Flatfile."
 ---
-A workbook in Flatfile replaces the spreadsheet template you may share 
-with people today when requesting data during the data collection phase 
-of customer onboarding or other business processes. Unlike a spreadsheet, 
-it's designed to allow your team and users to validate, correct, and import data.
+
+Flatfile's API is an event-driven, etc etc. The Flatfile **PubSub Client** is a super thin wrapper around the Flatfile API. 
+It allows you to call our API after receiving events from any PubSub driver. 
+
+### Using Events
+
+Once an event is received, it is routed to any awaiting listeners which are added with `addEventListener()` or its alias `on()`.
 
 
-In the next 15 minutes, you’ll design and configure a workbook 
-for your business. Once you’re finished you’ll be able to embed it in your application 
-as an import flow, or deploy a data collection portal.
+#### The anatomy of an Event
 
+Flatfile events follow a standard structure and event listeners can use any of the following syntaxes to react to events within Flatfile.
 
+- `context` - something
+- `target` - something
 
-<a target="#hello" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
-href="#hello">
-    <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
-    <span class="z-10 mr-2 text-white">Download full app</span>
-    <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
-</a>
+#### Usage
 
-<a href="https://dashboard.flatfile.com" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in CodeSandbox</a>
-
-
-<img src="..//images/quickstart/workbook.png" caption="The Flatfile Workbook"/>
-
-### Using Workbooks
-
-The Workbook brings together automation and humans to get data into its final shape. 
-With Workbooks, you can:
-
-1. Accept data from any of over N supported file types. (And you can write your own file extractors if that's not enough.)
-2. Automatically apply any validation rules a developer has previously defined.
-3. Provide end users the ability to add, remove, review, filter, and correct any data imported into a Workbook.
-4. Define [in code] at least one primary action that submits the reviewed data to a destination API, database, or workflow step of your choosing.
-
-### Designing a Workbook
-
-#### The anatomy of a Workbook
-
-- `Sheets` - like tables in a database or sheets in a spreadsheet, sheets isolate different data schemas.
-- `Fields` - Defined properties of your schema (eg a first_name on a contact sheet.)
-- `Actions` - Developer defined operations or macros on selected data like Submit to API, Download as PDF
-- `Event Hooks` - Whenever any data changes in a workbook, an event is triggered.
-
-#### Define your Schema
-
-Flatfile supports using over 999 different schema DDLs. For this tutorial we're going to create a simple schema using **Blueprint**. But you can also just use your existing schema if you have it by using any of these plugins.
-
-- `@flatfile/plugin-json-schema`
-- `@flatfile/plugin-sql-ddl`
-- `@flatfile/plugin-openapi`
-- `@flatfile/plugin-graphql`
-
-
-```jsx  workbooks.create
-import { Flatfile, FlatfileClient } from '@flatfile/api-beta';
-
-void main();
-
-//create a new client
-async function main() {
-  const flatfile = new FlatfileClient({
-    publishableKey: 'pk_1234567',
-  });
-
-const createWorkbook = await flatfile.workbooks.create(spaceId, {
-  sheets: [{
-    name: 'Contact',
-    fields: [
-      { key: 'name', label: 'Full Name' },
-      { key: 'email', label: 'Email Address' },
-      { key: 'birth_date', label: 'Birth Date', type: 'date' }
-    ]
-  }]
-})
-
-```
-
-- [ ]  Link to a Code Sandbox or Repl.it
+Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library we can intervene between any event and run a callback function based on values provided inside that event.
 
 ### Next Steps
-Add a data transformation
+Up next, use the [@flatfile/plugin-recordhooks](https://www.npmjs.com/package/@flatfile/plugin) to listen for a `records:updated` event and respond with a change.
+
