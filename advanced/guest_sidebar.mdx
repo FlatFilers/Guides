@@ -1,0 +1,27 @@
+---
+title: Guest Sidebar
+description: "Learn how to limit what Guests see in their Sidebar."
+---
+
+Flatfile allows you to update your sidebar to hide/show certain elements via the <Tooltip tip="Learn more about Spaces">[Space](hello.com)</Tooltip> component. 
+
+<Note>This configuration only impacts <Tooltip tip="Learn more about User Access">[Guests](hello.com)</Tooltip>, not Admins.</Note>
+
+```ts
+const metadata = {
+  sidebarConfig: {
+    showGuestInvite: true,
+    showDataChecklist: false,
+    showSidebar: true,
+  }
+}
+```
+
+<br/>
+
+| Prop                  | Required | Type | Description |
+| --------------------- | ------------   | ------------   | ------------   |
+| `showGuestInvite`       |      `optional` | **boolean** | The Collaborators link allows anyone to add another Guest to the Space.     |
+| `showDataChecklist`     |      `optional` | **boolean** | The data checklist shows all of the data needed for uploading to the primary Workbook.    |
+| `showSidebar`           |      `optional` | **boolean** | The sidebar as a whole can be hidden.     |
+

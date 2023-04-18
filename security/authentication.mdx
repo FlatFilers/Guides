@@ -3,54 +3,27 @@ title: Authentication
 description: "Learn how to use API keys to authenticate API requests."
 ---
 
-You can authenticate to Flatfile’s API in two ways: via personal token or secret token. 
-The permissions are the same for both; however, the secret token is recommended for programmatic access, i.e. via SDK or scripting.
+Flatfile provides two different kinds of environment-specific API keys you can use to interact with the API.
 
+- The **Secret Key** should be protected and used with requests made from server-side logic only.
+- The **Publishable Key** is safe to include in a browser. It can only be used to create a new import space.
 
+API keys are created automatically for each environment. Use the [Developers Page](https://dashboard.flatfile.com/developers) to reveal your API keys.
 
-Flatfile will raise an error if you don’t include a key, or if the key is incorrect or outdated.
+## Testing and development
 
-Keys will be created for you when you sign up. Use the [Developers Page](https://dashboard.flatfile.com/developers) to reveal or create additional API keys. 
+<Tooltip tip="Learn more about Environments">[Environments](hello.com)</Tooltip> are isolated entities and are intended to be a safe space to create and test different configurations. A `development` and `production` environment is created on default.
 
+| Type | Name | Description |
+| --- | --- | --- |
+| Test | `development` | Use this default environment, and it’s associated test API keys, as you build with Flatfile. |
+| Live | `production` | When you're ready to launch, create a new environment and swap out your keys. |
 
-Testing and development
---------------------------
+## Secret and publishable keys
 
-Environments are isolated entities and are intended to be a safe space to create and test different configurations. 
-A `dev` Environment is created on default.
+All Accounts have two key types for each environment. Learn when to use each type of key:
 
-| Type            | Name            | Description                              |
-| --------------- | --------------- | ---------------------------------------- |
-| **Test**          |  `dev` | Use this default environment, and its associated test API keys, as you build with Flatfile.  |
-| **Staging**            | `staging` | Create as many environments as you need to mirror your software development life cycle. |
-| **Live**            | `prod` | When you're ready to launch, create a new environment and swap out your keys. |
-
-
-#### Create a new Environment
-
-To create a new Environment via the API:
-
-1. **[Create an access token](https://flatfile.stoplight.io/docs/v10/c867eb7e3c7fe-create-an-access-token)** if you don't have one.
-2. [Create an environment](https://flatfile.stoplight.io/docs/v10/452fe93b98b19-create-an-environment).
-3. Enter a name in **Name**.
-4. Click **Send API Request**.
-
-
-Secret and publishable keys
----------------------------
-
-All Environments have two key types:
-
-| Type            |  Id            | Description                              |
-| --------------- | --------------- | ---------------------------------------- |
-| **Secret key**   | `sk_23ghsyuyshs7dcrty` | **On the server-side**: Store this securely in your server-side code. Don’t expose this key in an application. |
-| **Publishable key** | `pk_23ghsyuyshs7dcert` | **On the client-side**: Can be publicly-accessible in your application's client-side code. Use when embedding Flatfile. |
-
-
-#### Create a new API key
-
-To create a new API key:
-
-1.  Open the [Developer Dashboard](https://dashboard.flatfile.com/developers) page.
-2.  Click **Create token**.
-4.  Click **Create**.
+| Type | Id | Description |
+| --- | --- | --- |
+| Secret key | `sk_23ghsyuyshs7dcrty` | **On the server-side:** Store this securely in your server-side code. Don’t expose this key in an application. |
+| Publishable key | `pk_23ghsyuyshs7dcert` | **On the client-side:** Can be publicly-accessible in your application's client-side code. Use when embedding Flatfile. |
