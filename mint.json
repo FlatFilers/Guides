@@ -25,7 +25,13 @@
     "name": "Sign in",
     "url": "https://dashboard.flatfile.com"
   },
+  
   "anchors": [
+    {
+      "name": "Blueprint",
+      "icon": "compass-drafting",
+      "url": "blueprint"
+    },
     {
       "name": "Plugins",
       "icon": "plug",
@@ -39,12 +45,26 @@
   ],
   "navigation": [
     {
+      "group": "Documentation",
+      "pages": ["overview"]
+    },
+    {
       "group": "Getting Started",
-      "pages": ["overview", "concepts", "quickstart"]
+      "pages": ["getting-started/quickstart", "getting-started/handling-data", 
+      "getting-started/using-actions", "getting-started/embedding"]
+    },
+    {
+      "group": "Security",
+      "pages": ["security/authentication", "security/publishable-keys", 
+      "security/roles-and-permissions"]
     },
     {
       "group": "Getting Started",
       "pages": ["plugins/overview"]
+    },
+    {
+      "group": "Getting Started",
+      "pages": ["blueprint/overview"]
     }
   ],
   "footerSocials": {
