@@ -88,7 +88,8 @@
     },
     {
       "group": "Developer Tools",
-      "pages": ["developer-tools/overview", "developer-tools/deploying"]
+      "pages": ["developer-tools/overview", "developer-tools/deploying", 
+          "developer-tools/ci-integration", "developer-tools/environment"]
     }
   ],
   "footerSocials": {
