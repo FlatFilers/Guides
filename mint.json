@@ -83,13 +83,8 @@
     },
     {
       "group": "Blueprint",
-<<<<<<< Updated upstream
       "pages": ["blueprint/overview", "blueprint/schema", "blueprint/properties", 
           "blueprint/constraints", "blueprint/relationships", "blueprint/access"]
-=======
-      "pages": ["blueprint/overview", "blueprint/properties",
-          "blueprint/constraints", "blueprints/relationships", "blueprint/access"]
->>>>>>> Stashed changes
     },
     {
       "group": "Developer Tools",
