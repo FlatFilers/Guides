@@ -38,6 +38,11 @@
       "url": "plugins"
     },
     {
+      "name": "Developer Tools",
+      "icon": "plug",
+      "url": "developer-tools"
+    },
+    {
       "name": "API Reference",
       "icon": "rectangle-terminal",
       "url": "https://flatfile.stoplight.io/docs/v10/"
@@ -64,12 +69,25 @@
           "concepts/agents", "concepts/jobs", "concepts/events"]
     },
     {
-      "group": "Getting Started",
+      "group": "Advanced",
+      "pages": ["advanced/theming", "advanced/custom-actions", "advanced/anatomy-of-events"]
+    },
+    {
+      "group": "More scenarios",
+      "pages": ["use-cases/headless", "use-cases/workflows", 
+          "use-cases/ephemeral"]
+    },
+    {
+      "group": "Plugins",
       "pages": ["plugins/overview"]
     },
     {
       "group": "Getting Started",
       "pages": ["blueprint/overview"]
+    },
+    {
+      "group": "Developer Tools",
+      "pages": ["developer-tools/overview", "developer-tools/deploying"]
     }
   ],
   "footerSocials": {
