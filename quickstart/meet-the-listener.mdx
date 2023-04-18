@@ -6,11 +6,6 @@ description: "Learn how to listen for and respond to Events in Flatfile."
 Flatfile's API is an event-driven, etc etc. The Flatfile **PubSub Client** is a super thin wrapper around the Flatfile API. 
 It allows you to call our API after receiving events from any PubSub driver. 
 
-### Using Events
-
-Once an event is received, it is routed to any awaiting listeners which are added with `addEventListener()` or its alias `on()`.
-
-
 #### The anatomy of an Event
 
 Flatfile events follow a standard structure and event listeners can use any of the following syntaxes to react to events within Flatfile.
@@ -18,9 +13,39 @@ Flatfile events follow a standard structure and event listeners can use any of t
 - `context` - something
 - `target` - something
 
+
+### Using Events
+
+Once an event is received, it is routed to any awaiting listeners which are added with `addEventListener()` or its alias `on()`.
+
+An event context is passed to an **EventFilter**
+
+```typescript
+export type EventFilter = Record<string, Arrayable<string>>
+
+// example event context
+
+{ context: { sheetSlug: 'TestSheet' } }
+
+```
+
 #### Usage
 
 Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library we can intervene between any event and run a callback function based on values provided inside that event.
+
+
+
+```typescript
+
+client.on(
+    'records:*', //listens for records:created & records:updated
+    { target: 'sheet(TestSheet)' },
+    (event: FlatfileEvent) => {
+      //do something here
+    }
+  );
+
+```
 
 ### Next Steps
 Up next, use the [@flatfile/plugin-recordhooks](https://www.npmjs.com/package/@flatfile/plugin) to listen for a `records:updated` event and respond with a change.
