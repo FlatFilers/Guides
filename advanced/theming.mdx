@@ -3,147 +3,45 @@ title: Theming
 description: "Learn how to customize the look and feel of Flatfile to match your brand."
 ---
 
-### Theme
-There are two ways to customize a Space. The `useThemeGenerator` hook is the recommended way to customize because you can confirm the colors that are passed in are valid. 
-You can also add overrides manually and modify individual CSS variable that we use in the dashboard.
+Flatfile supports modifying most UI elements, including colors, fonts, borders, padding, and 
+more via the <Tooltip tip="Learn more about Spaces">[Space](hello.com)</Tooltip> component. 
 
-Make a POST request with the following:
-```json http
-{
-  "method": "post",
-  "url": "https://api.x.flatfile.com/v1/spaces",
-  "headers": {
-    "Authorization": "Bearer ${accessToken}"
-  },
+1. Start by simply updating the primary color and your logo.
+2. If needed, customize the theme further with css variables.
 
-  "body": {
-    "spaceConfigId": "string",
-    "environmentId": "string",
-    "name": "My Space",
-    "metadata": {
+<RequestExample>
+```ts
+const updateSpace = await flatfile.spaces.update(spaceId, {
+    environmentId: environmentId,
+     "metadata": {
        "theme": {
         "root": {
           "primaryColor": "red",
-          "dangerColor": "maroon",
-          "warningColor": "yellow"
         },
         "sidebar": {
           "logo": "https://image.png",
-          "textColor": "pink",
-          "titleColor": "purple",
-          "focusBgColor": "aqua",
-          "focusTextColor": "orange",
-          "backgroundColor": "yellow",
-          "footerTextColor": "white",
-          "textUltralightColor": "blue"
         },
-        "table": {
-          "inputs": {
-              "radio": {
-                  "color": "blue"
-                  },
-              "checkbox": {
-                  "color": "blue"
-              }
-          },
-          "filters": {
-            "color": "yellow",
-              "active": {
-                "backgroundColor": "purple"
-              },
-            "error": {
-              "activeBackgroundColor": "aqua"
-            }
-          },
-          "column": {
-            "header": {
-              "fontSize": "16px",
-              "backgroundColor": "green",
-              "color": "blue",
-              "dragHandle": {
-                "idle": "yellow",
-                "dragging": "blue"
-              }
-            }
-          },
-          "fontFamily": "cursive",
-          "indexColumn": {
-            "backgroundColor": "gray",
-            "selected": {
-              "color": "gray",
-              "backgroundColor": "gray"
-            }
-          },
-          "cell": {
-            "selected": {
-                "backgroundColor": "gray"
-            },
-            "active": {
-                "borderColor": "gray",
-                "spinnerColor": "gray"
-            }
-          },
-          "boolean": {
-              "toggleChecked": "gray"
-          },
-          "loading": {
-              "color": "gray"
-          }
-        },
+        //See reference for all possible variables
       }
     }
-  }
-}
+  });
 ```
+</RequestExample>
 
-#### useThemeGenerator hook
+![Sidebar Config](images/customize/sidebar.png)
 
-> #### Alpha release
->
-> For now, we'll use CodeSandbox to leverage this hook.
+### Commonly used variables
 
+  | Prop                  | Required | Type | Description |
+  | --------------------- | ------------   | ------------   | ------------   |
+  | `table.hello`       |      `optional` | **boolean** | The Collaborators link in the sidebar allows anyone to add another Guest to the Space.     |
+  | `sidebar.hello`     |      `optional` | **boolean** | The data checklist shows all of the data needed for uploading to the primary Workbook.    |
+  | `sidebar.hello`           |      `optional` | **boolean** | The sidebar as a whole can be hidden.     |
 
-The `useThemeGenerator` hook accepts two color values. From there, we programmatically create a nice looking theme for you. If you need more control, add raw values instead. 
+### Less commonly used variables
 
-**Error handling**: Internally, our hook validates that the colors passed in are valid colors. This means they can be correctly parsed. (Names, rgb, hsv, hex)
-
-
-
-| Prop        | Description                              |
-| ----------- | ---------------------------------------- |
-| `primary`   | `required` **string** ['red']<br/>TODO: something about it |
-| `secondary` | `optional` **string** ['blue']<br/>TODO: something about it |
-
-#### Try it out:
-
-https://codesandbox.io/s/flatfile-usethemegeneratorhook-code-only-forked-1vwmn4?file=/src/App.tsx
-
-
-
-### Guest sidebar
-
-You can customize your sidebar to hide/show certain elements. 
-Note that this configuration only impacts Guests, not admins. 
-
-```ts
-{
-    "environmentId": "string",
-    "name": "My Space",
-    "metadata": {
-      "sidebarConfig": {
-        "showGuestInvite": true,
-        "showDataChecklist": false,
-        "showSidebar": true,
-      }
-    }
-}
-```
-
-<br/>
-
-| Prop                  | Description |
-| --------------------- | ------------   |
-| `showGuestInvite`       |      `optional` **boolean** [false]<br/>TODO: about this     |
-| `showDataChecklist`     |      `optional` **boolean** [false]<br/>TODO: about this     |
-| `showSidebar`           |      `optional` **boolean** [false]<br/>TODO: about this     |
-
+  | Prop                  | Required | Type | Description |
+  | --------------------- | ------------   | ------------   | ------------   |
+  | `showGuestInvite`       |      `optional` | **boolean** | The Collaborators link in the sidebar allows anyone to add another Guest to the Space.     |
+  | `showDataChecklist`     |      `optional` | **boolean** | The data checklist shows all of the data needed for uploading to the primary Workbook.    |
+  | `showSidebar`           |      `optional` | **boolean** | The sidebar as a whole can be hidden.     |
