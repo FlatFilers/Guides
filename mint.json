@@ -51,12 +51,17 @@
     {
       "group": "Getting Started",
       "pages": ["getting-started/quickstart", "getting-started/handling-data", 
-      "getting-started/using-actions", "getting-started/embedding"]
+          "getting-started/using-actions", "getting-started/embedding"]
     },
     {
       "group": "Security",
       "pages": ["security/authentication", "security/publishable-keys", 
-      "security/roles-and-permissions"]
+          "security/roles-and-permissions"]
+    },
+    {
+      "group": "Concepts",
+      "pages": ["concepts/workbooks", "concepts/spaces", 
+          "concepts/agents", "concepts/jobs", "concepts/events"]
     },
     {
       "group": "Getting Started",
