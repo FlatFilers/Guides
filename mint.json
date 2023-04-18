@@ -83,7 +83,7 @@
     },
     {
       "group": "Blueprint",
-      "pages": ["blueprint/overview", "blueprint/schema", "blueprint/properties", 
+      "pages": ["blueprint/overview", "blueprint/properties", 
           "blueprint/constraints", "blueprint/relationships", "blueprint/access"]
     },
     {
