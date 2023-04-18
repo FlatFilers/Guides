@@ -1,38 +1,42 @@
 ---
-title: Quickstart
-description: "Learn how to create your first Workbook in Flatfile with transformations and validations."
+title: Add Data Transformation
+description: "Learn how to create your first Workbook in Flatfile."
 ---
 
-
-
-## Meet the Workbook
-
-A workbook in Flatfile replaces the spreadsheet template you may share with people today when requesting data during the data collection phase of customer onboarding or other business processes. Unlike a spreadsheet, it's designed to allow your team and users to validate, correct, and import data.
+In the next 15 minutes, you'll design and configure a workbook for your business. 
+Once you're finished you'll be able to embed it in your application as an import flow, or deploy a data collection portal.
 
 <a target="#hello" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
 href="#hello">
     <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
-    <span class="z-10 mr-2 text-white">Get Started</span>
+    <span class="z-10 mr-2 text-white">Download full app</span>
     <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
 </a>
 
+<a href="https://dashboard.flatfile.com" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in CodeSandbox</a>
+
+
+### 1. Meet the Workbook
+
+A workbook in Flatfile replaces the spreadsheet template you may share with people today when requesting data during the data collection phase of customer onboarding or other business processes. Unlike a spreadsheet, it's designed to allow your team and users to validate, correct, and import data.
+
 <img src="/images/workbook.png" caption="The Flatfile Workbook"/>
+
+#### What you can do here:
 
 1. Users can upload data from any of over N supported file types, and you can write your own file extractors if that's not enough.
 2. Workbooks apply any validation rules you have defined.
 3. Users can add, remove, review, filter, and correct any data imported into a workbook.
 4. As a developer, you can define at least one primary action that submits the reviewed data to a destination API, database, or workflow step of your choosing.
 
-In the next 15 minutes, you'll design and configure a workbook for your business. Once you're finished you'll be able to embed it in your application as an import flow, or deploy a data collection portal.
-
-## Anatomy of a Workbook
+### Anatomy of a Workbook
 
 - `Sheets` - like tables in a database or sheets in a spreadsheet, sheets isolate different data schemas.
 - `Fields` - Defined properties of your schema (eg a first_name on a contact sheet.)
 - `Actions` - Developer defined operations or macros on selected data like Submit to API, Download as PDF
 - `Event Hooks` - Whenever any data changes in a workbook, an event is triggered.
 
-## Defining your Schema
+### Defining your Schema
 
 Flatfile supports using over 999 different schema DDLs. For this tutorial we're going to create a simple schema using **Blueprint**. But you can also just use your existing schema if you have it by using any of these plugins.
 
@@ -41,24 +45,35 @@ Flatfile supports using over 999 different schema DDLs. For this tutorial we're 
 - `@flatfile/plugin-openapi`
 - `@flatfile/plugin-graphql`
 
-```jsx
-{
-  sheets: [
-    {
-      name: 'Contact',
-      fields: [
-        { key: 'name', label: 'Full Name' },
-        { key: 'email', label: 'Email Address' },
-        { key: 'birth_date', label: 'Birth Date', type: 'date' }
-      ]
-    }
-  ]
-}
+<RequestExample>
+```jsx  workbooks.create
+import { Flatfile, FlatfileClient } from '@flatfile/api-beta';
+
+void main();
+
+//create a new client
+async function main() {
+  const flatfile = new FlatfileClient({
+    publishableKey: 'pk_1234567',
+  });
+
+const createWorkbook = await flatfile.workbooks.create(spaceId, {
+  sheets: [{
+    name: 'Contact',
+    fields: [
+      { key: 'name', label: 'Full Name' },
+      { key: 'email', label: 'Email Address' },
+      { key: 'birth_date', label: 'Birth Date', type: 'date' }
+    ]
+  }]
+})
+
 ```
+</RequestExample>
 
 - [ ]  Link to a Code Sandbox or Repl.it
 
-## Let's add a data transformation
+### Let's add a data transformation
 
 Flatfile provides a number of handy plugins for transforming and validating data. We're going to start by using the  `@flatfile/plugin-transform` helper. You can explore the other open source validation plugins available like:
 
@@ -77,7 +92,7 @@ export default function(listener) {
 }
 ```
 
-## Let's add validation
+### Let's add validation
 
 You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues in your data. We'll use the popular `email-validator` package here to make sure the email is actually valid.
 
@@ -98,7 +113,7 @@ export default function(flatfile) {
 
 - [ ]  Show preview of a validation error here
 
-## Let's configure a submit action
+### Let's configure a submit action
 
 Actions are incredibly powerful. Actions trigger Jobs within the Flatfile ecosystem. You can write your own actions using the `@flatfile/actions` helper library. But we're going to use the webhook action plugin to allow users to submit data from this sheet to your API. There are dozens of other plugins available like:
 
@@ -131,16 +146,3 @@ export default function(flatfile) {
 
 ### Next Steps
 You now have a configured workbook. Next you should learn about a few more concepts.
-
-<CardGroup cols={3}>
-  <Card title="Spaces" icon="square-1" color="#ea5a0c">
-    Control access to data and build powerful, multi-workbook workflows.
-  </Card>
-  <Card title="Embedding" icon="square-2" color="#0285c7">
-    If you want to embed an import button or dialog in another application.
-  </Card>
-  <Card title="Advanced" icon="square-3" color="#16a34a">
-    Dynamic configurations, identifying users, user permissions, automation, performance tips.
-  </Card>
-</CardGroup>
-

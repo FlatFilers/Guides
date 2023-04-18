@@ -54,13 +54,18 @@
       "pages": ["overview"]
     },
     {
+      "group": "Quickstart",
+      "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation",
+          "quickstart/add-validation", "quickstart/submit-action"]
+    },
+    {
       "group": "Getting Started",
-      "pages": ["getting-started/quickstart", "getting-started/handling-data",
+      "pages": ["getting-started/handling-data",
           "getting-started/using-actions", "getting-started/embedding"]
     },
     {
       "group": "Security",
-      "pages": ["security/authentication", "security/publishable-keys",
+      "pages": ["security/authentication",
           "security/roles-and-permissions"]
     },
     {
