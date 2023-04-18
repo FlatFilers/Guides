@@ -84,7 +84,7 @@
     {
       "group": "Blueprint",
       "pages": ["blueprint/overview", "blueprint/schema", "blueprint/properties", 
-          "blueprint/constraints", "blueprints/relationships", "blueprint/access"]
+          "blueprint/constraints", "blueprint/relationships", "blueprint/access"]
     },
     {
       "group": "Developer Tools",
