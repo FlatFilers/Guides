@@ -55,8 +55,8 @@
     },
     {
       "group": "Quickstart",
-      "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation",
-          "quickstart/add-validation", "quickstart/submit-action"]
+      "pages": ["quickstart/meet-the-workbook", "quickstart/meet-the-listener", "quickstart/add-data-transformation", 
+      "quickstart/add-validation", "quickstart/submit-action"]
     },
     {
       "group": "Getting Started",
