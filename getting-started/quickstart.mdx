@@ -1,5 +1,6 @@
 ---
 title: Quickstart
+description: "Learn how to create your first Workbook in Flatfile."
 ---
 
 In the next 15 minutes, you'll design and configure a workbook for your business. 
@@ -72,7 +73,7 @@ const createWorkbook = await flatfile.workbooks.create(spaceId, {
 
 - [ ]  Link to a Code Sandbox or Repl.it
 
-## Let's add a data transformation
+### Let's add a data transformation
 
 Flatfile provides a number of handy plugins for transforming and validating data. We're going to start by using the  `@flatfile/plugin-transform` helper. You can explore the other open source validation plugins available like:
 
@@ -91,7 +92,7 @@ export default function(listener) {
 }
 ```
 
-## Let's add validation
+### Let's add validation
 
 You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues in your data. We'll use the popular `email-validator` package here to make sure the email is actually valid.
 
@@ -112,7 +113,7 @@ export default function(flatfile) {
 
 - [ ]  Show preview of a validation error here
 
-## Let's configure a submit action
+### Let's configure a submit action
 
 Actions are incredibly powerful. Actions trigger Jobs within the Flatfile ecosystem. You can write your own actions using the `@flatfile/actions` helper library. But we're going to use the webhook action plugin to allow users to submit data from this sheet to your API. There are dozens of other plugins available like:
 
