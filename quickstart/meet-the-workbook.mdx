@@ -24,13 +24,13 @@ href="#hello">
 <a href="https://stackblitz.com/edit/flatfile-typescript-sdk-pgxzgt?file=app.ts" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in Rep.lit</a>
 
 
-<img src="..//images/quickstart/workbook.png" caption="The Flatfile Workbook"/>
-
 ### Using Workbooks
 
 The Workbook brings together automation and humans to get data into its final shape. 
-With Workbooks, you can:
 
+<img src="..//images/quickstart/workbook.png" caption="The Flatfile Workbook"/>
+
+With Workbooks, you can:
 1. Accept data from any of over N supported file types. (And you can write your own file extractors if that's not enough.)
 2. Automatically apply any validation rules a developer has previously defined.
 3. Provide end users the ability to add, remove, review, filter, and correct any data imported into a Workbook.
@@ -40,10 +40,11 @@ With Workbooks, you can:
 
 #### The anatomy of a Workbook
 
-- `Sheets` - like tables in a database or sheets in a spreadsheet, sheets isolate different data schemas.
-- `Fields` - Defined properties of your schema (eg a first_name on a contact sheet.)
-- `Actions` - Developer defined operations or macros on selected data like Submit to API, Download as PDF
-- `Event Hooks` - Whenever any data changes in a workbook, an event is triggered.
+<ParamField path="Sheets" type="array">The font family used throughout the table. Like tables in a database or sheets in a spreadsheet, sheets isolate different data schemas.</ParamField>
+<ParamField path="Fields" type="array">Defined properties of your schema (eg a first_name on a contact sheet.)</ParamField>
+<ParamField path="Actions" type="array">Developer-defined operations or macros on selected data like Submit to API, Download as PDF</ParamField>
+
+<Note>Whenever any data changes in a workbook, an event is triggered via `Event Hooks`.</Note>
 
 #### Define your Schema
 
@@ -54,7 +55,9 @@ Flatfile supports using over 999 different schema DDLs. For this tutorial we're 
 - `@flatfile/plugin-openapi`
 - `@flatfile/plugin-graphql`
 
-### Create a Workbook
+#### Bringing it all together
+
+A sentence or two goes here about wrapping your Blueprint in a Workbook and authenticating your client.
 
 ```jsx  workbooks.create
 import { FlatfileClient } from '@flatfile/api';
