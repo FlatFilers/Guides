@@ -33,10 +33,11 @@ const updateSpace = await flatfile.spaces.update(spaceId, {
 ![Sidebar Config](../images/customize/sidebar.png)
 
 #### `theme.root`
-
+<ParamField path="fontFamily" type="string">The font family used throughout the app.</ParamField>
 <ParamField path="primaryColor" type="string">The primary color used throughout the application.</ParamField>
 <ParamField path="dangerColor" type="string">The color used for error messages.</ParamField>
 <ParamField path="warningColor" type="string">The color used for warning messages.</ParamField>
+<ParamField path="actionColor" type="string">The color used for the primary action.</ParamField>
 
 
 ![Sidebar Config](../images/customize/sidebar.png)
@@ -60,25 +61,43 @@ const updateSpace = await flatfile.spaces.update(spaceId, {
 #### `theme.table.inputs`
 <ParamField path="inputs.radio.color" type="string">The color of the radio buttons in the table.</ParamField>
 <ParamField path="inputs.checkbox.color" type="string">The color of the checkboxes in the table.</ParamField>
+
+![Sidebar Config](../images/customize/sidebar.png)
+
 #### `theme.table.filters`
 <ParamField path="filters.color" type="string">The color of the filter buttons in the table.</ParamField>
 <ParamField path="filters.active.backgroundColor" type="string">The background color of the active filter buttons in the table.</ParamField>
 <ParamField path="filters.error.activeBackgroundColor" type="string">The background color of the active filter buttons in the table when there is an error.</ParamField>
+
+![Sidebar Config](../images/customize/sidebar.png)
+
 #### `theme.table.column`
 <ParamField path="column.header.fontSize" type="string">The font size of the column headers in the table.</ParamField>
 <ParamField path="column.header.backgroundColor" type="string">The background color of the column headers in the table.</ParamField>
 <ParamField path="column.header.color" type="string">The color of the column headers in the table.</ParamField>
 <ParamField path="column.header.dragHandle.idle" type="string">The color of the drag handle when it is idle.</ParamField>
 <ParamField path="column.header.dragHandle.dragging" type="string">The color of the drag handle when it is being dragged.</ParamField>
+
+![Sidebar Config](../images/customize/sidebar.png)
+
 #### `theme.table.indexColumn`
 <ParamField path="indexColumn.backgroundColor" type="string">The background color of the first column in the table.</ParamField>
 <ParamField path="indexColumn.selected.color" type="string">The color of the selected first column in the table.</ParamField>
 <ParamField path="indexColumn.selected.backgroundColor" type="string">The background color of the first column in the table when selected.</ParamField>
+
+![Sidebar Config](../images/customize/sidebar.png)
+
 #### `theme.table.cell`
 <ParamField path="cell.selected.backgroundColor" type="string">The background color of the selected cells in the table.</ParamField>
 <ParamField path="cell.active.borderColor" type="string">The border color of the active cells in the table.</ParamField>
 <ParamField path="cell.active.spinnerColor" type="string">The spinner color of the active cells in the table.</ParamField>
+
+![Sidebar Config](../images/customize/sidebar.png)
+
 #### `theme.table.boolean`
 <ParamField path="boolean.toggleChecked" type="string">The color of a toggle when it is checked.</ParamField>
+
+![Sidebar Config](../images/customize/sidebar.png)
+
 #### `theme.table.loading`
 <ParamField path="loading.color" type="string">The color of the spinner when the table is loading.</ParamField>
