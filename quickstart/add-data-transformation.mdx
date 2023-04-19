@@ -1,0 +1,44 @@
+---
+title: 3. Transform & validate data
+description: "Respond to events in Flatfile and transform data."
+---
+
+Flatfile provides a number of handy plugins for transforming and validating data. We're going to start by using the  `@flatfile/plugin-transform` helper. 
+You can explore the other open source validation plugins available like:
+
+- `@flatfile/plugin-autocast`
+- `@flatfile/plugin-pretty-dates`
+- `@flatfile/plugin-addresses`
+
+```jsx
+import { recordHook } from '@flatfile/plugin-transform'
+
+export default function(listener) {
+	listener.use(recordHoook((record) => {
+    // let's simply lowercase this email
+		record.transformIfPresent('email', (email) => email.toLowerCase())
+	}))
+}
+```
+
+### Let's add validation
+
+You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues in your data. We'll use the popular `email-validator` package here to make sure the email is actually valid.
+
+```jsx
+import { recordHook } from '@flatfile/plugin-transform'
+import * as EmailValidator from 'email-validator'
+
+export default function(flatfile) {
+	listener.use(recordHook((record) => {
+    // let's simply lowercase this email
+		record.transformIfPresent('email', (email) => email.toLowerCase())
+    // apply an error message if invalid
+    record.validate('email', 'Email is invalid',  (email) => EmailValidator.validate(email))
+	}))
+
+}
+```
+
+### Next Steps
+what's next goes here.

@@ -1,0 +1,120 @@
+---
+title: 1. Meet the workbook
+description: "Learn how to create your first Workbook in Flatfile."
+---
+A workbook in Flatfile replaces the spreadsheet template you may share 
+with people today when requesting data during the data collection phase 
+of customer onboarding or other business processes. Unlike a spreadsheet, 
+it's designed to allow your team and users to validate, correct, and import data.
+
+
+In the next 15 minutes, you’ll design and configure a workbook 
+for your business. Once you’re finished you’ll be able to embed it in your application 
+as an import flow, or deploy a data collection portal.
+
+
+
+<a target="#hello" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
+href="#hello">
+    <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
+    <span class="z-10 mr-2 text-white">Download full app</span>
+    <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+</a>
+
+<a href="https://stackblitz.com/edit/flatfile-typescript-sdk-pgxzgt?file=app.ts" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in Rep.lit</a>
+
+
+### Using Workbooks
+
+The Workbook brings together automation and humans to get data into its final shape. 
+
+<img src="..//images/quickstart/workbook.png" caption="The Flatfile Workbook"/>
+
+With Workbooks, you can:
+1. Accept data from any of over N supported file types. (And you can write your own file extractors if that's not enough.)
+2. Automatically apply any validation rules a developer has previously defined.
+3. Provide end users the ability to add, remove, review, filter, and correct any data imported into a Workbook.
+4. Define [in code] at least one primary action that submits the reviewed data to a destination API, database, or workflow step of your choosing.
+
+### Designing a Workbook
+
+#### The anatomy of a Workbook
+
+<ParamField path="Sheets" type="array">The font family used throughout the table. Like tables in a database or sheets in a spreadsheet, sheets isolate different data schemas.</ParamField>
+<ParamField path="Fields" type="array">Defined properties of your schema (eg a first_name on a contact sheet.)</ParamField>
+<ParamField path="Actions" type="array">Developer-defined operations or macros on selected data like Submit to API, Download as PDF</ParamField>
+
+<Note>Whenever any data changes in a workbook, an event is triggered via `Event Hooks`.</Note>
+
+#### Define your Schema
+
+Flatfile supports using over 999 different schema DDLs. For this tutorial we're going to create a simple schema using **Blueprint**. But you can also just use your existing schema if you have it by using any of these plugins.
+
+- `@flatfile/plugin-json-schema`
+- `@flatfile/plugin-sql-ddl`
+- `@flatfile/plugin-openapi`
+- `@flatfile/plugin-graphql`
+
+#### Bringing it all together
+
+A sentence or two goes here about wrapping your Blueprint in a Workbook and authenticating your client.
+
+```jsx  workbooks.create
+import { FlatfileClient } from '@flatfile/api';
+
+void main();
+
+async function main() {
+  const flatfile = new FlatfileClient({
+    publishableKey: '1234', //find this at dashboard.flatfile.com
+  });
+
+  // Create a Workbook
+  const createWorkbook = await flatfile.workbooks.create({
+    name: 'My Workbook 1',
+    //define your schema
+    blueprint: {
+      sheets: [
+        {
+          name: 'My Sheet 1',
+          description: 'hello',
+          slug: 'slug1',
+          fields: [
+            {
+              key: 'firstName',
+              type: 'string',
+              label: 'First Name',
+              description: 'The first name of the customer',
+              constraints: [
+                {
+                  type: 'required',
+                },
+              ],
+            },
+            {
+              key: 'lastName',
+              type: 'string',
+              label: 'Last Name',
+              description: 'The last name of the customer',
+              constraints: [
+                {
+                  type: 'required',
+                },
+              ],
+            },
+            {
+              key: 'fullName',
+              type: 'string',
+              label: 'Full Name',
+              description: 'The full name of the customer',
+            },
+          ],
+        },
+      ],
+    }
+  });
+}
+```
+
+### Next Steps
+Put them here.

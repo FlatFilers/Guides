@@ -1,0 +1,35 @@
+---
+title: 5. Configure a submit action
+description: "Learn how to create a simple submit action in Flatfile."
+---
+
+Actions are incredibly powerful. 
+Actions trigger Jobs within the Flatfile ecosystem. 
+You can write your own actions using the `@flatfile/actions` helper library. 
+But we're going to use the webhook action plugin to allow users to submit data from this sheet to your API. 
+
+There are dozens of other plugins available like:
+
+- `@flatfile/action-download-xlsx`
+- `@flatfile/action-download-zip`
+- `@flatfile/action-postgresql-egress`
+
+```jsx
+import { recordHook } from '@flatfile/plugin-transform'
+import * as EmailValidator from 'email-validator'
+import { webhookAction } from '@flatfile/plugin-webhook-action'
+
+export default function(flatfile) {
+
+  // this will setup a primary action for your workbook
+	listener.use(webhookAction({
+		name: 'Submit Data',
+		type: 'primary',
+		format: 'key-value',
+		url: '[https://webhook.site](https://webhook.site/)'
+	}))
+}
+```
+
+### Next Steps
+You now have a configured workbook. Next you should learn about a few more concepts.
