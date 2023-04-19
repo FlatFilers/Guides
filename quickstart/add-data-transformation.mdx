@@ -3,14 +3,24 @@ title: 2. Transform & validate data
 description: "Respond to events in Flatfile and transform data."
 ---
 
-Flatfile provides a number of handy plugins for transforming and validating data. We're going to start by using the  `@flatfile/plugin-transform` helper. 
-You can explore the other open source validation plugins available like:
+Whenever any data changes in a Workbook, an event is triggered via <Tooltip tip="Learn more about Events">Event Hooks</Tooltip>. 
+Using our powerful `@flatfile/listener` library, we will intervene the `record` event and run a callback function 
+based on values provided inside that event using `@flatfile/plugin-record-hook`
 
-- `@flatfile/plugin-autocast`
-- `@flatfile/plugin-pretty-dates`
-- `@flatfile/plugin-addresses`
+### Transform data
+In this example, we will transform the data provided inside the record event using the `@flatfile/plugin-transform` helper. 
+
+<Info>
+  Flatfile provides a number of handy plugins for transforming and validating data. Explore other open source validation plugins available like 
+  `@flatfile/plugin-autocast`, `@flatfile/plugin-pretty-dates`, `@flatfile/plugin-addresses` .
+</Info>
 
 ```jsx
+import {
+  Client,
+  FlatfileVirtualMachine,
+  FlatfileEvent,
+} from '@flatfile/listener';
 import { recordHook } from '@flatfile/plugin-transform'
 
 export default function(listener) {
@@ -21,7 +31,7 @@ export default function(listener) {
 }
 ```
 
-### Let's add validation
+### Add validation
 
 You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues in your data. We'll use the popular `email-validator` package here to make sure the email is actually valid.
 
