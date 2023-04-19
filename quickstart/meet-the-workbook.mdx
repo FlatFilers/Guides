@@ -24,11 +24,11 @@ href="#hello">
 <a href="https://stackblitz.com/edit/flatfile-typescript-sdk-pgxzgt?file=app.ts" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in Rep.lit</a>
 
 
-### Using Workbooks
+## Using Workbooks
 
 The Workbook brings together automation and humans to get data into its final shape. 
 
-<img src="..//images/quickstart/workbook.png" caption="The Flatfile Workbook"/>
+<img src="../images/quickstart/workbook.png" caption="The Flatfile Workbook"/>
 
 With Workbooks, you can:
 1. Accept data from any of over N supported file types. (And you can write your own file extractors if that's not enough.)
@@ -37,11 +37,14 @@ With Workbooks, you can:
 4. Define [in code] at least one primary action that submits the reviewed data to a destination API, database, or workflow step of your choosing.
 
 ### The anatomy of a Workbook
+A Workbook is comprised of one or more Sheets plus any actions you want to take on those Sheets.
+
+<img src="../images/quickstart/workbook_anatomy.png" caption="The anatomy of a Workbook"/>
 
 #### `Blueprint` *object*
 Each Workbook has a Blueprint. A <Tooltip tip="Learn more about Blueprint">[Blueprint](docs.com)</Tooltip> is a collection of Sheets that describe a complete dataset.
 
-```json  
+```jsx  
 blueprint: {
   sheets: [
     { fields: [] },
@@ -53,13 +56,14 @@ blueprint: {
 #### `Sheets` *array*
 A Blueprint contains Sheets. Like tables in a database or sheets in a spreadsheet, Sheets isolate different data schemas.
 
-```json  
+```jsx  
 sheets: [
   {
     name: 'My Sheet 1',
     description: 'This is my Customer Sheet.',
     slug: 'mysheet_1',
     fields: [],
+    actions: [],
   },
   {...}
 ],
@@ -68,60 +72,50 @@ sheets: [
 #### `Fields` *array*
 Sheets contain Fields. Fields are defined properties of your schema (eg a first_name on a contact sheet.)
 
-```json  
-sheets: [
+```jsx  
+fields: [
   {
-    ...
-    fields: [
-      {
-        "key": "full_name",
-        "type": "string",
-        "label": "Full Name",
-        "description": "The full name of the customer.",
-      },
-      {...}
+    "key": "full_name",
+    "type": "string",
+    "label": "Full Name",
+    "description": "The full name of the customer.",
+    "constraints": [
+      { "type": "required" }
     ],
+    "readonly": true
   },
+  {...}
 ],
 ```
 
 #### `Actions` *array*
 Sheets can also contain Actions. Actions are developer-defined operations or macros invoked by end users on selected data like Submit to API, Download as PDF.
 
-```json  
-sheets: [
+```jsx  
+actions: [
   {
-    ...
-    actions: [
-      {
-        "slug": "download_as_pdf",
-        "label": "Download as PDF",
-        "type": "string",
-        "description": "string",
-        "primary": true
-      },
-      {...}
-    ]
+    "slug": "download_as_pdf",
+    "label": "Download as PDF",
+    "type": "string",
+    "description": "string",
+    "primary": true
   },
-],
+  {...}
+]
 ```
+## Building your first Workbook
 
-<Note>Whenever any data changes in a workbook, an event is triggered via `Event Hooks`. [Learn more](hello.com).</Note>
+Flatfile supports using many different schema DDLs. For this tutorial, we're going to create a 
+simple schema using <Tooltip tip="Learn more about Blueprint">**Blueprint**</Tooltip>.
 
-#### Define your Schema
+Next, we'll wrap your Blueprint in a Workbook and <Tooltip tip="Learn more about authentication">authenticate your client</Tooltip>. 
 
-Flatfile supports using over 999 different schema DDLs. For this tutorial we're going to create a simple schema using **Blueprint**. But you can also just use your existing schema if you have it by using any of these plugins.
+<Info>
+  You can also just use your existing schema if you have it by using plugins like 
+  `@flatfile/plugin-json-schema`, `@flatfile/plugin-sql-ddl`, `@flatfile/plugin-openapi`, `@flatfile/plugin-graphql` .
+</Info>
 
-- `@flatfile/plugin-json-schema`
-- `@flatfile/plugin-sql-ddl`
-- `@flatfile/plugin-openapi`
-- `@flatfile/plugin-graphql`
-
-#### Bringing it all together
-
-A sentence or two goes here about wrapping your Blueprint in a Workbook and authenticating your client.
-
-```jsx  workbooks.create
+```jsx 
 import { FlatfileClient } from '@flatfile/api';
 
 void main();
@@ -136,7 +130,7 @@ async function main() {
         {
           name: 'My Sheet 1',
           description: 'hello',
-          slug: 'slug1',
+          slug: 'mysheet1',
           fields: [
             {
               key: 'firstName',
@@ -144,9 +138,7 @@ async function main() {
               label: 'First Name',
               description: 'The first name of the customer',
               constraints: [
-                {
-                  type: 'required',
-                },
+                { type: 'required' },
               ],
             },
             {
@@ -155,9 +147,7 @@ async function main() {
               label: 'Last Name',
               description: 'The last name of the customer',
               constraints: [
-                {
-                  type: 'required',
-                },
+                { type: 'required' },
               ],
             },
             {
