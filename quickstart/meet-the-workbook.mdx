@@ -24,7 +24,7 @@ href="#hello">
 <a href="https://stackblitz.com/edit/flatfile-typescript-sdk-pgxzgt?file=app.ts" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in Rep.lit</a>
 
 
-#### Using Workbooks
+## Using Workbooks
 
 The Workbook brings together automation and humans to get data into its final shape. 
 
@@ -36,7 +36,7 @@ With Workbooks, you can:
 3. Provide end users the ability to add, remove, review, filter, and correct any data imported into a Workbook.
 4. Define [in code] at least one primary action that submits the reviewed data to a destination API, database, or workflow step of your choosing.
 
-### Learn the anatomy of a Workbook
+### The anatomy of a Workbook
 A Workbook is comprised of one or more Sheets plus any actions you want to take on those Sheets.
 
 <img src="../images/quickstart/workbook_anatomy.png" caption="The anatomy of a Workbook"/>
@@ -103,7 +103,7 @@ actions: [
   {...}
 ]
 ```
-### Define your schema and build a Workbook
+## Building your first Workbook
 
 Flatfile supports using many different schema DDLs. For this tutorial, we're going to create a 
 simple schema using <Tooltip tip="Learn more about Blueprint">**Blueprint**</Tooltip>.
@@ -130,7 +130,7 @@ async function main() {
         {
           name: 'My Sheet 1',
           description: 'hello',
-          slug: 'slug1',
+          slug: 'mysheet1',
           fields: [
             {
               key: 'firstName',

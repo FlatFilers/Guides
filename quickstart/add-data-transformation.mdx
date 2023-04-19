@@ -7,7 +7,7 @@ Whenever any data changes in a Workbook, an event is triggered via <Tooltip tip=
 Using our powerful `@flatfile/listener` library, we will intervene the `record` event and run a callback function 
 based on values provided inside that event using `@flatfile/plugin-record-hook`
 
-### Transform data
+## Add your first data transformation
 In this example, we will transform the data provided inside the record event using the `@flatfile/plugin-transform` helper. 
 
 <Info>
@@ -16,36 +16,87 @@ In this example, we will transform the data provided inside the record event usi
 </Info>
 
 ```jsx
-import {
-  Client,
-  FlatfileVirtualMachine,
-  FlatfileEvent,
-} from '@flatfile/listener';
-import { recordHook } from '@flatfile/plugin-transform'
-
-export default function(listener) {
-	listener.use(recordHoook((record) => {
-    // let's simply lowercase this email
-		record.transformIfPresent('email', (email) => email.toLowerCase())
-	}))
-}
+client.use(recordHook('my-sheet', (record: FlatfileRecord) => {
+	record.transformIfPresent((first_name && last_name), (full_name) => (first_name + " " + last_name))
+	return record;
+}));
 ```
 
-### Add validation
+## Add your first validation
 
 You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues in your data. We'll use the popular `email-validator` package here to make sure the email is actually valid.
 
 ```jsx
-import { recordHook } from '@flatfile/plugin-transform'
+client.use(recordHook('my-sheet', (record: FlatfileRecord) => {
+	record.transformIfPresent((first_name && last_name), (full_name) => (first_name + " " + last_name))
+	record.validate('email', 'Email is invalid',  (email) => EmailValidator.validate(email))
+	return record;
+}));
+```
+
+## Bringing it all together
+
+```jsx
+import { FlatfileClient } from '@flatfile/api';
+import { Client, FlatfileVirtualMachine FlatfileEvent} from '@flatfile/listener';
+import { FlatfileRecord } from '@flatfile/hooks';
+import { recordHook } from '@flatfile/plugin-record-hook';
 import * as EmailValidator from 'email-validator'
 
-export default function(flatfile) {
-	listener.use(recordHook((record) => {
-    // let's simply lowercase this email
-		record.transformIfPresent('email', (email) => email.toLowerCase())
-    // apply an error message if invalid
-    record.validate('email', 'Email is invalid',  (email) => EmailValidator.validate(email))
-	}))
+void main();
+
+async function main() {
+  const flatfile = new FlatfileClient({
+    publishableKey: '1234', //find this at dashboard.flatfile.com
+  });
+
+  const blueprint = {
+      sheets: [
+        {
+          name: 'My Sheet 1',
+          description: 'hello',
+          slug: 'mysheet1',
+          fields: [
+            {
+              key: 'firstName',
+              type: 'string',
+              label: 'First Name',
+              description: 'The first name of the customer',
+              constraints: [
+                { type: 'required' },
+              ],
+            },
+            {
+              key: 'lastName',
+              type: 'string',
+              label: 'Last Name',
+              description: 'The last name of the customer',
+              constraints: [
+                { type: 'required' },
+              ],
+            },
+            {
+              key: 'fullName',
+              type: 'string',
+              label: 'Full Name',
+              description: 'The full name of the customer',
+            },
+          ],
+        },
+      ],
+    }
+
+  // Create a Workbook
+  const createWorkbook = await flatfile.workbooks.create({
+    name: 'My Workbook 1',
+    blueprint: blueprint
+  });
+
+  flatfile.use(recordHook('mysheet1', (record: FlatfileRecord) => {
+    record.transformIfPresent((first_name && last_name), (full_name) => (first_name + " " + last_name))
+	record.validate('email', 'Email is invalid',  (email) => EmailValidator.validate(email))
+	return record;
+  }));
 
 }
 ```
