@@ -36,15 +36,77 @@ With Workbooks, you can:
 3. Provide end users the ability to add, remove, review, filter, and correct any data imported into a Workbook.
 4. Define [in code] at least one primary action that submits the reviewed data to a destination API, database, or workflow step of your choosing.
 
-### Designing a Workbook
+### The anatomy of a Workbook
 
-#### The anatomy of a Workbook
+#### `Blueprint` *object*
+Each Workbook has a Blueprint. A <Tooltip tip="Learn more about Blueprint">[Blueprint](docs.com)</Tooltip> is a collection of Sheets that describe a complete dataset.
 
-<ParamField path="Sheets" type="array">The font family used throughout the table. Like tables in a database or sheets in a spreadsheet, sheets isolate different data schemas.</ParamField>
-<ParamField path="Fields" type="array">Defined properties of your schema (eg a first_name on a contact sheet.)</ParamField>
-<ParamField path="Actions" type="array">Developer-defined operations or macros on selected data like Submit to API, Download as PDF</ParamField>
+```json  
+blueprint: {
+  sheets: [
+    { fields: [] },
+  ]
+}
+```
 
-<Note>Whenever any data changes in a workbook, an event is triggered via `Event Hooks`.</Note>
+
+#### `Sheets` *array*
+A Blueprint contains Sheets. Like tables in a database or sheets in a spreadsheet, Sheets isolate different data schemas.
+
+```json  
+sheets: [
+  {
+    name: 'My Sheet 1',
+    description: 'This is my Customer Sheet.',
+    slug: 'mysheet_1',
+    fields: [],
+  },
+  {...}
+],
+```
+
+#### `Fields` *array*
+Sheets contain Fields. Fields are defined properties of your schema (eg a first_name on a contact sheet.)
+
+```json  
+sheets: [
+  {
+    ...
+    fields: [
+      {
+        "key": "full_name",
+        "type": "string",
+        "label": "Full Name",
+        "description": "The full name of the customer.",
+      },
+      {...}
+    ],
+  },
+],
+```
+
+#### `Actions` *array*
+Sheets can also contain Actions. Actions are developer-defined operations or macros invoked by end users on selected data like Submit to API, Download as PDF.
+
+```json  
+sheets: [
+  {
+    ...
+    actions: [
+      {
+        "slug": "download_as_pdf",
+        "label": "Download as PDF",
+        "type": "string",
+        "description": "string",
+        "primary": true
+      },
+      {...}
+    ]
+  },
+],
+```
+
+<Note>Whenever any data changes in a workbook, an event is triggered via `Event Hooks`. [Learn more](hello.com).</Note>
 
 #### Define your Schema
 
@@ -69,11 +131,7 @@ async function main() {
     publishableKey: '1234', //find this at dashboard.flatfile.com
   });
 
-  // Create a Workbook
-  const createWorkbook = await flatfile.workbooks.create({
-    name: 'My Workbook 1',
-    //define your schema
-    blueprint: {
+  const blueprint = {
       sheets: [
         {
           name: 'My Sheet 1',
@@ -112,6 +170,12 @@ async function main() {
         },
       ],
     }
+
+  // Create a Workbook
+  const createWorkbook = await flatfile.workbooks.create({
+    name: 'My Workbook 1',
+    //define your schema
+    blueprint: blueprint
   });
 }
 ```
