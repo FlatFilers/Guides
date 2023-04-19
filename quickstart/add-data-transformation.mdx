@@ -17,7 +17,7 @@ In this example, we will transform the data provided inside the record event usi
 
 ```jsx
 client.use(recordHook('my-sheet', (record: FlatfileRecord) => {
-	record.transformIfPresent((first_name && last_name), (full_name) => (first_name + " " + last_name))
+	record.transformIfPresent(['first_name', 'last_name'], 'full_name', () => `${first_name} ${last_name}`)
 	return record;
 }));
 ```
@@ -28,13 +28,15 @@ You can use any javascript validation engine in the world to automatically detec
 
 ```jsx
 client.use(recordHook('my-sheet', (record: FlatfileRecord) => {
-	record.transformIfPresent((first_name && last_name), (full_name) => (first_name + " " + last_name))
+	record.transformIfPresent(['first_name', 'last_name'], 'full_name', () => `${first_name} ${last_name}`)
 	record.validate('email', 'Email is invalid',  (email) => EmailValidator.validate(email))
 	return record;
 }));
 ```
 
 ## Bringing it all together
+
+Here's what your code should look like so far.
 
 ```jsx
 import { FlatfileClient } from '@flatfile/api';
@@ -58,7 +60,7 @@ async function main() {
           slug: 'mysheet1',
           fields: [
             {
-              key: 'firstName',
+              key: 'first_name',
               type: 'string',
               label: 'First Name',
               description: 'The first name of the customer',
@@ -67,7 +69,7 @@ async function main() {
               ],
             },
             {
-              key: 'lastName',
+              key: 'last_name',
               type: 'string',
               label: 'Last Name',
               description: 'The last name of the customer',
@@ -76,7 +78,7 @@ async function main() {
               ],
             },
             {
-              key: 'fullName',
+              key: 'full_name',
               type: 'string',
               label: 'Full Name',
               description: 'The full name of the customer',
@@ -93,7 +95,7 @@ async function main() {
   });
 
   flatfile.use(recordHook('mysheet1', (record: FlatfileRecord) => {
-    record.transformIfPresent((first_name && last_name), (full_name) => (first_name + " " + last_name))
+    record.transformIfPresent(['first_name', 'last_name'], 'full_name', () => `${first_name} ${last_name}`)
 	record.validate('email', 'Email is invalid',  (email) => EmailValidator.validate(email))
 	return record;
   }));
