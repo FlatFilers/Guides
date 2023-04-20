@@ -9,7 +9,7 @@ Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/
 For this tutorial, we will intervene the `record` event topic with [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
 based on the values provided inside that event.
 
-<h2><small>2.1</small> Start listening for events</h2>
+## Start listening for events
 
 Begin capturing Events as they happen in your Workbook with this [dev sandbox](https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts). 
 
@@ -28,7 +28,7 @@ href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
     <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
 </a>
 
-<h2><small>2.2</small> Add your first data transformation</h2>
+## Add your first data transformation
 
 <Tip>
   Flatfile provides a number of handy plugins for transforming and validating data. Explore open source validation plugins available like 
@@ -47,7 +47,7 @@ client.use(recordHook('my-sheet1', (record: FlatfileRecord) => {
 }));
 ```
 
-<h2><small>2.3</small> Add your first validation</h2>
+## Add your first validation
 
 In this example, we will validate the data provided inside the record event using the `record.validate` helper 
 also from the [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks) plugin.
