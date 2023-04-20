@@ -4,15 +4,10 @@ description: "Respond to events in Flatfile and transform data."
 ---
 
 Whenever any data changes in a Workbook, an event is triggered via <Tooltip tip="Learn more about Events">[Event Hooks](../concepts/events)</Tooltip>. 
-Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library, we will listen for events.
+Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library, we will listen for events and respond to them..
 
-Next, we intervene the `record` event topic with [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
+For this tutorial, we will intervene the `record` event topic with [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
 based on the values provided inside that event.
-
-<Tip>
-  Flatfile provides a number of handy plugins for transforming and validating data. Explore open source validation plugins available like 
-  [@flatfile/plugin-autocast](hello.com), [@flatfile/plugin-pretty-dates](hello.com), [@flatfile/plugin-addresses](hello.com).
-</Tip>
 
 <h2><small>2.1</small> Start listening for events</h2>
 
@@ -35,6 +30,11 @@ href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
 
 <h2><small>2.2</small> Add your first data transformation</h2>
 
+<Tip>
+  Flatfile provides a number of handy plugins for transforming and validating data. Explore open source validation plugins available like 
+  [@flatfile/plugin-autocast](hello.com), [@flatfile/plugin-pretty-dates](hello.com), [@flatfile/plugin-addresses](hello.com).
+</Tip>
+
 In this example, we will transform the data provided inside the record event using the `record.transform` helper 
 from the [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks) plugin.
 
@@ -50,7 +50,7 @@ client.use(recordHook('my-sheet1', (record: FlatfileRecord) => {
 <h2><small>2.3</small> Add your first validation</h2>
 
 In this example, we will validate the data provided inside the record event using the `record.validate` helper 
-from the [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks) plugin.
+also from the [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks) plugin.
 
 This validation specifically will use the popular [email-validator](https://www.npmjs.com/package/email-validator) package 
 to make sure the email is actually valid.
