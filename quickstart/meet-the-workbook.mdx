@@ -15,13 +15,13 @@ as an import flow, or deploy a data collection portal.
 
 
 <a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
-href="#hello">
+href="https://github.com/FlatFilers">
     <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
     <span class="z-10 mr-2 text-white">Download full app</span>
     <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
 </a>
 
-<a target="_blank" href="https://stackblitz.com/edit/flatfile-typescript-sdk-pgxzgt?file=app.ts" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in Rep.lit</a>
+<a target="_blank" href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in Replit</a>
 
 
 ## Using Workbooks
@@ -39,21 +39,18 @@ With Workbooks, you can:
 
 ## Building your first Workbook
 
-Flatfile supports using many different schema DDLs. You can also just use your existing schema if you have it by using plugins like 
-  `@flatfile/plugin-json-schema`, `@flatfile/plugin-sql-ddl`, `@flatfile/plugin-openapi`, `@flatfile/plugin-graphql`.
+Flatfile supports using many different schema DDLs. If you have an existing schema, use plugins like
+  [@flatfile/plugin-json-schema](hello.com), [@flatfile/plugin-sql-ddl](hello.com), [@flatfile/plugin-openapi](hello.com), [@flatfile/plugin-graphql](hello.com).
   
-  For this tutorial, we're going to create a simple schema using <Tooltip tip="Learn more about Blueprint">**Blueprint**</Tooltip>.
-
-<Info>
-Quickly create this sample Workbook by running this curl API request in your terminal or in our Docs.
+  For this tutorial, we're going to create a simple schema using <Tooltip tip="Learn more about Blueprint">**Blueprint**</Tooltip>. Quickly create a sample Workbook by running this curl API request in your terminal or you can all our API directly from our API reference Docs.
 
 <a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
 href="https://flatfile.stoplight.io/docs/v10/branches/ashley-mulligan-sample-workbook/tjt005wdogklo-create-a-sample-workbook">
     <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
-    <span class="z-10 mr-2 text-white">Run in our Docs</span>
+    <span class="z-10 mr-2 text-white">Run directly from our Docs</span>
     <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
 </a>
-</Info>
+
 ```shell
 curl --request POST \
   --url https://api.x.flatfile.com/v1/workbooks \
@@ -91,5 +88,6 @@ curl --request POST \
 ```
 
 ### Next Steps
-Next, we'll add data transformations and validations to your newly created Workbook. 
+You should now have a Workbook in your Account. Head over to your [Dashboard](https://dashboard.flatfile.com) to see it and interact with it. 
+Next, we'll bring your Workbook to life by adding data transformations and validations to it. 
 
