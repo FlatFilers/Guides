@@ -3,17 +3,27 @@ title: 3. Configure a submit action
 description: "Learn how to create a simple submit action in Flatfile."
 ---
 
-Actions are incredibly powerful buttons in the UI that [when clicked by end users] trigger <Tooltip tip="Learn about Jobs">[Jobs](../concepts/jobs)</Tooltip> 
+Actions are incredibly powerful buttons added to the UI that [when clicked by end users] trigger <Tooltip tip="Learn about Jobs">[Jobs](../concepts/jobs)</Tooltip> 
 that run within the Flatfile ecosystem. 
 
 You can write your own actions using the [@flatfile/actions](npmjs.com) helper library or find a plugin that suits your need.
 
-<Tip> 
-	There are dozens of action plugins available like: [@flatfile/plugin-action-download-xlsx](npmjs.com), 
-	[@flatfile/plugin-action-download-zip](npmjs.com), [@flatfile/plugin-action-postgresql-egress](npmjs.com)
-</Tip>
+### Using Action Plugins
 
-## Add your first action 
+For this tutorial, we’re going to use [@flatfile/plugin-action-webhook](npmjs.com).
+
+There are dozens of action plugins available like: 
+
+<CardGroup cols={3}>
+  <Card color="#CB3837" title="@flatfile/plugin-action-download-xlsx" icon="npm" href="npmjs.com">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-action-download-zip" icon="npm" href="npmjs.com">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-action-postgresql-egress" icon="npm" href="npmjs.com">
+  </Card>
+</CardGroup>
+
+## Adding your first action 
 
 In this example, we're going to use [@flatfile/plugin-action-webhook](npmjs.com). This plugin creates a primary action in a Workbook 
 that allows users to submit data from this sheet to your API.
@@ -37,7 +47,7 @@ listener.use(webhookAction({
 
 ---
 
-### Recap & Next Steps
+## Recap & Next Steps
 Congratulations! You now have a configured workbook with transformations, validations, and a final submit action. 
 This completes the Quickstart tutorial.
 
