@@ -4,16 +4,35 @@ description: "Respond to events in Flatfile and transform data."
 ---
 
 Whenever any data changes in a Workbook, an event is triggered via <Tooltip tip="Learn more about Events">Event Hooks</Tooltip>. 
-Using our powerful `@flatfile/listener` library, we will intervene the `record` event and run a callback function 
-based on values provided inside that event using `@flatfile/plugin-record-hook`
+Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library, we will intervene the `record` event and perform callback functions
+based on the values provided inside that event.
+
+<Tip>
+  Flatfile provides a number of handy plugins for transforming and validating data. Explore open source validation plugins available like 
+  [@flatfile/plugin-autocast](hello.com), [@flatfile/plugin-pretty-dates](hello.com), [@flatfile/plugin-addresses](hello.com).
+</Tip>
+
+## Start listening for events
+Begin capturing Events as they happen in your Workbook with this [dev sandbox](https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts). 
+
+<Info>You'll need to add your [secret key](../security/authentication) to the `.flatfilerc` file to get authenticated.</Info>
+
+#### How it works: 
+
+Every time this polling driver gets a new event from your Workbook, you will be able to see 
+the UI respond by updating the data in your Sheet.
+
+
+<a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
+href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
+    <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
+    <span class="z-10 mr-2 text-white">See it in Replit</span>
+    <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+</a>
+
 
 ## Add your first data transformation
-In this example, we will transform the data provided inside the record event using the `record.transform` helper. 
-
-<Info>
-  Flatfile provides a number of handy plugins for transforming and validating data. Explore other open source validation plugins available like 
-  `@flatfile/plugin-autocast`, `@flatfile/plugin-pretty-dates`, `@flatfile/plugin-addresses` .
-</Info>
+In this example, we will transform the data provided inside the record event using the `record.transform` helper from the [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) plugin.
 
 ```jsx
 client.use(recordHook('my-sheet1', (record: FlatfileRecord) => {
@@ -24,7 +43,7 @@ client.use(recordHook('my-sheet1', (record: FlatfileRecord) => {
 
 ## Add your first validation
 
-You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues in your data. We'll use the popular `email-validator` package here to make sure the email is actually valid.
+You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues in your data. We'll use the popular [email-validator](https://www.npmjs.com/package/email-validator) package here to make sure the email is actually valid.
 
 ```jsx
 client.use(recordHook('my-sheet1', (record: FlatfileRecord) => {
@@ -35,4 +54,4 @@ client.use(recordHook('my-sheet1', (record: FlatfileRecord) => {
 ```
 
 ### Next Steps
-Next, we will add a submit action.
+Next, we will add an action that submits data from this Sheet to your API.
