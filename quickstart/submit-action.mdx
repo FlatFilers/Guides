@@ -3,35 +3,43 @@ title: 3. Configure a submit action
 description: "Learn how to create a simple submit action in Flatfile."
 ---
 
-Actions are incredibly powerful. 
-Actions trigger Jobs within the Flatfile ecosystem. 
-You can write your own actions using the `@flatfile/actions` helper library. 
-But we're going to use the webhook action plugin to allow users to submit data from this sheet to your API. 
+Actions are incredibly powerful buttons in the UI that [when clicked by end users] trigger <Tooltip tip="Learn about Jobs">[Jobs](../concepts/jobs)</Tooltip> 
+that run within the Flatfile ecosystem. 
 
-There are dozens of other plugins available like:
+You can write your own actions using the [@flatfile/actions](npmjs.com) helper library or find a plugin that suits your need.
 
-- `@flatfile/action-download-xlsx`
-- `@flatfile/action-download-zip`
-- `@flatfile/action-postgresql-egress`
+<Tip> 
+	There are dozens of action plugins available like: [@flatfile/plugin-action-download-xlsx](npmjs.com), 
+	[@flatfile/plugin-action-download-zip](npmjs.com), [@flatfile/plugin-action-postgresql-egress](npmjs.com)
+</Tip>
+
+## Add your first action 
+
+In this example, we're going to use [@flatfile/plugin-action-webhook](npmjs.com). This plugin creates a primary action in a Workbook 
+that allows users to submit data from this sheet to your API.
+
+<a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
+href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
+    <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
+    <span class="z-10 mr-2 text-white">See it in Replit</span>
+    <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+</a>
+
 
 ```jsx
-import { recordHook } from '@flatfile/plugin-transform'
-import * as EmailValidator from 'email-validator'
-import { webhookAction } from '@flatfile/plugin-webhook-action'
-
-export default function(flatfile) {
-
-  // this will setup a primary action for your workbook
-	listener.use(webhookAction({
-		name: 'Submit Data',
-		type: 'primary',
-		format: 'key-value',
-		url: '[https://webhook.site](https://webhook.site/)'
-	}))
-}
+listener.use(webhookAction({
+	name: 'Submit Data',
+	type: 'primary',
+	format: 'key-value',
+	url: '[https://webhook.site](https://webhook.site/)'
+}))
 ```
 
 ---
 
 ### Recap & Next Steps
-You now have a configured workbook. Next you should learn about a few more concepts.
+Congratulations! You now have a configured workbook with transformations, validations, and a final submit action. 
+This completes the Quickstart tutorial.
+
+Next, you should [deploy your code](../developer-tools/deploying) to your Environment or 
+learn more about the [Concepts](../concepts/spaces) to take this example further.
