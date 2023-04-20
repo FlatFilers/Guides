@@ -3,8 +3,10 @@ title: 2. Transform & validate data
 description: "Respond to events in Flatfile and transform data."
 ---
 
-Whenever any data changes in a Workbook, an event is triggered via <Tooltip tip="Learn more about Events">Event Hooks</Tooltip>. 
-Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library, we will intervene the `record` event and perform callback functions
+Whenever any data changes in a Workbook, an event is triggered via <Tooltip tip="Learn more about Events">[Event Hooks](../concepts/events)</Tooltip>. 
+Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library, we will listen for events.
+
+Next, we intervene the `record` event topic with [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
 based on the values provided inside that event.
 
 <Tip>
@@ -12,7 +14,8 @@ based on the values provided inside that event.
   [@flatfile/plugin-autocast](hello.com), [@flatfile/plugin-pretty-dates](hello.com), [@flatfile/plugin-addresses](hello.com).
 </Tip>
 
-## 2.1 Start listening for events
+<h2><small>2.1</small> Start listening for events</h2>
+
 Begin capturing Events as they happen in your Workbook with this [dev sandbox](https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts). 
 
 <Info>You'll need to add your [secret key](../security/authentication) to the `.flatfilerc` file to get authenticated.</Info>
@@ -30,10 +33,10 @@ href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
     <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
 </a>
 
+<h2><small>2.2</small> Add your first data transformation</h2>
 
-## 2.2 Add your first data transformation
 In this example, we will transform the data provided inside the record event using the `record.transform` helper 
-from the [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) plugin.
+from the [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks) plugin.
 
 This transformation specifically will take full name and split it into first and last name.
 
@@ -44,10 +47,10 @@ client.use(recordHook('my-sheet1', (record: FlatfileRecord) => {
 }));
 ```
 
-## 2.3 Add your first validation
+<h2><small>2.3</small> Add your first validation</h2>
 
 In this example, we will validate the data provided inside the record event using the `record.validate` helper 
-from the [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) plugin.
+from the [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks) plugin.
 
 This validation specifically will use the popular [email-validator](https://www.npmjs.com/package/email-validator) package 
 to make sure the email is actually valid.
@@ -65,6 +68,8 @@ client.use(recordHook('my-sheet1', (record: FlatfileRecord) => {
 	return record;
 }));
 ```
+
+---
 
 ### Recap & Next Steps
 
