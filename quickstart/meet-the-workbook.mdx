@@ -23,7 +23,7 @@ href="https://github.com/FlatFilers">
 
 ---
 
-#### Using Workbooks
+### Using Workbooks
 
 The Workbook brings together automation and humans to get data into its final shape. 
 
@@ -36,12 +36,25 @@ With Workbooks, you can:
 4. Define [in code] at least one primary action that submits the reviewed data to a destination API, database, or workflow step of your choosing.
 
 
-## Building your first Workbook
+### Using Schemas
 
-Flatfile supports using many different schema DDLs. If you have an existing schema, use plugins like
-  [@flatfile/plugin-json-schema](hello.com), [@flatfile/plugin-sql-ddl](hello.com), [@flatfile/plugin-openapi](hello.com), [@flatfile/plugin-graphql](hello.com).
-  
-For this tutorial, we're going to create a simple schema using <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip>. Quickly create a sample Workbook by running this curl API request in your terminal or you can all our API directly from our API reference Docs.
+For this tutorial, we're going to create a simple schema using <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip>. 
+
+Flatfile supports using many different schema DDLs. If you have an existing schema, you can choose from many different open-source [schema plugins](https://plugins.flatfile.com) like:
+
+<CardGroup cols={4}>
+  <Card color="#CB3837" title="@flatfile/plugin-json-schema" icon="npm" href="npmjs.com">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-sql-ddl" icon="npm" href="npmjs.com">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-openapi" icon="npm" href="npmjs.com">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-graphql" icon="npm" href="npmjs.com">
+  </Card>
+</CardGroup>
+
+## Building your first Workbook
+Quickly create a sample Workbook by running this curl API request in your terminal or you can all our API directly from our API reference Docs.
 
 <a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
 href="https://flatfile.stoplight.io/docs/v10/branches/ashley-mulligan-sample-workbook/tjt005wdogklo-create-a-sample-workbook">
@@ -50,6 +63,8 @@ href="https://flatfile.stoplight.io/docs/v10/branches/ashley-mulligan-sample-wor
     <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
 </a>
 
+<a href="ssh://" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">Run in your terminal</a>
+
 ```shell
 curl --request POST \
   --url https://api.x.flatfile.com/v1/workbooks \
@@ -57,7 +72,7 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --data '{
   "name": "My First Workbook",
-  "blueprint": {
+  "schema": {
     "sheets": [
       {
         "name": "My Sheet 1",
@@ -87,7 +102,7 @@ curl --request POST \
 
 ---
 
-### Recap & Next Steps
+## Recap & Next Steps
 You should now have a Workbook in your Account. Head over to your [Dashboard](https://dashboard.flatfile.com) to see it and interact with it. 
 
 Next, we'll bring your Workbook to life by adding data transformations and validations to it. 
