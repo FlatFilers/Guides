@@ -22,6 +22,14 @@
       "light": "#fff"
     }
   },
+  "feedback": {
+    "raiseIssue": true,
+    "suggestEdit": true
+  },
+  "modeToggle": {
+    "default": "dark"
+  },
+  "backgroundImage": "/images/background.png",
   "topbarLinks": [
     {
       "name": "Create account",
