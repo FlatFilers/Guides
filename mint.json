@@ -5,6 +5,13 @@
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
+  "api": {
+    "baseUrl": "https://api.x.flatfile.com",
+    "auth": {
+        "method": "bearer",
+        "name": "publishableKey"
+    }
+  },
   "favicon": "/favicon.png",
   "colors": {
     "primary": "#3B2FC9",
@@ -55,7 +62,7 @@
     },
     {
       "group": "Quickstart",
-      "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation", 
+      "pages": ["quickstart/meet-the-workbook","quickstart/create-workbook", "quickstart/add-data-transformation", 
      "quickstart/submit-action"]
     },
     {

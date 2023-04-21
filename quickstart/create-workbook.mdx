@@ -1,0 +1,19 @@
+---
+title: "Create new workbook"
+api: "POST /v1/workbooks"
+authMethod: "bearer"
+body: "hello"
+---
+
+<ParamField body="name" type="string" default="My Simple Workbook" required>
+  The name of the Workbook.
+</ParamField>
+
+<ParamField body="schema" children="sheets" required>
+  Wrapper for Sheets
+</ParamField>
+
+<ParamField body="sheets" type="array" default="[]" required>
+  An array of Sheets.
+</ParamField>
+
