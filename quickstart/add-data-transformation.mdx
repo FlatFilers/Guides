@@ -1,14 +1,32 @@
 ---
 title: 2. Transform & validate data
-description: "Learn how to respond to events in Flatfile and transform data."
+description: "Learn how to use events in Flatfile to transform data."
 ---
 
-Whenever any data changes in a Workbook, an event is triggered via <Tooltip tip="Learn more about Events">[Event Hooks](../concepts/events)</Tooltip>. 
-Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library, we can listen for events and respond to them.
+<Info>If you haven't used your new Workbook yet, head over to your [Dashboard](https://dashboard.flatfile.com) and check it out.</Info>
 
-## Start listening for events
+As you were interactive with your new Workbook, you may have made some changes to data. Whenever any data changes (or is added) in a Workbook, an event is triggered via <Tooltip tip="Learn more about Events">[Event Hooks](../concepts/events)</Tooltip>. 
 
-For this tutorial, we will intervene the `record` event topic with [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
+Using our powerful [@flatfile/listener](../core-libraries/listener) library, we can listen for events and respond to them.
+
+### Using validation plugins
+
+For this tutorial, we will perform a simple data transformation using [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks).
+
+Flatfile provides a number of handy [validation plugins](https://plugins.flatfile.com). Explore open source validation plugins available like:
+
+<CardGroup cols={3}>
+  <Card color="#CB3837" title="@flatfile/plugin-autocast" icon="npm" href="npmjs.com">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-pretty-dates" icon="npm" href="npmjs.com">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-addresses" icon="npm" href="npmjs.com">
+  </Card>
+</CardGroup>
+
+## Using the `record:` event
+
+For this tutorial, we will intervene the `record` event topic with a powerful plugin, [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
 based on the values provided inside that event.
 
 Begin capturing Events as they happen in your Workbook with this [dev sandbox](https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts). 
@@ -29,21 +47,6 @@ href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
 </a>
 
 <a target="_blank" href="https://github.com" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">Clone the full project</a>
-
-### Using validation plugins
-
-For this tutorial, we will perform a simple data transformation using [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks).
-
-Flatfile provides a number of handy [validation plugins](https://plugins.flatfile.com). Explore open source validation plugins available like:
-
-<CardGroup cols={3}>
-  <Card color="#CB3837" title="@flatfile/plugin-autocast" icon="npm" href="npmjs.com">
-  </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-pretty-dates" icon="npm" href="npmjs.com">
-  </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-addresses" icon="npm" href="npmjs.com">
-  </Card>
-</CardGroup>
 
 
 ## Adding your first data transformation
