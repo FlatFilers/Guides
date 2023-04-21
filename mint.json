@@ -8,8 +8,7 @@
   "api": {
     "baseUrl": "https://api.x.flatfile.com",
     "auth": {
-        "method": "bearer",
-        "name": "publishableKey"
+        "method": "bearer"
     }
   },
   "favicon": "/favicon.png",
