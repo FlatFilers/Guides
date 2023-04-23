@@ -10,7 +10,7 @@ You can write your own actions using the [@flatfile/actions](npmjs.com) helper l
 
 ### Using Action Plugins
 
-For this tutorial, we’re going to use [@flatfile/plugin-action-webhook](npmjs.com).
+For this tutorial, we're going to perform a simple Generate JSON action without using a plugin.
 
 There are dozens of other open-source action plugins available like: 
 
@@ -25,8 +25,8 @@ There are dozens of other open-source action plugins available like:
 
 ## Adding your first action 
 
-In this example, we're going to use [@flatfile/plugin-action-webhook](npmjs.com). This plugin creates a primary action in a Workbook 
-that allows users to submit data from this sheet to your API.
+In this example, we're going to add the code the primary action `generateJSON` we defined earlier when creating our sample workbook.
+This action will take data from the Sheet and convert it to JSON.
 
 <a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
 href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
@@ -37,12 +37,24 @@ href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
 
 
 ```jsx
-listener.use(webhookAction({
-	name: 'Submit Data',
-	type: 'primary',
-	format: 'key-value',
-	url: '[https://webhook.site](https://webhook.site/)'
-}))
+async function generateJSON(event: any, sheetName: string, data: any) {
+  const formData = new FormData();
+  formData.append('spaceId', event.context.spaceId);
+
+  formData.append('environmentId', event.context.environmentId);
+  formData.append('file', JSON.stringify(data), {
+    filename: `Sheet ${sheetName}.json`,
+  });
+
+  try {
+    await axios.post(`v1/files`, formData, {
+      headers: formData.getHeaders(),
+      transformRequest: () => formData,
+    });
+  } catch (error) {
+    console.log(`upload error: ${JSON.stringify(error, null, 2)}`);
+  }
+}
 ```
 
 ---

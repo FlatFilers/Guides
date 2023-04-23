@@ -1,29 +1,78 @@
 ---
 title: "1.1 Create a sample workbook"
 api: "POST /v1/workbooks"
+contentType: "application/json"
 authMethod: "bearer"
-description: "Paste your publishable key, then hit send request to create a simple Workbook. Once complete, view your Workbook in your Flatfile dashboard."
+description: "Copy the cURL command to your terminal to create a simple workbook. Once complete, view your new workbook in your Flatfile dashboard."
 ---
-<ParamField body="name" type="string" default="My Simple Workbook" required>
+<ParamField body="name" type="string" required>
   The name of the Workbook.
 </ParamField>
 <ParamField body="sheets" type="array">
   <Expandable title="Sheet">
-    <ParamField body="name" type="string" default="My Simple Sheet" required>
+    <ParamField body="name" type="string" required>
         The name of the Sheet.
     </ParamField>
     <ParamField body="fields" type="array">
       <Expandable title="Fields">
-         <ParamField body="key" type="string" default="first_name" required="true">
-            First name of customer
+         <ParamField body="key" type="string" required="true">
+            Field Keys
         </ParamField>
-        <ParamField body="type" type="string" default="string">
+        <ParamField body="type" type="string">
             Type of field
         </ParamField>
-        <ParamField body="label" type="string" default="First Name">
+        <ParamField body="label" type="string">
             Label for the field that appears in UI
         </ParamField>
       </Expandable>
     </ParamField>
   </Expandable>
 </ParamField>
+
+<RequestExample>
+
+```shell Shell / cURL
+curl --request POST \
+  --url https://api.x.flatfile.com/v1/workbooks \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer <publishable key>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "My Workbook",
+  "spaceId": "us_sp_DrdXetPN",
+  "environmentId": "us_env_hVXkXs0b",
+  "sheets": [
+    {
+      "name": "My Sheet 1",
+      "slug": "mysheet1",
+      "fields": [
+        {
+          "key": "full_name",
+          "type": "string",
+          "label": "Full Name",
+        },
+        {
+          "key": "first_name",
+          "type": "string",
+          "label": "First Name",
+        },
+        {
+          "key": "last_name",
+          "type": "string",
+          "label": "Last Name",
+        }
+      ],
+      "actions": [
+        {
+            "slug": "generateJSON",
+            "label": "Generate JSON",
+            "description": "Generate a JSON file based off of the Data in this Sheet",
+            "primary": true
+        },
+      ]
+    }
+  ],
+}'
+```
+
+</RequestExample>

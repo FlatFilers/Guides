@@ -3,17 +3,19 @@ title: 2. Transform & validate data
 description: "Learn how to use events in Flatfile to transform data."
 ---
 
-<Info>If you haven't used your new Workbook yet, head over to your [Dashboard](https://dashboard.flatfile.com) and check it out.</Info>
+<Info>If you haven't seen your new workbook yet, head over to your [Dashboard](https://dashboard.flatfile.com) and check it out before continuing.</Info>
 
-As you were interactive with your new Workbook, you may have made some changes to data. Whenever any data changes (or is added) in a Workbook, an event is triggered via <Tooltip tip="Learn more about Events">[Event Hooks](../concepts/events)</Tooltip>. 
+As you were interacting with your new workbook in Flatfile, you may have made added or edited the records in it. 
+Whenever any data changes in a workbook, an event is triggered in Flatfile via <Tooltip tip="Learn more about Events">[Event Hooks](../concepts/events)</Tooltip>. 
 
-Using our powerful [@flatfile/listener](../core-libraries/listener) library, we can listen for events and respond to them.
+Using our powerful [@flatfile/listener](../core-libraries/listener) core library, we can listen for every event and then decide how we want to respond.
+With records specifically, often this looks like transforming and validating the data.
 
-### Using validation plugins
+### Using transformation & validation plugins
 
-For this tutorial, we will perform a simple data transformation using [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks).
+For this tutorial, we will perform a simple data transformation by updating records in our Sheet using the core [@flatfile/hooks](../core-libraries/hooks) library.
 
-Flatfile provides a number of handy [validation plugins](https://plugins.flatfile.com). Explore open source validation plugins available like:
+Flatfile provides a number of handy [transformation & validation plugins](https://plugins.flatfile.com) to reshape the data. Explore open source validation plugins available like:
 
 <CardGroup cols={3}>
   <Card color="#CB3837" title="@flatfile/plugin-autocast" icon="npm" href="npmjs.com">
@@ -26,18 +28,17 @@ Flatfile provides a number of handy [validation plugins](https://plugins.flatfil
 
 ## Using the `record:` event
 
-For this tutorial, we will intervene the `record` event topic with a powerful plugin, [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
+For this example, we will intervene the `record` event topic with a powerful plugin, [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
 based on the values provided inside that event.
-
-Begin capturing Events as they happen in your Workbook with this [dev sandbox](https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts). 
-
-<Info>You'll need to add your [secret key](../security/authentication) to the `.flatfilerc` file to get authenticated.</Info>
 
 ### How it works: 
 
-Every time this polling driver gets a new event from someone interacting in your Workbook, you will be able to 
-respond by updating the data in your Sheet. The UI will immediately reflect those changes.
+Every time this polling driver gets a new event from someone interacting in your workbook, you will be able to 
+respond by updating the data in your sheet. The UI will immediately reflect those changes.
 
+
+1. To get started, begin capturing Events as they happen in your Workbook with this [dev sandbox](https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts) in Replit. 
+2. To run this sandbox, type `npm run flatfile develop —key=<publishableKey>` in your terminal.
 
 <a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
 href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
@@ -52,7 +53,7 @@ href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
 ## Adding your first data transformation
 
 In this example, we will transform the data provided inside the record event using the `record.transform` helper 
-from the [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks) plugin.
+from the [@flatfile/plugin-record-hooks](https://www.npmjs.com/package/@flatfile/plugin-record-hooks) plugin.
 
 This transformation specifically will take full name and split it into first and last name.
 
@@ -66,7 +67,7 @@ client.use(recordHook('my-sheet1', (record: FlatfileRecord) => {
 ## Adding your first validation
 
 In this example, we will validate the data provided inside the record event using the `record.validate` helper 
-also from the [@flatfile/hooks](https://www.npmjs.com/package/@flatfile/hooks) plugin.
+also from the [@flatfile/plugin-record-hooks](https://www.npmjs.com/package/@flatfile/plugin-record-hooks) plugin.
 
 This validation specifically will use the popular [email-validator](https://www.npmjs.com/package/email-validator) package 
 to make sure the email is actually valid.
