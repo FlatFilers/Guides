@@ -76,6 +76,16 @@
      "quickstart/submit-action"]
     },
     {
+      "group": "Concepts",
+      "pages": ["concepts/workbooks", "concepts/spaces",
+          "concepts/agents", "concepts/jobs", "concepts/events"]
+    },
+    {
+      "group": "Core Libraries",
+      "pages": ["core-libraries/listener",
+          "core-libraries/hooks", "core-libraries/api", "core-libraries/flatfile"]
+    },
+    {
       "group": "Getting Started",
       "pages": ["getting-started/handling-data",
           "getting-started/using-actions", "getting-started/embedding"]
@@ -84,11 +94,6 @@
       "group": "Security",
       "pages": ["security/authentication",
           "security/roles-and-permissions"]
-    },
-    {
-      "group": "Concepts",
-      "pages": ["concepts/workbooks", "concepts/spaces",
-          "concepts/agents", "concepts/jobs", "concepts/events"]
     },
     {
       "group": "Advanced",
