@@ -65,10 +65,20 @@ that's already using Flatfile's <Tooltip tip="Learn more about Blueprint">[Bluep
       "name": "My Sheet 1",
       "slug": "mysheet1",
       "fields": [
+         {
+          "key": "full_name",
+          "type": "string",
+          "label": "Full Name"
+        },
         {
           "key": "first_name",
           "type": "string",
           "label": "First Name"
+        },
+        {
+          "key": "last_name",
+          "type": "string",
+          "label": "Last Name"
         }
       ]
     }
@@ -80,11 +90,8 @@ that's already using Flatfile's <Tooltip tip="Learn more about Blueprint">[Bluep
 
 You should now have a general idea of the power of workbooks & how to use schemas in Flatfile.
 
-<Info>
-To continue, you'll need to add your [publishable key](../security/authentication) to the `request` file. 
+<Warning>
+To continue, you'll need your [publishable key](../security/authentication). [Sign up](https://dashboard.flatfile.com/account/sign-up) and get your keys if you haven't yet.
+</Warning>
 
-[Sign up](https://dashboard.flatfile.com/account/sign-up) if you haven't yet.
-</Info>
-
-In the next step, you will quickly [Create a sample workbook](/create-workbook) by running a curl API request directly from our Docs.
-
+In the next step, you will quickly [Create a sample workbook](/create-workbook) by running a cURL request from your terminal.

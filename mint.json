@@ -7,6 +7,9 @@
   },
   "api": {
     "baseUrl": "https://api.x.flatfile.com",
+    "playground": {
+      "mode": "simple"
+    },
     "auth": {
         "method": "bearer"
     }
