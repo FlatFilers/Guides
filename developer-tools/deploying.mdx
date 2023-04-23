@@ -1,4 +1,145 @@
 ---
 title: "Deploying"
-description: "Learn how to create your first Workbook in Flatfile with transformations and validations."
+description: "Learn how to deploy your code to Flatfile."
 ---
+
+## Configuring your developer environment
+#### `.flatfilerc`
+
+A `.flatfilerc` file should be included in the root of your project if you are performing tasks server-side.
+Once configured, this file shouldn't change until you're deploying to your production environment.
+
+<Warning>This file should be ignored from source control as it includes your secret key.</Warning>
+
+``` json .flatfilerc
+{
+    "endpoint": "https://api.x.flatfile.com/v1",
+    "env": "us_env_12345",
+    "version": "10",
+    "secret": "ps_12345-1234-1234",
+    "internal": {
+        "secret": "ps_12345-1234-1234",
+    }
+}
+```
+
+## Deploying a workbook from terminal
+
+#### `npm run deploy`
+Once you have configured your workbook, deploy your workbook to your account and the environment specified in `.flatfilerc`.
+by opening the terminal in the root directory and entering: 
+
+`npm run deploy`
+
+### See it in your Dashboard
+
+Now that your workbook has been deployed, you’ll need to connect it to a 
+<Tooltip tip="Learn more about Spaces">[Space](../concepts/spaces)</Tooltip> 
+to be able to see it in your [Dashboard](https://dashboard.flatfile.com).
+1. From the dashboard, click the “Create new Space” button in the upper right corner.
+2. Give your Space a name.
+3. Finally, click the “Create new Space” button again to add the new space to your dashboard.
+
+<Note>Your workbook will be included every Space you create. 
+You can also configure your code to build different workbooks as a Space is created depending on various factors but this is an advanced topic. 
+More on how to do this soon. </Note>
+
+
+## Deploying more than a Workbook
+
+The XDK can be used to export a Workbook, but it is also designed to auto-create all of the related configuration if that isn’t necessary.
+
+For example, if you are just going to export a Sheet, the XDK will automatically create a Workbook, Space Configuration, and Agent as necessary.
+
+In this example, the XDK is being used to create a Space Configuration and a Workbook with three sheets.  We are able to name the Space Configuration and Workbook.  Additionally we are able to assign them slugs, which will allow us to make updates to Space Configurations and Workbooks instead of creating them new on each XDK deployment.
+
+```typescript
+export default new SpaceConfig({
+ name: 'Colin Space Configuration',
+ slug: 'Colin_Space_Configuration_sc',
+ workbookConfigs: {
+   basic: new Workbook({
+     name: 'Colin Workbook',
+     slug: 'Colin_Workbook_wb',
+     namespace: 'Colin Workbook',
+     sheets: {
+       Partners,
+       Portfolios,
+       People,
+     },
+   }),
+ },
+})
+```
+
+
+## Deploying Multiple Objects
+The XDK can be used to export an Agent which allows for multiple space configurations and workbooks to be deployed at a single time.
+
+For example, if we are going to create multiple space configurations to be used across Spaces in Flatfile.
+
+In this example, the XDK is being used to create an Agent with three Space Configurations (Colin Space Configuration, Colin Partner Space Configuration, and Colin Portfolio Space Configuration) each containing a Workbook and a varying number of sheets. 
+
+```typescript
+export default new Agent({
+ spaceConfigs: {
+   Both: new SpaceConfig({
+     name: 'Colin Space Configuration',
+     slug: 'Colin_Space_Configuration_sc',
+     workbookConfigs: {
+       basic: new Workbook({
+         name: 'Colin Workbook',
+         slug: 'Colin_Workbook_wb',
+         namespace: 'Colin Workbook',
+         sheets: {
+ 		Partners,
+       	Portfolios,
+       	People,
+         },
+       }),
+     },
+   }),
+
+
+   Contact: new SpaceConfig({
+     name: 'Colin Partner Space Configuration',
+     slug: 'Colin_Partner_Space_Configuration_sc',
+     workbookConfigs: {
+       basic: new Workbook({
+         name: 'Partners Workbook',
+         slug: 'Partners_workbook_wb',
+         namespace: 'Partners',
+         sheets: {
+           Partners,
+         },
+       }),
+     },
+   }),
+   Matter: new SpaceConfig({
+     name: 'Colin Portfolio Space Configuration',
+     slug: 'Colin_Portfolio_Space_Configuration_sc',
+     workbookConfigs: {
+       basic: new Workbook({
+         name: 'Portfolios Workbook',
+         slug: 'Portfolios_workbook_wb',
+         namespace: 'Portfolios',
+         sheets: {
+           Portfolios,
+         },
+       }),
+     },
+   }),
+ },
+})
+```
+
+## Deploying an Agent
+
+When you deploy an Agent to an Environment, it automatically gets subscriptions to all Events in that Environment. Flatfile makes sure that it stays alive and sends all logs to the dashboard. Its main purpose is to make it easier to manage events.
+
+An Agent consists of:
+
+- Some Javascript code specifying some actions to be taken in response to an Event
+- An environment whose Events you want to listen and respond to
+- A list of topics
+
