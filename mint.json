@@ -76,19 +76,14 @@
      "quickstart/submit-action"]
     },
     {
-      "group": "Concepts",
-      "pages": ["concepts/workbooks", "concepts/spaces",
-          "concepts/agents", "concepts/jobs", "concepts/events"]
-    },
-    {
-      "group": "Core Libraries",
-      "pages": ["core-libraries/listener",
-          "core-libraries/hooks", "core-libraries/api", "core-libraries/flatfile"]
-    },
-    {
       "group": "Getting Started",
       "pages": ["getting-started/handling-data",
           "getting-started/using-actions", "getting-started/embedding"]
+    },
+    {
+      "group": "Concepts",
+      "pages": ["concepts/workbooks", "concepts/spaces",
+          "concepts/agents", "concepts/jobs", "concepts/events"]
     },
     {
       "group": "Security",
@@ -117,6 +112,11 @@
       "group": "Developer Tools",
       "pages": ["developer-tools/overview", "developer-tools/deploying",
           "developer-tools/ci-integration", "developer-tools/environment"]
+    },
+    {
+      "group": "Core Libraries",
+      "pages": ["developer-tools/core-libraries/listener",
+          "developer-tools/core-libraries/hooks", "developer-tools/core-libraries/api", "developer-tools/core-libraries/flatfile"]
     }
   ],
   "footerSocials": {
