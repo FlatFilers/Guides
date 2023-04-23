@@ -1,4 +1,69 @@
 ---
 title: "Deploying"
-description: "Learn how to create your first Workbook in Flatfile with transformations and validations."
+description: "Learn how to deploy your code to Flatfile."
 ---
+
+## Configuring your developer environment
+#### `.flatfilerc`
+
+A `.flatfilerc` file should be included in the root of your project if you are workiing server-side.
+
+`endpoint`, `env`, `version`, & `secret` are for the normal configuration of the deployment, whereas everything inside 
+`internal` gets passed to the Virtual Machine that runs the <Tooltip>[agent](../concepts/agents)</Tooltip> code. 
+
+Once configured, this file shouldn't need to change until you're deploying to your production environment.
+
+<Warning>This file should be ignored from source control as it includes your secret key.</Warning>
+
+``` json .flatfilerc
+{
+    "endpoint": "https://api.x.flatfile.com/v1",
+    "env": "us_env_12345",
+    "version": "10",
+    "secret": "ps_12345-1234-1234",
+    "internal": {
+        "secret": "ps_12345-1234-1234",
+    }
+}
+```
+
+## Deploying a workbook from terminal
+
+#### `npm run deploy`
+Once you have configured your workbook, you can deploy your workbook to your account and the environment specified in `.flatfilerc` at any time
+by opening the terminal in the root directory and entering `npm run deploy`. 
+
+The CLI will give you prompts and updates as it's deploying:
+
+``` bash
+npm run deploy
+> flatfile pubsub src/listener.ts
+
+ INFO  Building Workbook
+ INFO  Sending Build.js
+✔ Access token created
+✔ Found Environment: us_env_123456
+✔ Agent Created us_ag_12345
+```
+
+<Tip>
+You'll notice some of the feedback in the terminal mentions you're deploying an <Tooltip tip="Learn more about Agents">[Agent](../concepts/agents)</Tooltip>. 
+An Agent is what's working under the hood to automatically get subscriptions to all Events in your environment. 
+</Tip>
+
+### See it in your Dashboard
+
+Once your workbook has been deployed, you’ll be able to see a new Space in your [Dashboard](https://dashboard.flatfile.com).   Your workbook will be added to every Space you create. 
+
+<Note>
+  You can also configure your code to build different workbooks as a Space is created depending on various factors but this is a more advanced configuration. 
+  More on how to do this soon. 
+</Note>
+
+
+## Deploying more than once
+
+In most getting started examples, we are focusing on the Workbook; however, you can deploy any change to your code at any time. 
+
+For example, if you are just needing to add a Sheet to an already existing workbook, simply deploy again with the added sheet and everything will update.
+
