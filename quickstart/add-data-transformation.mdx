@@ -5,21 +5,21 @@ description: "Learn how to use events in Flatfile to transform data."
 
 <Info>If you haven't seen your new workbook yet, head over to your [Dashboard](https://platform.flatfile.com) and check it out before continuing.</Info>
 
-As you were interacting with your new workbook in Flatfile, you may have added or edited the records, or downloaded a sheet. 
+As you were interacting with your new workbook in Flatfile, you may have added and edited records or downloaded a sheet. 
 Whenever any action is taken in Flatfile, an event is triggered via <Tooltip tip="Learn more about Events">[Event Hooks](../concepts/events)</Tooltip>. 
 
 ## Using the listener 
 
-Using our powerful [@flatfile/listener](../core-libraries/listener) core library, we can listen for every event and then decide how we want to respond.
+Using our powerful [@flatfile/listener](../core-libraries/listener) core library, we can listen for every event and then decide how to respond.
 
 #### How it works:
 
 Every time this polling driver gets a new event from someone interacting in your workbook, you will be able to 
-respond. With records changes specifically, often this looks like transforming or validating the data in your sheet.
+respond. With record changes specifically, often this looks like transforming or validating the data in your sheet.
 
 1. To get started, begin capturing Events as they happen in your Workbook with this [dev sandbox](https://replit.com/@flatfile/get-started#index.ts) in Replit. 
 2. Hit the green Run at the top of the screen to begin polling for events.
-3. Make changes in your workbook and see how the events are passed into your logs.
+3. Make changes in your workbook and see how Events are passed into your logs.
 
 
 <a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
@@ -76,11 +76,11 @@ listener.use(
 
 ## Adding your first validation
 
-In this example, we will validate the data provided inside the record event using the `validate` helper 
+In this example, we will validate the data provided inside the record event using the `validate` helper, 
 also from the [@flatfile/plugin-transform](https://www.npmjs.com/package/@flatfile/plugin-transform) plugin.
 
 This validation specifically will use the popular [email-validator](https://www.npmjs.com/package/email-validator) package 
-to make sure the email is actually valid.
+to make sure the email is valid.
 
 <Tip>
 You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues 
