@@ -1,35 +1,41 @@
 ---
 title: 2. Transform & validate data
-description: "Learn how to use events in Flatfile to transform data."
+description: "Start validating and transforming data with a simple event handler in Flatfile."
 ---
 
-<Info>If you haven't seen your new workbook yet, head over to your [Dashboard](https://platform.flatfile.com) and check it out before continuing.</Info>
+On the previous step, you created a workbook with a simple schema. Before continuing, head over to your [Dashboard](https://platform.flatfile.com) and:
+- Manually add a few sample records
+- Try uploading this CSV file into your workbook
 
-As you were interacting with your new workbook in Flatfile, you may have added or edited the records, or downloaded a sheet. 
-Whenever any action is taken in Flatfile, an event is triggered via <Tooltip tip="Learn more about Events">[Event Hooks](../concepts/events)</Tooltip>. 
+Every single thing action you take in Flatfile triggers an [Event](../concepts/events). Listening to those events allows you to do everything from validating records to sending data to your API.
 
-## Using the listener 
-
-Using our powerful [@flatfile/listener](../core-libraries/listener) core library, we can listen for every event and then decide how we want to respond.
-
-#### How it works:
-
-Every time this polling driver gets a new event from someone interacting in your workbook, you will be able to 
-respond. With records changes specifically, often this looks like transforming or validating the data in your sheet.
-
-1. To get started, begin capturing Events as they happen in your Workbook with this [dev sandbox](https://replit.com/@flatfile/get-started#index.ts) in Replit. 
-2. Hit the green Run at the top of the screen to begin polling for events.
-3. Make changes in your workbook and see how the events are passed into your logs.
-
-
-<a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
-href="https://replit.com/@flatfile/get-started#index.ts">
-    <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
-    <span class="z-10 mr-2 text-white">See a listener in Replit</span>
-    <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
+<a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium"
+   href="https://replit.com/@flatfile/get-started#index.ts">
+  <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
+  <span class="z-10 mr-2 text-white">Fork the basic listener in Repl.it</span>
+  <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
 </a>
 
-<a target="_blank" href="https://github.com/FlatFilers" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">Clone the full project</a>
+## Setting up a listener
+
+Using the `flatfile` CLI you can register any javascript function as an event listener and start working with events. To keep it simple we'll use a pre-configured Repl.it.
+- [Fork this repl.it](https://replit.com/@flatfile/get-started#index.ts)
+- Get your API Key from your [Developer Dashboard](https://platform.flatfile.com/developers)
+- Click Run in your Repl.it
+
+The simplest event listener you could create looks like this. You'll see this code in the repl.it link you forked above.
+
+```js listener.js
+export default function(flatfile) {
+  flatfile.on('**', (event) => {
+    console.log('-> My event', event.topic)
+  })
+}
+```
+
+#### Subscribing to Events
+
+Once you've clicked the **Run** button. You should see a **Listening for Events** message in the console. Go ahead and return to your workbook page and make a couple changes or two. You should see events and any logs start to appear in your console.
 
 ---
 
@@ -37,9 +43,11 @@ href="https://replit.com/@flatfile/get-started#index.ts">
 
 ### Using transformation & validation plugins
 
-For this tutorial, we will be updating data in our Sheet using the core [@flatfile/hooks](../core-libraries/hooks) library.
+For this tutorial, we will be transforming data as it's added or modified in the sheet.
 
 Flatfile provides a number of handy [transformation & validation plugins](https://plugins.flatfile.com) to reshape the data before it gets updated. Explore open source validation plugins available like:
+
+⏳**TODO make these real links**
 
 <CardGroup cols={3}>
   <Card color="#CB3837" title="@flatfile/plugin-autocast" icon="npm" href="https://plugins.flatfile.com">
@@ -50,56 +58,52 @@ Flatfile provides a number of handy [transformation & validation plugins](https:
   </Card>
 </CardGroup>
 
-### Using the `record` event
+## Using a plugin to transform data
 
-For this example, we will intervene the `record` event topic with a powerful plugin, [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
-based on the values provided inside that event.
+<Tip>Plugins are helpful utilities that can be implemented with the `listener.use()` method. We explain that in depth in the [Events](../concepts/events) concepts.)</Tip>
 
-In this example, we will transform the data provided inside the record event using the `transform` helper 
-from the [@flatfile/plugin-transform](https://www.npmjs.com/package/@flatfile/plugin-transform) plugin.
+For this example, we'll use <code>[@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook)</code> and perform a callback function on every record that is added or modified based on the values provided inside that event.
 
-This transformation specifically will take first name and make it lowercase.
+This transformation specifically will take the first name and make it lowercase.
 
-```jsx
-listener.use(
-  recordHook('mysheet1', (record: FlatfileRecord) => {
-    compute(
-      record,
-      'first_name',
-      (value) => value && value.toString().toLowerCase(),
-      'First name was changed to lower case.'
-    )
-    return record
-  })
-)
+```ts
+import { recordHook } from '@flatfile/plugin-record-hook'
+
+export default function(listener) {
+  listener.use(
+    recordHook('contacts', (record) => {
+      record.set('firstName', record.get('firstName').toUpperCase())
+      return record
+    })
+  )
+}
 ```
 
 ## Adding your first validation
 
-In this example, we will validate the data provided inside the record event using the `validate` helper 
-also from the [@flatfile/plugin-transform](https://www.npmjs.com/package/@flatfile/plugin-transform) plugin.
-
-This validation specifically will use the popular [email-validator](https://www.npmjs.com/package/email-validator) package 
+You can use any npm package inside your validation logic. In this example, we'll import the [email-validator](https://www.npmjs.com/package/email-validator) package
 to make sure the email is actually valid.
 
 <Tip>
-You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues 
+You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues
 in your data.
 </Tip>
 
 
-```jsx
-listener.use(
-  recordHook('mysheet1', (record: FlatfileRecord) => {
-    validate(
-      record,
-      'email',
-      (value) => EmailValidator.validate(value),
-      'Email is invalid.'
-    )
-    return record
-  })
-)
+```ts
+import { recordHook } from '@flatfile/plugin-record-hook'
+
+export default function(listener) {
+  listener.use(
+    recordHook('contacts', (record) => {
+      record.set('firstName', record.get('firstName').toUpperCase())
+      if(!EmailValidator.validate(value)) {
+        record.addError('email', 'Invalid email address')
+      }
+      return record
+    })
+  )
+}
 ```
 
 ---
