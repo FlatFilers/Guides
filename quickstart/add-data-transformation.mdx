@@ -72,7 +72,7 @@ import { recordHook } from '@flatfile/plugin-record-hook'
 export default function(listener) {
   listener.use(
     recordHook('contacts', (record) => {
-      record.set('firstName', record.get('firstName').toUpperCase())
+      record.set('firstName', record.get('firstName').toLowerCase())
       return record
     })
   )
@@ -96,7 +96,7 @@ import { recordHook } from '@flatfile/plugin-record-hook'
 export default function(listener) {
   listener.use(
     recordHook('contacts', (record) => {
-      record.set('firstName', record.get('firstName').toUpperCase())
+      record.set('firstName', record.get('firstName').toLowerCase())
       if(!EmailValidator.validate(value)) {
         record.addError('email', 'Invalid email address')
       }
