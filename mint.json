@@ -6,7 +6,7 @@
     "light": "/logo/light.svg"
   },
   "api": {
-    "baseUrl": "https://api.x.flatfile.com",
+    "baseUrl": "https://platform.flatfile.com/api",
     "playground": {
       "mode": "simple"
     },
@@ -35,12 +35,12 @@
   "topbarLinks": [
     {
       "name": "Create account",
-      "url": "https://dashboard.flatfile.com"
+      "url": "https://platform.flatfile.com/account/sign-up"
     }
   ],
   "topbarCtaButton": {
     "name": "Sign in",
-    "url": "https://dashboard.flatfile.com"
+    "url": "https://platform.flatfile.com"
   },
 
   "anchors": [
