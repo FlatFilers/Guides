@@ -70,7 +70,7 @@ export default function(listener) {
   listener.use(
     recordHook('contacts', (record) => {
       const value = record.get('firstName').toLowerCase()
-      record.set('firstName', record.get('firstName').toLowercase())
+      record.set('firstName', value)
       return record
     })
   )
@@ -98,7 +98,7 @@ export default function(listener) {
   listener.use(
     recordHook('contacts', (record) => {
       const value = record.get('firstName').toLowerCase()
-      record.set('firstName', record.get('firstName').toLowercase())
+      record.set('firstName', value)
 
       if (!EmailValidator.validate(value)) {
         record.addError('email', 'Invalid email address')
