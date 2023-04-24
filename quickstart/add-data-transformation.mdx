@@ -55,14 +55,14 @@ Flatfile provides a number of handy [transformation & validation plugins](https:
 For this example, we will intervene the `record` event topic with a powerful plugin, [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
 based on the values provided inside that event.
 
-In this example, we will transform the data provided inside the record event using the `record.transform` helper 
-from the [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) plugin.
+In this example, we will transform the data provided inside the record event using the `transform` helper 
+from the [@flatfile/plugin-transform](https://www.npmjs.com/package/@flatfile/plugin-transform) plugin.
 
 This transformation specifically will take first name and make it lowercase.
 
 ```jsx
 listener.use(
-  recordHook('my-sheet', (record: FlatfileRecord) => {
+  recordHook('mysheet1', (record: FlatfileRecord) => {
     compute(
       record,
       'first_name',
@@ -76,8 +76,8 @@ listener.use(
 
 ## Adding your first validation
 
-In this example, we will validate the data provided inside the record event using the `record.validate` helper 
-also from the [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) plugin.
+In this example, we will validate the data provided inside the record event using the `validate` helper 
+also from the [@flatfile/plugin-transform](https://www.npmjs.com/package/@flatfile/plugin-transform) plugin.
 
 This validation specifically will use the popular [email-validator](https://www.npmjs.com/package/email-validator) package 
 to make sure the email is actually valid.
@@ -89,13 +89,13 @@ in your data.
 
 
 ```jsx
-client.use(recordHook('my-sheet1', (record: FlatfileRecord) => {
-	listener.use(
+listener.use(
+  recordHook('mysheet1', (record: FlatfileRecord) => {
     validate(
       record,
       'email',
-      (value) => EmailValidator.validate(email)),
-      'Email is invalid'
+      (value) => EmailValidator.validate(email),
+      'Email is invalid.'
     )
     return record
   })
