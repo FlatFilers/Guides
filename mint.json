@@ -1,9 +1,18 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Documentation Starter Kit",
+  "name": "flatfile.com",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
+  },
+  "api": {
+    "baseUrl": "https://platform.flatfile.com/api",
+    "playground": {
+      "mode": "simple"
+    },
+    "auth": {
+        "method": "bearer"
+    }
   },
   "favicon": "/favicon.png",
   "colors": {
@@ -15,15 +24,23 @@
       "light": "#fff"
     }
   },
+  "feedback": {
+    "raiseIssue": true,
+    "suggestEdit": true
+  },
+  "modeToggle": {
+    "default": "dark"
+  },
+  "backgroundImage": "/images/background.png",
   "topbarLinks": [
     {
       "name": "Create account",
-      "url": "https://dashboard.flatfile.com"
+      "url": "https://platform.flatfile.com/account/sign-up"
     }
   ],
   "topbarCtaButton": {
     "name": "Sign in",
-    "url": "https://dashboard.flatfile.com"
+    "url": "https://platform.flatfile.com"
   },
 
   "anchors": [
@@ -54,14 +71,14 @@
       "pages": ["overview"]
     },
     {
-      "group": "Getting Started",
-      "pages": ["getting-started/quickstart", "getting-started/handling-data",
-          "getting-started/using-actions", "getting-started/embedding"]
+      "group": "Quickstart",
+      "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation", 
+     "quickstart/submit-action"]
     },
     {
-      "group": "Security",
-      "pages": ["security/authentication", "security/publishable-keys",
-          "security/roles-and-permissions"]
+      "group": "Getting Started",
+      "pages": ["getting-started/handling-data",
+          "getting-started/using-actions", "getting-started/embedding"]
     },
     {
       "group": "Concepts",
@@ -69,8 +86,13 @@
           "concepts/agents", "concepts/jobs", "concepts/events"]
     },
     {
+      "group": "Security",
+      "pages": ["security/authentication",
+          "security/roles-and-permissions"]
+    },
+    {
       "group": "Advanced",
-      "pages": ["advanced/theming", "advanced/guest_sidebar", "advanced/custom-actions", "advanced/anatomy-of-events"]
+      "pages": ["advanced/theming", "advanced/guest_sidebar", "advanced/custom-actions"]
     },
     {
       "group": "More scenarios",
@@ -91,6 +113,11 @@
       "group": "Developer Tools",
       "pages": ["developer-tools/overview", "developer-tools/deploying",
           "developer-tools/ci-integration", "developer-tools/environment"]
+    },
+    {
+      "group": "Core Libraries",
+      "pages": ["developer-tools/core-libraries/listener",
+          "developer-tools/core-libraries/hooks", "developer-tools/core-libraries/api", "developer-tools/core-libraries/flatfile"]
     }
   ],
   "footerSocials": {

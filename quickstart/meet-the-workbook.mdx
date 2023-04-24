@@ -1,0 +1,96 @@
+---
+title: "1. Meet the workbook"
+description: "Learn how to create your first Workbook in Flatfile."
+---
+
+<video style={{width: "100%"}} autoPlay={true}>
+ <source src="https://videos.ctfassets.net/hjneo4qi4goj/6tpIySgKeIUQjPSGhlpmR8/956b38c58e91580758e2991a47e5e920/MAIN_COMPOSITION_-_3D-FLIP_transitions.mp4" type="video/mp4"/>
+</video>
+
+In Flatfile, a <Tooltip tip="Learn more about Workbooks">[Workbook](../concepts/workbooks)</Tooltip> serves as a replacement for the spreadsheet template(s) that you may currently share with others to request data for data collection during customer onboarding or other business processes. Unlike a spreadsheet, a workbook is specifically designed to enable your team and users to validate, correct, and import data.
+
+Within the next 15 minutes, you can create and set up a workbook for your business. After completing the process, you will have the ability to embed it in your application as an import flow, or deploy a data collection portal.
+
+### Using Schemas
+
+To successfully post to our API, your schema must align with Flatfile's <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip>, which is a robust data definition language (DDL) that emphasizes validation and data preparation.
+
+For this tutorial, we’re going to use a simple schema that’s already using Flatfile’s Blueprint; 
+however, if you have an existing schema, you can choose from many different open-source [blueprint converter plugins](https://plugins.flatfile.com) like:
+
+<CardGroup cols={4}>
+  <Card color="#CB3837" title="@flatfile/plugin-json-schema" icon="npm" href="https://plugins.flatfie.com">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-sql-ddl" icon="npm" href="https://plugins.flatfie.com">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-openapi" icon="npm" href="https://plugins.flatfie.com">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-graphql" icon="npm" href="https://plugins.flatfie.com">
+  </Card>
+</CardGroup>
+
+## Building your first Workbook
+
+
+<Info>
+Prerequisites: You'll need your [secret key](../security/authentication) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and get your keys if you haven't yet.
+</Info>
+
+#### Create a workbook 
+
+1. Paste this cURL request to your terminal now to create a simple workbook or [run this command directly from our docs](https://flatfile.stoplight.io/docs/v10/tjt005wdogklo-create-a-sample-workbook).
+2. Login and see the workbook you created in your [Dashboard](https://platform.flatfile.com).
+
+
+```shell Shell / cURL
+curl --request POST \
+  --url https://platform.flatfile.com/api/v1/workbooks \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "My First Workbook",
+  "sheets": [
+    {
+      "name": "Contacts",
+      "slug": "contacts",
+      "fields": [
+        {
+          "key": "firstName",
+          "type": "string",
+          "label": "First Name"
+        },
+        {
+          "key": "lastName",
+          "type": "string",
+          "label": "Last Name"
+        },
+        {
+          "key": "email",
+          "type": "string",
+          "label": "Email"
+        }
+      ],
+      "actions": [
+        {
+          "slug": "submitAction",
+          "label": "Submit",
+          "type": "string",
+          "description": "Submit data to webhook.site",
+          "primary": true
+        }
+      ]
+    }
+  ]
+}'
+```
+
+## Recap & Next Steps
+
+You're now ready to start importing data with Flatfile! 
+
+Head to your [Dashboard](https://platform.flatfile.com) to see 
+the workbook and go through a test import. After you finish importing, 
+you should see the data appear in the Workbook sheet. 
+
+In the next step, we will delve deeper into responding to record events with transformations and validations.

@@ -1,0 +1,76 @@
+---
+title: "1.1 Create a sample workbook"
+api: "POST /v1/workbooks"
+contentType: "application/json"
+authMethod: "bearer"
+description: "Copy the cURL command to your terminal to create a simple workbook. Once complete, view your new workbook in your Flatfile dashboard."
+---
+<ParamField body="name" type="string" required>
+  The name of the Workbook.
+</ParamField>
+<ParamField body="sheets" type="array">
+  <Expandable title="Sheet">
+    <ParamField body="name" type="string" required>
+        The name of the Sheet.
+    </ParamField>
+    <ParamField body="fields" type="array">
+      <Expandable title="Fields">
+         <ParamField body="key" type="string" required="true">
+            Field Keys
+        </ParamField>
+        <ParamField body="type" type="string">
+            Type of field
+        </ParamField>
+        <ParamField body="label" type="string">
+            Label for the field that appears in UI
+        </ParamField>
+      </Expandable>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<RequestExample>
+
+```shell Shell / cURL
+curl --request POST \
+  --url https://platform.flatfile.com/api/v1/workbooks \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer <publishable key>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "My Workbook",
+  "sheets": [
+    {
+      "name": "Contacts",
+      "slug": "contacts",
+      "fields": [
+        {
+          "key": "full_name",
+          "type": "string",
+          "label": "Full Name",
+        },
+        {
+          "key": "first_name",
+          "type": "string",
+          "label": "First Name",
+        },
+        {
+          "key": "last_name",
+          "type": "string",
+          "label": "Last Name",
+        }
+      ],
+      "actions": [
+        {
+            "slug": "generateJSON",
+            "label": "Generate JSON",
+            "description": "Generate a JSON file based off of the Data in this Sheet",
+            "primary": true
+        },
+      ]
+    }
+  ],
+}'
+```
+
+</RequestExample>

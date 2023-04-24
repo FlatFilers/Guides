@@ -1,146 +1,69 @@
 ---
-title: Deploying
-description: "Learn how to create your first Workbook in Flatfile with transformations and validations."
+title: "Deploying"
+description: "Learn how to deploy your code to Flatfile."
 ---
 
+## Configuring your developer environment
+#### `.flatfilerc`
 
+A `.flatfilerc` file should be included in the root of your project if you are workiing server-side.
 
-## Meet the Workbook
+`endpoint`, `env`, `version`, & `secret` are for the normal configuration of the deployment, whereas everything inside 
+`internal` gets passed to the Virtual Machine that runs the <Tooltip>[agent](../concepts/agents)</Tooltip> code. 
 
-A workbook in Flatfile replaces the spreadsheet template you may share with people today when requesting data during the data collection phase of customer onboarding or other business processes. Unlike a spreadsheet, it's designed to allow your team and users to validate, correct, and import data.
+Once configured, this file shouldn't need to change until you're deploying to your production environment.
 
-<a target="#hello" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
-href="#hello">
-    <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
-    <span class="z-10 mr-2 text-white">Get Started</span>
-    <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
-</a>
+<Warning>This file should be ignored from source control as it includes your secret key.</Warning>
 
-<img src="/images/workbook.png" caption="The Flatfile Workbook"/>
-
-1. Users can upload data from any of over N supported file types, and you can write your own file extractors if that's not enough.
-2. Workbooks apply any validation rules you have defined.
-3. Users can add, remove, review, filter, and correct any data imported into a workbook.
-4. As a developer, you can define at least one primary action that submits the reviewed data to a destination API, database, or workflow step of your choosing.
-
-In the next 15 minutes, you'll design and configure a workbook for your business. Once you're finished you'll be able to embed it in your application as an import flow, or deploy a data collection portal.
-
-## Anatomy of a Workbook
-
-- `Sheets` - like tables in a database or sheets in a spreadsheet, sheets isolate different data schemas.
-- `Fields` - Defined properties of your schema (eg a first_name on a contact sheet.)
-- `Actions` - Developer defined operations or macros on selected data like Submit to API, Download as PDF
-- `Event Hooks` - Whenever any data changes in a workbook, an event is triggered.
-
-## Defining your Schema
-
-Flatfile supports using over 999 different schema DDLs. For this tutorial we're going to create a simple schema using **Blueprint**. But you can also just use your existing schema if you have it by using any of these plugins.
-
-- `@flatfile/plugin-json-schema`
-- `@flatfile/plugin-sql-ddl`
-- `@flatfile/plugin-openapi`
-- `@flatfile/plugin-graphql`
-
-```jsx
+``` json .flatfilerc
 {
-  sheets: [
-    {
-      name: 'Contact',
-      fields: [
-        { key: 'name', label: 'Full Name' },
-        { key: 'email', label: 'Email Address' },
-        { key: 'birth_date', label: 'Birth Date', type: 'date' }
-      ]
+    "endpoint": "https://platform.flatfile.com/api/v1",
+    "env": "us_env_12345",
+    "version": "10",
+    "secret": "ps_12345-1234-1234",
+    "internal": {
+        "secret": "ps_12345-1234-1234",
     }
-  ]
 }
 ```
 
-- [ ]  Link to a Code Sandbox or Repl.it
+## Deploying a workbook from terminal
 
-## Let's add a data transformation
+#### `npm run deploy`
+Once you have configured your workbook, you can deploy your workbook to your account and the environment specified in `.flatfilerc` at any time
+by opening the terminal in the root directory and entering `npm run deploy`. 
 
-Flatfile provides a number of handy plugins for transforming and validating data. We're going to start by using the  `@flatfile/plugin-transform` helper. You can explore the other open source validation plugins available like:
+The CLI will give you prompts and updates as it's deploying:
 
-- `@flatfile/plugin-autocast`
-- `@flatfile/plugin-pretty-dates`
-- `@flatfile/plugin-addresses`
+``` bash
+npm run deploy
+> flatfile pubsub src/listener.ts
 
-```jsx
-import { recordHook } from '@flatfile/plugin-transform'
-
-export default function(listener) {
-	listener.use(recordHoook((record) => {
-    // let's simply lowercase this email
-		record.transformIfPresent('email', (email) => email.toLowerCase())
-	}))
-}
+ INFO  Building Workbook
+ INFO  Sending Build.js
+✔ Access token created
+✔ Found Environment: us_env_123456
+✔ Agent Created us_ag_12345
 ```
 
-## Let's add validation
+<Tip>
+You'll notice some of the feedback in the terminal mentions you're deploying an <Tooltip tip="Learn more about Agents">[Agent](../concepts/agents)</Tooltip>. 
+An Agent is what's working under the hood to automatically get subscriptions to all Events in your environment. 
+</Tip>
 
-You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues in your data. We'll use the popular `email-validator` package here to make sure the email is actually valid.
+### See it in your Dashboard
 
-```jsx
-import { recordHook } from '@flatfile/plugin-transform'
-import * as EmailValidator from 'email-validator'
+Once your workbook has been deployed, you’ll be able to see a new Space in your [Dashboard](https://platform.flatfile.com).   Your workbook will be added to every Space you create. 
 
-export default function(flatfile) {
-	listener.use(recordHook((record) => {
-    // let's simply lowercase this email
-		record.transformIfPresent('email', (email) => email.toLowerCase())
-    // apply an error message if invalid
-    record.validate('email', 'Email is invalid',  (email) => EmailValidator.validate(email))
-	}))
+<Note>
+  You can also configure your code to build different workbooks as a Space is created depending on various factors but this is a more advanced configuration. 
+  More on how to do this soon. 
+</Note>
 
-}
-```
 
-- [ ]  Show preview of a validation error here
+## Deploying more than once
 
-## Let's configure a submit action
+In most getting started examples, we are focusing on the Workbook; however, you can deploy any change to your code at any time. 
 
-Actions are incredibly powerful. Actions trigger Jobs within the Flatfile ecosystem. You can write your own actions using the `@flatfile/actions` helper library. But we're going to use the webhook action plugin to allow users to submit data from this sheet to your API. There are dozens of other plugins available like:
-
-- `@flatfile/action-download-xlsx`
-- `@flatfile/action-download-zip`
-- `@flatfile/action-postgresql-egress`
-
-```jsx
-import { recordHook } from '@flatfile/plugin-transform'
-import * as EmailValidator from 'email-validator'
-import { webhookAction } from '@flatfile/plugin-webhook-action'
-
-export default function(flatfile) {
-	listener.use(recordHook((record) => {
-    // let's simply lowercase this email
-		record.transformIfPresent('email', (email) => email.toLowerCase())
-    // apply an error message if invalid
-    record.validate('email', 'Email is invalid',  (email) => EmailValidator.validate(email))
-	}))
-
-  // this will setup a primary action for your workbook
-	flatfile.use(webhookAction({
-		name: 'Submit Data',
-		type: 'primary',
-		format: 'key-value',
-		url: '[https://webhook.site](https://webhook.site/)'
-	}))
-}
-```
-
-### Next Steps
-You now have a configured workbook. Next you should learn about a few more concepts.
-
-<CardGroup cols={3}>
-  <Card title="Spaces" icon="square-1" color="#ea5a0c">
-    Control access to data and build powerful, multi-workbook workflows.
-  </Card>
-  <Card title="Embedding" icon="square-2" color="#0285c7">
-    If you want to embed an import button or dialog in another application.
-  </Card>
-  <Card title="Advanced" icon="square-3" color="#16a34a">
-    Dynamic configurations, identifying users, user permissions, automation, performance tips.
-  </Card>
-</CardGroup>
+For example, if you are just needing to add a Sheet to an already existing workbook, simply deploy again with the added sheet and everything will update.
 
