@@ -72,7 +72,7 @@
     },
     {
       "group": "Quickstart",
-      "pages": ["quickstart/meet-the-workbook","quickstart/create-workbook", "quickstart/add-data-transformation", 
+      "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation", 
      "quickstart/submit-action"]
     },
     {

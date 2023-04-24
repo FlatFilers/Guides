@@ -15,18 +15,18 @@ With records specifically, often this looks like transforming and validating the
 
 For this tutorial, we will perform a simple data transformation by updating records in our Sheet using the core [@flatfile/hooks](../core-libraries/hooks) library.
 
-Flatfile provides a number of handy [transformation & validation plugins](https://plugins.flatfile.com) to reshape the data. Explore open source validation plugins available like:
+Flatfile provides a number of handy [transformation & validation plugins](https://plugins.flatfile.com) to reshape the data before it gets updated. Explore open source validation plugins available like:
 
 <CardGroup cols={3}>
-  <Card color="#CB3837" title="@flatfile/plugin-autocast" icon="npm" href="npmjs.com">
+  <Card color="#CB3837" title="@flatfile/plugin-autocast" icon="npm" href="https://plugins.flatfile.com">
   </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-pretty-dates" icon="npm" href="npmjs.com">
+  <Card color="#CB3837" title="@flatfile/plugin-pretty-dates" icon="npm" href="https://plugins.flatfile.com">
   </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-addresses" icon="npm" href="npmjs.com">
+  <Card color="#CB3837" title="@flatfile/plugin-addresses" icon="npm" href="https://plugins.flatfile.com">
   </Card>
 </CardGroup>
 
-## Using the `record:` event
+## Using the `record` event
 
 For this example, we will intervene the `record` event topic with a powerful plugin, [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) and perform callback functions
 based on the values provided inside that event.
@@ -41,14 +41,15 @@ respond by updating the data in your sheet. The UI will immediately reflect thos
 2. To run this sandbox, type `npm run flatfile develop —key=<publishableKey>` in your terminal.
 
 <a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
-href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts">
+href="https://replit.com/@dboskovic/GettingStarted#index.ts">
     <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
-    <span class="z-10 mr-2 text-white">See it in Replit</span>
+    <span class="z-10 mr-2 text-white">See a listener in Replit</span>
     <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
 </a>
 
-<a target="_blank" href="https://github.com" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">Clone the full project</a>
+<a target="_blank" href="https://github.co/FlatFilers" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">Clone the full project</a>
 
+---
 
 ## Adding your first data transformation
 
