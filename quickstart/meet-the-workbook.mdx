@@ -65,9 +65,7 @@ curl --request POST \
   --header 'Authorization: Bearer <publishable key>' \
   --header 'Content-Type: application/json' \
   --data '{
-  "name": "My Workbook",
-  "spaceId": "us_sp_DrdXetPN",
-  "environmentId": "us_env_hVXkXs0b",
+  "name": "My First Workbook",
   "sheets": [
     {
       "name": "My Sheet 1",
@@ -76,29 +74,30 @@ curl --request POST \
         {
           "key": "first_name",
           "type": "string",
-          "label": "First Name",
+          "label": "First Name"
         },
         {
           "key": "last_name",
           "type": "string",
-          "label": "Last Name",
+          "label": "Last Name"
         },
         {
-          "key": "email",
+          "key": "full_name",
           "type": "string",
-          "label": "Email",
+          "label": "Full Name"
         }
       ],
       "actions": [
         {
-            "slug": "todogenerateJSON",
-            "label": "todoGenerate JSON",
-            "description": "todoGenerate a JSON file based off of the Data in this Sheet",
-            "primary": true
-        },
+          "slug": "submitAction",
+          "label": "Submit",
+          "type": "string",
+          "description": "Submit data to webhook.site",
+          "primary": true
+        }
       ]
     }
-  ],
+  ]
 }'
 ```
 
