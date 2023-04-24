@@ -11,6 +11,9 @@ Every single action you take in Flatfile triggers an [Event](../concepts/events)
 
 ## Setting up a listener
 
+<Note>Flatfile provides a powerful Typescript/NodeJS SDK for working with events along with many plugins. You can also listen to events
+in other ways. Read the advanced docs here (TODO).</Note>
+
 Using the `flatfile` CLI you can register any javascript function as an event listener and start working with events. To keep it simple we'll use a pre-configured Repl.it.
 1. [Fork this repl.it](https://replit.com/@flatfile/get-started#index.ts)
 2. Get your API Key from your [Developer Dashboard](https://platform.flatfile.com/developers)
@@ -66,8 +69,8 @@ export default function(listener) {
   
   listener.use(
     recordHook('contacts', (record) => {
-      const value = record.get('firstName').toLowerCase()
-      record.set('firstName', record.get('firstName').toLowerCase())
+      const value = record.get('firstName')
+      record.set('firstName', value.toLowerCase())
       return record
     })
   )
@@ -94,10 +97,10 @@ export default function(listener) {
 
   listener.use(
     recordHook('contacts', (record) => {
-      const value = record.get('firstName').toLowerCase()
-      record.set('firstName', record.get('firstName').toLowerCase())
+      const value = record.get('firstName')
+      record.set('firstName', value.toLowerCase())
 
-      if (!EmailValidator.validate(value)) {
+      if (!EmailValidator.validate(record.get('email')) {
         record.addError('email', 'Invalid email address')
       }
 
