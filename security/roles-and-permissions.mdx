@@ -1,14 +1,36 @@
 ---
-title: Roles & Permissions
-description: "Learn how to give your team and customers access."
+title: "Roles & Permissions"
+description: "Learn how to give your team and your customers controlled access."
 ---
 
 ## Admin Roles
 
-Add people to account at admin level.
+| Role | Details                           |
+| -------- | ------------------------------------- |
+| Administrator     | This role is for anyone on your team that needs access to the entire Account.<br/> <br/>&#x2713; Can add other admins <br/>&#x2713;  Can see secret keys <br/>&#x2713;  Can see logs             |
+
+<Warning>
+    These roles can invite additional admins to your account, and can see developer keys.
+</Warning>
 
 ## Guest Roles
 
-Add guests at the Space level.
+### Space Grant
 
-Adding a guest for a workbook specifically can only be done programmatically.
+| Role | Details                           |
+| -------- | ------------------------------------- |
+| Single-Space&nbsp;Guest     | This role is for a guest that only has access to a single Space. Single-space guests can be invited to additional Spaces at any time.                 |
+| Multi-Space&nbsp;Guest     | This role is for a guest that only has access to more than one Space. They will have a landing page of all the Spaces they have access to.                   |
+
+### Workbook Grant
+
+| Role | Details                           |
+| -------- | ------------------------------------- |
+| Single-Workbook&nbsp;Guest     | This role is for someone that should only be able to see a single workbook inside a Space. This role can only be configured in code at this time.                  |
+| Multi-Workbook&nbsp;Guest     | This role is for someone that has access to more than one workbook inside a Space. This role can only be configured in code at this time.                  |
+
+
+
+<Note>
+    You can limit the ability for guests to be able to invite others by configuring the [Guest Sidebar](../advanced/guest_sidebar)
+</Note>

@@ -75,7 +75,7 @@
     },
     {
       "group": "Advanced",
-      "pages": ["advanced/theming", "advanced/guest_sidebar", "advanced/custom-actions", "advanced/anatomy-of-events"]
+      "pages": ["advanced/theming", "advanced/guest_sidebar", "advanced/custom-actions"]
     },
     {
       "group": "More scenarios",
