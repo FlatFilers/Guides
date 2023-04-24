@@ -12,15 +12,6 @@ In the next 15 minutes, you’ll design and configure a workbook
 for your business. Once you’re finished you’ll be able to embed it in your application 
 as an import flow, or deploy a data collection portal.
 
-<a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
-href="https://github.com/FlatFilers">
-    <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
-    <span class="z-10 mr-2 text-white">Download full app</span>
-    <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
-</a>
-
-<a target="_blank" href="https://replit.com/@AshleyMulligan/BogusFinancialAssembler#index.ts" class="font-medium hover:text-primary dark:hover:text-primary-light py-1.5 mx-4">See it in Replit</a>
-
 ---
 
 ### Using Workbooks
@@ -43,47 +34,72 @@ To post to our API, your schema will need to match Flatfile's <Tooltip tip="Lear
 If you have an existing schema, you can choose from many different open-source [blueprint converter plugins](https://plugins.flatfile.com) like:
 
 <CardGroup cols={4}>
-  <Card color="#CB3837" title="@flatfile/plugin-json-schema" icon="npm" href="npmjs.com">
+  <Card color="#CB3837" title="@flatfile/plugin-json-schema" icon="npm" href="https://plugins.flatfie.com">
   </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-sql-ddl" icon="npm" href="npmjs.com">
+  <Card color="#CB3837" title="@flatfile/plugin-sql-ddl" icon="npm" href="https://plugins.flatfie.com">
   </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-openapi" icon="npm" href="npmjs.com">
+  <Card color="#CB3837" title="@flatfile/plugin-openapi" icon="npm" href="https://plugins.flatfie.com">
   </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-graphql" icon="npm" href="npmjs.com">
+  <Card color="#CB3837" title="@flatfile/plugin-graphql" icon="npm" href="https://plugins.flatfie.com">
   </Card>
 </CardGroup>
 
 ## Building your first Workbook
 
 For this tutorial, we're going to use a simple schema 
-that's already using Flatfile's <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip>.
+that's already using Flatfile's <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip>. 
 
-```json simple_blueprint
-"schema": {
+<Warning>
+To continue, you'll need your [publishable key](../security/authentication). [Sign up](https://platform.flatfile.com/account/sign-up) and get your keys if you haven't yet.
+</Warning>
+
+#### Create workbook 
+
+1. Paste this cURL request to your terminal now to create a simple workbook.
+2. Login and see the workbook you created in your [Dashboard](https://platform.flatfile.com).
+
+```shell Shell / cURL
+curl --request POST \
+  --url https://platform.flatfile.com/api/v1/workbooks \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer <publishable key>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "My Workbook",
+  "spaceId": "us_sp_DrdXetPN",
+  "environmentId": "us_env_hVXkXs0b",
   "sheets": [
     {
       "name": "My Sheet 1",
       "slug": "mysheet1",
       "fields": [
-         {
+        {
           "key": "full_name",
           "type": "string",
-          "label": "Full Name"
+          "label": "Full Name",
         },
         {
           "key": "first_name",
           "type": "string",
-          "label": "First Name"
+          "label": "First Name",
         },
         {
           "key": "last_name",
           "type": "string",
-          "label": "Last Name"
+          "label": "Last Name",
         }
+      ],
+      "actions": [
+        {
+            "slug": "generateJSON",
+            "label": "Generate JSON",
+            "description": "Generate a JSON file based off of the Data in this Sheet",
+            "primary": true
+        },
       ]
     }
-  ]
-}
+  ],
+}'
 ```
 
 ## Recap & Next Steps
