@@ -5,6 +5,15 @@
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
+  "api": {
+    "baseUrl": "https://api.x.flatfile.com",
+    "playground": {
+      "mode": "simple"
+    },
+    "auth": {
+        "method": "bearer"
+    }
+  },
   "favicon": "/favicon.png",
   "colors": {
     "primary": "#3B2FC9",
@@ -15,6 +24,14 @@
       "light": "#fff"
     }
   },
+  "feedback": {
+    "raiseIssue": true,
+    "suggestEdit": true
+  },
+  "modeToggle": {
+    "default": "dark"
+  },
+  "backgroundImage": "/images/background.png",
   "topbarLinks": [
     {
       "name": "Create account",
@@ -55,7 +72,7 @@
     },
     {
       "group": "Quickstart",
-      "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation", 
+      "pages": ["quickstart/meet-the-workbook","quickstart/create-workbook", "quickstart/add-data-transformation", 
      "quickstart/submit-action"]
     },
     {
@@ -64,14 +81,14 @@
           "getting-started/using-actions", "getting-started/embedding"]
     },
     {
-      "group": "Security",
-      "pages": ["security/authentication",
-          "security/roles-and-permissions"]
-    },
-    {
       "group": "Concepts",
       "pages": ["concepts/workbooks", "concepts/spaces",
           "concepts/agents", "concepts/jobs", "concepts/events"]
+    },
+    {
+      "group": "Security",
+      "pages": ["security/authentication",
+          "security/roles-and-permissions"]
     },
     {
       "group": "Advanced",
@@ -95,6 +112,11 @@
       "group": "Developer Tools",
       "pages": ["developer-tools/overview", "developer-tools/deploying",
           "developer-tools/ci-integration", "developer-tools/environment"]
+    },
+    {
+      "group": "Core Libraries",
+      "pages": ["developer-tools/core-libraries/listener",
+          "developer-tools/core-libraries/hooks", "developer-tools/core-libraries/api", "developer-tools/core-libraries/flatfile"]
     }
   ],
   "footerSocials": {
