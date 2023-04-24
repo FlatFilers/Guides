@@ -62,27 +62,27 @@ To continue, you'll need your [publishable key](../security/authentication). [Si
 curl --request POST \
   --url https://platform.flatfile.com/api/v1/workbooks \
   --header 'Accept: application/json' \
-  --header 'Authorization: Bearer <publishable key>' \
+  --header 'Authorization: Bearer <secretKey>' \
   --header 'Content-Type: application/json' \
   --data '{
   "name": "My First Workbook",
   "sheets": [
     {
-      "name": "My Sheet 1",
-      "slug": "mysheet1",
+      "name": "Contacts",
+      "slug": "contacts",
       "fields": [
         {
-          "key": "first_name",
+          "key": "firstName",
           "type": "string",
           "label": "First Name"
         },
         {
-          "key": "last_name",
+          "key": "lastName",
           "type": "string",
           "label": "Last Name"
         },
         {
-          "key": "full_name",
+          "key": "fullName",
           "type": "string",
           "label": "Full Name"
         }
