@@ -55,7 +55,7 @@ To continue, you'll need your [publishable key](../security/authentication). [Si
 
 #### Create workbook 
 
-1. Paste this cURL request to your terminal now to create a simple workbook.
+1. Paste this cURL request to your terminal now to create a simple workbook or [run this command directly from our docs](https://flatfile.stoplight.io/docs/v10/branches/ashley-mulligan-sample-workbook/tjt005wdogklo-create-a-sample-workbook).
 2. Login and see the workbook you created in your [Dashboard](https://platform.flatfile.com).
 
 ```shell Shell / cURL
@@ -91,9 +91,9 @@ curl --request POST \
       ],
       "actions": [
         {
-            "slug": "generateJSON",
-            "label": "Generate JSON",
-            "description": "Generate a JSON file based off of the Data in this Sheet",
+            "slug": "todogenerateJSON",
+            "label": "todoGenerate JSON",
+            "description": "todoGenerate a JSON file based off of the Data in this Sheet",
             "primary": true
         },
       ]
@@ -104,10 +104,6 @@ curl --request POST \
 
 ## Recap & Next Steps
 
-You should now have a general idea of the power of workbooks & how to use schemas in Flatfile.
+Now that you have a workbook in your Dashboard & know how to use schemas in Flatfile, you can actually stop there if that solves your use case.
 
-<Warning>
-To continue, you'll need your [publishable key](../security/authentication). [Sign up](https://platform.flatfile.com/account/sign-up) and get your keys if you haven't yet.
-</Warning>
-
-In the next step, you will quickly [Create a sample workbook](/create-workbook) by running a cURL request from your terminal.
+In the next step, we will take things a step further and learn how to respond to record events with transformations and validations.
