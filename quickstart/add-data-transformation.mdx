@@ -63,12 +63,15 @@ This transformation specifically will take the first name and make it lowercase.
 import { recordHook } from '@flatfile/plugin-record-hook'
 
 export default function(listener) {
+  
   listener.use(
     recordHook('contacts', (record) => {
-      record.set('firstName', record.get('firstName').toLowerCase())
+      const value = record.get('firstName').toLowerCase()
+      record.set('firstName', record.get('firstName').toLowercase())
       return record
     })
   )
+
 }
 ```
 
@@ -85,17 +88,23 @@ in your data.
 
 ```ts
 import { recordHook } from '@flatfile/plugin-record-hook'
+import * as EmailValidator from 'email-validator';
 
 export default function(listener) {
+
   listener.use(
     recordHook('contacts', (record) => {
-      record.set('firstName', record.get('firstName').toLowerCase())
-      if(!EmailValidator.validate(value)) {
+      const value = record.get('firstName').toLowerCase()
+      record.set('firstName', record.get('firstName').toLowercase())
+
+      if (!EmailValidator.validate(value)) {
         record.addError('email', 'Invalid email address')
       }
+
       return record
     })
   )
+
 }
 ```
 
