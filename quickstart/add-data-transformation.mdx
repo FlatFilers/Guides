@@ -38,7 +38,7 @@ Once you've clicked the **Run** button. You should see a **Listening for Events*
 
 For this tutorial, we will be transforming data as it's added or modified in the sheet.
 
-Flatfile provides a number of handy [transformation & validation plugins](https://plugins.flatfile.com) to reshape the data before it gets updated. Explore open source validation plugins available like:
+Flatfile provides a number of handy [transformation & validation plugins](https://plugins.flatfile.com) to reshape the data before it gets updated. Explore open source validation plugins available:
 
 ⏳**TODO make these real links**
 
@@ -53,7 +53,7 @@ Flatfile provides a number of handy [transformation & validation plugins](https:
 
 ## Using a plugin to transform data
 
-<Tip>Plugins are helpful utilities that can be implemented with the `listener.use()` method. We explain that in depth in the [Events](../concepts/events) concepts.)</Tip>
+<Tip>Plugins are helpful utilities that can be implemented with the `listener.use()` method. We explain that in depth in the [Events](../concepts/events) concepts</Tip>
 
 For this example, we'll use <code>[@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook)</code> and perform a callback function on every record that is added or modified based on the values provided inside that event.
 
@@ -103,6 +103,6 @@ export default function(listener) {
 
 ## Recap & Next Steps
 
-You should now have a locally running listener that is responding to record changes in your Workbook.
+You now have a locally running listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations.
 
 Next, we will add an action that submits data from this Sheet to your API.
