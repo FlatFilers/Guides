@@ -62,43 +62,42 @@ To continue, you'll need your [publishable key](../security/authentication). [Si
 curl --request POST \
   --url https://platform.flatfile.com/api/v1/workbooks \
   --header 'Accept: application/json' \
-  --header 'Authorization: Bearer <publishable key>' \
+  --header 'Authorization: Bearer <secretKey>' \
   --header 'Content-Type: application/json' \
   --data '{
-  "name": "My Workbook",
-  "spaceId": "us_sp_DrdXetPN",
-  "environmentId": "us_env_hVXkXs0b",
+  "name": "My First Workbook",
   "sheets": [
     {
-      "name": "My Sheet 1",
-      "slug": "mysheet1",
+      "name": "Contacts",
+      "slug": "contacts",
       "fields": [
         {
-          "key": "first_name",
+          "key": "firstName",
           "type": "string",
-          "label": "First Name",
+          "label": "First Name"
         },
         {
-          "key": "last_name",
+          "key": "lastName",
           "type": "string",
-          "label": "Last Name",
+          "label": "Last Name"
         },
         {
           "key": "email",
           "type": "string",
-          "label": "Email",
+          "label": "Email"
         }
       ],
       "actions": [
         {
-            "slug": "todogenerateJSON",
-            "label": "todoGenerate JSON",
-            "description": "todoGenerate a JSON file based off of the Data in this Sheet",
-            "primary": true
-        },
+          "slug": "submitAction",
+          "label": "Submit",
+          "type": "string",
+          "description": "Submit data to webhook.site",
+          "primary": true
+        }
       ]
     }
-  ],
+  ]
 }'
 ```
 
