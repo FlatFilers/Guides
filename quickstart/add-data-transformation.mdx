@@ -94,7 +94,7 @@ listener.use(
     validate(
       record,
       'email',
-      (value) => EmailValidator.validate(email),
+      (value) => EmailValidator.validate(value),
       'Email is invalid.'
     )
     return record
