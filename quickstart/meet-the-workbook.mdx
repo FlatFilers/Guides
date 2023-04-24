@@ -7,17 +7,13 @@ description: "Learn how to create your first Workbook in Flatfile."
  <source src="https://videos.ctfassets.net/hjneo4qi4goj/6tpIySgKeIUQjPSGhlpmR8/956b38c58e91580758e2991a47e5e920/MAIN_COMPOSITION_-_3D-FLIP_transitions.mp4" type="video/mp4"/>
 </video>
 
-A <Tooltip tip="Learn more about Workbooks">[Workbook](../concepts/workbook)</Tooltip> replaces the spreadsheet template you may share 
-with people today when requesting their data. Unlike a spreadsheet, 
-it's designed to allow your team and users to validate, correct, and import data.
+In Flatfile, a <Tooltip tip="Learn more about Workbooks">[Workbook](../concepts/workbook)</Tooltip> serves as a replacement for the spreadsheet template(s) that you may currently share with others to request data for data collection during customer onboarding or other business processes. Unlike a spreadsheet, a workbook is specifically designed to enable your team and users to validate, correct, and import data.
 
-In the next 15 minutes, you’ll design and configure a workbook 
-for your business. Once you’re finished you’ll be able to embed it in your application 
-as an import flow, or deploy a data collection portal.
+Within the next 15 minutes, you can create and set up a workbook for your business. After completing the process, you will have the ability to embed it in your application as an import flow, or deploy a data collection portal.
 
 ### Using Schemas
 
-To post to our API, your schema will need to match Flatfile's <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip>, a powerful DDL with a focus on validation and data preparation.  
+To successfully post to our API, your schema must align with Flatfile's <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip>, which is a robust data definition language (DDL) that emphasizes validation and data preparation.
 
 For this tutorial, we’re going to use a simple schema that’s already using Flatfile’s Blueprint; 
 however, if you have an existing schema, you can choose from many different open-source [blueprint converter plugins](https://plugins.flatfile.com) like:
@@ -43,13 +39,13 @@ Prerequisites: You'll need your [secret key](../security/authentication) to comp
 #### Create a workbook 
 
 1. Paste this cURL request to your terminal now to create a simple workbook or [run this command directly from our docs](https://flatfile.stoplight.io/docs/v10/branches/ashley-mulligan-sample-workbook/tjt005wdogklo-create-a-sample-workbook).
-2. Login and see the workbook you created in your [Dashboard](https://platform.flatfile.com).
+2. Login and see the workbook you created in your [Dashboard](https://platform.flatfile.com) under Spaces.
 
 ```shell Shell / cURL
 curl --request POST \
   --url https://platform.flatfile.com/api/v1/workbooks \
   --header 'Accept: application/json' \
-  --header 'Authorization: Bearer <secretKey>' \
+  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
   --header 'Content-Type: application/json' \
   --data '{
   "name": "My First Workbook",
@@ -96,5 +92,4 @@ Head to your [Dashboard](https://platform.flatfile.com) to see
 the workbook and go through a test import. After you finish importing, 
 you should see the data appear in the Workbook sheet. 
 
-In the next step, we will take things a 
-step further and learn how to respond to record events with transformations and validations.
+In the next step, we will delve deeper into responding to record events with transformations and validations.
