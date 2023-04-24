@@ -105,8 +105,9 @@
     },
     {
       "group": "Blueprint",
-      "pages": ["blueprint/overview", "blueprint/properties", 
-          "blueprint/constraints", "blueprint/relationships", "blueprint/access"]
+
+      "pages": ["blueprint/overview", "blueprint/field-types", 
+          "blueprint/constraints",  "blueprint/relationships", "blueprint/access"]
     },
     {
       "group": "Developer Tools",
