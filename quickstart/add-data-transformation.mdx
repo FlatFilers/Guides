@@ -1,13 +1,13 @@
 ---
 title: 2. Transform & validate data
-description: "Start validating and transforming data with a simple event handler in Flatfile."
+description: "Begin the process of validating and transforming data in Flatfile by implementing a basic event handler."
 ---
 
 In the previous step, you created a workbook with a simple schema. Before continuing, head over to your [Dashboard](https://platform.flatfile.com) and:
 - Manually add a few sample records
 - Try exporting [this CSV file](https://docs.google.com/spreadsheets/d/1hhTv_T2kRE6tmhEAZEk9TuJI_6B1Zd9r1Pw7Q3hTxuA/edit#gid=0) and uploading it into your workbook
 
-Every single action you take in Flatfile triggers an [Event](../concepts/events). Listening to those events allows you to do everything from validating records to sending data to your API.
+Every action you perform in Flatfile triggers an [Event](../concepts/events). You can listen to these events to perform various tasks such as validating records and sending data to your API.
 
 ## Setting up a listener
 
@@ -16,7 +16,7 @@ in other ways. Read the advanced docs here (TODO).</Note>
 
 Using the `flatfile` CLI you can register any javascript function as an event listener and start working with events. To keep it simple we'll use a pre-configured Repl.it.
 1. [Fork this repl.it](https://replit.com/@flatfile/get-started#index.ts)
-2. Get your API Key from your [Developer Dashboard](https://platform.flatfile.com/developers)
+2. Get your Secret Key from your [Developer Dashboard](https://platform.flatfile.com/developers)
 3. Click Run in your Repl.it
 
 The simplest event listener you could create looks like this. You'll see this code in the repl.it link you forked above.
@@ -31,7 +31,7 @@ export default function(flatfile) {
 
 #### Subscribing to Events
 
-Once you've clicked the **Run** button. You should see a **Listening for Events** message in the console. Go ahead and return to your workbook page and make a couple changes or two. You should see events and any logs start to appear in your console.
+After clicking the **Run** button in the pre-configured Repl.it, you will see a **Listening for Events** message in the console. To test the event listener, return to your workbook page and make a few changes to your records in the Flatfile workbook. You should see events and logs appearing in your console.
 
 ---
 
@@ -39,7 +39,7 @@ Once you've clicked the **Run** button. You should see a **Listening for Events*
 
 ### Using transformation & validation plugins
 
-For this tutorial, we will be transforming data as it's added or modified in the sheet.
+In this tutorial, we will transform data as it is added or modified in the sheet.
 
 Flatfile provides a number of handy [transformation & validation plugins](https://plugins.flatfile.com) to reshape the data before it gets updated. Explore open source validation plugins available:
 
@@ -100,7 +100,7 @@ export default function(listener) {
       const value = record.get('firstName')
       record.set('firstName', value.toLowerCase())
 
-      if (!EmailValidator.validate(record.get('email')) {
+      if (!EmailValidator.validate(record.get('email'))) {
         record.addError('email', 'Invalid email address')
       }
 
