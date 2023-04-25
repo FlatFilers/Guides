@@ -3,12 +3,16 @@ title: "Guest Sidebar"
 description: "Learn how to limit what Guests see in their Sidebar."
 ---
 
-<Note>This configuration only impacts Guests, not Admins. [Learn more about user access](../security/roles-and-permissions).</Note>
+<Info>This configuration only impacts Guests, not Admins. [Learn more about user access](../security/roles-and-permissions).</Info>
 
-Flatfile allows you to update your sidebar to hide/show certain elements via the <Tooltip tip="Learn more about Spaces">[Space](../concepts/spaces)</Tooltip> endpoint. 
+Flatfile allows you to update your sidebar to hide/show certain elements via the <Tooltip tip="Learn more about Spaces">[Space](../concepts/spaces)</Tooltip> endpoint.
+
+Simply update `metadata.sidebarConfig.` when calling `spaces.update()`.
+
+---
 
 <RequestExample>
-```ts  spaces.update 
+```ts
 const updateSpace = await flatfile.spaces.update(spaceId, {
     environmentId: environmentId,
     metadata: {
