@@ -7,7 +7,7 @@ In the previous step, you created a workbook with a simple schema. Before contin
 - Manually add a few sample records
 - Try exporting [this CSV file](https://docs.google.com/spreadsheets/d/1hhTv_T2kRE6tmhEAZEk9TuJI_6B1Zd9r1Pw7Q3hTxuA/edit#gid=0) and uploading it into your workbook
 
-Every action you perform in Flatfile triggers an [Event](../concepts/events). You can listen to these events to perform various tasks such as validating records and sending data to your API.
+Every action you perform in Flatfile triggers an [Event](../concepts/events). You can listen to these events to perform various tasks such as validating records and sending the data to your API.
 
 ## Setting up a listener
 
@@ -85,7 +85,7 @@ to make sure the email is actually valid.
 
 <Tip>
 You can use any javascript validation engine in the world to automatically detect formatting or rule-based issues
-in your data.
+in the data.
 </Tip>
 
 
@@ -117,4 +117,4 @@ export default function(listener) {
 
 You now have a locally running listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations.
 
-Next, we will add an action that submits data from this Sheet to your API.
+Next, we will add an action that submits the data from this Sheet to your API.
