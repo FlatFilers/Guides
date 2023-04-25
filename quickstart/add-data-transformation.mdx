@@ -100,7 +100,7 @@ export default function(listener) {
       const value = record.get('firstName')
       record.set('firstName', value.toLowerCase())
 
-      if (!EmailValidator.validate(record.get('email')) {
+      if (!EmailValidator.validate(record.get('email'))) {
         record.addError('email', 'Invalid email address')
       }
 
