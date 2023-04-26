@@ -5,9 +5,7 @@ description: "Learn how to give your team and customers access."
 
 ## Administrator Roles
 
-<Warning>
-    These roles can invite additional admins to your account, and can see developer keys.
-</Warning>
+Administrator roles have full access to your accounts, including inviting additional admins to your account, and seeing developer keys.
 
 | Role | Details                           |
 | -------- | ------------------------------------- |
@@ -15,6 +13,8 @@ description: "Learn how to give your team and customers access."
 
 
 ## Guest Roles
+
+Guest roles receive access via a magic link or a shared link depending on the [Environment](../developer-tools/environment) `guestAuthentication` type. Guests roles can invite other Guests unless you turn off this setting in the [Guest Sidebar](../advanced/guest_sidebar).
 
 ### Space Grant
 
@@ -25,13 +25,29 @@ description: "Learn how to give your team and customers access."
 
 ### Workbook Grant
 
+<Info>This role can only be configured using code.</Info>
+
 | Role | Details                           |
 | -------- | ------------------------------------- |
-| Single-Workbook&nbsp;Guest     | This role is meant for a guest who should have access to only one workbook within a Space. This role can only be configured using code.                  |
-| Multi-Workbook&nbsp;Guest     | This role is intended for a guest who has access to multiple workbooks within a Space. This role can only be configured using code.                 |
+| Single-Workbook&nbsp;Guest     | This role is meant for a guest who should have access to only one workbook within a Space.                |
+| Multi-Workbook&nbsp;Guest     | This role is intended for a guest who has access to multiple workbooks within a Space.                 |
+
+```ts
+const createGuest = await api.guests.create({
+  environmentId: 'us_env_hVXkXs0b',
+  email: 'guest@example.com',
+  name: 'Mr. Guest',
+  spaces: [
+    {
+      id: 'us_sp_DrdXetPN',
+      workbooks: [
+        {
+          id: 'us_wb_qGZbKwDW',
+        },
+      ],
+    },
+  ],
+});
+```
 
 
-
-<Note>
-    You can limit the ability for guests to be able to invite others by configuring the [Guest Sidebar](../advanced/guest_sidebar)
-</Note>
