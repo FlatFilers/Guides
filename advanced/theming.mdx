@@ -4,13 +4,12 @@ description: "Learn how to customize the look and feel of Flatfile to match your
 ---
 
 Flatfile supports modifying most UI elements, including colors, fonts, borders, padding, and
-more via the <Tooltip tip="Learn more about Spaces">[Space](hello.com)</Tooltip> component.
+more via the <Tooltip tip="Learn more about Spaces">[Space](../concepts/spaces)</Tooltip> endpoint.
 
-1. Start by simply updating `theme.root.primaryColor` and `theme.sidebar.logo`.
-2. If needed, customize the theme further with css variables.
+1. Start by simply updating `theme.root.primaryColor` and `theme.sidebar.logo` when calling `spaces.update()`.
+2. If needed, you can customize the theme further with additional css variables.
 
-<RequestExample>
-```ts  spaces.update
+```ts 
 const updateSpace = await flatfile.spaces.update(spaceId, {
     environmentId: environmentId,
      metadata: {
@@ -26,11 +25,11 @@ const updateSpace = await flatfile.spaces.update(spaceId, {
     }
   });
 ```
-</RequestExample>
+---
 
 ## Full CSS reference
 
-#### `theme.root`
+### `theme.root`
 ![theme.root](../images/customize/theme_root.png)
 
 <ParamField path="fontFamily" type="string">The font family used throughout the app.</ParamField>

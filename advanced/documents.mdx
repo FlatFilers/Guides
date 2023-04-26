@@ -1,0 +1,178 @@
+---
+title: "Documents"
+description: "Learn how to build pages in your sidebar with Documents."
+---
+
+Documents are standalone webpages for your Flatfile <Tooltip tip="Learn more about Spaces">[Spaces](../concepts/spaces)</Tooltip>. They can rendered from [Markdown syntax](https://www.markdownguide.org/basic-syntax/). 
+
+Documents, often used for getting started guides, become extremely powerful with dynamically generated content that stays up to date as events occur.
+
+<Info>Flatfile also allow you to use HTML tags in your Markdown-formatted text. This is helpful if you prefer certain HTML tags to Markdown syntax.</Info>
+
+Learn how to create a document, and update a Document from an event listener.
+
+
+```ts
+const createDoc = await flatfile.documents.create(spaceId, {
+  title: 'Getting Started',
+  body:
+    '# Welcome\n' +
+    '### Say hello to your first customer Space in the new Flatfile!\n' +
+    "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+    '---\n',
+});
+
+//listen for an event, and update your document to be relevant
+flatfile.on('upload:completed', (event) => {
+  const updateDoc = await flatfile.documents.update(spaceId, documentId, {
+    title: 'Getting Started',
+    body:
+      '# Welcome\n' +
+      '### Say hello to your first customer Space in the new Flatfile!\n' +
+      "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+      '---\n'+
+      "Your uploaded files are located in the Files area.\n",
+  });
+})
+```
+
+---
+
+## Markdown reference
+
+### Headings
+
+```Markdown
+# Heading level 1	
+## Heading level 2	
+### Heading level 3	
+#### Heading level 4	
+##### Heading level 5	
+###### Heading level 6	
+```
+
+**The rendered output looks like:**
+
+# Heading level 1	
+## Heading level 2	
+### Heading level 3	
+#### Heading level 4	
+##### Heading level 5	
+###### Heading level 6	
+
+---
+
+### Links
+
+```Markdown
+My favorite search engine is [Duck Duck Go](https://duckduckgo.com).
+```
+
+**The rendered output looks like:**
+
+My favorite search engine is [Duck Duck Go](https://duckduckgo.com).
+
+---
+
+### Text formatting
+
+```Markdown
+Love**is**bold
+Italicized text is the *cat's meow*.
+This text is ***bolds and italicized***.
+Superscript <sup>superscript</sup>
+Subscript <sub>subscript</sub>
+> Dorothy followed her through many of the beautiful rooms in her castle.
+Use `code` in your Document.
+```
+
+**The rendered output looks like:**
+
+Love **is** bold
+
+Italicized text is the *cat's meow*.
+
+This text is ***bolds and italicized***.
+
+Superscript <sup>superscript</sup>
+
+Subscript <sub>subscript</sub>
+
+> Dorothy followed her through many of the beautiful rooms in her castle.
+
+Use `code` in your Document.
+
+---
+
+### Lists
+
+```Markdown
+<!-- ordered lists -->
+1. First item
+2. Second item
+3. Third item
+4. Fourth item
+<!-- unordered lists -->
+- First item
+- Second item
+- Third item
+- Fourth item
+<!-- nested lists -->
+- First parent item
+- Second parent item
+  - Additional item
+  - Additional item
+- Third parent item
+
+```
+
+**The rendered output looks like:**
+
+#### Ordered Lists
+
+1. First item
+2. Second item
+3. Third item
+4. Fourth item
+
+#### Unordered Lists
+
+- First item
+- Second item
+- Third item
+- Fourth item
+
+#### Nested Lists
+
+- First parent item
+- Second parent item
+  - Additional item
+  - Additional item
+- Third parent item
+
+---
+
+## Images
+
+```Markdown
+San Juan Mountains are beautiful!](https://i0.wp.com/sjma.org/wp-content/uploads/2018/04/Ice-Lakes-BG.jpg "San Juan Mountains")
+```
+
+---
+## Tables
+
+```Markdown
+| Property | Description                           |
+| -------- | ------------------------------------- |
+| Name     | Full name of user                     |
+| Age      | Reported age                          |
+| Joined   | Whether the user joined the community |
+```
+
+**The rendered output would look like:**
+
+| Property | Description                           |
+| -------- | ------------------------------------- |
+| Name     | Full name of user                     |
+| Age      | Reported age                          |
+| Joined   | Whether the user joined the community |

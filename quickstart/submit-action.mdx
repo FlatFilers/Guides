@@ -3,28 +3,14 @@ title: 3. Configure a submit action
 description: "Learn how to create a simple submit action in Flatfile."
 ---
 
-Actions are incredibly powerful buttons added to the UI that [when clicked by end users] trigger <Tooltip tip="Learn about Jobs">[Jobs](../concepts/jobs)</Tooltip> 
-that run within the Flatfile ecosystem. 
+Actions refer to buttons added to the user interface that trigger <Tooltip tip="Learn about Jobs">[Jobs](../concepts/jobs)</Tooltip> within the Flatfile ecosystem [when clicked by end users]. They are highly powerful tools that can automate various tasks and streamline workflow processes.
 
-### Using Action Plugins
+## Adding your first action
 
-Flatfile offers dozens of open-source action plugins: 
+In this example, we're going to add an action to the primary action `submitAction` you see in the workbook you have already deployed.
+This action will take the data from the sheet and submit it to webhook.site.
 
-<CardGroup cols={3}>
-  <Card color="#CB3837" title="@flatfile/plugin-action-download-xlsx" icon="npm" href="https://plugins.flatfile.com">
-  </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-action-download-zip" icon="npm" href="https://plugins.flatfile.com">
-  </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-action-postgresql-egress" icon="npm" href="https://plugins.flatfile.com">
-  </Card>
-</CardGroup>
-
-## Adding your first action 
-
-In this example, we're going to add an action to the primary action `submitAction` you see in the workbook you have already deployed. 
-This action will take data from the sheet and submit it to TODO:webhook.site.
-
-<a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium" 
+<a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium"
 href="https://replit.com/@flatfile/get-started#index.ts">
     <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
     <span class="z-10 mr-2 text-white">See it in Replit</span>
@@ -32,7 +18,7 @@ href="https://replit.com/@flatfile/get-started#index.ts">
 </a>
 
 
-```js index.js
+```js
 import { recordHook } from '@flatfile/plugin-record-hook'
 import * as EmailValidator from 'email-validator';
 import got from 'got';
@@ -49,11 +35,31 @@ export default function(listener) {
 }
 ```
 
+### Testing your action
+
+- Once you've updated your listener code. Click the "Run" button in the top of the Replit window.
+- Go to your Workbook and click the submit action.
+- View the log showing the handled event and view the data payload sent to your webhook.site URL.
+
+### Using Action Plugins
+<Warning>Todo: fill this out with real information</Warning>
+
+Flatfile offers dozens of open-source action plugins:
+
+<CardGroup cols={3}>
+  <Card color="#CB3837" title="@flatfile/plugin-action-download-xlsx" icon="npm" href="https://flatfie.com/plugins">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-action-download-zip" icon="npm" href="https://flatfie.com/plugins">
+  </Card>
+  <Card color="#CB3837" title="@flatfile/plugin-action-postgresql-egress" icon="npm" href="https://flatfie.com/plugins">
+  </Card>
+</CardGroup>
+
 ---
 
 ## Recap & Next Steps
-Congratulations! You now have a configured workbook with transformations, validations, and a final submit action. 
+Congratulations! You now have a configured workbook with transformations, validations, and a final submit action.
 This completes the Quickstart tutorial.
 
-Next, you should [deploy your code](../developer-tools/deploying) to your Environment or 
+Next, you should [deploy your code](../developer-tools/deploying) to your Environment or
 learn more about the [Concepts](../concepts/spaces) to take this example further.

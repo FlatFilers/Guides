@@ -52,7 +52,7 @@
     {
       "name": "Plugins",
       "icon": "plug",
-      "url": "plugins"
+      "url": "https://flatfile.com/plugins"
     },
     {
       "name": "Developer Tools",
@@ -82,8 +82,7 @@
     },
     {
       "group": "Concepts",
-      "pages": ["concepts/workbooks", "concepts/spaces",
-          "concepts/agents", "concepts/jobs", "concepts/events"]
+      "pages": ["concepts/workbooks", "concepts/jobs", "concepts/events", "concepts/spaces"]
     },
     {
       "group": "Security",
@@ -92,7 +91,7 @@
     },
     {
       "group": "Advanced",
-      "pages": ["advanced/theming", "advanced/guest_sidebar", "advanced/custom-actions"]
+      "pages": ["advanced/theming", "advanced/guest_sidebar",  "advanced/documents", "advanced/custom-actions"]
     },
     {
       "group": "More scenarios",
@@ -100,13 +99,10 @@
           "use-cases/ephemeral"]
     },
     {
-      "group": "Plugins",
-      "pages": ["plugins/overview"]
-    },
-    {
       "group": "Blueprint",
-      "pages": ["blueprint/overview", "blueprint/properties", 
-          "blueprint/constraints", "blueprint/relationships", "blueprint/access"]
+
+      "pages": ["blueprint/overview", "blueprint/field-types", 
+          "blueprint/constraints",  "blueprint/relationships", "blueprint/access"]
     },
     {
       "group": "Developer Tools",

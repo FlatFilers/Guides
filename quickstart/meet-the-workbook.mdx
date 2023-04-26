@@ -7,41 +7,37 @@ description: "Learn how to create your first Workbook in Flatfile."
  <source src="https://videos.ctfassets.net/hjneo4qi4goj/6tpIySgKeIUQjPSGhlpmR8/956b38c58e91580758e2991a47e5e920/MAIN_COMPOSITION_-_3D-FLIP_transitions.mp4" type="video/mp4"/>
 </video>
 
-In Flatfile, a <Tooltip tip="Learn more about Workbooks">[Workbook](../concepts/workbook)</Tooltip> serves as a replacement for the spreadsheet template(s) that you may currently share with others to request data for data collection during customer onboarding or other business processes. Unlike a spreadsheet, a workbook is specifically designed to enable your team and users to validate, correct, and import data.
+In Flatfile, a <Tooltip tip="Learn more about Workbooks">[Workbook](../concepts/workbooks)</Tooltip> serves as a replacement for the spreadsheet template(s) that you may currently share with others to request data for data collection during customer onboarding or other business processes. Unlike a spreadsheet, a workbook is specifically designed to enable your team and users to validate, correct, and import data.
 
 Within the next 15 minutes, you can create and set up a workbook for your business. After completing the process, you will have the ability to embed it in your application as an import flow, or deploy a data collection portal.
 
+<Info>
+Prerequisites: You'll need a Flatfile account and your [secret key](../security/authentication) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and get your keys if you haven't yet.
+</Info>
+
 ### Using Schemas
 
-To successfully post to our API, your schema must align with Flatfile's <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip>, which is a robust data definition language (DDL) that emphasizes validation and data preparation.
+Flatfile’s <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip> is a robust data definition language (DDL) that emphasizes validation and data preparation. To successfully create a Workbook via API, you must define a valid CSV in the Blueprint DDL.
 
 For this tutorial, we’re going to use a simple schema that’s already using Flatfile’s Blueprint; 
-however, if you have an existing schema, you can choose from many different open-source [blueprint converter plugins](https://plugins.flatfile.com) like:
+however, if you have an existing schema, you can choose from many different open-source [blueprint converter plugins](https://flatfile.com/plugins) like:
 
 <CardGroup cols={4}>
-  <Card color="#CB3837" title="@flatfile/plugin-json-schema" icon="npm" href="https://plugins.flatfie.com">
+  <Card color="#CB3837" title="@flatfile/plugin-json-schema" icon="npm" href="https://flatfie.com/plugins">
   </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-sql-ddl" icon="npm" href="https://plugins.flatfie.com">
+  <Card color="#CB3837" title="@flatfile/plugin-sql-ddl" icon="npm" href="https://flatfie.com/plugins">
   </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-openapi" icon="npm" href="https://plugins.flatfie.com">
+  <Card color="#CB3837" title="@flatfile/plugin-openapi" icon="npm" href="https://flatfie.com/plugins">
   </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-graphql" icon="npm" href="https://plugins.flatfie.com">
+  <Card color="#CB3837" title="@flatfile/plugin-graphql" icon="npm" href="https://flatfie.com/plugins">
   </Card>
 </CardGroup>
 
 ## Building your first Workbook
 
-
-<Info>
-Prerequisites: You'll need your [secret key](../security/authentication) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and get your keys if you haven't yet.
-</Info>
-
 #### Create a workbook 
 
-<<<<<<< Updated upstream
-1. Paste this cURL request to your terminal now to create a simple workbook or [run this command directly from our docs](https://flatfile.stoplight.io/docs/v10/tjt005wdogklo-create-a-sample-workbook).
-2. Login and see the workbook you created in your [Dashboard](https://platform.flatfile.com).
-
+Paste this cURL request to your terminal now to create a simple workbook or [run this command directly from our docs](https://flatfile.stoplight.io/docs/v10/tjt005wdogklo-create-a-sample-workbook).
 
 ```shell Shell / cURL
 curl --request POST \
@@ -90,8 +86,7 @@ curl --request POST \
 
 You're now ready to start importing data with Flatfile! 
 
-Head to your [Dashboard](https://platform.flatfile.com) to see 
-the workbook and go through a test import. After you finish importing, 
-you should see the data appear in the Workbook sheet. 
+Head to your [Spaces Dashboard](https://platform.flatfile.com) and click on 
+the workbook you just created (My First Workbook). Upload a [test file](https://docs.google.com/spreadsheets/d/1hhTv_T2kRE6tmhEAZEk9TuJI_6B1Zd9r1Pw7Q3hTxuA/edit#gid=0) and see the data appear in the Workbook sheet. 
 
 In the next step, we will delve deeper into responding to record events with transformations and validations.

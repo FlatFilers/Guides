@@ -1,5 +1,5 @@
 ---
-title: "Types"
+title: Types
 description: "Learn more about each supported field type: `string`, `number`, `boolean`, `date`, `enum`, `reference`"
 ---
 
@@ -60,7 +60,7 @@ Defines a property that should be stored and read as either an integer or floati
 
 
 <ParamField path="config.decimal_places" default="0" type="number">
-  The number of decimal places to preserve accuracy to. Overages should be automatically rounded with a warning. A hook can pre-format to accomplish floor or ceiling.
+  The number of decimal places to preserve accuracy to. Overages should be automatically rounded with a warning. A hook can pre-format to accomplish floor or ceil.
 </ParamField>
 
 ```json
@@ -162,4 +162,4 @@ A `true` or `false` value type. Matching engines should attempt to resolve all c
 
 ## `date`
 
-Store a field as a GMT date. Data hooks must convert this value into a `YYYY-MM-DD` format in order for it to be considered a valid value. Datetime is not currently available, but will be a separately supported Field Type in the future, and will include timezone.
+Store a field as a GMT date. Data hooks must convert this value into a `YYYY-MM-DD` format in order for it to be considered a valid value. Datetime should be a separate and future supported value as it must consider timezone.
