@@ -32,9 +32,20 @@ href="https://replit.com/@flatfile/get-started#index.ts">
 </a>
 
 
-```jsx
-async function submitAction(event: any, sheetName: string, data: any) {
-  //submit to webhook.site
+```js index.js
+import { recordHook } from '@flatfile/plugin-record-hook'
+import * as EmailValidator from 'email-validator';
+import got from 'got';
+
+export default function(listener) {
+  // ... your previous recordHook logic
+
+  listener.on('action:triggered', async (event) => {
+    // go to https://webhook.site and copy your own URL in here to test with:
+    const res = await got.post('https://webhook.site/34ecb8ef-fd75-49e1-8efe-9ff0b6a937be', {
+      json: event.payload
+    })
+  })
 }
 ```
 
