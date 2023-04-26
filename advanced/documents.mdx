@@ -13,7 +13,7 @@ Learn how to create a document, and update a Document from an event listener.
 
 
 ```ts
-const createDoc = await flatfile.documents.create(spaceId, {
+const createDoc = await api.documents.create(spaceId, {
   title: 'Getting Started',
   body:
     '# Welcome\n' +
@@ -24,7 +24,7 @@ const createDoc = await flatfile.documents.create(spaceId, {
 
 //listen for an event, and update your document to be relevant
 flatfile.on('upload:completed', (event) => {
-  const updateDoc = await flatfile.documents.update(spaceId, documentId, {
+  const updateDoc = await api.documents.update(spaceId, documentId, {
     title: 'Getting Started',
     body:
       '# Welcome\n' +
