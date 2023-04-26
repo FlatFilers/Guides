@@ -3,7 +3,8 @@
   "name": "flatfile.com",
   "logo": {
     "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "light": "/logo/light.svg",
+    "href": "https://flatfile.com"
   },
   "api": {
     "baseUrl": "https://platform.flatfile.com/api",
