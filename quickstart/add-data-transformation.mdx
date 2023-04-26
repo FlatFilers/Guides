@@ -27,7 +27,7 @@ The simplest possible event listener looks as follows:
 
 ```js index.js
 export default function(flatfile) {
-  flatfile.on('**', (event) => {
+  listener.on('**', (event) => {
     console.log('-> My event', event.topic)
   })
 }
