@@ -11,18 +11,29 @@ Simply update `metadata.sidebarConfig.` when calling `spaces.update()`.
 
 ---
 
-<RequestExample>
+### Building a guest sidebar
+
+Learn how to create a sidebar configuration, and update a sidebar configuration from an event listener.
+
 ```ts
-const updateSpace = await flatfile.spaces.update(spaceId, {
-    environmentId: environmentId,
-    metadata: {
-      sidebarConfig: {
-        //See reference for all possible variables
-      }
+const createSpace = await flatfile.spaces.create(spaceId, {
+  environmentId: environmentId,
+  metadata: {
+    sidebarConfig: {
+      //See reference for all possible variables
     }
-  });
+  }
+});
+
+//listen for an event, and update your guest sidebar to be relevant
+flatfile.on('upload:completed', (event) => {
+  const updateSpace = await flatfile.spaces.update(spaceId, {});
+})
 ```
-</RequestExample>
+
+---
+
+## Guest sidebar reference
 
 ### `metadata.sidebarConfig`
 ![Sidebar Config](../images/customize/sidebarConfig.png)
