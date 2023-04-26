@@ -9,6 +9,12 @@ more via the <Tooltip tip="Learn more about Spaces">[Space](../concepts/spaces)<
 1. Start by simply updating `theme.root.primaryColor` and `theme.sidebar.logo` when calling `spaces.update()`.
 2. If needed, you can customize the theme further with additional css variables.
 
+---
+
+### Building a theme
+
+Learn how to create a Space with a theme, and update a theme from an event listener.
+
 ```ts 
 const updateSpace = await api.spaces.update(spaceId, {
     environmentId: environmentId,
@@ -23,11 +29,17 @@ const updateSpace = await api.spaces.update(spaceId, {
         //See reference for all possible variables
       }
     }
-  });
+  }
+});
+
+//listen for an event, and update your theme to be relevant
+listener.on('space:created', (event) => {
+  const updateSpace = await flatfile.spaces.update(spaceId, {});
+})
 ```
 ---
 
-## Full CSS reference
+## Theme reference
 
 ### `theme.root`
 ![theme.root](../images/customize/theme_root.png)

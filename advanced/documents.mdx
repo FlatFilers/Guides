@@ -9,8 +9,9 @@ Documents, often used for getting started guides, become extremely powerful with
 
 <Info>Flatfile also allow you to use HTML tags in your Markdown-formatted text. This is helpful if you prefer certain HTML tags to Markdown syntax.</Info>
 
-Learn how to create a document, and update a Document from an event listener.
+### Building a document
 
+Learn how to create a document, and update a Document from an event listener.
 
 ```ts
 const createDoc = await api.documents.create(spaceId, {
@@ -23,7 +24,7 @@ const createDoc = await api.documents.create(spaceId, {
 });
 
 //listen for an event, and update your document to be relevant
-flatfile.on('upload:completed', (event) => {
+listener.on('upload:completed', (event) => {
   const updateDoc = await api.documents.update(spaceId, documentId, {
     title: 'Getting Started',
     body:
