@@ -52,7 +52,7 @@
     {
       "name": "Plugins",
       "icon": "plug",
-      "url": "plugins"
+      "url": "https://flatfile.com/plugins"
     },
     {
       "name": "Developer Tools",
@@ -82,8 +82,7 @@
     },
     {
       "group": "Concepts",
-      "pages": ["concepts/workbooks", "concepts/spaces",
-          "concepts/agents", "concepts/jobs", "concepts/events"]
+      "pages": ["concepts/workbooks", "concepts/jobs", "concepts/events", "concepts/spaces"]
     },
     {
       "group": "Security",
@@ -92,16 +91,12 @@
     },
     {
       "group": "Advanced",
-      "pages": ["advanced/theming", "advanced/guest_sidebar", "advanced/custom-actions"]
+      "pages": ["advanced/theming", "advanced/guest_sidebar",  "advanced/documents", "advanced/custom-actions"]
     },
     {
       "group": "More scenarios",
       "pages": ["use-cases/headless", "use-cases/workflows",
           "use-cases/ephemeral"]
-    },
-    {
-      "group": "Plugins",
-      "pages": ["https://flatfile.com/plugins"]
     },
     {
       "group": "Blueprint",
