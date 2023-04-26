@@ -32,11 +32,9 @@ export type EventFilter = Record<string, Arrayable<string>>
 
 ```
 
-#### Usage
+#### Building with events
 
 Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library we can intervene between any event and run a callback function based on values provided inside that event.
-
-
 
 ```typescript
 
@@ -50,35 +48,114 @@ client.on(
 
 ```
 
-The following is a list of events you can subscribe to:
+## Event Topic Reference
 
-```typescript
+#### Space
 
-declare const EventTopic: {
-   readonly Spaceadded: "space:added";
-   readonly Spaceremoved: "space:removed";
-   readonly Workbookadded: "workbook:added";
-   readonly Workbookremoved: "workbook:removed";
-   readonly Useradded: "user:added";
-   readonly Userremoved: "user:removed";
-   readonly Useronline: "user:online";
-   readonly Useroffline: "user:offline";
-   readonly Uploadstarted: "upload:started";
-   readonly Uploadfailed: "upload:failed";
-   readonly Uploadcompleted: "upload:completed";
-   readonly Jobstarted: "job:started";
-   readonly Jobwaiting: "job:waiting";
-   readonly Jobupdated: "job:updated";
-   readonly Jobfailed: "job:failed";
-   readonly Jobcompleted: "job:completed";
-   readonly Jobdeleted: "job:deleted";
-   readonly Recordscreated: "records:created";
-   readonly Recordsupdated: "records:updated";
-   readonly Recordsdeleted: "records:deleted";
-   readonly Sheetvalidated: "sheet:validated";
-   readonly Filedeleted: "file:deleted";
-   readonly Actiontriggered: "action:triggered";
-   readonly Clientinit: "client:init";
-}
+<ParamField path="space:added" type="readonly">
+  Called when a Space is created
+</ParamField>
 
-```
+<ParamField path="space:removed" type="readonly">
+  Called when a Space is deleted
+</ParamField>
+
+#### Workbook
+
+<ParamField path="workbook:added" type="readonly">
+  Called when a Space is created
+</ParamField>
+
+<ParamField path="workbook:removed" type="readonly">
+  Called when a Workbook is deleted
+</ParamField>
+
+<ParamField path="sheet:validated" type="readonly">
+  Called when a sheet is validated
+</ParamField>
+
+<ParamField path="records:created" type="readonly">
+  Called when a records are created
+</ParamField>
+
+<ParamField path="records:updated" type="readonly">
+  Called when a records are updated
+</ParamField>
+
+<ParamField path="records:deleted" type="readonly">
+  Called when records are deleted
+</ParamField>
+
+#### User
+
+<ParamField path="user:added" type="readonly">
+  Called when a User is created
+</ParamField>
+
+<ParamField path="user:removed" type="readonly">
+  Called when a User is deleted
+</ParamField>
+
+<ParamField path="user:online" type="readonly">
+  Called when a User logs in
+</ParamField>
+
+<ParamField path="user:offline" type="readonly">
+  Called when a User logs out
+</ParamField>
+
+#### File Upload
+
+<ParamField path="upload:started" type="readonly">
+  Called when a file upload begins
+</ParamField>
+
+<ParamField path="upload:failed" type="readonly">
+  Called when a file upload fails
+</ParamField>
+
+<ParamField path="upload:completed" type="readonly">
+  Called when a file upload has compled
+</ParamField>
+
+<ParamField path="file:deleted" type="readonly">
+  Called when a file is deleted
+</ParamField>
+
+#### Jobs
+
+<ParamField path="job:waiting" type="readonly">
+  Called when a job is waiting to begin
+</ParamField>
+
+<ParamField path="job:started" type="readonly">
+  Called when a job begins
+</ParamField>
+
+<ParamField path="job:updated" type="readonly">
+  Called when a job is updated, oftentimes for progress
+</ParamField>
+
+<ParamField path="job:failed" type="readonly">
+  Called when a job fails
+</ParamField>
+
+<ParamField path="job:completed" type="readonly">
+  Called when a job has compled
+</ParamField>
+
+<ParamField path="job:deleted" type="readonly">
+  Called when a job is deleted
+</ParamField>
+
+#### Actions
+
+<ParamField path="action:triggered" type="readonly">
+  Called when an action is triggered in the UI
+</ParamField>
+
+#### Agents
+
+<ParamField path="client:init" type="readonly">
+  Called when an agent is deployed
+</ParamField>

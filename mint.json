@@ -73,7 +73,7 @@
     {
       "group": "Quickstart",
       "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation", 
-     "quickstart/submit-action"]
+     "quickstart/submit-action", "quickstart/deploying"]
     },
     {
       "group": "Getting Started",
