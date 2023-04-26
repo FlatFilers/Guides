@@ -21,7 +21,7 @@ Using the `flatfile` CLI you can register any javascript function as an event li
 
 The simplest event listener you could create looks like this. You'll see this code in the repl.it link you forked above.
 
-```js listener.js
+```js index.js
 export default function(flatfile) {
   flatfile.on('**', (event) => {
     console.log('-> My event', event.topic)
@@ -62,7 +62,7 @@ For this example, we'll use <code>[@flatfile/plugin-record-hook](https://www.npm
 
 This transformation specifically will take the first name and make it lowercase.
 
-```ts
+```ts index.js
 import { recordHook } from '@flatfile/plugin-record-hook'
 
 export default function(listener) {
@@ -89,7 +89,7 @@ in your data.
 </Tip>
 
 
-```ts
+```ts index.js
 import { recordHook } from '@flatfile/plugin-record-hook'
 import * as EmailValidator from 'email-validator';
 
