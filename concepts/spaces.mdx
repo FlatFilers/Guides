@@ -3,30 +3,67 @@ title: "Spaces"
 description: "The anatomy of Spaces."
 ---
 
-A space in Flatfile ...
+Flatfile Spaces are micro-applications, each having their own database, filestore, and auth. 
+Use Spaces to integrate Flatfile into your data exchange workflow, whether that happens directly 
+in your application or as part of a currently offline process. 
 
 With Spaces, you can:
-1. Something
-2. Something
-3. Somthing
+1. Run Flatfile from an "Import" button in your web application
+2. Launch data onboarding projects
+3. Collect and process files from feeds
 
 ---
 
 ## Reference
 
-A Space is comprised of ....
+A Space is comprised of Workbooks, Files, Users, Documents, Themes and Metadata.
 
-<img src="../images/concepts/workbook_anatomy.png" caption="The anatomy of a Workbook"/>
+<img src="../images/concepts/workbook_anatomy.png" caption="The anatomy of a Space"/>
 
 ## Reference
 
-#### `Something` *object*
-Each Workbook has a Blueprint. A <Tooltip tip="Learn more about Blueprint">[Blueprint](docs.com)</Tooltip> is a collection of Sheets that describe a complete dataset.
+#### `Workbooks` *object*
+A Space contains any number of Workbooks. Each <Tooltip tip="Learn more about Workbooks">[Workbook](docs.com)</Tooltip> is a Blueprint-defined database.
 
 ```jsx  
-blueprint: {
-  sheets: [
-    { fields: [] },
+idk what to put here...
+```
+
+<Note>You can define a primary Workbook for any Space, and that Workbook will always remain at the top of the list.</Note>
+
+#### `Files` *object*
+Files are uploaded directly to a Space.
+
+```jsx  
+idk what to put here...
+```
+
+#### `Users` *object*
+By default, all global Admins in Flatfile have access to all Spaces. Additionally, you can configure a Space to allow for either temporary (`shared_link`) or named (`magic_link`) Guest Users.
+
+```jsx  
+"guestAuthentication": [
+    "magic_link"
   ]
-}
+```
+
+#### `Documents` *object*
+Documents are custom pages that are mounted on the Space and display in the sidebar of a Space in the order of their addition to the Space. 
+
+```jsx  
+idk what to put here
+```
+
+#### `Theme` *object*
+Theming of Flatfile is controlled at the Space level. A comprehensive list of Theme options is available here.
+
+```jsx  
+idk what to put there
+```
+
+#### `Metadata` *object*
+Spaces can be created and updated with Metadata. This could include a company-specific identifier such as a UUID for use in API operations in the Space.
+
+```jsx  
+idk what to put there
 ```
