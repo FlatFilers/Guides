@@ -21,7 +21,7 @@ Using the <Tooltip tip="Learn more about the CLI">[Flatfile CLI](../developer-to
 1. [Fork this repl.it](https://replit.com/@flatfile/get-started#index.ts)
 2. Get your Secret Key from your [Developer Dashboard](https://platform.flatfile.com/developers)
 3. Click Run in your Repl.it
-4. Go back to your Flatfile workbook and make a few changes, then observe those changes in your running repl.it
+4. Go back to your Flatfile workbook and make a few changes, then see how those events were written in your repl.it output
 
 The simplest possible event listener looks as follows:
 
@@ -33,7 +33,7 @@ export default function(listener) {
 }
 ```
 
-This code exports a single function which accepts an instance of an object (named `flatfile` in the example). This object can be used to subscribe to different events within your Flatfile [space](../concepts/spaces). The example code subscribes to all events (using the `**` selector) and writes the event's topic name to the console.
+This code exports a single function that accepts an instance of an object (named `listener` in the example). This object can be used to subscribe to different events within your Flatfile [space](../concepts/spaces). The example code subscribes to all events (using the `**` selector) and writes the event's topic name to the console.
 
 Listeners are the basic building block of logic in Flatfile, from simple validations and transformations to complex, multi-sheet workflows.
 
@@ -43,22 +43,7 @@ Listeners are the basic building block of logic in Flatfile, from simple validat
 
 Flatfile provides a number of [transformation & validation plugins](https://flatfile.com/plugins) to reshape data before it gets updated. These plugins build on the listener and provide a simpler interface for working with your data. 
 
-<Tip>Plugins are helpful utilities that can be implemented with the `listener.use()` method. We explain that in depth in the [Events](../concepts/events) concepts</Tip>
-
-The following include some open source validation plugins that you can explore:
-
-⏳**TODO make these real links**
-
-<CardGroup cols={3}>
-  <Card color="#CB3837" title="@flatfile/plugin-autocast" icon="npm" href="https://flatfile.com/plugins">
-  </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-pretty-dates" icon="npm" href="https://flatfile.com/plugins">
-  </Card>
-  <Card color="#CB3837" title="@flatfile/plugin-addresses" icon="npm" href="https://flatfile.com/plugins">
-  </Card>
-</CardGroup>
-
-
+<Tip>Plugins are registered with the `listener.use()` function. This is explained further in [Events](../concepts/events) concepts.</Tip>
 
 ## Adding your first data transformation
 
@@ -78,6 +63,8 @@ export default function(listener) {
   )
 }
 ```
+
+After starting the code in repl.it, go back to your Contacts worksheet and add a new row with the First Name written in all capital letters. You should notice that when you take focus off of the First Name field, your transformation will run and convert the characters in your value to lower case.
 
 ## Adding your first validation
 
@@ -106,6 +93,8 @@ export default function(listener) {
   )
 }
 ```
+
+After starting the code in repl.it, go back to your Contacts worksheet and modify a value of Email Address, making it an invalid email. You should notice that when you take focus off of the field, your validation will run and the worksheet user interface will display an error for the changed field.
 
 ---
 
