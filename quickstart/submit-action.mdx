@@ -9,9 +9,8 @@ Actions refer to buttons added to the user interface that trigger <Tooltip tip="
 
 In this example, we're going to add behavior to our workbook's primary action (`submitAction`). When the button is clicked by a user, our code will call out to an external webook reciever provided by the [webhook.site](https://webhook.site) service.
 
-To create the receiver, navigate to [webhook.site](https://webhook.site) and copy the value of `Your unique URL`.
-
-Next, add the following to your default export function in repl.it.
+1. To create the receiver, navigate to [webhook.site](https://webhook.site) and copy the value of `Your unique URL`.
+2. Next, add the following to your default export function in repl.it.
 
 ```js
 
@@ -32,11 +31,11 @@ export default function(listener) {
 }
 ```
 
-### Testing your action
+#### Testing your action
 
-- Once you've updated your listener, run it in repl.it.
-- In your Workbook, click the submit action.
-- In webhook.site, look at the query log and observe that the webhook received a call from the listener code.
+1. Once you've updated your listener, run it in repl.it.
+2. In your Workbook, click the submit action.
+3. In webhook.site, look at the query log and observe that the webhook received a call from the listener code.
 
 
 ---
@@ -44,4 +43,4 @@ export default function(listener) {
 ## Recap & Next Steps
 Congratulations! You now have a workbook with transformations, validations, and a submit action.
 
-To this point, we've been hosting our listener code using repl.it. While this enabled us to get up and running with Flatfile quickly, it is not representative of a production deployment. Next, you should [deploy your code](../developer-tools/deploying) to your own environment.
+To this point, we've been hosting our listener code using repl.it. While this enabled us to get up and running with Flatfile quickly, it is not representative of a production deployment. Next, you should [deploy your code](../developer-tools/deploying).
