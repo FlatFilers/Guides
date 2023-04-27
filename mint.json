@@ -104,14 +104,6 @@
       "group": "Developers",
       "pages": ["developer-tools/deploying",
           "developer-tools/environment"]
-    },
-    {
-      "group": "Core Libraries",
-      "pages": ["https://www.npmjs.com/package/@flatfile/listener",
-          "https://www.npmjs.com/package/@flatfile/hooks", 
-          "https://www.npmjs.com/package/@flatfile/api", 
-          "https://www.npmjs.com/package/flatfile", 
-          "https://www.npmjs.com/package/@flatfile/react"]
     }
   ],
   "footerSocials": {
