@@ -102,13 +102,8 @@
     },
     {
       "group": "Developers",
-      "pages": ["developer-tools/overview", "developer-tools/deploying",
-          "developer-tools/ci-integration", "developer-tools/environment"]
-    },
-    {
-      "group": "Core Libraries",
-      "pages": ["developer-tools/core-libraries/listener",
-          "developer-tools/core-libraries/hooks", "developer-tools/core-libraries/api", "developer-tools/core-libraries/flatfile"]
+      "pages": ["developer-tools/deploying",
+          "developer-tools/environment"]
     }
   ],
   "footerSocials": {
