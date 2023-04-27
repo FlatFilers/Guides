@@ -1,36 +1,43 @@
 ---   
 title: "Constraints"
-description: "System level Validation Rules"
+description: "System level validation rules"
 ---
-Constraints allow you to indicate additional validations that must be applied to properties of a sheet. These constraints are focused more on the values than the types of data. For example a property is required in every record, or every record must contain a unique value for this property.
+Constraints allow you to indicate additional validations that will be applied to fields of a sheet before it can be . These constraints are in addition to the implicit constraints based on types of data. (eg: String, Number) For example, a value is required for every record (RequiredConstraint), or every record must contain a unique value for the field (UniqueConstraint).
 
-# RequiredConstraint
+## RequiredConstraint
 
-Required Constraints indicates that the given property must be provided with a non-empty value. For example if a field "First Name" the value cannot be the empty string.
+Required Constraints indicate that the given field must be provided with a non-empty value. For example if a field "First Name" the value cannot be the empty string.
 
-# UniqueConstraint 
+## UniqueConstraint 
 
 Unique Constraints indicates that the given property must only appear once in the Sheet, with the caveat that "null" (empty value) may appear many times. Use Required Constraint if you want to disallow nulls entirely.
 
+
 ```json
-// ...
- fields: [
-     {
-          "key": "firstName",
-          "type": "string",
-          "label": "First Name",
-          "constraints": [{"type":"required"}]
+// within the context of a create Workbook API call 
+ "fields": [
+    {
+      "key": "firstName",
+      "type": "string",
+      "label": "First Name",
+      "constraints": [{"type": "required"}]
+    },
+    {
+      "key": "internalCustomerId",
+      "type": "number",
+      "label": "Internal Customer Id",
+      "constraints": [
+        {
+          "type": "unique"
         },
-     {
-          "key": "internalCustomerId",
-          "type": "number",
-          "label": "Internal Customer Id",
-          "constraints": [{"type":"unique"}]
-        },
+        {
+          "type": "required"
+        }
+      ]
+    }
+  ]
 ```
-        
 
+## ComputedValue
 
-To finish writing Blueprint docs, use this README: https://www.npmjs.com/package/@flatfile/blueprint?activeTab=readme and the code spec here: https://www.npmjs.com/package/@flatfile/blueprint?activeTab=code
-
-The remaining sections should mirror the field types section.
+Observant readers will see there is a ComputedValue type within the blueprint code. Please do not use this value at this time, it's unsupported and may be deprecated without notice.
