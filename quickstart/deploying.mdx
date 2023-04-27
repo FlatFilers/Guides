@@ -3,16 +3,35 @@ title: 4. Deploy to Flatfile
 description: Publish your new configuration to Flatfile and move beyond this simple sandbox.
 ---
 
-To this point, we've been hosting our listener code using repl.it. While this enabled us to get up and running with Flatfile quickly, it is not representative of a production deployment. For this scenario, listeners can be hosted either in your cloud or directly on the Flatfile platform. Hosting listener code in your own cloud works similarly to how we have been running code using repl.it. The listener process is launched, polls the Flatfile API for updates, and responds to those events accordingly. While this approach provides the maximum level of control over listener code, qualities such as availability and network performance are the responsibility of the hosting provider. 
+For a production deployment, listeners can be hosted either in your cloud or directly on the Flatfile platform. 
 
-***That simple!*** 
+#### Hosting in your own cloud
 
-Now any time you create a workbook, it'll benefit from all the same hooks and configuration.
-Follow a core path to build to your use case or clone a sample project.
+Hosting listener code in your own cloud works similarly to how we have been running code using repl.it. 
 
-## Recap & Next Steps 
+1. The listener process is launched
+2. It polls the Flatfile API for updates
+3. It then responds to those events accordingly. 
 
-You've deployed the basics but there's so much more you can do with Flatfile. 
+#### Hosting on the Flatfile platform
+
+While your own cloud provides the maximum level of control over listener code, qualities such as availability and network performance are the responsibility of the hosting provider. In order to gain more consistent, low latency and high ability, listeners may be securely deployed and run in the Flatfile platform cloud. 
+
+## Deploying to Flatfile
+
+In order to deploy listener listener code into the Flatfile platform, we can use the `flatfile` command line tool.
+
+```terminal
+npx flatfile deploy
+```
+
+And with that, you can now create a workbook, add data and workflow logic, and deploy it to the Flatfile platform! 
+
+---
+
+## What's next 
+
+From here, there are a number of directions that you can go with the product based on what you want to accomplish. A few possibilities include the following:
 
 ### Follow a core path
 
@@ -27,37 +46,11 @@ You've deployed the basics but there's so much more you can do with Flatfile.
     Collaborate across teams on large data onboarding projects.
   </Card>
 </CardGroup>
-In order to gain more consistent, low latency and high ability, listeners may be securely deployed and run in the Flatfile platform cloud. In order to deploy listener listener code into the Flatfile platform, we can use the `flatfile` command line tool.
-
-In order to deploy our sample, we need to save the code to a file on the local machine and then deploy it to the Flatfile platform using the following steps.
-
-* Create the file `gettingStarted.js` on your local machine
-* Copy and paste your code from repl.it into `gettingStarted.js`
-* open a terminal and navigate to the directory containing your listener
-* run `npx flatfile deploy`
-
-TODO:
-* what to I need to setup with the CLI for auth?
-* how can I see the listener running through the dashboard? Logs?
-* testing (e.g. I should be able to run the same commands in the Contacts sheet and see the changes)
-
-And with that, you can now create a workbook, add data and workflow logic, and deploy it to the Flatfile platform! 
-
-From here, there are a number of directions that you can go with the product based on what you want to accomplish. A few possibilities include the following:
-
-1. Learn about spaces
-2. Allow your team to create dynamically generated spaces & workbooks from the dashboard
-3. Designing more complex data workflows with jobs
-4. Automating your development & deployment process
-5. Build more complex egress processes
-6. Creating extractors
-7. Embedding this workbook in your React, Vue, Angular or HTML application
-
-
 
 ### Clone a sample project
 
 <CardGroup cols={1}>
-  <Card title="Something" href="/use-cases/ephemeral" icon="github">
+  <Card title="getting-started" href="https://github.com/FlatFilers/getting-started" icon="github">
+  This code repository has everything you did in the quickstart example.
   </Card>
 </CardGroup>
