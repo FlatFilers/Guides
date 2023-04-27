@@ -1,8 +1,49 @@
 ---
 title: "Access"
-description: "todo"
+description: "Controlling user interactions with your sheets and fields"
 ---
 
-To finish writing Blueprint docs, use this README: https://www.npmjs.com/package/@flatfile/blueprint?activeTab=readme and the code spec here: https://www.npmjs.com/package/@flatfile/blueprint?activeTab=code
+# Sheet level access
+With `access` you can control sheet level access allowing users to 
 
-The remaining sections should mirror the field types section.
+- **`"add"`** - A user can add a record(s) to the sheet
+- **`"delete"`** - A user can delete record(s) from the sheet
+- **`"edit"`** - A user can edit records (field values) in the sheet
+- **`"import"`** - A user can import CSVs to this sheet
+- **`*`** - `<default>` A user can use all access actions
+
+```json
+{
+  "sheets": [
+    {
+      "name": "Contacts",
+      "slug": "contacts",
+      "access": [
+        "add",
+        "edit"
+      ],
+      // Define fields
+    }
+  ]
+}
+```
+
+<Warning>
+Warning: If you use `"*"` access control, users will gain new functionalities as we expand access controls. Use an exhaustive list today to block future functionality from being added automatically.
+</Warning>
+
+
+# Field level access
+
+On a field level you can restrict a user's interaction with the data to `readonly`. This feature is useful if you're inviting others to view uploaded data, but do not want to allow them to edit that field. See the example in context below:
+
+```json
+ "fields": [
+    {
+      "key": "salary",
+      "type": "number",
+      "config": {
+         "decimal_places": 2
+      },
+      "readonly": true
+    }
