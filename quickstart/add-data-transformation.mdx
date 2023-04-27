@@ -14,9 +14,11 @@ Every one of these actions creates an [Event](../concepts/events). You can autho
 ## Setting up a listener
 
 <Note>Flatfile provides a powerful Typescript/NodeJS SDK for working with events along with many plugins. You can also listen to events
-in other ways. Read the advanced docs here (TODO).</Note>
+in other ways. Read the [Events](../concepts/events) docs here.</Note>
 
 Using the <Tooltip tip="Learn more about the CLI">[Flatfile CLI](../developer-tools/core-libraries/flatfile)</Tooltip> you can register any javascript function as an event listener and start working with events. To keep it simple we'll use a pre-configured Repl.it.
+
+Follow these steps:
 
 1. [Fork this repl.it](https://replit.com/@flatfile/get-started#index.ts)
 2. Get your Secret Key from your [Developer Dashboard](https://platform.flatfile.com/developers)
@@ -36,8 +38,6 @@ export default function(listener) {
 This code exports a single function that accepts an instance of an object (named `listener` in the example). This object can be used to subscribe to different events within your Flatfile [space](../concepts/spaces). The example code subscribes to all events (using the `**` selector) and writes the event's topic name to the console.
 
 Listeners are the basic building block of logic in Flatfile, from simple validations and transformations to complex, multi-sheet workflows.
-
----
 
 ## Working with Plugins
 
@@ -67,7 +67,10 @@ export default function(listener) {
 }
 ```
 
-After starting the code in repl.it, go back to your Contacts worksheet and add a new row with the First Name written in all capital letters. You should notice that when you take focus off of the First Name field, your transformation will run and convert the characters in your value to lower case.
+#### Using your transformation 
+
+1. After starting the code in repl.it, go back to your Contacts worksheet and add a new row with the First Name written in all capital letters. 
+2. You should notice that when you take focus off of the First Name field, your transformation will run and convert the characters in your value to lower case.
 
 ## Adding your first validation
 
@@ -98,7 +101,10 @@ export default function(listener) {
 }
 ```
 
-After starting the code in repl.it, go back to your Contacts worksheet and modify a value of Email Address, making it an invalid email. You should notice that when you take focus off of the field, your validation will run and the worksheet user interface will display an error for the changed field.
+#### Using your validation 
+
+1. After starting the code in repl.it, go back to your Contacts worksheet and modify a value of Email Address, making it an invalid email. 
+2. You should notice that when you take focus off of the field, your validation will run and the worksheet user interface will display an error for the changed field.
 
 ---
 
@@ -106,4 +112,4 @@ After starting the code in repl.it, go back to your Contacts worksheet and modif
 
 You now have a locally running listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations.
 
-Next, we will add an action that submits data from this Sheet to your API.
+Next, we will [add an action](submit-action) that submits data from this Sheet to your API.
