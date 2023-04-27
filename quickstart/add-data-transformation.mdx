@@ -18,9 +18,9 @@ Using the `flatfile` CLI you can register any javascript function as an event li
 
 The simplest event listener you could create looks like this. You'll see this code in the repl.it link you forked above.
 
-```js listener.js
-export default function(flatfile) {
-  flatfile.on('**', (event) => {
+```js index.js
+export default function(listener) {
+  listener.on('**', (event) => {
     console.log('-> My event', event.topic)
   })
 }
