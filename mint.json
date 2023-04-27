@@ -102,13 +102,16 @@
     },
     {
       "group": "Developers",
-      "pages": ["developer-tools/overview", "developer-tools/deploying",
-          "developer-tools/ci-integration", "developer-tools/environment"]
+      "pages": ["developer-tools/deploying",
+          "developer-tools/environment"]
     },
     {
       "group": "Core Libraries",
-      "pages": ["developer-tools/core-libraries/listener",
-          "developer-tools/core-libraries/hooks", "developer-tools/core-libraries/api", "developer-tools/core-libraries/flatfile"]
+      "pages": ["https://www.npmjs.com/package/@flatfile/listener",
+          "https://www.npmjs.com/package/@flatfile/hooks", 
+          "https://www.npmjs.com/package/@flatfile/api", 
+          "https://www.npmjs.com/package/flatfile", 
+          "https://www.npmjs.com/package/@flatfile/react"]
     }
   ],
   "footerSocials": {
