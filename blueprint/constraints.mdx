@@ -15,25 +15,24 @@ Unique Constraints indicates that the given field value must only appear once in
 
 ```json
 // within the context of a create Workbook API call 
- "fields": [
+  "fields": [
     {
-      "key": "firstName",
-      "type": "string",
-      "label": "First Name",
-      "constraints": [{"type": "required"}]
+      "key": "father",
+      "type": "reference",
+      "config": {
+        "ref": "parents",
+        "key": "email",
+        "relationship": "has-one"
+      }
     },
     {
-      "key": "internalCustomerId",
-      "type": "number",
-      "label": "Internal Customer Id",
-      "constraints": [
-        {
-          "type": "unique"
-        },
-        {
-          "type": "required"
-        }
-      ]
+      "key": "mother",
+      "type": "reference",
+      "config": {
+        "ref": "parents",
+        "key": "email",
+        "relationship": "has-one"
+      }
     }
   ]
 ```
