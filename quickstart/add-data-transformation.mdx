@@ -60,7 +60,8 @@ export default function(listener) {
       if (value) {
         record.set('firstName', value.toLowerCase())
       }
-      return record;
+
+      return record
     })
   )
 }
@@ -85,12 +86,13 @@ export default function(listener) {
 
   listener.use(
     recordHook('contacts', (record) => {
-      let emailAddress = record.get('email');
-      if (!validEmailAddress.test(emailAddress)) {
-        record.addError('email', 'Invalid email address');
+
+      if (!EmailValidator.validate(record.get('email'))) {
+        console.log("got email")
+        record.addError('email', 'Invalid email address')
       }
 
-      return record;
+      return record
     })
   )
 }

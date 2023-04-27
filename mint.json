@@ -77,9 +77,9 @@
      "quickstart/submit-action", "quickstart/deploying"]
     },
     {
-      "group": "Getting Started",
-      "pages": ["getting-started/handling-data",
-          "getting-started/using-actions", "getting-started/embedding"]
+      "group": "How to", 
+      "pages": ["how-to/handling-data",  "how-to/egress", "how-to/custom-actions",
+          "how-to/theming", "how-to/guest_sidebar",  "how-to/documents"]
     },
     {
       "group": "Concepts",
@@ -91,13 +91,9 @@
           "security/roles-and-permissions"]
     },
     {
-      "group": "Advanced",
-      "pages": ["advanced/theming", "advanced/guest_sidebar",  "advanced/documents", "advanced/custom-actions"]
-    },
-    {
-      "group": "More scenarios",
-      "pages": ["use-cases/headless", "use-cases/workflows",
-          "use-cases/ephemeral"]
+      "group": "Core paths",
+      "pages": ["core-paths/headless", "core-paths/workflows",
+          "core-paths/embedding"]
     },
     {
       "group": "Blueprint",
