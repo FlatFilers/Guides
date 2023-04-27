@@ -1,6 +1,6 @@
 ---
 title: "Embed in your app"
-description: "Learn how to create your first Workbook in Flatfile with transformations and validations."
+description: "Learn how to securely and easily add an embedded Flatfile import experience"
 ---
 
 ## [@flatfile/react](https://www.npmjs.com/package/@flatfile/react)
@@ -54,7 +54,50 @@ The `useSpace` hook returns a Space component. By using this hook versus mountin
 
 **Error handling**: If something internal to the Space component throws an error, we return it via **error** or the Space component if it builds correctly. This allows you to render your own error state.
 
-📝 Insert code example and props here
+```typescript
+import { ISpace } from "@flatfile/react";
+import { makeTheme } from "@flatfile/react";
+import { useSpace } from "@flatfile/react";
+
+const ExampleApp = () => {
+  const [showSpace, setShowSpace] = useState(false);
+
+  const spaceProps: ISpace = {
+    name: "Embedded Space",
+    workbookName: "Employees workbook",
+    publishableKey: "your-publishable-key",
+    environmentId: "your-env-id",
+    workbook: config,
+    themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
+    sidebarConfig: {
+      showDataChecklist: false,
+      showSidebar: false,
+    },
+    archiveSpaceOn: "sheet-name:action-name",
+    onComplete: () => setShowSpace(false),
+    onSubmit: () => console.log("submitting"),
+    client: joinFieldClient,
+  };
+
+  const { error, data } = useSpace({
+    ...spaceProps,
+  });
+
+  return (
+    <div style={{ padding: "16px" }}>
+      <button
+        onClick={() => {
+          setShowSpace(!showSpace);
+        }}
+      >
+        {showSpace === true ? "Close" : "Open"} space
+      </button>
+      {error && <div>{`🚫 ${error}`}</div>}
+      {showSpace && data?.component}
+    </div>
+  );
+};
+```
 
 | Name             | Description                                                                  | Type                    | Required |
 | ---------------- | ---------------------------------------------------------------------------- | ----------------------- | -------- |
@@ -217,15 +260,74 @@ console.log("Hello World");
 ```
 
 ```typescript client
-print("Hello World!");
+/**
+ * Example Client that checks values across fields and populates based on that check
+ */
+export const crossfieldClient = Client.create((client) => {
+  client.on(
+    "records:*",
+    // @ts-ignore
+    { context: { sheetSlug: "TestSheet" } },
+    async (event) => {
+      const { sheetId, versionId } = event.context;
+
+      try {
+        const {
+          data: { records },
+        } = await event.api.getRecords({
+          sheetId,
+          versionId,
+        });
+
+        console.log({ records });
+
+        const recordsUpdates = records?.map((record: any) => {
+          if (record.values.salary.value < 50) {
+            record.values["needs_raise"].value = true;
+          } else {
+            record.values["needs_raise"].value = false;
+          }
+
+          return record;
+        });
+
+        console.log({ recordsUpdates });
+
+        await event.api.updateRecords({
+          sheetId,
+          recordsUpdates,
+        });
+      } catch (e) {
+        console.log(
+          `Error updating records - Use console logs inside your events to further debug: ${e}`
+        );
+      }
+    }
+  );
+});
 ```
 
 ```typescript workbook
-class HelloWorld {
-public static void main(String[] args) {
-System.out.println("Hello, World!");
-}
-}
+import { Flatfile } from "@flatfile/api";
+
+export const config: Flatfile.SheetConfig[] = [
+  {
+    name: "TestSheet",
+    slug: "TestSheet",
+    fields: [
+      {
+        key: "salary",
+        type: "number",
+        label: "salary",
+      },
+      {
+        key: "needs_raise",
+        type: "boolean",
+        label: "needs raise",
+      },
+    ],
+  },
+];
 ```
 
 </CodeGroup>
