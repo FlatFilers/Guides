@@ -8,8 +8,6 @@ description: "Learn how to create your first Workbook in Flatfile with transform
 Embed React is a front-end SDK wrapper around the [Flatfile API](https://flatfile.stoplight.io/docs/v10/). It allows you to securely and easily add an embedded import experience to any React app.
 This powerful iframe tool is designed to seamlessly integrate into your website or application, providing a simple yet robust experience for collecting and transforming data from your customers.
 
-The [reference](#customize) below will cover complete customization details which includes adding your brand colors, logos, & fonts.
-
 To find the additional Flatfile integration paths that may work better for your business, explore our [docs](https://flatfile.stoplight.io).
 
 ## Before you begin
@@ -44,7 +42,7 @@ yarn install @flatfile/react@5.0.8
 </Info>
 
 Copy your publishable key from the dashboard under [Developers Page](https://platform.flatfile.com/developers) to be used in the next step.
-This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../security/authentication).
+This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../developer-tools/security/authentication).
 
 ## Build
 
@@ -130,11 +128,11 @@ const {
 
 ### Manual CSS overrides
 
-Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in [IThemeConfig]('./src/types/IThemeConfig.tsx'). See [Theming Reference]('../advanced/theming').
+Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in the [Theming Reference](../how-to/theming).
 
 ## Guest Sidebar
 
-You can customize your guest sidebar using the [ISidebarConfig]('./src/types/ISidebarConfig.tsx') type or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+You can customize your guest sidebar using the [Sidebar Reference](../how-to/guest_sidebar) or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
 
 ```typescript
 const mySidebarConfig = {
@@ -175,7 +173,7 @@ const {
 
 ## Documents
 
-[Documents]('../advanced/documents), written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
+[Documents]('../how-to/documents), written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
 
 ```typescript
 const mainDocument = {
