@@ -27,10 +27,15 @@ export default function(listener) {
   // ... your previous recordHook logic
 
   listener.on('action:triggered', async (event) => {
-    // go to https://webhook.site and copy your own URL in here to test with:
-    const res = await got.post('https://webhook.site/34ecb8ef-fd75-49e1-8efe-9ff0b6a937be', {
-      json: event.payload
-    })
+      const webhookReceiver = '<Webhook URL>';  
+      // copy your https://webhook.site URL for testing
+      const res = await fetch(webhookReceiver, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(event.payload)
+      })
   })
 }
 ```
