@@ -56,7 +56,7 @@
       "url": "https://flatfile.com/plugins"
     },
     {
-      "name": "Developer Tools",
+      "name": "Developers",
       "icon": "brackets-curly",
       "url": "developer-tools"
     },
@@ -87,8 +87,8 @@
     },
     {
       "group": "Security",
-      "pages": ["security/authentication",
-          "security/roles-and-permissions"]
+      "pages": ["developer-tools/security/authentication",
+          "developer-tools/security/roles-and-permissions"]
     },
     {
       "group": "Core paths",
@@ -101,7 +101,7 @@
           "blueprint/constraints",  "blueprint/relationships", "blueprint/access"]
     },
     {
-      "group": "Developer Tools",
+      "group": "Developers",
       "pages": ["developer-tools/overview", "developer-tools/deploying",
           "developer-tools/ci-integration", "developer-tools/environment"]
     },
