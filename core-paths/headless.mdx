@@ -1,5 +1,56 @@
 ---
 title: "Setup headless file feeds"
-description: "Learn how to create your first Workbook in Flatfile with transformations and validations."
+description: "No API? No problem."
 ---
 
+File feeds are one of the most common ways to exchange batches of data on a regular basis. 
+One key challenge for a traditional file feed, however, is its inflexibility.
+If anything changes about the way source data is extracted, or the destination schema is configured, the feed is all but guaranteed to break.
+
+Flatfile offers an alternative way to think about file feeds: as adaptable data connections that leverage a human in the loop, when necessary.
+
+## How it works
+
+### Upload files
+Because of Flatfile's Event-driven architecture, it's easy to set up a Space as a destination for any incoming files. 
+You to write a cron job, Lambda function, or Python script that targets the Space with incoming files. 
+
+```
+example Python script to post a file to a Space by Id
+```
+
+### Extract data from files
+You can listen for `file:uploaded` and subsequently trigger any custom extraction logic. Extractions are Jobs that process asyncronously.
+
+```
+example listener code
+```
+
+(Note: CSVs uploaded to Flatfile will always be immediately extracted to a raw Workbook.)
+
+### Automate mapping
+Mapping in Flatfile is a unique type of Job, where each mapping execution is driven by a Job Plan that is progressively improved over time. 
+You may notice that after the first couple of Files are mapped to a particular Blueprint, Flatfile will automatically suggest field- and category-level mappings.
+While listening for an extraction Job to complete, you can poll the Space for the most recently used Job Plan, and then execute a mapping Job.
+
+```
+example listener code
+```
+
+### Automate validation and transformation
+Similarly, validation and pre-configured transformation operations can run immediately on `records:created` and `records:updated`.
+
+```
+example listener code
+```
+
+### Automate an egress Job
+Finally, you can configure a Job to run immediately after any validation / transformation is completed in a Workbook. 
+You could choose to egress all data, regardless of its validity, or only egress `valid` data and notify the appropriate user that attention is needed on any `invalid` data.
+
+```
+example listener + job code
+```
+
+(Suggestion: You can also have the Job set a timestamp for the most recent data sync using the `metadata` object. 
+This gives you a consistent point-in-time reference for your syncing logic.)
