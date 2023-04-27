@@ -3,34 +3,51 @@ title: "Roles & Permissions"
 description: "Learn how to give your team and customers access."
 ---
 
-## Admin Roles
+## Administrator Roles
+
+Administrator roles have full access to your accounts, including inviting additional admins to your account, and seeing developer keys.
 
 | Role | Details                           |
 | -------- | ------------------------------------- |
-| Administrator     | This role is for anyone on your team that needs access to the entire Account.<br/> <br/>&#x2713; Can add other admins <br/>&#x2713;  Can see secret keys <br/>&#x2713;  Can see logs             |
+| Administrator     | This role is meant for any member of your team who requires full access to the Account.<br/> <br/>&#x2713; Can add other administrators <br/>&#x2713;  Can view secret keys <br/>&#x2713;  Can view logs            |
 
-<Warning>
-    These roles can invite additional admins to your account, and can see developer keys.
-</Warning>
 
 ## Guest Roles
+
+Guest roles receive access via a magic link or a shared link depending on the [Environment](../developer-tools/environment) `guestAuthentication` type. Guests roles can invite other Guests unless you turn off this setting in the [Guest Sidebar](../advanced/guest_sidebar).
 
 ### Space Grant
 
 | Role | Details                           |
 | -------- | ------------------------------------- |
-| Single-Space&nbsp;Guest     | This role is for a guest that only has access to a single Space. Single-space guests can be invited to additional Spaces at any time.                 |
-| Multi-Space&nbsp;Guest     | This role is for a guest that has access to more than one Space. They will have a switcher next to the Space name that allows them to switch between Spaces.                   |
+| Single-Space&nbsp;Guest     | This role is meant for a guest who has access to only one Space. Such guests can be invited to additional Spaces at any time.                 |
+| Multi-Space&nbsp;Guest     | This role is meant for a guest who has access to multiple Spaces. They will see a switcher next to the Space name that enables them to switch between Spaces.                   |
 
 ### Workbook Grant
 
+<Info>This role can only be configured using code.</Info>
+
 | Role | Details                           |
 | -------- | ------------------------------------- |
-| Single-Workbook&nbsp;Guest     | This role is for someone that should only be able to see a single workbook inside a Space. This role can only be configured in code at this time.                  |
-| Multi-Workbook&nbsp;Guest     | This role is for someone that has access to more than one workbook inside a Space. This role can only be configured in code at this time.                  |
+| Single-Workbook&nbsp;Guest     | This role is meant for a guest who should have access to only one workbook within a Space.                |
+| Multi-Workbook&nbsp;Guest     | This role is intended for a guest who has access to multiple workbooks within a Space.                 |
+
+```ts
+const createGuest = await api.guests.create({
+  environmentId: 'us_env_hVXkXs0b',
+  email: 'guest@example.com',
+  name: 'Mr. Guest',
+  spaces: [
+    {
+      id: 'us_sp_DrdXetPN',
+      workbooks: [
+        {
+          id: 'us_wb_qGZbKwDW',
+        },
+      ],
+    },
+  ],
+});
+```
 
 
-
-<Note>
-    You can limit the ability for guests to be able to invite others by configuring the [Guest Sidebar](../advanced/guest_sidebar)
-</Note>
