@@ -1,7 +1,35 @@
----
+---   
 title: "Constraints"
-description: "todo"
+description: "System level Validation Rules"
 ---
+Constraints allow you to indicate additional validations that must be applied to properties of a sheet. These constraints are focused more on the values than the types of data. For example a property is required in every record, or every record must contain a unique value for this property.
+
+# RequiredConstraint
+
+Required Constraints indicates that the given property must be provided with a non-empty value. For example if a field "First Name" the value cannot be the empty string.
+
+# UniqueConstraint 
+
+Unique Constraints indicates that the given property must only appear once in the Sheet, with the caveat that "null" (empty value) may appear many times. Use Required Constraint if you want to disallow nulls entirely.
+
+```json
+// ...
+ fields: [
+     {
+          "key": "firstName",
+          "type": "string",
+          "label": "First Name",
+          "constraints": [{"type":"required"}]
+        },
+     {
+          "key": "internalCustomerId",
+          "type": "number",
+          "label": "Internal Customer Id",
+          "constraints": [{"type":"unique"}]
+        },
+```
+        
+
 
 To finish writing Blueprint docs, use this README: https://www.npmjs.com/package/@flatfile/blueprint?activeTab=readme and the code spec here: https://www.npmjs.com/package/@flatfile/blueprint?activeTab=code
 
