@@ -1,14 +1,12 @@
 ---
 title: "Embed in your app"
-description: "Learn how to create your first Workbook in Flatfile with transformations and validations."
+description: "Learn how to securely and easily add an embedded Flatfile import experience"
 ---
 
 ## [@flatfile/react](https://www.npmjs.com/package/@flatfile/react)
 
 Embed React is a front-end SDK wrapper around the [Flatfile API](https://flatfile.stoplight.io/docs/v10/). It allows you to securely and easily add an embedded import experience to any React app.
 This powerful iframe tool is designed to seamlessly integrate into your website or application, providing a simple yet robust experience for collecting and transforming data from your customers.
-
-The [reference](#customize) below will cover complete customization details which includes adding your brand colors, logos, & fonts.
 
 To find the additional Flatfile integration paths that may work better for your business, explore our [docs](https://flatfile.stoplight.io).
 
@@ -44,7 +42,7 @@ yarn install @flatfile/react@5.0.8
 </Info>
 
 Copy your publishable key from the dashboard under [Developers Page](https://platform.flatfile.com/developers) to be used in the next step.
-This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../security/authentication).
+This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../developer-tools/security/authentication).
 
 ## Build
 
@@ -56,7 +54,50 @@ The `useSpace` hook returns a Space component. By using this hook versus mountin
 
 **Error handling**: If something internal to the Space component throws an error, we return it via **error** or the Space component if it builds correctly. This allows you to render your own error state.
 
-📝 Insert code example and props here
+```typescript
+import { ISpace } from "@flatfile/react";
+import { makeTheme } from "@flatfile/react";
+import { useSpace } from "@flatfile/react";
+
+const ExampleApp = () => {
+  const [showSpace, setShowSpace] = useState(false);
+
+  const spaceProps: ISpace = {
+    name: "Embedded Space",
+    workbookName: "Employees workbook",
+    publishableKey: "your-publishable-key",
+    environmentId: "your-env-id",
+    workbook: config,
+    themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
+    sidebarConfig: {
+      showDataChecklist: false,
+      showSidebar: false,
+    },
+    archiveSpaceOn: "sheet-name:action-name",
+    onComplete: () => setShowSpace(false),
+    onSubmit: () => console.log("submitting"),
+    client: joinFieldClient,
+  };
+
+  const { error, data } = useSpace({
+    ...spaceProps,
+  });
+
+  return (
+    <div style={{ padding: "16px" }}>
+      <button
+        onClick={() => {
+          setShowSpace(!showSpace);
+        }}
+      >
+        {showSpace === true ? "Close" : "Open"} space
+      </button>
+      {error && <div>{`🚫 ${error}`}</div>}
+      {showSpace && data?.component}
+    </div>
+  );
+};
+```
 
 | Name             | Description                                                                  | Type                    | Required |
 | ---------------- | ---------------------------------------------------------------------------- | ----------------------- | -------- |
@@ -130,11 +171,11 @@ const {
 
 ### Manual CSS overrides
 
-Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in [IThemeConfig]('./src/types/IThemeConfig.tsx'). See [Theming Reference]('../advanced/theming').
+Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in the [Theming Reference](../how-to/theming).
 
 ## Guest Sidebar
 
-You can customize your guest sidebar using the [ISidebarConfig]('./src/types/ISidebarConfig.tsx') type or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+You can customize your guest sidebar using the [Sidebar Reference](../how-to/guest_sidebar) or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
 
 ```typescript
 const mySidebarConfig = {
@@ -175,7 +216,7 @@ const {
 
 ## Documents
 
-[Documents]('../advanced/documents), written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
+[Documents]('../how-to/documents), written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
 
 ```typescript
 const mainDocument = {
@@ -219,15 +260,74 @@ console.log("Hello World");
 ```
 
 ```typescript client
-print("Hello World!");
+/**
+ * Example Client that checks values across fields and populates based on that check
+ */
+export const crossfieldClient = Client.create((client) => {
+  client.on(
+    "records:*",
+    // @ts-ignore
+    { context: { sheetSlug: "TestSheet" } },
+    async (event) => {
+      const { sheetId, versionId } = event.context;
+
+      try {
+        const {
+          data: { records },
+        } = await event.api.getRecords({
+          sheetId,
+          versionId,
+        });
+
+        console.log({ records });
+
+        const recordsUpdates = records?.map((record: any) => {
+          if (record.values.salary.value < 50) {
+            record.values["needs_raise"].value = true;
+          } else {
+            record.values["needs_raise"].value = false;
+          }
+
+          return record;
+        });
+
+        console.log({ recordsUpdates });
+
+        await event.api.updateRecords({
+          sheetId,
+          recordsUpdates,
+        });
+      } catch (e) {
+        console.log(
+          `Error updating records - Use console logs inside your events to further debug: ${e}`
+        );
+      }
+    }
+  );
+});
 ```
 
 ```typescript workbook
-class HelloWorld {
-public static void main(String[] args) {
-System.out.println("Hello, World!");
-}
-}
+import { Flatfile } from "@flatfile/api";
+
+export const config: Flatfile.SheetConfig[] = [
+  {
+    name: "TestSheet",
+    slug: "TestSheet",
+    fields: [
+      {
+        key: "salary",
+        type: "number",
+        label: "salary",
+      },
+      {
+        key: "needs_raise",
+        type: "boolean",
+        label: "needs raise",
+      },
+    ],
+  },
+];
 ```
 
 </CodeGroup>
