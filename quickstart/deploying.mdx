@@ -1,12 +1,32 @@
 ---
-title: 4. Deploying
+title: 4. Deploy to Flatfile
 description: Publish your new configuration to Flatfile and move beyond this simple sandbox.
 ---
 
-# Deploying to the Flatfile platform
-
 To this point, we've been hosting our listener code using repl.it. While this enabled us to get up and running with Flatfile quickly, it is not representative of a production deployment. For this scenario, listeners can be hosted either in your cloud or directly on the Flatfile platform. Hosting listener code in your own cloud works similarly to how we have been running code using repl.it. The listener process is launched, polls the Flatfile API for updates, and responds to those events accordingly. While this approach provides the maximum level of control over listener code, qualities such as availability and network performance are the responsibility of the hosting provider. 
 
+***That simple!*** 
+
+Now any time you create a workbook, it'll benefit from all the same hooks and configuration.
+Follow a core path to build to your use case or clone a sample project.
+
+## Recap & Next Steps 
+
+You've deployed the basics but there's so much more you can do with Flatfile. 
+
+### Follow a core path
+
+<CardGroup cols={3}>
+  <Card title="Embed in your app" icon="star" href="/core-paths/ephemeral" >
+    Securely and easily add an embedded import experience to any app.
+  </Card>
+  <Card title="Setup a headless file feed" icon="star" href="/core-paths/headless" >
+    Automatically collect data files from any source.
+  </Card>
+  <Card title="Build a custom workflow" icon="star" href="/core-paths/workflows">
+    Collaborate across teams on large data onboarding projects.
+  </Card>
+</CardGroup>
 In order to gain more consistent, low latency and high ability, listeners may be securely deployed and run in the Flatfile platform cloud. In order to deploy listener listener code into the Flatfile platform, we can use the `flatfile` command line tool.
 
 In order to deploy our sample, we need to save the code to a file on the local machine and then deploy it to the Flatfile platform using the following steps.
@@ -34,8 +54,10 @@ From here, there are a number of directions that you can go with the product bas
 7. Embedding this workbook in your React, Vue, Angular or HTML application
 
 
-# Fork this example on Github
 
-- Link to a github repo with a simple example
-- Link to guide on a git-based development workflow
-- Link to other more complex git examples
+### Clone a sample project
+
+<CardGroup cols={1}>
+  <Card title="Something" href="/use-cases/ephemeral" icon="github">
+  </Card>
+</CardGroup>
