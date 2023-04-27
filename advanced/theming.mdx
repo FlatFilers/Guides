@@ -16,23 +16,24 @@ more via the <Tooltip tip="Learn more about Spaces">[Space](../concepts/spaces)<
 Learn how to create a Space with a theme, and update a theme from an event listener.
 
 ```ts 
-const createSpace = await flatfile.spaces.create(spaceId, {
-  environmentId: environmentId,
-    metadata: {
-    theme: {
-      root: {
-        primaryColor: "red",
-      },
-      sidebar: {
-        logo: "https://image.png",
-      },
-      //See reference for all possible variables
+const updateSpace = await api.spaces.update(spaceId, {
+    environmentId: environmentId,
+     metadata: {
+      theme: {
+        root: {
+          primaryColor: "red",
+        },
+        sidebar: {
+          logo: "https://image.png",
+        },
+        //See reference for all possible variables
+      }
     }
   }
 });
 
 //listen for an event, and update your theme to be relevant
-flatfile.on('space:created', (event) => {
+listener.on('space:created', (event) => {
   const updateSpace = await flatfile.spaces.update(spaceId, {});
 })
 ```
