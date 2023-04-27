@@ -56,8 +56,10 @@ export default function(listener) {
   
   listener.use(
     recordHook('contacts', (record) => {
-      const value = record.get('firstName');
-      record.set('firstName', value.toLowerCase());
+      const value = record.get('firstName')?.toString()
+      if (value) {
+        record.set('firstName', value.toLowerCase())
+      }
       return record;
     })
   )
