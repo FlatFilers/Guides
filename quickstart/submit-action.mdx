@@ -3,43 +3,38 @@ title: 3. Configure a submit action
 description: "Learn how to create a simple submit action in Flatfile."
 ---
 
-Actions refer to buttons added to the user interface that trigger <Tooltip tip="Learn about Jobs">[Jobs](../concepts/jobs)</Tooltip> within the Flatfile ecosystem [when clicked by end users]. They are highly powerful tools that can automate various tasks and streamline workflow processes.
+Actions refer to buttons added to the user interface that trigger <Tooltip tip="Learn about Jobs">[Jobs](../concepts/jobs)</Tooltip> within the Flatfile platform when clicked by users. They enable you to automate tasks and streamline workflows. They are declared as a part of the workbook definition.
 
 ## Adding your first action
 
-In this example, we're going to add an action to the primary action `submitAction` you see in the workbook you have already deployed.
-This action will take the data from the sheet and submit it to webhook.site.
+In this example, we're going to add behavior to our workbook's primary action (`submitAction`). When the button is clicked by a user, our code will call out to an external webook reciever provided by the [webhook.site](https://webhook.site) service.
 
-<a target="_blank" class="group px-4 py-1.5 relative inline-flex items-center rounded-full shadow-sm text-sm font-medium"
-href="https://replit.com/@flatfile/get-started#index.ts">
-    <span class="absolute inset-0 bg-primary-dark rounded-full group-hover:opacity-[0.9]"></span>
-    <span class="z-10 mr-2 text-white">See it in Replit</span>
-    <svg width="6" height="3" class="h-2 overflow-visible -rotate-90 text-white" aria-hidden="true"><path d="M0 0L3 3L6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg>
-</a>
+To create the receiver, navigate to [webhook.site](https://webhook.site) and copy the value of `Your unique URL`.
 
+Next, add the following to your default export function in repl.it.
 
 ```js
-import { recordHook } from '@flatfile/plugin-record-hook'
-import * as EmailValidator from 'email-validator';
-import got from 'got';
 
 export default function(listener) {
-  // ... your previous recordHook logic
+  // existing code
 
   listener.on('action:triggered', async (event) => {
-    // go to https://webhook.site and copy your own URL in here to test with:
-    const res = await got.post('https://webhook.site/34ecb8ef-fd75-49e1-8efe-9ff0b6a937be', {
-      json: event.payload
-    })
-  })
+    const webhookReceiver = '<Webhook URL>';  // copy your https://webhook.site URL for testing
+    const res = await fetch(webhookReceiver, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(event.payload)
+    });
 }
 ```
 
 ### Testing your action
 
-- Once you've updated your listener code. Click the "Run" button in the top of the Replit window.
-- Go to your Workbook and click the submit action.
-- View the log showing the handled event and view the data payload sent to your webhook.site URL.
+- Once you've updated your listener, run it in repl.it.
+- In your Workbook, click the submit action.
+- In webhook.site, look at the query log and observe that the webhook received a call from the listener code.
 
 ### Using Action Plugins
 <Warning>Todo: fill this out with real information</Warning>
@@ -58,8 +53,6 @@ Flatfile offers dozens of open-source action plugins:
 ---
 
 ## Recap & Next Steps
-Congratulations! You now have a configured workbook with transformations, validations, and a final submit action.
-This completes the Quickstart tutorial.
+Congratulations! You now have a workbook with transformations, validations, and a submit action.
 
-Next, you should [deploy your code](../developer-tools/deploying) to your Environment or
-learn more about the [Concepts](../concepts/spaces) to take this example further.
+Next, you should [deploy your code](../developer-tools/deploying) to your own environment or explore more Flatfile [concepts](../concepts/spaces) to learn how much more you can build with these building blocks.
