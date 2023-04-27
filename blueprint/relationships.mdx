@@ -1,8 +1,42 @@
 ---
 title: "Relationships"
-description: todo
+description: Referencing data in other sheets
 ---
+<Warning>
+This is not comparable to a foreign key. There should be no specification of which column to reference by as it is multi-variate. A user may establish a relationship in mapping with a soft reference like a company name, once stored in our system we will reference by our internal IDs, and on egress we provide the known system_id if available.
+</Warning>
 
-To finish writing Blueprint docs, use this README: https://www.npmjs.com/package/@flatfile/blueprint?activeTab=readme and the code spec here: https://www.npmjs.com/package/@flatfile/blueprint?activeTab=code
 
-The remaining sections should mirror the field types section.
+Defines a reference to another sheet. Links should be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
+
+## Configuration Options
+- **ref** - Full path reference to another sheet/table configuration. Must be in the same workbook.
+- **relationship** - The type of relationship this defines. Can be one of has-many or has-one
+
+
+## Example in context
+This example defines two fields with a relationship which references the respective email addresses of the father / mother which is found in another sheet
+
+```json
+// in the context of create Workbook API call
+"fields": [
+              {
+                key: 'father',
+                type: 'reference',
+                config: {
+                  ref: 'parents',
+                  key: 'email',
+                  relationship: 'has-one',
+                },
+              },
+              {
+                key: 'mother',
+                type: 'reference',
+                config: {
+                  ref: 'parents',
+                  key: 'email',
+                  relationship: 'has-one',
+                },
+              },
+]
+```
