@@ -73,7 +73,7 @@
     },
     {
       "group": "Quickstart",
-      "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation", 
+      "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation",
      "quickstart/submit-action", "quickstart/deploying"]
     },
     {
@@ -102,7 +102,7 @@
     {
       "group": "Blueprint",
 
-      "pages": ["blueprint/overview", "blueprint/field-types", 
+      "pages": ["blueprint/overview", "blueprint/field-types",
           "blueprint/constraints",  "blueprint/relationships", "blueprint/access"]
     },
     {
