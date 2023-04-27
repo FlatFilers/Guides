@@ -11,7 +11,7 @@ description: "Blueprint is a powerful DDL (Data Definition Language) created by 
 
 
 <RequestExample>
-```json Blueprint Example
+```json Blueprint Example (simple)
 {
   "sheets": [
     {
@@ -33,6 +33,96 @@ description: "Blueprint is a powerful DDL (Data Definition Language) created by 
           "type": "number"
         }
       ]
+    }
+  ]
+}
+```
+</RequestExample>
+<RequestExample>
+In this example each Employee is recording their choice of Swag stored across 2 sheets
+```json Blueprint Example (complex)
+{
+  "sheets": [
+    {
+      "key": "Employees",
+      "label": "Employees",
+      "description": "each employee in the company",
+      "fields": [
+        {
+          "key": "eid",
+          "label": "Employee ID string",
+          "type": "string",
+          "config": {"size": "tiny"},
+          "constraints": [
+            {
+              "type": "unique",
+              "config": {"case_sensitive": false}
+            }
+          ]
+        },
+        {
+          "key": "first_name",
+          "label": "First Name",
+          "type": "string",
+          "config": {"size": "tiny"},
+          "constraints": [ {"type": "required"} ]
+        },
+        {
+          "key": "last_name",
+          "label": "Last Name",
+          "type": "string",
+          "config": {"size": "tiny"},
+          "constraints": [ {"type": "required"} ]
+        },
+        {
+          "key": "salary",
+          "type": "number",
+          "config": {"decimal_places": 2},
+          "read-only": true
+        },
+        {
+          "key": "department",
+          "type": "enum",
+          "config": {
+            "options": [
+              {"value": "Sales"},
+              {"value": "Marketing"},
+              {"value": "People Ops"}
+            ],
+            "allow_custom": false
+          }
+        },
+        {
+          "key": "swag_choice",
+          "type": "reference",
+          "config": {
+            "ref": "company_swag",
+            "relationship": "has-one"
+          }
+        },
+        {
+          "key": "swag_size",
+          "type": "number",
+          "config": {"decimal_places": 0}
+        }
+      ],
+      "access": ["import", "edit"]
+    },
+    {
+      "key": "company_swag",
+      "label": "Swag Options",
+      "fields": [
+        {
+          "key": "name",
+          "label": "Product Code",
+          "type": "string"
+        },
+        {
+          "key": "date_available",
+          "type": "date"
+        }
+      ]
+      "access": []
     }
   ]
 }
