@@ -120,10 +120,10 @@ const {
 
 <br />
 
-| Prop           | Description                                           |
-| -------------- | ----------------------------------------------------- |
-| `primaryColor` | `optional` **string** ['red']<br/>Primary brand color |
-| `textColor`    | `optional` **string** ['white']<br/>Text color        |
+| Prop           | Type     | Description         | Required |
+| -------------- | -------- | ------------------- | -------- |
+| `primaryColor` | `string` | Primary brand color | no       |
+| `textColor`    | `string` | Text color          | no       |
 
 ### Manual CSS overrides
 
@@ -156,13 +156,13 @@ const {
 });
 ```
 
-| prop                                                                 | description                                                                                         |
-| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `defaultPage > documentId`                                           | `optional` **string** [null]<br/>Set the default Markdown page to show when the importer opens      |
-| `defaultPage > workbook.workbookId` `defaultPage > workbook.sheetId` | `optional` **string** [null]<br/>Set the default Workbook and Sheet to show when the importer opens |
-| `showGuestInvite`                                                    | `optional` **boolean** [false]<br/>Allow your guests to invite others to the importer               |
-| `showDataChecklist`                                                  | `optional` **boolean** [false]<br/>Show or hide the data checklist                                  |
-| `showSidebar`                                                        | `optional` **boolean** [false]<br/>Show or hide the sidebar as a whole                              |
+| Property                | Type                                                                           | Description                                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| `defaultPage`           | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string } }` | Landing page upon loading a space. Defaults to primary workbook or first document, if there is one. |
+| `showPoweredByFlatfile` | `boolean`                                                                      | Toggle branding logo. Defaults to true.                                                             |
+| `showGuestInvite`       | `boolean`                                                                      | Toggle ability to invite guests. Defaults to false.                                                 |
+| `showDataChecklist`     | `boolean`                                                                      | Toggle data config for space. Defaults to false.                                                    |
+| `showSidebar`           | `boolean`                                                                      | Toggle whether sidebar defaults to open inside of a Workbook. Defaults to false.                    |
 
 ### Visual Reference
 
