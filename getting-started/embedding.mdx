@@ -2,3 +2,140 @@
 title: "Embedding"
 description: "Learn how to create your first Workbook in Flatfile with transformations and validations."
 ---
+
+## [@flatfile/react](https://www.npmjs.com/package/@flatfile/react)
+
+Embed React is a front-end SDK wrapper around the [Flatfile API](https://flatfile.stoplight.io/docs/v10/). It allows you to securely and easily add an embedded import experience to any React app.
+
+The [reference](#customize) below will cover complete customization details which includes adding your brand colors, logos, & fonts.
+
+With embedded Flatfile you can:
+
+1. Recieve data via a self-serve experience
+2. Recieve notifications when your customers have completed this experience
+
+To find the additional Flatfile integration paths that may work better for your business, explore our [docs](https://flatfile.stoplight.io).
+
+### Before you begin
+
+The minimum supported version of React is v16. If you use an older version, upgrade React to use this library. You will also need Node.js v18 installed on your machine.
+
+Check your versions in terminal:
+
+```npm
+node --version
+npm view react version
+```
+
+#### Setup
+
+Install Embed React from the npm public registry.
+
+```npm
+npm install @flatfile/react@5.0.8
+```
+
+```yarn
+yarn install @flatfile/react@5.0.8
+```
+
+#### Get your Publishable Key
+
+<Info>
+  API keys are created automatically. Use the [Developers
+  Page](https://platform.flatfile.com/developers) to reveal your API keys for
+  each Environment.
+</Info>
+
+Copy your publishable key from the dashboard under [Developers Page](https://platform.flatfile.com/developers) to be used in the next step.
+This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../security/authentication).
+
+## Build
+
+### Space component
+
+When you launch an embedded importer, you're actually launching an entire Space for that Guest.
+
+The `useSpace` hook returns a Space component. By using this hook versus mounting directly, you are able to check for any errors before rendering the component.
+
+**Error handling**: If something internal to the Space component throws an error, we return it via **error** or the Space component if it builds correctly. This allows you to render your own error state.
+
+📝 Insert code example and props here
+
+### Embedded lifecycle
+
+### Customization
+
+#### makeTheme helper function
+
+The `makeTheme` helper function accepts three values (primaryColor, textColor, logo). From there, we programmatically create a nice looking theme for you. If you need more control, add raw values instead.
+
+**Error handling**: Internally, our `makeTheme` helper validates that the colors passed in are valid colors. This means they can be correctly parsed. (Names, rgb, hsv, hex)
+
+```typescript
+const theme = makeTheme({
+  primaryColor: "red",
+  textColor: "white",
+  logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+});
+```
+
+```useSpace title="Example passed to useSpace hook"
+const { error, data: { component } } =
+  useSpace({
+    themeConfig: theme,
+    accessToken,
+    environmentId,
+    workbook
+  })
+```
+
+```Space title="Example passed to Space"
+<Space
+  themeConfig={theme}
+  accessToken={accessToken}
+  environmentId={environmentId}
+  workbook={workbook}
+  {...props}
+ />
+```
+
+### Guest Sidebar
+
+You can customize your guest sidebar using the [ISidebarConfig]('./src/types/ISidebarConfig.tsx') type or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+
+```typescript
+const mySidebarConfig = {
+  showDataChecklist: false,
+  defaultPage: {
+    workbook: {
+      workbookId: "123",
+      sheetId: "123",
+    },
+  },
+};
+```
+
+```useSpace title="Example passed to useSpace hook"
+const { error, data: { component } } =
+  useSpace({
+    sidebarConfig: mySidebarConfig,
+    publishableKey,
+    environmentId
+  })
+
+```
+
+| prop                                                                 | description                                                                                         |
+| -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `defaultPage > documentId`                                           | `optional` **string** [null]<br/>Set the default Markdown page to show when the importer opens      |
+| `defaultPage > workbook.workbookId` `defaultPage > workbook.sheetId` | `optional` **string** [null]<br/>Set the default Workbook and Sheet to show when the importer opens |
+| `showGuestInvite`                                                    | `optional` **boolean** [false]<br/>Allow your guests to invite others to the importer               |
+| `showDataChecklist`                                                  | `optional` **boolean** [false]<br/>Show or hide the data checklist                                  |
+| `showSidebar`                                                        | `optional` **boolean** [false]<br/>Show or hide the sidebar as a whole                              |
+
+#### Visual Reference
+
+![Sidebar Toggles](https://images.ctfassets.net/hjneo4qi4goj/6VhpIyhGSAgcUIhnmvxNke/97e2db61c1af19f29c9290efadaca801/sidebar_config.png)
+
+### Documents
