@@ -77,8 +77,8 @@
      "quickstart/submit-action", "quickstart/deploying"]
     },
     {
-      "group": "How to", 
-      "pages": ["how-to/handling-data",  "how-to/egress", "how-to/custom-actions",
+      "group": "Guides", 
+      "pages": ["how-to/handling-data",  "how-to/custom-actions",
           "how-to/theming", "how-to/guest_sidebar",  "how-to/documents"]
     },
     {

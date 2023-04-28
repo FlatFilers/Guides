@@ -3,13 +3,11 @@ title: "Use actions"
 description: "Trigger operations based on user input."
 ---
 
-A Custom Action is a code-based operation that runs where that action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile.
+An action is a code-based operation that runs where that action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile.
 
 <Info>
-Flatfile currently allows you to attach a Custom Action to a Sheet and/or a Workbook. Coming soon: Custom Actions on Workbooks, Files, Documents, & Spaces; input forms for Custom Actions.
+Each workbook has built-in actions. In addition, you can attach a Custom Action to a Sheet and/or a Workbook.
 </Info>
-
-ADD SCREENSHOT HERE
 
 ## Sheet-mounted Custom Actions
 
@@ -19,23 +17,23 @@ Once a user has extracted and mapped data into a <Tooltip tip="Learn more about 
 * Adding two different fields together after a user review's initial validation checks
 * Moving valid data from an editable Sheet to a read-only Sheet
 
+### Types of custom actions
+
 Sheet-mounted Custom Actions are represented in two forms:
 
-### Dropdown
-
-ADD SCREENSHOT HERE - DROPDOWN OF CUSTOM ACTIONS
+#### Dropdown
 
 By default, all Custom Actions are included in a drop-down in the Sheet header.
 
-### Primary call to action
-
-ADD SCREENSHOT HERE - PRIMARY CUSTOM ACTION BUTTON
+#### Primary call to action
 
 If you configure `primary: true` on a Custom Action, it will be represented as a button in the Sheet.
 
-### How to mount a Sheet-level Custom Action
+### How to mount and listen for a Sheet-level Custom Action
 
-```jsx  
+<CodeGroup>
+
+```jsx blueprint.js
 actions: [
   {
     "slug": "download_as_pdf",
@@ -48,5 +46,13 @@ actions: [
 ]
 ```
 
+```jsx listener.js
+listener.on('action:triggered', async (event) => {
+     //perform the action here
+  })
+```
+
+</CodeGroup>
+
 Sheet-level Custom Actions are configured within a <Tooltip tip="Learn more about Blueprint">[Blueprint](../concepts/workbooks#blueprint-object)</Tooltip>. 
-The executable code within an Action is compiled into a <Tooltip tip="Learn more about Blueprint">[Job](../concepts/jobs)</Tooltip> and can run asyncronously or immediately.
+The executable code within an Action is compiled into a <Tooltip tip="Learn more about Jobs & Actions">[Job](../concepts/jobs)</Tooltip> and can run asyncronously or immediately.
