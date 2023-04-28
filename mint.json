@@ -107,11 +107,8 @@
     }
   ],
   "footerSocials": {
+    "website": "https://flatfile.com",
     "github": "https://github.com/FlatFilers",
-    "twitter": "https://twitter.com/flatfilers/",
-    "linkedin": "https://linkedin.com/company/flatfile",
-    "facebook": "https://facebook.com/flatfilers/",
-    "discord": "https://discord.gg/jbTtMKseas"
   },
   "analytics": {
     "gtm": {
