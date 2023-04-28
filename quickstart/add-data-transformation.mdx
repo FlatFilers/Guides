@@ -23,7 +23,7 @@ Follow these steps:
 1. [Fork this repl.it](https://replit.com/@flatfile/get-started#index.ts)
 2. Get your Secret Key from your [Developer Dashboard](https://platform.flatfile.com/developers)
 3. Click Run in your Repl.it
-4. Go back to your Flatfile workbook and make a few changes, then see how those events were written in your repl.it output
+4. Go back to your Flatfile workbook and make a few changes, then see how those events were written in your repl.it Console
 
 The simplest possible event listener looks as follows:
 
@@ -33,6 +33,20 @@ export default function(listener) {
     console.log('-> My event', event.topic)
   })
 }
+```
+
+``` json Console
+> npm run dev
+
+> gettingstarted@1.0.0 dev
+> node ./.config/dev.js
+
+listening for events at 4/28/2023, 2:36:22 PM
+
+sheet:validated us_evt_abc 4/28/2023, 2:36:36 PM
+records:updated us_evt_abc 4/28/2023, 2:36:36 PM
+sheet:validated us_evt_abc 4/28/2023, 2:36:36 PM
+records:updated us_evt_abc 4/28/2023, 2:36:36 PM
 ```
 
 This code exports a single function that accepts an instance of an object (named `listener` in the example). This object can be used to subscribe to different events within your Flatfile [space](../concepts/spaces). The example code subscribes to all events (using the `**` selector) and writes the event's topic name to the console.

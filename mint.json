@@ -78,8 +78,8 @@
     },
     {
       "group": "Guides", 
-      "pages": ["how-to/handling-data",  "how-to/custom-actions",
-          "how-to/theming", "how-to/guest_sidebar",  "how-to/documents"]
+      "pages": ["guides/handling-data",  "guides/custom-actions",
+          "guides/theming", "guides/guest_sidebar",  "guides/documents"]
     },
     {
       "group": "Concepts",

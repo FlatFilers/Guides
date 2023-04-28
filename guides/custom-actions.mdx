@@ -1,5 +1,5 @@
 ---
-title: "Use actions"
+title: "Using actions"
 description: "Trigger operations based on user input."
 ---
 
@@ -36,11 +36,11 @@ If you configure `primary: true` on a Custom Action, it will be represented as a
 ```jsx blueprint.js
 actions: [
   {
-    "slug": "download_as_pdf",
-    "label": "Download as PDF",
-    "type": "string",
-    "description": "string",
-    "primary": true
+    slug: "download_as_pdf",
+    label: "Download as PDF",
+    type: "string",
+    description: "This message shows in the pop up after clicking the action.",
+    primary: false
   },
   {...}
 ]
