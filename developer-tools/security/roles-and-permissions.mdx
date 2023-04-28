@@ -25,12 +25,12 @@ Guest roles receive access via a magic link or a shared link depending on the [E
 
 ### Workbook Grant
 
-<Info>This role can only be configured using code.</Info>
-
 | Role | Details                           |
 | -------- | ------------------------------------- |
 | Single-Workbook&nbsp;Guest     | This role is meant for a guest who should have access to only one workbook within a Space.                |
 | Multi-Workbook&nbsp;Guest     | This role is intended for a guest who has access to multiple workbooks within a Space.                 |
+
+<Info>This role can only be configured using code. See code example.</Info>
 
 ```ts
 const createGuest = await api.guests.create({

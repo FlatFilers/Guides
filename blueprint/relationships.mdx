@@ -20,23 +20,23 @@ This example defines two fields with a relationship which references the respect
 ```json
 // in the context of create Workbook API call
 "fields": [
-              {
-                key: 'father',
-                type: 'reference',
-                config: {
-                  ref: 'parents',
-                  key: 'email',
-                  relationship: 'has-one',
-                },
-              },
-              {
-                key: 'mother',
-                type: 'reference',
-                config: {
-                  ref: 'parents',
-                  key: 'email',
-                  relationship: 'has-one',
-                },
-              },
+  {
+    key: 'father',
+    type: 'reference',
+    config: {
+      ref: 'parents',
+      key: 'email',
+      relationship: 'has-one',
+    },
+  },
+  {
+    key: 'mother',
+    type: 'reference',
+    config: {
+      ref: 'parents',
+      key: 'email',
+      relationship: 'has-one',
+    },
+  },
 ]
 ```
