@@ -8,10 +8,6 @@ description: "Learn how to securely and easily add an embedded Flatfile import e
 Embed React is a front-end SDK wrapper around the [Flatfile API](https://flatfile.stoplight.io/docs/v10/). It allows you to securely and easily add an embedded import experience to any React app.
 This powerful iframe tool is designed to seamlessly integrate into your website or application, providing a simple yet robust experience for collecting and transforming data from your customers.
 
-The [reference](#customize) below will cover complete customization details which includes adding your brand colors, logos, & fonts.
-
-To find the additional Flatfile integration paths that may work better for your business, explore our [docs](https://flatfile.stoplight.io).
-
 ## Before you begin
 
 The minimum supported version of React is v16. If you use an older version, upgrade React to use this library. You will also need Node.js v18 installed on your machine.
@@ -52,13 +48,20 @@ This key is safe to be used in client-side applications as it has limited access
 
 ## Build
 
+To get started with the embedded experience, it is important to consider two concepts:
+
+1. The space component which has [Workbooks](../concepts/workbooks)
+2. [Events](../concepts/events) which enables workbooks to have asynchronous customizable jobs to happen either behind the scenes or with user interaction.
+
+_In the examples below, you will see these events mentioned above being passed in as `client` to the `useSpace` hook._
+
 ### Space component
 
 When you launch an embedded importer, you're actually launching an entire Space for that Guest.
 
-The `useSpace` hook returns a Space component. By using this hook versus mounting directly, you are able to check for any errors before rendering the component.
-
 **Error handling**: If something internal to the Space component throws an error, we return it via **error** or the Space component if it builds correctly. This allows you to render your own error state.
+
+The `useSpace` hook returns a Space component which has internal [Workbooks](../concepts/workbooks).
 
 ```typescript
 import { ISpace } from "@flatfile/react";
@@ -140,7 +143,10 @@ This callback function is called when the submit action is complete and closes t
 
 The `makeTheme` helper function accepts three values (`primaryColor`, `textColor`, `logo`). From there, we programmatically create a nice looking theme for you. If you need more control, [add raw values](../guides/theming) instead.
 
-<Tip>Internally, our `makeTheme` helper validates that the colors passed in are valid colors. This means they can be correctly parsed. (Names, rgb, hsv, hex)</Tip>
+<Tip>
+  Internally, our `makeTheme` helper validates that the colors passed in are
+  valid colors. This means they can be correctly parsed. (Names, rgb, hsv, hex)
+</Tip>
 
 <CodeGroup>
 
@@ -188,11 +194,11 @@ const {
 
 #### Manual CSS overrides
 
-Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in [IThemeConfig]('./src/types/IThemeConfig.tsx'). See [Theming Reference]('../advanced/theming').
+Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in the [Theming Reference](../guides/theming).
 
 ### Guest Sidebar
 
-You can customize your guest sidebar using the [ISidebarConfig]('./src/types/ISidebarConfig.tsx') type or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+You can customize your guest sidebar using the [Sidebar Reference](../guides/guest_sidebar) or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
 
 <CodeGroup>
 ```typescript sidebarConfig
@@ -232,7 +238,7 @@ const {
 
 ## Documents
 
-[Documents]('../advanced/documents), written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
+[Documents]('../guides/documents), written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
 
 <CodeGroup>
 
@@ -266,6 +272,7 @@ const {
   workbookName,
 });
 ```
+
 </CodeGroup>
 
 ## Full code examples
@@ -399,12 +406,21 @@ System.out.println("Hello, World!");
 
 The following are a handful of examples of ways you can validate and transform data using Flatfile.
 
-
 1. **E-commerce platform:** An e-commerce platform might embed Flatfile to allow their customers to manipulate their product data before importing it into the platform. Their customers can use the tool to make sure every item has a unique SKU, transform all dollar amounts to the same format, and make sure no item has a negative number in inventory.
 
 2. **Marketing automation software:** A marketing automation software might embed Flatfile to allow their customers to validate all email addresses before importing it into the software. Additionally, they can make sure they have a first name for every contact, decide to remove all contacts who don't have a phone number that can recieve text messages, and track opt-ins.
 
-3. **Business intelligence software:** A business intelligence software might embed Flatfile to allow customers to clean up their data before visualizing it in the software. Customers could use the tool to split address to multiple fields from one full address field, make sure no date is before the year 1900, and calculate a unique ID from 3 other identifying fields. 
+3. **Business intelligence software:** A business intelligence software might embed Flatfile to allow customers to clean up their data before visualizing it in the software. Customers could use the tool to split address to multiple fields from one full address field, make sure no date is before the year 1900, and calculate a unique ID from 3 other identifying fields.
 
 4. **Healthcare software:** A healthcare software might embed Flatfile to allow their hospitals to manipulate patient data before importing it into the software. Customers can use the tool to make sure each patient has a social security number, highlight patients with dependents, and validate a patient has the right codes applied to them.
 
+To find the additional Flatfile integration paths that may work better for your business, explore our other core paths:
+
+<CardGroup cols={2}>
+  <Card title="Setup headless file feeds" icon="bolt-auto" href="headless">
+    Automatically collect data files from any source.
+  </Card>
+  <Card title="Build custom workflows" icon="arrow-progress" href="workflows">
+    Collaborate across teams on large data onboarding projects.
+  </Card>
+</CardGroup>
