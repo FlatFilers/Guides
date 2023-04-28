@@ -8,6 +8,8 @@ description: "Learn how to securely and easily add an embedded Flatfile import e
 Embed React is a front-end SDK wrapper around the [Flatfile API](https://flatfile.stoplight.io/docs/v10/). It allows you to securely and easily add an embedded import experience to any React app.
 This powerful iframe tool is designed to seamlessly integrate into your website or application, providing a simple yet robust experience for collecting and transforming data from your customers.
 
+The [reference](#customize) below will cover complete customization details which includes adding your brand colors, logos, & fonts.
+
 To find the additional Flatfile integration paths that may work better for your business, explore our [docs](https://flatfile.stoplight.io).
 
 ## Before you begin
@@ -25,13 +27,17 @@ npm view react version
 
 Install Embed React from the npm public registry.
 
-```npm
+<CodeGroup>
+
+```npm npm
 npm install @flatfile/react@5.0.8
 ```
 
-```yarn
+```yarn yarn
 yarn install @flatfile/react@5.0.8
 ```
+
+</CodeGroup>
 
 ### Get your Publishable Key
 
@@ -42,7 +48,7 @@ yarn install @flatfile/react@5.0.8
 </Info>
 
 Copy your publishable key from the dashboard under [Developers Page](https://platform.flatfile.com/developers) to be used in the next step.
-This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../developer-tools/security/authentication).
+This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../security/authentication).
 
 ## Build
 
@@ -117,20 +123,28 @@ const ExampleApp = () => {
 
 ## Lifecycle
 
-**onSubmit:** This callback function is called when the user submits data using the primary action (upper right hand corner of Space) from within the iframe. It is typically used to perform actions on the submitted data, such as validating it or sending it to a server.
+#### `onSubmit`
+
+This callback function is called when the user submits data using the primary action (upper right hand corner of Space) from within the iframe. It is typically used to perform actions on the submitted data, such as validating it or sending it to a server.
 This function does not close the iframe.
 
-**onComplete:** This callback function is called when the submit action is complete and closes the iframe. **Internally, we archive the space when onComplete is called.** It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
+#### `onComplete`
+
+This callback function is called when the submit action is complete and closes the iframe. **Internally, we archive the space when onComplete is called.** It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
 
 ## Customization
 
-### makeTheme helper function
+### Theme
 
-The `makeTheme` helper function accepts three values (primaryColor, textColor, logo). From there, we programmatically create a nice looking theme for you. If you need more control, add raw values instead.
+#### makeTheme helper function
 
-**Error handling**: Internally, our `makeTheme` helper validates that the colors passed in are valid colors. This means they can be correctly parsed. (Names, rgb, hsv, hex)
+The `makeTheme` helper function accepts three values (`primaryColor`, `textColor`, `logo`). From there, we programmatically create a nice looking theme for you. If you need more control, [add raw values](../how-to/theming) instead.
 
-```typescript
+<Tip>Internally, our `makeTheme` helper validates that the colors passed in are valid colors. This means they can be correctly parsed. (Names, rgb, hsv, hex)</Tip>
+
+<CodeGroup>
+
+```typescript makeTheme
 const theme = makeTheme({
   primaryColor: "red",
   textColor: "white",
@@ -162,22 +176,26 @@ const {
 />
 ```
 
+</CodeGroup>
+
 <br />
 
 | Prop           | Type     | Description         | Required |
 | -------------- | -------- | ------------------- | -------- |
 | `primaryColor` | `string` | Primary brand color | no       |
 | `textColor`    | `string` | Text color          | no       |
+| `logo`         | `string` | full url to logo    | no       |
 
-### Manual CSS overrides
+#### Manual CSS overrides
 
-Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in the [Theming Reference](../how-to/theming).
+Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in [IThemeConfig]('./src/types/IThemeConfig.tsx'). See [Theming Reference]('../advanced/theming').
 
-## Guest Sidebar
+### Guest Sidebar
 
-You can customize your guest sidebar using the [Sidebar Reference](../how-to/guest_sidebar) or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+You can customize your guest sidebar using the [ISidebarConfig]('./src/types/ISidebarConfig.tsx') type or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
 
-```typescript
+<CodeGroup>
+```typescript sidebarConfig
 const mySidebarConfig = {
   showDataChecklist: false,
   defaultPage: {
@@ -202,6 +220,8 @@ const {
 });
 ```
 
+</CodeGroup>
+
 | Property                | Type                                                                           | Description                                                                                         |
 | ----------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
 | `defaultPage`           | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string } }` | Landing page upon loading a space. Defaults to primary workbook or first document, if there is one. |
@@ -210,15 +230,13 @@ const {
 | `showDataChecklist`     | `boolean`                                                                      | Toggle data config for space. Defaults to false.                                                    |
 | `showSidebar`           | `boolean`                                                                      | Toggle whether sidebar defaults to open inside of a Workbook. Defaults to false.                    |
 
-### Visual Reference
-
-![Sidebar Toggles](https://images.ctfassets.net/hjneo4qi4goj/6VhpIyhGSAgcUIhnmvxNke/97e2db61c1af19f29c9290efadaca801/sidebar_config.png)
-
 ## Documents
 
-[Documents]('../how-to/documents), written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
+[Documents]('../advanced/documents), written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
 
-```typescript
+<CodeGroup>
+
+```typescript documentConfig
 const mainDocument = {
   title: "Getting Started",
   body:
@@ -248,6 +266,7 @@ const {
   workbookName,
 });
 ```
+</CodeGroup>
 
 ## Full code examples
 
@@ -260,74 +279,15 @@ console.log("Hello World");
 ```
 
 ```typescript client
-/**
- * Example Client that checks values across fields and populates based on that check
- */
-export const crossfieldClient = Client.create((client) => {
-  client.on(
-    "records:*",
-    // @ts-ignore
-    { context: { sheetSlug: "TestSheet" } },
-    async (event) => {
-      const { sheetId, versionId } = event.context;
-
-      try {
-        const {
-          data: { records },
-        } = await event.api.getRecords({
-          sheetId,
-          versionId,
-        });
-
-        console.log({ records });
-
-        const recordsUpdates = records?.map((record: any) => {
-          if (record.values.salary.value < 50) {
-            record.values["needs_raise"].value = true;
-          } else {
-            record.values["needs_raise"].value = false;
-          }
-
-          return record;
-        });
-
-        console.log({ recordsUpdates });
-
-        await event.api.updateRecords({
-          sheetId,
-          recordsUpdates,
-        });
-      } catch (e) {
-        console.log(
-          `Error updating records - Use console logs inside your events to further debug: ${e}`
-        );
-      }
-    }
-  );
-});
+print("Hello World!");
 ```
 
 ```typescript workbook
-import { Flatfile } from "@flatfile/api";
-
-export const config: Flatfile.SheetConfig[] = [
-  {
-    name: "TestSheet",
-    slug: "TestSheet",
-    fields: [
-      {
-        key: "salary",
-        type: "number",
-        label: "salary",
-      },
-      {
-        key: "needs_raise",
-        type: "boolean",
-        label: "needs raise",
-      },
-    ],
-  },
-];
+class HelloWorld {
+public static void main(String[] args) {
+System.out.println("Hello, World!");
+}
+}
 ```
 
 </CodeGroup>
