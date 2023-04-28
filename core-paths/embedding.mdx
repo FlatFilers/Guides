@@ -1,6 +1,6 @@
 ---
 title: "Embed in your app"
-description: "Learn how to create your first Workbook in Flatfile with transformations and validations."
+description: "Learn how to securely and easily add an embedded Flatfile import experience"
 ---
 
 ## [@flatfile/react](https://www.npmjs.com/package/@flatfile/react)
@@ -54,13 +54,56 @@ This key is safe to be used in client-side applications as it has limited access
 
 ### Space component
 
-When you launch an embedded importer, you're actually launching an entire <Tooltip tip="Learn more about Spaces">[Space](../concepts/spaces)</Tooltip> for that Guest.
+When you launch an embedded importer, you're actually launching an entire Space for that Guest.
 
 The `useSpace` hook returns a Space component. By using this hook versus mounting directly, you are able to check for any errors before rendering the component.
 
-<Tip> If something internal to the Space component throws an error, we return it via **error** or the Space component if it builds correctly. This allows you to render your own error state.</Tip>
+**Error handling**: If something internal to the Space component throws an error, we return it via **error** or the Space component if it builds correctly. This allows you to render your own error state.
 
-📝 Insert code example and props here
+```typescript
+import { ISpace } from "@flatfile/react";
+import { makeTheme } from "@flatfile/react";
+import { useSpace } from "@flatfile/react";
+
+const ExampleApp = () => {
+  const [showSpace, setShowSpace] = useState(false);
+
+  const spaceProps: ISpace = {
+    name: "Embedded Space",
+    workbookName: "Employees workbook",
+    publishableKey: "your-publishable-key",
+    environmentId: "your-env-id",
+    workbook: config,
+    themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
+    sidebarConfig: {
+      showDataChecklist: false,
+      showSidebar: false,
+    },
+    archiveSpaceOn: "sheet-name:action-name",
+    onComplete: () => setShowSpace(false),
+    onSubmit: () => console.log("submitting"),
+    client: joinFieldClient,
+  };
+
+  const { error, data } = useSpace({
+    ...spaceProps,
+  });
+
+  return (
+    <div style={{ padding: "16px" }}>
+      <button
+        onClick={() => {
+          setShowSpace(!showSpace);
+        }}
+      >
+        {showSpace === true ? "Close" : "Open"} space
+      </button>
+      {error && <div>{`🚫 ${error}`}</div>}
+      {showSpace && data?.component}
+    </div>
+  );
+};
+```
 
 | Name             | Description                                                                  | Type                    | Required |
 | ---------------- | ---------------------------------------------------------------------------- | ----------------------- | -------- |
