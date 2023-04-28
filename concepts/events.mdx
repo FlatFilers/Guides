@@ -45,112 +45,112 @@ client.on(
 
 ## Event Topics
 
-#### Space
-
-<ParamField path="space:added" type="readonly">
-  Called when a Space is created
-</ParamField>
-
-<ParamField path="space:removed" type="readonly">
-  Called when a Space is deleted
-</ParamField>
-
 #### Workbook
 
-<ParamField path="workbook:added" type="readonly">
-  Called when a Space is created
+<ParamField path="workbook:created" type="readonly">
+  Called when a new workbook is created.
 </ParamField>
 
-<ParamField path="workbook:removed" type="readonly">
-  Called when a Workbook is deleted
+<ParamField path="workbook:updated" type="readonly">
+  Called when workbook metadata is updated. For example, updating the name of a workbook. Adding data to a workbook does not emit this event.
 </ParamField>
 
-<ParamField path="sheet:validated" type="readonly">
-  Called when a sheet is validated
+<ParamField path="workbook:deleted" type="readonly">
+  Called when a workbook is deleted.
 </ParamField>
 
-<ParamField path="records:created" type="readonly">
-  Called when a records are created
+<ParamField path="sheet:created" type="readonly">
+  Called when a new sheet is created within a workbook.
 </ParamField>
 
-<ParamField path="records:updated" type="readonly">
-  Called when a records are updated
+<ParamField path="sheet:updated" type="readonly">
+  Called when a sheet is updated. For example, running sheet level validations. Adding data to a sheet does not emit this event.
 </ParamField>
 
-<ParamField path="records:deleted" type="readonly">
-  Called when records are deleted
+<ParamField path="sheet:deleted" type="readonly">
+  Called when a sheet is deleted.
 </ParamField>
 
-#### User
-
-<ParamField path="user:added" type="readonly">
-  Called when a User is created
+<ParamField path="record:created" type="readonly">
+  Called when one or more records are created within a sheet.
 </ParamField>
 
-<ParamField path="user:removed" type="readonly">
-  Called when a User is deleted
+<ParamField path="record:updated" type="readonly">
+  Called when one or more records are updated.
 </ParamField>
 
-<ParamField path="user:online" type="readonly">
-  Called when a User logs in
+<ParamField path="record:deleted" type="readonly">
+  Called when one or more records are deleted.
 </ParamField>
 
-<ParamField path="user:offline" type="readonly">
-  Called when a User logs out
+<ParamField path="commit:created" type="readonly">
+  Called when a new commit is created. For example, by creating or updating a cell.
+</ParamField>
+
+<ParamField path="commit:updated" type="readonly">
+  Called when commit metadata is updated. For example, approving or merging a commit. Commits cannot be deleted.
+</ParamField>
+
+<ParamField path="layer:created" type="readonly">
+  Called when a new layer is created within a commit. For example, to apply formatting or validation. Layers cannot be updated or deleted.
 </ParamField>
 
 #### File Upload
 
-<ParamField path="upload:started" type="readonly">
-  Called when a file upload begins
+<ParamField path="file:created" type="readonly">
+  Called when a file upload begins or a new file is created.
 </ParamField>
 
-<ParamField path="upload:failed" type="readonly">
-  Called when a file upload fails
-</ParamField>
-
-<ParamField path="upload:completed" type="readonly">
-  Called when a file upload has compled
+<ParamField path="file:updated" type="readonly">
+  Called when a file is updated. For example, when a file has been extracted into a workbook.
 </ParamField>
 
 <ParamField path="file:deleted" type="readonly">
-  Called when a file is deleted
+  Called when a file is deleted.
 </ParamField>
 
 #### Jobs
 
-<ParamField path="job:waiting" type="readonly">
-  Called when a job is waiting to begin
-</ParamField>
-
-<ParamField path="job:started" type="readonly">
-  Called when a job begins
+<ParamField path="job:created" type="readonly">
+  Called when a new job is created.
 </ParamField>
 
 <ParamField path="job:updated" type="readonly">
-  Called when a job is updated, oftentimes for progress
-</ParamField>
-
-<ParamField path="job:failed" type="readonly">
-  Called when a job fails
-</ParamField>
-
-<ParamField path="job:completed" type="readonly">
-  Called when a job has compled
+  Called when a job is updated. For example, updating state or progress.
 </ParamField>
 
 <ParamField path="job:deleted" type="readonly">
-  Called when a job is deleted
+  Called when a job is deleted.
 </ParamField>
 
-#### Actions
+<ParamField path="job:failed" type="readonly">
+  Called when a job fails.
+</ParamField>
 
-<ParamField path="action:triggered" type="readonly">
-  Called when an action is triggered in the UI
+<ParamField path="job:completed" type="readonly">
+  Called when a job has completed.
 </ParamField>
 
 #### Agents
 
-<ParamField path="client:init" type="readonly">
-  Called when an agent is deployed
+<ParamField path="agent:created" type="readonly">
+  Called when a new agent is deployed.
+</ParamField>
+
+<ParamField path="agent:updated" type="readonly">
+  Called when an agent is updated.
+</ParamField>
+
+<ParamField path="agent:deleted" type="readonly">
+  Called when an agent is deleted.
+</ParamField>
+
+#### Space
+
+<ParamField path="space:created" type="readonly">
+  Called when a new space is created.
+</ParamField>
+
+<ParamField path="space:deleted" type="readonly">
+  Called when a space is deleted.
 </ParamField>
