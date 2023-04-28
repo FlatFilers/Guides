@@ -48,10 +48,10 @@ This key is safe to be used in client-side applications as it has limited access
 
 ## Build
 
-To get started with the embedded experience, it is important to consider two concepts:
+Before getting started with the embedded experience, it is important to consider two concepts:
 
 1. The space component which has [Workbooks](../concepts/workbooks)
-2. [Events](../concepts/events) which enables workbooks to have asynchronous customizable jobs to happen either behind the scenes or with user interaction.
+2. [Events](../concepts/events) which enables workbooks to have asynchronous customizable jobs to happen either behind the scenes or be triggered upon user interaction.
 
 _In the examples below, you will see these events mentioned above being passed in as `client` to the `useSpace` hook._
 
@@ -63,50 +63,152 @@ When you launch an embedded importer, you're actually launching an entire Space 
 
 The `useSpace` hook returns a Space component which has internal [Workbooks](../concepts/workbooks).
 
-```typescript
+<CodeGroup>
+```typescript ExampleApp
 import { ISpace } from "@flatfile/react";
 import { makeTheme } from "@flatfile/react";
 import { useSpace } from "@flatfile/react";
 
 const ExampleApp = () => {
-  const [showSpace, setShowSpace] = useState(false);
+const [showSpace, setShowSpace] = useState(false);
 
-  const spaceProps: ISpace = {
-    name: "Embedded Space",
-    workbookName: "Employees workbook",
-    publishableKey: "your-publishable-key",
-    environmentId: "your-env-id",
-    workbook: config,
-    themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
-    sidebarConfig: {
-      showDataChecklist: false,
-      showSidebar: false,
-    },
-    archiveSpaceOn: "sheet-name:action-name",
-    onComplete: () => setShowSpace(false),
-    onSubmit: () => console.log("submitting"),
-    client: joinFieldClient,
-  };
-
-  const { error, data } = useSpace({
-    ...spaceProps,
-  });
-
-  return (
-    <div style={{ padding: "16px" }}>
-      <button
-        onClick={() => {
-          setShowSpace(!showSpace);
-        }}
-      >
-        {showSpace === true ? "Close" : "Open"} space
-      </button>
-      {error && <div>{`🚫 ${error}`}</div>}
-      {showSpace && data?.component}
-    </div>
-  );
+const spaceProps: ISpace = {
+name: "Embedded Space",
+workbookName: "Employees workbook",
+publishableKey: "your-publishable-key",
+environmentId: "your-env-id",
+workbook: config,
+themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
+sidebarConfig: {
+showDataChecklist: false,
+showSidebar: false,
+},
+archiveSpaceOn: "TestSheet:join-field",
+onComplete: () => setShowSpace(false),
+onSubmit: () => console.log("submitting"),
+client: joinFieldClient,
 };
+
+const { error, data } = useSpace({
+...spaceProps,
+});
+
+return (
+
+<div style={{ padding: "16px" }}>
+  <button
+    onClick={() => {
+      setShowSpace(!showSpace);
+    }}
+  >
+    {showSpace === true ? "Close" : "Open"} space
+  </button>
+  {error && <div>{`🚫 ${error}`}</div>}
+  {showSpace && data?.component}
+</div>
+); };
+
+````
+
+```typescript Example Workbook
+
+import { Client } from '@flatfile/listener'
+import { Flatfile } from '@flatfile/api'
+
+export const config: Flatfile.SheetConfig[] = [
+  {
+    name: 'TestSheet',
+    slug: 'TestSheet',
+    fields: [
+      {
+        key: 'first_name',
+        type: 'string',
+        label: 'First name',
+        constraints: [
+          {
+            type: 'required'
+          }
+        ]
+      },
+      {
+        key: 'last_name',
+        type: 'string',
+        label: 'last name',
+        constraints: [
+          {
+            type: 'unique'
+          }
+        ]
+      },
+      {
+        key: 'full_name',
+        type: 'string',
+        label: 'full name'
+      }
+    ],
+    actions: [
+      {
+        slug: 'join-field',
+        label: 'Join field',
+        primary: true
+      }
+    ]
+  }
+]
+
 ```
+
+```typescript Example client
+
+/**
+ * Example Client that runs join field on action 'Join field'
+ */
+export const joinFieldClient = Client.create((client) => {
+  client.on(
+    'action:triggered',
+    // @ts-ignore
+    { context: { sheetSlug: 'TestSheet' } },
+    async (event) => {
+      const { sheetId, versionId } = event.context
+
+      try {
+        const {
+          data: { records }
+        } = await event.api.getRecords({
+          sheetId,
+          versionId
+        })
+
+        if (!records) return
+
+        // Populate full name field
+        const recordsUpdates = records?.map((record: any) => {
+          const fullName =
+            record.values['first_name'].value + record.values['last_name'].value
+
+          record.values['full_name'].value = fullName
+
+          return record
+        })
+
+        console.log('updates', { recordsUpdates })
+
+        await event.api.updateRecords({
+          sheetId,
+          recordsUpdates
+        })
+      } catch (e) {
+        console.log(
+          `Error updating records - Use console logs inside your events to further debug: ${e}`
+        )
+      }
+    }
+  )
+})
+
+```
+
+</CodeGroup>
 
 | Name             | Description                                                                  | Type                    | Required |
 | ---------------- | ---------------------------------------------------------------------------- | ----------------------- | -------- |
@@ -423,3 +525,4 @@ To find the additional Flatfile integration paths that may work better for your 
     Collaborate across teams on large data onboarding projects.
   </Card>
 </CardGroup>
+````
