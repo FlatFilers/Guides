@@ -11,6 +11,8 @@ Each workbook has built-in actions. In addition, you can attach a Custom Action 
 
 ## Sheet-mounted Custom Actions
 
+![sheet.actions](../images/actions/sheet_actions.png)
+
 Once a user has extracted and mapped data into a <Tooltip tip="Learn more about Sheets">[Sheet](../concepts/workbooks#sheets-array)</Tooltip>, it may be better to run an operation on the entire data set, instead of making atomic transformations at the record- or cell-level. For example:
 * Sending a webhook that notifies your API of the data's readiness
 * Populating the Sheet with data from another source
@@ -23,9 +25,13 @@ Sheet-mounted Custom Actions are represented in two forms:
 
 #### Dropdown
 
+![sheet.actions](../images/actions/sheet_actionsOpen.png)
+
 By default, all Custom Actions are included in a drop-down in the Sheet header.
 
 #### Primary call to action
+
+![sheet.actions](../images/actions/sheet_actions_primary.png)
 
 If you configure `primary: true` on a Custom Action, it will be represented as a button in the Sheet.
 
