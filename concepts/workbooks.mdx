@@ -20,73 +20,28 @@ With Workbooks, you can:
 
 ---
 
-## Reference
+## Anatomy
 
 A Workbook is comprised of one or more Sheets plus any actions you want to take on those Sheets.
 
 <img src="../images/concepts/workbook_anatomy.png" caption="The anatomy of a Workbook"/>
 
-## Reference
+### Reference
 
-#### `Blueprint` *object*
-Each Workbook has a Blueprint. A <Tooltip tip="Learn more about Blueprint">[Blueprint](docs.com)</Tooltip> is a collection of Sheets that describe a complete dataset.
-
-```jsx  
-blueprint: {
-  sheets: [
-    { fields: [] },
-  ]
-}
-```
-
+[See API Reference](https://flatfile.stoplight.io/docs/v10/1a7c2b8c1d306-create-a-workbook)
 
 #### `Sheets` *array*
-A Blueprint contains Sheets. Like tables in a database or sheets in a spreadsheet, Sheets isolate different data schemas.
+A schema contains Sheets. Like tables in a database or sheets in a spreadsheet, Sheets isolate different data schemas.
 
-```jsx  
-sheets: [
-  {
-    name: 'My Sheet 1',
-    description: 'This is my Customer Sheet.',
-    slug: 'mysheet_1',
-    fields: [],
-    actions: [],
-  },
-  {...}
-],
-```
+[Learn more about Blueprint](../guides/blueprint)
 
 #### `Fields` *array*
 Sheets contain Fields. Fields are defined properties of your schema (eg a first_name on a contact sheet.)
 
-```jsx  
-fields: [
-  {
-    "key": "full_name",
-    "type": "string",
-    "label": "Full Name",
-    "description": "The full name of the customer.",
-    "constraints": [
-      { "type": "required" }
-    ],
-    "readonly": true
-  },
-  {...}
-],
-```
+[Learn more about Blueprint](../guides/blueprint)
 
 #### `Actions` *array*
-Sheets can also contain Actions. Actions are developer-defined operations or macros invoked by end users on selected data like Submit to API, Download as PDF.
+Workbooks and sheets can also contain Actions. Actions are developer-defined operations or macros invoked by end users on selected data like Submit to API, Download as PDF.
 
-```jsx  
-actions: [
-  {
-    "slug": "download_as_pdf",
-    "label": "Download as PDF",
-    "type": "string",
-    "description": "string",
-    "primary": true
-  },
-  {...}
-]
-```
+[Learn more about Actions](../guides/custom-actions)
+

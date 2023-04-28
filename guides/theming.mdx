@@ -15,7 +15,9 @@ more via the <Tooltip tip="Learn more about Spaces">[Space](../concepts/spaces)<
 
 Learn how to create a Space with a theme, and update a theme from an event listener.
 
-```ts 
+<CodeGroup>
+
+```ts api.js
 const updateSpace = await api.spaces.update(spaceId, {
     environmentId: environmentId,
      metadata: {
@@ -31,12 +33,17 @@ const updateSpace = await api.spaces.update(spaceId, {
     }
   }
 });
+```
 
-//listen for an event, and update your theme to be relevant
+```ts listener.js
+//listen for an event, and update your theme as a result
+
 listener.on('space:created', (event) => {
   const updateSpace = await flatfile.spaces.update(spaceId, {});
 })
 ```
+</CodeGroup>
+
 ---
 
 ## Theme reference

@@ -16,7 +16,9 @@ Documents, often used for getting started guides, become extremely powerful with
 
 Learn how to create a document, and update a Document from an event listener.
 
-```ts
+<CodeGroup>
+
+```ts api.js
 const createDoc = await api.documents.create(spaceId, {
   title: "Getting Started",
   body:
@@ -25,9 +27,12 @@ const createDoc = await api.documents.create(spaceId, {
     "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
     "---\n",
 });
-
+```
+```ts listener.js
 //listen for an event, and update your document to be relevant
+
 listener.on("upload:completed", (event) => {
+  const fileName = await api.files.get(event.context.fileId)
   const updateDoc = await api.documents.update(spaceId, documentId, {
     title: "Getting Started",
     body:
@@ -35,11 +40,11 @@ listener.on("upload:completed", (event) => {
       "### Say hello to your first customer Space in the new Flatfile!\n" +
       "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
       "---\n" +
-      "Your uploaded files are located in the Files area.\n",
+      "Your uploaded file, " + {fileName.data.name} + "is located in the Files area.\n",
   });
 });
 ```
-
+</CodeGroup>
 ---
 
 ## Markdown reference

@@ -3,29 +3,17 @@ title: "Events"
 description: "The anatomy of Events."
 ---
 
-TODO in this section:
-
-Context,
-Payload,
-Data URLs,
-Data Extraction,
-Transformation & Validation,
-Egress,
-Automation,
-Scheduled Jobs,
-
 The Flatfile platform includes a REST API for manipulating resources 
 and an event bus for subscribing to notifications about those resources. 
 
-The Flatfile [PubSub Client](../developer-tools/core-libraries/listener) is a super thin wrapper around the Flatfile API. 
+The Flatfile PubSub Client is a super thin wrapper around the Flatfile API. 
 It allows you to call our API after receiving events from any PubSub driver. 
 
 #### The anatomy of an Event
 
 Flatfile events follow a standard structure and event listeners can use any of the following syntaxes to react to events within Flatfile.
 
-- `context` - something
-- `target` - something
+[See API Reference](https://flatfile.stoplight.io/docs/v10/c67125494272c-create-an-event)
 
 
 ### Using Events
@@ -38,9 +26,7 @@ An event context is passed to an **EventFilter**
 export type EventFilter = Record<string, Arrayable<string>>
 
 // example event context
-
 { context: { sheetSlug: 'TestSheet' } }
-
 ```
 
 #### Building with events
@@ -48,7 +34,6 @@ export type EventFilter = Record<string, Arrayable<string>>
 Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library we can intervene between any event and run a callback function based on values provided inside that event.
 
 ```typescript
-
 client.on(
     'records:*', //listens for records:created & records:updated
     { target: 'sheet(TestSheet)' },
@@ -56,10 +41,9 @@ client.on(
       //do something here
     }
   );
-
 ```
 
-## Event Topic Reference
+## Event Topics
 
 #### Space
 
