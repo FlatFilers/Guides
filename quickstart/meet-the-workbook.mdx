@@ -1,23 +1,23 @@
 ---
-title: "1. Meet the workbook"
+title: "1. Meet the Workbook"
 description: "Learn how to create your first Workbook in Flatfile."
 ---
+
+In this guide, you will create and configure a Flatfile Workbook. After you've deployed your Workbook, you will have the ability to embed it in your application as an import flow, or deploy an independent collection Space.
 
 <video style={{width: "100%"}} autoPlay={true}>
  <source src="https://videos.ctfassets.net/hjneo4qi4goj/6tpIySgKeIUQjPSGhlpmR8/24599361320fcf1dd799d168a2e799aa/MAIN_COMPOSITION_-_sped-up.mp4" type="video/mp4"/>
 </video>
 
-In Flatfile, a <Tooltip tip="Learn more about Workbooks">[Workbook](../concepts/workbooks)</Tooltip> serves as a replacement for the spreadsheet template(s) that you may currently share with others to request data for data collection during customer onboarding or other business processes. Unlike a spreadsheet, a workbook is specifically designed to enable your team and users to validate, correct, and import data.
-
-Within the next 15 minutes, you can create and set up a workbook for your business. After completing the process, you will have the ability to embed it in your application as an import flow, or deploy a data collection portal.
+In Flatfile, a <Tooltip tip="Learn more about Workbooks">[Workbook](../concepts/workbooks)</Tooltip> serves as a replacement for the spreadsheet template(s) that you may currently share with others to request data for data collection during customer onboarding or other business processes. Unlike a spreadsheet, a Workbook is specifically designed to enable your team and users to validate, correct, and import data.
 
 <Info>
-Prerequisites: You'll need a Flatfile account and your [secret key](../security/authentication) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and get your keys if you haven't yet.
+Prerequisites: You'll need a Flatfile account and your [secret key](../developer-tools/security/authentication#secret-and-publishable-keys) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and get your keys if you haven't yet.
 </Info>
 
 ### Using Schemas
 
-Flatfile’s <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip> is a robust data definition language (DDL) that emphasizes validation and data preparation. To successfully create a Workbook via API, you must define a valid CSV in the Blueprint DDL.
+Flatfile’s <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip> is a robust data definition language (DDL) that emphasizes validation and data preparation. Flatfile's API expects the Blueprint format whenever you are interacting with a schema definition.
 
 For this tutorial, we’re going to use a simple schema that’s already using Flatfile’s Blueprint; 
 however, if you have an existing schema, you can choose from many different open-source [blueprint converter plugins](https://flatfile.com/plugins) like:
@@ -87,13 +87,13 @@ curl --request POST \
 Now that you have a Workbook, you're now ready to start importing data with Flatfile! 
 
 1. Head to your [Spaces Dashboard](https://platform.flatfile.com) and click on 
-the workbook you just created (My First Workbook). 
-2. Upload a [test file](https://FlatFilers.github.io/Guides/quickstart/getting-started.csv), click the "Import" action for the file, and then follow the steps to complete importing the data into the "Contacts" worksheet. 
-3. After the import workflow is complete, you can click on the "Contacts" icon in the left sidebar and see the imported data. 
-4. Additionally, you can embellish the imported data in the user interface by modifying  existing records or adding new rows entirely.
+the Workbook you just created (My First Workbook). You may need to refresh the page.
+2. Upload a [test file](https://FlatFilers.github.io/Guides/quickstart/getting-started.csv) in the Files section, and then click the "Import" action for the file. Follow the steps to map the example data into the "Contact" Sheet. 
+3. After mapping is complete, you can click on the "Contact" icon in the left sidebar and see the imported data. 
+4. Additionally, you can embellish the imported data in the user interface by modifying existing records or adding new rows entirely.
 
 ---
 
 ## Recap & Next Steps
 
-In the next step, we will delve deeper into responding to record events with transformations and validations.
+In the next step, we will delve deeper into responding to record Events with transformations and validations.
