@@ -3,47 +3,21 @@ title: "Deploying to Flatfile"
 description: "Learn how to deploy your code to Flatfile."
 ---
 
-## Configuring your developer environment
-#### `.flatfilerc`
-
-A `.flatfilerc` file should be included in the root of your project if you are workiing server-side.
-
-`endpoint`, `env`, `version`, & `secret` are for the normal configuration of the deployment, whereas everything inside 
-`internal` gets passed to the Virtual Machine that runs the <Tooltip>[agent](../concepts/agents)</Tooltip> code. 
-
-Once configured, this file shouldn't need to change until you're deploying to your production environment.
-
-<Warning>This file should be ignored from source control as it includes your secret key.</Warning>
-
-``` json .flatfilerc
-{
-    "endpoint": "https://platform.flatfile.com/api/v1",
-    "env": "us_env_12345",
-    "version": "10",
-    "secret": "ps_12345-1234-1234",
-    "internal": {
-        "secret": "ps_12345-1234-1234",
-    }
-}
-```
-
 ## Deploying a workbook from terminal
 
-#### `npm run deploy`
-Once you have configured your workbook, you can deploy your workbook to your account and the environment specified in `.flatfilerc` at any time
-by opening the terminal in the root directory and entering `npm run deploy`. 
+#### `npx flatile deploy --token PASTE_SECRET_KEY_HERE`
+Once you have configured your workbook, you can deploy your workbook to your account at any time
+by opening the terminal in the root directory and entering the command above. 
 
 The CLI will give you prompts and updates as it's deploying:
 
-``` bash
-npm run deploy
-> flatfile pubsub src/listener.ts
+``` terminal
+> npx flatfile@3.3.1 deploy --token sk_123456
 
- INFO  Building Workbook
- INFO  Sending Build.js
-✔ Access token created
-✔ Found Environment: us_env_123456
-✔ Agent Created us_ag_12345
+✔  Code package compiled to .flatfile/build.js
+✔  Code package passed validation
+✔  Environment "Default" selected
+✔  Event listener deployed and running on your environment "Default". us_ag_1234
 ```
 
 <Tip>

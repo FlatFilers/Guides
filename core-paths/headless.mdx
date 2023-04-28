@@ -23,7 +23,7 @@ example Python script to post a file to a Space by Id
 You can listen for `file:uploaded` and subsequently trigger any custom extraction logic. Extractions are Jobs that process asyncronously.
 
 ```
-example listener code
+TODO: example listener code
 ```
 
 (Note: CSVs uploaded to Flatfile will always be immediately extracted to a raw Workbook.)
@@ -34,14 +34,14 @@ You may notice that after the first couple of Files are mapped to a particular B
 While listening for an extraction Job to complete, you can poll the Space for the most recently used Job Plan, and then execute a mapping Job.
 
 ```
-example listener code
+TODO: example listener code
 ```
 
 ### Automate validation and transformation
 Similarly, validation and pre-configured transformation operations can run immediately on `records:created` and `records:updated`.
 
 ```
-example listener code
+TODO: example listener code
 ```
 
 ### Automate an egress Job
@@ -49,7 +49,7 @@ Finally, you can configure a Job to run immediately after any validation / trans
 You could choose to egress all data, regardless of its validity, or only egress `valid` data and notify the appropriate user that attention is needed on any `invalid` data.
 
 ```
-example listener + job code
+TODO: example listener + job code
 ```
 
 (Suggestion: You can also have the Job set a timestamp for the most recent data sync using the `metadata` object. 
