@@ -43,7 +43,6 @@
     "name": "Sign in",
     "url": "https://platform.flatfile.com"
   },
-
   "anchors": [
     {
       "name": "Blueprint",
@@ -108,7 +107,7 @@
   ],
   "footerSocials": {
     "website": "https://flatfile.com",
-    "github": "https://github.com/FlatFilers",
+    "github": "https://github.com/FlatFilers"
   },
   "analytics": {
     "gtm": {
