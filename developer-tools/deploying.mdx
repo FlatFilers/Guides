@@ -5,9 +5,10 @@ description: "Learn how to deploy your code to Flatfile."
 
 ## Deploying a workbook from terminal
 
-#### `npx flatile deploy --token PASTE_SECRET_KEY_HERE`
 Once you have configured your workbook, you can deploy your workbook to your account at any time
-by opening the terminal in the root directory and entering the command above. 
+by opening the terminal in the root directory and entering this command:
+
+`npx flatile deploy --token PASTE_SECRET_KEY_HERE`
 
 The CLI will give you prompts and updates as it's deploying:
 
@@ -19,11 +20,6 @@ The CLI will give you prompts and updates as it's deploying:
 ✔  Environment "Default" selected
 ✔  Event listener deployed and running on your environment "Default". us_ag_1234
 ```
-
-<Tip>
-You'll notice some of the feedback in the terminal mentions you're deploying an <Tooltip tip="Learn more about Agents">[Agent](../concepts/agents)</Tooltip>. 
-An Agent is what's working under the hood to automatically get subscriptions to all Events in your environment. 
-</Tip>
 
 ### See it in your Dashboard
 
@@ -37,7 +33,7 @@ Once your workbook has been deployed, you’ll be able to see a new Space in you
 
 ## Deploying more than once
 
-In most getting started examples, we are focusing on the Workbook; however, you can deploy any change to your code at any time. 
+In most getting started examples, we are focusing on the workbook; however, you can deploy any change to your code at any time. 
 
-For example, if you are just needing to add a Sheet to an already existing workbook, simply deploy again with the added sheet and everything will update.
+For example, if you are just needing to add a sheet to an already existing workbook, simply deploy again with the added sheet and everything will update.
 
