@@ -38,12 +38,13 @@ Warning: If you use `"*"` access control, users will gain new functionalities as
 On a field level you can restrict a user's interaction with the data to `readonly`. This feature is useful if you're inviting others to view uploaded data, but do not want to allow them to edit that field. See the example in context below:
 
 ```json
- "fields": [
-    {
-      "key": "salary",
-      "type": "number",
-      "config": {
-         "decimal_places": 2
-      },
-      "readonly": true
-    }
+"fields": [
+  {
+    "key": "salary",
+    "type": "number",
+    "config": {
+        "decimal_places": 2
+    },
+    "readonly": true
+  }
+]
