@@ -7,7 +7,7 @@ description: "Learn how to create your first Workbook in Flatfile."
  <source src="https://videos.ctfassets.net/hjneo4qi4goj/6tpIySgKeIUQjPSGhlpmR8/24599361320fcf1dd799d168a2e799aa/MAIN_COMPOSITION_-_sped-up.mp4" type="video/mp4"/>
 </video>
 
-In Flatfile, a <Tooltip tip="Learn more about Workbooks">[Workbook](../concepts/workbooks)</Tooltip> serves as a replacement for the spreadsheet template(s) that you may currently share with others to request data for data collection during customer onboarding or other business processes. Unlike a spreadsheet, a Workbook is specifically designed to enable your team and users to validate, correct, and import data.
+In Flatfile, a <Tooltip tip="Learn more about Workbooks">[Workbook](../concepts/workbooks)</Tooltip> serves as a replacement for spreadsheet template(s) that you share during the data collection phase of customer onboarding or other data exchange business processes. Unlike a spreadsheet template, a Workbook in Flatfile is uniquely designed to seamlessly enable internal or external users to easily validate, correct, and import data.
 
 <Info>
 Prerequisites: You'll need a Flatfile account and your [secret key](../developer-tools/security/authentication#secret-and-publishable-keys) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and get your keys if you haven't yet.
@@ -15,10 +15,10 @@ Prerequisites: You'll need a Flatfile account and your [secret key](../developer
 
 ### Using Schemas
 
-Flatfile’s <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip> is a robust data definition language (DDL) that emphasizes validation and data preparation. Flatfile's API expects the Blueprint format whenever you are interacting with a schema definition.
+Flatfile’s <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip> is a robust Data Definition Language (DDL) that emphasizes validation and data preparation. Flatfile's API expects the Blueprint format whenever you are interacting with a schema definition.
 
-For this tutorial, we’re going to use a simple schema that’s already using Flatfile’s Blueprint; 
-however, if you have an existing schema, you can choose from many different open-source [blueprint converter plugins](https://flatfile.com/plugins) like:
+For this tutorial, we’re going to use a simple schema that’s already using Flatfile’s Blueprint. 
+If you have an existing schema however, you can choose from many different open-source [blueprint converter plugins](https://flatfile.com/plugins) like:
 
 <CardGroup cols={4}>
   <Card color="#CB3837" title="@flatfile/plugin-json-schema" icon="npm" href="https://flatfile.com/plugins/json-schema">
@@ -35,7 +35,7 @@ however, if you have an existing schema, you can choose from many different open
 
 #### Create a workbook 
 
-Paste this cURL request to your terminal now to create a simple workbook or [run this command directly from our docs](https://flatfile.stoplight.io/docs/v10/tjt005wdogklo-create-a-sample-workbook).
+Paste this cURL request to your terminal to create a simple workbook or [run this command directly from our docs](https://flatfile.stoplight.io/docs/v10/tjt005wdogklo-create-a-sample-workbook).
 
 ```shell Shell / cURL
 curl --request POST \
@@ -82,13 +82,13 @@ curl --request POST \
 
 ### Add data to your workbook
 
-Now that you have a Workbook, you're now ready to start importing data with Flatfile! 
+Now that you have a Workbook, you're ready to start importing data with Flatfile! 
 
 1. Head to your [Spaces Dashboard](https://platform.flatfile.com) and click on 
 the Workbook you just created (My First Workbook). You may need to refresh the page.
-2. Upload a [test file](https://assets.ctfassets.net/hjneo4qi4goj/6I48ynsesoL1s1YhPK8Pvx/1d5ed30534c1ef44166d440a08612621/getting-started.csv) in the Files section, and then click the "Import" action for the file. Follow the steps to map the example data into the "Contact" Sheet. 
-3. After mapping is complete, you can click on the "Contact" icon in the left sidebar and see the imported data. 
-4. Additionally, you can make changes to the Workbook in the user interface by modifying existing records or adding new rows entirely.
+2. Upload a [test file](https://assets.ctfassets.net/hjneo4qi4goj/6I48ynsesoL1s1YhPK8Pvx/1d5ed30534c1ef44166d440a08612621/getting-started.csv) in the Files section, and then click the "Import" action for the file. Follow the steps in the UI to map the example data into the "Contact" Sheet. 
+3. After mapping is complete, you can click on "Contact" sheet in the left sidebar and see the imported data. 
+4. Additionally, you can make changes to the Workbook in the user interface by modifying existing records or create new rows for manual data entry.
 
 ---
 
