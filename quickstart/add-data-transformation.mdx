@@ -9,14 +9,13 @@ In the previous step, you performed a number of actions:
 * Populated the workbook with a sample CSV file
 * Edited the workbook using the Flatfile user interface
 
-Every one of these actions creates an [Event](../concepts/events). You can author code to listen for these events and add handlers that perform tasks such as validating records or sending data to your own API.
+Every one of these actions creates an [Event](../concepts/events). You can author code to listen and react to these events by performing tasks such as validating records or sending data to your own API.
 
 ## Setting up a listener
 
-<Note>Flatfile provides a powerful Typescript/NodeJS SDK for working with events along with many plugins. You can also listen to events
-in other ways. Read the [Events](../concepts/events) docs here.</Note>
+<Note>Flatfile provides a powerful Typescript/NodeJS SDK for working with events and many plugins. There are a lot of ways to listen to events in other ways that we describe in the [Events](../concepts/events) docs here.</Note>
 
-Using the <Tooltip tip="Learn more about the CLI">[Flatfile CLI](../developer-tools/core-libraries/flatfile)</Tooltip> you can register any javascript function as an event listener and start working with events. To keep it simple we'll use a pre-configured Repl.it.
+Using the <Tooltip tip="Learn more about the CLI">[Flatfile CLI](../developer-tools/core-libraries/flatfile)</Tooltip>, you can register any javascript function as an event listener and start working with events. To keep it simple, we'll use a pre-configured Repl.it.
 
 Follow these steps:
 
@@ -51,7 +50,7 @@ records:updated us_evt_abc 4/28/2023, 2:36:36 PM
 
 This code exports a single function that accepts an instance of an object (named `listener` in the example). This object can be used to subscribe to different events within your Flatfile [space](../concepts/spaces). The example code subscribes to all events (using the `**` selector) and writes the event's topic name to the console.
 
-Listeners are the basic building block of logic in Flatfile, from simple validations and transformations to complex, multi-sheet workflows.
+Listeners are the basic building block of logic in Flatfile. They span from simple validations and transformations to complex, multi-sheet workflows.
 
 ## Working with Plugins
 
@@ -61,7 +60,7 @@ Flatfile provides a number of [transformation & validation plugins](https://flat
 
 ## Adding your first data transformation
 
-In this example, we'll use the [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) plugin to notify us on every row addition or modification and give us the ability to modify the data. For this example, we will take the first name and make it lowercase.
+In this example, we'll use the [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) plugin to notify us on every row addition or modification and give us the ability to modify the data. For this example, we will take the first name record and make it lowercase.
 
 ```js index.js
 import { recordHook } from '@flatfile/plugin-record-hook';
@@ -83,12 +82,15 @@ export default function(listener) {
 
 #### Using your transformation 
 
+Once you take focus off of the new First Name field, your transformation will run and convert the characters in your value to lower case.
+
 1. After starting the code in repl.it, navigate to your Contacts sheet and insert a new row where the First Name is written entirely in capital letters. 
 2. You should notice that when you take focus off of the First Name field, your transformation will run and convert the characters in your value to lower case.
 
+
 ## Adding your first validation
 
-As in the case of transforming data, we can use the [record-hook plugin](https://www.npmjs.com/package/@flatfile/plugin-record-hook) as the starting point for validating data.
+Similar to transforming data, we can use the [record-hook plugin](https://www.npmjs.com/package/@flatfile/plugin-record-hook) as the starting point for validating data.
 
 <Tip>
 You can use any npm package in a plugin.
@@ -117,8 +119,12 @@ export default function(listener) {
 
 #### Using your validation 
 
-1. After starting the code in repl.it, return to your Contacts sheet and modify an Email Address value to make it an invalid email. 
-2. You should notice that when you take focus off of the field, your validation will run and the sheet user interface will display an error for the changed field.
+Once you take focus off of the field, your validation will run and the sheet user interface will display an error for the changed field.
+
+1. After starting the code in repl.it, go back to your Contacts sheet.
+2. Modify any value of Email Address to make it an invalid email address. 
+3. Take focus off the field you entered (click outside that field). 
+
 
 ---
 
@@ -126,4 +132,4 @@ export default function(listener) {
 
 You now have a locally running listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations.
 
-Next, we will [add an action](submit-action) that submits data from this Sheet to your API.
+Next, we will [add an action](submit-action) that submits data from this sheet to your API.
