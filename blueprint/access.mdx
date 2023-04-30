@@ -4,13 +4,32 @@ description: "Controlling user interactions with your sheets and fields"
 ---
 
 # Sheet level access
-With `access` you can control sheet level access allowing users to 
 
-- **`"add"`** - A user can add a record(s) to the sheet
-- **`"delete"`** - A user can delete record(s) from the sheet
-- **`"edit"`** - A user can edit records (field values) in the sheet
-- **`"import"`** - A user can import CSVs to this sheet
-- **`"*"`** - `<default>` A user can use all access actions
+
+<ParamField path="access" type="array" default="*" optional>
+With `access` you can control sheet level access allowing users to 
+</ParamField
+
+## `"*"` _(default)_
+A user can use all access actions to this sheet
+
+<Warning>
+Warning: If you use `"*"` access control, users will gain new functionalities as we expand access controls. Use an exhaustive list today to block future functionality from being added automatically.
+</Warning>
+
+  
+## `"add"`
+A user can add a record(s) to the sheet
+
+## `"delete"`
+A user can delete record(s) from the sheet
+
+## `"edit"`
+A user can edit records (field values) in the sheet
+  
+## `"import"`
+A user can import CSVs to this sheet
+
 
 ```json
 {
@@ -28,12 +47,9 @@ With `access` you can control sheet level access allowing users to
 }
 ```
 
-<Warning>
-Warning: If you use `"*"` access control, users will gain new functionalities as we expand access controls. Use an exhaustive list today to block future functionality from being added automatically.
-</Warning>
 
 
-# Field level access
+# Field level access via `readonly`
 
 On a field level you can restrict a user's interaction with the data to `readonly`. This feature is useful if you're inviting others to view uploaded data, but do not want to allow them to edit that field. See the example in context below:
 
@@ -48,3 +64,4 @@ On a field level you can restrict a user's interaction with the data to `readonl
     "readonly": true
   }
 ]
+```
