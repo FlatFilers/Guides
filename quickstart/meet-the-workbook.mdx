@@ -13,10 +13,6 @@ A [Workbook](https://flatfileinc.mintlify.dev/docs/concepts/workbooks) replaces 
 Prerequisites: You'll need a Flatfile account and your [secret key](../developer-tools/security/authentication#secret-and-publishable-keys) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and use the secret key from your `development` environment for this tutorial.
 </Info>
 
-### Using schemas
-
-Flatfile’s <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip> is a robust data definition language (DDL) that emphasizes validation and data preparation. Flatfile's API expects the Blueprint format creating or updating a schema definition.
-
 ## Building your first Workbook
 
 #### Create a workbook 
@@ -69,6 +65,10 @@ curl --request POST \
   ]
 }' | json_pp
 ```
+
+### Using schemas
+
+Flatfile’s <Tooltip tip="Learn more about Blueprint">[Blueprint](../blueprint/overview)</Tooltip> is a robust data definition language (DDL) that emphasizes validation and data preparation. Flatfile's API expects the Blueprint format creating or updating a schema definition.
 
 ### Add data to your workbook
 
