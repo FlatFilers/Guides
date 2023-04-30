@@ -106,7 +106,7 @@ export default function(listener) {
   listener.use(
     recordHook('contacts', (record) => {
 
-      if (!EmailValidator.validate(record.get('email'))) {
+      if (!validEmailAddress.test(record.get('email'))) {
         console.log("got email")
         record.addError('email', 'Invalid email address')
       }
