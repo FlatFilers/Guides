@@ -9,7 +9,7 @@ In the previous step, you performed a number of actions:
 * Populated the workbook with a sample CSV file
 * Edited the workbook using the Flatfile user interface
 
-Every one of these actions creates an [Event](../concepts/events). You can author code to listen for these events and react by performing tasks such as validating records or sending data to your own API.
+Every one of these actions creates an [Event](../concepts/events). You can author code to listen for these events and add handlers that perform tasks such as validating records or sending data to your own API.
 
 ## Setting up a listener
 
@@ -83,7 +83,7 @@ export default function(listener) {
 
 #### Using your transformation 
 
-1. After starting the code in repl.it, go back to your Contacts worksheet and add a new row with the First Name written in all capital letters. 
+1. After starting the code in repl.it, navigate to your Contacts sheet and insert a new row where the First Name is written entirely in capital letters. 
 2. You should notice that when you take focus off of the First Name field, your transformation will run and convert the characters in your value to lower case.
 
 ## Adding your first validation
@@ -117,8 +117,8 @@ export default function(listener) {
 
 #### Using your validation 
 
-1. After starting the code in repl.it, go back to your Contacts worksheet and modify a value of Email Address, making it an invalid email. 
-2. You should notice that when you take focus off of the field, your validation will run and the worksheet user interface will display an error for the changed field.
+1. After starting the code in repl.it, return to your Contacts sheet and modify an Email Address value to make it an invalid email. 
+2. You should notice that when you take focus off of the field, your validation will run and the sheet user interface will display an error for the changed field.
 
 ---
 
