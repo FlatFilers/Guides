@@ -106,12 +106,6 @@
       "version": "latest"
     },
     {
-      "group": "Security",
-      "pages": ["developer-tools/security/authentication",
-          "developer-tools/security/roles-and-permissions"],
-      "version": "latest"
-    },
-    {
       "group": "Core paths",
       "pages": ["core-paths/embedding", "core-paths/headless", "core-paths/workflows"],
       "version": "latest"
@@ -124,9 +118,14 @@
       "version": "latest"
     },
     {
-      "group": "Developers",
-      "pages": ["developer-tools/deploying",
-          "developer-tools/environment"],
+      "group": "Overview",
+      "pages": ["developer-tools/environment", "developer-tools/deploying"],
+      "version": "latest"
+    },
+    {
+      "group": "Security",
+      "pages": ["developer-tools/security/authentication",
+          "developer-tools/security/roles-and-permissions"],
       "version": "latest"
     }
   ],
