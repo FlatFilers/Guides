@@ -3,35 +3,33 @@ title: 4. Deploy to Flatfile
 description: Publish your new configuration to Flatfile and move beyond this simple sandbox.
 ---
 
-For a production deployment, listeners can be hosted either in your cloud or directly on the Flatfile platform. 
+For a production deployment, listeners can be hosted either in your cloud or directly on the Flatfile platform. Learn more about [deploying](../developer-tools/deploying).
 
-#### Hosting in your own cloud
+## Deploying the listener example to Flatfile
 
-Hosting listener code in your own cloud works similarly to how we have been running code using repl.it. 
+Using the `flatfile` command line tool, we will now deploy your listener code into the Flatfile platform.
 
-1. The listener process is launched
-2. It polls the Flatfile API for updates
-3. It then responds to those events accordingly
+1. Clone the Getting Started repo
 
-#### Hosting on the Flatfile platform
+<CardGroup cols={1}>
+  <Card title="getting-started" href="https://github.com/FlatFilers/getting-started" icon="github">
+  This code repository has everything you did in the quickstart example.
+  </Card>
+</CardGroup>
 
-While your own cloud provides the maximum level of control over listener code, qualities such as availability and network performance are the responsibility of the hosting provider. Listeners may be securely deployed and run in the Flatfile platform cloud giving you a more consistent, low latency and high ability experience. 
-
-## Deploying to Flatfile
-
-In order to deploy listener code into the Flatfile platform, we can use the `flatfile` command line tool. [Clone a sample project](https://github.com/FlatFilers/getting-started) and run deploy from your local directory.
+2. Run the deploy command from the root directory
 
 ```terminal
 npx flatfile deploy
 ```
+---
+
+## Recap & what's next 
 
 You can now create a workbook, add data and workflow logic, and deploy it to the Flatfile platform! 
 
----
 
-## What's next 
-
-You can now proceed with the product based on what you want to accomplish. A few possibilities include the following:
+Next, proceed with the product based on what you want to accomplish. A few possibilities include the following:
 
 ### Follow a core path
 
@@ -44,13 +42,5 @@ You can now proceed with the product based on what you want to accomplish. A few
   </Card>
   <Card title="Build custom workflows" icon="arrow-progress" href="/core-paths/workflows">
     Collaborate across teams on large data onboarding projects.
-  </Card>
-</CardGroup>
-
-### Clone a sample project
-
-<CardGroup cols={1}>
-  <Card title="getting-started" href="https://github.com/FlatFilers/getting-started" icon="github">
-  This code repository has everything you did in the quickstart example.
   </Card>
 </CardGroup>
