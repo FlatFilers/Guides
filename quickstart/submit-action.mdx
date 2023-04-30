@@ -3,7 +3,7 @@ title: 3. Configure a submit action
 description: "Learn how to create a simple submit Action in Flatfile."
 ---
 
-Actions refer to buttons added to the user interface that trigger <Tooltip tip="Learn about Jobs">[Jobs](../concepts/jobs)</Tooltip> within the Flatfile platform when clicked by users. They enable you to run complex operations and streamline workflows. They are part of the Blueprint that defines a Workbook.
+Actions refer to buttons added to the user interface that trigger <Tooltip tip="Learn about Jobs">[Jobs](../concepts/jobs)</Tooltip> within the Flatfile platform when clicked by users. They enable you to run complex operations and streamline workflows. They are declared as part of the Blueprint that defines a Workbook.
 
 ## Adding your first Action
 
@@ -18,8 +18,8 @@ export default function(listener) {
   // existing code
 
   listener.on('action:triggered', async (event) => {
-      const webhookReceiver = '<Webhook URL>';  
-      // copy your https://webhook.site URL for testing
+      const webhookReceiver = '<WEBHOOK URL>';  
+      
       const res = await fetch(webhookReceiver, {
         method: 'POST',
         headers: {
