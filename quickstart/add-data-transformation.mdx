@@ -9,18 +9,18 @@ In the previous step, you performed a number of actions:
 * Populated the workbook with a sample CSV file
 * Edited the workbook using the Flatfile user interface
 
-Each of these actions creates an [Event](../concepts/events). You can author code to listen and react to these events by performing tasks such as validating records or sending data to your own API.
+Each of these actions creates an [Event](../concepts/events). You can author code to listen and react to these events by performing tasks such as validating and transforming records, and even offloading data processing to your own API.
 
 ## Setting up a listener
 
-<Note>Flatfile provides a powerful Typescript/NodeJS SDK for working with events and many plugins. There are a lot of ways to listen to events in other ways that we describe in the [Events](../concepts/events) docs here.</Note>
+<Note>Flatfile provides a powerful Typescript/NodeJS SDK for working with events and  plugins. There are a lot of ways to listen to events in other ways that we describe in the [Events](../concepts/events) docs.</Note>
 
-Using the Flatfile CLI, you can register any javascript function as an event listener and start working with events. To keep it simple, we'll use a pre-configured Repl.it.
+Using the Flatfile SDK, you can register any javascript function as an event listener and start working with events. To keep it simple, we'll use a pre-configured Repl.it.
 
 Follow these steps:
 
-1. [Fork this Repl.it](https://replit.com/@flatfile/get-started#index.ts)
-2. Get your Secret Key from your [Developer Dashboard](https://platform.flatfile.com/developers)
+1. [Fork this repl.it](https://replit.com/@flatfile/get-started#index.ts)
+2. Get your Secret Key from your [Developer Dashboard](https://platform.flatfile.com/developers) and set it as the value for `process.env.FLATFILE_API_KEY`.
 3. Click Run in your Repl.it
 4. Go back to your Flatfile workbook and make a few changes, then see how those events were written in your Repl.it Console
 
@@ -98,23 +98,19 @@ You can use any npm package in a plugin.
 
 ```js index.js
 import { recordHook } from '@flatfile/plugin-record-hook';
-import * as EmailValidator from 'email-validator';
 
 const validEmailAddress = /^[\w\d.-]+@[\w\d]+\.\w+$/;
 
 export default function(listener) {
+  listener.use(recordHook('contacts', (record) => {
 
-  listener.use(
-    recordHook('contacts', (record) => {
+    let emailAddress = record.get('email');
+    if (!validEmailAddress.test(emailAddress)) {
+      record.addError('email', 'Invalid email address');
+    }
 
-      if (!EmailValidator.validate(record.get('email'))) {
-        console.log("got email")
-        record.addError('email', 'Invalid email address')
-      }
-
-      return record
-    })
-  )
+    return record
+  }))
 }
 ```
 
