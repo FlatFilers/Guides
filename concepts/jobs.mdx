@@ -4,66 +4,66 @@ description: "The anatomy of Jobs & Actions."
 ---
 
 In Flatfile, a Job represents a large unit of work performed asynchronously on a resource
-such as a file, workbook, or sheet. The Jobs workflow provides visibility into the status
+such as a file, Workbook, or Sheet. The Jobs workflow provides visibility into the status
 and progress of your Jobs, allowing you to monitor and troubleshoot
 the data processing pipeline.
 
-For example, a job could represent:
+For example, a Job could represent:
 - a data export
 - a remapping of data from one sheet to another
-- an action in the UI that triggers a job
+- an action in the UI that triggers a Job
 
 #### Types of Jobs
 
-There are 4 types of jobs:
+There are 4 types of Jobs:
 
 1. Extracting data from a file (moving data from a file to a workbook)
-2. Mapping data from one workbook to another (moving data from a workbook to a workbook)
-3. Deleting data from a workbook (operating on data in a single workbook)
-4. Exporting data from a workbook
+2. Mapping data from one workbook to another (moving data from a workbook to a Workbook)
+3. Deleting data from a Workbook (operating on data in a single Workbook)
+4. Exporting data from a Workbook
 
 All of these operate on (potentially) large amounts of data and complete asynchronously;
 you don’t want to wait around for them, so we notify you when they're done.
 
 ## The Anatomy of a Job
 
-Flatfile jobs follow a standard structure:
+Flatfile Jobs follow a standard structure:
 
-- `type` - workbook, file, sheet
+- `type` - Workbook, file, Sheet
 - `operation` - export, extract, map, delete
 - `source` - id for the data source
 - `destination?` - id for the data target (if any)
 - `config` - a configuration object specific to the operation
 - `trigger` - manual or immediate
 
-In addition, jobs track their execution state with:
+In addition, Jobs track their execution state with:
 
 - `status` - PLANNING, READY, EXECUTING, COMPLETED, FAILED
-- `parts` - how many parts the job was broken into
+- `parts` - how many parts the Job was broken into
 - `processed` - how many of those parts have been processed so far
 
 ## Using Jobs
 
-An action in the UI can trigger a job by POST-ing to the /jobs API endpoint.
-If the `trigger` is `immediate` the job will run immediately;
+An action in the UI can trigger a Job by POST-ing to the `/jobs` API endpoint.
+If the `trigger` is `immediate` the Job will run immediately;
 otherwise it can be triggered with a POST to the `/jobs/:id/execute` endpoint.
 
 ## Job Lifecycle Events
 
 Jobs emit the following events throughout their lifecycle that you can listen for:
 
-- `job:waiting` - emitted after a job is created but before it begins executing
-- `job:started` - emitted right before a job starts execution
-- `job:updated` - emitted when a job's progress is updated
-- `job:failed` - emitted when a job has failed
-- `job:completed` - emitted when a job has completed successfully
-- `job:deleted` - emitted when a job has been deleted
+- `job:waiting` - emitted after a Job is created but before it begins executing
+- `job:started` - emitted right before a Job starts execution
+- `job:updated` - emitted when a Job's progress is updated
+- `job:failed` - emitted when a Job has failed
+- `job:completed` - emitted when a Job has completed successfully
+- `job:deleted` - emitted when a Job has been deleted
 
 ## Building with Jobs
 
 How you build your UI is up to you, but here is one possibility:
 
-1. Create a component that can be used to trigger a job
-2. When the job is triggered, POST to the `/jobs` endpoint
-3. When the job is complete, the server will send a `job:completed` event
+1. Create a component that is used to trigger a Job
+2. When the Job is triggered, POST to the `/jobs` endpoint
+3. When the Job is complete, the server will send a `job:completed` event
 4. When the `job:completed` event is received, update the UI to reflect the new state

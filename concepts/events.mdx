@@ -3,7 +3,7 @@ title: "Events"
 description: "The anatomy of Events."
 ---
 
-The Flatfile platform includes a REST API for manipulating resources 
+The Flatfile platform includes a [REST API](https://flatfile.stoplight.io/docs/v10) for manipulating resources 
 and an event bus for subscribing to notifications about those resources. 
 
 The Flatfile PubSub Client is a super thin wrapper around the Flatfile API. 
@@ -11,7 +11,7 @@ It allows you to call our API after receiving events from any PubSub driver.
 
 #### The anatomy of an Event
 
-Flatfile events follow a standard structure and event listeners can use any of the following syntaxes to handle events within Flatfile.
+Flatfile events follow a standard structure, and event listeners can use any of the following syntaxes to handle events within Flatfile.
 
 [See API Reference](https://flatfile.stoplight.io/docs/v10/c67125494272c-create-an-event)
 
@@ -65,6 +65,10 @@ client.on(
 
 <ParamField path="sheet:updated" type="readonly">
   Called when a sheet is updated. For example, running sheet level validations. Adding data to a sheet does not emit this event.
+</ParamField>
+
+<ParamField path="sheet:validated" type="readonly">
+  Called when a sheet is validated.
 </ParamField>
 
 <ParamField path="sheet:deleted" type="readonly">
