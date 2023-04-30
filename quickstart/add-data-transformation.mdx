@@ -98,6 +98,7 @@ You can use any npm package in a plugin.
 
 ```js index.js
 import { recordHook } from '@flatfile/plugin-record-hook';
+import * as EmailValidator from 'email-validator';
 
 const validEmailAddress = /^[\w\d.-]+@[\w\d]+\.\w+$/;
 
