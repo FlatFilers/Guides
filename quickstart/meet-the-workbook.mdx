@@ -10,7 +10,7 @@ description: "Learn how to create your first Workbook in Flatfile."
 In Flatfile, a <Tooltip tip="Learn more about Workbooks">[Workbook](../concepts/workbooks)</Tooltip> serves as a replacement for the spreadsheet template(s) that you may currently share with others to request data for data collection during customer onboarding or other business processes. Unlike a spreadsheet, a Workbook is specifically designed to enable your team and users to validate, correct, and import data.
 
 <Info>
-Prerequisites: You'll need a Flatfile account and your [secret key](../developer-tools/security/authentication#secret-and-publishable-keys) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and get your keys if you haven't yet.
+Prerequisites: You'll need a Flatfile account and your [secret key](../developer-tools/security/authentication#secret-and-publishable-keys) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and use the secret key from your `development` environment for this tutorial.
 </Info>
 
 ### Using Schemas
@@ -36,6 +36,10 @@ however, if you have an existing schema, you can choose from many different open
 #### Create a workbook 
 
 Paste this cURL request to your terminal now to create a simple workbook or [run this command directly from our docs](https://flatfile.stoplight.io/docs/v10/tjt005wdogklo-create-a-sample-workbook).
+
+<Tip>
+Use your [secret key](../developer-tools/security/authentication#secret-and-publishable-keys) from the `development` environment.
+</Tip>
 
 ```shell Shell / cURL
 curl --request POST \
