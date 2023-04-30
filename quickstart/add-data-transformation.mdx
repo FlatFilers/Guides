@@ -105,11 +105,12 @@ export default function(listener) {
   listener.use(recordHook('contacts', (record) => {
 
     let emailAddress = record.get('email');
+    if (emailAddress) {
     if (!validEmailAddress.test(emailAddress)) {
       record.addError('email', 'Invalid email address');
     }
-
     return record
+    }
   }))
 }
 ```
