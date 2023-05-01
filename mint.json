@@ -107,7 +107,7 @@
     },
     {
       "group": "Core paths",
-      "pages": ["core-paths/embedding", "core-paths/headless", "core-paths/workflows"],
+      "pages": ["core-paths/embedding", "core-paths/headless", "core-paths/collaborate"],
       "version": "latest"
     },
     {

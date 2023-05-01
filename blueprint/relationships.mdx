@@ -1,21 +1,21 @@
 ---
 title: "Relationships"
-description: Referencing data in other sheets
+description: Referencing data in other Sheets
 ---
 <Warning>
-This is not comparable to a foreign key. There should be no specification of which column to reference by as it is multi-variate. A user may establish a relationship in mapping with a soft reference like a company name, once stored in our system we will reference by our internal IDs, and on egress we provide the known system_id if available.
+This is not comparable to a foreign key. There should be no specification of which column to reference as it is multi-variate. A user may establish a relationship in mapping with a soft reference like a company name. Once stored in our system, we will reference by our internal IDs, and on egress we provide the known system_id if available.
 </Warning>
 
 
-Defines a reference to another sheet. Links should be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
+Defines a reference to another Sheet. Links should be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
 
 ## Configuration Options
-- **ref** - Full path reference to another sheet/table configuration. Must be in the same workbook
+- **ref** - Full path reference to another Sheet/table configuration. Must be in the same workbook
 - **relationship** - The type of relationship this defines. Can be one of has-many or has-one
 
 
 ## Example in context
-This example defines two fields with a relationship which references the respective email addresses of the father / mother which is found in another sheet
+This example defines two fields with a relationship which references the respective email addresses of the father / mother which is found in another Sheet
 
 ```json
 // in the context of create Workbook API call
