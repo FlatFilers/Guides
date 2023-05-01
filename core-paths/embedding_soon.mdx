@@ -310,6 +310,30 @@ const {
 
 Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in the [Theming Reference](../guides/theming).
 
+### Collecting additional data
+
+The Space component offers the flexibility to pass in additional metadata through the use of `spaceInfo` prop. This prop allows you to provide information such as user ID, space name, company ID, and company name to the component, which is used to make the dashboard search / filter experience more effective.
+
+To use the `spaceInfo` prop, simply create an object that implements the `ISpaceInfo` interface and pass it in as `spaceInfo` prop when rendering the component.
+
+```typescript
+export interface ISpaceInfo {
+  userId?: string
+  name?: string
+  companyId?: string
+  companyName?: string
+}
+```
+
+For example, if you wanted to provide the component with a user ID and space name, you could create an object like this:
+
+```typescript
+const spaceInfo: ISpaceInfo = {
+  userId: "1234",
+  name: "My Space",
+}
+```
+
 ### Guest Sidebar
 
 You can customize your guest sidebar using the [Sidebar Reference](../guides/guest_sidebar) or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
@@ -387,6 +411,8 @@ const {
 });
 ```
 </CodeGroup>
+
+
 
 ## Full code examples
 
