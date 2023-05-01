@@ -53,17 +53,17 @@ curl --request POST \
           "label": "Email"
         }
       ],
-      "actions": [
-        {
-          "slug": "submitAction",
-          "label": "Submit",
-          "type": "string",
-          "description": "Submit data to webhook.site",
-          "primary": true
-        }
-      ]
     }
-  ]
+  ],
+  "actions": [
+    {
+      "slug": "submitAction",
+      "label": "Submit",
+      "type": "string",
+      "description": "Submit data to webhook.site",
+      "primary": true
+    }
+]
 }' | json_pp
 ```
 
