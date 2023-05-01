@@ -12,7 +12,7 @@ Flatfile offers an alternative way to think about file feeds: as adaptable data 
 ## How it works
 
 ### Upload files
-Because of Flatfile's Event-driven architecture, it's easy to set up a Space as a destination for any incoming files. 
+Because of Flatfile's Event-driven architecture, it's easy to set up a <Tooltip tip="Are micro-applications...">[Space](../concepts/spaces)</Tooltip> as a destination for any incoming files. 
 You can write a cron job, Lambda function, or Python script that targets the Space with incoming files. 
 
 ```
@@ -20,7 +20,7 @@ example Python script to post a file to a Space by Id
 ```
 
 ### Extract data from files
-You can listen for `file:uploaded` and subsequently trigger any custom extraction logic. Extractions are Jobs that process asyncronously.
+You can listen for `file:uploaded` and subsequently trigger any custom extraction logic. Extractions are <Tooltip tip="Large asynchronous work...">[Job](../concepts/jobs)</Tooltip> that process asyncronously.
 
 ```
 TODO: example listener code
@@ -30,7 +30,7 @@ TODO: example listener code
 
 ### Automate mapping
 Mapping in Flatfile is a unique type of Job. Each mapping execution is driven by a Job Plan that is progressively improved over time. 
-After the first couple of Files are mapped to a particular Blueprint, Flatfile will automatically suggest field and category-level mappings.
+After the first couple of Files are mapped to a particular <Tooltip tip="A Data Definition Language...">[Blueprint](../blueprint/overview)</Tooltip>, Flatfile will automatically suggest field and category-level mappings.
 While listening for an extraction Job to complete, you can poll the Space for the most recently used Job Plan and then execute a mapping Job.
 
 ```

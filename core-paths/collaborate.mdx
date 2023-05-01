@@ -12,7 +12,7 @@ With these two fundamental concepts, you can design a data onboarding experience
 
 ### Enforce data quality with Blueprint
 
-Using <Tooltip tip="A powerful DDL (Data Definition Language)...">[Blueprint](../blueprint/overview)</Tooltip>, you can design a schema and rules for each onboarding project. 
+Using <Tooltip tip="A Data Definition Language...">[Blueprint](../blueprint/overview)</Tooltip>, you can design a schema and rules for each onboarding project. 
 Blueprints are reusable across Workbooks, meaning that if you have a strict target schema, you'll only need to create the Blueprint once to use it across your entire customer base.
 Additionally, you can modify a Blueprint upon the `space:created` Event if your customers have some customization ability in your application.
 Finally, you may want to create a onboarding project Space with a bespoke Blueprint. In that case, simply pass the Blueprint to the Space once it is created using the <Tooltip tip="Listening and responding to Events">[Listener SDK](../concepts/events#building-with-events)</Tooltip>. 
