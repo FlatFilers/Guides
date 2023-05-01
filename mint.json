@@ -43,90 +43,70 @@
     "name": "Sign in",
     "url": "https://platform.flatfile.com"
   },
-  "versions": ["latest", "v3", "v2"],
+  "versions": [
+    "latest", 
+    { "name": "v3", "url": "https://docs.flatfile.com/docs/3.0" }, 
+    { "name": "v2", "url": "https://docs.flatfile.com/docs/2.0" }
+  ],
   "anchors": [
-    {
-      "name": "Click here for V3 docs",
-      "icon": "3",
-      "url": "https://docs.flatfile.com/docs",
-      "version": "v3"
-    },
-    {
-      "name": "Click here for V2 docs",
-      "icon": "2",
-      "url": "https://docs.flatfile.com/docs/2.0/",
-      "version": "v2"
-    },
     {
       "name": "Blueprint",
       "icon": "compass-drafting",
-      "url": "blueprint",
-      "version": "latest"
+      "url": "blueprint"
     },
     {
       "name": "Plugins",
       "icon": "plug",
-      "url": "https://flatfile.com/plugins",
-      "version": "latest"
+      "url": "https://flatfile.com/plugins"
     },
     {
       "name": "Developers",
       "icon": "brackets-curly",
-      "url": "developer-tools",
-      "version": "latest"
+      "url": "developer-tools"
     },
     {
       "name": "API Reference",
       "icon": "rectangle-terminal",
-      "url": "https://flatfile.stoplight.io/docs/v10/",
-      "version": "latest"
+      "url": "https://flatfile.stoplight.io/docs/v10/"
     }
   ],
   "navigation": [
     {
       "group": "Documentation",
-      "pages": ["overview"],
-      "version": "latest"
+      "pages": ["overview"]
     },
     {
       "group": "Quickstart",
       "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation",
-     "quickstart/submit-action", "quickstart/deploying"],
-     "version": "latest"
+     "quickstart/submit-action", "quickstart/deploying"]
     },
     {
       "group": "Guides", 
       "pages": ["guides/handling-data",  "guides/custom-actions",
-          "guides/theming", "guides/guest_sidebar",  "guides/documents"],
-      "version": "latest"
+          "guides/theming", "guides/guest_sidebar",  "guides/documents"]
     },
     {
       "group": "Concepts",
-      "pages": ["concepts/workbooks", "concepts/jobs", "concepts/events", "concepts/spaces"],
-      "version": "latest"
+      "pages": ["concepts/workbooks", "concepts/jobs", "concepts/events", "concepts/spaces"]
     },
     {
       "group": "Core paths",
-      "pages": ["core-paths/embedding", "core-paths/headless", "core-paths/collaborate"],
-      "version": "latest"
+      "pages": ["core-paths/embedding", "core-paths/headless", "core-paths/collaborate"]
     },
     {
       "group": "Blueprint",
 
       "pages": ["blueprint/overview", "blueprint/field-types",
-          "blueprint/constraints",  "blueprint/relationships", "blueprint/access"],
-      "version": "latest"
+          "blueprint/constraints",  "blueprint/relationships", "blueprint/access"]
     },
     {
       "group": "Overview",
-      "pages": ["developer-tools/environment", "developer-tools/deploying"],
-      "version": "latest"
+      "pages": ["developer-tools/environment", "developer-tools/deploying"]
     },
     {
       "group": "Security",
       "pages": ["developer-tools/security/authentication",
-          "developer-tools/security/roles-and-permissions"],
-      "version": "latest"
+          "developer-tools/security/roles-and-permissions"]
     }
   ],
   "footerSocials": {
