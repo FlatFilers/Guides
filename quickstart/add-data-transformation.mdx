@@ -100,6 +100,8 @@ You can use any npm package in a plugin.
 ```js index.js
 import { recordHook } from '@flatfile/plugin-record-hook';
 
+// While not the most correct, simple for the purpose of an example
+// if you want a correct regex to validate email addresses see: https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s01.html
 const validEmailAddress = /^[\w\d.-]+@[\w\d]+\.\w+$/;
 
 export default function(listener) {
@@ -128,6 +130,6 @@ Once you take focus off of the field, your validation will run and the sheet use
 
 ## Recap & Next Steps
 
-You now have a locally-running listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations.
+You now have a repl.it example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations. Be sure to delete the repl.it and the workbook when you're finished with them for security purposes.
 
 Next, we will <Tooltip tip="Configure a submit action">[add an action](submit-action)</Tooltip> that will call out to an external webhook receiver provided by the <Tooltip tip="Inspect, test and automate requests">[webhook.site](https://webhook.site)</Tooltip> service.
