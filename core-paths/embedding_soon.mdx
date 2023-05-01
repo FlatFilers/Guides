@@ -43,8 +43,12 @@ yarn install @flatfile/react@5.0.8
   each Environment.
 </Info>
 
-Copy your **publishable key** from the dashboard under [Developers Page](https://platform.flatfile.com/developers) to be used in the next step.
+Copy your **publishable key** from the dashboard under [Developers Page](https://platform.flatfile.com/developers) to be used in the Build step.
 This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../security/authentication).
+
+### Get your Environment Id
+
+Copy your **environment id** from the dashboard under [Developers Page](https://platform.flatfile.com/developers) to be used in the Build step.
 
 ## Build
 
@@ -255,7 +259,7 @@ This callback function is called when the submit action is complete and closes t
 
 #### makeTheme helper function
 
-The `makeTheme` helper function accepts three values (`primaryColor`, `textColor`, `logo`). From there, we programmatically create a nice looking theme for you. If you need more control, [add raw values](../guides/theming) instead.
+The `makeTheme` helper function accepts three values (`primaryColor`, `textColor`, `logo`). From there, we programmatically create a nice looking themed space for you. If you need more control, [add raw values](../guides/theming) instead.
 
 <Tip>
   Internally, our `makeTheme` helper validates that the colors passed in are
@@ -309,6 +313,25 @@ const {
 #### Manual CSS overrides
 
 Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in the [Theming Reference](../guides/theming).
+
+### Iframe styles
+
+You may want to style the iframe the space is wrapped in - we've got you covered using the prop `iframeStyles`
+
+This will override the default styles provided by the component and apply your custom styles instead.
+
+When using the `iframeStyle` prop, it is important to note that it accepts a JavaScript object with camelCased properties rather than a CSS string. This design decision is consistent with the way the DOM style JavaScript property functions, which allows for more efficient processing of styles and helps prevent XSS security vulnerabilities.
+
+```typescript
+const iframeStyles = {
+    width: '100%',
+    height: '750px',
+    borderWidth: 0,
+    borderRadius: '20px',
+    background: '#fff',
+    padding: '16px'
+  }
+```
 
 ### Collecting additional data
 
@@ -368,8 +391,7 @@ const {
 
 | Property                | Type                                                                           | Description                                                                                         |
 | ----------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
-| `defaultPage`           | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string } }` | Landing page upon loading a space. Defaults to primary workbook or first document, if there is one. |
-| `showPoweredByFlatfile` | `boolean`                                                                      | Toggle branding logo. Defaults to true.                                                             |
+| `defaultPage`           | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string } }` | Landing page upon loading a space. Defaults to primary workbook.  |
 | `showGuestInvite`       | `boolean`                                                                      | Toggle ability to invite guests. Defaults to false.                                                 |
 | `showDataChecklist`     | `boolean`                                                                      | Toggle data config for space. Defaults to false.                                                    |
 | `showSidebar`           | `boolean`                                                                      | Toggle whether sidebar defaults to open inside of a Workbook. Defaults to false.                    |
