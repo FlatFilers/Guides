@@ -5,257 +5,134 @@ description: "Learn how to process data with Data Hooks"
 
 # 
 
-**Data Hooks&reg;** are concise functions that automatically **re-format**, **correct**, **validate**, and **enrich** data during the data import process. These hooks can be executed on a complete record, or row, of data using the [transform](https://www.npmjs.com/package/@flatfile/plugin-transform) utility.
+**Data Hooks&reg;** are concise functions that automatically **re-format**, **correct**, **validate**, and **enrich** data during the data import process. These hooks can be executed on a complete record, or row, of data using methods on the `FlatfileRecord` class.
 
 Record-level hooks have access to all fields in a row and should be utilized for operations that require access to multiple fields or when creating a new field.
 
 ## Getting started
 
-Listen for updates to data records, and respond with four types of record hooks: `compute`, `transform`, `transformIfPresent`, and `validate`.
+Listen for updates to data records, and respond with three types of record hooks: `compute`, `computeIfPresent`, and `validate`. These hooks are available as methods on the `FlatfileRecord` class.
 
 ```ts
-import {
-  compute,
-  transform,
-  transformIfPresent,
-  validate,
-} from '@flatfile/plugin-transform'
-import type { FlatfileRecord } from '@flatfile/hooks'
+import { FlatfileRecord } from '@flatfile/hooks'
 ```
+
+<Info>
+In these examples, we'll reference the workbook from the [Quickstart guide](/quickstart/meet-the-workbook#building-your-first-workbook).
+</Info>
 
 ## Methods
 
-### `compute`
+### `FlatfileRecord.compute`
 
-Computes a new value for a field based solely on the intial value of that field. Optionally pass a message to surface to the user about the transformation.
+Computes a new value for a field based on its original value or other field values on the record. Optionally pass a message to surface to the user about the transformation. `compute` will run even when no value is set for the field (see [`computeIfPresent`](#flatfilerecord-computeifpresent)).
 
 #### Syntax
 
 ```ts
-compute(record, fieldName, transformation, message)
+FlatfileRecord.compute(fieldName, transformation, message)
 ```
 
-<ParamField path="record" type="FlatfileRecord">
-  The record to transform
-</ParamField>
-
 <ParamField path="fieldName" type="string">
-  The name of the field to transform
+  The name of the field to transform.
 </ParamField>
 
-<ParamField path="transformation" type="(value) => string | number | boolean | null">
-  The transformation to perform on the field value
+<ParamField path="transformation" type="(value, record) => string | number | boolean | null">
+  The transformation to perform on the field value. Receives the intial value of the field, as well as the entire record if you want to access other field values on the record.
 </ParamField>
 
 <ParamField path="message" type="string">
-  (optional) a message to show on the cell after the transformation
+  (optional) a message to show on the cell after the transformation.
 </ParamField>
 
 #### Example
 
+Generate email from first and last name:
+
 ```ts
 client.use(
-  recordHook('my-sheet', (record: FlatfileRecord) => {
-    compute(
-      record,
-      'firstName',
-      (value) => value && value.toString().toLowerCase(),
+  recordHook('contacts', (record: FlatfileRecord) => {
+    record.compute(
+      'email',
+      (email, record) => {
+        return `${record.get('firstName') + record.get('lastName)}@gmail.com`
+      },
       // optional
-      'First name was changed to lower case.'
+      'Email was generated from first and last name.'
     )
     return record
   })
 )
 ```
 
-### `transform`
+### `FlatfileRecord.computeIfPresent`
 
-Transforms the value of a field based on other fields in the record. Differs from `compute` in that the transformation function receives the entire record.
-
-#### Syntax
-
-```ts
-transform(record, fieldName, transformation, message)
-```
-
-<ParamField path="record" type="FlatfileRecord">
-  The record to transform
-</ParamField>
-
-<ParamField path="fieldName" type="string">
-  The name of the field to transform
-</ParamField>
-
-<ParamField path="transformation" type="(value) => string | number | boolean | null">
-  The transformation to perform on the field value
-</ParamField>
-
-<ParamField path="message" type="string">
-  (optional) a message to show on the cell after the transformation
-</ParamField>
-
-
-#### Example
-
-```ts
-client.use(
-  recordHook('my-sheet', (record: FlatfileRecord) => {
-    transform(
-      record,
-      'fullName',
-      (record) => `${record.get('firstName')} ${record.get('lastName')}`,
-      // optional
-      'Full name was computed'
-    )
-    return record
-  })
-)
-```
-
-### `transformIfPresent`
-
-Transforms the value of a field if specified fields are present.
+Same as [`compute`](#flatfilerecord-compute), but only computes a new value if an initial value is provided (not null). Useful for computations that may throw an error on null values.
 
 #### Syntax
 
 ```ts
-transformIfPresent(record, presentFields, fieldName, transformation, message)
+FlatfileRecord.computeIfPresent(fieldName, transformation, message)
 ```
 
-<ParamField path="record" type="FlatfileRecord">
-  The record to transform
-</ParamField>
-
-<ParamField path="presentFields" type="string[]">
-  The names of the fields that must be present for the transformation to occur
-</ParamField>
-
 <ParamField path="fieldName" type="string">
-  The name of the field to transform
+  The name of the field to transform.
 </ParamField>
 
-<ParamField path="transformation" type="(value) => string | number | boolean | null">
-  The transformation to perform on the field value
+<ParamField path="transformation" type="(value, record) => string | number | boolean | null">
+  The transformation to perform on the field value. Receives the intial value of the field, as well as the entire record if you want to access other field values on the record.
 </ParamField>
 
 <ParamField path="message" type="string">
-  (optional) a message to show on the cell after the transformation
+  (optional) a message to show on the cell after the transformation.
 </ParamField>
 
 #### Example
 
+Change first name to lower case:
+
 ```ts
 client.use(
-  recordHook('my-sheet', (record: FlatfileRecord) => {
-    transformIfPresent(
-      record,
-      ['firstName', 'lastName'],
-      'fullName',
-      (record) => `${record.get('firstName')} ${record.get('lastName')}`,
+  recordHook('contacts', (record: FlatfileRecord) => {
+    record.computeIfPresent(
+      'email',
+      (email) => email.toLowerCase(),
       // optional
-      'Full name was computed from first name and last name.'
+      'First name was converted to lower case.'
     )
     return record
   })
 )
 ```
 
-### `validate`
+### `FlatfileRecord.validate`
 
-Sets a field as invalid if its value does not meet a specified condition.
+Sets a field as invalid if its value does not meet a specified condition, and displays a message to the user.
 
 #### Syntax
 
 ```ts
-validate(record, fieldName, validator, message)
+validate(fieldName, validator, message)
 ```
 
-<ParamField path="record" type="FlatfileRecord">
-  The record to transform
-</ParamField>
-
 <ParamField path="fieldName" type="string">
-  The name of the field to transform
+  The name of the field to validate.
 </ParamField>
 
-<ParamField path="validator" type="(value) => boolean">
-  A function that determines whether a given field value is valid
+<ParamField path="validator" type="(value, record) => boolean">
+  A function that determines whether a given field value is valid. Receives the intial value of the field, as well as the entire record if you want to access other field values on the record.
 </ParamField>
 
 <ParamField path="message" type="string">
-  (optional) a message to show on the cell after the transformation
+  A message to show on the cell if the field is invalid.
 </ParamField>
+
+#### Exmaple
 
 ```ts
 client.use(
-  recordHook('my-sheet', (record: FlatfileRecord) => {
-    validate(
-      record,
-      'lastName',
-      'Last name cannot contain numbers',
-      (value) => !/\d/.test(value.toString())
-    )
-    return record
-  })
-)
-```
-
-## Usage
-
-### 1. Create a listener
-
-Set up a listener to configure Flatfile and respond to data events:
-
-```ts
-import {
-  Client,
-  FlatfileVirtualMachine,
-  FlatfileEvent,
-} from '@flatfile/listener'
-
-const listener = Client.create((client) => {
-  // Set up your configuration here
-})
-
-const FlatfileVM = new FlatfileVirtualMachine()
-
-listener.mount(FlatfileVM)
-
-export default listener
-```
-
-### 2. Listen for data changes
-
-Use the [@flatfile/plugin-record-hook](https://www.npmjs.com/package/@flatfile/plugin-record-hook) plugin to set up a hook that responds to data changes:
-
-```ts
-import { recordHook } from '@flatfile/plugin-record-hook'
-
-listener.use(recordHook('my-sheet', (record: FlatfileRecord) => {}))
-```
-
-### 3. Transform and validate data
-
-Inside your record hook, use these transformation utilities to transform and validate incoming data:
-
-```ts
-listener.use(
-  recordHook('my-sheet', (record: FlatfileRecord) => {
-    compute(
-      record,
-      'firstName',
-      (value) => value && value.toString().toLowerCase(),
-      'First name was changed to lower case.'
-    )
-    transformIfPresent(
-      record,
-      ['firstName', 'lastName'],
-      'fullName',
-      (record) => `${record.get('firstName')} ${record.get('lastName')}`,
-      'Full name was generated from first name and last name.'
-    )
-    validate(
-      record,
+  recordHook('contacts', (record: FlatfileRecord) => {
+    record.validate(
       'lastName',
       (value) => !/\d/.test(value.toString()),
       'Last name cannot contain numbers'
@@ -264,4 +141,3 @@ listener.use(
   })
 )
 ```
-
