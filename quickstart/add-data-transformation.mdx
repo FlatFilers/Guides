@@ -19,10 +19,10 @@ Using the Flatfile SDK, you can register any javascript function as an event lis
 
 Follow these steps:
 
-1. <Tooltip tip="View repl.it project">[Fork this Repl.it](https://replit.com/@flatfile/get-started#index.ts)</Tooltip>
+1. <Tooltip tip="View Repl.it project">[Fork this Repl.it](https://replit.com/@flatfile/get-started#index.ts)</Tooltip>
 2. Get your Secret Key from your <Tooltip tip="Go to developer dashboard">[Developer Dashboard](https://platform.flatfile.com/developers)</Tooltip> and set it as the value for `process.env.FLATFILE_API_KEY`.
 3. Click Run in your Repl.it
-4. Go back to your Flatfile workbook and make a few changes. For example try uploading a CSV and then importing the data to the workbook.
+4. Go back to your Flatfile Workbook and make a few changes. For example try uploading a CSV and then importing the data to the Workbook.
 5. Finally return to your Repl.it Console to see how those events were logged
 
 Here's an example of a very basic event listener:
@@ -43,9 +43,7 @@ export default function(listener) {
 
 listening for events at 4/28/2023, 2:36:22 PM
 
-sheet:validated us_evt_abc 4/28/2023, 2:36:36 PM
 records:updated us_evt_abc 4/28/2023, 2:36:36 PM
-sheet:validated us_evt_abc 4/28/2023, 2:36:36 PM
 records:updated us_evt_abc 4/28/2023, 2:36:36 PM
 ```
 
@@ -101,7 +99,6 @@ You can use any npm package in a plugin.
 import { recordHook } from '@flatfile/plugin-record-hook';
 
 // While not the most correct, simple for the purpose of an example
-// if you want a correct regex to validate email addresses see: https://www.oreilly.com/library/view/regular-expressions-cookbook/9781449327453/ch04s01.html
 const validEmailAddress = /^[\w\d.-]+@[\w\d]+\.\w+$/;
 
 export default function(listener) {
@@ -130,6 +127,6 @@ Once you take focus off of the field, your validation will run and the sheet use
 
 ## Recap & Next Steps
 
-You now have a repl.it example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations. Be sure to delete the repl.it and the workbook when you're finished with them for security purposes.
+You now have a Repl.it example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations. Be sure to delete the Repl.it and the Workbook when you're finished with them for security purposes.
 
 Next, we will <Tooltip tip="Configure a submit action">[add an action](submit-action)</Tooltip> that will call out to an external webhook receiver provided by the <Tooltip tip="Inspect, test and automate requests">[webhook.site](https://webhook.site)</Tooltip> service.
