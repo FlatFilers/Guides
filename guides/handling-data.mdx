@@ -89,7 +89,7 @@ FlatfileRecord.computeIfPresent(fieldName, transformation, message)
 
 #### Example
 
-Change first name to lower case:
+Change email to lower case:
 
 ```ts
 client.use(
@@ -98,7 +98,7 @@ client.use(
       'email',
       (email) => email.toLowerCase(),
       // optional
-      'First name was converted to lower case.'
+      'Email was converted to lower case.'
     )
     return record
   })
