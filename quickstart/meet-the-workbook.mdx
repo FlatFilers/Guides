@@ -27,14 +27,13 @@ Use your [secret key](../developer-tools/security/authentication#secret-and-publ
 ```shell Shell / cURL
 curl --request POST \
   --url https://platform.flatfile.com/api/v1/workbooks \
-  --header 'Accept: application/json' \
   --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
   --header 'Content-Type: application/json' \
   --data '{
   "name": "My First Workbook",
   "sheets": [
     {
-      "name": "Contacts",
+      "name": "Contact",
       "slug": "contacts",
       "fields": [
         {
@@ -52,7 +51,7 @@ curl --request POST \
           "type": "string",
           "label": "Email"
         }
-      ],
+      ]
     }
   ],
   "actions": [
@@ -63,8 +62,8 @@ curl --request POST \
       "description": "Submit data to webhook.site",
       "primary": true
     }
-]
-}' | json_pp
+  ]
+}'
 ```
 
 ### Using schemas
