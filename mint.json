@@ -87,7 +87,7 @@
     },
     {
       "group": "Concepts",
-      "pages": ["concepts/workbooks", "concepts/jobs", "concepts/events", "concepts/spaces"]
+      "pages": ["concepts/workbooks", "concepts/jobs", "concepts/events", "concepts/spaces", "concepts/ffql"]
     },
     {
       "group": "Core paths",
