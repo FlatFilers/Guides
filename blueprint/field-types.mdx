@@ -23,11 +23,12 @@ Defines a property that should be stored and read as a basic string.
   "type": "string"
 },
 ```
+![string](https://github.com/FlatFilers/Guides/assets/19697744/cb931050-1ce7-438f-8591-3467f523bee3)
 
 
 ### `number`
 
-Defines a property that should be stored and read as either an integer or floating point number. Database engines should look at the configuration to determine ideal storage format.
+Defines a property that should be stored and read as either an integer or floating point number. Numbers are displayed using a monospaced font. Database engines should look at the configuration to determine ideal storage format.
 
 
 
@@ -45,17 +46,9 @@ Defines a property that should be stored and read as either an integer or floati
   }
 },
 ```
+![number](https://github.com/FlatFilers/Guides/assets/19697744/dbaabdc8-6abe-4ddd-9a86-ed1de25792f0)
 
-### `reference`
 
-Defines a reference to another sheet. Links should be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
-
-<ParamField path="config.ref" required>
-  The full path reference to another sheet/table configuration. Must be in the same workbook.
-</ParamField>
-<ParamField path="config.relationship" required>
-  The type of relationship this defines. Can be `has-one`
-</ParamField>
 
 
 ### `enum`
@@ -118,6 +111,21 @@ Defines an enumerated list of options for the user to select from. Matching tool
   }
 },
 ```
+![enum](https://github.com/FlatFilers/Guides/assets/19697744/647557d5-5624-407c-9944-98dfa1b20d1f)
+
+
+### `reference`
+
+Defines a reference to another sheet. Links should be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
+
+<ParamField path="config.ref" required>
+  The full path reference to another sheet/table configuration. Must be in the same workbook.
+</ParamField>
+<ParamField path="config.relationship" required>
+  The type of relationship this defines. Can be `has-one`
+</ParamField>
+
+![reference](https://github.com/FlatFilers/Guides/assets/19697744/9235c223-a42a-4d40-9558-ac22ba93e2fa)
 
 
 ### `boolean`
@@ -131,6 +139,8 @@ A `true` or `false` value type. Matching engines should attempt to resolve all c
   "type": "boolean"
 }
 ```
+![boolean](https://github.com/FlatFilers/Guides/assets/19697744/c232e4be-6dfc-4859-9fcd-7a813da3629c)
+
 
 ### `date`
 
@@ -139,6 +149,9 @@ Store a field as a GMT date.
 <Warning>Data hooks must convert this value into a `YYYY-MM-DD` format in order for it to be considered a valid value for sorting. </Warning>
 
 Datetime should be a separate and future supported value as it must consider timezone.
+
+![date](https://github.com/FlatFilers/Guides/assets/19697744/041658f6-31a3-41ea-ad8e-91075fb02b75)
+
 
 ---
 
