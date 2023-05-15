@@ -101,7 +101,7 @@
     },
     {
       "group": "Overview",
-      "pages": ["developer-tools/environment", "developer-tools/deploying"]
+      "pages": ["developer-tools/environment", "developer-tools/deploying", "developer-tools/flatfile_query_language"]
     },
     {
       "group": "Security",
