@@ -1,47 +1,18 @@
 ---
 title: Types
-description: "Learn more about each supported field type: `string`, `number`, `boolean`, `date`, `enum`, `reference`"
+description: "Field Types inform the user interface how to sort and display data."
 icon: 'hashtag'
 ---
 
-## Default Options
-Each field has the following configuration options. Read the documentation for each type to see what configuration options are available.
+## Overview
 
-<ParamField path="key" type="string" required>
-  The system name of this field. Primarily informs JSON and egress structures.
-</ParamField>
-
-<ParamField path="type" required>
-  One of `string`, `number`, `boolean`, `date`, `enum`, `reference`. Defines the handling of this property.
-</ParamField>
-
-<ParamField path="label" default="key" type="string">
-  A user-facing descriptive label designed to be displayed in the UI such as a table header.
-</ParamField>
-
-<ParamField path="description" type="string">
-  A long form description of the property intended to be displayed to an end user.
-</ParamField>
-
-<ParamField path="constraints" default="[]" type="array">
-  An array of system level Validation Rules meant to be applied after hooks are run.
-</ParamField>
-
-<ParamField path="config" default="{}" type="object">
-  Configuration relevant to the type of column. See property documentation below.
-</ParamField>
-
-<ParamField path="multi" default="false" type="boolean">
-  Will allow multiple values and store / provide the values in an array if set. Not all field types support arrays.
-</ParamField>
-
-<ParamField path="meta" default="{}" type="object">
-  Arbitrary object of values to pass through to hooks and egress
-</ParamField>
----------
+Blueprint offers 6 supported field types. Field Types inform the user interface how to sort and display data.
 
 
-## `string` _(default)_
+<Note>Setting a field type does not transform or validate data out-of-the-box. These are still done with [recordHooks](../guides/handling-data).</Note>
+
+
+### `string` _(default)_
 
 Defines a property that should be stored and read as a basic string.
 
@@ -54,7 +25,7 @@ Defines a property that should be stored and read as a basic string.
 ```
 
 
-## `number`
+### `number`
 
 Defines a property that should be stored and read as either an integer or floating point number. Database engines should look at the configuration to determine ideal storage format.
 
@@ -75,7 +46,7 @@ Defines a property that should be stored and read as either an integer or floati
 },
 ```
 
-## `reference`
+### `reference`
 
 Defines a reference to another sheet. Links should be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
 
@@ -83,11 +54,11 @@ Defines a reference to another sheet. Links should be established automatically 
   The full path reference to another sheet/table configuration. Must be in the same workbook.
 </ParamField>
 <ParamField path="config.relationship" required>
-  The type of relationship this defines. Can be one of `has-many` or `has-one`
+  The type of relationship this defines. Can be `has-one`
 </ParamField>
 
 
-## `enum`
+### `enum`
 
 Defines an enumerated list of options for the user to select from. Matching tooling attempts to resolve incoming data assigment to a valid option. The maximum number of options for this list is `100`. For larger lists, users should use the `reference` lookup types.
 
@@ -149,7 +120,7 @@ Defines an enumerated list of options for the user to select from. Matching tool
 ```
 
 
-## `boolean`
+### `boolean`
 
 A `true` or `false` value type. Matching engines should attempt to resolve all common ways of representing this value and it should usually be displayed as a checkbox.
 
@@ -161,6 +132,46 @@ A `true` or `false` value type. Matching engines should attempt to resolve all c
 }
 ```
 
-## `date`
+### `date`
 
-Store a field as a GMT date. Data hooks must convert this value into a `YYYY-MM-DD` format in order for it to be considered a valid value. Datetime should be a separate and future supported value as it must consider timezone.
+Store a field as a GMT date. 
+
+<Warning>Data hooks must convert this value into a `YYYY-MM-DD` format in order for it to be considered a valid value for sorting. </Warning>
+
+Datetime should be a separate and future supported value as it must consider timezone.
+
+---
+
+## Field Options
+
+<ParamField path="key" type="string" required>
+  The system name of this field. Primarily informs JSON and egress structures.
+</ParamField>
+
+<ParamField path="type" required>
+  One of `string`, `number`, `boolean`, `date`, `enum`, `reference`. Defines the handling of this property.
+</ParamField>
+
+<ParamField path="label" default="key" type="string">
+  A user-facing descriptive label designed to be displayed in the UI such as a table header.
+</ParamField>
+
+<ParamField path="description" type="string">
+  A long form description of the property intended to be displayed to an end user.
+</ParamField>
+
+<ParamField path="constraints" default="[]" type="array">
+  An array of system level Validation Rules meant to be applied after hooks are run.
+</ParamField>
+
+<ParamField path="config" default="{}" type="object">
+  Configuration relevant to the type of column. See property documentation below.
+</ParamField>
+
+<ParamField path="multi" default="false" type="boolean">
+  Will allow multiple values and store / provide the values in an array if set. Not all field types support arrays.
+</ParamField>
+
+<ParamField path="meta" default="{}" type="object">
+  Arbitrary object of values to pass through to hooks and egress
+</ParamField>
