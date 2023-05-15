@@ -87,7 +87,7 @@
     },
     {
       "group": "Concepts",
-      "pages": ["concepts/workbooks", "concepts/jobs", "concepts/events", "concepts/spaces", "concepts/ffql"]
+      "pages": ["concepts/workbooks", "concepts/jobs", "concepts/events", "concepts/spaces"]
     },
     {
       "group": "Core paths",
@@ -101,7 +101,7 @@
     },
     {
       "group": "Overview",
-      "pages": ["developer-tools/environment", "developer-tools/deploying"]
+      "pages": ["developer-tools/environment", "developer-tools/deploying", "developer-tools/flatfile_query_language"]
     },
     {
       "group": "Security",
