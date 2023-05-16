@@ -101,7 +101,7 @@
     },
     {
       "group": "Overview",
-      "pages": ["developer-tools/environment", "developer-tools/deploying"]
+      "pages": ["developer-tools/environment", "developer-tools/deploying", "developer-tools/flatfile_query_language"]
     },
     {
       "group": "Security",
@@ -119,6 +119,6 @@
     }
 },
 "integrations": {
-  "frontchat": "c02ec74006444b9296112373657903b2"
+  "intercom":  "q8ccrv3f"
 }
 }

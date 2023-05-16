@@ -1,6 +1,7 @@
 ---
 title: "Embed in your app"
 description: "Learn how to securely and easily build an embedded Flatfile import experience into your client-side application"
+icon: "person-to-portal"
 ---
 
 ## [@flatfile/react](https://www.npmjs.com/package/@flatfile/react)
@@ -54,8 +55,10 @@ Copy your **environment id** from the dashboard under [Developers Page](https://
 
 Before getting started with the embedded experience, it is important to consider two concepts:
 
-1. The space component which has [Workbooks](../concepts/workbooks)
-2. [Events](../concepts/events) which enables workbooks to have asynchronous and customizable jobs to happen either behind the scenes or be triggered upon user interaction.
+1. The space component which has <Tooltip tip="Analogous to a database...">[Workbooks](../concepts/workbooks)</Tooltip>
+2. <Tooltip tip="Anatomy of an Event...">[Events](../concepts/events)</Tooltip> which
+   enables workbooks to have asynchronous and customizable jobs to happen either
+   behind the scenes or be triggered upon user interaction.
 
 _In the examples below, you will see these events mentioned above being passed in as `client` to the `useSpace` hook._
 
@@ -63,7 +66,7 @@ _In the examples below, you will see these events mentioned above being passed i
 
 When you launch an embedded importer, you're actually launching an entire Space for that Guest.
 
-The `useSpace` hook returns a Space component which has internal [Workbooks](../concepts/workbooks).
+The `useSpace` hook returns a Space component which has internal <Tooltip tip="Analogous to a database...">[Workbooks](../concepts/workbooks)</Tooltip>.
 
 <CodeGroup>
 ```typescript Your Application
@@ -244,7 +247,7 @@ export const localClient = Client.create((client) => {
 Our component comes equipped with robust error handling capabilities, ensuring that unexpected errors do not disrupt the user experience.
 By default, the component will render an error component with the error message when an error is encountered, providing your users with clear feedback on what went wrong.
 
-However, we also understand that different applications may have unique error handling needs.Therefore, we have designed our component to be highly customizable.
+However, we also understand that different applications may have unique error handling needs. Therefore, we have designed our component to be highly customizable.
 If you would like to use your own error handling component instead of the default one, simply pass it in as the `error` prop when rendering the component.
 This allows you to seamlessly integrate our component with your application's existing error handling infrastructure, while still benefiting from our core error handling functionality.
 
@@ -409,7 +412,7 @@ const { component } = useSpace({
 
 ## Documents
 
-[Documents]('../guides/documents), written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
+<Tooltip tip="Standalone webpages...">[Documents]('../guides/documents)</Tooltip>, written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
 
 <CodeGroup>
 

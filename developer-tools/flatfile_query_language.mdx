@@ -1,0 +1,93 @@
+---
+title: "Flatfile query language"
+description: "Learn how to filter data in Sheets with FFQL."
+icon: 'rectangle-terminal'
+---
+
+FFQL (Flatfile Query Language) is Flatfile's custom query language used for filtering data in <Tooltip tip="A collection of fields...">[Sheets](../blueprint/overview)</Tooltip>.
+It's logical, composable, and human-readable.
+
+## Overview
+
+Here's an example request for searching for rows where the First Name column is "Bender" and the Last Name column is "Rodriguez".
+:
+
+```sql GET sheets/<sheetId>/records request
+GET sheets/<sheetId>/records?q=first_name eq Bender and last_name eq Rodriguez
+```
+
+```sql query
+first_name eq Bender and last_name eq Rodriguez
+```
+
+---
+
+## Syntax
+The basic syntax of FFQL is:
+```sql
+[field name] <operator> <value>
+```
+
+### Field Name 
+
+`field name` is optional and excluding a field name will search across all fields. For example: `eq "Planet Express"` will search across all fields for that value.
+`field name` can be the field key or the field label. 
+
+Labels or values with spaces should be wrapped in quotes. For example: `name eq "Bender Rodriguez"`, or `"First Name" eq Bender`. 
+
+### Operators
+FFQL operators are:
+
+- `eq` - Equals (exact match)
+- `ne` - Not Equal
+- `lt` - Less Than
+- `gt` - Greater Than
+- `lte` - Less Than or Equal To
+- `gte` - Greater Than or Equal To
+- `like` - Like (partial match, similar to SQLs `like '%value%`)
+
+### Logical Operators
+FFQL supports two logical operators:
+
+- `and` - Returns rows meeting both conditions
+- `or` - Returns rows meeting either conditions (inclusive)
+
+### The `is` Operator
+You can query for message statuses by using the `is` operator. For example: `is error` returns all the rows in an `error` state. `is valid` returns all the rows in a `valid` state. `first_name is error` returns the rows where First Name is in an `error` state.
+
+---
+
+## Constructing Queries
+Complex queries are possible using a combination of operators:
+
+```sql
+(
+    email like "@gmail.com"
+    and (
+        "Subscription Status" eq "On-Hold" 
+        or "Subscription Status" eq "Pending"
+    ) 
+    and login_attempts gte 5
+)
+or is warning
+```
+
+This query would return all the rows that:
+1. Have a Gmail email address,
+2. Have a Subscription Status of "On-Hold" or "Pending",
+3. And have more than 5 login attempts.
+
+<Note>It will also include any rows that have a "Warning" message status.</Note>
+
+---
+
+## Usage
+FFQL queries can be passed to any <Tooltip tip="View API reference">[REST API](https://reference.flatfile.com/docs/api)</Tooltip> endpoint that supports the `q` parameter.
+
+Here's an example **cURL** request using the `sheets/<sheetId>/records` endpoint:
+
+```shell Shell / cURL
+curl --location 'https://platform.flatfile.com/api/sheets/us_sh_12345678/records?q="Subscription Status" eq "On-Hold" or "Subscription Status" eq "Pending"' \
+    --header 'Accept: */*' \
+    --header 'Authorization: Bearer <bearer token>'
+```
