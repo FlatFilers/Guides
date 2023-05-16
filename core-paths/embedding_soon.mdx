@@ -27,11 +27,11 @@ Install Embed React from the npm public registry.
 <CodeGroup>
 
 ```npm npm
-npm install @flatfile/react@5.0.8
+npm install @flatfile/react@6.0
 ```
 
 ```yarn yarn
-yarn install @flatfile/react@5.0.8
+yarn install @flatfile/react@6.0
 ```
 
 </CodeGroup>
@@ -45,7 +45,7 @@ yarn install @flatfile/react@5.0.8
 </Info>
 
 Copy your **publishable key** from the dashboard under [Developers Page](https://platform.flatfile.com/developers) to be used in the Build step.
-This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../security/authentication).
+This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../developer-tools/security/authentication).
 
 ### Get your Environment Id
 
@@ -69,34 +69,34 @@ When you launch an embedded importer, you're actually launching an entire Space 
 The `useSpace` hook returns a Space component which has internal <Tooltip tip="Analogous to a database...">[Workbooks](../concepts/workbooks)</Tooltip>.
 
 <CodeGroup>
-```typescript ExampleApp
-import { ISpace } from "@flatfile/react";
-import { makeTheme } from "@flatfile/react";
-import { useSpace } from "@flatfile/react";
-
-const ExampleApp = () => {
-const [showSpace, setShowSpace] = useState(false);
+```typescript Your Application
+import { useSpace, ISpace, makeTheme } from '@flatfile/react'
+import { config, localClient } from './setup.ts
 
 const spaceProps: ISpace = {
-name: "Embedded Space",
-workbookName: "Employees workbook",
-publishableKey: "your-publishable-key",
-environmentId: "your-env-id",
+name: 'Embedded Space',
+// to test locally add your local vars here
+publishableKey: '',
+environmentId: '',
 workbook: config,
-themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
+themeConfig: makeTheme({ primaryColor: '#546a76', textColor: '#fff' }),
 sidebarConfig: {
 showDataChecklist: false,
-showSidebar: false,
+showSidebar: false
 },
-archiveSpaceOn: "TestSheet:join-field",
-onComplete: () => setShowSpace(false),
-onSubmit: () => console.log("submitting"),
-client: joinFieldClient,
-};
+client: localClient
+}
 
-const { error, data } = useSpace({
+const ExampleApp = () => {
+const [showSpace, setShowSpace] = useState(false)
+
+const { component } = useSpace({
 ...spaceProps,
-});
+closeSpace: {
+operation: 'contacts:submit',
+onClose: () => setShowSpace(false)
+}
+})
 
 return (
 
@@ -108,105 +108,114 @@ return (
   >
     {showSpace === true ? "Close" : "Open"} space
   </button>
-  {error && <div>{`🚫 ${error}`}</div>}
-  {showSpace && data?.component}
+  {showSpace && component}
 </div>
-); };
+) }
 
 ````
 
-```typescript Example Workbook
+```typescript Example setup.ts
 
-import { Client } from '@flatfile/listener'
-import { Flatfile } from '@flatfile/api'
+import { Flatfile, FlatfileClient } from '@flatfile/api'
 
-export const config: Flatfile.SheetConfig[] = [
-  {
-    name: 'TestSheet',
-    slug: 'TestSheet',
-    fields: [
-      {
-        key: 'first_name',
-        type: 'string',
-        label: 'First name',
-        constraints: [
-          {
-            type: 'required'
-          }
-        ]
-      },
-      {
-        key: 'last_name',
-        type: 'string',
-        label: 'last name',
-        constraints: [
-          {
-            type: 'unique'
-          }
-        ]
-      },
-      {
-        key: 'full_name',
-        type: 'string',
-        label: 'full name'
-      }
-    ],
-    actions: [
-      {
-        slug: 'join-field',
-        label: 'Join field',
-        primary: true
-      }
-    ]
-  }
-]
+export const config: Pick<
+  Flatfile.WorkbookConfig,
+  'name' | 'sheets' | 'actions'
+> = {
+  name: 'Employees workbook',
+  sheets: [
+    {
+      name: 'TestSheet',
+      slug: 'TestSheet',
+      fields: [
+        {
+          key: 'first_name',
+          type: 'string',
+          label: 'First name',
+          constraints: [
+            {
+              type: 'required'
+            }
+          ]
+        },
+        {
+          key: 'last_name',
+          type: 'string',
+          label: 'last name',
+          constraints: [
+            {
+              type: 'unique'
+            }
+          ]
+        },
+        {
+          key: 'full_name',
+          type: 'string',
+          label: 'full name'
+        }
+      ]
+    }
+  ],
+  actions: [
+    {
+      label: 'Submit',
+      operation: 'contacts:submit',
+      description: 'Would you like to submit your workbook?',
+      mode: 'foreground',
+      primary: true,
+      confirm: true
+    }
+  ]
+}
 
 ```
 
 ```typescript Example client
 
 /**
- * Example Client that runs join field on action 'Join field'
+ * Example Client
  */
-export const joinFieldClient = Client.create((client) => {
+
+ async function startCustomJob(jobId: string) {
+  console.log('starting custom job at' + new Date())
+
+  const storedToken = sessionStorage.getItem('token')
+
+  if (!storedToken) {
+    throw new Error('Error retrieving stored token')
+  }
+
+  const Flatfile = new FlatfileClient({
+    token: storedToken,
+    environment: 'https://platform.flatfile.com/api/v1'
+  })
+
+  await Flatfile.jobs.ack(jobId, {
+    info: "I'm starting the job - inside client",
+    // progress only makes sense if multipart job - optional
+    progress: 33
+  })
+
+  // convert records here (event.api.updateRecords)
+  // add example vs. setTimeout
+  await new Promise((res) => setTimeout(res, 2000))
+
+  await Flatfile.jobs.complete(jobId, {
+    info: "Job's work is done"
+  })
+}
+
+/**
+ * Example Client
+ */
+export const localClient = Client.create((client) => {
   client.on(
-    'action:triggered',
+    'job:ready',
     // @ts-ignore
-    { context: { sheetSlug: 'TestSheet' } },
-    async (event) => {
-      const { sheetId, versionId } = event.context
-
-      try {
-        const {
-          data: { records }
-        } = await event.api.getRecords({
-          sheetId,
-          versionId
-        })
-
-        if (!records) return
-
-        // Populate full name field
-        const recordsUpdates = records?.map((record: any) => {
-          const fullName =
-            record.values['first_name'].value + record.values['last_name'].value
-
-          record.values['full_name'].value = fullName
-
-          return record
-        })
-
-        console.log('updates', { recordsUpdates })
-
-        await event.api.updateRecords({
-          sheetId,
-          recordsUpdates
-        })
-      } catch (e) {
-        console.log(
-          `Error updating records - Use console logs inside your events to further debug: ${e}`
-        )
-      }
+    { payload: { operation: 'contacts:submit' } },
+    async (event: any) => {
+      const { context } = event
+      return startCustomJob(context.jobId)
     }
   )
 })
@@ -215,21 +224,23 @@ export const joinFieldClient = Client.create((client) => {
 
 </CodeGroup>
 
-| Name             | Description                                                                  | Type                    | Required |
-| ---------------- | ---------------------------------------------------------------------------- | ----------------------- | -------- |
-| `name`           | Name of space                                                                | string                  | No       |
-| `workbookName`   | Name of workbook                                                             | string                  | Yes      |
-| `workbook`       | Shape of data you will be receiving                                          | Flatfile.SheetConfig[]  | Yes      |
-| `publishableKey` | Publishable key accessed via auth/api-keys or Flatfile dashboard > Developer | string                  | Yes      |
-| `environmentId`  | Identifier for environment                                                   | string                  | Yes      |
-| `client`         | Listener client for advanced functionality                                   | Client                  | No       |
-| `onSubmit`       | Finalizes embedded workflow, archives the space.                             | () => void              | No       |
-| `onComplete`     | Control the iFrame                                                           | () => void              | No       |
-| `iframeStyles`   | Style the iframe using CSS Properties                                        | React.CSSProperties     | No       |
-| `themeConfig`    | Theme values for space, sidebar and data table                               | IThemeConfig            | No       |
-| `sidebarConfig`  | Sidebar config values to toggle UI elements                                  | ISidebarConfig          | No       |
-| `document`       | Document to pass to space                                                    | Flatfile.DocumentConfig | No       |
-| `archiveSpaceOn` | Action to archive space on                                                   | string                  | No       |
+| Name             | Description                                                               | Type                    | Required |
+| ---------------- | ------------------------------------------------------------------------- | ----------------------- | -------- |
+| `publishableKey` | Publishable key accessed via Flatfile dashboard > Developer               | string                  | Yes      |
+| `environmentId`  | Identifier for environment                                                | string                  | Yes      |
+| `name`           | Name of space                                                             | string                  | No       |
+| `workbook`       | Shape of data you will be receiving                                       | Flatfile.WorkbookConfig | Yes      |
+| `client`         | Listener client for advanced functionality                                | Client                  | No       |
+| `spaceInfo`      | Additional metadata to be passed to the space                              | tbd | No       |
+| `closeSpace`     | Used to determine when to close the iframe and a callback function when session is complete | tbd | No       |
+| `iframeStyles`   | Style the iframe using CSS Properties                                     | React.CSSProperties     | No       |
+| `themeConfig`    | Theme values for space, sidebar, and data table                            | IThemeConfig            | No       |
+| `sidebarConfig`  | Sidebar config values to toggle UI elements                               | ISidebarConfig          | No       |
+| `document`       | Document to pass to space                                                 | Flatfile.DocumentConfig | No       |
+| `error`          | Error element to display if component throws                              | (error: Error \| string) => React.ReactElement | No       |
+| `loading`        | Loading element to display while space loads                              | React.ReactElement      | No       |
+
+
 
 #### Error handling
 
@@ -247,14 +258,17 @@ If no loader component is passed in, our default loader will be used. This gives
 
 ## Lifecycle
 
-#### `onSubmit`
+#### `closeSpace`
 
-This callback function is called when the user submits data using the primary action (upper right hand corner of Space) from within the iframe. It is typically used to perform actions on the submitted data, such as validating it or sending it to a server.
-This function does not close the iframe.
+```typescript
 
-#### `onComplete`
+const closeSpace = {
+  operation: 'contacts:submit',
+  onClose: () => {}
+}
+```
 
-This callback function is called when the submit action is complete and closes the iframe. **Internally, we archive the space when onComplete is called.** It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
+This `onClose` callback function is called when the action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
 
 ## Customization
 
@@ -280,27 +294,12 @@ const theme = makeTheme({
 ```
 
 ```typescript Example passed to useSpace hook
-const {
-  error,
-  data: { component },
-} = useSpace({
+const { component } = useSpace({
   themeConfig: theme,
   publishableKey,
   environmentId,
   workbook,
-  workbookName,
 });
-```
-
-```typescript Example passed to Space
-<Space
-  themeConfig={theme}
-  publishableKey={publishableKey}
-  environmentId={environmentId}
-  workbook={workbook}
-  workbookName={workbookName}
-  {...props}
-/>
 ```
 
 </CodeGroup>
@@ -325,6 +324,9 @@ This will override the default styles provided by the component and apply your c
 
 When using the `iframeStyle` prop, it is important to note that it accepts a JavaScript object with camelCased properties rather than a CSS string. This design decision is consistent with the way the DOM style JavaScript property functions, which allows for more efficient processing of styles and helps prevent XSS security vulnerabilities.
 
+<CodeGroup>
+
+
 ```typescript
 const iframeStyles = {
     width: '100%',
@@ -335,6 +337,19 @@ const iframeStyles = {
     padding: '16px'
   }
 ```
+
+```typescript Example passed to useSpace hook
+const { component } = useSpace({
+  themeConfig: theme,
+  publishableKey,
+  environmentId,
+  workbook,
+  iframeStyles
+});
+```
+
+</CodeGroup>
+
 
 ### Collecting additional data
 
@@ -378,15 +393,11 @@ const mySidebarConfig = {
 ```
 
 ```typescript Example passed to useSpace hook
-const {
-  error,
-  data: { component },
-} = useSpace({
+const { component } = useSpace({
   sidebarConfig: mySidebarConfig,
   publishableKey,
   environmentId,
   workbook,
-  workbookName,
 });
 ```
 
@@ -422,17 +433,12 @@ const mainDocument = {
 ```
 
 ```typescript Example passed to useSpace hook
-const {
-  error,
-  data: { component },
-} = useSpace({
+const { component } = useSpace({
   publishableKey,
   sidebarConfig: mySidebarConfig,
-  publishableKey,
   environmentId,
   document: mainDocument,
   workbook,
-  workbookName,
 });
 ```
 </CodeGroup>
