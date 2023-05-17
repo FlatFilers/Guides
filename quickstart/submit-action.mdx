@@ -10,23 +10,35 @@ Actions refer to buttons added to the user interface that trigger <Tooltip tip="
 
 In this example, we're going to add behavior to our Workbook's primary Action (`submitAction`). When the button is clicked by a user, our code will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
 
-1. To create the receiver, navigate to [webhook.site](https://webhook.site) 2. Copy the value of `Your unique URL`.
+1. To create the receiver, navigate to [webhook.site](https://webhook.site) 2. Copy the value of the path after webhook.site for `Your unique URL`.
 3. Next, add the following to your default export function in Repl.it.
 
 ```js index.js
 export default function(listener) {
   // existing code
 
+  const https = require('https');
+
   listener.on('action:triggered', async (event) => {
-      const webhookReceiver = '<WEBHOOK URL>';  
-      
-      const res = await fetch(webhookReceiver, {
+
+    new Promise((resolve, reject) => {
+      const req = https.request({
         method: 'POST',
+        protocol: 'https:',
+        hostname: 'webhook.site',
+        // copy your https://webhook.site path for testing
+        path: '/<COPY_PATH_HERE>',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(event.payload)
-      })
+      });
+      const body = JSON.stringify({ event }, null, 2);
+      req.write(body);
+      req.on('response', (res) => { resolve(); });
+      req.on('error', (err) => { reject(err); });
+      req.end();
+    });
+
   })
 }
 ```
