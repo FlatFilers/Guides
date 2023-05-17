@@ -16,15 +16,14 @@ Each of these actions creates an <Tooltip tip="Anatomy of an Event...">[Event](.
 
 <Note>Flatfile provides a powerful Typescript/NodeJS SDK for working with events and plugins. There are a lot of ways to listen to events in other ways that we describe in the [Events](../concepts/events) docs.</Note>
 
-Using the Flatfile SDK, you can register any javascript function as an event listener and start working with events. To keep it simple, we'll use a pre-configured Repl.it.
+Using the Flatfile SDK, you can register any javascript function as an event listener and start working with events.
 
 Follow these steps:
 
-1. [Fork this Repl.it](https://replit.com/@flatfile/get-started#index.ts)
-2. Get your Secret Key from your [Developer Dashboard](https://platform.flatfile.com/developers) and set it as the value for `process.env.FLATFILE_API_KEY`.
-3. Click Run in your Repl.it
-4. Go back to your Flatfile Workbook and make a few changes. For example try uploading a CSV and then importing the data to the Workbook.
-5. Finally return to your Repl.it Console to see how those events were logged
+1. [Fork this Github repo](https://github.com/FlatFilers/getting-started.git)
+2. Run `npx flatfile@latest develop` from terminal
+3. Go back to your Flatfile Workbook and make a few changes. For example try uploading a CSV and then importing the data to the Workbook.
+4. Finally return to your terminal to see how those events were logged
 
 Here's an example of a very basic event listener:
 
@@ -84,7 +83,7 @@ export default function(listener) {
 
 Once the focus is off of the new First Name field, your transformation will run and convert the characters in your value to lowercase.
 
-1. After starting the code in Repl.it, navigate to your Contacts sheet and insert a new row where the First Name is written entirely in capital letters. 
+1. With the `develop` command still running in terminal, navigate to your Contacts sheet and insert a new row where the First Name is written entirely in capital letters. 
 2. When the focus leaves the First Name field, your transformation will run and convert the characters in your value to lowercase.
 
 
@@ -119,7 +118,7 @@ export default function(listener) {
 
 Once you take focus off of the field, your validation will run and the sheet user interface will display an error for the changed field.
 
-1. After starting the code in Repl.it, go back to your Contacts sheet.
+1. With the `develop` command still running in terminal, go back to your Contacts sheet.
 2. Modify any value of Email Address to make it an invalid email address. 
 3. Take focus off the field you entered (click outside that field). 
 
@@ -128,6 +127,6 @@ Once you take focus off of the field, your validation will run and the sheet use
 
 ## Recap & Next Steps
 
-You now have a Repl.it example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations. Be sure to delete the Repl.it and the Workbook when you're finished with them for security purposes.
+You now have an example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations.
 
 Next, we will [add an action](submit-action) that will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
