@@ -24,6 +24,9 @@ Workbook-mounted custom actions are represented as buttons in the top right of t
 
 
 ### Usage
+
+Listen for a `job:ready` and filter on the `domain` (workbook) and the `operation` of where the action was placed. Be sure to complete to job when it's complete.
+
 <Info>
   If you configure `primary: true` on a custom action, it will be represented as the rightmost button in the Workbook.
 </Info>
@@ -33,19 +36,45 @@ Workbook-mounted custom actions are represented as buttons in the top right of t
 ```jsx workbook.js
 actions: [
   {
-    "slug": "string",
-    "label": "string",
-    "description": "string",
-    "primary": true,
-  }
+    operation: 'submitActionFg',
+    mode: 'foreground',
+    label: 'Submit data elsewhere',
+    type: 'string',
+    description: 'Submit this data to a webhook.',
+    primary: true,
+  },
   {...}
 ]
 ```
 
 ```jsx listener.js
-listener.on('action:triggered', async (event) => {
-     //perform the action here
+listener.filter({ job: 'workbook:submitActionFg' }, (configure) => {
+    configure.on('job:ready', async (event) => {
+
+    const { jobId } = event.context;
+
+      try {
+        await api.jobs.ack(jobId, {
+          info: 'Gettin started.',
+          progress: 10 //optional
+        });
+
+        //do your work here
+
+        await api.jobs.complete(jobId, {
+          info: 'This job is now complete.'
+        });
+      }
+      catch (error) {
+        console.log(`Error: ${JSON.stringify(error, null, 2)}`);
+
+        await api.jobs.fail(jobId, {
+          info: 'This job did not work.'
+        });
+      }
+
   })
+})
 ```
 </CodeGroup>
 
@@ -60,19 +89,22 @@ Sheet-mounted custom actions are represented as a dropdown in the toolbar of the
 
 ### Usage
 
+Listen for a `job:ready` and filter on the `domain` (sheet) and the `operation` of where the action was placed. Be sure to complete to job when it's complete.
+
 <CodeGroup>
 
-```jsx workbook.js
+```jsx sheet.js
 sheets : [
   {
     name: "Sheet Name",
     actions: [
       {
-        slug: "download_as_pdf",
-        label: "Download as PDF",
-        type: "string",
-        description: "This message shows in the pop up after clicking the action.",
-        primary: false
+        operation: 'capitalizeNamesBg',
+        mode: 'background',
+        label: 'Capitalize selected names',
+        type: 'string',
+        description: 'Capitalize names for selected rows',
+        primary: true,
       },
       {...}
     ]
@@ -81,9 +113,33 @@ sheets : [
 ```
 
 ```jsx listener.js
-listener.on('action:triggered', async (event) => {
-     //perform the action here
+listener.filter({ job: 'sheet:capitalizeNamesBg' }, (configure) => {
+    configure.on('job:ready', async (event) => {
+
+    const { jobId } = event.context;
+
+      try {
+        await api.jobs.ack(jobId, {
+          info: 'Gettin started.',
+          progress: 10 //optional
+        });
+
+        //do your work here
+
+        await api.jobs.complete(jobId, {
+          info: 'This job is now complete.'
+        });
+      }
+      catch (error) {
+        console.log(`Error: ${JSON.stringify(error, null, 2)}`);
+
+        await api.jobs.fail(jobId, {
+          info: 'This job did not work.'
+        });
+      }
+
   })
+})
 ```
 
 </CodeGroup>
