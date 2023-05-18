@@ -1,0 +1,116 @@
+---
+title: "Configure a Space"
+description: "Dyanmically build your Space on command."
+icon: 'object-group'
+---
+
+A Space and its Workbooks are dynamically created based on your use case or workflow. 
+
+The options for what you can do here are endless. For instance:
+- Perhaps the user interacting with the button changes how you want that Space to look
+- Or maybe their location defines a different type of Sheet configuration
+- Or perhaps, the data received from an external API defines how you proceed.
+
+
+
+## Overview
+
+When the **Create New Space** button is clicked in the platform, this spawns a `configure` operation in the `space` domain. 
+
+### Usage
+
+Listen for a `job:ready` and filter on the `domain` (Space) and the `operation` (Configure). 
+
+<Tip>Be sure to complete the job when it's complete.</Tip>
+
+<CodeGroup>
+
+```jsx listener.js
+listener.filter({ job: 'space:configure' }, (configure) => {
+  listener.on('job:ready', async (event) => {
+
+    const { spaceId, environmentId, jobId } = event.context;
+
+    const updateJob = await api.jobs.ack(jobId, {
+      info: 'Gettin started.',
+      progress: 10
+    });
+
+    console.log('Updated Job' + JSON.stringify(updateJob));
+
+    const createWorkbook = await api.workbooks.create({
+      spaceId: spaceId,
+      environmentId: environmentId,
+      name: 'All Data',
+      labels: ['primary'],
+      sheets: [
+        {
+          name: 'Contacts',
+          slug: 'contacts',
+          fields: [
+            {
+              key: 'firstName',
+              type: 'string',
+              label: 'First Name',
+            },
+            {
+              key: 'lastName',
+              type: 'string',
+              label: 'Last Name',
+            },
+            {
+              key: 'email',
+              type: 'string',
+              label: 'Email',
+            },
+          ],
+          actions: [
+            {
+              operation: 'capitalizeNamesBg',
+              mode: 'background',
+              label: 'Capitalize selected names',
+              type: 'string',
+              description: 'Capitalize names for selected rows',
+              primary: true,
+            }
+          ],
+        },
+      ],
+      actions: [
+        {
+          operation: 'submitActionFg',
+          mode: 'foreground',
+          label: 'Submit foreground',
+          type: 'string',
+          description: 'Submit data to webhook.site',
+          primary: true,
+        },
+      ],
+    });
+
+    console.log('Created Workbook' + createWorkbook);
+
+    const createDoc = await api.documents.create(spaceId, {
+      title: "Getting Started",
+      body:
+        "# Welcome\n" +
+        "### Say hello to your first customer Space in the new Flatfile!\n" +
+        "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+        "---\n"
+    });
+
+    console.log('Created Document' + createDoc);
+
+    const updateJob3 = await api.jobs.complete(jobId, {
+      outcome: {
+        message: "This job is now done."
+      }
+    });
+
+    console.log('Updated Job' + JSON.stringify(updateJob3));
+  })
+})
+```
+</CodeGroup>
+
+
