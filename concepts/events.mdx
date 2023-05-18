@@ -72,18 +72,6 @@ client.on(
   Called when a sheet is deleted.
 </ParamField>
 
-<ParamField path="record:created" type="readonly">
-  Called when one or more records are created within a sheet.
-</ParamField>
-
-<ParamField path="record:updated" type="readonly">
-  Called when one or more records are updated.
-</ParamField>
-
-<ParamField path="record:deleted" type="readonly">
-  Called when one or more records are deleted.
-</ParamField>
-
 <ParamField path="commit:created" type="readonly">
   Called when a new commit is created. For example, by creating or updating a cell.
 </ParamField>
@@ -93,7 +81,7 @@ client.on(
 </ParamField>
 
 <ParamField path="layer:created" type="readonly">
-  Called when a new layer is created within a commit. For example, to apply formatting or validation. Layers cannot be updated or deleted.
+  Called when a new layer is created within a commit. A layer is a programatically generated artifact of a commit. For example, when a data hook or formatting rule applies formatting or validation automatically. Layers cannot be updated or deleted, but you can ignore them to see the original source data.
 </ParamField>
 
 #### File Upload
@@ -113,23 +101,35 @@ client.on(
 #### Jobs
 
 <ParamField path="job:created" type="readonly">
-  Called when a new job is created.
+  Called when a new job is first created. Some jobs will enter an optional planning state at this time. A job with 'immediate' set to true will skip the planning step and transition directly to 'ready.'
+</ParamField>
+
+<ParamField path="job:ready" type="readonly">
+  Called when a new job is ready to execute. Either the job has a complete plan of work or the job is configured to not need a plan. This is the only event most job implementations will care about. Once a ready job is acknowledged by a listener, it transations into an executing state.
 </ParamField>
 
 <ParamField path="job:updated" type="readonly">
-  Called when a job is updated. For example, updating state or progress.
+  Called when a job is updated. For example, when a listener updates the state or progress of the job. The event will emit many times as the listener incrementally copmletes work and updates the job.
 </ParamField>
 
-<ParamField path="job:deleted" type="readonly">
-  Called when a job is deleted.
+<ParamField path="job:completed" type="readonly">
+  Called when a job has completed.
+</ParamField>
+
+<ParamField path="job:outcome-acknowledged" type="readonly">
+  Called to trigger workflow actions after the user has acknowledged that the job has completed or failed. Background jobs will skip this step.
 </ParamField>
 
 <ParamField path="job:failed" type="readonly">
   Called when a job fails.
 </ParamField>
 
-<ParamField path="job:completed" type="readonly">
-  Called when a job has completed.
+<ParamField path="job:scheduled" type="readonly">
+  Called when a job has failed and needs to rerun. _This event is not currently implemented._
+</ParamField>
+
+<ParamField path="job:deleted" type="readonly">
+  Called when a job is deleted.
 </ParamField>
 
 #### Agents
