@@ -82,7 +82,7 @@
     },
     {
       "group": "Guides", 
-      "pages": ["guides/handling-data",  "guides/custom-actions",
+      "pages": ["guides/handling-data",  "guides/actions",
           "guides/theming", "guides/guest_sidebar",  "guides/documents"]
     },
     {
