@@ -23,7 +23,7 @@ Defines a property that should be stored and read as a basic string.
   "type": "string"
 },
 ```
-![string](https://github.com/FlatFilers/Guides/assets/19697744/cb931050-1ce7-438f-8591-3467f523bee3)
+![string](https://github.com/FlatFilers/Guides/assets/19697744/8c612e39-86fd-4438-abcd-11fba94f214b)
 
 
 ### `number`
@@ -46,8 +46,7 @@ Defines a property that should be stored and read as either an integer or floati
   }
 },
 ```
-![number](https://github.com/FlatFilers/Guides/assets/19697744/dbaabdc8-6abe-4ddd-9a86-ed1de25792f0)
-
+![number](https://github.com/FlatFilers/Guides/assets/19697744/d5aa1413-1230-44a2-a84b-7ba26f77122a)
 
 
 
@@ -55,6 +54,7 @@ Defines a property that should be stored and read as either an integer or floati
 
 Defines an enumerated list of options for the user to select from. Matching tooling attempts to resolve incoming data assigment to a valid option. The maximum number of options for this list is `100`. For larger lists, users should use the `reference` lookup types.
 
+![enum](https://github.com/FlatFilers/Guides/assets/19697744/fa414712-a7b8-4783-af63-1aef9dd69271)
 
 <ParamField path="config.allow_custom" default="false" type="boolean">
   Permit the user to create new options for this specific field.
@@ -83,7 +83,7 @@ Defines an enumerated list of options for the user to select from. Matching tool
   A reference pointer to a previously registered icon
 </ParamField>
 
-<ParamField path="meta" type="object">
+<ParamField path="metadata" type="object">
   An arbitrary JSON object to be associated with this option and made available to hooks
 </ParamField>
 </Expandable>
@@ -103,7 +103,7 @@ Defines an enumerated list of options for the user to select from. Matching tool
         "label": "Disabled",
         "color": "#ff0000",
         "icon": "fa fa-ban",
-        "meta": {
+        "metadata": {
           "foo": "bar"
         }
       }
@@ -111,7 +111,6 @@ Defines an enumerated list of options for the user to select from. Matching tool
   }
 },
 ```
-![enum](https://github.com/FlatFilers/Guides/assets/19697744/647557d5-5624-407c-9944-98dfa1b20d1f)
 
 
 ### `reference`
@@ -125,7 +124,7 @@ Defines a reference to another sheet. Links should be established automatically 
   The type of relationship this defines. Can be `has-one`
 </ParamField>
 
-![reference](https://github.com/FlatFilers/Guides/assets/19697744/9235c223-a42a-4d40-9558-ac22ba93e2fa)
+![reference](https://github.com/FlatFilers/Guides/assets/19697744/7cacd3c7-4f60-4975-a4b0-e6752a41a601)
 
 
 ### `boolean`
@@ -139,7 +138,7 @@ A `true` or `false` value type. Matching engines should attempt to resolve all c
   "type": "boolean"
 }
 ```
-![boolean](https://github.com/FlatFilers/Guides/assets/19697744/c232e4be-6dfc-4859-9fcd-7a813da3629c)
+![boolean](https://github.com/FlatFilers/Guides/assets/19697744/91ca044f-8dd1-45e5-8c6a-b171132c0766)
 
 
 ### `date`
@@ -149,8 +148,8 @@ Store a field as a GMT date.
 <Warning>Data hooks must convert this value into a `YYYY-MM-DD` format in order for it to be considered a valid value for sorting. </Warning>
 
 Datetime should be a separate and future supported value as it must consider timezone.
+![date](https://github.com/FlatFilers/Guides/assets/19697744/caea2a4e-e05b-41ee-841b-b2a5fe0d54b8)
 
-![date](https://github.com/FlatFilers/Guides/assets/19697744/041658f6-31a3-41ea-ad8e-91075fb02b75)
 
 
 ---
@@ -185,6 +184,6 @@ Datetime should be a separate and future supported value as it must consider tim
   Will allow multiple values and store / provide the values in an array if set. Not all field types support arrays.
 </ParamField>
 
-<ParamField path="meta" default="{}" type="object">
+<ParamField path="metadata" default="{}" type="object">
   Arbitrary object of values to pass through to hooks and egress
 </ParamField>
