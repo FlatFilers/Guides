@@ -6,8 +6,8 @@ icon: "person-to-portal"
 
 ## [@flatfile/react](https://www.npmjs.com/package/@flatfile/react)
 
-Embed React is a front-end SDK wrapper around the [Flatfile API](https://reference.flatfile.com/docs/api/). It allows you to securely and easily add an embedded import experience to any React app.
-This powerful iframe tool is designed to seamlessly integrate into your website or application, providing a simple yet robust experience for collecting and transforming data from your customers.
+Embed React is a front-end SDK wrapper around the [Flatfile API](https://reference.flatfile.com/docs/api/). It allows you to securely and easily add an embedded data import experience, also known as a [Space](/concepts/spaces), to any React app.
+Using an iframe, Embed React seamlessly integrates into your website or application, providing a simple yet robust experience for collecting and transforming data from your customers.
 
 ## Before you begin
 
@@ -15,10 +15,18 @@ The minimum supported version of React is v16. If you use an older version, upgr
 
 Check your versions in terminal:
 
-```npm
+<CodeGroup>
+
+```npm npm
 node --version
 npm view react version
 ```
+
+```yarn yarn
+yarn list --version react
+```
+
+</CodeGroup>
 
 ### Setup
 
@@ -36,7 +44,7 @@ yarn install @flatfile/react@6.0
 
 </CodeGroup>
 
-### Get your Publishable Key
+### Get your Environment ID and Publishable Key
 
 <Info>
   API keys are created automatically. Use the [Developers
@@ -44,78 +52,35 @@ yarn install @flatfile/react@6.0
   each Environment.
 </Info>
 
-Copy your **publishable key** from the dashboard under [Developers Page](https://platform.flatfile.com/developers) to be used in the Build step.
-This key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../developer-tools/security/authentication).
+Copy your **publishable key** and **environment id** from the dashboard under [Developers Page](https://platform.flatfile.com/developers).
 
-### Get your Environment Id
+Your environment id and publishable key will look like this:
 
-Copy your **environment id** from the dashboard under [Developers Page](https://platform.flatfile.com/developers) to be used in the Build step.
+```
+us_env_abc123 // environmentId
+pk_xyz789 // publishableKey
+```
 
-## Build
+The publishable key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../developer-tools/security/authentication).
 
-Before getting started with the embedded experience, it is important to consider two concepts:
+<Warning>Do not use your secret key to embed Flatfile.</Warning>
 
-1. The space component which has <Tooltip tip="Analogous to a database...">[Workbooks](../concepts/workbooks)</Tooltip>
-2. <Tooltip tip="Anatomy of an Event...">[Events](../concepts/events)</Tooltip> which
-   enables workbooks to have asynchronous and customizable jobs to happen either
-   behind the scenes or be triggered upon user interaction.
+## Getting started
 
-_In the examples below, you will see these events mentioned above being passed in as `client` to the `useSpace` hook._
+When you embed Flatfile, you are using an iframe to embed a [Space](/concepts/spaces) directly into your application.
 
-### Space component
+A Space consists of:
 
-When you launch an embedded importer, you're actually launching an entire Space for that Guest.
+1. A [Workbook](../concepts/workbooks), which defines the structure of the data you are working with. It is analogous to a database.
+2. [Events](../concepts/Events), which allow you to listen for and respond to things that occur inside your Space. Examples include uploading a file or submitting data.
 
-The `useSpace` hook returns a Space component which has internal <Tooltip tip="Analogous to a database...">[Workbooks](../concepts/workbooks)</Tooltip>.
+In order to embed Flatfile, we need to first create a Workbook to configure our space, and create an event listener to handle events. Then we use a component that takes the configuration and listener and embeds the Space into your React app.
 
-<CodeGroup>
-```typescript Your Application
-import { useSpace, ISpace, makeTheme } from '@flatfile/react'
-import { config, localClient } from './setup.ts
+### Workbook configuration
 
-const spaceProps: ISpace = {
-name: 'Embedded Space',
-// to test locally add your local vars here
-publishableKey: '',
-environmentId: '',
-workbook: config,
-themeConfig: makeTheme({ primaryColor: '#546a76', textColor: '#fff' }),
-sidebarConfig: {
-showDataChecklist: false,
-showSidebar: false
-},
-client: localClient
-}
+Create a Workbook to configure your Space. Read more about Workbooks [here](/concepts/workbooks).
 
-const ExampleApp = () => {
-const [showSpace, setShowSpace] = useState(false)
-
-const { component } = useSpace({
-...spaceProps,
-closeSpace: {
-operation: 'contacts:submit',
-onClose: () => setShowSpace(false)
-}
-})
-
-return (
-
-<div style={{ padding: "16px" }}>
-  <button
-    onClick={() => {
-      setShowSpace(!showSpace);
-    }}
-  >
-    {showSpace === true ? "Close" : "Open"} space
-  </button>
-  {showSpace && component}
-</div>
-) }
-
-````
-
-```typescript Example setup.ts
-
+```ts config.ts
 import { Flatfile, FlatfileClient } from '@flatfile/api'
 
 export const config: Pick<
@@ -125,8 +90,8 @@ export const config: Pick<
   name: 'Employees workbook',
   sheets: [
     {
-      name: 'TestSheet',
-      slug: 'TestSheet',
+      name: 'Contacts',
+      slug: 'Contacts',
       fields: [
         {
           key: 'first_name',
@@ -167,15 +132,17 @@ export const config: Pick<
     }
   ]
 }
-
 ```
 
-```typescript Example client
+### Event listener
 
+Here is where you define how to respond to events. In this case, since we have a "Submit" action defined in our Workbook, we use the event listener to define how we want to submit records:
+
+```ts listener.ts
 /**
- * Example Client
+ * Handle submit action
+ * TODO fix this
  */
-
  async function startCustomJob(jobId: string) {
   console.log('starting custom job at' + new Date())
 
@@ -219,46 +186,92 @@ export const localClient = Client.create((client) => {
     }
   )
 })
-
 ```
 
+### Putting it together
+
+Now that we have our configuration defined in our Workbook, and our event handlers defined in our listener, we are ready to embed our Space.
+
+Use the `useSpace` hook to create a Space component and pass it the configuration and listener as options:
+
+<CodeGroup>
+```ts app.ts
+import { useSpace, ISpace, makeTheme } from '@flatfile/react'
+import { config, localClient } from './config.ts'
+
+const ExampleApp = () => {
+
+const [showSpace, setShowSpace] = useState(false)
+
+const { component } = useSpace({
+  {
+    name: 'Embedded Space',
+    publishableKey: 'your_publishable_key',
+    environmentId: 'your_environment_id',
+    workbook: config,
+    client: localClient
+  },
+  closeSpace: {
+    operation: 'contacts:submit',
+    onClose: () => setShowSpace(false)
+  }
+})
+
+return (
+  <div style={{ padding: "16px" }}>
+    <button
+      onClick={() => {
+        setShowSpace(!showSpace);
+      }}
+    >
+      {showSpace === true ? "Close" : "Open"} space
+    </button>
+    {showSpace && component}
+  </div>
+  )
+}
+```
+
+```ts config.ts
+// Paste config code here when finalized
+```
+
+```ts listener.ts
+// Paste listener code here when finalized
+```
 </CodeGroup>
+
+`useSpace` takes the following options:
 
 | Name             | Description                                                               | Type                    | Required |
 | ---------------- | ------------------------------------------------------------------------- | ----------------------- | -------- |
 | `publishableKey` | Publishable key accessed via Flatfile dashboard > Developer               | string                  | Yes      |
-| `environmentId`  | Identifier for environment                                                | string                  | Yes      |
-| `name`           | Name of space                                                             | string                  | No       |
+| `environmentId`  | Environment ID accessed via Flatfile dashboard > Developer                                               | string                  | Yes      |
+| `name`           | Name of the Space                                                             | string                  | No       |
 | `workbook`       | Shape of data you will be receiving                                       | Flatfile.WorkbookConfig | Yes      |
-| `client`         | Listener client for advanced functionality                                | Client                  | No       |
+| `client`         | Event listener for responding to events                                | Client                  | No       |
 | `spaceInfo`      | Additional metadata to be passed to the space                              | tbd | No       |
-| `closeSpace`     | Used to determine when to close the iframe and a callback function when session is complete | tbd | No       |
-| `iframeStyles`   | Style the iframe using CSS Properties                                     | React.CSSProperties     | No       |
-| `themeConfig`    | Theme values for space, sidebar, and data table                            | IThemeConfig            | No       |
-| `sidebarConfig`  | Sidebar config values to toggle UI elements                               | ISidebarConfig          | No       |
+| `closeSpace`     | Options for when to close the iframe and a callback function when session is complete | tbd | No       |
+| `iframeStyles`   | Styles the iframe using CSS Properties                                     | React.CSSProperties     | No       |
+| `themeConfig`    | Theme determining the look and feel of the Space                            | IThemeConfig            | No       |
+| `sidebarConfig`  | Options for show or hide various UI elements                               | ISidebarConfig          | No       |
 | `document`       | Document to pass to space                                                 | Flatfile.DocumentConfig | No       |
-| `error`          | Error element to display if component throws                              | (error: Error \| string) => React.ReactElement | No       |
+| `error`          | Error element to display if component throws an error                              | (error: Error \| string) => React.ReactElement | No       |
 | `loading`        | Loading element to display while space loads                              | React.ReactElement      | No       |
 
+## Advanced options
 
+### Loading state
 
-#### Error handling
+We provide a default loading state when the Space is loading. You can also pass a custom loading component using the `loading` prop.
 
-Our component comes equipped with robust error handling capabilities, ensuring that unexpected errors do not disrupt the user experience.
-By default, the component will render an error component with the error message when an error is encountered, providing your users with clear feedback on what went wrong.
+### Error handling
 
-However, we also understand that different applications may have unique error handling needs. Therefore, we have designed our component to be highly customizable.
+By default, the Space component an error component with the error message when an error is encountered, providing your users with feedback on what went wrong.
+
 If you would like to use your own error handling component instead of the default one, simply pass it in as the `error` prop when rendering the component.
-This allows you to seamlessly integrate our component with your application's existing error handling infrastructure, while still benefiting from our core error handling functionality.
 
-#### Loading state
-
-Similar to error handling, if you choose to use a custom loader, you can pass it in as the `loading` prop when rendering the component.
-If no loader component is passed in, our default loader will be used. This gives you the flexibility to choose the loading experience that is best suited for your application's needs.
-
-## Lifecycle
-
-#### `closeSpace`
+### Closing behavior
 
 ```typescript
 
@@ -269,8 +282,6 @@ const closeSpace = {
 ```
 
 This `onClose` callback function is called when the action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
-
-## Customization
 
 ### Theme
 
@@ -410,7 +421,7 @@ const { component } = useSpace({
 | `showDataChecklist`     | `boolean`                                                                      | Toggle data config for space. Defaults to false.                                                    |
 | `showSidebar`           | `boolean`                                                                      | Toggle whether sidebar defaults to open inside of a Workbook. Defaults to false.                    |
 
-## Documents
+### Documents
 
 <Tooltip tip="Standalone webpages...">[Documents]('../guides/documents)</Tooltip>, written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
 
