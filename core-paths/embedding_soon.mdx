@@ -283,28 +283,23 @@ const closeSpace = {
 
 This `onClose` callback function is called when the action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
 
-### Theme
+### Theming
 
-#### makeTheme helper function
+You can theme your Space to create a custom look and feel to match your brand. There are two ways to define your theme, depending on how much control you want.
 
-The `makeTheme` helper function accepts three values (`primaryColor`, `textColor`, `logo`). From there, we programmatically create a nice looking themed space for you. If you need more control, [add raw values](../guides/theming) instead.
+#### makeTheme
 
-<Tip>
-  Internally, our `makeTheme` helper validates that the colors passed in are
-  valid colors. This means they can be correctly parsed. (Names, rgb, hsv, hex)
-</Tip>
+The `makeTheme` helper function generates a theme based on a primary color, text color, and logo. Different shades of the provided colors are generated and applied programmatically to create a cohesive visual style.
 
-<CodeGroup>
+For more fine-grained control of individual shades, use manual CSS overrides.
 
-```typescript makeTheme
+```typescript
 const theme = makeTheme({
   primaryColor: "red",
   textColor: "white",
   logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
 });
-```
 
-```typescript Example passed to useSpace hook
 const { component } = useSpace({
   themeConfig: theme,
   publishableKey,
@@ -313,9 +308,7 @@ const { component } = useSpace({
 });
 ```
 
-</CodeGroup>
-
-<br />
+`makeTheme` options
 
 | Prop           | Type     | Description         | Required |
 | -------------- | -------- | ------------------- | -------- |
@@ -323,33 +316,41 @@ const { component } = useSpace({
 | `textColor`    | `string` | Text color          | no       |
 | `logo`         | `string` | full url to logo    | no       |
 
+<Tip>
+  `makeTheme` accepts valid color values in the following formats: name, rgb, hsv, hex.
+</Tip>
+
 #### Manual CSS overrides
 
-Instead of passing two colors to `makeTheme` and letting us construct a theme for you, you can access each individual CSS variable that we use in the dashboard. Just adhere to the types defined in the [Theming Reference](../guides/theming).
+If you prefer to set colors manually using the actual CSS variables referenced in the app, you can construct the theme yourself using our [Theming Reference](../guides/theming).
 
-### Iframe styles
+```typescript
+const theme = {
+  // see theming reference
+};
 
-You may want to style the iframe the space is wrapped in - we've got you covered using the prop `iframeStyles`
+const { component } = useSpace({
+  themeConfig: theme,
+  publishableKey,
+  environmentId,
+  workbook,
+});
+```
 
-This will override the default styles provided by the component and apply your custom styles instead.
+### Styling the iframe
 
-When using the `iframeStyle` prop, it is important to note that it accepts a JavaScript object with camelCased properties rather than a CSS string. This design decision is consistent with the way the DOM style JavaScript property functions, which allows for more efficient processing of styles and helps prevent XSS security vulnerabilities.
-
-<CodeGroup>
-
+Use the `iframeStyles` prop to style the outer iframe that the space is wrapped in. `iframeStyle` accepts a JavaScript object with camel-cased properties rather than a CSS string.
 
 ```typescript
 const iframeStyles = {
-    width: '100%',
-    height: '750px',
-    borderWidth: 0,
-    borderRadius: '20px',
-    background: '#fff',
-    padding: '16px'
-  }
-```
+  width: '100%',
+  height: '750px',
+  borderWidth: 0,
+  borderRadius: '20px',
+  background: '#fff',
+  padding: '16px'
+}
 
-```typescript Example passed to useSpace hook
 const { component } = useSpace({
   themeConfig: theme,
   publishableKey,
@@ -358,9 +359,6 @@ const { component } = useSpace({
   iframeStyles
 });
 ```
-
-</CodeGroup>
-
 
 ### Collecting additional data
 
