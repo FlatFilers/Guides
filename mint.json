@@ -91,7 +91,15 @@
     },
     {
       "group": "Core paths",
-      "pages": ["core-paths/embedding", "core-paths/headless", "core-paths/collaborate"]
+      "pages": [
+        {
+            "group": "Embed in your app",
+            "icon": "person-to-portal",
+            "pages": ["core-paths/embedding_soon"]
+        }, 
+        "core-paths/headless", 
+        "core-paths/collaborate"
+      ]
     },
     {
       "group": "Blueprint",
