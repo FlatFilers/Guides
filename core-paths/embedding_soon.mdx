@@ -138,13 +138,7 @@ export const config: Pick<
 Here is where you define how to respond to events. In this case, since we have a "Submit" action defined in our Workbook, we use the event listener to define how we want to submit records:
 
 ```ts listener.ts
-/**
- * Handle submit action
- * TODO fix this
- */
- async function startCustomJob(jobId: string) {
-  console.log('starting custom job at' + new Date())
-
+async function submit(jobId: string) {
   const storedToken = sessionStorage.getItem('token')
 
   if (!storedToken) {
@@ -158,30 +152,29 @@ Here is where you define how to respond to events. In this case, since we have a
 
   await Flatfile.jobs.ack(jobId, {
     info: "I'm starting the job - inside client",
-    // progress only makes sense if multipart job - optional
     progress: 33
   })
 
-  // convert records here (event.api.updateRecords)
-  // add example vs. setTimeout
+  // hit your api here
   await new Promise((res) => setTimeout(res, 2000))
 
   await Flatfile.jobs.complete(jobId, {
-    info: "Job's work is done"
+    info: "Job's work is done",
+    outcome: { next: { type: 'wait' } }
   })
 }
 
 /**
- * Example Client
+ * Example Listener
  */
-export const localClient = Client.create((client) => {
+export const listener = FlatfileListener.create((client) => {
   client.on(
     'job:ready',
     // @ts-ignore
     { payload: { operation: 'contacts:submit' } },
     async (event: any) => {
       const { context } = event
-      return startCustomJob(context.jobId)
+      return submit(context.jobId)
     }
   )
 })
@@ -196,7 +189,8 @@ Use the `useSpace` hook to create a Space component and pass it the configuratio
 <CodeGroup>
 ```ts app.ts
 import { useSpace, ISpace, makeTheme } from '@flatfile/react'
-import { config, localClient } from './config.ts'
+import { config } from './config.ts'
+import { listener } from './listener.ts'
 
 const ExampleApp = () => {
 
@@ -208,7 +202,7 @@ const { component } = useSpace({
     publishableKey: 'your_publishable_key',
     environmentId: 'your_environment_id',
     workbook: config,
-    client: localClient
+    listener: listener
   },
   closeSpace: {
     operation: 'contacts:submit',
@@ -248,7 +242,7 @@ return (
 | `environmentId`  | Environment ID accessed via Flatfile dashboard > Developer                                               | string                  | Yes      |
 | `name`           | Name of the Space                                                             | string                  | No       |
 | `workbook`       | Shape of data you will be receiving                                       | Flatfile.WorkbookConfig | Yes      |
-| `client`         | Event listener for responding to events                                | Client                  | No       |
+| `listener`         | Event listener for responding to events                                | Listener                  | No       |
 | `spaceInfo`      | Additional metadata to be passed to the space                              | tbd | No       |
 | `closeSpace`     | Options for when to close the iframe and a callback function when session is complete | tbd | No       |
 | `iframeStyles`   | Styles the iframe using CSS Properties                                     | React.CSSProperties     | No       |
@@ -443,7 +437,6 @@ const mainDocument = {
 ```typescript Example passed to useSpace hook
 const { component } = useSpace({
   publishableKey,
-  sidebarConfig: mySidebarConfig,
   environmentId,
   document: mainDocument,
   workbook,
@@ -459,19 +452,187 @@ const { component } = useSpace({
 
 <CodeGroup>
 
-```typescript useSpace hook
-console.log("Hello World");
-```
+```typescript app.ts
+import { useSpace } from '@flatfile/react'
+import { config } from './config.ts'
+import { listener } from './listener.ts'
 
-```typescript client
-print("Hello World!");
-```
+const ExampleApp = () => {
 
-```typescript workbook
-class HelloWorld {
-public static void main(String[] args) {
-System.out.println("Hello, World!");
+const [showSpace, setShowSpace] = useState(false)
+
+const { component } = useSpace({
+  {
+    name: 'Embedded Space',
+    publishableKey: 'your_publishable_key',
+    environmentId: 'your_environment_id',
+    workbook: config,
+    listener: listener
+  },
+  closeSpace: {
+    operation: 'contacts:submit',
+    onClose: () => setShowSpace(false)
+  }
+})
+
+return (
+  <div style={{ padding: "16px" }}>
+    <button
+      onClick={() => {
+        setShowSpace(!showSpace);
+      }}
+    >
+      {showSpace === true ? "Close" : "Open"} space
+    </button>
+    {showSpace && component}
+  </div>
+  )
 }
+
+
+```
+
+```typescript listener.ts
+async function submit(jobId: string) {
+  const storedToken = sessionStorage.getItem('token')
+
+  if (!storedToken) {
+    throw new Error('Error retrieving stored token')
+  }
+
+  const Flatfile = new FlatfileClient({
+    token: storedToken,
+    environment: 'https://platform.flatfile.com/api/v1'
+  })
+
+  await Flatfile.jobs.ack(jobId, {
+    info: "I'm starting the job - inside client",
+    progress: 33
+  })
+
+  // hit your api here
+  await new Promise((res) => setTimeout(res, 2000))
+
+  await Flatfile.jobs.complete(jobId, {
+    info: "Job's work is done",
+    outcome: { next: { type: 'wait' } }
+  })
+}
+
+async function joinFields(jobId: string, sheetId: string) {
+  const storedToken = sessionStorage.getItem('token')
+
+  if (!storedToken) {
+    throw new Error('Error retrieving stored token')
+  }
+
+  const Flatfile = new FlatfileClient({
+    token: storedToken,
+    environment: 'https://platform.flatfile.com/api/v1'
+  })
+
+  await Flatfile.jobs.ack(jobId, {
+    info: "I'm starting the joining fields job"
+  })
+
+  const records = await Flatfile.records.get(sheetId)
+  const recordsUpdates = records.data.records?.map((record) => {
+    const fullName = `${record.values['first_name'].value} ${record.values['last_name'].value}`
+    record.values['full_name'].value = fullName
+    return record
+  })
+
+  await Flatfile.records.update(sheetId, recordsUpdates as Flatfile.Record_[])
+
+  await Flatfile.jobs.complete(jobId, {
+    info: "Job's work is done"
+  })
+}
+
+/**
+ * Example Listener
+ */
+export const listener = FlatfileListener.create((client) => {
+  client.on(
+    'job:ready',
+    // @ts-ignore
+    { payload: { operation: 'contacts:join-fields' } },
+    async (event: any) => {
+      const { context } = event
+      console.log('join-fields', event)
+      return joinFields(context.jobId, context.sheetId)
+    }
+  )
+
+  client.on(
+    'job:ready',
+    // @ts-ignore
+    { payload: { operation: 'contacts:submit' } },
+    async (event: any) => {
+      const { context } = event
+      return submit(context.jobId)
+    }
+  )
+})
+
+```
+
+```typescript config.ts
+import { FlatfileListener } from '@flatfile/listener'
+import { Flatfile, FlatfileClient } from '@flatfile/api'
+
+export const config: Pick<
+  Flatfile.WorkbookConfig,
+  'name' | 'sheets' | 'actions'
+> = {
+  name: 'Employees workbook',
+  sheets: [
+    {
+      name: 'TestSheet',
+      slug: 'TestSheet',
+      fields: [
+        {
+          key: 'first_name',
+          type: 'string',
+          label: 'First name',
+          constraints: [
+            {
+              type: 'required'
+            }
+          ]
+        },
+        {
+          key: 'last_name',
+          type: 'string',
+          label: 'last name'
+        },
+        {
+          key: 'full_name',
+          type: 'string',
+          label: 'full name'
+        }
+      ],
+      actions: [
+        {
+          label: 'Join fields',
+          operation: 'contacts:join-fields',
+          description: 'Would you like to join fields?',
+          mode: 'foreground',
+          confirm: true
+        }
+      ]
+    }
+  ],
+  actions: [
+    {
+      label: 'Submit',
+      operation: 'contacts:submit',
+      description: 'Would you like to submit your workbook?',
+      mode: 'foreground',
+      primary: true,
+      confirm: true
+    }
+  ]
 }
 ```
 
@@ -483,49 +644,193 @@ System.out.println("Hello, World!");
 
 <CodeGroup>
 
-```typescript useSpace hook
-console.log("Hello World");
+```typescript app.ts
+import { useSpace } from '@flatfile/react'
+import { config } from './config.ts'
+import { listener } from './listener.ts'
+
+const ExampleApp = () => {
+
+const [showSpace, setShowSpace] = useState(false)
+
+const { component } = useSpace({
+  {
+    name: 'Embedded Space',
+    publishableKey: 'your_publishable_key',
+    environmentId: 'your_environment_id',
+    workbook: config,
+    listener: listener
+  },
+  closeSpace: {
+    operation: 'contacts:submit',
+    onClose: () => setShowSpace(false)
+  }
+})
+
+return (
+  <div style={{ padding: "16px" }}>
+    <button
+      onClick={() => {
+        setShowSpace(!showSpace);
+      }}
+    >
+      {showSpace === true ? "Close" : "Open"} space
+    </button>
+    {showSpace && component}
+  </div>
+  )
+}
+
 ```
 
-```typescript client
-print("Hello World!");
+```typescript listener.ts
+async function submit(jobId: string) {
+  const storedToken = sessionStorage.getItem('token')
+
+  if (!storedToken) {
+    throw new Error('Error retrieving stored token')
+  }
+
+  const Flatfile = new FlatfileClient({
+    token: storedToken,
+    environment: 'https://platform.flatfile.com/api/v1'
+  })
+
+  await Flatfile.jobs.ack(jobId, {
+    info: "I'm starting the job - inside client",
+    progress: 33
+  })
+
+  // hit your api here
+  await new Promise((res) => setTimeout(res, 2000))
+
+  await Flatfile.jobs.complete(jobId, {
+    info: "Job's work is done",
+    outcome: { next: { type: 'wait' } }
+  })
+}
+
+async function splitFields(jobId: string, sheetId: string) {
+  const storedToken = sessionStorage.getItem('token')
+
+  if (!storedToken) {
+    throw new Error('Error retrieving stored token')
+  }
+
+  const Flatfile = new FlatfileClient({
+    token: storedToken,
+    environment: 'https://platform.flatfile.com/api/v1'
+  })
+
+  await Flatfile.jobs.ack(jobId, {
+    info: "I'm starting the spliting fields job"
+  })
+
+  const records = await Flatfile.records.get(sheetId)
+  const recordsUpdates = records.data.records?.map((record) => {
+    const fullName = record.values['full_name'].value
+    const splitName = fullName?.toLocaleString().split(' ')
+
+    record.values['first_name'].value = splitName ? splitName[0] : ''
+    record.values['last_name'].value = splitName ? splitName[1] : ''
+
+    return record
+  })
+
+  await Flatfile.records.update(sheetId, recordsUpdates as Flatfile.Record_[])
+
+  await Flatfile.jobs.complete(jobId, {
+    info: "Job's work is done"
+  })
+}
+
+/**
+ * Example Listener
+ */
+export const listener = FlatfileListener.create((client) => {
+  client.on(
+    'job:ready',
+    // @ts-ignore
+    { payload: { operation: 'contacts:split-fields' } },
+    async (event: any) => {
+      const { context } = event
+      return splitFields(context.jobId, context.sheetId)
+    }
+  )
+
+  client.on(
+    'job:ready',
+    // @ts-ignore
+    { payload: { operation: 'contacts:submit' } },
+    async (event: any) => {
+      const { context } = event
+      return submit(context.jobId)
+    }
+  )
+})
 ```
 
-```typescript workbook
-class HelloWorld {
-public static void main(String[] args) {
-System.out.println("Hello, World!");
+```typescript config.ts
+import { FlatfileListener } from '@flatfile/listener'
+import { Flatfile, FlatfileClient } from '@flatfile/api'
+
+export const config: Pick<
+  Flatfile.WorkbookConfig,
+  'name' | 'sheets' | 'actions'
+> = {
+  name: 'Employees workbook',
+  sheets: [
+    {
+      name: 'TestSheet',
+      slug: 'TestSheet',
+      fields: [
+        {
+          key: 'first_name',
+          type: 'string',
+          label: 'First name',
+          constraints: [
+            {
+              type: 'required'
+            }
+          ]
+        },
+        {
+          key: 'last_name',
+          type: 'string',
+          label: 'last name'
+        },
+        {
+          key: 'full_name',
+          type: 'string',
+          label: 'full name'
+        }
+      ],
+      actions: [
+        {
+          label: 'split fields',
+          operation: 'contacts:split-fields',
+          description: 'Would you like to split fields?',
+          mode: 'foreground',
+          confirm: true
+        }
+      ]
+    }
+  ],
+  actions: [
+    {
+      label: 'Submit',
+      operation: 'contacts:submit',
+      description: 'Would you like to submit your workbook?',
+      mode: 'foreground',
+      primary: true,
+      confirm: true
+    }
+  ]
 }
-}
+
 ```
 
 </CodeGroup>
-
-[Try it live](www.examplelink.com)
-
-### Cross field validation
-
-<CodeGroup>
-
-```typescript useSpace hook
-console.log("Hello World");
-```
-
-```typescript client
-print("Hello World!");
-```
-
-```typescript workbook
-class HelloWorld {
-public static void main(String[] args) {
-System.out.println("Hello, World!");
-}
-}
-```
-
-</CodeGroup>
-
-[Try it live](www.examplelink.com)
 
 ### Using an npm package
 
@@ -536,49 +841,194 @@ System.out.println("Hello, World!");
 
 <CodeGroup>
 
-```typescript useSpace hook
-console.log("Hello World");
-```
+```typescript app.ts
+import { useSpace } from '@flatfile/react'
+import { config } from './config.ts'
+import { listener } from './listener.ts'
 
-```typescript client
-print("Hello World!");
-```
+const ExampleApp = () => {
 
-```typescript workbook
-class HelloWorld {
-public static void main(String[] args) {
-System.out.println("Hello, World!");
+const [showSpace, setShowSpace] = useState(false)
+
+const { component } = useSpace({
+  {
+    name: 'Embedded Space',
+    publishableKey: 'your_publishable_key',
+    environmentId: 'your_environment_id',
+    workbook: config,
+    listener: listener
+  },
+  closeSpace: {
+    operation: 'contacts:submit',
+    onClose: () => setShowSpace(false)
+  }
+})
+
+return (
+  <div style={{ padding: "16px" }}>
+    <button
+      onClick={() => {
+        setShowSpace(!showSpace);
+      }}
+    >
+      {showSpace === true ? "Close" : "Open"} space
+    </button>
+    {showSpace && component}
+  </div>
+  )
 }
+```
+
+```typescript listener.ts
+import { FlatfileListener } from '@flatfile/listener'
+import { Flatfile, FlatfileClient } from '@flatfile/api'
+import Color from 'color'
+
+async function convertColors(jobId: string, sheetId: string) {
+  const storedToken = sessionStorage.getItem('token')
+
+  if (!storedToken) {
+    throw new Error('Error retrieving stored token')
+  }
+
+  const Flatfile = new FlatfileClient({
+    token: storedToken,
+    environment: 'https://platform.flatfile.com/api/v1'
+  })
+
+  await Flatfile.jobs.ack(jobId, {
+    info: "I'm starting the converting colors job"
+  })
+
+  const records = await Flatfile.records.get(sheetId)
+  const recordsUpdates = records.data.records?.map((record) => {
+    const newColor = Color(record.values.color.value).hex()
+    record.values['color'].value = newColor
+
+    return record
+  })
+
+  await Flatfile.records.update(sheetId, recordsUpdates as Flatfile.Record_[])
+
+  await Flatfile.jobs.complete(jobId, {
+    info: "Job's work is done"
+  })
+}
+
+async function submit(jobId: string) {
+  const storedToken = sessionStorage.getItem('token')
+
+  if (!storedToken) {
+    throw new Error('Error retrieving stored token')
+  }
+
+  const Flatfile = new FlatfileClient({
+    token: storedToken,
+    environment: 'https://platform.flatfile.com/api/v1'
+  })
+
+  await Flatfile.jobs.ack(jobId, {
+    info: "I'm starting the job - inside client",
+    // progress only makes sense if multipart job - optional
+    progress: 33
+  })
+
+  // hit your api here
+  await new Promise((res) => setTimeout(res, 2000))
+
+  await Flatfile.jobs.complete(jobId, {
+    info: "Job's work is done",
+    outcome: { next: { type: 'wait' } }
+  })
+}
+
+/**
+ * Example Listener
+ */
+export const listener = FlatfileListener.create((client) => {
+  client.on(
+    'job:ready',
+    // @ts-ignore
+    { payload: { operation: 'colors:convert-color' } },
+    async (event: any) => {
+      const { context } = event
+      return convertColors(context.jobId, context.sheetId)
+    }
+  )
+
+  client.on(
+    'job:ready',
+    // @ts-ignore
+    { payload: { operation: 'colors:submit' } },
+    async (event: any) => {
+      const { context } = event
+      return submit(context.jobId)
+    }
+  )
+})
+
+```
+
+```typescript config.ts
+import { FlatfileListener } from '@flatfile/listener'
+import { Flatfile, FlatfileClient } from '@flatfile/api'
+
+export const config: Pick<
+  Flatfile.WorkbookConfig,
+  'name' | 'sheets' | 'actions'
+> = {
+  name: 'Employees workbook',
+  sheets: [
+    {
+      name: 'TestSheet',
+      slug: 'TestSheet',
+      fields: [
+        {
+          key: 'first_name',
+          type: 'string',
+          label: 'First name',
+          constraints: [
+            {
+              type: 'required'
+            }
+          ]
+        },
+        {
+          key: 'last_name',
+          type: 'string',
+          label: 'last name'
+        },
+        {
+          key: 'full_name',
+          type: 'string',
+          label: 'full name'
+        }
+      ],
+      actions: [
+        {
+          label: 'Join fields',
+          operation: 'contacts:join-fields',
+          description: 'Would you like to join fields?',
+          mode: 'foreground',
+          confirm: true
+        }
+      ]
+    }
+  ],
+  actions: [
+    {
+      label: 'Submit',
+      operation: 'contacts:submit',
+      description: 'Would you like to submit your workbook?',
+      mode: 'foreground',
+      primary: true,
+      confirm: true
+    }
+  ]
 }
 ```
 
 </CodeGroup>
-
-[Try it live](www.examplelink.com)
-
-### Validating against an external API
-
-<CodeGroup>
-
-```typescript useSpace hook
-console.log("Hello World");
-```
-
-```typescript client
-print("Hello World!");
-```
-
-```typescript workbook
-class HelloWorld {
-public static void main(String[] args) {
-System.out.println("Hello, World!");
-}
-}
-```
-
-</CodeGroup>
-
-[Try it live](www.examplelink.com)
 
 ## Example product use cases
 
