@@ -7,11 +7,17 @@ Embed React is a front-end SDK wrapper around the [Flatfile API](https://referen
 
 Using an iframe, Embed React seamlessly integrates into your website or application, providing a simple yet robust experience for collecting and transforming data from your customers.
 
+<Info>
+Prerequisites: You'll need a Flatfile account and your [secret key](../developer-tools/security/authentication#secret-and-publishable-keys) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and use the secret key from your `development` environment for this tutorial.
+</Info>
+
 ## Before you begin
 
-The minimum supported version of React is v16. If you use an older version, upgrade React to use this library. You will also need Node.js v18 installed on your machine.
+The minimum supported version id **React v16**. You will also need **Node.js v18** installed on your machine.
 
-Check your versions in terminal:
+### Check versions
+
+Check your versions in terminal. If you use an older version, you'll need to upgrade.
 
 <CodeGroup>
 
@@ -26,39 +32,31 @@ yarn list --version react
 
 </CodeGroup>
 
-### Setup
+### Install the package
 
 Install Embed React from the npm public registry.
 
 <CodeGroup>
 
 ```npm npm
-npm install @flatfile/react@6.0
+npm install @flatfile/react@latest
 ```
 
 ```yarn yarn
-yarn install @flatfile/react@6.0
+yarn install @flatfile/react@latest
 ```
 
 </CodeGroup>
 
-### Get your Environment ID and Publishable Key
+### Authenticate
 
 <Info>
   API keys are created automatically. Use the [Developers
-  Page](https://platform.flatfile.com/developers) to reveal your API keys for
-  each Environment.
+  Page](https://platform.flatfile.com/developers) to reveal your publishable key for
+  each Environment. Learn more about [Authentication](../developer-tools/security/authentication).
 </Info>
 
-Copy your **publishable key** and **environment id** from the dashboard under [Developers Page](https://platform.flatfile.com/developers).
+The publishable key is safe to be used in client-side applications as it has limited access to the Flatfile API. 
+Copy your `publishable key` and `environment id` from the dashboard to a notepad.
+You'll need these in the next step.
 
-Your environment id and publishable key will look like this:
-
-```
-us_env_abc123 // environmentId
-pk_xyz789 // publishableKey
-```
-
-The publishable key is safe to be used in client-side applications as it has limited access to the Flatfile API. For more on authentication, see [Authentication](../developer-tools/security/authentication).
-
-<Warning>Do not use your secret key to embed Flatfile.</Warning>
