@@ -1,17 +1,22 @@
 ---
-title: "Getting started"
-description: "When you embed Flatfile, you are using an iframe to embed a [Space](/concepts/spaces) directly into your application.
-"
+title: "Embed a Space"
+description: "Embed a [Space](/concepts/spaces) directly into your application."
+icon: "circle-2"
 ---
+
+When you embed Flatfile, you are using an iframe to embed a [Space](/concepts/spaces) directly into your application.
 
 A Space consists of:
 
-1. A [Workbook](../concepts/workbooks), which defines the structure of the data you are working with. It is analogous to a database.
-2. [Events](../concepts/events), which allow you to listen for and respond to things that occur inside your Space. Examples include uploading a file or submitting data.
+- A [Workbook](../concepts/workbooks), which defines the structure of the data you are working with. It is analogous to a database.
+- [Events](../concepts/events), which allow you to listen for and respond to things that occur inside your Space. Examples include uploading a file or submitting data.
 
-In order to embed Flatfile, we need to first create a Workbook to configure our space, and create an event listener to handle events. Then we use a component that takes the configuration and listener and embeds the Space into your React app.
+In order to embed Flatfile, you follow these steps:
+1. First create a Workbook
+2. Next, create an event listener to handle events. 
+3. Last, use a component that takes the configuration and listener and embeds the Space into your React app.
 
-### Workbook configuration
+### Part 1: Build a Workbook
 
 Create a Workbook to configure your Space.
 
@@ -69,7 +74,7 @@ export const config: Pick<
 }
 ```
 
-### Event listener
+### Part 2: Handle events with an event listener
 
 Here is where you define how to respond to events. In this case, since we have a "Submit" action defined in our Workbook, we use the event listener to define how we want to submit records:
 
@@ -116,7 +121,7 @@ export const listener = FlatfileListener.create((client) => {
 })
 ```
 
-### Putting it together
+### Part 3: Embed the Space into your app
 
 Now that we have our configuration defined in our Workbook, and our event handlers defined in our listener, we are ready to embed our Space.
 
@@ -160,15 +165,9 @@ return (
   )
 }
 ```
-
-```ts config.ts
-// Paste config code here when finalized
-```
-
-```ts listener.ts
-// Paste listener code here when finalized
-```
 </CodeGroup>
+
+#### useSpace properties
 
 `useSpace` takes the following options:
 
@@ -187,3 +186,7 @@ return (
 | `document`       | Document to pass to space                                                 | Flatfile.DocumentConfig | No       |
 | `error`          | Error element to display if component throws an error                              | (error: Error \| string) => React.ReactElement | No       |
 | `loading`        | Loading element to display while space loads                              | React.ReactElement      | No       |
+
+## Recap & Next Steps
+
+In the next step, we will review additional configuration options available for your embedded Space.

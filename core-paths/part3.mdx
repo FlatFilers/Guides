@@ -1,20 +1,20 @@
 ---
-title: "Advanced options"
-description: "When you embed Flatfile, you are using an iframe to embed a [Space](/concepts/spaces) directly into your application.
-"
+title: "See advanced options"
+description: "Learn more about about additional configuration options available for your embedded Space."
+icon: "circle-3"
 --- 
 
-### Loading state
+## Loading state
 
 We provide a default loading state when the Space is loading. You can also pass a custom loading component using the `loading` prop.
 
-### Error handling
+## Error handling
 
 By default, the Space component an error component with the error message when an error is encountered, providing your users with feedback on what went wrong.
 
 If you would like to use your own error handling component instead of the default one, simply pass it in as the `error` prop when rendering the component.
 
-### Closing behavior
+## Closing behavior
 
 ```typescript
 
@@ -26,11 +26,11 @@ const closeSpace = {
 
 This `onClose` callback function is called when the action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
 
-### Theming
+## Theming
 
 You can theme your Space to create a custom look and feel to match your brand. There are two ways to define your theme, depending on how much control you want.
 
-#### makeTheme
+### makeTheme
 
 The `makeTheme` helper function generates a theme based on a primary color, text color, and logo. Different shades of the provided colors are generated and applied programmatically to create a cohesive visual style.
 
@@ -63,7 +63,7 @@ const { component } = useSpace({
   `makeTheme` accepts valid color values in the following formats: name, rgb, hsv, hex.
 </Tip>
 
-#### Manual CSS overrides
+### Manual CSS overrides
 
 If you prefer to set colors manually using the actual CSS variables referenced in the app, you can construct the theme yourself using our [Theming Reference](../guides/theming).
 
@@ -80,7 +80,7 @@ const { component } = useSpace({
 });
 ```
 
-### Styling the iframe
+## Styling the iframe
 
 Use the `iframeStyles` prop to style the outer iframe that the space is wrapped in. `iframeStyle` accepts a JavaScript object with camel-cased properties rather than a CSS string.
 
@@ -103,7 +103,7 @@ const { component } = useSpace({
 });
 ```
 
-### Collecting additional data
+## Collecting additional data
 
 The Space component offers the flexibility to pass in additional metadata through the use of `spaceInfo` prop. This prop allows you to provide information such as user ID, space name, company ID, and company name to the component, which is used to make the dashboard search / filter experience more effective.
 
@@ -127,7 +127,7 @@ const spaceInfo: ISpaceInfo = {
 }
 ```
 
-### Guest Sidebar
+## Guest Sidebar
 
 You can customize your guest sidebar using the [Sidebar Reference](../guides/guest_sidebar) or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
 
@@ -162,7 +162,7 @@ const { component } = useSpace({
 | `showDataChecklist`     | `boolean`                                                                      | Toggle data config for space. Defaults to false.                                                    |
 | `showSidebar`           | `boolean`                                                                      | Toggle whether sidebar defaults to open inside of a Workbook. Defaults to false.                    |
 
-### Documents
+## Documents
 
 <Tooltip tip="Standalone webpages...">[Documents]('../guides/documents)</Tooltip>, written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
 
@@ -193,3 +193,7 @@ const { component } = useSpace({
 });
 ```
 </CodeGroup>
+
+## Recap & Next Steps
+
+In the next step, you will discover ideas for using Flatfile to transform and validate data.
