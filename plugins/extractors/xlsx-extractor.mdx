@@ -1,0 +1,24 @@
+---
+title: xlsx-extractor
+description: "A plugin for parsing xlsx files in Flatfile."
+---
+
+## Overview
+
+This parses all Sheets in an XLSX file and extracts them into Flatfile. 
+
+## Usage
+
+``` typescript
+SpaceConfig1.on([EventTopic.Uploadcompleted], (event) => {
+  return new ExcelExtractor(event).runExtraction()
+})
+```
+
+### Additional Props
+The Extractor can accept an optional parameter that includes rawNumbers: boolean which will be passed along to the Sheet.js parsing engine.
+
+```  typescript
+SpaceConfig1.on([EventTopic.Uploadcompleted], (event) => {
+  return new ExcelExtractor(event, { rawNumbers: true }).runExtraction()
+})```

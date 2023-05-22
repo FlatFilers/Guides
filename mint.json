@@ -57,7 +57,7 @@
     {
       "name": "Plugins",
       "icon": "plug",
-      "url": "https://flatfile.com/plugins"
+      "url": "plugins"
     },
     {
       "name": "Developers",
@@ -107,7 +107,16 @@
       "group": "Security",
       "pages": ["developer-tools/security/authentication",
           "developer-tools/security/roles-and-permissions"]
+    },
+    {
+      "group": "Plugins",
+      "pages": ["plugins/overview"]
+    },
+    {
+      "group": "Extractors",
+      "pages": ["plugins/extractors/xlsx-extractor"]
     }
+
   ],
   "footerSocials": {
     "website": "https://flatfile.com",
