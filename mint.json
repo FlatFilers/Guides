@@ -82,7 +82,7 @@
     },
     {
       "group": "Guides", 
-      "pages": [ "guides/handling-data",  "guides/actions", "guides/configure-a-space",
+      "pages": [ "guides/handling-data",  "guides/actions", "guides/dynamic-configurations",
           "guides/theming", "guides/guest_sidebar",  "guides/documents"]
     },
     {

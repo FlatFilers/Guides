@@ -151,23 +151,19 @@ however, you may also want to adjust some of your configuration at the same time
 
 #### Usage
 
-In the following example, we duplicate the Sheet, then we lock down access to the original Sheet 
+In the following example, we lock down access to the original Sheet 
 and update our getting started guide to reflect the change.
 
 ```jsx listener.js
 listener.filter({ job: 'sheet:duplicate' }, (configure) => {
   listener.on('job:ready', async (event) => {
 
-    const { spaceId, environmentId, jobId, sheetId } = event.context;
+    const { spaceId, environmentId, jobId, sheetId, workbookId } = event.context;
 
     await api.jobs.ack(jobId, {
       info: 'Gettin started.',
       progress: 10
     });
-
-    //duplicate the Sheet configuration
-    //get the data from the current sheet
-    //add records to new Sheet
 
     //lock down the original Sheet
     await api.sheets.update(sheetId, {
@@ -176,14 +172,8 @@ listener.filter({ job: 'sheet:duplicate' }, (configure) => {
 
     //update your Getting Started document
     await api.documents.update(documentId, {
-      title: "Getting Started",
       body:
-        "# Welcome\n" +
-        "### Say hello to your first customer Space in the new Flatfile!\n" +
-        "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
-        //new info added here
-        "You will see 2 Sheets in your Workbook, one of which is disabled.\n" +
-        "---\n"
+        "update something here"
     });
 
     await api.jobs.complete(jobId, {
@@ -197,26 +187,17 @@ listener.filter({ job: 'sheet:duplicate' }, (configure) => {
 
 ### After data changes
 
-TODO
+As the Sheet is being updated with data, perhaps you want to change the configuration. 
+In the following example, we listed for a commit created to do just that.
 
 #### Usage
 
 ```jsx listener.js
-listener.filter({ job: 'space:configure' }, (configure) => {
-  listener.on('job:ready', async (event) => {
-  })
-})
-```
+listener.filter({ sheet: 'SheetName' }, (configure) => {
+  listener.on('commit:created', async (event) => {
 
-### After a guest is added
+    //make changes after cells in a Sheet have been updated
 
-TODO
-
-#### Usage
-
-```jsx listener.js
-listener.filter({ job: 'space:configure' }, (configure) => {
-  listener.on('job:ready', async (event) => {
   })
 })
 ```
