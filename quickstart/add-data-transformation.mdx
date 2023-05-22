@@ -4,6 +4,12 @@ description: "Begin the process of validating and transforming data in Flatfile 
 icon: 'circle-2'
 ---
 
+<Tip>
+  The DevXP engineering team hosts office hours every Thursday at 10 PT where we answer 
+  your questions live and help you get up and running with Flatfile.
+  [Join us!](https://flatfile.com/webinar/developer-office-hours)
+</Tip>
+
 In the previous step, you performed a number of actions:
 
 * Created a workbook with a simple schema
@@ -20,31 +26,38 @@ Using the Flatfile SDK, you can register any javascript function as an event lis
 
 Follow these steps:
 
-1. [Fork this Github repo](https://github.com/FlatFilers/getting-started.git)
-2. Run `npx flatfile@latest develop` from terminal
+1. [Fork this Replit](https://replit.com/@flatfile/get-started)
+2. Hit the Run green button or type `npx flatfile@latest develop` in console
 3. Go back to your Flatfile Workbook and make a few changes. For example try uploading a CSV and then importing the data to the Workbook.
-4. Finally return to your terminal to see how those events were logged
+4. Finally return to your terminal in Replit to see how those events were logged
 
 Here's an example of a very basic event listener:
 
 ```js index.js
 export default function(listener) {
-  listener.on('**', (event) => {
-    console.log('-> My event', event.topic)
-  })
+  listener.on("**", (event) => {
+    console.log(
+      `-> My event listener received an event: ${JSON.stringify(event.topic)}`)
+  });
 }
 ```
 
-``` json Console
+``` ssh Console
 > npm run dev
 
 > gettingstarted@1.0.0 dev
-> node ./.config/dev.js
+> npx flatfile develop
 
-listening for events at 4/28/2023, 2:36:22 PM
+✔ 2 environment(s) found for these credentials
+✔ Environment "development" selected
+ncc: Version 0.36.1
+ncc: Compiling file index.js into CJS
 
-records:updated us_evt_abc 4/28/2023, 2:36:36 PM
-records:updated us_evt_abc 4/28/2023, 2:36:36 PM
+✔ File change detected. 🚀 
+listening for events at 5/18/2023, 8:52:19 PM
+
+commit:created us_evt_abc 5/18/2023, 2:36:36 PM
+commit:created us_evt_abc 5/18/2023, 2:36:38 PM
 ```
 
 This code exports a single function that accepts an instance of an object (named `listener` in the example). This object can be used to subscribe to different events within your Flatfile <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip>. The example code subscribes to all events (using the `**` selector) and writes the event's topic name to the console.
@@ -64,8 +77,6 @@ In this example, we'll use the [@flatfile/plugin-record-hook](https://www.npmjs.
 ```js index.js
 import { recordHook } from '@flatfile/plugin-record-hook';
 
-export default function(listener) {
-  
   listener.use(
     recordHook('contacts', (record) => {
       const value = record.get('firstName')?.toString()
@@ -76,7 +87,6 @@ export default function(listener) {
       return record
     })
   )
-}
 ```
 
 #### Using your transformation 
@@ -101,17 +111,19 @@ import { recordHook } from '@flatfile/plugin-record-hook';
 // While not the most correct, simple for the purpose of an example
 const validEmailAddress = /^[\w\d.-]+@[\w\d]+\.\w+$/;
 
-export default function(listener) {
-  listener.use(recordHook('contacts', (record) => {
+  listener.use(
+    recordHook('contacts', (record) => {
 
-    let emailAddress = record.get('email');
-    if (!validEmailAddress.test(emailAddress)) {
-      record.addError('email', 'Invalid email address');
-    }
+      //previous code here
 
-    return record
-  }))
-}
+      if (!validEmailAddress.test(record.get('email'))) {
+        console.log("got email")
+        record.addError('email', 'Invalid email address')
+      }
+
+      return record
+    })
+  )
 ```
 
 #### Using your validation 

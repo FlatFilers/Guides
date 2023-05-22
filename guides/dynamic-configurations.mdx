@@ -1,0 +1,203 @@
+---
+title: "Dynamic configurations"
+description: "Dynamically build your configuration on command."
+icon: 'object-group'
+---
+
+Flatfile can support the simplest of workflows to the most nuanced & complex with Dynamic Spaces.
+
+## Use cases
+
+The use cases for dynamic configuration are endless, here are just a few ideas:
+
+- Perhaps the user who is creating the Space informs how you want that Space to look for them
+- Or maybe someone's location defines a different type of currency in your Sheet configuration
+- Or say you need data from an external API in a precise moment in time to determine how you want your Workbook to look
+
+Continue reading to learn how to configure a space from scratch, and update it as things change.
+
+
+## Configuring a new Space
+
+### From the dashboard
+
+When the **Create New Space** button is clicked in the platform, this spawns a `configure` operation in the `space` domain. This is the equivalent of making a POST operation to `/api/v1/spaces` with `autoconfigure: true`.
+
+
+1. Filter on the `domain` (space) and the `operation` (configure). 
+2. Listen for a `job:ready` event.
+3. Build your Space, at minimum including one Workbook.
+4. Complete the job.
+5. Optionally, listen for new events that are spawned inside your `space:configure` job. 
+
+
+#### Usage
+
+In the following example, we build a Workbook and our getting started guide. 
+You can also follow along in this [Replit](https://replit.com/@flatfile/configure-a-space#index.js) sandbox.
+
+<Tip>
+  Be sure to complete the job when it's complete. 
+  This tells the platform that you're finished and ready to display the Space to the end user.
+</Tip>
+
+```jsx listener.js
+listener.filter({ job: 'space:configure' }, (configure) => {
+  listener.on('job:ready', async (event) => {
+
+    const { spaceId, environmentId, jobId } = event.context;
+
+    await api.jobs.ack(jobId, {
+      info: 'Gettin started.',
+      progress: 10
+    });
+
+    await api.workbooks.create({
+      spaceId: spaceId,
+      environmentId: environmentId,
+      name: 'All Data',
+      labels: ['primary'],
+      sheets: [
+        {
+          name: 'Contacts',
+          slug: 'contacts',
+          fields: [
+            {
+              key: 'firstName',
+              type: 'string',
+              label: 'First Name',
+            },
+            {
+              key: 'lastName',
+              type: 'string',
+              label: 'Last Name',
+            },
+            {
+              key: 'email',
+              type: 'string',
+              label: 'Email',
+            },
+          ],
+          actions: [
+            {
+              operation: 'duplicate',
+              mode: 'background',
+              label: 'Duplicate Sheet',
+              type: 'string',
+              description: 'Duplicate this Sheet and lock down the original.',
+              primary: true,
+            }
+          ],
+        },
+      ],
+      actions: [
+        {
+          operation: 'submitActionFg',
+          mode: 'foreground',
+          label: 'Submit foreground',
+          type: 'string',
+          description: 'Submit data to webhook.site',
+          primary: true,
+        },
+      ],
+    });
+
+    await api.documents.create(spaceId, {
+      title: "Getting Started",
+      body:
+        "# Welcome\n" +
+        "### Say hello to your first customer Space in the new Flatfile!\n" +
+        "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+        "---\n"
+    });
+
+    await api.jobs.complete(jobId, {
+      outcome: {
+        message: "This job is now complete."
+      }
+    });
+
+  })
+})
+```
+
+### From an embedded button
+
+When embedding Flatfile in your application, a new Space is created every time 
+the Flatfile platform is called to open.
+
+Learn more about this [core path](../core-paths/embedding). 
+
+### Automatically
+
+New Spaces can be created automatically by setting up headless flows.
+
+Learn more about this [core path](../core-paths/headless).
+
+---
+
+## Updating a Space in place
+
+As things are changing in a Space, sometimes you may want to adjust the configuration of your Space.
+You can do this by listening for events that take place, and performing work as a result.
+
+Continue reading for a few common examples.
+
+### After an action is fired
+
+When a button is clicked in the user interface, this creates a job. 
+You are already listening for this job to respond and do the work of that action; 
+however, you may also want to adjust some of your configuration at the same time, too.
+
+#### Usage
+
+In the following example, we lock down access to the original Sheet 
+and update our getting started guide to reflect the change.
+
+```jsx listener.js
+listener.filter({ job: 'sheet:duplicate' }, (configure) => {
+  listener.on('job:ready', async (event) => {
+
+    const { spaceId, environmentId, jobId, sheetId, workbookId } = event.context;
+
+    await api.jobs.ack(jobId, {
+      info: 'Gettin started.',
+      progress: 10
+    });
+
+    //lock down the original Sheet
+    await api.sheets.update(sheetId, {
+      access: []
+    })
+
+    //update your Getting Started document
+    await api.documents.update(documentId, {
+      body:
+        "update something here"
+    });
+
+    await api.jobs.complete(jobId, {
+      outcome: {
+        message: "This job is now complete."
+      }
+    });
+  })
+})
+```
+
+### After data changes
+
+As the Sheet is being updated with data, perhaps you want to change the configuration. 
+In the following example, we listed for a commit created to do just that.
+
+#### Usage
+
+```jsx listener.js
+listener.filter({ sheet: 'SheetName' }, (configure) => {
+  listener.on('commit:created', async (event) => {
+
+    //make changes after cells in a Sheet have been updated
+
+  })
+})
+```

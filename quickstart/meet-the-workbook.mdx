@@ -4,6 +4,12 @@ description: "Learn how to create your first Workbook in Flatfile."
 icon: 'circle-1'
 ---
 
+<Tip>
+  The DevXP engineering team hosts office hours every Thursday at 10 PT where we answer 
+  your questions live and help you get up and running with Flatfile.
+  [Join us!](https://flatfile.com/webinar/developer-office-hours)
+</Tip>
+
 <video style={{width: "100%"}} autoPlay={true} loop={true}>
  <source src="https://videos.ctfassets.net/hjneo4qi4goj/63dlrcN48dWeAbl05SJ25k/642a5c954887c5bb7fc1b32fb88ab0ca/homepage_header_video-01.mp4" type="video/mp4"/>
 </video>
@@ -57,7 +63,8 @@ curl --request POST \
   ],
   "actions": [
     {
-      "slug": "submitAction",
+      "operation": "submitAction",
+      "mode": "foreground",
       "label": "Submit",
       "type": "string",
       "description": "Submit data to webhook.site",
