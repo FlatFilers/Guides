@@ -95,7 +95,7 @@
         {
             "group": "Embed in your app",
             "icon": "person-to-portal",
-            "pages": ["core-paths/embedding_soon"]
+            "pages": ["core-paths/embedding_soon", "core-paths/part2", "core-paths/part3", "core-paths/part4"]
         }, 
         "core-paths/headless", 
         "core-paths/collaborate"

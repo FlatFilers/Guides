@@ -1,0 +1,189 @@
+---
+title: "Getting started"
+description: "When you embed Flatfile, you are using an iframe to embed a [Space](/concepts/spaces) directly into your application.
+"
+---
+
+A Space consists of:
+
+1. A [Workbook](../concepts/workbooks), which defines the structure of the data you are working with. It is analogous to a database.
+2. [Events](../concepts/events), which allow you to listen for and respond to things that occur inside your Space. Examples include uploading a file or submitting data.
+
+In order to embed Flatfile, we need to first create a Workbook to configure our space, and create an event listener to handle events. Then we use a component that takes the configuration and listener and embeds the Space into your React app.
+
+### Workbook configuration
+
+Create a Workbook to configure your Space.
+
+```ts config.ts
+import { Flatfile, FlatfileClient } from '@flatfile/api'
+
+export const config: Pick<
+  Flatfile.WorkbookConfig,
+  'name' | 'sheets' | 'actions'
+> = {
+  name: 'Employees workbook',
+  sheets: [
+    {
+      name: 'Contacts',
+      slug: 'Contacts',
+      fields: [
+        {
+          key: 'first_name',
+          type: 'string',
+          label: 'First name',
+          constraints: [
+            {
+              type: 'required'
+            }
+          ]
+        },
+        {
+          key: 'last_name',
+          type: 'string',
+          label: 'last name',
+          constraints: [
+            {
+              type: 'unique'
+            }
+          ]
+        },
+        {
+          key: 'full_name',
+          type: 'string',
+          label: 'full name'
+        }
+      ]
+    }
+  ],
+  actions: [
+    {
+      label: 'Submit',
+      operation: 'contacts:submit',
+      description: 'Would you like to submit your workbook?',
+      mode: 'foreground',
+      primary: true,
+      confirm: true
+    }
+  ]
+}
+```
+
+### Event listener
+
+Here is where you define how to respond to events. In this case, since we have a "Submit" action defined in our Workbook, we use the event listener to define how we want to submit records:
+
+```ts listener.ts
+async function submit(jobId: string) {
+  const storedToken = sessionStorage.getItem('token')
+
+  if (!storedToken) {
+    throw new Error('Error retrieving stored token')
+  }
+
+  const Flatfile = new FlatfileClient({
+    token: storedToken,
+    environment: 'https://platform.flatfile.com/api/v1'
+  })
+
+  await Flatfile.jobs.ack(jobId, {
+    info: "I'm starting the job - inside client",
+    progress: 33
+  })
+
+  // hit your api here
+  await new Promise((res) => setTimeout(res, 2000))
+
+  await Flatfile.jobs.complete(jobId, {
+    info: "Job's work is done",
+    outcome: { next: { type: 'wait' } }
+  })
+}
+
+/**
+ * Example Listener
+ */
+export const listener = FlatfileListener.create((client) => {
+  client.on(
+    'job:ready',
+    // @ts-ignore
+    { payload: { operation: 'contacts:submit' } },
+    async (event: any) => {
+      const { context } = event
+      return submit(context.jobId)
+    }
+  )
+})
+```
+
+### Putting it together
+
+Now that we have our configuration defined in our Workbook, and our event handlers defined in our listener, we are ready to embed our Space.
+
+Use the `useSpace` hook to create a Space component and pass it the configuration and listener as options:
+
+<CodeGroup>
+```ts app.ts
+import { useSpace, ISpace, makeTheme } from '@flatfile/react'
+import { config } from './config.ts'
+import { listener } from './listener.ts'
+
+const ExampleApp = () => {
+
+const [showSpace, setShowSpace] = useState(false)
+
+const { component } = useSpace({
+  {
+    name: 'Embedded Space',
+    publishableKey: 'your_publishable_key',
+    environmentId: 'your_environment_id',
+    workbook: config,
+    listener: listener
+  },
+  closeSpace: {
+    operation: 'contacts:submit',
+    onClose: () => setShowSpace(false)
+  }
+})
+
+return (
+  <div style={{ padding: "16px" }}>
+    <button
+      onClick={() => {
+        setShowSpace(!showSpace);
+      }}
+    >
+      {showSpace === true ? "Close" : "Open"} space
+    </button>
+    {showSpace && component}
+  </div>
+  )
+}
+```
+
+```ts config.ts
+// Paste config code here when finalized
+```
+
+```ts listener.ts
+// Paste listener code here when finalized
+```
+</CodeGroup>
+
+`useSpace` takes the following options:
+
+| Name             | Description                                                               | Type                    | Required |
+| ---------------- | ------------------------------------------------------------------------- | ----------------------- | -------- |
+| `publishableKey` | Publishable key accessed via Flatfile dashboard > Developer               | string                  | Yes      |
+| `environmentId`  | Environment ID accessed via Flatfile dashboard > Developer                                               | string                  | Yes      |
+| `name`           | Name of the Space                                                             | string                  | No       |
+| `workbook`       | Shape of data you will be receiving                                       | Flatfile.WorkbookConfig | Yes      |
+| `listener`         | Event listener for responding to events                                | Listener                  | No       |
+| `spaceInfo`      | Additional metadata to be passed to the space                              | tbd | No       |
+| `closeSpace`     | Options for when to close the iframe and a callback function when session is complete | tbd | No       |
+| `iframeStyles`   | Styles the iframe using CSS Properties                                     | React.CSSProperties     | No       |
+| `themeConfig`    | Theme determining the look and feel of the Space                            | IThemeConfig            | No       |
+| `sidebarConfig`  | Options for show or hide various UI elements                               | ISidebarConfig          | No       |
+| `document`       | Document to pass to space                                                 | Flatfile.DocumentConfig | No       |
+| `error`          | Error element to display if component throws an error                              | (error: Error \| string) => React.ReactElement | No       |
+| `loading`        | Loading element to display while space loads                              | React.ReactElement      | No       |
