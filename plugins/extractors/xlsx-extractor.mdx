@@ -1,22 +1,23 @@
 ---
-title: "XLSX Parser"
+title: "@flatfile/plugin-xlsx-extractor"
 description: "A plugin for parsing .xlsx files in Flatfile."
+icon: "download"
 ---
 
-<div className="grid sm:grid-cols-6 gap-x-6 flex" style={{alignItems: 'flex-middle', marginBottom: '-3em'}}>
+<div className="grid sm:grid-cols-6 gap-x-6 flex" style={{alignItems: 'flex-middle'}}>
   <div className="col-span-3">
     ### Overview
 
     This plugin parses all Sheets in an XLSX file and extracts them into Flatfile.
     
     <small class="font-semibold text-primary dark:text-primary-light">INSTALL</small><br/>
-    ``npm i @flatfile/plugin-xlsx-parser``
+    ``npm i @flatfile/plugin-xlsx-extractor``
 
   </div>
   <div className="hidden sm:block col-span-3">
     <CardGroup cols={1}>
-        <Card title="@flatfile/plugin-xlsx-parser" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/xlsx-parser" icon="github" >
-        *currently v1.0*
+        <Card title="@flatfile/plugin-xlsx-extractor" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/xlsx-extractor" icon="github" >
+        *currently v1.0.0*
         <br/>
         **Author**<br/>
         David Boskovic<br/>
@@ -30,14 +31,22 @@ description: "A plugin for parsing .xlsx files in Flatfile."
 
 ---
 
+## Import
+
+```bash
+npm i @flatfile/plugin-xlsx-extractor
+```
+
+```ts
+import { ExcelExtractor } from '@flatfile/plugin-xlsx-extractor'
+```
+
 ## Usage
 
 Listen for an XLSX file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
 
 ```ts
-import ExcelExtractor from @flatfile/xlsx-parser
-
-listener.on([file:created], (event) => {
+listener.on([‘file:created’], (event) => {
   return new ExcelExtractor(event).runExtraction()
 })
 ```
@@ -47,7 +56,7 @@ listener.on([file:created], (event) => {
 The extractor can accept additional properties. Props will be passed along to the Sheet.js parsing engine.
 
 ```ts
-listener.on([file:created], (event) => {
+listener.on([‘file:created’], (event) => {
   return new ExcelExtractor(event, { rawNumbers: true }).runExtraction()
 })
 ```
