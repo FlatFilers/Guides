@@ -1,10 +1,10 @@
 ---
 title: Configure a submit action
 description: "Learn how to create a simple submit Action in Flatfile."
-icon: 'circle-3'
+icon: "circle-3"
 ---
 
-<Snippet file="dxpbanner.mdx"/>
+<Snippet file="dxpbanner.mdx" />
 
 Actions refer to buttons added to the user interface that trigger <Tooltip tip="Large asynchronous work...">[Jobs](../concepts/jobs)</Tooltip> within the Flatfile platform when clicked by users. They enable you to run complex operations and streamline workflows. They are declared as part of the Blueprint that defines a Workbook.
 
@@ -12,10 +12,13 @@ Actions refer to buttons added to the user interface that trigger <Tooltip tip="
 
 In this example, we're going to add behavior to our Workbook's primary Action (`submitAction`). When the button is clicked by a user, our code will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
 
-1. To create the receiver, navigate to [webhook.site](https://webhook.site) 2. Copy the value of the path after webhook.site for `Your unique URL`.
-3. Next, add the following to your default export function.
+1. To create the receiver, navigate to [webhook.site](https://webhook.site)
+1. Copy the value of the path after webhook.site for `Your unique URL`.
+1. Next, add the following to your default export function.
 
 ```js index.js
+import api from '@flatfile/api'
+
 export default function(listener) {
   // existing code
 
@@ -41,11 +44,10 @@ export default function(listener) {
 
         await api.jobs.complete(jobId, {
           outcome: {
-            message: "Data was successfully submitted to webbook.site. Go check it out!"
-          }
+            message: "Data was successfully submitted to webhook.site. Go check it out!",
+          },
         });
-      }
-      catch (error) {
+      } catch (error) {
         console.log(`webhook.site[error]: ${JSON.stringify(error, null, 2)}`);
 
         await api.jobs.fail(jobId, {
@@ -65,10 +67,10 @@ export default function(listener) {
 1. With the `develop` command still running in terminal, head to your Workbook and click the submit Action in the top right corner.
 2. In webhook.site, look at the query log and observe that the webhook received a call; this is the Action running.
 
-
 ---
 
 ## Recap & Next Steps
+
 Congratulations! You now have a Workbook with transformations, validations, and a submit Action.
 
 To this point, we've been running our listener code locally using the `develop` command. Next, you should [deploy your code](../developer-tools/deploying).
