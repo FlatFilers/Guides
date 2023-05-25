@@ -138,17 +138,15 @@ const ExampleApp = () => {
 const [showSpace, setShowSpace] = useState(false)
 
 const { component } = useSpace({
-  {
     name: 'Embedded Space',
     publishableKey: 'your_publishable_key',
     environmentId: 'your_environment_id',
     workbook: config,
-    listener: listener
-  },
-  closeSpace: {
-    operation: 'contacts:submit',
-    onClose: () => setShowSpace(false)
-  }
+    listener: listener,
+    closeSpace: {
+      operation: 'contacts:submit',
+      onClose: () => setShowSpace(false)
+    }
 })
 
 return (
