@@ -6,6 +6,7 @@
     "light": "/logo/light.svg",
     "href": "https://flatfile.com"
   },
+  "isWhiteLabeled": true,
   "api": {
     "baseUrl": "https://platform.flatfile.com/api",
     "playground": {
