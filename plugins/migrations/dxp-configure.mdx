@@ -1,0 +1,73 @@
+---
+title: "@flatfile/plugin-dxp-configure"
+description: "A plugin for using DXP class-based configurations."
+icon: "download"
+---
+
+<div className="grid sm:grid-cols-6 gap-x-6 flex" style={{alignItems: 'flex-middle'}}>
+  <div className="col-span-3">
+    ### Overview
+
+    This plugin lets you easily attach your implementation of the class-based schema configuration library `@flatfile/configure` to `@flatfile/listener`.
+
+    <small class="font-semibold text-primary dark:text-primary-light">INSTALL</small><br/>
+    ``npm i @flatfile/plugin-dxp-configure``
+
+  </div>
+  <div className="hidden sm:block col-span-3">
+    <CardGroup cols={1}>
+        <Card title="@flatfile/plugin-record-hook" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/record-hook" icon="github" >
+        *currently v0.0.3*
+        <br/>
+        **Author**<br/>
+        David Boskovic<br/>
+        <br/>
+        **Last updated**<br/>
+        May 11, 2023
+        </Card>
+    </CardGroup>
+  </div>
+</div>
+
+---
+
+## Import
+
+```ts
+import { dxpConfigure } from '@flatfile/plugin-dxp-configure'
+```
+
+## Usage
+
+You can simply attach any existing workbook configuration you have to a listener and it'll automatically apply to your next space.
+
+`listener.js`
+```js
+import { MyWorkbook } from './my-dxp-workbook.js'
+import { dxpConfigure } from '@flatfile/plugin-dxp-configure'
+
+export default (listener) => {
+  listener.use(dxpConfigure(MyWorkbook))
+}
+```
+
+`my-dxp-workbook.js`
+```js 
+import { Sheet, TextField, Workbook } from '@flatfile/configure'
+
+export const MyWorkbook = new Workbook({
+  name: 'My Workbook',
+  namespace: 'test',
+  sheets: {
+    mySheet: new Sheet('Test', {
+      name: TextField('Full Name'),
+      email: TextField({
+        name: 'Email Address',
+        compute: (val) => {
+          return val.toLowerCase()
+        },
+      }),
+    }),
+  },
+})
+```
