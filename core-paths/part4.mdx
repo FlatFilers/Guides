@@ -463,8 +463,25 @@ async function convertColors(jobId: string, sheetId: string) {
 
   const records = await Flatfile.records.get(sheetId)
   const recordsUpdates = records.data.records?.map((record) => {
-    const newColor = Color(record.values.color.value).hex()
-    record.values['color'].value = newColor
+    // helper function to validate color
+      const isColor = (strColor: any) => {
+        const s = new Option().style
+        s.color = strColor
+        return s.color !== ''
+      }
+
+    // validate the color
+    if (record.values.color.value && isColor(record?.values?.color?.value)) {
+      const newColor = Color(record.values.color.value).hex()
+      record.values['color'].value = newColor
+    } else {
+      
+    // if color is invalid, push an error message to the record
+      record.values['color'].messages?.push({
+        type: 'error',
+        message: 'Sorry this is an invalid color'
+      })
+    }
 
     return record
   })
