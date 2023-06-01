@@ -46,7 +46,7 @@ import { ExcelExtractor } from '@flatfile/plugin-xlsx-extractor'
 Listen for an XLSX file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
 
 ```ts
-listener.on([‘file:created’], (event) => {
+listener.on(['file:created'], (event) => {
   return new ExcelExtractor(event).runExtraction()
 })
 ```
@@ -56,7 +56,7 @@ listener.on([‘file:created’], (event) => {
 The extractor can accept additional properties. Props will be passed along to the Sheet.js parsing engine.
 
 ```ts
-listener.on([‘file:created’], (event) => {
+listener.on(['file:created'], (event) => {
   return new ExcelExtractor(event, { rawNumbers: true }).runExtraction()
 })
 ```
