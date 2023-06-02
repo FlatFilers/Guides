@@ -1,6 +1,6 @@
 ---
 title: "@flatfile/plugin-record-hook"
-description: "A plugin for parsing .xlsx files in Flatfile."
+description: "A plugin for running custom logic on individual data records in Flatfile."
 icon: "download"
 ---
 
@@ -8,22 +8,22 @@ icon: "download"
   <div className="col-span-3">
     ### Overview
 
-    This plugin provides a concise syntax for running custom logic on individual data records in Flatfile.
-    
+    This plugin exports a function named `recordHook` that sets up an event listener for the `commit:created` event. 
+    The purpose of this plugin is to provide a concise syntax for running custom logic on individual data records in Flatfile.
     <small class="font-semibold text-primary dark:text-primary-light">INSTALL</small><br/>
-    ``npm i @flatfile/plugin-record-hook``
+    ``npm i @flatfile/plugin-record-hook @flatfile/hooks``
 
   </div>
   <div className="hidden sm:block col-span-3">
     <CardGroup cols={1}>
         <Card title="@flatfile/plugin-record-hook" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/record-hook" icon="github" >
-        *currently v0.1.1*
+        *currently v0.1.5*
         <br/>
-        **Author**<br/>
-        Alex Hollenbeck<br/>
+        **Contributors**<br/>
+        Alex Hollenbeck, Alex Rock<br/>
         <br/>
         **Last updated**<br/>
-        May 23, 2023
+        June 2, 2023
         </Card>
     </CardGroup>
   </div>
@@ -47,21 +47,15 @@ Pass `recordHook` to a Flatfile data listener and provide a function to run when
 Set up a listener to configure Flatfile and respond to data events:
 
 ```ts
-import {
-  Client,
-  FlatfileVirtualMachine,
-  FlatfileEvent,
-} from '@flatfile/listener'
+export default function(listener) {
+  //simple listener
+  listener.on("**", (event) => {
+    console.log(
+      `-> My event listener received an event: ${JSON.stringify(event.topic)}`)
+  });
 
-const listener = Client.create((client) => {
-  // Set up your configuration here
-})
 
-const FlatfileVM = new FlatfileVirtualMachine()
-
-listener.mount(FlatfileVM)
-
-export default listener
+}
 ```
 
 ### 2. Listen for data changes
@@ -70,9 +64,10 @@ Use the this plugin to set up a hook that responds to data changes:
 
 ```ts
 import { recordHook } from '@flatfile/plugin-record-hook'
+import { FlatfileRecord } from '@flatfile/hooks'
 
 listener.use(
-  recordHook('my-sheet', (record: FlatfileRecord) => {
+  recordHook('my-sheet', (record: FlatfileRecord, event: FlatfileEvent) => {
     // Your logic goes here
   })
 )
@@ -82,11 +77,18 @@ Replace `my-sheet` with the slug of the Sheet you want to attach this hook to.
 
 ## Example usage
 
-Create a record hook that populates a "full name" field based on the values of first name and last name:
+This example sets up a record hook using listener.use to modify records 
+in the "my-sheet" sheet. 
+
+When a record is processed by the hook, it checks if the "firstName" and "lastName" fields exist and if the "fullName" field is not already populated. 
+If these conditions are met, it sets the "fullName" field by concatenating the "firstName" and "lastName" values with a space in between. 
+
+Additionally, it adds a comment to the "fullName" 
+field in the user interface indicating that it was populated from the first and last name.
 
 ```ts
 listener.use(
-  recordHook('my-sheet', (record: FlatfileRecord) => {
+  recordHook('my-sheet', (record: FlatfileRecord, event: FlatfileEvent) => {
     const firstName = record.get('firstName')
     const lastName = record.get('lastName')
     if (firstName && lastName && !record.get('fullName')) {
