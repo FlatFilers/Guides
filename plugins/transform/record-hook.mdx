@@ -4,17 +4,6 @@ description: "A plugin for running custom logic on individual data records in Fl
 icon: "download"
 ---
 
-<div className="grid sm:grid-cols-6 gap-x-6 flex" style={{alignItems: 'flex-middle'}}>
-  <div className="col-span-3">
-    ### Overview
-
-    This plugin exports a function named `recordHook` that sets up an event listener for the `commit:created` event. 
-    The purpose of this plugin is to provide a concise syntax for running custom logic on individual data records in Flatfile.
-    <small class="font-semibold text-primary dark:text-primary-light">INSTALL</small><br/>
-    ``npm i @flatfile/plugin-record-hook @flatfile/hooks``
-
-  </div>
-  <div className="hidden sm:block col-span-3">
     <CardGroup cols={1}>
         <Card title="@flatfile/plugin-record-hook" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/record-hook" icon="github" >
         *currently v0.1.5*
@@ -26,8 +15,15 @@ icon: "download"
         June 2, 2023
         </Card>
     </CardGroup>
-  </div>
-</div>
+
+### Overview
+
+This plugin exports a function named `recordHook` that sets up an event listener for the `commit:created` event. 
+The purpose of this plugin is to provide a concise syntax for running custom logic on individual data records in Flatfile.
+
+
+<small class="font-semibold text-primary dark:text-primary-light">INSTALL</small><br/>
+``npm i @flatfile/plugin-record-hook @flatfile/hooks``
 
 ---
 
