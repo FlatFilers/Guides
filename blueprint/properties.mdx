@@ -4,6 +4,7 @@ description: "Learn more about each supported field type: `string`, `number`, `b
 ---
 
 ## Default Options
+
 Each field has the following configuration options. Read the documentation for each type as there may be additional configuration options.
 
 <ParamField path="key" type="string" required>
@@ -11,34 +12,39 @@ Each field has the following configuration options. Read the documentation for e
 </ParamField>
 
 <ParamField path="type" required>
-  One of `string`, `number`, `boolean`, `date`, `enum`, `reference`. Defines the handling of this property.
+  One of `string`, `number`, `boolean`, `date`, `enum`, `reference`. Defines the
+  handling of this property.
 </ParamField>
 
 <ParamField path="label" default="key" type="string">
-  A user-facing descriptive label designed to be displayed in the UI such as a table header.
+  A user-facing descriptive label designed to be displayed in the UI such as a
+  table header.
 </ParamField>
 
 <ParamField path="description" type="string">
-  A long form description of the property intended to be displayed to an end user.
+  A long form description of the property intended to be displayed to an end
+  user.
 </ParamField>
 
 <ParamField path="constraints" default="[]" type="array">
-  An array of system level Validation Rules meant to be applied after hooks are run.
+  An array of system level Validation Rules meant to be applied after hooks are
+  run.
 </ParamField>
 
 <ParamField path="config" default="{}" type="object">
-  Configuration relevant to the type of column. See property documentation below.
+  Configuration relevant to the type of column. See property documentation
+  below.
 </ParamField>
 
 <ParamField path="multi" default="false" type="boolean">
-  Will allow multiple values and store / provide the values in an array if set. Not all field types support arrays.
+  Will allow multiple values and store / provide the values in an array if set.
+  Not all field types support arrays.
 </ParamField>
 
 <ParamField path="meta" default="{}" type="object">
   Arbitrary object of values to pass through to hooks and egress
 </ParamField>
 ---------
-
 
 ## `string` _(default)_
 
@@ -52,15 +58,14 @@ Defines a property that should be stored and read as a basic string.
 },
 ```
 
-
 ## `number`
 
 Defines a property that should be stored and read as either an integer or floating point number. Database engines should look at the configuration to determine ideal storage format.
 
-
-
 <ParamField path="config.decimal_places" default="0" type="number">
-  The number of decimal places to preserve accuracy to. Overages should be automatically rounded with a warning. A hook can pre-format to accomplish floor or ceiling.
+  The number of decimal places to preserve accuracy to. Overages should be
+  automatically rounded with a warning. A hook can pre-format to accomplish
+  floor or ceiling.
 </ParamField>
 
 ```json
@@ -79,17 +84,16 @@ Defines a property that should be stored and read as either an integer or floati
 Defines a reference to another sheet. Links should be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
 
 <ParamField path="config.ref" required>
-  The full path reference to another sheet/table configuration. Must be in the same workbook.
+  The full path reference to another sheet/table configuration. Must be in the
+  same workbook.
 </ParamField>
 <ParamField path="config.relationship" required>
-  The type of relationship this defines. Can be one of `has-many` or `has-one`
+  The type of relationship this defines. Can be `has-one`
 </ParamField>
-
 
 ## `enum`
 
 Defines an enumerated list of options for the user to select from. Matching tooling attempts to resolve incoming data assigment to a valid option. The maximum number of options for this list is `100`. For larger lists, users should use the `reference` or future `lookup` types.
-
 
 <ParamField path="config.allow_custom" default="false" type="boolean">
   Permit the user to create new options for this specific field.
@@ -98,7 +102,6 @@ Defines an enumerated list of options for the user to select from. Matching tool
 <ParamField path="config.options" required>
   An array of valid options the user can select from
 </ParamField>
-
 
 <Expandable title="options" type="array" defaultOpen={true}>
 
@@ -146,7 +149,6 @@ Defines an enumerated list of options for the user to select from. Matching tool
   }
 },
 ```
-
 
 ## `boolean`
 
