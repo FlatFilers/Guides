@@ -4,15 +4,13 @@ description: "The anatomy of Events."
 icon: "ear-listen"
 ---
 
-The Flatfile platform includes a <Tooltip tip="View API reference">[REST API](https://reference.flatfile.com/docs/api)</Tooltip> for manipulating resources
-and an event bus for subscribing to notifications about those resources.
+The Flatfile platform encompasses a comprehensive suite of tools. Firstly, it offers a REST API, which can be accessed through the <Tooltip tip="View API reference">REST API</Tooltip>, empowering users to effortlessly manipulate resources. Additionally, an event bus is available for seamless subscription to resource-related notifications.
 
-The Flatfile PubSub Client is a super thin wrapper around the Flatfile API.
-It allows you to call our API after receiving events from any PubSub driver.
+To simplify the process of utilizing the Flatfile API, the Flatfile PubSub Client serves as a lightweight wrapper. It enables developers to seamlessly trigger API calls upon receiving events from any PubSub driver, thus ensuring a smooth and streamlined integration process.
 
 #### The anatomy of an Event
 
-Flatfile events follow a standard structure, and event listeners can use any of the following syntaxes to handle events within Flatfile.
+Flatfile events adhere to a standardized structure, and event listeners have the flexibility to handle events within Flatfile using any of the following syntaxes.
 
 [See API Reference](https://reference.flatfile.com/docs/api/c67125494272c-create-an-event)
 
@@ -37,7 +35,7 @@ export type EventFilter = Record<string, Arrayable<string>>;
 
 #### Building with events
 
-Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library we can intervene between any event and run a callback function based on values provided inside that event.
+By leveraging the robust capabilities of our @flatfile/listener library, we can seamlessly intercept any event and execute a callback function based on the values encapsulated within the event itself.
 
 ```typescript
 listener.filter({ job: "space:configure" }, (configure) => {
@@ -48,6 +46,9 @@ listener.filter({ job: "space:configure" }, (configure) => {
 ```
 
 ## Event Topics
+
+Utilize the reference provided by the response of each event topic to determine the desired
+outcome or plan subsequent actions accordingly.
 
 ### Workbook
 
