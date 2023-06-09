@@ -114,18 +114,29 @@ listener.filter({ job: "space:configure" }, (configure) => {
 
 ### Sheet
 
-#### `sheet:created`
-
-<ParamField path="sheet:created" type="readonly">
-  Called when a new sheet is created within a workbook.
-</ParamField>
-
 #### `sheet:updated`
 
 <ParamField path="sheet:updated" type="readonly">
   Called when a sheet is updated. For example, running sheet level validations.
   Adding data to a sheet does not emit this event.
 </ParamField>
+
+```json
+{
+  "domain": "sheet",
+  "topic": "sheet:updated",
+  "context": {
+    "slugs": { "sheet": "contacts" },
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "sheetId": "us_sh_1234",
+    "sheetSlug": "contacts",
+    "actorId": "us_ag_XRGmuGfL"
+  }
+}
+```
 
 #### `sheet:deleted`
 
@@ -430,13 +441,6 @@ listener.filter({ job: "space:configure" }, (configure) => {
 }
 ```
 
-#### `job:scheduled`
-
-<ParamField path="job:scheduled" type="readonly">
-  Called when a job has failed and needs to rerun. _This event is not currently
-  implemented._
-</ParamField>
-
 #### `job:deleted`
 
 <ParamField path="job:deleted" type="readonly">
@@ -465,17 +469,36 @@ listener.filter({ job: "space:configure" }, (configure) => {
   Called when a new agent is deployed.
 </ParamField>
 
-#### `agent:updated`
-
-<ParamField path="agent:updated" type="readonly">
-  Called when an agent is updated.
-</ParamField>
+```json
+{
+  "domain": "space",
+  "topic": "agent:created",
+  "context": {
+    "actorId": "us_ag_1234",
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234"
+  }
+}
+```
 
 #### `agent:deleted`
 
 <ParamField path="agent:deleted" type="readonly">
   Called when an agent is deleted.
 </ParamField>
+
+```json
+{
+  "domain": "space",
+  "topic": "agent:deleted",
+  "context": {
+    "actorId": "us_ag_1234",
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234"
+    "agentId": "us_ag_1234"
+  }
+}
+```
 
 ### Space
 
