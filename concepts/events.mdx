@@ -28,7 +28,9 @@ export type EventFilter = Record<string, Arrayable<string>>;
 // example event context
 {
   context: {
-    sheetSlug: "TestSheet";
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "actorId": "us_ag_1234"
   }
 }
 ```
@@ -38,18 +40,18 @@ export type EventFilter = Record<string, Arrayable<string>>;
 Using our powerful [@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener) library we can intervene between any event and run a callback function based on values provided inside that event.
 
 ```typescript
-client.on(
-  "commit:*", //listens for commit:created & commit:updated
-  { target: "sheet(TestSheet)" },
-  (event: FlatfileEvent) => {
+listener.filter({ job: "space:configure" }, (configure) => {
+  listener.on("job:ready", async (event: FlatfileEvent) => {
     //do something here
-  }
-);
+  });
+});
 ```
 
 ## Event Topics
 
-#### Workbook
+### Workbook
+
+#### `workbook:created`
 
 <ParamField path="workbook:created" type="readonly">
   Called when a new workbook is created.
@@ -68,6 +70,8 @@ client.on(
   }
 }
 ```
+
+#### `workbook:updated`
 
 <ParamField path="workbook:updated" type="readonly">
   Called when workbook metadata is updated. For example, updating the name of a
@@ -88,6 +92,8 @@ client.on(
 }
 ```
 
+#### `workbook:deleted`
+
 <ParamField path="workbook:deleted" type="readonly">
   Called when a workbook is deleted.
 </ParamField>
@@ -106,14 +112,22 @@ client.on(
 }
 ```
 
+### Sheet
+
+#### `sheet:created`
+
 <ParamField path="sheet:created" type="readonly">
   Called when a new sheet is created within a workbook.
 </ParamField>
+
+#### `sheet:updated`
 
 <ParamField path="sheet:updated" type="readonly">
   Called when a sheet is updated. For example, running sheet level validations.
   Adding data to a sheet does not emit this event.
 </ParamField>
+
+#### `sheet:deleted`
 
 <ParamField path="sheet:deleted" type="readonly">
   Called when a sheet is deleted.
@@ -132,22 +146,25 @@ client.on(
     "sheetId": "us_sh_1234",
     "sheetSlug": "contacts",
     "actorId": "us_ag_XRGmuGfL"
-  },
-  "target": "sheet(contacts)"
+  }
 }
 ```
+
+### Record
+
+#### `commit:created`
 
 <ParamField path="commit:created" type="readonly">
   Called when a new commit is created. For example, by creating or updating a
   cell.
 </ParamField>
 
-```json commit:created event payload
+```json
 {
   "domain": "workbook",
   "topic": "commit:created",
   "context": {
-    "slugs": { "sheet": "MasterWorkbook/Dat" },
+    "slugs": { "sheet": "MasterWorkbook/Data" },
     "accountId": "us_acc_1234",
     "environmentId": "us_env_1234",
     "spaceId": "us_sp_1234",
@@ -156,15 +173,11 @@ client.on(
     "sheetSlug": "MasterWorkbook/Data",
     "versionId": "us_vr_1234,
     "actorId": "us_usr_1234"
-  },
-  "target": "sheet(DataInReview)",
+  }
 }
 ```
 
-<ParamField path="commit:updated" type="readonly">
-  Called when commit metadata is updated. For example, approving or merging a
-  commit. Commits cannot be deleted.
-</ParamField>
+#### `layer:created`
 
 <ParamField path="layer:created" type="readonly">
   Called when a new layer is created within a commit. A layer is a
@@ -174,13 +187,15 @@ client.on(
   source data.
 </ParamField>
 
-#### File Upload
+### File Upload
+
+#### `file:created`
 
 <ParamField path="file:created" type="readonly">
   Called when a file upload begins or a new file is created.
 </ParamField>
 
-```json file:created event payload
+```json
 {
   "domain": "file",
   "topic": "file:created",
@@ -190,17 +205,18 @@ client.on(
     "spaceId": "us_sp_1234",
     "fileId": "us_fl_1234",
     "actorId": "us_usr_1234"
-  },
-  "target": "space(*)"
+  }
 }
 ```
+
+#### `file:updated`
 
 <ParamField path="file:updated" type="readonly">
   Called when a file is updated. For example, when a file has been extracted
   into a workbook.
 </ParamField>
 
-```json file:updated event payload
+```json
 {
   "domain": "file",
   "topic": "file:updated",
@@ -214,16 +230,17 @@ client.on(
   "payload": {
     "status": "complete",
     "workbookId": "us_wb_1234"
-  },
-  "target": "space(*)"
+  }
 }
 ```
+
+#### `file:deleted`
 
 <ParamField path="file:deleted" type="readonly">
   Called when a file is deleted.
 </ParamField>
 
-```json file:deleted event payload
+```json
 {
   "domain": "file",
   "topic": "file:deleted",
@@ -233,12 +250,13 @@ client.on(
     "spaceId": "us_sp_1234",
     "fileId": "us_fl_1234",
     "actorId": "us_usr_1234"
-  },
-  "target": "space(*)"
+  }
 }
 ```
 
-#### Jobs
+### Jobs
+
+#### `job:created`
 
 <ParamField path="job:created" type="readonly">
   Called when a new job is first created. Some jobs will enter an optional
@@ -246,7 +264,7 @@ client.on(
   planning step and transition directly to 'ready.'
 </ParamField>
 
-```json job:created event payload
+```json
 {
   "domain": "job", //job domain
   "topic": "job:created",
@@ -267,6 +285,8 @@ client.on(
 }
 ```
 
+#### `job:ready`
+
 <ParamField path="job:ready" type="readonly">
   Called when a new job is ready to execute. Either the job has a complete plan
   of work or the job is configured to not need a plan. This is the only event
@@ -274,7 +294,7 @@ client.on(
   a listener, it transations into an executing state.
 </ParamField>
 
-```json job:ready relevant payload
+```json
 {
   "domain": "job", //job domain
   "topic": "job:ready",
@@ -295,13 +315,15 @@ client.on(
 }
 ```
 
+#### `job:updated`
+
 <ParamField path="job:updated" type="readonly">
   Called when a job is updated. For example, when a listener updates the state
   or progress of the job. The event will emit many times as the listener
   incrementally copmletes work and updates the job.
 </ParamField>
 
-```json job:updated relevant payload
+```json
 {
   "domain": "job", //job domain
   "topic": "job:updated",
@@ -322,11 +344,13 @@ client.on(
 }
 ```
 
+#### `job:completed`
+
 <ParamField path="job:completed" type="readonly">
   Called when a job has completed.
 </ParamField>
 
-```json job:completed relevant payload
+```json
 {
   "domain": "job", //job domain
   "topic": "job:completed",
@@ -347,12 +371,14 @@ client.on(
 }
 ```
 
+#### `job:outcome-acknowledged`
+
 <ParamField path="job:outcome-acknowledged" type="readonly">
   Called to trigger workflow actions after the user has acknowledged that the
   job has completed or failed. Background jobs will skip this step.
 </ParamField>
 
-```json job:outcome-acknowledged relevant payload
+```json
 {
   "domain": "job", //job domain
   "topic": "job:outcome-acknowledged",
@@ -375,11 +401,13 @@ client.on(
 }
 ```
 
+#### `job:failed`
+
 <ParamField path="job:failed" type="readonly">
   Called when a job fails.
 </ParamField>
 
-```json job:failed event payload
+```json
 {
   "domain": "job", //job domain
   "topic": "job:failed",
@@ -402,16 +430,20 @@ client.on(
 }
 ```
 
+#### `job:scheduled`
+
 <ParamField path="job:scheduled" type="readonly">
   Called when a job has failed and needs to rerun. _This event is not currently
   implemented._
 </ParamField>
 
+#### `job:deleted`
+
 <ParamField path="job:deleted" type="readonly">
   Called when a job is deleted.
 </ParamField>
 
-```json job:deleted event payload
+```json
 {
   "domain": "job",
   "topic": "job:deleted",
@@ -425,27 +457,35 @@ client.on(
 }
 ```
 
-#### Agents
+### Agents
+
+#### `agent:created`
 
 <ParamField path="agent:created" type="readonly">
   Called when a new agent is deployed.
 </ParamField>
 
+#### `agent:updated`
+
 <ParamField path="agent:updated" type="readonly">
   Called when an agent is updated.
 </ParamField>
+
+#### `agent:deleted`
 
 <ParamField path="agent:deleted" type="readonly">
   Called when an agent is deleted.
 </ParamField>
 
-#### Space
+### Space
+
+#### `space:created`
 
 <ParamField path="space:created" type="readonly">
   Called when a new space is created.
 </ParamField>
 
-```json space:created relevant payload
+```json
 {
   "domain": "space",
   "topic": "space:created",
@@ -458,11 +498,13 @@ client.on(
 }
 ```
 
+#### `space:updated`
+
 <ParamField path="space:updated" type="readonly">
   Called when a space is updated.
 </ParamField>
 
-```json space:updated relevant payload
+```json
 {
   "domain": "space",
   "topic": "space:updated",
@@ -475,11 +517,13 @@ client.on(
 }
 ```
 
+#### `space:deleted`
+
 <ParamField path="space:deleted" type="readonly">
   Called when a space is deleted.
 </ParamField>
 
-```json space:deleted relevant payload
+```json
 {
   "domain": "space",
   "topic": "space:deleted",
