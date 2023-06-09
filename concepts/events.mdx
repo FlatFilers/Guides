@@ -481,25 +481,6 @@ listener.filter({ job: "space:configure" }, (configure) => {
 }
 ```
 
-#### `agent:updated`
-
-<ParamField path="agent:updated" type="readonly">
-  Called when an agent is updated.
-</ParamField>
-
-```json
-{
-  "domain": "space",
-  "topic": "agent:updated",
-  "context": {
-    "actorId": "us_ag_1234",
-    "accountId": "us_acc_1234",
-    "environmentId": "us_env_1234"
-    "agentId": "us_ag_1234"
-  }
-}
-```
-
 #### `agent:deleted`
 
 <ParamField path="agent:deleted" type="readonly">
