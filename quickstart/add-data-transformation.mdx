@@ -1,22 +1,26 @@
 ---
 title: "Transform & validate data"
 description: "Begin the process of validating and transforming data in Flatfile by implementing a basic event handler."
-icon: 'circle-2'
+icon: "circle-2"
 ---
 
-<Snippet file="dxpbanner.mdx"/>
+<Snippet file="dxpbanner.mdx" />
 
 In the previous step, you performed a number of actions:
 
-* Created a workbook with a simple schema
-* Populated the workbook with a sample CSV file
-* Edited the workbook using the Flatfile user interface
+- Created a workbook with a simple schema
+- Populated the workbook with a sample CSV file
+- Edited the workbook using the Flatfile user interface
 
 Each of these actions creates an <Tooltip tip="Anatomy of an Event...">[Event](../concepts/events)</Tooltip>. You can author code to listen and react to these events by performing tasks such as validating and transforming records, importing and joining data from other sources, and even offloading data processing to your own API.
 
 ## Setting up a listener
 
-<Note>Flatfile provides a powerful Typescript/NodeJS SDK for working with events and plugins. There are a lot of ways to listen to events in other ways that we describe in the [Events](../concepts/events) docs.</Note>
+<Note>
+  Flatfile provides a powerful Typescript/NodeJS SDK for working with events and
+  plugins. There are a lot of ways to listen to events in other ways that we
+  describe in the [Events](../concepts/events) docs.
+</Note>
 
 Using the Flatfile SDK, you can register any javascript function as an event listener and start working with events.
 
@@ -30,30 +34,27 @@ Follow these steps:
 Here's an example of a very basic event listener:
 
 ```js index.js
-export default function(listener) {
+export default function (listener) {
   listener.on("**", (event) => {
-    console.log(
-      `-> My event listener received an event: ${JSON.stringify(event.topic)}`)
+    console.log(`-> Received an event: ${JSON.stringify(event.topic)}`);
   });
 }
 ```
 
-``` ssh Console
-> npm run dev
-
-> gettingstarted@1.0.0 dev
-> npx flatfile develop
-
-✔ 2 environment(s) found for these credentials
+```ssh Console
+> getting-started % npx flatfile develop
+✔ 1 environment(s) found for these credentials
 ✔ Environment "development" selected
 ncc: Version 0.36.1
 ncc: Compiling file index.js into CJS
+  ✓ 427ms      GET    200 https://platform.flatfile.com/api/v1/subscription 12345
 
-✔ File change detected. 🚀 
-listening for events at 5/18/2023, 8:52:19 PM
+ File change detected. 🚀
+  ✓ Connected to event stream for scope us_env_1234
+ ▶ commit:created  10:13:05.159 AM us_evt_1234
+ ↳ on(**, {})
+ ↳ on(commit:created, {"sheetSlug":"contacts"})
 
-commit:created us_evt_abc 5/18/2023, 2:36:36 PM
-commit:created us_evt_abc 5/18/2023, 2:36:38 PM
 ```
 
 This code exports a single function that accepts an instance of an object (named `listener` in the example). This object can be used to subscribe to different events within your Flatfile <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip>. The example code subscribes to all events (using the `**` selector) and writes the event's topic name to the console.
@@ -62,74 +63,77 @@ Listeners are the basic building block of Flatfile logic. They span from simple 
 
 ## Working with Plugins
 
-Flatfile provides a number of [transformation & validation plugins](../plugins/transform) to reshape data before it gets updated. These plugins build on the listener and provide a simpler interface for working with your data. 
+Flatfile provides a number of [transformation & validation plugins](../plugins/transform) to reshape data before it gets updated. These plugins build on the listener and provide a simpler interface for working with your data.
 
-<Tip>Plugins are registered with the `listener.use()` function. This is explained further in [Events](../concepts/events) concepts.</Tip>
+<Tip>
+  Plugins are registered with the `listener.use()` function. This is explained
+  further in [Events](../concepts/events) concepts.
+</Tip>
 
 ## Adding your first data transformation
 
-In this example, we'll use the [@flatfile/plugin-record-hook](../plugins/transform/record-hook) plugin to notify us of every row addition or modification and give us the ability to modify the data. For this example, we will take the first name record and make it lowercase.
+Let's dive into an example that showcases the power of the `@flatfile/plugin-record-hook` plugin. With this plugin,
+we can stay in the loop whenever a new row is added or an existing one is modified, allowing us to take action
+and transform the data to our liking.
+
+In this particular scenario, we'll demonstrate how to grab the first name from the record and convert it
+to lowercase.
 
 ```js index.js
-import { recordHook } from '@flatfile/plugin-record-hook';
+import { recordHook } from "@flatfile/plugin-record-hook";
 
-  listener.use(
-    recordHook('contacts', (record) => {
-      const value = record.get('firstName')?.toString()
-      if (value) {
-        record.set('firstName', value.toLowerCase())
-      }
+listener.use(
+  recordHook("contacts", (record) => {
+    const value = record.get("firstName")?.toString();
+    if (value) {
+      record.set("firstName", value.toLowerCase());
+    }
 
-      return record
-    })
-  )
+    return record;
+  })
+);
 ```
 
-#### Using your transformation 
+#### Using your transformation
 
 Once the focus is off of the new First Name field, your transformation will run and convert the characters in your value to lowercase.
 
-1. With the `develop` command still running in terminal, navigate to your Contacts sheet and insert a new row where the First Name is written entirely in capital letters. 
+1. With the `develop` command still running in terminal, navigate to your Contacts sheet and insert a new row where the First Name is written entirely in capital letters.
 2. When the focus leaves the First Name field, your transformation will run and convert the characters in your value to lowercase.
-
 
 ## Adding your first validation
 
 Similar to transforming data, we can use the [record-hook plugin](../plugins/transform/record-hook) as the starting point for validating data.
 
-<Tip>
-You can use any npm package in a plugin.
-</Tip>
+<Tip>You can use any npm package in a plugin.</Tip>
 
 ```js index.js
-import { recordHook } from '@flatfile/plugin-record-hook';
+import { recordHook } from "@flatfile/plugin-record-hook";
 
 // While not the most correct, simple for the purpose of an example
 const validEmailAddress = /^[\w\d.-]+@[\w\d]+\.\w+$/;
 
-  listener.use(
-    recordHook('contacts', (record) => {
+listener.use(
+  recordHook("contacts", (record) => {
+    //previous code here
 
-      //previous code here
+    if (!validEmailAddress.test(record.get("email"))) {
+      console.log("got email");
+      record.addError("email", "Invalid email address");
+    }
 
-      if (!validEmailAddress.test(record.get('email'))) {
-        console.log("got email")
-        record.addError('email', 'Invalid email address')
-      }
-
-      return record
-    })
-  )
+    return record;
+  })
+);
 ```
 
-#### Using your validation 
+#### Using your validation
 
 Once you take focus off of the field, your validation will run and the sheet user interface will display an error for the changed field.
 
 1. With the `develop` command still running in terminal, go back to your Contacts sheet.
-2. Modify any value of Email Address to make it an invalid email address. 
-3. Take focus off the field you entered (click outside that field). 
-
+2. Modify any value of Email Address to make it an invalid email address.
+3. Take focus off the field you entered (click outside that field).
 
 ---
 

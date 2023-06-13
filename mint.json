@@ -13,7 +13,7 @@
       "mode": "simple"
     },
     "auth": {
-        "method": "bearer"
+      "method": "bearer"
     }
   },
   "favicon": "/favicon.jpg",
@@ -45,8 +45,8 @@
     "url": "https://platform.flatfile.com"
   },
   "versions": [
-    "latest", 
-    { "name": "v3", "url": "https://flatfile.com/versioned-docs/3.0" }, 
+    "latest",
+    { "name": "v3", "url": "https://flatfile.com/versioned-docs/3.0" },
     { "name": "v2", "url": "https://flatfile.com/versioned-docs/3.0" }
   ],
   "anchors": [
@@ -78,58 +78,90 @@
     },
     {
       "group": "Quickstart",
-      "pages": ["quickstart/meet-the-workbook", "quickstart/add-data-transformation",
-     "quickstart/submit-action", "quickstart/deploying"]
+      "pages": [
+        "quickstart/meet-the-workbook",
+        "quickstart/add-data-transformation",
+        "quickstart/submit-action",
+        "quickstart/deploying"
+      ]
     },
     {
-      "group": "Guides", 
-      "pages": [ "guides/handling-data",  "guides/actions", "guides/dynamic-configurations",
-          "guides/theming", "guides/guest_sidebar",  "guides/documents"]
+      "group": "Guides",
+      "pages": [
+        "guides/handling-data",
+        "guides/actions",
+        "guides/dynamic-configurations",
+        "guides/metadata",
+        "guides/theming",
+        "guides/guest_sidebar",
+        "guides/documents"
+      ]
     },
     {
       "group": "Concepts",
-      "pages": ["concepts/workbooks", "concepts/jobs", "concepts/events", "concepts/spaces"]
+      "pages": [
+        "concepts/workbooks",
+        "concepts/jobs",
+        "concepts/events",
+        "concepts/spaces"
+      ]
     },
     {
       "group": "Core paths",
       "pages": [
         {
-            "group": "Embed in your app",
-            "icon": "person-to-portal",
-            "pages": ["core-paths/embedding", "core-paths/part2", "core-paths/part3", "core-paths/part4"]
-        }, 
-        "core-paths/headless", 
+          "group": "Embed in your app",
+          "icon": "person-to-portal",
+          "pages": [
+            "core-paths/embedding",
+            "core-paths/part2",
+            "core-paths/part3",
+            "core-paths/part4"
+          ]
+        },
+        "core-paths/headless",
         "core-paths/collaborate"
       ]
     },
     {
       "group": "Blueprint",
 
-      "pages": ["blueprint/overview", "blueprint/field-types",
-          "blueprint/constraints",  "blueprint/relationships", "blueprint/access"]
+      "pages": [
+        "blueprint/overview",
+        "blueprint/field-types",
+        "blueprint/constraints",
+        "blueprint/relationships",
+        "blueprint/access"
+      ]
     },
     {
       "group": "Overview",
-      "pages": ["developer-tools/environment", "developer-tools/deploying", "developer-tools/flatfile_query_language"]
+      "pages": [
+        "developer-tools/environment",
+        "developer-tools/deploying",
+        "developer-tools/flatfile_query_language"
+      ]
     },
     {
       "group": "Security",
-      "pages": ["developer-tools/security/authentication",
-          "developer-tools/security/roles-and-permissions"]
+      "pages": [
+        "developer-tools/security/authentication",
+        "developer-tools/security/roles-and-permissions"
+      ]
     },
     {
       "group": "Core libraries",
       "pages": [
-          "developer-tools/core-libraries/flatfile",
-          "developer-tools/core-libraries/api", 
-          "developer-tools/core-libraries/listener"
-        ]
+        "developer-tools/core-libraries/flatfile",
+        "developer-tools/core-libraries/api",
+        "developer-tools/core-libraries/listener"
+      ]
     },
     {
       "group": "Wrappers",
       "icon": "clock",
-      "pages": [ 
-        "developer-tools/core-libraries/wrappers/react", 
+      "pages": [
+        "developer-tools/core-libraries/wrappers/react",
         "developer-tools/core-libraries/wrappers/angular",
         "developer-tools/core-libraries/wrappers/vuejs",
         "developer-tools/core-libraries/wrappers/vanilla"
@@ -141,12 +173,17 @@
     },
     {
       "group": "Extractors",
-      "pages": ["plugins/extractors/xlsx-extractor", "plugins/extractors/pdf-extractor",
-      {
-        "group": "More in development",
-        "icon": "clock",
-        "pages": [ "plugins/extractors/doc-extractor", "plugins/extractors/zip-extractor"]
-      }
+      "pages": [
+        "plugins/extractors/xlsx-extractor",
+        "plugins/extractors/pdf-extractor",
+        {
+          "group": "More in development",
+          "icon": "clock",
+          "pages": [
+            "plugins/extractors/doc-extractor",
+            "plugins/extractors/zip-extractor"
+          ]
+        }
       ]
     },
     {
@@ -155,30 +192,34 @@
     },
     {
       "group": "Schemas",
-      "pages": ["plugins/schemas/convert-json-schema", 
-      {
-        "group": "More in development",
-        "icon": "clock",
-        "pages": [ "plugins/schemas/convert-openapi", "plugins/schemas/convert-graphql", "plugins/schemas/convert-sql-ddl"]
-      }
+      "pages": [
+        "plugins/schemas/convert-json-schema",
+        {
+          "group": "More in development",
+          "icon": "clock",
+          "pages": [
+            "plugins/schemas/convert-openapi",
+            "plugins/schemas/convert-graphql",
+            "plugins/schemas/convert-sql-ddl"
+          ]
+        }
       ]
     },
     {
       "group": "Datasets",
-      "pages": ["plugins/datasets/zipcodes",
-      {
+      "pages": [
+        "plugins/datasets/zipcodes",
+        {
           "group": "More in development",
           "icon": "clock",
           "pages": ["plugins/datasets/countries"]
-      }
-    ]
+        }
+      ]
     },
     {
       "group": "Migrations",
       "pages": ["plugins/migrations/dxp-configure"]
     }
-
-
   ],
   "footerSocials": {
     "website": "https://flatfile.com",
@@ -186,10 +227,10 @@
   },
   "analytics": {
     "gtm": {
-        "tagId": "GTM-W673X2W"
+      "tagId": "GTM-W673X2W"
     }
-},
-"integrations": {
-  "intercom":  "q8ccrv3f"
-}
+  },
+  "integrations": {
+    "intercom": "q8ccrv3f"
+  }
 }
