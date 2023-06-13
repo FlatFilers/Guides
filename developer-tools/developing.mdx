@@ -1,0 +1,58 @@
+---
+title: "Developing with Flatfile"
+description: "Learn how to develop with Flatfile CLI."
+icon: "code-commit"
+---
+
+<Snippet file="dxpbanner.mdx" />
+
+When developing with Flatfile, listeners can [deployed](deploying) to Flatfile on every change or they can run directly on your machine.
+
+## Running from your machine
+
+### Before you begin
+
+<Warning>To develop with Flatfile, Node 18 required.</Warning>
+
+You can add a `.env` file to bypass having to enter your API Key and/or environment Id when running the develop command.
+
+```json
+FLATFILE_ENVIRONMENT_ID=us_env_123456
+FLATFILE_API_KEY=sk_123456
+```
+
+### Running `npx flatfile develop`
+
+Run `npx flatfile develop` from terminal to launch a local listener. As your code changes, file changes are detected and will be reflected
+immediately.
+
+1. In your terminal, you'll see a detailed log of each HTTP request made within a listener. It includes the request timing and status, enabling tracking and debugging of HTTP operations.
+2. A pub/sub stream system will deliver events with a latency of approximately 10-50ms. This provides a local development experience closely resembling the production environment speed.
+3. Events that are being processed will be shown, along with their respective handlers. You can then respond to those events accordingly.
+
+```ssh
+> npx flatfile develop
+✔ 1 environment(s) found for these credentials
+✔ Environment "development" selected
+ncc: Version 0.36.1
+ncc: Compiling file index.js into CJS
+  ✓ 427ms      GET    200 https://platform.flatfile.com/api/v1/subscription 12345
+
+ File change detected. 🚀
+  ✓ Connected to event stream for scope us_env_1234
+ ▶ commit:created  10:13:05.159 AM us_evt_1234
+ ↳ on(**, {})
+ ↳ on(commit:created, {"sheetSlug":"contacts"})
+
+```
+
+### Developing in a shared environment
+
+For a smoother experience when running a local listener, it is highly recommended to
+utilize an isolated environment. Having deployed code within the same development
+environment can lead to interference, potentially resulting in a recursive loop
+and undesirable consequences for your local listener. To avoid such complications,
+it's advisable to keep your local environment separate from any deployed code.
+This ensures optimal performance and helps maintain a stable development environment.
+
+If you are unsure, the CLI will warn you when working in an environment that already has deployed code.
