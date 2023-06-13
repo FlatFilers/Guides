@@ -12,9 +12,9 @@ When developing with Flatfile, listeners can [deployed](deploying) to Flatfile o
 
 ### Before you begin
 
-<Warning>To develop with Flatfile, Node 18 required.</Warning>
+<Warning>To develop with Flatfile, Node 18 is required.</Warning>
 
-You can add a `.env` file to bypass having to enter your API Key and/or environment Id when running the develop command.
+You can add a `.env` file to bypass having to enter your API Key and/or Environment Id when running the develop command.
 
 ```json
 FLATFILE_ENVIRONMENT_ID=us_env_123456
@@ -48,11 +48,10 @@ ncc: Compiling file index.js into CJS
 
 ### Developing in a shared environment
 
-For a smoother experience when running a local listener, it is highly recommended to
-utilize an isolated environment. Having deployed code within the same development
-environment can lead to interference, potentially resulting in a recursive loop
-and undesirable consequences for your local listener. To avoid such complications,
-it's advisable to keep your local environment separate from any deployed code.
+It is highly recommended to utilize an isolated environment when developing with the local listener.
+Having deployed code running at the same time within the same development environment can lead to
+interference, potentially resulting in a recursive loop and undesirable consequences for your local listener.
+To avoid such complications, it's advisable to keep your local environment separate from any deployed code.
 This ensures optimal performance and helps maintain a stable development environment.
 
 If you are unsure, the CLI will warn you when working in an environment that already has deployed code.
