@@ -1,0 +1,96 @@
+---
+title: "Utilizing metadata"
+description: "Store descriptive information or data that provides additional context."
+icon: "file-circle-info"
+---
+
+## Overview
+
+Metadata allows you to store and retrieve additional data about a Space, Record, or Field without
+exposing it to end users.
+
+## Space-level
+
+The `metadata` object at the Space level is often used for details such as user ID, space name, company ID, and company name.
+Metadata can be added during space creation or at a later stage.
+
+<Info>
+  Space-level metadata, while not visible in the user interface, can be utilized
+  in all listeners.
+</Info>
+
+### Usage
+
+Utilize `@flatfile/api` to create or update a Space with metadata.
+
+```jsx
+await api.spaces.update(spaceId, {
+  metadata: {
+    userId: userId,
+  },
+});
+```
+
+Learn more about [adding metadata in embedded
+Flatfile](../core-paths/part3#collecting-additional-data).
+
+## Record-level
+
+Customers often require a way to store extra computed or generated
+information about a record that goes beyond what the data owner provides.
+
+The `metadata` object on the record allows you to
+include details like record IDs or reference IDs to other tables.
+
+### Usage
+
+Using the `@flatfile/plugin-record-hook` plugin, you can access and modify record-level metadata, similar to
+how it works with normal field values. In this example, we will get the firstName from the record
+and store the length of the name in metadata. This data will now be stored on the record itself.
+
+```jsx
+listener.use(
+  recordHook("contacts", (record: FlatfileRecord) => {
+    const firstName = record.get("firstName");
+
+    record.setMetadata({
+      firstNameLength: firstName.length,
+    });
+
+    return record;
+  })
+);
+```
+
+## Field-level
+
+The `metadata` object on a Field allows you to
+include details like how the column of data should be transformed on egress.
+
+### Usage
+
+Utilize `@flatfile/api` to create or update a Workbook's fields with metadata.
+
+```jsx
+await api.workbooks.create({
+  spaceId: spaceId,
+  environmentId: environmentId,
+  name: "All Data",
+  sheets: [
+    {
+      name: "Contacts",
+      slug: "contacts",
+      fields: [
+        {
+          key: "date_added",
+          label: "Date Added",
+          type: "date",
+          metadata: {
+            format: "MM-DD-YYYY",
+          },
+        },
+      ],
+    },
+  ],
+});
+```
