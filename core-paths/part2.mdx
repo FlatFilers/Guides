@@ -21,7 +21,7 @@ In order to embed Flatfile, you follow these steps:
 Create a Workbook to configure your Space.
 
 ```ts config.ts
-import { Flatfile, FlatfileClient } from '@flatfile/api'
+import { Flatfile } from '@flatfile/api'
 
 export const config: Pick<
   Flatfile.CreateWorkbookConfig,
@@ -132,6 +132,7 @@ Use the `useSpace` hook to create a Space component and pass it the configuratio
 import { useSpace, ISpace, makeTheme } from '@flatfile/react'
 import { config } from './config.ts'
 import { listener } from './listener.ts'
+import { useState } from 'react'
 
 const ExampleApp = () => {
 
