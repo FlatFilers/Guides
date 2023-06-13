@@ -1,34 +1,38 @@
 ---
 title: "Using actions"
 description: "Trigger operations based on user input."
-icon: 'bolt'
+icon: "bolt"
 ---
 
 An action is a code-based operation that runs where that action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile.
 
-Custom Actions are configured within a <Tooltip tip="A Data Definition Language...">[Blueprint](../concepts/workbooks#blueprint-object)</Tooltip>. 
-The executable code within an Action is compiled into a <Tooltip tip="Large asynchronous work...">[Job](../concepts/jobs)</Tooltip> and can run asyncronously or immediately.
-
 ## Overview
 
-Once a user has extracted and mapped data into a <Tooltip tip="Analogous to a database...">[Workbook](../concepts/workbooks)</Tooltip>, it may be more efficient to run an operation on the entire dataset rather than making atomic transformations at the record- or field-level. For example:
-* Sending a webhook that notifies your API of the data's readiness
-* Populating a Sheet with data from another source
-* Adding two different fields together after a user review's initial validation checks
-* Moving valid data from an editable Sheet to a read-only Sheet
+Workbook & Sheet-mounted Actions are configured within a <Tooltip tip="A Data Definition Language...">[Blueprint](../concepts/workbooks#blueprint-object)</Tooltip> wheras File-mounted actions are appended to the file as it's uploaded.
+
+The executable code within an Action is compiled into a <Tooltip tip="Large asynchronous work...">[Job](../concepts/jobs)</Tooltip> and can run asyncronously or immediately.
 
 ## Workbook-mounted
 
-Workbook-mounted custom actions are represented as buttons in the top right of the Workbook.
-![workbook_actions_primary](https://github.com/FlatFilers/Guides/assets/19697744/c747495a-19e9-4333-88f3-e94239cfe47b)
+Once a user has extracted and mapped data into a <Tooltip tip="Analogous to a database...">[Workbook](../concepts/workbooks)</Tooltip>, it may be more efficient to run an operation on the entire dataset rather than making atomic transformations at the record- or field-level.
 
+For example:
+
+- Sending a webhook that notifies your API of the data's readiness
+- Populating a Sheet with data from another source
+- Adding two different fields together after a user review's initial validation checks
+- Moving valid data from an editable Sheet to a read-only Sheet
+
+Workbook-mounted actions are represented as buttons in the top right of the Workbook.
+![workbook_actions_primary](https://github.com/FlatFilers/Guides/assets/19697744/c747495a-19e9-4333-88f3-e94239cfe47b)
 
 ### Usage
 
 Listen for a `job:ready` and filter on the `job` you'd like to process. Be sure to complete the job when it's complete.
 
 <Info>
-  If you configure `primary: true` on a custom action, it will be represented as the rightmost button in the Workbook.
+  If you configure `primary: true` on an action, it will be represented as the
+  rightmost button in the Workbook.
 </Info>
 
 <CodeGroup>
@@ -48,44 +52,43 @@ actions: [
 ```
 
 ```jsx listener.js
-listener.filter({ job: 'workbook:submitActionFg' }, (configure) => {
-    configure.on('job:ready', async (event) => {
-
+listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
+  configure.on("job:ready", async (event) => {
     const { jobId } = event.context;
 
-      try {
-        await api.jobs.ack(jobId, {
-          info: 'Gettin started.',
-          progress: 10 //optional
-        });
+    try {
+      await api.jobs.ack(jobId, {
+        info: "Gettin started.",
+        progress: 10, //optional
+      });
 
-        //do your work here
+      //do your work here
 
-        await api.jobs.complete(jobId, {
-          info: 'This job is now complete.'
-        });
-      }
-      catch (error) {
-        console.log(`Error: ${JSON.stringify(error, null, 2)}`);
+      await api.jobs.complete(jobId, {
+        info: "This job is now complete.",
+      });
+    } catch (error) {
+      console.log(`Error: ${JSON.stringify(error, null, 2)}`);
 
-        await api.jobs.fail(jobId, {
-          info: 'This job did not work.'
-        });
-      }
-
-  })
-})
+      await api.jobs.fail(jobId, {
+        info: "This job did not work.",
+      });
+    }
+  });
+});
 ```
+
 </CodeGroup>
+
+Get the example in the [getting-started](https://github.com/FlatFilers/getting-started/blob/main/space-configure.js) repo
 
 ## Sheet-mounted
 
-<Info>Each Sheet has built-in Actions.</Info>
+<Info>Each Sheet has built-in Actions like download.</Info>
 
-Sheet-mounted custom actions are represented as a dropdown in the toolbar of the Sheet. In addition, you can attach a custom action to a Sheet.
+Sheet-mounted actions are represented as a dropdown in the toolbar of the Sheet.
 
 ![sheet actions](https://github.com/FlatFilers/Guides/assets/19697744/6234794c-1b90-42f2-a3b8-786e0192665e)
-
 
 ### Usage
 
@@ -113,33 +116,145 @@ sheets : [
 ```
 
 ```jsx listener.js
-listener.filter({ job: 'sheet:capitalizeNamesBg' }, (configure) => {
-    configure.on('job:ready', async (event) => {
-
+listener.filter({ job: "sheet:capitalizeNamesBg" }, (configure) => {
+  configure.on("job:ready", async (event) => {
     const { jobId } = event.context;
 
-      try {
-        await api.jobs.ack(jobId, {
-          info: 'Gettin started.',
-          progress: 10 //optional
-        });
+    try {
+      await api.jobs.ack(jobId, {
+        info: "Gettin started.",
+        progress: 10, //optional
+      });
 
-        //do your work here
+      //do your work here
 
-        await api.jobs.complete(jobId, {
-          info: 'This job is now complete.'
-        });
-      }
-      catch (error) {
-        console.log(`Error: ${JSON.stringify(error, null, 2)}`);
+      await api.jobs.complete(jobId, {
+        info: "This job is now complete.",
+      });
+    } catch (error) {
+      console.log(`Error: ${JSON.stringify(error, null, 2)}`);
 
-        await api.jobs.fail(jobId, {
-          info: 'This job did not work.'
-        });
-      }
-
-  })
-})
+      await api.jobs.fail(jobId, {
+        info: "This job did not work.",
+      });
+    }
+  });
+});
 ```
 
 </CodeGroup>
+
+Get the example in the [getting-started](https://github.com/FlatFilers/getting-started/blob/main/space-configure.js) repo
+
+## File-mounted
+
+<Info>Each file has built-in actions like Delete and Download.</Info>
+
+File-mounted actions are represented as a dropdown menu for each file in the Files list. You can attach additional actions to a File.
+
+![file actions](../images/actions/file_actions.png)
+
+### Usage
+
+Listen for a `file:ready` and one or more actions to the file. Next, listen for `job:ready` and filter on the `domain` (file) and the `operation` of where the action was placed. Be sure to complete to job when it's complete.
+
+<CodeGroup>
+
+```jsx listener.js file:ready
+listener.on("file:created", async (event) => {
+  const { fileId } = event.context;
+  const file = await api.files.get(fileId);
+  const actions = file.data?.actions || [];
+  const newActions = [
+    ...actions,
+    {
+      operation: "logFileContents",
+      label: "Log File Metadata",
+      description: "This will log the file metadata.",
+    },
+    {
+      operation: "decryptAction",
+      label: "Decrypt File",
+      description: "This will create a new decrypted file.",
+    },
+  ];
+  await api.files.update(fileId, {
+    actions: newActions,
+  });
+});
+```
+
+```jsx listener.js job:ready
+//when the button is clicked in the file dropdown
+
+listener.filter({ job: "file:logFileContents" }, (configure) => {
+  configure.on("job:ready", async (event) => {
+    const { fileId, jobId } = event.context;
+
+    await api.jobs.ack(jobId, {
+      info: "Gettin started.",
+      progress: 10,
+    });
+
+    //do your work here
+    const file = await api.files.get(fileId);
+    console.log({ file });
+
+    await api.jobs.complete(jobId, {
+      outcome: {
+        message: "Logging file contents is complete.",
+      },
+    });
+  });
+});
+
+listener.filter({ job: "file:decryptAction" }, (configure) => {
+  configure.on("job:ready", async (event) => {
+    const { spaceId, fileId, jobId, environmentId } = event.context;
+    try {
+      await api.jobs.ack(jobId, {
+        info: "Gettin started.",
+        progress: 10,
+      });
+
+      //do your work here
+      const fileResponse = await api.files.get(fileId);
+
+      const buffer = await getFileBufferFromApi(fileId);
+      const { name, ext } = fileResponse.data;
+      const newFileName = name
+        ? name.split(".")[0] + "[Decrypted]." + ext
+        : "DecryptedFile.csv";
+
+      var formData = new FormData();
+      formData.append("file", buffer, { filename: newFileName });
+      formData.append("spaceId", spaceId);
+      formData.append("environmentId", environmentId);
+
+      await axios.post(apiUrl + "/v1/files/", formData, {
+        headers: {
+          ...formData.getHeaders(),
+          Authorization: "Bearer " + apiKey,
+        },
+        transformRequest: () => formData,
+      });
+
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message: "Decrypting is now complete.",
+        },
+      });
+    } catch (e) {
+      await api.jobs.fail(jobId, {
+        outcome: {
+          message: "The decryption job failed.",
+        },
+      });
+    }
+  });
+});
+```
+
+</CodeGroup>
+
+Get the example in the [getting-started](https://github.com/FlatFilers/getting-started/blob/main/file-actions.js) repo
