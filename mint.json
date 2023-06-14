@@ -92,6 +92,7 @@
         "guides/actions",
         "guides/dynamic-configurations",
         "guides/metadata",
+        "guides/egress",
         "guides/theming",
         "guides/guest_sidebar",
         "guides/documents"
