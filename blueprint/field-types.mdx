@@ -144,9 +144,9 @@ A `true` or `false` value type. Matching engines should attempt to resolve all c
 
 ### `date`
 
-Store a field as a GMT date. 
+Store a field as a UTC date. Date fields interpret incoming dates with Month (MM) preceding the Day (DD) in all formats.
 
-<Warning>Data hooks must convert this value into a `YYYY-MM-DD` format in order for it to be considered a valid value for sorting. </Warning>
+<Warning>In order to use "European" dates, formatted as DD-MM-YYYY, where the Day precedes the Month, we recommend using a string field and a Record Hook to interpret the date appropriately. </Warning>
 
 ---
 
