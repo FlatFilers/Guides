@@ -39,79 +39,173 @@ You can also follow along in this [Replit](https://replit.com/@flatfile/configur
 </Tip>
 
 ```jsx listener.js
+listener.filter({ job: "space:configure" }, ({ on }) => {
+  on("job:ready", async ({ context: { spaceId, environmentId, jobId } }) => {
+    try {
+      await api.jobs.ack(jobId, {
+        info: "Gettin started.",
+        progress: 10,
+      });
+
+      await api.workbooks.create({
+        spaceId,
+        environmentId,
+        name: "All Data",
+        labels: ["primary"],
+        sheets: [
+          {
+            name: "Contacts",
+            slug: "contacts",
+            fields: [
+              {
+                key: "firstName",
+                type: "string",
+                label: "First Name",
+              },
+              {
+                key: "lastName",
+                type: "string",
+                label: "Last Name",
+              },
+              {
+                key: "email",
+                type: "string",
+                label: "Email",
+              },
+            ],
+            actions: [
+              {
+                operation: "duplicate",
+                mode: "background",
+                label: "Duplicate Sheet",
+                type: "string",
+                description: "Duplicate this Sheet and lock down the original.",
+                primary: true,
+              },
+            ],
+          },
+        ],
+        actions: [
+          {
+            operation: "submitActionFg",
+            mode: "foreground",
+            label: "Submit foreground",
+            type: "string",
+            description: "Submit data to webhook.site",
+            primary: true,
+          },
+        ],
+      });
+
+      await api.documents.create(spaceId, {
+        title: "Getting Started",
+        body:
+          "# Welcome\n" +
+          "### Say hello to your first customer Space in the new Flatfile!\n" +
+          "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+          "---\n",
+      });
+
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message: "This job is now complete.",
+        },
+      });
+    } catch (error) {
+      console.error("Error:", error.stack);
+
+      await api.jobs.fail(jobId, {
+        outcome: {
+          message: "This job encountered an error.",
+        },
+      });
+    }
+  });
+});
+```
+
+```jsx listener.ts
 listener.filter({ job: "space:configure" }, (configure) => {
-  listener.on("job:ready", async (event) => {
-    const { spaceId, environmentId, jobId } = event.context;
+  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId } }) => {
+    try {
+      await api.jobs.ack(jobId, {
+        info: "Getting started.",
+        progress: 10,
+      });
 
-    await api.jobs.ack(jobId, {
-      info: "Gettin started.",
-      progress: 10,
-    });
+      await api.workbooks.create({
+        spaceId,
+        environmentId,
+        name: "All Data",
+        labels: ["primary"],
+        sheets: [
+          {
+            name: "Contacts",
+            slug: "contacts",
+            fields: [
+              {
+                key: "firstName",
+                type: "string",
+                label: "First Name",
+              },
+              {
+                key: "lastName",
+                type: "string",
+                label: "Last Name",
+              },
+              {
+                key: "email",
+                type: "string",
+                label: "Email",
+              },
+            ],
+            actions: [
+              {
+                operation: "duplicate",
+                mode: "background",
+                label: "Duplicate Sheet",
+                type: "string",
+                description: "Duplicate this Sheet and lock down the original.",
+                primary: true,
+              },
+            ],
+          },
+        ],
+        actions: [
+          {
+            operation: "submitActionFg",
+            mode: "foreground",
+            label: "Submit foreground",
+            type: "string",
+            description: "Submit data to webhook.site",
+            primary: true,
+          },
+        ],
+      });
 
-    await api.workbooks.create({
-      spaceId: spaceId,
-      environmentId: environmentId,
-      name: "All Data",
-      labels: ["primary"],
-      sheets: [
-        {
-          name: "Contacts",
-          slug: "contacts",
-          fields: [
-            {
-              key: "firstName",
-              type: "string",
-              label: "First Name",
-            },
-            {
-              key: "lastName",
-              type: "string",
-              label: "Last Name",
-            },
-            {
-              key: "email",
-              type: "string",
-              label: "Email",
-            },
-          ],
-          actions: [
-            {
-              operation: "duplicate",
-              mode: "background",
-              label: "Duplicate Sheet",
-              type: "string",
-              description: "Duplicate this Sheet and lock down the original.",
-              primary: true,
-            },
-          ],
+      await api.documents.create(spaceId, {
+        title: "Getting Started",
+        body:
+          "# Welcome\n" +
+          "### Say hello to your first customer Space in the new Flatfile!\n" +
+          "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+          "---\n",
+      });
+
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message: "This job is now complete.",
         },
-      ],
-      actions: [
-        {
-          operation: "submitActionFg",
-          mode: "foreground",
-          label: "Submit foreground",
-          type: "string",
-          description: "Submit data to webhook.site",
-          primary: true,
+      });
+    } catch (error) {
+      console.error("Error:", error.stack);
+
+      await api.jobs.fail(jobId, {
+        outcome: {
+          message: "This job encountered an error.",
         },
-      ],
-    });
-
-    await api.documents.create(spaceId, {
-      title: "Getting Started",
-      body:
-        "# Welcome\n" +
-        "### Say hello to your first customer Space in the new Flatfile!\n" +
-        "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
-        "---\n",
-    });
-
-    await api.jobs.complete(jobId, {
-      outcome: {
-        message: "This job is now complete.",
-      },
-    });
+      });
+    }
   });
 });
 ```
@@ -153,30 +247,74 @@ and update our getting started guide to reflect the change.
 
 ```jsx listener.js
 listener.filter({ job: "sheet:duplicate" }, (configure) => {
-  listener.on("job:ready", async (event) => {
-    const { spaceId, environmentId, jobId, sheetId, workbookId } =
-      event.context;
+  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId, sheetId, workbookId, documentId } }) => {
+    try {
+      await api.jobs.ack(jobId, {
+        info: "Getting started.",
+        progress: 10,
+      });
 
-    await api.jobs.ack(jobId, {
-      info: "Gettin started.",
-      progress: 10,
-    });
+      // Lock down the original Sheet
+      await api.sheets.update(sheetId, {
+        access: [],
+      });
 
-    //lock down the original Sheet
-    await api.sheets.update(sheetId, {
-      access: [],
-    });
+      // Update your Getting Started document
+      await api.documents.update(documentId, {
+        body: "Update something here",
+      });
 
-    //update your Getting Started document
-    await api.documents.update(documentId, {
-      body: "update something here",
-    });
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message: "This job is now complete.",
+        },
+      });
+    } catch (error) {
+      console.error("Error:", error.stack);
 
-    await api.jobs.complete(jobId, {
-      outcome: {
-        message: "This job is now complete.",
-      },
-    });
+      await api.jobs.fail(jobId, {
+        outcome: {
+          message: "This job encountered an error.",
+        },
+      });
+    }
+  });
+});
+```
+
+```jsx listener.ts
+listener.filter({ job: "sheet:duplicate" }, (configure) => {
+  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId, sheetId, workbookId, documentId } }: FlatfileEvent) => {
+    try {
+      await api.jobs.ack(jobId, {
+        info: "Getting started.",
+        progress: 10,
+      });
+
+      // Lock down the original Sheet
+      await api.sheets.update(sheetId, {
+        access: [],
+      });
+
+      // Update your Getting Started document
+      await api.documents.update(documentId, {
+        body: "Update something here",
+      });
+
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message: "This job is now complete.",
+        },
+      });
+    } catch (error) {
+      console.error("Error:", error.stack);
+
+      await api.jobs.fail(jobId, {
+        outcome: {
+          message: "This job encountered an error.",
+        },
+      });
+    }
   });
 });
 ```
@@ -188,6 +326,7 @@ In the following example, we listed for a commit created to do just that.
 
 #### Usage
 
+<CodeGroup>
 ```jsx listener.js
 listener.filter({ sheet: "SheetName" }, (configure) => {
   listener.on("commit:created", async (event) => {
@@ -195,3 +334,11 @@ listener.filter({ sheet: "SheetName" }, (configure) => {
   });
 });
 ```
+```jsx listener.ts
+listener.filter({ sheet: "SheetName" }, (configure) => {
+  listener.on("commit:created", async (event: FlatfileEvent) => {
+    //make changes after cells in a Sheet have been updated
+  });
+});
+```
+</CodeGroup>

@@ -41,20 +41,91 @@ You can also follow along in this [Replit](https://replit.com/@flatfile/configur
   This tells the platform that you're finished and ready to display the Space to the end user.
 </Tip>
 
+<CodeGroup>
+
 ```jsx listener.js
 listener.filter({ job: 'space:configure' }, (configure) => {
-  listener.on('job:ready', async (event) => {
-
-    const { spaceId, environmentId, jobId } = event.context;
-
+  configure.on('job:ready', async ({ context: { spaceId, environmentId, jobId } }) => {
     await api.jobs.ack(jobId, {
       info: 'Gettin started.',
-      progress: 10
+      progress: 10,
     });
 
     await api.workbooks.create({
-      spaceId: spaceId,
-      environmentId: environmentId,
+      spaceId,
+      environmentId,
+      name: 'All Data',
+      labels: ['primary'],
+      sheets: [
+        {
+          name: 'Contacts',
+          slug: 'contacts',
+          fields: [
+            {
+              key: 'firstName',
+              type: 'string',
+              label: 'First Name',
+            },
+            {
+              key: 'lastName',
+              type: 'string',
+              label: 'Last Name',
+            },
+            {
+              key: 'email',
+              type: 'string',
+              label: 'Email',
+            },
+          ],
+          actions: [
+            {
+              operation: 'duplicate',
+              mode: 'background',
+              label: 'Duplicate Sheet',
+              type: 'string',
+              description: 'Duplicate this Sheet and lock down the original.',
+              primary: true,
+            },
+          ],
+        },
+      ],
+      actions: [
+        {
+          operation: 'submitActionFg',
+          mode: 'foreground',
+          label: 'Submit foreground',
+          type: 'string',
+          description: 'Submit data to webhook.site',
+          primary: true,
+        },
+      ],
+    });
+
+    await api.documents.create(spaceId, {
+      title: 'Getting Started',
+      body: `# Welcome
+### Say hello to your first customer Space in the new Flatfile!
+Let's begin by first getting acquainted with what you're seeing in your Space initially.
+---`,
+    });
+
+    await api.jobs.complete(jobId, {
+      outcome: {
+        message: 'This job is now complete.',
+      },
+    });
+  });
+});
+```
+
+```jsx listener.ts
+listener.filter({ job: 'space:configure' }, (configure) => {
+  configure.on('job:ready', async ({ context: { spaceId, environmentId, jobId } }) => {
+    await acknowledgeJob(jobId, 'Gettin started.', 10);
+
+    await api.workbooks.create({
+      spaceId,
+      environmentId,
       name: 'All Data',
       labels: ['primary'],
       sheets: [
@@ -103,23 +174,33 @@ listener.filter({ job: 'space:configure' }, (configure) => {
     });
 
     await api.documents.create(spaceId, {
-      title: "Getting Started",
-      body:
-        "# Welcome\n" +
-        "### Say hello to your first customer Space in the new Flatfile!\n" +
-        "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
-        "---\n"
+      title: 'Getting Started',
+      body: `# Welcome
+      ### Say hello to your first customer Space in the new Flatfile!
+      Let's begin by first getting acquainted with what you're seeing in your Space initially.
+      ---`,
     });
 
-    await api.jobs.complete(jobId, {
-      outcome: {
-        message: "This job is now complete."
-      }
-    });
+    await completeJob(jobId, 'This job is now complete.');
+  });
+});
 
-  })
-})
+async function acknowledgeJob(jobId: string, info: string, progress: number) {
+  await api.jobs.ack(jobId, {
+    info,
+    progress,
+  });
+}
+
+async function completeJob(jobId: string, message: string) {
+  await api.jobs.complete(jobId, {
+    outcome: {
+      message,
+    },
+  });
+}
 ```
+</CodeGroup>
 
 ### From an embedded button
 
@@ -154,6 +235,7 @@ however, you may also want to adjust some of your configuration at the same time
 In the following example, we duplicate the Sheet, then we lock down access to the original Sheet 
 and update our getting started guide to reflect the change.
 
+<CodeGroup>
 ```jsx listener.js
 listener.filter({ job: 'sheet:duplicate' }, (configure) => {
   listener.on('job:ready', async (event) => {
@@ -194,6 +276,47 @@ listener.filter({ job: 'sheet:duplicate' }, (configure) => {
   })
 })
 ```
+```jsx listener.ts
+listener.filter({ job: 'sheet:duplicate' }, (configure) => {
+  listener.on('job:ready', async (event: FlatfileEvent) => {
+
+    const { spaceId, environmentId, jobId, sheetId } = event.context;
+
+    await api.jobs.ack(jobId, {
+      info: 'Gettin started.',
+      progress: 10
+    });
+
+    //duplicate the Sheet configuration
+    //get the data from the current sheet
+    //add records to new Sheet
+
+    //lock down the original Sheet
+    await api.sheets.update(sheetId, {
+      access: []
+    })
+
+    //update your Getting Started document
+    await api.documents.update(documentId, {
+      title: "Getting Started",
+      body:
+        "# Welcome\n" +
+        "### Say hello to your first customer Space in the new Flatfile!\n" +
+        "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+        //new info added here
+        "You will see 2 Sheets in your Workbook, one of which is disabled.\n" +
+        "---\n"
+    });
+
+    await api.jobs.complete(jobId, {
+      outcome: {
+        message: "This job is now complete."
+      }
+    });
+  })
+})
+```
+</CodeGroup>
 
 ### After data changes
 
@@ -201,12 +324,21 @@ TODO
 
 #### Usage
 
+<CodeGroup>
 ```jsx listener.js
 listener.filter({ job: 'space:configure' }, (configure) => {
   listener.on('job:ready', async (event) => {
   })
 })
 ```
+
+```jsx listener.ts
+listener.filter({ job: 'space:configure' }, (configure) => {
+  listener.on('job:ready', async (event: FlatfileEvent) => {
+  })
+})
+```
+</CodeGroup>
 
 ### After a guest is added
 
@@ -214,9 +346,18 @@ TODO
 
 #### Usage
 
+<CodeGroup>
 ```jsx listener.js
 listener.filter({ job: 'space:configure' }, (configure) => {
   listener.on('job:ready', async (event) => {
   })
 })
 ```
+
+```jsx listener.ts
+listener.filter({ job: 'space:configure' }, (configure) => {
+  listener.on('job:ready', async (even: FlatfileEvent) => {
+  })
+})
+```
+</CodeGroup>

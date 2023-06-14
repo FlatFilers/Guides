@@ -6,13 +6,13 @@ icon: "download"
 
 <CardGroup cols={1}>
   <Card title="@flatfile/plugin-record-hook" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/record-hook" icon="github" >
-      *currently v0.0.3*
+      *currently v0.0.4*
       <br/>
       **Author**<br/>
       David Boskovic<br/>
       <br/>
       **Last updated**<br/>
-      May 11, 2023
+      June 8, 2023
     </Card>
   </CardGroup>
 
@@ -20,15 +20,17 @@ icon: "download"
 
 This plugin lets you easily attach your implementation of the class-based schema configuration library `@flatfile/configure` to `@flatfile/listener`.
 
-<small class="font-semibold text-primary dark:text-primary-light">INSTALL</small><br/>
-``npm i @flatfile/plugin-dxp-configure``
+
+```SSH Install
+npm i @flatfile/plugin-dxp-configure
+```
 
 
 ---
 
 ## Import
 
-```ts
+```js
 import { dxpConfigure } from '@flatfile/plugin-dxp-configure'
 ```
 
@@ -36,8 +38,10 @@ import { dxpConfigure } from '@flatfile/plugin-dxp-configure'
 
 You can simply attach any existing workbook configuration you have to a listener and it'll automatically apply to your next space.
 
-`listener.js`
-```js
+`listener`
+
+<CodeGroup>
+```js listener.js
 import { MyWorkbook } from './my-dxp-workbook.js'
 import { dxpConfigure } from '@flatfile/plugin-dxp-configure'
 
@@ -46,7 +50,19 @@ export default (listener) => {
 }
 ```
 
-`my-dxp-workbook.js`
+```js listener.ts
+import { MyWorkbook } from './my-dxp-workbook.js'
+import { dxpConfigure } from '@flatfile/plugin-dxp-configure'
+import { Client } from "@flatfile/listener";
+
+export default (listener: Client) => {
+  listener.use(dxpConfigure(MyWorkbook))
+}
+```
+
+</CodeGroup>
+
+`my-dxp-workbook`
 ```js 
 import { Sheet, TextField, Workbook } from '@flatfile/configure'
 
