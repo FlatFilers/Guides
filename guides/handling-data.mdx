@@ -14,8 +14,8 @@ Record-level hooks have access to all fields in a row and should be utilized for
 
 Listen for updates to data records, and respond with three types of record hooks: `compute`, `computeIfPresent`, and `validate`. These hooks are available as methods on the `FlatfileRecord` class.
 
-```ts
-import { FlatfileRecord } from '@flatfile/hooks'
+```js
+import { recordHook, FlatfileRecord } from '@flatfile/plugin-record-hook'
 ```
 
 <Info>
@@ -30,7 +30,7 @@ Computes a new value for a field based on its original value or other field valu
 
 #### Syntax
 
-```ts
+```js
 FlatfileRecord.compute(fieldName, transformation, message)
 ```
 
@@ -50,21 +50,36 @@ FlatfileRecord.compute(fieldName, transformation, message)
 
 Generate email from first and last name:
 
-```ts
-client.use(
+<CodeGroup>
+```js javascript
+listener.use(
+  recordHook('contacts', (record) => {
+    record.compute(
+      'email',
+      (email, record) => `${record.get('firstName')}${record.get('lastName')}@gmail.com`,
+      'Email was generated from first and last name.'
+    );
+    return record;
+  })
+);
+```
+
+```js typescript
+listener.use(
   recordHook('contacts', (record: FlatfileRecord) => {
     record.compute(
       'email',
       (email, record) => {
-        return `${record.get('firstName') + record.get('lastName)}@gmail.com`
+        return `${record.get('firstName')}${record.get('lastName')}@gmail.com`;
       },
       // optional
       'Email was generated from first and last name.'
-    )
-    return record
+    );
+    return record;
   })
-)
+);
 ```
+</CodeGroup>
 
 ### `FlatfileRecord.computeIfPresent`
 
@@ -72,7 +87,7 @@ Same as [`compute`](#flatfilerecord-compute), but only computes a new value if a
 
 #### Syntax
 
-```ts
+```js
 FlatfileRecord.computeIfPresent(fieldName, transformation, message)
 ```
 
@@ -92,19 +107,35 @@ FlatfileRecord.computeIfPresent(fieldName, transformation, message)
 
 Change email to lower case:
 
-```ts
-client.use(
+<CodeGroup>
+```js javascript
+listener.use(
+  recordHook('contacts', (record) => {
+    record.computeIfPresent(
+      'email',
+      (email: string) => email.toLowerCase(),
+      // optional
+      'Email was converted to lowercase.'
+    );
+    return record;
+  })
+);
+```
+
+```js typescript
+listener.use(
   recordHook('contacts', (record: FlatfileRecord) => {
     record.computeIfPresent(
       'email',
-      (email) => email.toLowerCase(),
+      (email: string) => email.toLowerCase(),
       // optional
-      'Email was converted to lower case.'
-    )
-    return record
+      'Email was converted to lowercase.'
+    );
+    return record;
   })
-)
+);
 ```
+</CodeGroup>
 
 ### `FlatfileRecord.validate`
 
@@ -112,7 +143,7 @@ Sets a field as invalid if its value does not meet a specified condition, and di
 
 #### Syntax
 
-```ts
+```js
 validate(fieldName, validator, message)
 ```
 
@@ -130,15 +161,30 @@ validate(fieldName, validator, message)
 
 #### Example
 
-```ts
-client.use(
+<CodeGroup>
+```js javascript
+listener.use(
+  recordHook('contacts', (record) => {
+    record.validate(
+      'lastName',
+      (value: any) => !/\d/.test(value.toString()),
+      'Last name cannot contain numbers'
+    );
+    return record;
+  })
+);
+```
+
+```js typescript
+listener.use(
   recordHook('contacts', (record: FlatfileRecord) => {
     record.validate(
       'lastName',
-      (value) => !/\d/.test(value.toString()),
+      (value) => typeof value === 'string' && !/\d/.test(value),
       'Last name cannot contain numbers'
-    )
-    return record
+    );
+    return record;
   })
-)
+);
 ```
+</CodeGroup>

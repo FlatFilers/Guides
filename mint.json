@@ -11,6 +11,9 @@
     "baseUrl": "https://platform.flatfile.com/api",
     "auth": {
       "method": "bearer"
+    },
+    "playground": {
+      "mode": "simple"
     }
   },
   "favicon": "/favicon.jpg",
@@ -140,6 +143,7 @@
           "icon": "square-terminal",
           "pages": [
             "developer-tools/developing/running-local",
+            "developer-tools/developing/check-for-agents",
             "developer-tools/developing/make-environment"
           ]
         },

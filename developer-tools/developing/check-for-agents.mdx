@@ -1,0 +1,22 @@
+---
+title: "Check for agents"
+api: "GET https://platform.flatfile.com/api/v1/agents?environmentId=us_env_PASTE_HERE"
+---
+
+This endpoint gets all agents in an environment. `environmentId` is required.
+
+### Body
+
+<ParamField
+  path="environmentId"
+  type="string"
+  required
+>
+  The id of the environment
+</ParamField>
+
+### Request headers
+
+<ParamField header="Accept" required default="application/json" placeholder="application/json">
+  Request header
+</ParamField>

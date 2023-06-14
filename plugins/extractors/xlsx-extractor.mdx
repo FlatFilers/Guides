@@ -8,11 +8,11 @@ icon: "download"
     <Card title="@flatfile/plugin-xlsx-extractor" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/xlsx-extractor" icon="github" >
     *currently v1.0.0*
     <br/>
-    **Author**<br/>
-    David Boskovic<br/>
+    **Contributors**<br/>
+    David Boskovic, Ashley Mulligan<br/>
     <br/>
     **Last updated**<br/>
-    May 11, 2023
+    June 14, 2023
     </Card>
 </CardGroup>
 
@@ -21,22 +21,17 @@ icon: "download"
 
 This plugin parses all Sheets in an XLSX file and extracts them into Flatfile.
 
-<small class="font-semibold text-primary dark:text-primary-light">INSTALL</small><br/>
-``npm i @flatfile/plugin-xlsx-extractor``
 
-
-    
+```SSH Install
+npm i @flatfile/plugin-xlsx-extractor
+```
 
 
 ---
 
 ## Import
 
-```bash
-npm i @flatfile/plugin-xlsx-extractor
-```
-
-```ts
+```js
 import { ExcelExtractor } from '@flatfile/plugin-xlsx-extractor'
 ```
 
@@ -44,20 +39,16 @@ import { ExcelExtractor } from '@flatfile/plugin-xlsx-extractor'
 
 Listen for an XLSX file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
 
-```ts
-listener.on(['file:created'], (event) => {
-  return new ExcelExtractor(event).runExtraction()
-})
+```js
+listener.use(xlsxExtractorPlugin())
 ```
 
 ## Additional Options
 
 The extractor can accept additional properties. Props will be passed along to the Sheet.js parsing engine.
 
-```ts
-listener.on(['file:created'], (event) => {
-  return new ExcelExtractor(event, { rawNumbers: true }).runExtraction()
-})
+```js 
+listener.use(xlsxExtractorPlugin({ rawNumbers: true }))
 ```
 
 ### Properties

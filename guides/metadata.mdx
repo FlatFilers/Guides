@@ -26,7 +26,7 @@ Utilize `@flatfile/api` to create or update a Space with metadata.
 ```jsx
 await api.spaces.update(spaceId, {
   metadata: {
-    userId: userId,
+    userId,
   },
 });
 ```
@@ -48,10 +48,12 @@ Using the `@flatfile/plugin-record-hook` plugin, you can access and modify recor
 how it works with normal field values. In this example, we will get the firstName from the record
 and store the length of the name in metadata. This data will now be stored on the record itself.
 
-```jsx
+<CodeGroup>
+
+```jsx javascript
 listener.use(
-  recordHook("contacts", (record: FlatfileRecord) => {
-    const firstName = record.get("firstName");
+  recordHook("contacts", ({ record }) => {
+    const { firstName } = record.get();
 
     record.setMetadata({
       firstNameLength: firstName.length,
@@ -61,6 +63,21 @@ listener.use(
   })
 );
 ```
+
+```jsx typescript
+listener.use(
+  recordHook("contacts", (record: FlatfileRecord) => {
+    const firstName = record.get("firstName");
+
+    record.setMetadata({
+      firstNameLength: firstName?.length ?? 0,
+    });
+
+    return record;
+  })
+);
+```
+</CodeGroup>
 
 ## Field-level
 
@@ -73,8 +90,8 @@ Utilize `@flatfile/api` to create or update a Workbook's fields with metadata.
 
 ```jsx
 await api.workbooks.create({
-  spaceId: spaceId,
-  environmentId: environmentId,
+  spaceId,
+  environmentId,
   name: "All Data",
   sheets: [
     {

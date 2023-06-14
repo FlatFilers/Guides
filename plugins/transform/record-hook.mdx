@@ -6,13 +6,13 @@ icon: "download"
 
     <CardGroup cols={1}>
         <Card title="@flatfile/plugin-record-hook" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/record-hook" icon="github" >
-        *currently v0.1.5*
+        *currently v0.1.9*
         <br/>
         **Contributors**<br/>
         Alex Hollenbeck, Alex Rock<br/>
         <br/>
         **Last updated**<br/>
-        June 2, 2023
+        June 14, 2023
         </Card>
     </CardGroup>
 
@@ -22,16 +22,17 @@ This plugin exports a function named `recordHook` that sets up an event listener
 The purpose of this plugin is to provide a concise syntax for running custom logic on individual data records in Flatfile.
 
 
-<small class="font-semibold text-primary dark:text-primary-light">INSTALL</small><br/>
-``npm i @flatfile/plugin-record-hook @flatfile/hooks``
+```SSH install
+npm i @flatfile/plugin-record-hook @flatfile/hooks
+```
 
 ---
 
 ## Import
 
-```ts
-import { recordHook } from '@flatfile/plugin-record-hook'
-import type { FlatfileRecord } from '@flatfile/hooks'
+```js
+import { FlatfileRecord, recordHook } from '@flatfile/plugin-record-hook'
+import { FlatfileEvent, Client } from "@flatfile/listener";
 ```
 
 ## Usage
@@ -42,32 +43,55 @@ Pass `recordHook` to a Flatfile data listener and provide a function to run when
 
 Set up a listener to configure Flatfile and respond to data events:
 
-```ts
-export default function(listener) {
-  //simple listener
+<CodeGroup>
+
+```js javascript
+export default function (listener) {
+  // Simple listener
   listener.on("**", (event) => {
-    console.log(
-      `-> My event listener received an event: ${JSON.stringify(event.topic)}`)
+    console.log(`-> My event listener received an event: ${event.topic}`);
   });
-
-
 }
 ```
+
+```js typescript
+export default function (listener: Client) {
+  // Simple listener
+  listener.on("**", (event: FlatfileEvent) => {
+    console.log(`-> My event listener received an event: ${event.topic}`);
+  });
+}
+```
+
+</CodeGroup>
 
 ### 2. Listen for data changes
 
 Use the this plugin to set up a hook that responds to data changes:
 
-```ts
-import { recordHook } from '@flatfile/plugin-record-hook'
-import { FlatfileRecord } from '@flatfile/hooks'
+<CodeGroup>
+
+```js javascript
+import { FlatfileRecord, recordHook } from '@flatfile/plugin-record-hook'
+
+listener.use(
+  recordHook('my-sheet', (record, event) => {
+    // Your logic goes here
+  })
+);
+```
+
+```js typescript
+import { FlatfileRecord, recordHook } from '@flatfile/plugin-record-hook'
 
 listener.use(
   recordHook('my-sheet', (record: FlatfileRecord, event: FlatfileEvent) => {
     // Your logic goes here
   })
-)
+);
 ```
+
+</CodeGroup>
 
 Replace `my-sheet` with the slug of the Sheet you want to attach this hook to.
 
@@ -82,20 +106,41 @@ If these conditions are met, it sets the "fullName" field by concatenating the "
 Additionally, it adds a comment to the "fullName" 
 field in the user interface indicating that it was populated from the first and last name.
 
-```ts
+<CodeGroup>
+```js javascript
+listener.use(
+  recordHook('my-sheet', (record, event) => {
+    const firstName = record.get('firstName');
+    const lastName = record.get('lastName');
+
+    if (firstName && lastName && !record.get('fullName')) {
+      const fullName = `${firstName} ${lastName}`;
+      record.set('fullName', fullName);
+
+      record.addComment('fullName', 'Full name was populated from first and last name.');
+    }
+
+    return record;
+  })
+);
+```
+
+```js typescript
 listener.use(
   recordHook('my-sheet', (record: FlatfileRecord, event: FlatfileEvent) => {
-    const firstName = record.get('firstName')
-    const lastName = record.get('lastName')
+    const firstName = record.get('firstName');
+    const lastName = record.get('lastName');
+
     if (firstName && lastName && !record.get('fullName')) {
-      record.set('fullName', `${firstName} ${lastName}`)
-      record.addComment(
-        'fullName',
-        'Full name was populated from first and last name.'
-      )
+      const fullName = `${firstName} ${lastName}`;
+      record.set('fullName', fullName);
+
+      record.addComment('fullName', 'Full name was populated from first and last name.');
     }
-    return record
+
+    return record;
   })
-)
+);
 ```
+</CodeGroup>
 

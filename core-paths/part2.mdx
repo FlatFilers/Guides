@@ -20,7 +20,7 @@ In order to embed Flatfile, you follow these steps:
 
 Create a Workbook to configure your Space.
 
-```ts config.ts
+```js config.ts
 import { Flatfile } from '@flatfile/api'
 
 export const config: Pick<
@@ -78,7 +78,7 @@ export const config: Pick<
 
 Here is where you define how to respond to events. In this case, since we have a "Submit" action defined in our Workbook, we use the event listener to define how we want to submit records:
 
-```ts listener.ts
+```js listener.ts
 async function submit(jobId: string) {
   const storedToken = sessionStorage.getItem('token')
 
@@ -128,7 +128,7 @@ Now that we have our configuration defined in our Workbook, and our event handle
 Use the `useSpace` hook to create a Space component and pass it the configuration and listener as options:
 
 <CodeGroup>
-```ts app.ts
+```js app.ts
 import { useSpace, ISpace, makeTheme } from '@flatfile/react'
 import { config } from './config.ts'
 import { listener } from './listener.ts'

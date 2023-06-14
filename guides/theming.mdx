@@ -18,30 +18,37 @@ Learn how to create a Space with a theme, and update a theme from an event liste
 
 <CodeGroup>
 
-```ts api.js
+```js
 const updateSpace = await api.spaces.update(spaceId, {
-    environmentId: environmentId,
-     metadata: {
-      theme: {
-        root: {
-          primaryColor: "red",
-        },
-        sidebar: {
-          logo: "https://image.png",
-        },
-        //See reference for all possible variables
-      }
+  environmentId,
+  metadata: {
+    theme: {
+      root: {
+        primaryColor: "red",
+      },
+      sidebar: {
+        logo: "https://image.png",
+      },
+      // See reference for all possible variables
     }
   }
 });
 ```
 
-```ts listener.js
+```js listener.js
 //listen for an event, and update your theme as a result
 
-listener.on('space:created', (event) => {
+listener.on('space:created', async (event) => {
   const updateSpace = await flatfile.spaces.update(spaceId, {});
-})
+});
+```
+
+```js listener.ts
+//listen for an event, and update your theme as a result
+
+listener.on('space:created', async (event: FlatfileEvent) => {
+  const updateSpace = await flatfile.spaces.update(spaceId, {});
+});
 ```
 </CodeGroup>
 

@@ -12,10 +12,21 @@ This endpoint creates a new environment. `name` and `isProd` are required to cre
   type="string"
   required
   placeholder="isolated_dev_myname"
+  default="isolated_dev_myname"
 >
   The name of the environment
 </ParamField>
 
-<ParamField body="isProd" type="boolean" required default="false">
+<ParamField body="isProd" type="boolean" required default="false" placeholder="false">
   Whether or not the environment is a production environment
+</ParamField>
+
+### Request headers
+
+<ParamField header="Accept" required default="application/json" placeholder="application/json">
+  Request header
+</ParamField>
+
+<ParamField header="Content-Type" required default="application/json" placeholder="application/json">
+  Request header
 </ParamField>
