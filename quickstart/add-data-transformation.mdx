@@ -36,7 +36,7 @@ Here's an example of a very basic event listener:
 ```js index.js
 export default function (listener) {
   listener.on("**", (event) => {
-    console.log(`-> Received an event: ${JSON.stringify(event.topic)}`);
+    console.log(`Received event: ${event.topic}`);
   });
 }
 ```
@@ -72,9 +72,7 @@ Flatfile provides a number of [transformation & validation plugins](../plugins/t
 
 ## Adding your first data transformation
 
-Let's dive into an example that showcases the power of the `@flatfile/plugin-record-hook` plugin. With this plugin,
-we can stay in the loop whenever a new row is added or an existing one is modified, allowing us to take action
-and transform the data to our liking.
+Let's dive into an example that showcases the power of the `@flatfile/plugin-record-hook` plugin. With this plugin, we can stay in the loop whenever a new row is added or an existing one is modified (via the [commit event](../concepts/events#commit-created)), allowing us to take action and transform the data to our liking.
 
 In this particular scenario, we'll demonstrate how to grab the first name from the record and convert it
 to lowercase.
@@ -84,8 +82,9 @@ import { recordHook } from "@flatfile/plugin-record-hook";
 
 listener.use(
   recordHook("contacts", (record) => {
-    const value = record.get("firstName")?.toString();
-    if (value) {
+    const value = record.get("firstName");
+
+    if (typeof value === "string") {
       record.set("firstName", value.toLowerCase());
     }
 
@@ -103,7 +102,9 @@ Once the focus is off of the new First Name field, your transformation will run 
 
 ## Adding your first validation
 
-Similar to transforming data, we can use the [record-hook plugin](../plugins/transform/record-hook) as the starting point for validating data.
+Similar to transforming data, we will continue to use the [record-hook plugin](../plugins/transform/record-hook) as the starting point for validating data.
+
+In this particular scenario, we'll demonstrate how to add an error message if the email is invalid.
 
 <Tip>You can use any npm package in a plugin.</Tip>
 
@@ -111,14 +112,15 @@ Similar to transforming data, we can use the [record-hook plugin](../plugins/tra
 import { recordHook } from "@flatfile/plugin-record-hook";
 
 // While not the most correct, simple for the purpose of an example
-const validEmailAddress = /^[\w\d.-]+@[\w\d]+\.\w+$/;
 
 listener.use(
   recordHook("contacts", (record) => {
     //previous code here
 
-    if (!validEmailAddress.test(record.get("email"))) {
-      console.log("got email");
+    const email = record.get("email");
+    const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!validEmailAddress.test(email)) {
+      console.log("Invalid email address");
       record.addError("email", "Invalid email address");
     }
 
