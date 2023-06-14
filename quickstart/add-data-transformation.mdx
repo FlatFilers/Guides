@@ -33,13 +33,24 @@ Follow these steps:
 
 Here's an example of a very basic event listener:
 
-```js index.js
+<CodeGroup>
+```js javascript
 export default function (listener) {
-  listener.on("**", (event) => {
-    console.log(`Received event: ${event.topic}`);
+  listener.on("**", ({ topic }) => {
+    console.log(`Received event: ${topic}`);
   });
 }
 ```
+```js typescript
+import { FlatfileEvent } from "@flatfile/listener";
+
+export default function flatfileEventListener(listener) {
+  listener.on("**", ({ topic }: FlatfileEvent) => {
+    console.log(`Received event: ${topic}`);
+  });
+}
+```
+</CodeGroup>
 
 ```ssh Console
 > getting-started % npx flatfile develop
@@ -77,13 +88,32 @@ Let's dive into an example that showcases the power of the `@flatfile/plugin-rec
 In this particular scenario, we'll demonstrate how to grab the first name from the record and convert it
 to lowercase.
 
-```js index.js
+<CodeGroup>
+```js javascript
 import { recordHook } from "@flatfile/plugin-record-hook";
 
-listener.use(
-  recordHook("contacts", (record) => {
-    const value = record.get("firstName");
+//previous code here
 
+  listener.use(
+    recordHook("contacts", (record) => {
+      const value = record.get("firstName");
+      if (typeof value === "string") {
+        record.set("firstName", value.toLowerCase());
+      }
+
+      return record;
+    })
+  );
+````
+
+```js typescript
+import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
+
+//previous code here
+
+listener.use(
+  recordHook("contacts", (record: FlatfileRecord) => {
+    const value = record.get("firstName");
     if (typeof value === "string") {
       record.set("firstName", value.toLowerCase());
     }
@@ -91,7 +121,10 @@ listener.use(
     return record;
   })
 );
-```
+
+````
+
+</CodeGroup>
 
 #### Using your transformation
 
@@ -108,13 +141,16 @@ In this particular scenario, we'll demonstrate how to add an error message if th
 
 <Tip>You can use any npm package in a plugin.</Tip>
 
-```js index.js
+<CodeGroup>
+
+```js javascript
 import { recordHook } from "@flatfile/plugin-record-hook";
 
-// While not the most correct, simple for the purpose of an example
+//previous code here
 
 listener.use(
   recordHook("contacts", (record) => {
+
     //previous code here
 
     const email = record.get("email");
@@ -128,6 +164,30 @@ listener.use(
   })
 );
 ```
+
+```js typescript
+import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
+
+//previous code here
+
+listener.use(
+  recordHook("contacts", (record: FlatfileRecord) => {
+
+    //previous code here
+
+    const email = record.get("email") as string;
+    const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!validEmailAddress.test(email)) {
+      console.log("Invalid email address");
+      record.addError("email", "Invalid email address");
+    }
+
+    return record;
+  })
+);
+```
+
+</CodeGroup>
 
 #### Using your validation
 

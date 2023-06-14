@@ -9,9 +9,6 @@
   "isWhiteLabeled": true,
   "api": {
     "baseUrl": "https://platform.flatfile.com/api",
-    "playground": {
-      "mode": "simple"
-    },
     "auth": {
       "method": "bearer"
     }
@@ -138,7 +135,14 @@
       "group": "Overview",
       "pages": [
         "developer-tools/environment",
-        "developer-tools/developing",
+        {
+          "group": "Developing with Flatfile",
+          "icon": "square-terminal",
+          "pages": [
+            "developer-tools/developing/running-local",
+            "developer-tools/developing/make-environment"
+          ]
+        },
         "developer-tools/deploying",
         "developer-tools/flatfile_query_language"
       ]

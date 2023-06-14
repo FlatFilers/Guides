@@ -1,14 +1,12 @@
 ---
-title: "Developing with Flatfile"
+title: "Running on your local machine"
 description: "Learn how to develop with Flatfile CLI."
-icon: "code-commit"
+icon: "computer-classic"
 ---
 
 <Snippet file="dxpbanner.mdx" />
 
 When developing with Flatfile, listeners can [deployed](deploying) to Flatfile on every change or they can run directly on your machine.
-
-## Running from your machine
 
 ### Before you begin
 
@@ -48,10 +46,19 @@ ncc: Compiling file index.js into CJS
 
 ## Shared environments
 
-It is highly recommended to utilize an isolated environment when developing with the local listener.
+It is highly recommended to utilize an isolated environment when developing with the local listener. That's why the CLI is warning you when working in an environment that already has a deployed agent.
+
+<CardGroup cols={2}>
+  <Card
+    title="Create a new isolated environment"
+    href="make-environment"
+  ></Card>
+  <Card title="Check for existing agents" href="/actions"></Card>
+</CardGroup>
+
+### More details
+
 Having deployed code running at the same time within the same development environment can lead to
 interference, potentially resulting in a recursive loop and undesirable consequences for your local listener.
 To avoid such complications, it's advisable to keep your local environment separate from any deployed code.
 This ensures optimal performance and helps maintain a stable development environment.
-
-If you are unsure, the CLI will warn you when working in an environment that already has deployed code.

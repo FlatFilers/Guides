@@ -1,0 +1,21 @@
+---
+title: "Create an environment"
+api: "POST https://platform.flatfile.com/api/v1/environments"
+---
+
+This endpoint creates a new environment. `name` and `isProd` are required to create an environment.
+
+### Body
+
+<ParamField
+  body="name"
+  type="string"
+  required
+  placeholder="isolated_dev_myname"
+>
+  The name of the environment
+</ParamField>
+
+<ParamField body="isProd" type="boolean" required default="false">
+  Whether or not the environment is a production environment
+</ParamField>
