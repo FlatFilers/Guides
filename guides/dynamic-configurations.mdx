@@ -39,8 +39,8 @@ You can also follow along in this [Replit](https://replit.com/@flatfile/configur
 </Tip>
 
 ```jsx listener.js
-listener.filter({ job: "space:configure" }, ({ on }) => {
-  on("job:ready", async ({ context: { spaceId, environmentId, jobId } }) => {
+listener.filter({ job: "space:configure" }, (configure) => {
+  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId } }) => {
     try {
       await api.jobs.ack(jobId, {
         info: "Gettin started.",
