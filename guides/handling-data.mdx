@@ -284,17 +284,17 @@ if (!email) {
 
 ## Accessing an API
 
-Accessing an API within a recordHook allows for retrieving additional data or performing external operations to enrich or modify existing data. This approach integrates external data sources or services into the data manipulation workflow, enabling real-time or dynamic information to enhance the data. It is particularly useful when fetching related data, validating information, performing calculations, or any operation that relies on external input before modifying the data.
+Accessing an API within a `recordHook` allows for retrieving additional data or performing external operations to enrich or modify existing data. This approach integrates external data sources or services into the data manipulation workflow, enabling real-time or dynamic information to enhance the data. It is particularly useful when fetching related data, validating information, performing calculations, or any operation that relies on external input before modifying the data.
 
 ### Using `GET`
 
-When a record is created or updated, you may need to fetch data from an API. Using a GET method does just that, then updates the record object with the retrieved data, and handles any errors that may occur during the process.
+When a record is created or updated, you may need to fetch data from an API. Using a `GET` method does just that, then updates the record object with the retrieved data, and handles any errors that may occur during the process.
 
 <h4>Example</h4>
 
 In this example, an API call is made to retrieve beer data, which is then used to update the record object by setting the "assignedBeer" field with a random name from the beer data. 
 
-If an error occurs, we update the "status" field to "Failed" and add an error message. The modified record is then returned from the recordHook.
+If an error occurs, we update the `status` field to "Failed" and add an error message. The modified record is then returned from the `recordHook`.
 
 ```jsx
 listener.use(
@@ -330,13 +330,13 @@ listener.use(
 
 ### Using `POST`
 
-When a record is created or updated, you may need to send data to an API. Sends the payload data from an event to a webhook receiver URL using an HTTP POST request, then update the record object based on the success or failure of the request. Last, adds messages to the  fields accordingly.
+When a record is created or updated, you may need to send data to an API. Sends the payload data from an event to a webhook receiver URL using a `POST` request, then update the record object based on the success or failure of the request. Last, add messages to the fields accordingly.
 
 <h4>Example</h4>
 
-In this example, we are making a POST request to a webhook endpoint using axios. We pass the payload, method, and record as the request body and handle the response. 
+In this example, we are making a `POST` request to a webhook endpoint using axios. We pass the payload, method, and record as the request body and handle the response. 
 
-If the request is successful, we update the "status" field of the record to "Success" and add a comment. If an error occurs, we update the "status" field to "Failed" and add an error message. The modified record is then returned from the recordHook.
+If the request is successful, we update the `status` field of the record to "Success" and add a comment. If an error occurs, we update the `status` field to "Failed" and add an error message. The modified record is then returned from the `recordHook`.
 
 ```jsx
 listener.use(
