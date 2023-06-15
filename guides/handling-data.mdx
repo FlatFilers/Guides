@@ -4,13 +4,13 @@ description: "Learn how to process data with Data Hooks"
 icon: 'wand-sparkles'
 ---
 
-# 
-
 **Data Hooks&reg;** are concise functions that automatically **re-format**, **correct**, **validate**, and **enrich** data during the data import process. These hooks can be executed on a complete record, or row, of data using methods on the `FlatfileRecord` class.
 
 Record-level hooks have access to all fields in a row and should be utilized for operations that require access to multiple fields or when creating a new field.
 
 ## Getting started
+
+The `FlatfileRecord` class provides methods to manipulate and interact with a record in the Flatfile format, including setting values, retrieving values, adding information messages, performing computations, validating fields, and converting the record to JSON format.
 
 Listen for updates to data records, and respond with three types of record hooks: `compute`, `computeIfPresent`, and `validate`. These hooks are available as methods on the `FlatfileRecord` class.
 
@@ -22,13 +22,13 @@ import { recordHook, FlatfileRecord } from '@flatfile/plugin-record-hook'
 In these examples, we'll reference the workbook from the [Quickstart guide](/quickstart/meet-the-workbook#building-your-first-workbook).
 </Info>
 
-## Methods
+## Record Hooks
 
 ### `FlatfileRecord.compute`
 
-Computes a new value for a field based on its original value or other field values on the record. Optionally pass a message to surface to the user about the transformation. `compute` will run even when no value is set for the field (see [`computeIfPresent`](#flatfilerecord-computeifpresent)).
+Computes a new value for a field based on its original value or other field values on the record. Optionally pass an [info message](#flatfilerecord-addinfo) to surface to the user about the transformation. `compute` will run even when no value is set for the field (see [`computeIfPresent`](#flatfilerecord-computeifpresent)).
 
-#### Syntax
+<h4>Syntax</h4>
 
 ```js
 FlatfileRecord.compute(fieldName, transformation, message)
@@ -46,7 +46,7 @@ FlatfileRecord.compute(fieldName, transformation, message)
   (optional) a message to show on the cell after the transformation.
 </ParamField>
 
-#### Example
+<h4>Example</h4>
 
 Generate email from first and last name:
 
@@ -85,7 +85,7 @@ listener.use(
 
 Same as [`compute`](#flatfilerecord-compute), but only computes a new value if an initial value is provided (not null). Useful for computations that may throw an error on null values.
 
-#### Syntax
+<h4>Syntax</h4>
 
 ```js
 FlatfileRecord.computeIfPresent(fieldName, transformation, message)
@@ -103,7 +103,7 @@ FlatfileRecord.computeIfPresent(fieldName, transformation, message)
   (optional) a message to show on the cell after the transformation.
 </ParamField>
 
-#### Example
+<h4>Example</h4>
 
 Change email to lower case:
 
@@ -139,9 +139,9 @@ listener.use(
 
 ### `FlatfileRecord.validate`
 
-Sets a field as invalid if its value does not meet a specified condition, and displays a message to the user.
+Sets a field as invalid if its value does not meet a specified condition, and displays an [error message](#flatfilerecord-adderror) to the user.
 
-#### Syntax
+<h4>Syntax</h4>
 
 ```js
 validate(fieldName, validator, message)
@@ -159,7 +159,7 @@ validate(fieldName, validator, message)
   A message to show on the cell if the field is invalid.
 </ParamField>
 
-#### Example
+<h4>Example</h4>
 
 <CodeGroup>
 ```js javascript
@@ -188,3 +188,183 @@ listener.use(
 );
 ```
 </CodeGroup>
+
+## Messages 
+
+Attach comments, errors, and warnings to specific fields in each record. These messages provide contextual information or alerts to users who interact with the record, helping them understand any issues or actions required.
+
+### `FlatfileRecord.addInfo()`
+
+![Info](../images/guides/FlatfileRecord_info.png)
+
+This method adds an information message to one or more fields in the record.
+
+<h4>Syntax</h4>
+
+```jsx
+addInfo(fields, message)
+```
+
+<ParamField path="fields" type="string | string[]">
+  Can be either a string representing a single field or an array of strings representing multiple fields
+</ParamField>
+
+<ParamField path="message" type="string">
+  The content of the message
+</ParamField>
+
+
+<h4>Example</h4>
+```jsx
+const email = record.get("email");
+const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (validEmailAddress.test(email)) {
+  record.addInfo("email", "This email was verified.");
+}
+```
+
+### `FlatfileRecord.addError()`
+
+![Error](../images/guides/FlatfileRecord_error.png)
+
+This method adds an error message to one or more fields in the record.
+
+<h4>Syntax</h4>
+
+```jsx
+addError(fields, message)
+```
+
+<ParamField path="fields" type="string | string[]">
+  Can be either a string representing a single field or an array of strings representing multiple fields
+</ParamField>
+
+<ParamField path="message" type="string">
+  The content of the message
+</ParamField>
+
+
+<h4>Example</h4>
+```jsx
+const email = record.get("email");
+const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (validEmailAddress.test(email)) {
+  record.addError("email", "This is not a valid email address.");
+}
+```
+
+### `FlatfileRecord.addWarning()`
+
+![Warning](../images/guides/FlatfileRecord_warning.png)
+
+This method adds a warning message to one or more fields in the record.
+
+<h4>Syntax</h4>
+
+```jsx
+FlatfileRecord.addWarning(fields, message)
+```
+
+<ParamField path="fields" type="string | string[]">
+  Can be either a string representing a single field or an array of strings representing multiple fields
+</ParamField>
+
+<ParamField path="message" type="string">
+  The content of the message
+</ParamField>
+
+
+<h4>Example</h4>
+```jsx
+const email = record.get("email");
+if (!email) {
+  record.addWarning("email", "Without an email, we will default to name for unique id.");
+}
+```
+
+## Accessing an APi
+
+### Using `GET`
+
+When a record is created or updated, you may need to fetch data from an API. This example does just that, then updates the record object with the retrieved data, and handles any errors that may occur during the process.
+
+<h4>Example</h4>
+```jsx
+listener.use(
+  recordHook(
+    "contacts",
+    async (record: FlatfileRecord, event: FlatfileEvent) => {
+      try {
+        const { payload } = event.payload;
+
+        const getResponse = await axios.get(
+          "https://api.sampleapis.com/beers/ale"
+        );
+        record.set(
+          "assignedBeer",
+          getResponse.data[Math.floor(Math.random() * 20)].name
+        );
+        record.addInfo(
+          "assignedBeer",
+          "Got this from " + getResponse.config.url
+        );
+      } catch (error) {
+        record.set("status", "Failed");
+        record.addError("status", "Couldn't get assigned beer data from the api.");
+      } finally {
+        // Clean up or perform any necessary actions after the try/catch block
+      }
+
+      return record;
+    }
+  )
+);
+```
+
+### Using `POST`
+
+When a record is created or updated, you may need to send data to an API. This example sends the payload data from an event to a webhook receiver URL using an HTTP POST request. It updates the record object based on the success or failure of the request and adds messages to the "email" field accordingly.
+
+<h4>Example</h4>
+```jsx
+listener.use(
+  recordHook(
+    "contacts",
+    async (record: FlatfileRecord, event: FlatfileEvent) => {
+      try {
+        const { payload } = event.payload;
+
+        const webhookReceiver =
+          process.env.WEBHOOK_SITE_URL ||
+          "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
+
+        const postResponse = await axios.post(
+          webhookReceiver,
+          {
+            ...payload,
+            method: "axios",
+            record,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        record.set("status", "Success");
+        record.addComment(
+          "status",
+          "Record data sent to " + postResponse.config.url
+        );
+      } catch (error) {
+        record.set("status", "Failed");
+        record.addError("status", "Couldn't send record to the destination.");
+      } finally {
+        // Clean up or perform any necessary actions after the try/catch block
+      }
+
+      return record;
+    }
+  )
+);
+```
