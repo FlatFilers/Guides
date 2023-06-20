@@ -149,7 +149,8 @@
           ]
         },
         "developer-tools/deploying",
-        "developer-tools/flatfile_query_language"
+        "developer-tools/flatfile_query_language",
+        "developer-tools/versioning"
       ]
     },
     {
