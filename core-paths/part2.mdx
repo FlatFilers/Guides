@@ -80,18 +80,7 @@ Here is where you define how to respond to events. In this case, since we have a
 
 ```js listener.ts
 async function submit(jobId: string) {
-  const storedToken = sessionStorage.getItem('token')
-
-  if (!storedToken) {
-    throw new Error('Error retrieving stored token')
-  }
-
-  const Flatfile = new FlatfileClient({
-    token: storedToken,
-    environment: 'https://platform.flatfile.com/api/v1'
-  })
-
-  await Flatfile.jobs.ack(jobId, {
+  await api.jobs.ack(jobId, {
     info: "I'm starting the job - inside client",
     progress: 33
   })
@@ -99,7 +88,7 @@ async function submit(jobId: string) {
   // hit your api here
   await new Promise((res) => setTimeout(res, 2000))
 
-  await Flatfile.jobs.complete(jobId, {
+  await api.jobs.complete(jobId, {
     info: "Job's work is done",
     outcome: { next: { type: 'wait' } }
   })
