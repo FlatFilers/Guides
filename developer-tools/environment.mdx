@@ -14,6 +14,9 @@ Environments have two guest authentication types:
 1. `magic_link` sends your guests an email with a magic link to login.
 2. `shared_link` makes the Space url public, and is used with embedded Flatfile.
 
+If `guestAuthentication` is left undefined, we default to enabling both `magic_link` and `shared_link`.
+`guestAuthentication` can be set at both the Environment level and at the Space level. The Space level setting overrides the Environment level setting. 
+
 | isProd | Name | Description |
 | --- | --- | --- |
 | *false* | `development` | Use this default environment, and it’s associated test API keys, as you build with Flatfile. |
