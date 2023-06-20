@@ -1,6 +1,7 @@
 ---
 title: "Workbooks"
 description: "The anatomy of a Workbook."
+icon: 'table'
 ---
 
 Workbooks are analogous to a database, and like a database, they are configured with a type-strict schema. 
@@ -22,7 +23,7 @@ With Workbooks, you can:
 
 ## Anatomy
 
-A Workbook is comprised of one or more <Tooltip tip="A collection of fields that describe a single entity...">[Sheets](../blueprint/overview#terms)</Tooltip> plus any actions you want to take on those Sheets.
+A Workbook is comprised of one or more <Tooltip tip="A collection of fields...">[Sheets](../blueprint/overview#terms)</Tooltip> plus any actions you want to take on those Sheets.
 
 <img src="../images/concepts/workbook_anatomy.png" caption="The anatomy of a Workbook"/>
 
@@ -43,5 +44,10 @@ Sheets contain <Tooltip tip="Describes an attribute of the entity...">[Fields](.
 #### `Actions` *array*
 Workbooks and Sheets can also contain Actions. Actions are developer-defined operations or macros invoked by end users on selected data like Submit to API, Download as PDF.
 
-[Learn more about Actions](../guides/custom-actions)
+[Learn more about Actions](../guides/actions)
+
+#### `Labels` *array*
+To have a workbook appear first in the sidebar, give it the label 'pinned' (it will even have a pin icon!). You can also add other custom labels to your workbooks as needed.
+
+
 

@@ -1,6 +1,7 @@
 ---
 title: "Theme your Space"
 description: "Learn how to customize the look and feel of Flatfile to match your brand."
+icon: 'palette'
 ---
 
 Flatfile supports modifying most UI elements including colors, fonts, borders, padding, and
@@ -17,30 +18,37 @@ Learn how to create a Space with a theme, and update a theme from an event liste
 
 <CodeGroup>
 
-```ts api.js
+```js
 const updateSpace = await api.spaces.update(spaceId, {
-    environmentId: environmentId,
-     metadata: {
-      theme: {
-        root: {
-          primaryColor: "red",
-        },
-        sidebar: {
-          logo: "https://image.png",
-        },
-        //See reference for all possible variables
-      }
+  environmentId,
+  metadata: {
+    theme: {
+      root: {
+        primaryColor: "red",
+      },
+      sidebar: {
+        logo: "https://image.png",
+      },
+      // See reference for all possible variables
     }
   }
 });
 ```
 
-```ts listener.js
+```js listener.js
 //listen for an event, and update your theme as a result
 
-listener.on('space:created', (event) => {
+listener.on('space:created', async (event) => {
   const updateSpace = await flatfile.spaces.update(spaceId, {});
-})
+});
+```
+
+```js listener.ts
+//listen for an event, and update your theme as a result
+
+listener.on('space:created', async (event: FlatfileEvent) => {
+  const updateSpace = await flatfile.spaces.update(spaceId, {});
+});
 ```
 </CodeGroup>
 
@@ -51,16 +59,25 @@ listener.on('space:created', (event) => {
 ### `theme.root`
 ![theme.root](../images/customize/theme_root.png)
 
+<Tip>
+The sidebar, table and document will automatically inherit theming from your root variables! 
+</Tip>
+
 <ParamField path="fontFamily" type="string">The font family used throughout the application.</ParamField>
+<ParamField path="buttonBorderRadius" type="string">The border radius for all buttons.</ParamField>
 <ParamField path="primaryColor" type="string">The primary color used throughout the application.</ParamField>
 <ParamField path="dangerColor" type="string">The color used for error messages.</ParamField>
 <ParamField path="warningColor" type="string">The color used for warning messages.</ParamField>
 <ParamField path="actionColor" type="string">The color used for the primary action.</ParamField>
+<ParamField path="successColor" type="string">The color used for successful actions.</ParamField>
 
 ### `theme.sidebar`
 ![theme.sidebar](../images/customize/theme_sidebar.png)
+<Info>
+  You can override the default colors of the sidebar below. If these are not set they will inherit from your root colors.
+</Info>
 
-<ParamField path="logo" type="string">The logo displayed in the sidebar.</ParamField>
+<ParamField path="logo" type="string">The img path for the logo displayed in the sidebar.</ParamField>
 <ParamField path="textColor" type="string">The color of the text in the sidebar.</ParamField>
 <ParamField path="titleColor" type="string">The color of the title in the sidebar.</ParamField>
 <ParamField path="focusBgColor" type="string">The background color of the sidebar when it is focused.</ParamField>
@@ -78,46 +95,32 @@ listener.on('space:created', (event) => {
 
 ### `theme.table`
 ![theme.table](../images/customize/theme_table.png)
+<Info>
+  You can override the default colors of the table below. If these are not set they will inherit from your root colors.
+</Info>
 
 <ParamField path="fontFamily" type="string">The font family used throughout the table.</ParamField>
 
-#### `theme.table.inputs`
-![theme.table.inputs](../images/customize/theme_table_inputs.png)
-
-<ParamField path="inputs.radio.color" type="string">The color of the radio buttons in the table.</ParamField>
-<ParamField path="inputs.checkbox.color" type="string">The color of the checkboxes in the table.</ParamField>
-
-#### `theme.table.filters`
-![theme.table.filters](../images/customize/theme_table_filters.png)
-
-<ParamField path="filters.color" type="string">The color of the filter buttons in the table.</ParamField>
-<ParamField path="filters.active.backgroundColor" type="string">The background color of the active filter buttons in the table.</ParamField>
-<ParamField path="filters.error.activeBackgroundColor" type="string">The background color of the active filter buttons in the table when there is an error.</ParamField>
-
-#### `theme.table.column`
+##### `theme.table.column`
 ![theme.table.column](../images/customize/theme_table_column.png)
 
-<ParamField path="column.header.fontSize" type="string">The font size of the column headers in the table.</ParamField>
 <ParamField path="column.header.backgroundColor" type="string">The background color of the column headers in the table.</ParamField>
-<ParamField path="column.header.color" type="string">The color of the column headers in the table.</ParamField>
-<ParamField path="column.header.dragHandle.idle" type="string">The color of the drag handle when it is idle.</ParamField>
-<ParamField path="column.header.dragHandle.dragging" type="string">The color of the drag handle when it is being dragged.</ParamField>
+<ParamField path="column.header.color" type="string">The text color of the column headers in the table.</ParamField>
 
-#### `theme.table.indexColumn`
+##### `theme.table.indexColumn`
 ![theme.table.indexColumn](../images/customize/theme_table_indexColumn.png)
 
 <ParamField path="indexColumn.backgroundColor" type="string">The background color of the first column in the table.</ParamField>
-<ParamField path="indexColumn.selected.color" type="string">The color of the selected first column in the table.</ParamField>
+<ParamField path="indexColumn.color" type="string">The text color of the first column in the table.</ParamField>
+<ParamField path="indexColumn.selected.color" type="string">The text color of the selected first column in the table.</ParamField>
 <ParamField path="indexColumn.selected.backgroundColor" type="string">The background color of the first column in the table when selected.</ParamField>
 
-#### `theme.table.cell`
-![theme.table.cell](../images/customize/theme_table_cell.png)
+##### `theme.table.inputs`
+![theme.table.inputs](../images/customize/theme_table_inputs.png)
 
-<ParamField path="cell.selected.backgroundColor" type="string">The background color of the selected cells in the table.</ParamField>
-<ParamField path="cell.active.borderColor" type="string">The border color of the active cells in the table.</ParamField>
-<ParamField path="cell.active.spinnerColor" type="string">The spinner color of the active cells in the table.</ParamField>
+<ParamField path="inputs.checkbox.color" type="string">The color of the checkboxes in the table.</ParamField>
 
-#### `theme.table.boolean`
-![theme.table.boolean](../images/customize/theme_table_boolean.png)
 
-<ParamField path="boolean.toggleChecked" type="string">The color of a toggle when it is checked.</ParamField>
+
+
+

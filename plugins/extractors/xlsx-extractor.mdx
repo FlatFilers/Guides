@@ -1,0 +1,61 @@
+---
+title: "@flatfile/plugin-xlsx-extractor"
+description: "A plugin for parsing .xlsx files in Flatfile."
+icon: "download"
+---
+
+<CardGroup cols={1}>
+    <Card title="@flatfile/plugin-xlsx-extractor" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/xlsx-extractor" icon="github" >
+    *currently v1.0.0*
+    <br/>
+    **Contributors**<br/>
+    David Boskovic, Ashley Mulligan<br/>
+    <br/>
+    **Last updated**<br/>
+    June 14, 2023
+    </Card>
+</CardGroup>
+
+
+### Overview
+
+This plugin parses all Sheets in an XLSX file and extracts them into Flatfile.
+
+
+```SSH Install
+npm i @flatfile/plugin-xlsx-extractor
+```
+
+
+---
+
+## Import
+
+```js
+import { ExcelExtractor } from '@flatfile/plugin-xlsx-extractor'
+```
+
+## Usage
+
+Listen for an XLSX file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
+
+```js
+listener.use(xlsxExtractorPlugin())
+```
+
+## Additional Options
+
+The extractor can accept additional properties. Props will be passed along to the Sheet.js parsing engine.
+
+```js 
+listener.use(xlsxExtractorPlugin({ rawNumbers: true }))
+```
+
+### Properties
+
+<ParamField path="rawNumbers" type="boolean" optional>
+  In Excel, you could have rounding or formatting on a number cell to only display say 2 decimal places.
+   By default, Flatfile will just take the displayed decimal places versus the raw numbers. 
+   Set this value to true to take the raw numbers and disregard how it’s displayed in Excel.
+</ParamField>
+

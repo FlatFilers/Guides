@@ -1,50 +1,71 @@
 ---
-title: 4. Deploy to Flatfile
+title: Deploy to Flatfile
 description: Publish your new configuration to Flatfile and move beyond this simple sandbox.
+icon: "circle-4"
 ---
 
-For a production deployment, listeners can be hosted either in your cloud or directly on the Flatfile platform. Learn more about <Tooltip tip="More deployment methods">[deploying](../developer-tools/deploying)</Tooltip>.
+<Snippet file="dxpbanner.mdx" />
+
+For a production deployment, listeners can be hosted either in your cloud or directly on the Flatfile platform. Learn more about [deploying](../developer-tools/deploying).
 
 ## Deploying the listener example to Flatfile
 
 Using the `flatfile` command line tool, we will now deploy your listener code into the Flatfile platform.
 
 1. Clone the Getting Started repo
+
 ```terminal
 git clone https://github.com/FlatFilers/getting-started.git
 ```
 
 <CardGroup cols={1}>
-  <Card title="getting-started" href="https://github.com/FlatFilers/getting-started" icon="github">
-  This code repository has everything you did in the quickstart example.
+  <Card
+    title="getting-started"
+    href="https://github.com/FlatFilers/getting-started"
+    icon="github"
+  >
+    This code repository has everything you did in the quickstart example.
   </Card>
 </CardGroup>
 
 2. Run the deploy command from the root directory
 
-<Note> If you are working on Flatfile integration in a brand-new IDE instance, ensure you execute `npm install` before you run the command below.</Note>
+<Note>
+  {" "}
+  If you are working on Flatfile integration in a brand-new IDE instance, ensure
+  you execute `npm install` before you run the command below.
+</Note>
 
 ```terminal
-npx flatfile@latest deploy --token=YOUR_SECRET_KEY
+npx flatfile@latest deploy
 ```
+
 ---
 
-## Recap & what's next 
+## Recap & what's next
 
-You can now create a Workbook, add data and workflow logic, and deploy it to the Flatfile platform! 
+You can now create a Workbook (though, we suggest [building it dynamically](/guides/dynamic-configurations) next time), add data and workflow logic, and deploy it to the Flatfile platform!
 
 Where you go next depends on the what you're trying to accomplish. A few possibilities include the following:
 
-### Follow a core path
+### Continue building
 
 <CardGroup cols={3}>
-  <Card title="Embed in your app" icon="person-to-portal" href="/core-paths/embedding" >
+  <Card
+    title="Dynamically build a Workbook"
+    icon="object-group"
+    href="/guides/dynamic-configurations"
+  >
+    Dynamically build your configuration on command.
+  </Card>
+  <Card title="Build more actions" icon="bolt" href="/guides/actions">
+    Trigger operations based on user input.
+  </Card>
+  <Card
+    title="Embed in your app"
+    icon="person-to-portal"
+    href="/core-paths/embedding"
+  >
     Securely and easily add an embedded import experience to any app.
-  </Card>
-  <Card title="Setup headless file feeds" icon="bolt-auto" href="/core-paths/headless" >
-    Automatically collect data files from any source.
-  </Card>
-  <Card title="Run onboarding projects" icon="arrow-progress" href="/core-paths/workflows">
-    Collaborate across teams on large data onboarding projects.
   </Card>
 </CardGroup>

@@ -1,19 +1,22 @@
 ---
 title: "Deploying to Flatfile"
 description: "Learn how to deploy your code to Flatfile."
+icon: "rocket-launch"
 ---
+
+<Snippet file="dxpbanner.mdx"/>
 
 For a production deployment, listeners can be hosted either in your cloud or directly on the Flatfile platform. 
 
 ## Hosting in your own cloud
 
-Hosting listener code in your own cloud works similarly to how we run code in our [Quickstart Repl.it](https://replit.com/@flatfile/get-started) in that: 
+Hosting listener code in your own cloud works similarly to how we run the `develop` command in our Quickstart in that: 
 
 1. The listener process is launched
 2. It polls the Flatfile API for updates
 3. It then responds to those events accordingly
 
-Follow the Repl.it example for a working example on hosting in your own cloud.
+Follow the Quickstart example for a working example on hosting in your own cloud.
 
 ## Hosting on the Flatfile platform
 
@@ -25,12 +28,12 @@ While your own cloud provides the maximum level of control over listener code, q
 Once you have configured your workbook, you can deploy your workbook to your account at any time
 by opening the terminal in the root directory and entering this command:
 
-`npx flatile deploy --token PASTE_SECRET_KEY_HERE`
+`npx flatfile@latest deploy --token=YOUR_SECRET_KEY`
 
 The CLI will give you prompts and updates as it's deploying:
 
 ``` terminal
-> npx flatfile@3.3.1 deploy --token sk_123456
+> npx flatfile@latest deploy --token=sk_123456
 
 ✔  Code package compiled to .flatfile/build.js
 ✔  Code package passed validation

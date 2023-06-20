@@ -1,20 +1,18 @@
 ---
 title: "Events"
 description: "The anatomy of Events."
+icon: "ear-listen"
 ---
 
-The Flatfile platform includes a <Tooltip tip="View API reference">[REST API](https://reference.flatfile.com/docs/api)</Tooltip> for manipulating resources 
-and an event bus for subscribing to notifications about those resources. 
+The Flatfile platform encompasses a comprehensive suite of tools. Firstly, it offers a REST API, which can be accessed through the <Tooltip tip="View API reference">REST API</Tooltip>, empowering users to effortlessly manipulate resources. Additionally, an event bus is available for seamless subscription to resource-related notifications.
 
-The Flatfile PubSub Client is a super thin wrapper around the Flatfile API. 
-It allows you to call our API after receiving events from any PubSub driver. 
+To simplify the process of utilizing the Flatfile API, the Flatfile PubSub Client serves as a lightweight wrapper. It enables developers to seamlessly trigger API calls upon receiving events from any PubSub driver, thus ensuring a smooth and streamlined integration process.
 
 #### The anatomy of an Event
 
-Flatfile events follow a standard structure, and event listeners can use any of the following syntaxes to handle events within Flatfile.
+Flatfile events adhere to a standardized structure, and event listeners have the flexibility to handle events within Flatfile using any of the following syntaxes.
 
 [See API Reference](https://reference.flatfile.com/docs/api/c67125494272c-create-an-event)
-
 
 ### Using Events
 
@@ -23,138 +21,542 @@ Once an event is received, it is routed to any awaiting listeners which are adde
 An event context is passed to an **EventFilter**
 
 ```typescript
-export type EventFilter = Record<string, Arrayable<string>>
+export type EventFilter = Record<string, Arrayable<string>>;
 
 // example event context
-{ context: { sheetSlug: 'TestSheet' } }
+{
+  context: {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "actorId": "us_ag_1234"
+  }
+}
 ```
 
 #### Building with events
 
-Using our powerful <Tooltip tip="View library">[@flatfile/listener](https://www.npmjs.com/package/@flatfile/listener)</Tooltip> library we can intervene between any event and run a callback function based on values provided inside that event.
+By leveraging the robust capabilities of our @flatfile/listener library, we can seamlessly intercept any event and execute a callback function based on the values encapsulated within the event itself.
 
 ```typescript
-client.on(
-    'records:*', //listens for records:created & records:updated
-    { target: 'sheet(TestSheet)' },
-    (event: FlatfileEvent) => {
-      //do something here
-    }
-  );
+listener.filter({ job: "space:configure" }, (configure) => {
+  listener.on("job:ready", async (event: FlatfileEvent) => {
+    //do something here
+  });
+});
 ```
 
 ## Event Topics
 
-#### Workbook
+Utilize the reference provided by the response of each event topic to determine the desired
+outcome or plan subsequent actions accordingly.
+
+### Workbook
+
+#### `workbook:created`
 
 <ParamField path="workbook:created" type="readonly">
   Called when a new workbook is created.
 </ParamField>
 
+```json
+{
+  "domain": "workbook",
+  "topic": "workbook:created",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "jobId": "us_jb_1234",
+    "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `workbook:updated`
+
 <ParamField path="workbook:updated" type="readonly">
-  Called when workbook metadata is updated. For example, updating the name of a workbook. Adding data to a workbook does not emit this event.
+  Called when workbook metadata is updated. For example, updating the name of a
+  workbook. Adding data to a workbook does not emit this event.
 </ParamField>
+
+```json
+{
+  "domain": "workbook",
+  "topic": "workbook:updated",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "actorId": "us_ag_1234"
+  }
+}
+```
+
+#### `workbook:deleted`
 
 <ParamField path="workbook:deleted" type="readonly">
   Called when a workbook is deleted.
 </ParamField>
 
-<ParamField path="sheet:created" type="readonly">
-  Called when a new sheet is created within a workbook.
-</ParamField>
+```json
+{
+  "domain": "workbook",
+  "topic": "workbook:deleted",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "actorId": "us_ag_1234"
+  }
+}
+```
+
+### Sheet
+
+#### `sheet:updated`
 
 <ParamField path="sheet:updated" type="readonly">
-  Called when a sheet is updated. For example, running sheet level validations. Adding data to a sheet does not emit this event.
+  Called when a sheet is updated. For example, running sheet level validations.
+  Adding data to a sheet does not emit this event.
 </ParamField>
 
-<ParamField path="sheet:validated" type="readonly">
-  Called when a sheet is validated.
-</ParamField>
+```json
+{
+  "domain": "sheet",
+  "topic": "sheet:updated",
+  "context": {
+    "slugs": { "sheet": "contacts" },
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "sheetId": "us_sh_1234",
+    "sheetSlug": "contacts",
+    "actorId": "us_ag_XRGmuGfL"
+  }
+}
+```
+
+#### `sheet:deleted`
 
 <ParamField path="sheet:deleted" type="readonly">
   Called when a sheet is deleted.
 </ParamField>
 
-<ParamField path="record:created" type="readonly">
-  Called when one or more records are created within a sheet.
-</ParamField>
+```json
+{
+  "domain": "sheet",
+  "topic": "sheet:deleted",
+  "context": {
+    "slugs": { "sheet": "contacts" },
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "sheetId": "us_sh_1234",
+    "sheetSlug": "contacts",
+    "actorId": "us_ag_XRGmuGfL"
+  }
+}
+```
 
-<ParamField path="record:updated" type="readonly">
-  Called when one or more records are updated.
-</ParamField>
+### Record
 
-<ParamField path="record:deleted" type="readonly">
-  Called when one or more records are deleted.
-</ParamField>
+#### `commit:created`
 
 <ParamField path="commit:created" type="readonly">
-  Called when a new commit is created. For example, by creating or updating a cell.
+  Called when a new commit is created. For example, by creating or updating a
+  cell.
 </ParamField>
 
-<ParamField path="commit:updated" type="readonly">
-  Called when commit metadata is updated. For example, approving or merging a commit. Commits cannot be deleted.
-</ParamField>
+```json
+{
+  "domain": "workbook",
+  "topic": "commit:created",
+  "context": {
+    "slugs": { "sheet": "MasterWorkbook/Data" },
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "sheetId": "us_sh_1234",
+    "sheetSlug": "MasterWorkbook/Data",
+    "versionId": "us_vr_1234,
+    "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `layer:created`
 
 <ParamField path="layer:created" type="readonly">
-  Called when a new layer is created within a commit. For example, to apply formatting or validation. Layers cannot be updated or deleted.
+  Called when a new layer is created within a commit. A layer is a
+  programmatically generated artifact of a commit. For example, when a data hook
+  or formatting rule applies formatting or validation automatically. Layers
+  cannot be updated or deleted, but you can ignore them to see the original
+  source data.
 </ParamField>
 
-#### File Upload
+### File Upload
+
+#### `file:created`
 
 <ParamField path="file:created" type="readonly">
   Called when a file upload begins or a new file is created.
 </ParamField>
 
+```json
+{
+  "domain": "file",
+  "topic": "file:created",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "fileId": "us_fl_1234",
+    "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `file:updated`
+
 <ParamField path="file:updated" type="readonly">
-  Called when a file is updated. For example, when a file has been extracted into a workbook.
+  Called when a file is updated. For example, when a file has been extracted
+  into a workbook.
 </ParamField>
+
+```json
+{
+  "domain": "file",
+  "topic": "file:updated",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "fileId": "us_fl_1234",
+    "actorId": "us_acc_1234"
+  },
+  "payload": {
+    "status": "complete",
+    "workbookId": "us_wb_1234"
+  }
+}
+```
+
+#### `file:deleted`
 
 <ParamField path="file:deleted" type="readonly">
   Called when a file is deleted.
 </ParamField>
 
-#### Jobs
+```json
+{
+  "domain": "file",
+  "topic": "file:deleted",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "fileId": "us_fl_1234",
+    "actorId": "us_usr_1234"
+  }
+}
+```
+
+### Jobs
+
+#### `job:created`
 
 <ParamField path="job:created" type="readonly">
-  Called when a new job is created.
+  Called when a new job is first created. Some jobs will enter an optional
+  planning state at this time. A job with 'immediate' set to true will skip the
+  planning step and transition directly to 'ready.'
 </ParamField>
+
+```json
+{
+  "domain": "job", //job domain
+  "topic": "job:created",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "jobId": "us_jb_1234",
+    "actorId": "us_usr_1234"
+  },
+  "payload": {
+    "job": "space:configure", //this is domain:operation
+    "info": null,
+    "domain": "space", //event domain
+    "status": "created",
+    "operation": "configure"
+  }
+}
+```
+
+#### `job:ready`
+
+<ParamField path="job:ready" type="readonly">
+  Called when a new job is ready to execute. Either the job has a complete plan
+  of work or the job is configured to not need a plan. This is the only event
+  most job implementations will care about. Once a ready job is acknowledged by
+  a listener, it transations into an executing state.
+</ParamField>
+
+```json
+{
+  "domain": "job", //job domain
+  "topic": "job:ready",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "jobId": "us_jb_1234",
+    "actorId": "us_usr_1234"
+  },
+  "payload": {
+    "job": "space:configure", //this is domain:operation
+    "info": null,
+    "domain": "space", //event domain
+    "status": "ready",
+    "operation": "configure"
+  }
+}
+```
+
+#### `job:updated`
 
 <ParamField path="job:updated" type="readonly">
-  Called when a job is updated. For example, updating state or progress.
+  Called when a job is updated. For example, when a listener updates the state
+  or progress of the job. The event will emit many times as the listener
+  incrementally copmletes work and updates the job.
 </ParamField>
 
-<ParamField path="job:deleted" type="readonly">
-  Called when a job is deleted.
-</ParamField>
+```json
+{
+  "domain": "job", //job domain
+  "topic": "job:updated",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "jobId": "us_jb_1234",
+    "actorId": "us_usr_1234"
+  },
+  "payload": {
+    "job": "space:configure", //this is domain:operation
+    "info": null,
+    "domain": "space", //event domain
+    "status": "ready",
+    "operation": "configure"
+  }
+}
+```
 
-<ParamField path="job:failed" type="readonly">
-  Called when a job fails.
-</ParamField>
+#### `job:completed`
 
 <ParamField path="job:completed" type="readonly">
   Called when a job has completed.
 </ParamField>
 
-#### Agents
+```json
+{
+  "domain": "job", //job domain
+  "topic": "job:completed",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "jobId": "us_jb_1234",
+    "actorId": "us_usr_1234"
+  },
+  "payload": {
+    "job": "space:configure", //this is domain:operation
+    "info": "Configuring space...",
+    "domain": "space", //event domain
+    "status": "complete",
+    "operation": "configure"
+  }
+}
+```
+
+#### `job:outcome-acknowledged`
+
+<ParamField path="job:outcome-acknowledged" type="readonly">
+  Called to trigger workflow actions after the user has acknowledged that the
+  job has completed or failed. Background jobs will skip this step.
+</ParamField>
+
+```json
+{
+  "domain": "job", //job domain
+  "topic": "job:outcome-acknowledged",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "sheetId": "us_sh_1234",
+    "jobId": "us_jb_1234",
+    "actorId": "us_usr_1234"
+  },
+  "payload": {
+    "job": "sheet:buildSheet", //this is domain:operation
+    "info": null,
+    "domain": "sheet", //event domain
+    "status": "failed",
+    "operation": "buildSheet"
+  }
+}
+```
+
+#### `job:failed`
+
+<ParamField path="job:failed" type="readonly">
+  Called when a job fails.
+</ParamField>
+
+```json
+{
+  "domain": "job", //job domain
+  "topic": "job:failed",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "sheetId": "us_sh_1234",
+    "jobId": "us_jb_1234",
+    "actorId": "us_usr_1234"
+  },
+  "payload": {
+    "job": "sheet:buildSheet", //this is domain:operation
+    "info": null,
+    "domain": "sheet", //event domain
+    "status": "failed",
+    "operation": "buildSheet"
+  }
+}
+```
+
+#### `job:deleted`
+
+<ParamField path="job:deleted" type="readonly">
+  Called when a job is deleted.
+</ParamField>
+
+```json
+{
+  "domain": "job",
+  "topic": "job:deleted",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "jobId": "us_jb_1234",
+    "actorId": "us_ag_1234"
+  }
+}
+```
+
+### Agents
+
+#### `agent:created`
 
 <ParamField path="agent:created" type="readonly">
   Called when a new agent is deployed.
 </ParamField>
 
-<ParamField path="agent:updated" type="readonly">
-  Called when an agent is updated.
-</ParamField>
+```json
+{
+  "domain": "space",
+  "topic": "agent:created",
+  "context": {
+    "actorId": "us_ag_1234",
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234"
+  }
+}
+```
+
+#### `agent:deleted`
 
 <ParamField path="agent:deleted" type="readonly">
   Called when an agent is deleted.
 </ParamField>
 
-#### Space
+```json
+{
+  "domain": "space",
+  "topic": "agent:deleted",
+  "context": {
+    "actorId": "us_ag_1234",
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234"
+    "agentId": "us_ag_1234"
+  }
+}
+```
+
+### Space
+
+#### `space:created`
 
 <ParamField path="space:created" type="readonly">
   Called when a new space is created.
 </ParamField>
 
+```json
+{
+  "domain": "space",
+  "topic": "space:created",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `space:updated`
+
+<ParamField path="space:updated" type="readonly">
+  Called when a space is updated.
+</ParamField>
+
+```json
+{
+  "domain": "space",
+  "topic": "space:updated",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `space:deleted`
+
 <ParamField path="space:deleted" type="readonly">
   Called when a space is deleted.
 </ParamField>
+
+```json
+{
+  "domain": "space",
+  "topic": "space:deleted",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "actorId": "us_usr_1234"
+  }
+}
+```

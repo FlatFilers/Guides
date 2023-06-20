@@ -1,46 +1,32 @@
 ---
-title: 3. Configure a submit action
+title: Configure a submit action
 description: "Learn how to create a simple submit Action in Flatfile."
+icon: "circle-3"
 ---
+
+<Snippet file="dxpbanner.mdx" />
 
 Actions refer to buttons added to the user interface that trigger <Tooltip tip="Large asynchronous work...">[Jobs](../concepts/jobs)</Tooltip> within the Flatfile platform when clicked by users. They enable you to run complex operations and streamline workflows. They are declared as part of the Blueprint that defines a Workbook.
 
 ## Adding your first Action
 
-In this example, we're going to add behavior to our Workbook's primary Action (`submitAction`). When the button is clicked by a user, our code will call out to an external webhook receiver provided by the <Tooltip tip="Inspect, test and automate requests">[webhook.site](https://webhook.site)</Tooltip> service.
+In this example, we're going to add behavior to our Workbook's primary Action (`submitAction`). When the button is clicked by a user, a job is created. We will [listen for that job to be ready](../concepts/events#job-ready), and our code will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
 
-1. To create the receiver, navigate to <Tooltip tip="Inspect, test and automate requests">[webhook.site](https://webhook.site)</Tooltip>
-2. Copy the value of `Your unique URL`.
-3. Next, add the following to your default export function in Repl.it.
+1. To create the receiver, navigate to [webhook.site](https://webhook.site)
+1. Copy the value of the path after webhook.site for `Your unique URL`.
+1. Next, add the following to your default export function.
 
-```js index.js
-export default function(listener) {
-  // existing code
-
-  listener.on('action:triggered', async (event) => {
-      const webhookReceiver = '<WEBHOOK URL>';  
-      
-      const res = await fetch(webhookReceiver, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(event.payload)
-      })
-  })
-}
-```
+<Snippet file="workbook_submit.mdx" />
 
 #### Testing your Action
 
-1. Once you've updated your code, run it in Repl.it.
-2. In your Workbook, click the submit Action in the top right corner.
-3. In webhook.site, look at the query log and observe that the webhook received a call; this is the Action running.
-
+1. With the `develop` command still running in terminal, head to your Workbook and click the submit Action in the top right corner.
+2. In webhook.site, look at the query log and observe that the webhook received a call; this is the Action running.
 
 ---
 
 ## Recap & Next Steps
-Congratulations! You now have a Workbook with transformations, validations, and a submit Action.
 
-To this point, we've been hosting our listener code using Repl.it. While this enabled us to get up and running with Flatfile quickly, it is not representative of a full deployment. Next, you should <Tooltip tip="Deploy to Flatfile">[deploy your code](../developer-tools/deploying)</Tooltip>.
+Congratulations! You now have a Workbook with transformations, validations, and a submit Action to get the data out.
+
+To this point, we've been running our listener code locally using the `develop` command. Next, you should [deploy your code](../developer-tools/deploying).

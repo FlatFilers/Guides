@@ -1,6 +1,7 @@
 ---
 title: "Build Documents"
 description: "Learn how to build pages in your sidebar with Documents."
+icon: 'file-code'
 ---
 
 Documents are standalone webpages for your Flatfile <Tooltip tip="Are micro-applications...">[Spaces](../concepts/spaces)</Tooltip>. They can be rendered from <Tooltip tip="View syntax">[Markdown syntax](https://www.markdownguide.org/basic-syntax/)</Tooltip>.
@@ -18,29 +19,30 @@ Learn how to create a Document and update a Document from an Event listener.
 
 <CodeGroup>
 
-```ts api.js
+```js
 const createDoc = await api.documents.create(spaceId, {
   title: "Getting Started",
-  body:
-    "# Welcome\n" +
-    "### Say hello to your first customer Space in the new Flatfile!\n" +
-    "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
-    "---\n",
+  body: `# Welcome
+  ### Say hello to your first customer Space in the new Flatfile!
+  Let's begin by first getting acquainted with what you're seeing in your Space initially.
+  ---`,
 });
 ```
-```ts listener.js
+```js listener.js
 //listen for an event, and update your document to be relevant
 
-listener.on("upload:completed", (event) => {
-  const fileName = await api.files.get(event.context.fileId)
+listener.on("upload:completed", async (event) => {
+  const fileName = (await api.files.get(event.context.fileId)).data.name;
+  const bodyText = `# Welcome
+  ### Say hello to your first customer Space in the new Flatfile!
+  Let's begin by first getting acquainted with what you're seeing in your Space initially.
+  ---
+  Your uploaded file, ${fileName}, is located in the Files area.
+  `;
+
   const updateDoc = await api.documents.update(spaceId, documentId, {
     title: "Getting Started",
-    body:
-      "# Welcome\n" +
-      "### Say hello to your first customer Space in the new Flatfile!\n" +
-      "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
-      "---\n" +
-      "Your uploaded file, " + {fileName.data.name} + "is located in the Files area.\n",
+    body: bodyText,
   });
 });
 ```
