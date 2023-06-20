@@ -7,15 +7,7 @@ icon: "seedling"
 <Snippet file="dxpbanner.mdx"/>
 
 <Tooltip tip="Learn more about Environments">[Environments](../developer-tools/environment)</Tooltip> are isolated entities and are intended to be a safe place to create and test different configurations. 
-A `development` and `production` environment are created on default.
-
-Environments have two guest authentication types: 
-
-1. `magic_link` sends your guests an email with a magic link to login.
-2. `shared_link` makes the Space url public, and is used with embedded Flatfile.
-
-If `guestAuthentication` is left undefined, we default to enabling both `magic_link` and `shared_link`.
-`guestAuthentication` can be set at both the Environment level and at the Space level. The Space level setting overrides the Environment level setting. 
+Environments serve as self-contained, secure domains where diverse configurations can be created and tested. By default, a development and a production environment are set up.
 
 | isProd | Name | Description |
 | --- | --- | --- |
@@ -23,6 +15,19 @@ If `guestAuthentication` is left undefined, we default to enabling both `magic_l
 | *true* | `production` | When you're ready to launch, create a new environment and swap out your keys. |
 
 <Note>The development environment does not count towards your paid credits.</Note>
+
+## Guest Authentication
+
+Environments support two types of guest authentication:
+
+1. `magic_link`: This method dispatches an email to your guests, which includes a magic link to facilitate login.
+2. `shared_link`: This method transforms the Space URL into a public one, typically used in conjunction with embedded Flatfile.
+
+### Additional Info
+
+Should the `guestAuthentication` be left unspecified, both `magic_link` and `shared_link` types are enabled by default.
+
+It's important to note that `guestAuthentication` settings can be applied at both Environment and Space levels. However, in case of any conflicting settings, the authentication type set at the Space level will take precedence over the Environment level setting. This flexibility enables customization based on specific needs, ensuring the right balance of accessibility and security.
 
 ## Secret and publishable keys
 
@@ -32,3 +37,5 @@ All Accounts have two key types for each environment. Learn when to use each typ
 | --- | --- | --- |
 | Secret key | `sk_23ghsyuyshs7dcrty` | **On the server-side:** Store this securely in your server-side code. Don’t expose this key in an application. |
 | Publishable key | `pk_23ghsyuyshs7dcert` | **On the client-side:** Can be publicly-accessible in your application's client-side code. Use when embedding Flatfile. |
+
+<Warning>The publishable key only has permissions to create a Space.</Warning>
