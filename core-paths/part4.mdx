@@ -19,7 +19,7 @@ const ExampleApp = () => {
 
 const [showSpace, setShowSpace] = useState(false)
 
-const { component } = useSpace({
+const space = useSpace({
   {
     name: 'Embedded Space',
     publishableKey: 'your_publishable_key',
@@ -42,7 +42,7 @@ return (
     >
       {showSpace === true ? "Close" : "Open"} space
     </button>
-    {showSpace && component}
+    {showSpace && space}
   </div>
   )
 }
@@ -52,18 +52,8 @@ return (
 
 ```typescript listener.ts
 async function submit(jobId: string) {
-  const storedToken = sessionStorage.getItem('token')
 
-  if (!storedToken) {
-    throw new Error('Error retrieving stored token')
-  }
-
-  const Flatfile = new FlatfileClient({
-    token: storedToken,
-    environment: 'https://platform.flatfile.com/api/v1'
-  })
-
-  await Flatfile.jobs.ack(jobId, {
+  await api.jobs.ack(jobId, {
     info: "I'm starting the job - inside client",
     progress: 33
   })
@@ -71,38 +61,28 @@ async function submit(jobId: string) {
   // hit your api here
   await new Promise((res) => setTimeout(res, 2000))
 
-  await Flatfile.jobs.complete(jobId, {
+  await api.jobs.complete(jobId, {
     info: "Job's work is done",
     outcome: { next: { type: 'wait' } }
   })
 }
 
 async function joinFields(jobId: string, sheetId: string) {
-  const storedToken = sessionStorage.getItem('token')
 
-  if (!storedToken) {
-    throw new Error('Error retrieving stored token')
-  }
-
-  const Flatfile = new FlatfileClient({
-    token: storedToken,
-    environment: 'https://platform.flatfile.com/api/v1'
-  })
-
-  await Flatfile.jobs.ack(jobId, {
+  await api.jobs.ack(jobId, {
     info: "I'm starting the joining fields job"
   })
 
-  const records = await Flatfile.records.get(sheetId)
+  const records = await api.records.get(sheetId)
   const recordsUpdates = records.data.records?.map((record) => {
     const fullName = `${record.values['first_name'].value} ${record.values['last_name'].value}`
     record.values['full_name'].value = fullName
     return record
   })
 
-  await Flatfile.records.update(sheetId, recordsUpdates as Flatfile.Record_[])
+  await api.records.update(sheetId, recordsUpdates as Flatfile.Record_[])
 
-  await Flatfile.jobs.complete(jobId, {
+  await api.jobs.complete(jobId, {
     info: "Job's work is done"
   })
 }
@@ -137,7 +117,7 @@ export const listener = FlatfileListener.create((client) => {
 
 ```typescript config.ts
 import { FlatfileListener } from '@flatfile/listener'
-import { Flatfile, FlatfileClient } from '@flatfile/api'
+import { Flatfile } from '@flatfile/api'
 
 export const config: Pick<
   Flatfile.CreateWorkbookConfig,
@@ -211,7 +191,7 @@ const ExampleApp = () => {
 
 const [showSpace, setShowSpace] = useState(false)
 
-const { component } = useSpace({
+const space = useSpace({
   {
     name: 'Embedded Space',
     publishableKey: 'your_publishable_key',
@@ -234,7 +214,7 @@ return (
     >
       {showSpace === true ? "Close" : "Open"} space
     </button>
-    {showSpace && component}
+    {showSpace && space}
   </div>
   )
 }
@@ -243,18 +223,8 @@ return (
 
 ```typescript listener.ts
 async function submit(jobId: string) {
-  const storedToken = sessionStorage.getItem('token')
 
-  if (!storedToken) {
-    throw new Error('Error retrieving stored token')
-  }
-
-  const Flatfile = new FlatfileClient({
-    token: storedToken,
-    environment: 'https://platform.flatfile.com/api/v1'
-  })
-
-  await Flatfile.jobs.ack(jobId, {
+  await api.jobs.ack(jobId, {
     info: "I'm starting the job - inside client",
     progress: 33
   })
@@ -262,29 +232,19 @@ async function submit(jobId: string) {
   // hit your api here
   await new Promise((res) => setTimeout(res, 2000))
 
-  await Flatfile.jobs.complete(jobId, {
+  await api.jobs.complete(jobId, {
     info: "Job's work is done",
     outcome: { next: { type: 'wait' } }
   })
 }
 
 async function splitFields(jobId: string, sheetId: string) {
-  const storedToken = sessionStorage.getItem('token')
 
-  if (!storedToken) {
-    throw new Error('Error retrieving stored token')
-  }
-
-  const Flatfile = new FlatfileClient({
-    token: storedToken,
-    environment: 'https://platform.flatfile.com/api/v1'
-  })
-
-  await Flatfile.jobs.ack(jobId, {
+  await api.jobs.ack(jobId, {
     info: "I'm starting the spliting fields job"
   })
 
-  const records = await Flatfile.records.get(sheetId)
+  const records = await api.records.get(sheetId)
   const recordsUpdates = records.data.records?.map((record) => {
     const fullName = record.values['full_name'].value
     const splitName = fullName?.toLocaleString().split(' ')
@@ -295,9 +255,9 @@ async function splitFields(jobId: string, sheetId: string) {
     return record
   })
 
-  await Flatfile.records.update(sheetId, recordsUpdates as Flatfile.Record_[])
+  await api.records.update(sheetId, recordsUpdates as Flatfile.Record_[])
 
-  await Flatfile.jobs.complete(jobId, {
+  await api.jobs.complete(jobId, {
     info: "Job's work is done"
   })
 }
@@ -330,7 +290,7 @@ export const listener = FlatfileListener.create((client) => {
 
 ```typescript config.ts
 import { FlatfileListener } from '@flatfile/listener'
-import { Flatfile, FlatfileClient } from '@flatfile/api'
+import { Flatfile } from '@flatfile/api'
 
 export const config: Pick<
   Flatfile.WorkbookConfig,
@@ -411,7 +371,7 @@ const ExampleApp = () => {
 
 const [showSpace, setShowSpace] = useState(false)
 
-const { component } = useSpace({
+const space = useSpace({
   {
     name: 'Embedded Space',
     publishableKey: 'your_publishable_key',
@@ -434,7 +394,7 @@ return (
     >
       {showSpace === true ? "Close" : "Open"} space
     </button>
-    {showSpace && component}
+    {showSpace && space}
   </div>
   )
 }
@@ -442,26 +402,16 @@ return (
 
 ```typescript listener.ts
 import { FlatfileListener } from '@flatfile/listener'
-import { Flatfile, FlatfileClient } from '@flatfile/api'
+import { Flatfile } from '@flatfile/api'
 import Color from 'color'
 
 async function convertColors(jobId: string, sheetId: string) {
-  const storedToken = sessionStorage.getItem('token')
 
-  if (!storedToken) {
-    throw new Error('Error retrieving stored token')
-  }
-
-  const Flatfile = new FlatfileClient({
-    token: storedToken,
-    environment: 'https://platform.flatfile.com/api/v1'
-  })
-
-  await Flatfile.jobs.ack(jobId, {
+  await api.jobs.ack(jobId, {
     info: "I'm starting the converting colors job"
   })
 
-  const records = await Flatfile.records.get(sheetId)
+  const records = await api.records.get(sheetId)
   const recordsUpdates = records.data.records?.map((record) => {
     // helper function to validate color
       const isColor = (strColor: any) => {
@@ -486,26 +436,16 @@ async function convertColors(jobId: string, sheetId: string) {
     return record
   })
 
-  await Flatfile.records.update(sheetId, recordsUpdates as Flatfile.Record_[])
+  await api.records.update(sheetId, recordsUpdates as Flatfile.Record_[])
 
-  await Flatfile.jobs.complete(jobId, {
+  await api.jobs.complete(jobId, {
     info: "Job's work is done"
   })
 }
 
 async function submit(jobId: string) {
-  const storedToken = sessionStorage.getItem('token')
 
-  if (!storedToken) {
-    throw new Error('Error retrieving stored token')
-  }
-
-  const Flatfile = new FlatfileClient({
-    token: storedToken,
-    environment: 'https://platform.flatfile.com/api/v1'
-  })
-
-  await Flatfile.jobs.ack(jobId, {
+  await api.jobs.ack(jobId, {
     info: "I'm starting the job - inside client",
     // progress only makes sense if multipart job - optional
     progress: 33
@@ -514,7 +454,7 @@ async function submit(jobId: string) {
   // hit your api here
   await new Promise((res) => setTimeout(res, 2000))
 
-  await Flatfile.jobs.complete(jobId, {
+  await api.jobs.complete(jobId, {
     info: "Job's work is done",
     outcome: { next: { type: 'wait' } }
   })
@@ -549,7 +489,7 @@ export const listener = FlatfileListener.create((client) => {
 
 ```typescript config.ts
 import { FlatfileListener } from '@flatfile/listener'
-import { Flatfile, FlatfileClient } from '@flatfile/api'
+import { Flatfile } from '@flatfile/api'
 
 export const config: Pick<
   Flatfile.WorkbookConfig,
