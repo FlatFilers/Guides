@@ -76,11 +76,20 @@ export const config: Pick<
 
 ### Part 2: Handle events with an event listener
 
-This is the section where you specify the responses to events. It is also the place where you can handle the transformation and validation of your data. If you're interested in using our recordHook plugin, you can obtain it by downloading it from npm @flatfile/plugin-record-hook.
+This is the section where you specify the responses to events. It is also the place where you can handle the transformation and validation of your data. 
+
+If you're interested in using our recordHook plugin, you can download it from npm.
+
+```
+npm i @flatfile/plugin-record-hook
+```
+
 Record-level hooks provide access to all the fields in a row and should be used for operations that require access to multiple fields or when creating a new field. [Example-below]
 In this scenario, since we have a defined "Submit" action in our Workbook, we utilize the event listener to determine the method by which we want to submit records.
 
 ```js listener.ts
+import { recordHook } from "@flatfile/plugin-record-hook";
+
 async function submit(jobId: string) {
   await api.jobs.ack(jobId, {
     info: "I'm starting the job - inside client",
@@ -99,8 +108,6 @@ async function submit(jobId: string) {
 /**
  * Example Listener
  */
-
-import { recordHook } from "@flatfile/plugin-record-hook";
 
 export const listener = FlatfileListener.create((client) => {
   client.on(
