@@ -127,7 +127,7 @@ const ExampleApp = () => {
 
 const [showSpace, setShowSpace] = useState(false)
 
-const { component } = useSpace({
+const space = useSpace({
     name: 'Embedded Space',
     publishableKey: 'your_publishable_key',
     environmentId: 'your_environment_id',
@@ -148,7 +148,7 @@ return (
     >
       {showSpace === true ? "Close" : "Open"} space
     </button>
-    {showSpace && component}
+    {showSpace && space}
   </div>
   )
 }

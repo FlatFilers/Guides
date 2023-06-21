@@ -43,7 +43,7 @@ const theme = makeTheme({
   logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
 });
 
-const { component } = useSpace({
+const space = useSpace({
   themeConfig: theme,
   publishableKey,
   environmentId,
@@ -72,7 +72,7 @@ const theme = {
   // see theming reference
 };
 
-const { component } = useSpace({
+const space = useSpace({
   themeConfig: theme,
   publishableKey,
   environmentId,
@@ -94,7 +94,7 @@ const iframeStyles = {
   padding: '16px'
 }
 
-const { component } = useSpace({
+const space = useSpace({
   themeConfig: theme,
   publishableKey,
   environmentId,
@@ -145,7 +145,7 @@ const mySidebarConfig = {
 ```
 
 ```typescript Example passed to useSpace hook
-const { component } = useSpace({
+const space = useSpace({
   sidebarConfig: mySidebarConfig,
   publishableKey,
   environmentId,
@@ -158,7 +158,6 @@ const { component } = useSpace({
 | Property                | Type                                                                           | Description                                                                                         |
 | ----------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
 | `defaultPage`           | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string } }` | Landing page upon loading a space. Defaults to primary workbook.  |
-| `showGuestInvite`       | `boolean`                                                                      | Toggle ability to invite guests. Defaults to false.                                                 |
 | `showDataChecklist`     | `boolean`                                                                      | Toggle data config for space. Defaults to false.                                                    |
 | `showSidebar`           | `boolean`                                                                      | Toggle whether sidebar defaults to open inside of a Workbook. Defaults to false.                    |
 
@@ -185,7 +184,7 @@ const mainDocument = {
 ```
 
 ```typescript Example passed to useSpace hook
-const { component } = useSpace({
+const space = useSpace({
   publishableKey,
   environmentId,
   document: mainDocument,
