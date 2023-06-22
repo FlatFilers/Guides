@@ -42,9 +42,9 @@ export default function (listener) {
 }
 ```
 ```js typescript
-import { FlatfileEvent, Client } from "@flatfile/listener";
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 
-export default function flatfileEventListener(listener: Client) {
+export default function flatfileEventListener(listener: FlatfileListener) {
   listener.on("**", ({ topic }: FlatfileEvent) => {
     console.log(`Received event: ${topic}`);
   });

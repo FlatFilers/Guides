@@ -38,7 +38,9 @@ You can also follow along in this [Replit](https://replit.com/@flatfile/configur
   you're finished and ready to display the Space to the end user.
 </Tip>
 
-```jsx listener.js
+<CodeGroup>
+
+```jsx javascript
 listener.filter({ job: "space:configure" }, (configure) => {
   configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId } }) => {
     try {
@@ -124,9 +126,9 @@ listener.filter({ job: "space:configure" }, (configure) => {
 });
 ```
 
-```jsx listener.ts
-listener.filter({ job: "space:configure" }, (configure) => {
-  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId } }) => {
+```jsx typescript
+listener.filter({ job: "space:configure" }, (configure: FlatfileListener) => {
+  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId } }: FlatfileEvent) => {
     try {
       await api.jobs.ack(jobId, {
         info: "Getting started.",
@@ -210,6 +212,8 @@ listener.filter({ job: "space:configure" }, (configure) => {
 });
 ```
 
+</CodeGroup>
+
 Get the example in the [getting-started](https://github.com/FlatFilers/getting-started/blob/main/plain-js/space-configure.js) repo
 
 ### From an embedded button
@@ -283,7 +287,7 @@ listener.filter({ job: "sheet:duplicate" }, (configure) => {
 ```
 
 ```jsx listener.ts
-listener.filter({ job: "sheet:duplicate" }, (configure) => {
+listener.filter({ job: "sheet:duplicate" }, (configure: FlatfileListener) => {
   configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId, sheetId, workbookId, documentId } }: FlatfileEvent) => {
     try {
       await api.jobs.ack(jobId, {
@@ -335,7 +339,7 @@ listener.filter({ sheet: "SheetName" }, (configure) => {
 });
 ```
 ```jsx listener.ts
-listener.filter({ sheet: "SheetName" }, (configure) => {
+listener.filter({ sheet: "SheetName" }, (configure: FlatfileListener) => {
   listener.on("commit:created", async (event: FlatfileEvent) => {
     //make changes after cells in a Sheet have been updated
   });

@@ -77,7 +77,7 @@ listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
 ```
 
 ```jsx listener.ts
-listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
+listener.filter({ job: "workbook:submitActionFg" }, (configure: FlatfileListener) => {
   configure.on("job:ready", async ({ context: { jobId } }: FlatfileEvent) => {
     try {
       await api.jobs.ack(jobId, {
@@ -164,7 +164,7 @@ listener.filter({ job: "sheet:capitalizeNamesBg" }, (configure) => {
 ```
 
 ```jsx listener.ts
-listener.filter({ job: "sheet:capitalizeNamesBg" }, (configure) => {
+listener.filter({ job: "sheet:capitalizeNamesBg" }, (configure: FlatfileListener) => {
   configure.on("job:ready", async ({ context: { jobId } }: FlatfileEvent) => {
     try {
       await api.jobs.ack(jobId, {
@@ -321,7 +321,7 @@ async function failJob(jobId: string, message: string) {
 ```jsx listener.ts job:ready
 //when the button is clicked in the file dropdown
 
-listener.filter({ job: "file:logFileContents" }, (configure) => {
+listener.filter({ job: "file:logFileContents" }, (configure: FlatfileListener) => {
   configure.on("job:ready", async ({ context: { fileId, jobId } }: FlatfileEvent) => {
     await acknowledgeJob(jobId, "Gettin started.", 10);
 
@@ -332,7 +332,7 @@ listener.filter({ job: "file:logFileContents" }, (configure) => {
   });
 });
 
-listener.filter({ job: "file:decryptAction" }, (configure) => {
+listener.filter({ job: "file:decryptAction" }, (configure: FlatfileListener) => {
   configure.on("job:ready", async ({ context: { spaceId, fileId, jobId, environmentId } }: FlatfileEvent) => {
     try {
       await acknowledgeJob(jobId, "Gettin started.", 10);

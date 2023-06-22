@@ -119,8 +119,8 @@ Let's begin by first getting acquainted with what you're seeing in your Space in
 ```
 
 ```jsx listener.ts
-listener.filter({ job: 'space:configure' }, (configure) => {
-  configure.on('job:ready', async ({ context: { spaceId, environmentId, jobId } }) => {
+listener.filter({ job: 'space:configure' }, (configure: FlatfileListener) => {
+  configure.on('job:ready', async ({ context: { spaceId, environmentId, jobId } }: FlatfileEvent) => {
     await acknowledgeJob(jobId, 'Gettin started.', 10);
 
     await api.workbooks.create({
@@ -277,7 +277,7 @@ listener.filter({ job: 'sheet:duplicate' }, (configure) => {
 })
 ```
 ```jsx listener.ts
-listener.filter({ job: 'sheet:duplicate' }, (configure) => {
+listener.filter({ job: 'sheet:duplicate' }, (configure: FlatfileListener) => {
   listener.on('job:ready', async (event: FlatfileEvent) => {
 
     const { spaceId, environmentId, jobId, sheetId } = event.context;
@@ -333,7 +333,7 @@ listener.filter({ job: 'space:configure' }, (configure) => {
 ```
 
 ```jsx listener.ts
-listener.filter({ job: 'space:configure' }, (configure) => {
+listener.filter({ job: 'space:configure' }, (configure: FlatfileListener) => {
   listener.on('job:ready', async (event: FlatfileEvent) => {
   })
 })
@@ -355,7 +355,7 @@ listener.filter({ job: 'space:configure' }, (configure) => {
 ```
 
 ```jsx listener.ts
-listener.filter({ job: 'space:configure' }, (configure) => {
+listener.filter({ job: 'space:configure' }, (configure: FlatfileListener) => {
   listener.on('job:ready', async (even: FlatfileEvent) => {
   })
 })

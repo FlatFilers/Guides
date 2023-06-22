@@ -32,7 +32,7 @@ npm i @flatfile/plugin-record-hook @flatfile/hooks
 
 ```js
 import { FlatfileRecord, recordHook } from '@flatfile/plugin-record-hook'
-import { FlatfileEvent, Client } from "@flatfile/listener";
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 ```
 
 ## Usage
@@ -55,7 +55,7 @@ export default function (listener) {
 ```
 
 ```js typescript
-export default function (listener: Client) {
+export default function (listener: FlatfileListener) {
   // Simple listener
   listener.on("**", (event: FlatfileEvent) => {
     console.log(`-> My event listener received an event: ${event.topic}`);
