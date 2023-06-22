@@ -66,13 +66,13 @@ listener.filter({ job: "workbook:submitAction" }, (configure) => {
 
 ```js typescript
 
-import { FlatfileEvent, Client } from "@flatfile/listener";
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 import api from "@flatfile/api";
 import axios from "axios";
 
 //existing code
 
-listener.filter({ job: "workbook:submitAction" }, (configure) => {
+listener.filter({ job: "workbook:submitAction" }, (configure: FlatfileListener) => {
     configure.on(
       "job:ready",
       async ({ context: { jobId, workbookId }, payload }: FlatfileEvent) => {

@@ -38,7 +38,7 @@ export type EventFilter = Record<string, Arrayable<string>>;
 By leveraging the robust capabilities of our @flatfile/listener library, we can seamlessly intercept any event and execute a callback function based on the values encapsulated within the event itself.
 
 ```typescript
-listener.filter({ job: "space:configure" }, (configure) => {
+listener.filter({ job: "space:configure" }, (configure: FlatfileListener) => {
   listener.on("job:ready", async (event: FlatfileEvent) => {
     //do something here
   });

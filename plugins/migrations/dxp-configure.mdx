@@ -53,9 +53,9 @@ export default (listener) => {
 ```js listener.ts
 import { MyWorkbook } from './my-dxp-workbook.js'
 import { dxpConfigure } from '@flatfile/plugin-dxp-configure'
-import { Client } from "@flatfile/listener";
+import { FlatfileListener } from "@flatfile/listener";
 
-export default (listener: Client) => {
+export default (listener: FlatfileListener) => {
   listener.use(dxpConfigure(MyWorkbook))
 }
 ```
