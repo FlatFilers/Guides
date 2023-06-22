@@ -8,9 +8,11 @@ An action is a code-based operation that runs where that action is mounted. Acti
 
 ## Overview
 
-Workbook & Sheet-mounted Actions are configured within a <Tooltip tip="A Data Definition Language...">[Blueprint](../concepts/workbooks#blueprint-object)</Tooltip> wheras File-mounted actions are appended to the file as it's uploaded.
+Workbook & Sheet-mounted Actions are configured within a <Tooltip tip="A Data Definition Language...">Blueprint</Tooltip> object, while File-mounted actions are appended to the file during the upload process.
 
-The executable code within an Action is compiled into a <Tooltip tip="Large asynchronous work...">[Job](../concepts/jobs)</Tooltip> and can run asyncronously or immediately.
+The executable code within an Action is compiled into a <Tooltip tip="Large asynchronous work...">Job</Tooltip> entity, providing the capability to run asynchronously or immediately.
+
+Sheet-mounted actions can be executed on the entire sheet, for a filtered view of the Sheet, or selectively for the chosen records.
 
 ## Workbook-mounted
 
@@ -192,6 +194,117 @@ listener.filter({ job: "sheet:capitalizeNamesBg" }, (configure: FlatfileListener
 </CodeGroup>
 
 Get the example in the [getting-started](https://github.com/FlatFilers/getting-started/blob/main/space-configure.js) repo
+
+### Retrieving data
+
+Data from the Sheet can be retrieved either by calling the API with `records.get` or through data passed in through `event.data`. Here are some examples demonstrating how you can extract data from a Sheet-mounted action:
+
+#### From the entire sheet
+
+This method allows you to access and process data from the complete sheet, regardless of the current view or selected records.
+
+```jsx
+//inside listener.on()
+
+  const { jobId, sheetId } = event.context;
+
+  //retrieve all records from sheet
+  const { records } = await api.records.get(sheetId);
+
+  //print records
+  console.log(records.data.records)
+
+```
+
+#### From a filtered view of the sheet
+
+By applying filters to the sheet, you can narrow down the data based on specific criteria. This enables you to retrieve and work with a subset of records that meet the defined filter conditions.
+
+`event.data` returns a promise resolving to an object with a records property so we extract the records property directly from the event.data object.
+
+<Warning>If rows are selected, only the corresponding records will be passed through the event for further processing.</Warning>
+
+```jsx
+//inside listener.on()
+  const { jobId } = event.context;
+  const { records } = await event.data;
+
+  try {
+    if (!records || records.length === 0) {
+      console.log("No rows were selected or in view.");
+      await api.jobs.fail(jobId, {
+        outcome: {
+          message: "No rows were selected or in view, please try again.",
+        },
+      });
+      return;
+    }
+
+    //print records
+    console.log(records)
+
+    await api.jobs.complete(jobId, {
+        outcome: {
+          message:
+            'Records were printed to console, check it out.',
+        },
+      })
+  } catch (error) {
+    console.log(`Error: ${JSON.stringify(error, null, 2)}`)
+
+    await api.jobs.fail(jobId, {
+      outcome: {
+        message:
+          "This action failed, check logs.",
+      },
+    })
+  }
+```
+
+#### For chosen records
+
+When rows are selected, `event.data` will only extract information exclusively for the chosen records, providing focused data retrieval for targeted analysis or operations.
+
+`event.data` returns a promise resolving to an object with a records property so we extract the records property directly from the event.data object.
+
+<Note>This code is the same as the filtered view of the Sheet.</Note>
+
+```jsx
+//inside listener.on()
+  const { jobId } = event.context;
+  const { records } = await event.data;
+
+  try {
+    if (!records || records.length === 0) {
+      console.log("No rows were selected or in view.");
+      await api.jobs.fail(jobId, {
+        outcome: {
+          message: "No rows were selected or in view, please try again.",
+        },
+      });
+      return;
+    }
+
+    //print records
+    console.log(records)
+
+    await api.jobs.complete(jobId, {
+        outcome: {
+          message:
+            'Records were printed to console, check it out.',
+        },
+      })
+  } catch (error) {
+    console.log(`Error: ${JSON.stringify(error, null, 2)}`)
+
+    await api.jobs.fail(jobId, {
+      outcome: {
+        message:
+          "This action failed, check logs.",
+      },
+    })
+  }
+```
 
 ## File-mounted
 
