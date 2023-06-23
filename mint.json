@@ -186,6 +186,7 @@
       "group": "Extractors",
       "pages": [
         "plugins/extractors/xlsx-extractor",
+        "plugins/extractors/psv-extractor",
         "plugins/extractors/pdf-extractor",
         {
           "group": "More in development",
