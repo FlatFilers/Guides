@@ -49,7 +49,7 @@ listener.filter({ job: "space:configure" }, (configure) => {
         progress: 10,
       });
 
-      await api.workbooks.create({
+      const workbook = await api.workbooks.create({
         spaceId,
         environmentId,
         name: "All Data",
@@ -97,6 +97,11 @@ listener.filter({ job: "space:configure" }, (configure) => {
             primary: true,
           },
         ],
+      });
+
+      await api.spaces.update(spaceId, {
+        environmentId,
+        primaryWorkbookId: workbook.id,
       });
 
       await api.documents.create(spaceId, {
@@ -249,6 +254,8 @@ however, you may also want to adjust some of your configuration at the same time
 In the following example, we lock down access to the original Sheet
 and update our getting started guide to reflect the change.
 
+<CodeGroup>
+
 ```jsx listener.js
 listener.filter({ job: "sheet:duplicate" }, (configure) => {
   configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId, sheetId, workbookId, documentId } }) => {
@@ -322,6 +329,8 @@ listener.filter({ job: "sheet:duplicate" }, (configure: FlatfileListener) => {
   });
 });
 ```
+
+</CodeGroup>
 
 ### After data changes
 
