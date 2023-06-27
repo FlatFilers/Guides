@@ -89,6 +89,8 @@ In this scenario, since we have a defined "Submit" action in our Workbook, we ut
 
 ```js listener.ts
 import { recordHook } from "@flatfile/plugin-record-hook";
+import api from "@flatfile/api"
+import { FlatfileListener } from "@flatfile/listener"; 
 
 async function submit(jobId: string) {
   await api.jobs.ack(jobId, {
