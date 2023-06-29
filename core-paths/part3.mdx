@@ -124,12 +124,13 @@ For example, if you wanted to provide the component with a user ID and space nam
 const spaceInfo: ISpaceInfo = {
   userId: "1234",
   name: "My Space",
-}
+};
 ```
 
 ## Guest Sidebar
 
 You can customize your guest sidebar using the [Sidebar Reference](../guides/guest_sidebar) or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+If multiple values are provided for defaultPage, it with prioritize in the following order: Sheet, workbook, document.
 
 <CodeGroup>
 ```typescript sidebarConfig
