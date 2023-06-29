@@ -17,7 +17,7 @@ Because of Flatfile's Event-driven architecture, it's easy to set up a <Tooltip 
 You can write a cron job, Lambda function, or Python script that targets the Space with incoming files. 
 
 ### Extract data from files
-You can listen for `file:uploaded` and subsequently trigger any custom extraction logic. Extractions are <Tooltip tip="Large asynchronous work...">[Job](../concepts/jobs)</Tooltip> that process asyncronously.
+You can listen for `file:created` and subsequently trigger any custom extraction logic. Extractions are <Tooltip tip="Large asynchronous work...">[Job](../concepts/jobs)</Tooltip> that process asyncronously.
 
 (Note: CSVs uploaded to Flatfile will always be immediately extracted to a raw Workbook.)
 
