@@ -2,7 +2,7 @@
 title: "See advanced options"
 description: "Learn more about about additional configuration options available for your embedded Space."
 icon: "circle-3"
---- 
+---
 
 ## Loading state
 
@@ -17,11 +17,10 @@ If you would like to use your own error handling component instead of the defaul
 ## Closing behavior
 
 ```typescript
-
 const closeSpace = {
-  operation: 'contacts:submit',
-  onClose: () => {}
-}
+  operation: "contacts:submit",
+  onClose: () => {},
+};
 ```
 
 This `onClose` callback function is called when the action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
@@ -60,7 +59,8 @@ const space = useSpace({
 | `logo`         | `string` | full url to logo    | no       |
 
 <Tip>
-  `makeTheme` accepts valid color values in the following formats: name, rgb, hsv, hex.
+  `makeTheme` accepts valid color values in the following formats: name, rgb,
+  hsv, hex.
 </Tip>
 
 ### Manual CSS overrides
@@ -86,20 +86,20 @@ Use the `iframeStyles` prop to style the outer iframe that the space is wrapped 
 
 ```typescript
 const iframeStyles = {
-  width: '100%',
-  height: '750px',
+  width: "100%",
+  height: "750px",
   borderWidth: 0,
-  borderRadius: '20px',
-  background: '#fff',
-  padding: '16px'
-}
+  borderRadius: "20px",
+  background: "#fff",
+  padding: "16px",
+};
 
 const space = useSpace({
   themeConfig: theme,
   publishableKey,
   environmentId,
   workbook,
-  iframeStyles
+  iframeStyles,
 });
 ```
 
@@ -111,10 +111,10 @@ To use the `spaceInfo` prop, simply create an object that implements the `ISpace
 
 ```typescript
 export interface ISpaceInfo {
-  userId?: string
-  name?: string
-  companyId?: string
-  companyName?: string
+  userId?: string;
+  name?: string;
+  companyId?: string;
+  companyName?: string;
 }
 ```
 
@@ -130,6 +130,7 @@ const spaceInfo: ISpaceInfo = {
 ## Guest Sidebar
 
 You can customize your guest sidebar using the [Sidebar Reference](../guides/guest_sidebar) or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+If multiple values are provided for defaultPage, it with prioritize in the following order: Sheet, workbook, document.
 
 If multiple values are provided for defaultPage, the space redirect will prioritize in the following order: Sheet, workbook, document.
 
@@ -157,15 +158,20 @@ const space = useSpace({
 
 </CodeGroup>
 
-| Property                | Type                                                                           | Description                                                                                         |
-| ----------------------- | ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
-| `defaultPage`           | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string } }` | Landing page upon loading a space. Defaults to primary workbook.  |
-| `showDataChecklist`     | `boolean`                                                                      | Toggle data config for space. Defaults to false.                                                    |
-| `showSidebar`           | `boolean`                                                                      | Toggle whether sidebar defaults to open inside of a Workbook. Defaults to false.                    |
+| Property            | Type                                                                           | Description                                                                      |
+| ------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| `defaultPage`       | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string } }` | Landing page upon loading a space. Defaults to primary workbook.                 |
+| `showDataChecklist` | `boolean`                                                                      | Toggle data config for space. Defaults to false.                                 |
+| `showSidebar`       | `boolean`                                                                      | Toggle whether sidebar defaults to open inside of a Workbook. Defaults to false. |
 
 ## Documents
 
-<Tooltip tip="Standalone webpages...">[Documents]('../guides/documents)</Tooltip>, written in Markdown, provide extra clarification and instructions to users of a Space. Each Document will appear in the sidebar of a Space. Standard syntax is supported.
+<Tooltip tip="Standalone webpages...">
+  [Documents]('../guides/documents)
+</Tooltip>
+, written in Markdown, provide extra clarification and instructions to users of
+a Space. Each Document will appear in the sidebar of a Space. Standard syntax is
+supported.
 
 <CodeGroup>
 
@@ -193,6 +199,7 @@ const space = useSpace({
   workbook,
 });
 ```
+
 </CodeGroup>
 
 ## Recap & Next Steps
