@@ -23,7 +23,7 @@ const closeSpace = {
 };
 ```
 
-This `onClose` callback function is called when the action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
+This `onClose` callback function is called when the Action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
 
 ## Theming
 
@@ -105,7 +105,7 @@ const space = useSpace({
 
 ## Collecting additional data
 
-The Space component offers the flexibility to pass in additional metadata through the use of `spaceInfo` prop. This prop allows you to provide information such as user ID, space name, company ID, and company name to the component, which is used to make the dashboard search / filter experience more effective.
+The Space component offers the flexibility to pass in additional metadata through the use of `spaceInfo` prop. This prop allows you to provide information such as user ID, Space name, company ID, and company name to the component, which is used to make the dashboard search / filter experience more effective.
 
 To use the `spaceInfo` prop, simply create an object that implements the `ISpaceInfo` interface and pass it in as `spaceInfo` prop when rendering the component.
 
@@ -118,7 +118,7 @@ export interface ISpaceInfo {
 }
 ```
 
-For example, if you wanted to provide the component with a user ID and space name, you could create an object like this:
+For example, if you wanted to provide the component with a user ID and Space name, you could create an object like this:
 
 ```typescript
 const spaceInfo: ISpaceInfo = {
@@ -129,10 +129,8 @@ const spaceInfo: ISpaceInfo = {
 
 ## Guest Sidebar
 
-You can customize your guest sidebar using the [Sidebar Reference](../guides/guest_sidebar) or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
-If multiple values are provided for defaultPage, it with prioritize in the following order: Sheet, workbook, document.
-
-If multiple values are provided for defaultPage, the space redirect will prioritize in the following order: Sheet, workbook, document.
+The [Sidebar Reference](../guides/guest_sidebar) or you can hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+If multiple values are provided for defaultPage, it with prioritize in the following order: Sheet, Workbook, Document, Checklist.
 
 <CodeGroup>
 ```typescript sidebarConfig
@@ -160,9 +158,9 @@ const space = useSpace({
 
 | Property            | Type                                                                           | Description                                                                      |
 | ------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
-| `defaultPage`       | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string } }` | Landing page upon loading a space. Defaults to primary workbook.                 |
-| `showDataChecklist` | `boolean`                                                                      | Toggle data config for space. Defaults to false.                                 |
-| `showSidebar`       | `boolean`                                                                      | Toggle whether sidebar defaults to open inside of a Workbook. Defaults to false. |
+| `defaultPage`       | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string }, checklist?: boolean  }` | Landing page upon loading a Space. Defaults to primary Workbook.                 |
+| `showDataChecklist` | `boolean`                                                                      | Toggle data config for Space. Defaults to false.                                 |
+| `showSidebar`       | `boolean`                                                                      | Determines if a guest can see the sidebar. If the sidebar is hidden and there are multiple Workbooks in your Space, please specify the desired Workbook ID as your defaultPage. |
 
 ## Documents
 

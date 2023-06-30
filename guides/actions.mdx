@@ -4,7 +4,7 @@ description: "Trigger operations based on user input."
 icon: "bolt"
 ---
 
-An action is a code-based operation that runs where that action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile.
+An Action is a code-based operation that runs where that Action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile.
 
 ## Overview
 
@@ -12,7 +12,7 @@ Workbook & Sheet-mounted Actions are configured within a <Tooltip tip="A Data De
 
 The executable code within an Action is compiled into a <Tooltip tip="Large asynchronous work...">Job</Tooltip> entity, providing the capability to run asynchronously or immediately.
 
-Sheet-mounted actions can be executed on the entire sheet, for a filtered view of the Sheet, or selectively for the chosen records.
+Sheet-mounted actions can be executed on the entire Sheet, for a filtered view of the Sheet, or selectively for the chosen records.
 
 ## Workbook-mounted
 
@@ -33,7 +33,7 @@ Workbook-mounted actions are represented as buttons in the top right of the Work
 Listen for a `job:ready` and filter on the `job` you'd like to process. Be sure to complete the job when it's complete.
 
 <Info>
-  If you configure `primary: true` on an action, it will be represented as the
+  If you configure `primary: true` on an Action, it will be represented as the
   rightmost button in the Workbook.
 </Info>
 
@@ -113,7 +113,7 @@ Get the example in the [getting-started](https://github.com/FlatFilers/getting-s
 
 Sheet-mounted actions are represented as a dropdown in the toolbar of the Sheet.
 
-![sheet actions](https://github.com/FlatFilers/Guides/assets/19697744/6234794c-1b90-42f2-a3b8-786e0192665e)
+![Sheet actions](https://github.com/FlatFilers/Guides/assets/19697744/6234794c-1b90-42f2-a3b8-786e0192665e)
 
 ### Usage
 
@@ -199,9 +199,9 @@ Get the example in the [getting-started](https://github.com/FlatFilers/getting-s
 
 Data from the Sheet can be retrieved either by calling the API with `records.get` or through data passed in through `event.data`. Here are some examples demonstrating how you can extract data from a Sheet-mounted action:
 
-#### From the entire sheet
+#### From the entire Sheet
 
-This method allows you to access and process data from the complete sheet, regardless of the current view or selected records.
+This method allows you to access and process data from the complete Sheet, regardless of the current view or selected records.
 
 ```jsx
 //inside listener.on()
@@ -216,9 +216,9 @@ This method allows you to access and process data from the complete sheet, regar
 
 ```
 
-#### From a filtered view of the sheet
+#### From a filtered view of the Sheet
 
-By applying filters to the sheet, you can narrow down the data based on specific criteria. This enables you to retrieve and work with a subset of records that meet the defined filter conditions.
+By applying filters to the Sheet, you can narrow down the data based on specific criteria. This enables you to retrieve and work with a subset of records that meet the defined filter conditions.
 
 `event.data` returns a promise resolving to an object with a records property so we extract the records property directly from the event.data object.
 
@@ -316,7 +316,7 @@ File-mounted actions are represented as a dropdown menu for each file in the Fil
 
 ### Usage
 
-Listen for a `file:ready` and one or more actions to the file. Next, listen for `job:ready` and filter on the `domain` (file) and the `operation` of where the action was placed. Be sure to complete to job when it's complete.
+Listen for a `file:ready` and one or more actions to the file. Next, listen for `job:ready` and filter on the `domain` (file) and the `operation` of where the Action was placed. Be sure to complete to job when it's complete.
 
 <CodeGroup>
 

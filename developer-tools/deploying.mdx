@@ -14,7 +14,7 @@ Hosting listener code in your own cloud works similarly to how we run the `devel
 
 1. The listener process is launched
 2. It polls the Flatfile API for updates
-3. It then responds to those events accordingly
+3. It then responds to those Events accordingly
 
 Follow the Quickstart example for a working example on hosting in your own cloud.
 
@@ -23,9 +23,9 @@ Follow the Quickstart example for a working example on hosting in your own cloud
 While your own cloud provides the maximum level of control over listener code, qualities such as availability and network performance are the responsibility of the hosting provider. Listeners may be securely deployed and run in the Flatfile platform cloud giving you a more consistent, low-latency, high-availability experience. 
 
 
-### Deploying a workbook to Flatfile from terminal
+### Deploying a Workbook to Flatfile from terminal
 
-Once you have configured your workbook, you can deploy your workbook to your account at any time
+Once you have configured your Workbook, you can deploy your Workbook to your account at any time
 by opening the terminal in the root directory and entering this command:
 
 `npx flatfile@latest deploy --token=YOUR_SECRET_KEY`
@@ -43,10 +43,10 @@ The CLI will give you prompts and updates as it's deploying:
 
 #### See it in your Dashboard
 
-Once your workbook has been deployed, you’ll be able to see a new Space in your [Dashboard](https://platform.flatfile.com).   Your workbook will be added to every Space you create. 
+Once your Workbook has been deployed, you’ll be able to see a new Space in your [Dashboard](https://platform.flatfile.com).   Your Workbook will be added to every Space you create. 
 
 <Note>
-  You can also configure your code to build different workbooks as a Space is created depending on various factors, but this is a more advanced configuration. 
+  You can also configure your code to build different Workbooks as a Space is created depending on various factors, but this is a more advanced configuration. 
   More on how to do this soon. 
 </Note>
 
@@ -55,5 +55,5 @@ Once your workbook has been deployed, you’ll be able to see a new Space in you
 
 You can deploy any change to your code at any time. 
 
-For example, if you need to add a sheet to an already existing Workbook, simply deploy again with the added sheet and everything will update.
+For example, if you need to add a Sheet to an already existing Workbook, simply deploy again with the added Sheet and everything will update.
 

@@ -9,9 +9,9 @@ After your customers have imported their data, the process of transmitting that 
 
 ## Egress via Workbook-level Action
 
-This code listens for a job event of type `workbook:submitAction` and when triggered, it retrieves the sheets and records associated with the workbook. 
+This code listens for a job event of type `workbook:submitAction` and when triggered, it retrieves the Sheets and records associated with the workbook. 
 
-It then prepares the data and sends a `POST` request to a specified webhook URL using Axios. The payload includes information about the sheets, records, and other relevant data. 
+It then prepares the data and sends a `POST` request to a specified webhook URL using Axios. The payload includes information about the Sheets, records, and other relevant data. 
 
 If the request is successful, it marks the job as complete. If there is an error, it marks the job as failed. 
 
