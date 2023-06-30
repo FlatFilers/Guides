@@ -1,6 +1,6 @@
 ---
 title: "Transform & validate data"
-description: "Begin the process of validating and transforming data in Flatfile by implementing a basic event handler."
+description: "Begin the process of validating and transforming data in Flatfile by implementing a basic Event handler."
 icon: "circle-2"
 ---
 
@@ -8,30 +8,30 @@ icon: "circle-2"
 
 In the previous step, you performed a number of actions:
 
-- Created a workbook with a simple schema
-- Populated the workbook with a sample CSV file
-- Edited the workbook using the Flatfile user interface
+- Created a Workbook with a simple schema
+- Populated the Workbook with a sample CSV file
+- Edited the Workbook using the Flatfile user interface
 
-Each of these actions creates an <Tooltip tip="Anatomy of an Event...">[Event](../concepts/events)</Tooltip>. You can author code to listen and react to these events by performing tasks such as validating and transforming records, importing and joining data from other sources, and even offloading data processing to your own API.
+Each of these actions creates an <Tooltip tip="Anatomy of an Event...">[Event](../concepts/events)</Tooltip>. You can author code to listen and react to these Events by performing tasks such as validating and transforming records, importing and joining data from other sources, and even offloading data processing to your own API.
 
 ## Setting up a listener
 
 <Note>
-  Flatfile provides a powerful Typescript/NodeJS SDK for working with events and
-  plugins. There are a lot of ways to listen to events in other ways that we
+  Flatfile provides a powerful Typescript/NodeJS SDK for working with Events and
+  plugins. There are a lot of ways to listen to Events in other ways that we
   describe in the [Events](../concepts/events) docs.
 </Note>
 
-Using the Flatfile SDK, you can register any javascript function as an event listener and start working with events.
+Using the Flatfile SDK, you can register any javascript function as an Event listener and start working with Events.
 
 Follow these steps:
 
 1. [Fork this Replit](https://replit.com/@flatfile/get-started)
 2. Hit the Run green button or type `npx flatfile@latest develop` in console
 3. Go back to your Flatfile Workbook and make a few changes. For example try uploading a CSV and then importing the data to the Workbook.
-4. Finally return to your terminal in Replit to see how those events were logged
+4. Finally return to your terminal in Replit to see how those Events were logged
 
-Here's an example of a very basic event listener:
+Here's an example of a very basic Event listener:
 
 <CodeGroup>
 ```js javascript
@@ -68,7 +68,7 @@ ncc: Compiling file index.js into CJS
 
 ```
 
-This code exports a single function that accepts an instance of an object (named `listener` in the example). This object can be used to subscribe to different events within your Flatfile <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip>. The example code subscribes to all events (using the `**` selector) and writes the event's topic name to the console.
+This code exports a single function that accepts an instance of an object (named `listener` in the example). This object can be used to subscribe to different Events within your Flatfile <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip>. The example code subscribes to all Events (using the `**` selector) and writes the Event's topic name to the console.
 
 Listeners are the basic building block of Flatfile logic. They span from simple validations and transformations to complex, multi-sheet workflows.
 
@@ -83,7 +83,7 @@ Flatfile provides a number of [transformation & validation plugins](../plugins/t
 
 ## Adding your first data transformation
 
-Let's dive into an example that showcases the power of the `@flatfile/plugin-record-hook` plugin. With this plugin, we can stay in the loop whenever a new row is added or an existing one is modified (via the [commit event](../concepts/events#commit-created)), allowing us to take action and transform the data to our liking.
+Let's dive into an example that showcases the power of the `@flatfile/plugin-record-hook` plugin. With this plugin, we can stay in the loop whenever a new row is added or an existing one is modified (via the [commit Event](../concepts/events#commit-created)), allowing us to take action and transform the data to our liking.
 
 In this particular scenario, we'll demonstrate how to grab the first name from the record and convert it
 to lowercase.
@@ -130,7 +130,7 @@ listener.use(
 
 Once the focus is off of the new First Name field, your transformation will run and convert the characters in your value to lowercase.
 
-1. With the `develop` command still running in terminal, navigate to your Contacts sheet and insert a new row where the First Name is written entirely in capital letters.
+1. With the `develop` command still running in terminal, navigate to your Contacts Sheet and insert a new row where the First Name is written entirely in capital letters.
 2. When the focus leaves the First Name field, your transformation will run and convert the characters in your value to lowercase.
 
 ## Adding your first validation
@@ -191,9 +191,9 @@ listener.use(
 
 #### Using your validation
 
-Once you take focus off of the field, your validation will run and the sheet user interface will display an error for the changed field.
+Once you take focus off of the field, your validation will run and the Sheet user interface will display an error for the changed field.
 
-1. With the `develop` command still running in terminal, go back to your Contacts sheet.
+1. With the `develop` command still running in terminal, go back to your Contacts Sheet.
 2. Modify any value of Email Address to make it an invalid email address.
 3. Take focus off the field you entered (click outside that field).
 
@@ -203,4 +203,4 @@ Once you take focus off of the field, your validation will run and the sheet use
 
 You now have an example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations.
 
-Next, we will [add an action](submit-action) that will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
+Next, we will [add an Action](submit-action) that will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.

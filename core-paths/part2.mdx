@@ -12,8 +12,9 @@ A Space consists of:
 - [Events](../concepts/events), which allow you to listen for and respond to things that occur inside your Space. Examples include uploading a file or submitting data.
 
 In order to embed Flatfile, you follow these steps:
-1. First, create a Workbook.
-2. Next, create an event listener to handle events. 
+
+1. First create a Workbook
+2. Next, create an Event listener to handle Events. 
 3. Last, use a component that takes the configuration and listener and embeds the Space into your React app.
 
 ### Part 1: Build a Workbook
@@ -74,9 +75,9 @@ export const config: Pick<
 }
 ```
 
-### Part 2: Handle events with an event listener
+### Part 2: Handle Events with an Event listener
 
-This is the section where you specify the responses to events. It is also the place where you can handle the transformation and validation of your data. 
+This is the section where you specify the responses to Events. It is also the place where you can handle the transformation and validation of your data. 
 
 If you're interested in using our recordHook plugin, you can download it from npm.
 
@@ -85,7 +86,7 @@ npm i @flatfile/plugin-record-hook
 ```
 
 Record-level hooks provide access to all the fields in a row and should be used for operations that require access to multiple fields or when creating a new field. [Example-below]
-In this scenario, since we have a defined "Submit" action in our Workbook, we utilize the event listener to determine the method by which we want to submit records.
+In this scenario, since we have a defined "Submit" action in our Workbook, we utilize the Event listener to determine the method by which we want to submit records.
 
 ```js listener.ts
 import { recordHook } from "@flatfile/plugin-record-hook";
@@ -138,7 +139,7 @@ export const listener = FlatfileListener.create((client) => {
 
 ### Part 3: Embed the Space into your app
 
-Now that we have our configuration defined in our Workbook, and our event handlers defined in our listener, we are ready to embed our Space.
+Now that we have our configuration defined in our Workbook, and our Event handlers defined in our listener, we are ready to embed our Space.
 
 Use the `useSpace` hook to create a Space component and pass it the configuration and listener as options:
 
@@ -191,7 +192,7 @@ return (
 | `environmentId`  | Environment ID accessed via Flatfile dashboard > Developer                                               | string                  | Yes      |
 | `name`           | Name of the Space                                                             | string                  | No       |
 | `workbook`       | Shape of data you will be receiving                                       | Flatfile.WorkbookConfig | Yes      |
-| `listener`         | Event listener for responding to events                                | Listener                  | No       |
+| `listener`         | Event listener for responding to Events                                | Listener                  | No       |
 | `spaceInfo`      | Additional metadata to be passed to the space                              | tbd | No       |
 | `closeSpace`     | Options for when to close the iframe and a callback function when session is complete | tbd | No       |
 | `iframeStyles`   | Styles the iframe using CSS Properties                                     | React.CSSProperties     | No       |
