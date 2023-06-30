@@ -303,7 +303,7 @@ outcome or plan subsequent actions accordingly.
   Called when a new job is ready to execute. Either the job has a complete plan
   of work or the job is configured to not need a plan. This is the only event
   most job implementations will care about. Once a ready job is acknowledged by
-  a listener, it transations into an executing state.
+  a listener, it transitions into an executing state.
 </ParamField>
 
 ```json
@@ -332,7 +332,7 @@ outcome or plan subsequent actions accordingly.
 <ParamField path="job:updated" type="readonly">
   Called when a job is updated. For example, when a listener updates the state
   or progress of the job. The event will emit many times as the listener
-  incrementally copmletes work and updates the job.
+  incrementally completes work and updates the job.
 </ParamField>
 
 ```json

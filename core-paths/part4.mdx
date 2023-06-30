@@ -241,7 +241,7 @@ async function submit(jobId: string) {
 async function splitFields(jobId: string, sheetId: string) {
 
   await api.jobs.ack(jobId, {
-    info: "I'm starting the spliting fields job"
+    info: "I'm starting the splitting fields job"
   })
 
   const records = await api.records.get(sheetId)
@@ -554,7 +554,7 @@ The following are a handful of examples of ways you can validate and transform d
 
 1. **E-commerce platform:** An e-commerce platform might embed Flatfile to allow their customers to manipulate their product data before importing it into the platform. Their customers can use the tool to make sure every item has a unique SKU, transform all dollar amounts to the same format, and make sure no item has a negative number in inventory.
 
-2. **Marketing automation software:** A marketing automation software might embed Flatfile to allow their customers to validate all email addresses before importing it into the software. Additionally, they can make sure they have a first name for every contact, decide to remove all contacts who don't have a phone number that can recieve text messages, and track opt-ins.
+2. **Marketing automation software:** A marketing automation software might embed Flatfile to allow their customers to validate all email addresses before importing it into the software. Additionally, they can make sure they have a first name for every contact, decide to remove all contacts who don't have a phone number that can receive text messages, and track opt-ins.
 
 3. **Business intelligence software:** A business intelligence software might embed Flatfile to allow customers to clean up their data before visualizing it in the software. Customers could use the tool to split address to multiple fields from one full address field, make sure no date is before the year 1900, and calculate a unique ID from 3 other identifying fields.
 
