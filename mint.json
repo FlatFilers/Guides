@@ -203,6 +203,10 @@
       "pages": ["plugins/transform/record-hook", "plugins/transform/autocast"]
     },
     {
+      "group": "Automation",
+      "pages": ["plugins/automations/automap"]
+    },
+    {
       "group": "Schemas",
       "pages": [
         "plugins/schemas/convert-json-schema",
