@@ -1,0 +1,56 @@
+---
+title: "@flatfile/plugin-automap"
+description: "A plugin to provide automapping imported files for headless workflows."
+icon: "download"
+---
+
+<CardGroup cols={1}>
+    <Card title="@flatfile/plugin-automap" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/automap" icon="github" >
+    *currently v0.0.1*
+    <br/>
+    **Contributors**<br/>
+    David Boskovic<br/>
+    <br/>
+    **Last updated**<br/>
+    June 30, 2023
+    </Card>
+</CardGroup>
+
+
+### Overview
+
+This plugin listens for and responds to file extraction jobs and then creates a mapping job for automation. Currently, every field in the Job Execution plan must meet the minimum confidence level specified by the `accuracy` config prop.
+
+
+```SSH Install
+npm i @flatfile/plugin-automap
+```
+
+
+---
+
+## Import
+
+```ts
+import { automap } from "@flatfile/plugin-automap";
+```
+
+## Usage
+
+For automation workflows, upload a file using the `files` endpoint. For testing, you import via the Files area in the UI and use the `debug` config property.
+
+```ts
+listener.use(
+    automap({
+        accuracy: "confident",
+        defaultTargetSheet: "Contact",
+        matchFilename: /test.csv$/g,
+        onFailure: (event: FlatfileEvent) => {
+            // send an SMS, an email, post to an endpoint, etc.
+            console.error(
+                `Please visit https://spaces.flatfile.com/space/${event.context.spaceId}/files?mode=import to manually import file.`,
+            );
+        },
+    }),
+);
+```
