@@ -11,7 +11,7 @@ the data processing pipeline.
 
 For example, a Job could represent:
 - a data export
-- a remapping of data from one sheet to another
+- a remapping of data from one Sheet to another
 - an action in the UI that triggers a Job
 
 #### Types of Jobs
@@ -51,7 +51,7 @@ otherwise it can be triggered with a POST to the `/jobs/:id/execute` endpoint.
 
 ## Job Lifecycle Events
 
-Jobs emit the following events throughout their lifecycle that you can listen for:
+Jobs emit the following Events throughout their lifecycle that you can listen for:
 
 - `job:waiting` - emitted after a Job is created but before it begins executing
 - `job:started` - emitted right before a Job starts execution
@@ -66,5 +66,5 @@ How you build your UI is up to you, but here is one possibility:
 
 1. Create a component that is used to trigger a Job
 2. When the Job is triggered, POST to the `/jobs` endpoint
-3. When the Job is complete, the server will send a `job:completed` event
-4. When the `job:completed` event is received, update the UI to reflect the new state
+3. When the Job is complete, the server will send a `job:completed` Event
+4. When the `job:completed` Event is received, update the UI to reflect the new state
