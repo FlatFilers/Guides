@@ -218,7 +218,8 @@ addInfo(fields, message)
 ```jsx
 const email = record.get("email");
 const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-if (validEmailAddress.test(email)) {
+
+if (email !== null && validEmailAddress.test(email)) {
   record.addInfo("email", "This email was verified.");
 }
 ```
@@ -248,7 +249,8 @@ addError(fields, message)
 ```jsx
 const email = record.get("email");
 const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-if (validEmailAddress.test(email)) {
+
+if (email !== null && !validEmailAddress.test(email)) {
   record.addError("email", "This is not a valid email address.");
 }
 ```
@@ -277,7 +279,8 @@ FlatfileRecord.addWarning(fields, message)
 <h4>Example</h4>
 ```jsx
 const email = record.get("email");
-if (!email) {
+
+if (email === null) {
   record.addWarning("email", "Without an email, we will default to name for unique id.");
 }
 ```
