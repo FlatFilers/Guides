@@ -108,20 +108,20 @@
       ]
     },
     {
-      "group": "Core paths",
+      "group": "Use cases",
       "pages": [
         {
           "group": "Embed in your app",
           "icon": "person-to-portal",
           "pages": [
-            "core-paths/embedding",
-            "core-paths/part2",
-            "core-paths/part3",
-            "core-paths/part4"
+            "use-cases/embedding",
+            "use-cases/part2",
+            "use-cases/part3",
+            "use-cases/part4"
           ]
         },
-        "core-paths/headless",
-        "core-paths/collaborate"
+        "use-cases/headless",
+        "use-cases/collaborate"
       ]
     },
     {
