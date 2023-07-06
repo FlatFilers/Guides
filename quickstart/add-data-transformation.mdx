@@ -155,7 +155,8 @@ listener.use(
 
     const email = record.get("email");
     const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!validEmailAddress.test(email)) {
+
+    if (email !== null && !validEmailAddress.test(email)) {
       console.log("Invalid email address");
       record.addError("email", "Invalid email address");
     }
@@ -177,7 +178,8 @@ listener.use(
 
     const email = record.get("email") as string;
     const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!validEmailAddress.test(email)) {
+
+    if (email !== null && !validEmailAddress.test(email)) {
       console.log("Invalid email address");
       record.addError("email", "Invalid email address");
     }
