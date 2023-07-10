@@ -7,11 +7,11 @@ Constraints allow you to indicate additional validations that will be applied to
 
 ## RequiredConstraint
 
-Required Constraints indicate that the given field must be provided with a non-empty value.
+Required Constraints indicate that the given field **must** be provided with a non-null value. A `null` value in this case constitutes an empty cell.
 
 ## UniqueConstraint 
 
-Unique Constraints indicates that the given field value must only appear once in all the values for that field. One caveat is that "null" (empty value) may appear many times. Instead use RequiredConstraint if you want to disallow nulls entirely.
+Unique Constraints indicate that the given field value must only appear **once** in all the values for that field. Note: `null` values will appear many times because they are not considered unique as there is no value to compare.
 
 
 ```json
