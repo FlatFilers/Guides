@@ -31,19 +31,11 @@ Defines a property that should be stored and read as a basic string.
 Defines a property that should be stored and read as either an integer or floating point number. Numbers are displayed using a monospaced font. Database engines should look at the configuration to determine ideal storage format.
 
 
-
-<ParamField path="config.decimal_places" default="0" type="number">
-  The number of decimal places to preserve accuracy to.
-</ParamField>
-
 ```json
 {
   "key": "price",
   "label": "Retail Price",
-  "type": "number",
-  "config": {
-    "decimal_places": 2
-  }
+  "type": "number"
 },
 ```
 ![number](https://github.com/FlatFilers/Guides/assets/19697744/d5aa1413-1230-44a2-a84b-7ba26f77122a)
