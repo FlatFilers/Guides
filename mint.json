@@ -91,6 +91,7 @@
         "guides/handling-data",
         "guides/actions",
         "guides/dynamic-configurations",
+        "guides/namespaces",
         "guides/metadata",
         "guides/egress",
         "guides/theming",
