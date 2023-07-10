@@ -149,6 +149,7 @@
           ]
         },
         "developer-tools/deploying",
+        "developer-tools/client_server_side",
         "developer-tools/flatfile_query_language",
         "developer-tools/versioning"
       ]
