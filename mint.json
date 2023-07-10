@@ -95,7 +95,8 @@
         "guides/egress",
         "guides/theming",
         "guides/guest_sidebar",
-        "guides/documents"
+        "guides/documents",
+        "guides/secrets"
       ]
     },
     {
