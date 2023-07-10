@@ -1,0 +1,26 @@
+---
+title: "Listener operations"
+description: "Understanding client-side and server-side operations in Flatfile."
+icon: "server"
+---
+
+Explore the differences between client-side and server-side operations, and understand when to use each type of listener for optimal functionality and security.
+
+## Types of Listeners
+
+### Client-side listeners [in embedded Flatfile]
+
+Client-side listeners, which run in the end user's web browser, primarily involves tasks like manipulating HTML and CSS, responding to user interactions, and making requests to the server. This environment has limitations due to security reasons - for instance, it can't access the file system of the user's computer or perform certain operations that could potentially be harmful if initiated by a malicious website. Languages commonly used on the client-side include HTML, CSS, and JavaScript.
+
+### Server-side listeners
+
+On the other hand, server-side listeners run on your server and can perform more complex tasks that aren't safe or feasible to do in a browser. This includes connecting to databases, performing file system operations, and running calculations or algorithms that are too intensive for a client's machine.
+
+## Plugins & npm packages
+
+npm (Node Package Manager) is a package manager for Node.js, a server-side JavaScript runtime. Packages from npm are designed to run in a Node.js environment and they often make use of Node.js-specific APIs - for instance, APIs for file system access, network programming, or other server-side tasks. While many npm packages can run perfectly fine in the browser (particularly if they're designed for front-end use), some cannot, because they depend on capabilities or APIs that simply aren't available or allowed in a browser environment.
+
+When a plugin or package is stated to need to "run server-side," it means that it needs the capabilities of a server environment (like Node.js) to function correctly, and can't run purely in a browser. For these packages, you would need to create a server-side listener to use them, and communicate with that server-side listener from your client-side code as needed.
+
+## Summary
+As we introduce client-side listeners in embedded Flatfile, it's important to note that while it will be able to handle a lot of the interaction and updates on the client-side, there may be operations it can't perform due to these limitations. For tasks that need to access server resources or capabilities, server-side listeners will still be required.
