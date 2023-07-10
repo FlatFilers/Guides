@@ -83,7 +83,7 @@ Flatfile provides a number of [transformation & validation plugins](../plugins/t
 
 ## Adding your first data transformation
 
-Let's dive into an example that showcases the power of the `@flatfile/plugin-record-hook` plugin. With this plugin, we can stay in the loop whenever a new row is added or an existing one is modified (via the [commit Event](../concepts/events#commit-created)), allowing us to take action and transform the data to our liking.
+Let's dive into an example that showcases the power of the `@flatfile/plugin-record-hook` plugin. With this plugin, we can stay in the loop whenever a new row is added or an existing one is modified (via the [commit Event](../concepts/events#commit-created)), allowing us to take action and transform the data to our liking. Note: Existing rows will not receive updates unless modified.
 
 In this particular scenario, we'll demonstrate how to grab the first name from the record and convert it
 to lowercase.
