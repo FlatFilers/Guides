@@ -23,7 +23,7 @@ Continue reading to learn how to configure a Space from scratch, and update it a
 When the "Create New Space" button is clicked on the platform, it triggers a [job `event`](../concepts/events) within the **space** `domain` that initiates a **configure** `operation`. This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space) with the parameter `autoconfigure` set to true.
 
 1. Filter on the `domain` (space) and the `operation` (configure).
-2. Listen for a [`job:ready`](../concepts/events#job-ready event.
+2. Listen for a [`job:ready`](../concepts/events#job-ready event).
 3. Build your Space, at minimum including one Workbook.
 4. Complete the job.
 5. Optionally, listen for new events that are spawned from within your `space:configure` job.
