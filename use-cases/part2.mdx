@@ -79,13 +79,19 @@ export const config: Pick<
 
 This is the section where you specify the responses to Events. It is also the place where you can handle the transformation and validation of your data. 
 
-If you're interested in using our recordHook plugin, you can download it from npm.
+In the example below, we will create a simple client-side listener. 
+
+<Note>Note that while a client-side listener will be able to handle a lot of the interaction and updates on the client-side, there may be operations it can't perform due to these limitations. For tasks that need to access server resources or capabilities, server-side code will still be required. [Learn more](../developer-tools/client_server_side)</Note>
+
+#### Handling data
+First, download our recordHook plugin from npm.
 
 ```
 npm i @flatfile/plugin-record-hook
 ```
 
-Record-level hooks provide access to all the fields in a row and should be used for operations that require access to multiple fields or when creating a new field. [Example-below]
+Record-level hooks provide access to all the fields in a row and should be used for operations that require access to multiple fields or when creating a new field.
+
 In this scenario, since we have a defined "Submit" action in our Workbook, we utilize the Event listener to determine the method by which we want to submit records.
 
 ```js listener.ts

@@ -91,11 +91,13 @@
         "guides/handling-data",
         "guides/actions",
         "guides/dynamic-configurations",
+        "guides/namespaces",
         "guides/metadata",
         "guides/egress",
         "guides/theming",
         "guides/guest_sidebar",
-        "guides/documents"
+        "guides/documents",
+        "guides/secrets"
       ]
     },
     {
@@ -149,6 +151,7 @@
           ]
         },
         "developer-tools/deploying",
+        "developer-tools/client_server_side",
         "developer-tools/flatfile_query_language",
         "developer-tools/versioning"
       ]

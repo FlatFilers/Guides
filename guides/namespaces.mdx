@@ -1,0 +1,180 @@
+---
+title: "Scoping with Namespaces"
+description: "Narrow down the scope of Spaces, Workbooks, and Sheets."
+icon: "filter-list"
+---
+
+## Overview
+
+Namespaces allow you to narrow down the scope of Spaces, Workbooks, and Sheets. When you're monitoring for specific events, you can set your system to only respond if the event matches the assigned namespaces.
+
+Namespaces enable you to have:
+
+1. **Global Listeners**: These are listeners set up to monitor activities across all your Spaces.
+
+2. **Specific Listeners**: These listeners are restricted to monitor and respond only within a certain subset of your spaces defined by the assigned namespace.
+
+### Usage 
+
+```jsx
+// Create a global listener
+listener.on("**", event => { ... });
+
+// Create a filter scoped for a specific namespace
+listener.namespace(['space:green'], (green) => { ... });
+```
+
+## Space-level
+
+Space-level Namespaces are straightforward strings that can be established or modified when you create or update the Space. This adds an additional layer of control and specificity to your Space.
+
+Namespaces are most often set in the UI when the Space is created. 
+
+### Usage
+
+ This listener is established for the 'red' namespace within a 'space'. When a job titled `space:configure` (clicking create new space button in UI) in the 'red' namespace (type red as namespace in the form) is ready, it triggers the subsequent block of code. 
+ 
+ This code will color your Space red to see that it workd.
+
+<CodeGroup>
+
+```jsx listener
+listener.namespace(['space:red'], (red) => {
+  red.filter({ job: 'space:configure' }, (configure) => {
+    configure.on(
+      'job:ready',
+      async ({ context: { spaceId, environmentId, jobId } }) => {
+        try {
+          await api.jobs.ack(jobId, {
+            info: 'Gettin started.',
+            progress: 10,
+          })
+
+          //create your workbooks here
+
+          await api.documents.create(spaceId, {
+            title: 'Getting Started in the Contacts Space',
+            body:
+              '# Welcome to your swanky new Red Space\n' +
+              '---\n',
+          })
+
+          await api.spaces.update(spaceId, {
+            environmentId,
+            metadata: {
+              theme: {
+                root: {
+                  primaryColor: 'red',
+                },
+                sidebar: {
+                  backgroundColor: 'red',
+                  textColor: 'white',
+                  activeTextColor: 'midnightblue',
+                },
+                // See reference for all possible variables
+              },
+            },
+          })
+
+          await api.jobs.complete(jobId, {
+            outcome: {
+              message: 'This job is now complete.',
+            },
+          })
+        } catch (error) {
+          console.error('Error:', error.stack)
+
+          await api.jobs.fail(jobId, {
+            outcome: {
+              message: 'This job encountered an error.',
+            },
+          })
+        }
+      }
+    )
+  })
+})
+
+```
+</CodeGroup>
+
+## Workbook/Sheet-level
+
+Workbook & Sheet-level Namespaces are straightforward strings that can be established or modified when you create or update the Workbook. This adds an additional layer of control and specificity to your Workbook.
+
+### Usage
+
+This code dynamically generates a configuration for a 'Contacts' workbook based on the provided namespace parameter. Depending on the input namespace to the ChildWorkbook function, additional fields may be added. If the namespace is 'orange', fields for 'Phone' and 'Meal Choice' are added. If it's 'yellow', fields for 'Shirt Size' and 'Car Choice' are added.
+
+<CodeGroup>
+
+```jsx blueprint
+
+const ChildWorkbook = (namespace?: string) => ({
+  name: 'Contacts',
+  sheets: [
+    {
+      name: 'Contacts',
+      slug: 'contacts',
+      fields: [
+        {
+          key: 'firstName',
+          type: 'string',
+          label: 'First Name',
+        },
+        {
+          key: 'lastName',
+          type: 'string',
+          label: 'Last Name',
+        },
+        {
+          key: 'email',
+          type: 'string',
+          label: 'Email',
+        },
+        ...(namespace === 'orange'
+          ? [
+            {
+              key: 'phone',
+              type: 'string',
+              label: 'Phone',
+            },
+            {
+              key: 'meal',
+              type: 'string',
+              label: 'Meal Choice',
+            },
+          ]
+          : []),
+        ...(namespace === 'yellow'
+          ? [
+            {
+              key: 'shirtSize',
+              type: 'string',
+              label: 'Shirt Size',
+            },
+            {
+              key: 'car',
+              type: 'string',
+              label: 'Car Choice',
+            },
+          ]
+          : []),
+      ],
+    },
+  ]
+})
+
+```
+
+```jsx listener
+await api.workbooks.create({
+  ...ChildWorkbook(String('orange')),
+  name: 'Team Orange',
+  namespace: 'orange',
+  spaceId,
+  environmentId,
+} as CreateWorkbookConfig)
+```
+
+</CodeGroup>
