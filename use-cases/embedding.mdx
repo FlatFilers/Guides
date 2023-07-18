@@ -9,30 +9,39 @@ Embed React is a front-end SDK wrapper around the [Flatfile API](https://referen
 Using an iframe, Embed React seamlessly integrates into your website or application, providing a simple yet robust experience for collecting and transforming data from your customers.
 
 <Info>
-Prerequisites: You'll need a Flatfile account and your [publishable key](../developer-tools/security/authentication#secret-and-publishable-keys) to complete this tutorial. [Sign up](https://platform.flatfile.com/account/sign-up) and use the publishable key from your `development` environment for this tutorial.
+  Prerequisites: You'll need a Flatfile account and your [publishable
+  key](../developer-tools/security/authentication#secret-and-publishable-keys)
+  to complete this tutorial. [Sign
+  up](https://platform.flatfile.com/account/sign-up) and use the publishable key
+  from your `development` environment for this tutorial.
 </Info>
 
-### Check versions
+### Check React version
 
 The minimum supported version is **React v16**.
 
-Check your versions in terminal. If you use an older version, you'll need to upgrade.
+Depending on your package maanager, you can check your version in the terminal as follows.
+If you use an older version, you'll need to upgrade before beggining with Flatfile Embeded React.
 
 <CodeGroup>
 
 ```npm npm
 npm view react version
+
+# expect "16.0.0" or greater
 ```
 
 ```yarn yarn
-yarn list --version react
+yarn info react version
+
+# expect the react version to be "16.0.0" or greater
 ```
 
 </CodeGroup>
 
 ### Install the package
 
-Install Embed React from the npm public registry.
+Install Embed React from the npm/yarn public registry.
 
 <CodeGroup>
 
@@ -46,20 +55,19 @@ yarn add @flatfile/react@latest
 
 </CodeGroup>
 
-### Authenticate
+### Gather configuration details
 
 <Info>
   API keys are created automatically. Use the [Developers
-  Page](https://platform.flatfile.com/developers) to reveal your publishable key for
-  each Environment. Learn more about [Authentication](../developer-tools/security/authentication).
+  Page](https://platform.flatfile.com/developers) to reveal your publishable key
+  for each Environment. Learn more about
+  [Authentication](../developer-tools/security/authentication).
 </Info>
 
-The publishable key is safe to be used in client-side applications as it has limited access to the Flatfile API. 
+The publishable key is safe to be used in client-side applications as it has limited access to the Flatfile API.
 Copy your `publishable key` and `environment id` from the dashboard to a notepad.
 You'll need these in the next step.
 
 ## Recap & Next Steps
 
-In the next step, we will get started building our embedded Flatfile using an iFrame.
-
-
+In the next step, we will get started building our embedded Flatfile using an iframe.
