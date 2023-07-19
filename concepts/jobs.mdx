@@ -1,27 +1,25 @@
 ---
-title: "Jobs & Actions"
-description: "The anatomy of Jobs & Actions."
-icon: 'truck'
+title: "Jobs"
+description: "The anatomy of Jobs"
+icon: "truck"
 ---
 
 In Flatfile, a Job represents a large unit of work performed asynchronously on a resource
-such as a file, <Tooltip tip="Analogous to a database...">[Workbook](../concepts/workbooks)</Tooltip>, or <Tooltip tip="A collection of fields...">[Sheet](../blueprint/overview#terms)</Tooltip>. The Jobs workflow provides visibility into the status
-and progress of your Jobs, allowing you to monitor and troubleshoot
-the data processing pipeline.
-
-For example, a Job could represent:
-- a data export
-- a remapping of data from one Sheet to another
-- an action in the UI that triggers a Job
+such as a file, <Tooltip tip="Analogous to a database...">[Workbook](../concepts/workbooks)</Tooltip>,
+or <Tooltip tip="A collection of fields...">[Sheet](../blueprint/overview#terms)</Tooltip>.
+The Jobs workflow provides visibility into the status and progress of your Jobs,
+allowing you to monitor and troubleshoot the data processing pipeline.
 
 #### Types of Jobs
 
-There are 4 types of Jobs:
+There are 6 types of Flatfile managed Jobs:
 
 1. Extracting data from a file (moving data from a file to a workbook)
 2. Mapping data from one workbook to another (moving data from a workbook to a Workbook)
 3. Deleting data from a Workbook (operating on data in a single Workbook)
 4. Exporting data from a Workbook
+5. Find and Replacing data in a Sheet
+6. Apply a Mutate function to data in a Sheet
 
 All of these operate on (potentially) large amounts of data and complete asynchronously;
 you don’t want to wait around for them, so we notify you when they're done.
@@ -30,8 +28,8 @@ you don’t want to wait around for them, so we notify you when they're done.
 
 Flatfile Jobs follow a standard structure:
 
-- `type` - Workbook, file, Sheet
-- `operation` - export, extract, map, delete
+- `type` - Workbook, File, Sheet, Space
+- `operation` - `export`, `extract`, `map`, `delete`, and others
 - `source` - id for the data source
 - `destination?` - id for the data target (if any)
 - `config` - a configuration object specific to the operation
@@ -39,7 +37,7 @@ Flatfile Jobs follow a standard structure:
 
 In addition, Jobs track their execution state with:
 
-- `status` - PLANNING, READY, EXECUTING, COMPLETED, FAILED
+- `status` - CREATED, PLANNING, SCHEDULED, READY, EXECUTING, COMPLETED, FAILED,
 - `parts` - how many parts the Job was broken into
 - `processed` - how many of those parts have been processed so far
 
@@ -53,12 +51,16 @@ otherwise it can be triggered with a POST to the `/jobs/:id/execute` endpoint.
 
 Jobs emit the following Events throughout their lifecycle that you can listen for:
 
-- `job:waiting` - emitted after a Job is created but before it begins executing
+- `job:completed` - emitted when a Job has completed successfully
+- `job:created` - ??
+- `job:deleted` - emitted when a Job has been deleted
+- `job:failed` - emitted when a Job has failed
+- `job:outcome-acknowleged` - ??
+- `job:ready` - ??
+- `job:scheduled` - ??
 - `job:started` - emitted right before a Job starts execution
 - `job:updated` - emitted when a Job's progress is updated
-- `job:failed` - emitted when a Job has failed
-- `job:completed` - emitted when a Job has completed successfully
-- `job:deleted` - emitted when a Job has been deleted
+- `job:waiting` - emitted after a Job is created but before it begins executing
 
 ## Building with Jobs
 
