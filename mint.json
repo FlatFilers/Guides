@@ -251,5 +251,8 @@
   },
   "integrations": {
     "intercom": "q8ccrv3f"
+  },
+  "search": {
+    "prompt": "Ask any question (ChatGPT powered)"
   }
 }
