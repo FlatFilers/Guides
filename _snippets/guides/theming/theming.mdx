@@ -1,0 +1,46 @@
+<CodeGroup>
+
+```js listener.js
+import api from "@flatfile/api";
+
+export default function flatfileEventListener(listener) {
+
+  //listen for space:configure job and build out space 
+  listener.filter({ job: "space:configure" }, (configure) => {
+  })
+
+  //theme during creation or update your space after it is created
+  listener.on(
+    "space:created",
+    async ({ context: { spaceId, environmentId } }) => {
+
+      const updateSpace = await api.spaces.update(spaceId, {
+        environmentId,
+        metadata: {
+          theme: {
+            root: {
+              primaryColor: "red",
+            },
+            sidebar: {
+              logo: "https://image.png",
+            },
+            // See reference for all possible variables
+          },
+        },
+      });
+    }
+  );
+}
+
+```
+
+```js listener.ts
+//listen for an event, and update your theme as a result
+
+listener.on('space:created', async (event: FlatfileEvent) => {
+  const updateSpace = await flatfile.spaces.update(spaceId, {});
+});
+```
+</CodeGroup>
+
+See full code example [here](https://github.com/FlatFilers/getting-started/tree/main/plain-js/theming/index.js).

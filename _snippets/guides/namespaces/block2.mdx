@@ -1,0 +1,69 @@
+<CodeGroup>
+    ```jsx blueprint
+    const ChildWorkbook = (namespace?: string) => ({
+    name: 'Contacts',
+    sheets: [
+        {
+        name: 'Contacts',
+        slug: 'contacts',
+        fields: [
+            {
+            key: 'firstName',
+            type: 'string',
+            label: 'First Name',
+            },
+            {
+            key: 'lastName',
+            type: 'string',
+            label: 'Last Name',
+            },
+            {
+            key: 'email',
+            type: 'string',
+            label: 'Email',
+            },
+            ...(namespace === 'orange'
+            ? [
+                {
+                key: 'phone',
+                type: 'string',
+                label: 'Phone',
+                },
+                {
+                key: 'meal',
+                type: 'string',
+                label: 'Meal Choice',
+                },
+            ]
+            : []),
+            ...(namespace === 'yellow'
+            ? [
+                {
+                key: 'shirtSize',
+                type: 'string',
+                label: 'Shirt Size',
+                },
+                {
+                key: 'car',
+                type: 'string',
+                label: 'Car Choice',
+                },
+            ]
+            : []),
+        ],
+        },
+    ]
+    })
+    ```
+
+    ```jsx listener
+    await api.workbooks.create({
+    ...ChildWorkbook(String('orange')),
+    name: 'Team Orange',
+    namespace: 'orange',
+    spaceId,
+    environmentId,
+    } as CreateWorkbookConfig)
+    ```
+
+</CodeGroup>
