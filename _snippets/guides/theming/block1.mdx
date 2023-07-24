@@ -1,0 +1,32 @@
+import api from "@flatfile/api";
+
+export default function flatfileEventListener(listener) {
+
+  //listen for space:configure job and build out space 
+  listener.filter({ job: "space:configure" }, (configure) => {
+  })
+
+  //theme during creation or update your space after it is created
+  listener.on(
+    "space:created",
+    async ({ context: { spaceId, environmentId } }) => {
+
+      const updateSpace = await api.spaces.update(spaceId, {
+        environmentId,
+        metadata: {
+          theme: {
+            root: {
+              primaryColor: "red",
+            },
+            sidebar: {
+              logo: "https://image.png",
+            },
+            // See reference for all possible variables
+          },
+        },
+      });
+    }
+  );
+}
+
+// See full code example (https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/plain-js/theming/index.js)

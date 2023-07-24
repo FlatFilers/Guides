@@ -37,75 +37,7 @@ Listen for a `job:ready` and filter on the `job` you'd like to process. Be sure 
   rightmost button in the Workbook.
 </Info>
 
-<CodeGroup>
-
-```jsx workbook.js
-actions: [
-  {
-    operation: 'submitActionFg',
-    mode: 'foreground',
-    label: 'Submit data elsewhere',
-    type: 'string',
-    description: 'Submit this data to a webhook.',
-    primary: true,
-  },
-  {...}
-]
-```
-
-```jsx listener.js
-listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
-  configure.on("job:ready", async ({ context: { jobId } }) => {
-    try {
-      await api.jobs.ack(jobId, {
-        info: "Getting started.",
-        progress: 10,
-      });
-
-      // Do your work here
-
-      await api.jobs.complete(jobId, {
-        info: "This job is now complete.",
-      });
-    } catch (error) {
-      console.log(`Error: ${error}`);
-      await api.jobs.fail(jobId, {
-        info: "This job did not work.",
-      });
-    }
-  });
-});
-
-```
-
-```jsx listener.ts
-listener.filter({ job: "workbook:submitActionFg" }, (configure: FlatfileListener) => {
-  configure.on("job:ready", async ({ context: { jobId } }: FlatfileEvent) => {
-    try {
-      await api.jobs.ack(jobId, {
-        info: "Getting started.",
-        progress: 10,
-      });
-
-      // Do your work here
-
-      await api.jobs.complete(jobId, {
-        info: "This job is now complete.",
-      });
-    } catch (error) {
-      console.error("Error:", error.stack);
-
-      await api.jobs.fail(jobId, {
-        info: "This job did not work.",
-      });
-    }
-  });
-});
-```
-
-</CodeGroup>
-
-Get the example in the [getting-started](https://github.com/FlatFilers/getting-started/blob/main/space-configure.js) repo
+<Snippet file="shared/workbook_submit.mdx" />
 
 ## Sheet-mounted
 
@@ -193,7 +125,7 @@ listener.filter({ job: "sheet:capitalizeNamesBg" }, (configure: FlatfileListener
 
 </CodeGroup>
 
-Get the example in the [getting-started](https://github.com/FlatFilers/getting-started/blob/main/space-configure.js) repo
+Get the example in the [getting-started](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/space-configure.js) repo
 
 ### Retrieving data
 
@@ -498,4 +430,4 @@ async function failJob(jobId: string, message: string) {
 
 </CodeGroup>
 
-Get the example in the [getting-started](https://github.com/FlatFilers/getting-started/blob/main/file-actions.js) repo
+Get the example in the [getting-started](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/file-actions.js) repo
