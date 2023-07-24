@@ -10,9 +10,6 @@ listener.filter({ sheet: "Contacts" }, (configure) => {
 ```jsx listener.ts
 listener.filter({ sheet: "Contacts" }, (configure: FlatfileListener) => {
   listener.on("commit:created", async (event: FlatfileEvent) => {
-    //make changes after cells in a Sheet have been updated
-  });
-});
 // See full code example (https://github.com/FlatFilers/getting-started/blob/main/dynamic-configurations/index.ts)
 ```
 </CodeGroup>
