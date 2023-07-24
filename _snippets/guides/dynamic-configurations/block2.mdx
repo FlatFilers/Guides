@@ -1,0 +1,20 @@
+<CodeGroup>
+```jsx listener.js
+listener.filter({ sheet: "SheetName" }, (configure) => {
+  listener.on("commit:created", async (event) => {
+    //make changes after cells in a Sheet have been updated
+  });
+});
+// See full code example (https://github.com/FlatFilers/getting-started/blob/main/plain-js/dynamic-configurations/index.js)
+```
+```jsx listener.ts
+listener.filter({ sheet: "SheetName" }, (configure: FlatfileListener) => {
+  listener.on("commit:created", async (event: FlatfileEvent) => {
+    //make changes after cells in a Sheet have been updated
+  });
+});
+// See full code example (https://github.com/FlatFilers/getting-started/blob/main/dynamic-configurations/index.ts)
+```
+</CodeGroup>
+
+See full code example in our [getting-started Github repo](https://github.com/FlatFilers/getting-started/blob/main)
