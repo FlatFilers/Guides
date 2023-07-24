@@ -254,83 +254,7 @@ however, you may also want to adjust some of your configuration at the same time
 In the following example, we lock down access to the original Sheet
 and update our getting started guide to reflect the change.
 
-<CodeGroup>
-
-```jsx listener.js
-listener.filter({ job: "sheet:duplicate" }, (configure) => {
-  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId, sheetId, workbookId, documentId } }) => {
-    try {
-      await api.jobs.ack(jobId, {
-        info: "Getting started.",
-        progress: 10,
-      });
-
-      // Lock down the original Sheet
-      await api.sheets.update(sheetId, {
-        access: [],
-      });
-
-      // Update your Getting Started document
-      await api.documents.update(documentId, {
-        body: "Update something here",
-      });
-
-      await api.jobs.complete(jobId, {
-        outcome: {
-          message: "This job is now complete.",
-        },
-      });
-    } catch (error) {
-      console.error("Error:", error.stack);
-
-      await api.jobs.fail(jobId, {
-        outcome: {
-          message: "This job encountered an error.",
-        },
-      });
-    }
-  });
-});
-```
-
-```jsx listener.ts
-listener.filter({ job: "sheet:duplicate" }, (configure: FlatfileListener) => {
-  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId, sheetId, workbookId, documentId } }: FlatfileEvent) => {
-    try {
-      await api.jobs.ack(jobId, {
-        info: "Getting started.",
-        progress: 10,
-      });
-
-      // Lock down the original Sheet
-      await api.sheets.update(sheetId, {
-        access: [],
-      });
-
-      // Update your Getting Started document
-      await api.documents.update(documentId, {
-        body: "Update something here",
-      });
-
-      await api.jobs.complete(jobId, {
-        outcome: {
-          message: "This job is now complete.",
-        },
-      });
-    } catch (error) {
-      console.error("Error:", error.stack);
-
-      await api.jobs.fail(jobId, {
-        outcome: {
-          message: "This job encountered an error.",
-        },
-      });
-    }
-  });
-});
-```
-
-</CodeGroup>
+<Snippet file="guides/dynamic-configurations/block1.mdx"/>
 
 ### After data changes
 
@@ -339,19 +263,5 @@ In the following example, we listed for a commit created to do just that.
 
 #### Usage
 
-<CodeGroup>
-```jsx listener.js
-listener.filter({ sheet: "SheetName" }, (configure) => {
-  listener.on("commit:created", async (event) => {
-    //make changes after cells in a Sheet have been updated
-  });
-});
-```
-```jsx listener.ts
-listener.filter({ sheet: "SheetName" }, (configure: FlatfileListener) => {
-  listener.on("commit:created", async (event: FlatfileEvent) => {
-    //make changes after cells in a Sheet have been updated
-  });
-});
-```
-</CodeGroup>
+<Snippet file="guides/dynamic-configurations/block2.mdx"/>
+
