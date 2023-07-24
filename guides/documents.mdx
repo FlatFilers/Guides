@@ -17,36 +17,9 @@ Often used for getting started guides, Documents become extremely powerful with 
 
 Learn how to create a Document and update a Document from an Event listener.
 
-<CodeGroup>
 
-```js
-const createDoc = await api.documents.create(spaceId, {
-  title: "Getting Started",
-  body: `# Welcome
-  ### Say hello to your first customer Space in the new Flatfile!
-  Let's begin by first getting acquainted with what you're seeing in your Space initially.
-  ---`,
-});
-```
-```js listener.js
-//listen for an event, and update your document to be relevant
+<Snippet file="guides/documents/block1.mdx"/>
 
-listener.on("upload:completed", async (event) => {
-  const fileName = (await api.files.get(event.context.fileId)).data.name;
-  const bodyText = `# Welcome
-  ### Say hello to your first customer Space in the new Flatfile!
-  Let's begin by first getting acquainted with what you're seeing in your Space initially.
-  ---
-  Your uploaded file, ${fileName}, is located in the Files area.
-  `;
-
-  const updateDoc = await api.documents.update(spaceId, documentId, {
-    title: "Getting Started",
-    body: bodyText,
-  });
-});
-```
-</CodeGroup>
 ---
 
 ## Markdown reference
