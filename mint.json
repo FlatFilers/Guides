@@ -189,6 +189,7 @@
       "group": "Extractors",
       "pages": [
         "plugins/extractors/xlsx-extractor",
+        "plugins/extractors/json-extractor",
         "plugins/extractors/psv-extractor",
         "plugins/extractors/pdf-extractor",
         {

@@ -1,0 +1,45 @@
+---
+title: "@flatfile/plugin-json-extractor"
+description: "A plugin for parsing .json files in Flatfile."
+icon: "download"
+---
+
+<CardGroup cols={1}>
+    <Card title="@flatfile/plugin-json-extractor" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/psv-extractor" icon="github" >
+    *currently v0.1.0*
+    <br/>
+    **Contributors**<br/>
+    Carl Bruggere<br/>
+    <br/>
+    **Last updated**<br/>
+    July 25, 2023
+    </Card>
+</CardGroup>
+
+
+### Overview
+
+This plugin parses a JSON file and extracts it into Flatfile.
+
+
+```SSH Install
+npm i @flatfile/plugin-json-extractor
+```
+
+
+---
+
+## Import
+
+```js
+import { jsonExtractorPlugin } from '@flatfile/plugin-json-extractor'
+```
+
+## Usage
+
+Listen for an PSV file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
+
+```js
+listener.use(jsonExtractorPlugin())
+```
+
