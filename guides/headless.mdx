@@ -1,0 +1,252 @@
+---
+title: "Automate with headless"
+description: "Learn how to configure Flatfile to deliver completely headless data import experience."
+icon: "bolt-auto"
+---
+
+## Overview
+
+Remove the need for a human in the middle with Flatfile's flexible platform tooling. With Flatfile's powerful headless data import capabilities, you can seamlessly integrate data import functionality into your applications and workflows without requiring manual intervention.
+
+Headless automation allows your systems to interact with Flatfile programmatically, eliminating the need for end-users to manually handle data imports. This ensures a smooth and efficient data onboarding process, making it perfect for scenarios where large volumes of data need to be processed automatically and swiftly.
+
+### Usage
+
+This step by step guide will walk you through the process of configuring Flatfile to work in a headless mode. We'll cover the following topics:
+
+[Configure a destination Workbook](#configure-a-destination-workbook) |
+[Configure extraction](#configure-extraction) |
+[Automate mapping](#automate-mapping) |
+[Automate validation and transformation](#automate-validation-and-transformation) |
+[Automate ingress](#automate-ingress) |
+
+### Configure a destination Workbook
+
+First, we'll need to create a Workbook. This will be the destination for the data in our Files once it is extracted and automapped. Each Workbook is defined by a <Tooltip tip="A collection of fields...">[Blueprint](../blueprint/overview)</Tooltip> and created within a <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip>. You can think of a Space as a micro-application, each has it's own database and configurations.
+
+To create a Workbook run <Tooltip tip="Create a sample Workbook">[this command](https://reference.flatfile.com/docs/api/tjt005wdogklo-create-a-sample-workbook)</Tooltip> directly from our docs or copy the below code to run as a cURL command.
+
+<Tip>
+  Use your [secret
+  key](../developer-tools/security/authentication#secret-and-publishable-keys)
+  from the `development` environment. Secret key format is "sk_abcd..." and is
+  found in [your Flatfile Dashboard
+  here](https://platform.flatfile.com/developers).
+</Tip>
+
+```shell cURL
+curl --request POST \
+  --url https://platform.flatfile.com/api/v1/workbooks \
+  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "My First Workbook",
+  "sheets": [
+    {
+      "name": "Contact",
+      "slug": "contacts",
+      "fields": [
+        {
+          "key": "firstName",
+          "type": "string",
+          "label": "First Name"
+        },
+        {
+          "key": "lastName",
+          "type": "string",
+          "label": "Last Name"
+        },
+        {
+          "key": "email",
+          "type": "string",
+          "label": "Email"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "operation": "submitAction",
+      "mode": "foreground",
+      "label": "Submit",
+      "description": "Submit data to webhook.site",
+      "primary": true
+    }
+  ]
+}'
+```
+
+### Configure extraction
+
+We'll be uploading our contact data as a CSV file. Flatfile immediately extracts these to a Workbook, so we don't need to configure anything further.
+
+<Note>
+  If you're uploading a different file type, you'll need to configure a listener
+  to handle extraction. Listen for a `file:created` event and run your
+  subsequent extraction logic as an asynchronous{" "}
+  <Tooltip>[Job](../concepts/jobs)</Tooltip>. See our{" "}
+  <Tooltip>[Extractor Plugins](../plugins/extractors)</Tooltip> for plug and
+  play options or build your own.
+</Note>
+
+### Automate mapping
+
+After extraction is complete, we'll need to map the ingress data to our destination Workbook.
+Here we will use Flatfile's <Tooltip>[Automap Plugin](../plugins/automations/automap)</Tooltip> to automatically map our file's data fields to the fields configured on our Workbook.
+
+First, add the plugin to your project.
+
+<CodeGroup>
+
+```npm npm
+npm install @flatfile/plugin-automap
+```
+
+```yarn yarn
+yarn add @flatfile/plugin-automap
+```
+
+</CodeGroup>
+
+Then configure your mapping options:
+
+**accuracy:** (either confident or exact) \
+**defaultTargetSheet:** (the name of the sheet you want to map to) \
+**matchFilename:** (a regex to match the filename of the file you want to map)
+
+<CodeGroup>
+
+```jsx javascript
+import { Client, FlatfileEvent } from "@flatfile/listener";
+import { automap } from "@flatfile/plugin-automap";
+
+export default function flatfileEventListener(listener) {
+  listener.use(
+    automap({
+      accuracy: "confident",
+      debug: true,
+      defaultTargetSheet: "Contact",
+      matchFilename: /test.csv$/g,
+      onFailure: (event) => {
+        console.error(
+          `Failed to automap! Please visit https://spaces.flatfile.com/space/${event.context.spaceId}/files?mode=import to manually import file.`
+        );
+      },
+    })
+  );
+}
+```
+
+```jsx typescript
+import { Client, FlatfileEvent } from "@flatfile/listener";
+import { automap } from "@flatfile/plugin-automap";
+
+export default function flatfileEventListener(listener: Client) {
+  listener.use(
+    automap({
+      accuracy: "confident",
+      debug: true,
+      defaultTargetSheet: "Contact",
+      matchFilename: /test.csv$/g,
+      onFailure: (event: FlatfileEvent) => {
+        console.error(
+          `Failed to automap! Please visit https://spaces.flatfile.com/space/${event.context.spaceId}/files?mode=import to manually import file.`
+        );
+      },
+    })
+  );
+}
+```
+
+</CodeGroup>
+#
+<Note>
+  Note you may also set optional `debug` and `onFailure` configurations.
+</Note>
+
+### Automate validation and transformation
+
+Once Automap has automatically matched our file's data fields to the fields in our Workbook, we can extend our automations to include data validation and transformation.
+
+Say we want to ensure that every contact has a full name field; we can leverage Flatfile's Event driven system to transform our ingress data during import.
+
+<CodeGroup>
+
+```jsx javascript
+import { recordHook } from "@flatfile/record-hooks";
+
+listener.use(
+  recordHook("Contact", (record, event) => {
+    const firstName = record.get("firstName");
+    const lastName = record.get("lastName");
+
+    if (firstName && lastName && !record.get("fullName")) {
+      const fullName = `${firstName} ${lastName}`;
+      record.set("fullName", fullName);
+
+      record.addComment(
+        "fullName",
+        "fullName was populated from firstName and lastName."
+      );
+    }
+
+    return record;
+  })
+);
+```
+
+```jsx typescript
+import { recordHook } from "@flatfile/record-hooks";
+
+listener.use(
+  recordHook("Contact", (record: FlatfileRecord, event: FlatfileEvent) => {
+    const firstName = record.get("firstName");
+    const lastName = record.get("lastName");
+
+    if (firstName && lastName && !record.get("fullName")) {
+      const fullName = `${firstName} ${lastName}`;
+      record.set("fullName", fullName);
+
+      record.addComment(
+        "fullName",
+        "fullName was populated from firstName and lastName."
+      );
+    }
+
+    return record;
+  })
+);
+```
+
+</CodeGroup>
+
+By configuring our listener to automate data mapping as well as any validation and/or transformation we need, we can ensure that our data is always clean and ready to be used, without a human in the middle.
+
+### Automate ingress
+
+Now it's time to watch it work!
+
+We've set up our headless system up to to extract, map, validate/transform our data. So let's give drop a file into our system and see this all work together.
+
+You can chose to upload your file however you wish. Common use cases include: cron jobs, cloud functions, or scripts that target our API.
+
+We'll upload our file via API. Simply copy the cURL command below, adding your secret key and the path to your file.
+
+You can use <Tooltip>[this](TODO)</Tooltip> file to test.
+
+<CodeGroup>
+
+```shell curl
+
+curl --request POST \
+  --url https://platform.flatfile.com/v1/files \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
+  --header 'Content-Type: multipart/form-data' \
+  --form file=@/path/to/file.csv
+
+```
+
+</CodeGroup>
+
+Once the file is accepted head over to your dashboard to see it extracted, mapped, validated/transformed and ready to use!
