@@ -31,44 +31,7 @@ All ingress proceses will leverage either our [API](../api/overview) or our [SDK
 
 First, configure our ingress destination. Our files will be contained in a Space. You can think of a <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip> as a micro-application, each has it's own database and configurations.
 
-<CodeGroup>
-
-```javascript node
-import { FlatfileClient } from "@flatfile/api";
-import fs from "fs";
-
-const stream = fs.createReadStream("/path/to/file");
-
-const flatfile = new FlatfileClient({
-  token: "sk_test_123",
-});
-
-try {
-  flatfile.spaces.create({
-    name: "My Space",
-    environmentId: "us_env_123",
-    autoConfigure: true,
-  });
-} catch (eror) {
-  console.error(error);
-}
-```
-
-```shell curl
-
-curl --request POST \
-  --url https://platform.flatfile.com/v1/spaces \
-  --header 'Accept: application/json' \
-  --header 'Authorization: Bearer sk_test_123' \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "environmentId": "us_env_123",
-  "name": "My Space",
-  "autoConfigure": true,
-}'
-```
-
-</CodeGroup>
+<Snippet file="use-cases/block1.mdx" />
 <br></br>
 <Note>
   Our deployed agent will automatically configure this space. For more
@@ -78,35 +41,7 @@ curl --request POST \
 
 Next, we'll upload our file to Flatfile.
 
-<CodeGroup>
-
-```javascript node
-import fs from "fs";
-const stream = fs.createReadStream("/path/to/file");
-
-try {
-  flatfile.files.upload(readStream, {
-    spaceId: "us_spa_123",
-    environmentId: "us_env_123",
-  });
-} catch (eror) {
-  console.error(error);
-}
-```
-
-```shell curl
-
-curl --request POST \
-  --url https://platform.flatfile.com/v1/files \
-  --header 'Accept: application/json' \
-  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
-  --header 'Content-Type: multipart/form-data' \
-  --form spaceId="us_spa_123" \
-  --form file="@/path/to/file"
-
-```
-
-</CodeGroup>
+<Snippet file="use-cases/block2.mdx" />
 
 ## Flatfile Processing
 
@@ -135,74 +70,11 @@ Now that we've leveraged the power of the Flatfile platform to extract, map, val
 
 We'll listen on the `sheet:submitAction` event, set in our Dynamically Configured Space, and run our egress logic as an asynchronous [Job](../concepts/jobs). Here's an example where we automate emailing the processed data.
 
-<CodeGroup>
-
-```javascript node
-import { FlatfileClient } from "@flatfile/api";
-const nodemailer = require("nodemailer");
-const fs = require("fs");
-const util = require("util");
-
-const flatfile = new FlatfileClient({
-  token: "sk_test_123",
-});
-
-export default function (listener) {
-  listener.filter({ job: "sheet:submitAction" }, (configure) => {
-    configure.on("job:ready", async (event) => {
-      const { jobId, sheetId } = event.context;
-      try {
-        await flatfile.jobs.ack(jobId, {
-          info: "Starting job...",
-          progress: 10,
-        });
-
-        const csv = await flatfile.sheets.getRecordsAsCsv(sheetId, "contacts");
-
-        const transporter = nodemailer.createTransport({
-          service: "Gmail",
-          auth: {
-            user: "email@gmail.com",
-            pass: "EMAIL_PASSWORD",
-          },
-        });
-
-        const mailOptions = {
-          from: "email@gmail.com",
-          to: "email@gmail.com",
-          subject: "Processed Data",
-          text: "Flatfile export attached.",
-          attachments: [
-            {
-              filename: `${sheetId}.csv`,
-              content: csv,
-            },
-          ],
-        };
-
-        const sendMail = util.promisify(transporter.sendMail.bind(transporter));
-        await sendMail(mailOptions);
-
-        if (callback.success) {
-          await flatfile.jobs.complete(jobId, {
-            info: "Job completed successfully.",
-          });
-        }
-      } catch (error) {
-        console.error(error);
-        await flatfile.jobs.fail(jobId, {
-          info: "Job failed to run correctly.",
-        });
-      }
-    });
-  });
-}
-```
-
-</CodeGroup>
+<Snippet file="use-cases/block3.mdx" />
 <br></br>
 <Note>
-  Egress Jobs may need to leverage Flatfile Secrets as credentails for outgoing connections. See our [Secrets Guide](../guides/secrets) for more information.
+  Egress Jobs may need to leverage Flatfile Secrets as credentails for outgoing
+  connections. See our [Secrets Guide](../guides/secrets) for more information.
 </Note>
 
 ## Additional paths
