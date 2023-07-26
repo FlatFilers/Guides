@@ -160,7 +160,7 @@
       "group": "Security",
       "pages": [
         "developer-tools/security/authentication",
-        "developer-tools/account-token",
+        "developer-tools/security/account-token",
         "developer-tools/security/roles-and-permissions"
       ]
     },
