@@ -211,6 +211,10 @@
       "pages": ["plugins/automations/automap"]
     },
     {
+      "group": "Export",
+      "pages": ["plugins/export/export-workbook"]
+    },
+    {
       "group": "Schemas",
       "pages": [
         "plugins/schemas/convert-json-schema",
