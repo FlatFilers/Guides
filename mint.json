@@ -212,7 +212,7 @@
     },
     {
       "group": "Export",
-      "pages": ["plugins/export/export-workbook"]
+      "pages": ["plugins/export/workbook"]
     },
     {
       "group": "Schemas",
