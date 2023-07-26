@@ -111,15 +111,14 @@
     },
     {
       "group": "Use cases",
+      
       "pages": [
         {
           "group": "Embed in your app",
           "icon": "person-to-portal",
           "pages": [
-            "use-cases/embedding",
-            "use-cases/part2",
-            "use-cases/part3",
-            "use-cases/part4"
+            "use-cases/embed/javascript/part1",
+            "use-cases/embed/react/part1"
           ]
         },
         "use-cases/headless",

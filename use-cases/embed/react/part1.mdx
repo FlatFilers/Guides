@@ -1,0 +1,506 @@
+---
+title: "React"
+description: Securely and easily build an embedded Flatfile import experience into your React application
+icon: "react"
+---
+
+Embed React is a front-end SDK wrapper around the [Flatfile API](https://reference.flatfile.com/docs/api/). It allows you to securely and easily add an embedded data import experience, also known as a [Space](/concepts/spaces), to any React app.
+
+Using an iframe, Embed React seamlessly integrates into your website or application, providing a simple yet robust experience for collecting and transforming data from your customers.
+
+## Before you begin
+
+<Snippet file="shared/account_needed.mdx" />
+
+### Install the package
+
+Install Embed React from the npm/yarn public registry.
+
+<CodeGroup>
+
+```npm npm
+npm install @flatfile/react@latest
+# expects "16.0.0" or greater
+```
+
+```yarn yarn
+yarn add @flatfile/react@latest
+# expects "16.0.0" or greater
+```
+
+</CodeGroup>
+
+<Snippet file="shared/embed_concepts.mdx" />
+
+## Embed a Space
+
+### Part 1: Build a Workbook
+
+Create a Workbook to configure your Space.
+
+```js config.ts
+import { Flatfile } from '@flatfile/api'
+
+export const config: Pick<
+  Flatfile.CreateWorkbookConfig,
+  'name' | 'sheets' | 'actions'
+> = {
+  name: 'Employees workbook',
+  sheets: [
+    {
+      name: 'Contacts',
+      slug: 'Contacts',
+      fields: [
+        {
+          key: 'first_name',
+          type: 'string',
+          label: 'First name',
+          constraints: [
+            {
+              type: 'required'
+            }
+          ]
+        },
+        {
+          key: 'last_name',
+          type: 'string',
+          label: 'last name',
+          constraints: [
+            {
+              type: 'unique'
+            }
+          ]
+        },
+        {
+          key: 'full_name',
+          type: 'string',
+          label: 'full name'
+        }
+      ]
+    }
+  ],
+  actions: [
+    {
+      label: 'Submit',
+      operation: 'contacts:submit',
+      description: 'Would you like to submit your workbook?',
+      mode: 'foreground',
+      primary: true,
+      confirm: true
+    }
+  ]
+}
+```
+
+### Part 2: Handle Events
+
+In the event listener below, first we will use Flatfile's record hook plugin to automatically re-format, correct, validate, and enrich data during the data import process. 
+
+Since we have a defined "Submit" action in our Workbook, next we utilize the Event listener to determine the method by which we want to submit records.
+
+<Warning>While a client-side listener will be able to handle a lot of the interaction and updates in the browser, there may be operations it can't perform due to these limitations. For tasks that need to access server resources or capabilities, a server-side listener will also be required. [Learn more](../developer-tools/client_server_side)</Warning>
+
+#### Install the plugin
+
+First, download the `recordHook` plugin from npm.
+
+```
+npm i @flatfile/plugin-record-hook
+```
+
+#### Build the listener
+
+```js listener.ts
+import { recordHook } from "@flatfile/plugin-record-hook";
+import api from "@flatfile/api"
+import { FlatfileListener } from "@flatfile/listener"; 
+
+async function submit(jobId: string) {
+  await api.jobs.ack(jobId, {
+    info: "I'm starting the job - inside client",
+    progress: 33
+  })
+
+  // hit your api here
+  await new Promise((res) => setTimeout(res, 2000))
+
+  await api.jobs.complete(jobId, {
+    info: "Job's work is done",
+    outcome: { next: { type: 'wait' } }
+  })
+}
+
+/**
+ * Example Listener
+ */
+
+export const listener = FlatfileListener.create((client) => {
+
+  // Lowercases the first_name field
+  client.use(
+    recordHook("Contacts", (record) => {
+      const value = record.get("first_name");
+      if (typeof value === "string") {
+        record.set("first_name", value.toLowerCase());
+      }
+      return record;
+    })
+  )
+  // Waits for the submit button to be clicked
+  client.on(
+    'job:ready',
+    // @ts-ignore
+    { payload: { operation: 'contacts:submit' } },
+    async (event: any) => {
+      const { context } = event
+      return submit(context.jobId)
+    }
+  )
+})
+```
+
+### Part 3: Embed into your app
+
+Now that we have our configuration defined in our Workbook, and our Event handlers defined in our listener, we are ready to embed our Space.
+
+#### Create a Space component
+
+The `useSpace` hook will create a Space component and pass it the configuration and listener as options:
+
+<CodeGroup>
+```js app.ts
+import { useSpace, ISpace, makeTheme } from '@flatfile/react'
+import { config } from './config.ts'
+import { listener } from './listener.ts'
+import { useState } from 'react'
+
+const ExampleApp = () => {
+
+const [showSpace, setShowSpace] = useState(false)
+
+const space = useSpace({
+    name: 'Embedded Space',
+    publishableKey: 'your_publishable_key',
+    environmentId: 'your_environment_id',
+    workbook: config,
+    listener: listener,
+    closeSpace: {
+      operation: 'contacts:submit',
+      onClose: () => setShowSpace(false)
+    }
+})
+
+return (
+  <div style={{ padding: "16px" }}>
+    <button
+      onClick={() => {
+        setShowSpace(!showSpace);
+      }}
+    >
+      {showSpace === true ? "Close" : "Open"} space
+    </button>
+    {showSpace && space}
+  </div>
+  )
+}
+```
+</CodeGroup>
+
+### Part 4: Configure the Close Dialog
+
+When closing the Flatfile iframe, end users will see a dialog asking them if they are sure they want to exit. To style this dialog to match your application, add a `style.css` file to your public folder and link to it from `index.html`, also in the public folder.
+
+<CodeGroup>
+```css style.css
+@font-face {
+  font-family: sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+:root {
+  --brand-font-sans-serif: "Helvetica", sans-serif;
+  --color-electric-800: #3b2fc9; //primary button color on hover
+  --color-electric-700: #4c48ef; //primary button color
+  --color-pigeon-600: #8b93a4; //text color
+  --color-pigeon-300: #d7dee8; //secondary button color on hover
+  --color-pigeon-200: #e8edf4; //secondary button color
+  --color-text: var(--color-pigeon-primary); ////text title color
+  --text-font: var(--brand-font-sans-serif);
+  --size-base: 15px;
+}
+body {
+  background-color: #fff;
+  color: var(--color-text);
+  font-family: var(--text-font);
+  font-size: var(--size-base);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.flatfile-close-button {
+  display: block;
+}
+
+```
+
+```html index.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+
+    <title>Flatfile React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+```
+</CodeGroup>
+
+### Part 5: Review File Structure
+
+When you're finished, your app should look something like this:
+
+```
+- public
+  |__ index.html
+  |__ style.css
+
+- src
+  |__ App.tsx
+  |__ config.ts
+  |__ index.tsx
+  |__ listener.ts
+
+- package.json
+```
+
+In this file structure, your app should have two main directories, `public` and `src.`
+
+The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe. 
+
+The `src` directory contains the main components and logic of the application, including the "App.tsx" file, which represents the root component, the "config.ts" file for creating your Workbook, the "index.tsx" file, which is the entry point of your application's code, and the "listener.ts" file, which handles your specific functionality related to listening to events.
+
+
+## Space properties
+
+`useSpace` takes the following options:
+
+| Name             | Description                                                               | Type                    | Required |
+| ---------------- | ------------------------------------------------------------------------- | ----------------------- | -------- |
+| `name`           | Name of the Space                                                             | string                  | No       |
+| `publishableKey` | Publishable key accessed via Flatfile dashboard > Developer               | string                  | Yes      |
+| `environmentId`  | Environment ID accessed via Flatfile dashboard > Developer                                               | string                  | Yes      |
+| [workbook](#part-1-build-a-workbook)       | Shape of data you will be receiving                                       | Flatfile.WorkbookConfig | Yes      |
+| [listener](#build-the-listener)        | Event listener for responding to Events                                | Listener                  | No       |
+| [closeSpace](#closespace)    | Options for when to close the iframe and a callback function when session is complete | operation: string, onClose: (data: any) => void | No       |
+| [error](#error)          | Error element to display if component throws an error                              | (error: Error \| string) => React.ReactElement | No       |
+| [spaceInfo](#spaceinfo)      | Additional metadata to be passed to the space                              |  ISpaceInfo | No       |
+| [iframeStyles](#iframestyles)   | Styles the iframe using CSS Properties                                     | React.CSSProperties     | No       |
+| [themeConfig](#themeconfig)    | Theme determining the look and feel of the Space                            | IThemeConfig            | No       |
+| [sidebarConfig](#sidebarconfig)  | Options for show or hide various UI elements                               | ISidebarConfig          | No       |
+| [document](#document)       | Document to pass to space                                                 | Flatfile.DocumentConfig | No       |
+| [loading](#loading)       | Loading element to display while space loads                              | React.ReactElement      | No       |
+
+### closeSpace
+
+```typescript
+const closeSpace = {
+  operation: "contacts:submit",
+  onClose: () => {},
+};
+```
+
+This `onClose` callback function is called when the Action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
+
+### error
+
+By default, the Space component has an error component with the error message when an error is encountered, providing your users with feedback on what went wrong.
+
+If you would like to use your own error handling component instead of the default one, simply pass it in as the `error` prop when rendering the component.
+
+### spaceInfo
+
+The Space component offers the flexibility to pass in additional metadata through the use of `spaceInfo` prop. This prop allows you to provide information such as user ID, Space name, company ID, and company name to the component, which is used to make the dashboard search / filter experience more effective.
+
+To use the `spaceInfo` prop, simply create an object that implements the `ISpaceInfo` interface and pass it in as `spaceInfo` prop when rendering the component.
+
+```typescript
+export interface ISpaceInfo {
+  userId?: string;
+  name?: string;
+  companyId?: string;
+  companyName?: string;
+}
+```
+
+For example, if you wanted to provide the component with a user ID and Space name, you could create an object like this:
+
+```typescript
+const spaceInfo: ISpaceInfo = {
+  userId: "1234",
+  name: "My Space",
+};
+```
+
+
+### themeConfig
+
+Theme your Space to create a custom look and feel to match your brand.
+
+There are two ways to define your theme, depending on how much control you want, using `makeTheme` or manual css overrides.
+
+#### Option 1: makeTheme
+
+The `makeTheme` helper function generates a theme based on a primary color, text color, and logo. Different shades of the provided colors are generated and applied programmatically to create a cohesive visual style.
+
+For more fine-grained control of individual shades, use manual CSS overrides.
+
+```typescript
+const theme = makeTheme({
+  primaryColor: "red",
+  textColor: "white",
+  logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+});
+
+const space = useSpace({
+  themeConfig: theme,
+  publishableKey,
+  environmentId,
+  workbook,
+});
+```
+
+`makeTheme` options
+
+| Prop           | Type     | Description         | Required |
+| -------------- | -------- | ------------------- | -------- |
+| `primaryColor` | `string` | Primary brand color | no       |
+| `textColor`    | `string` | Text color          | no       |
+| `logo`         | `string` | full url to logo    | no       |
+
+<Tip>
+  `makeTheme` accepts valid color values in the following formats: name, rgb,
+  hsv, hex.
+</Tip>
+
+#### Option 2: Manual CSS overrides
+
+If you prefer to set colors manually using the actual CSS variables referenced in the app, you can construct the theme yourself using our [Theming Reference](../guides/theming).
+
+```typescript
+const theme = {
+  // see theming reference
+};
+
+const space = useSpace({
+  themeConfig: theme,
+  publishableKey,
+  environmentId,
+  workbook,
+});
+```
+
+### iframeStyles
+
+Use the `iframeStyles` prop to style the outer iframe that the space is wrapped in. `iframeStyle` accepts a JavaScript object with camel-cased properties rather than a CSS string.
+
+```typescript
+const iframeStyles = {
+  width: "100%",
+  height: "750px",
+  borderWidth: 0,
+  borderRadius: "20px",
+  background: "#fff",
+  padding: "16px",
+};
+
+const space = useSpace({
+  themeConfig: theme,
+  publishableKey,
+  environmentId,
+  workbook,
+  iframeStyles,
+});
+```
+
+### sidebarConfig
+
+See [Sidebar Reference](../guides/guest_sidebar) to learn the options for the sidebar. You can also hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+
+<Note>If multiple values are provided for defaultPage, it with prioritize in the following order: Sheet, Workbook, Document, Checklist.</Note>
+
+<CodeGroup>
+```typescript sidebarConfig
+const mySidebarConfig = {
+  showDataChecklist: false,
+  defaultPage: {
+    workbook: {
+      workbookId: "123",
+      sheetId: "123",
+    },
+  },
+};
+```
+
+```typescript Example passed to useSpace hook
+const space = useSpace({
+  sidebarConfig: mySidebarConfig,
+  publishableKey,
+  environmentId,
+  workbook,
+});
+```
+
+</CodeGroup>
+
+| Property            | Type                                                                           | Description                                                                      |
+| ------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
+| `defaultPage`       | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string }, checklist?: boolean  }` | Landing page upon loading a Space. Defaults to primary Workbook.                 |
+| `showDataChecklist` | `boolean`                                                                      | Toggle data config for Space. Defaults to false.                                 |
+| `showSidebar`       | `boolean`                                                                      | Determines if a guest can see the sidebar. If the sidebar is hidden and there are multiple Workbooks in your Space, please specify the desired Workbook ID as your defaultPage. |
+
+### document
+
+[Documents](../guides/documents), written in Markdown, provide extra clarification and instructions to users of
+a Space. Each Document will appear in the sidebar of a Space. Standard syntax is
+supported.
+
+<CodeGroup>
+
+```typescript documentConfig
+const mainDocument = {
+  title: "Getting Started",
+  body:
+    "![Shop](https://coconut.show/logo-big.png)\n" +
+    "\\\n" +
+    "&nbsp;\n" +
+    "\n" +
+    "---\n" +
+    "\n" +
+    "# Welcome to the Surf Shop!\n" +
+    "\n" +
+    "Please upload your contacts to the Surf Shop using the Files menu on the left.\n",
+};
+```
+
+```typescript Example passed to useSpace hook
+const space = useSpace({
+  publishableKey,
+  environmentId,
+  document: mainDocument,
+  workbook,
+});
+```
+
+</CodeGroup>
+
+### loading
+
+We provide a default loading state when the Space is loading. You can also pass a custom loading component using the `loading` prop.
