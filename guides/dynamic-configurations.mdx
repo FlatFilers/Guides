@@ -1,6 +1,6 @@
 ---
-title: "Dynamic configurations"
-description: "Dynamically build your configuration on command."
+title: "Listen for a new Space"
+description: "Dynamically build your Space configuration as it's created."
 icon: "object-group"
 ---
 
@@ -43,16 +43,20 @@ You can also follow along in the [flatfile-docs-kitchen-sink](https://github.com
 
 ### From an embedded button
 
-When embedding Flatfile in your application, a new Space is created every time
-the Flatfile platform is called to open.
+When embedding Flatfile in your application, two things can happen:
 
-Learn more about this [core path](../use-cases/embedding).
+1. A new Space is created every time the Flatfile platform is called to open
+2. Or an existing Space can be passed in.
+
+Listeners can be set up either server-side (use this Guide) and/or client-side within the embedded wrapper SDK.
+
+Learn more about this [use case](../use-cases/embedding).
 
 ### Automatically
 
 New Spaces can be created automatically by setting up headless flows.
 
-Learn more about this [core path](../use-cases/headless).
+Learn more about this [use case](../use-cases/headless).
 
 ---
 

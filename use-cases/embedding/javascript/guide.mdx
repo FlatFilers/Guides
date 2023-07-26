@@ -4,4 +4,434 @@ description: "Securely and easily build an embedded Flatfile import experience i
 icon: "js"
 ---
 
-#### This package is coming very, very soon.
+## Before you begin
+
+<Snippet file="shared/account_needed.mdx" />
+
+### Install the package
+
+Install Embed Javascript from the npm/yarn public registry.
+
+<CodeGroup>
+
+```npm npm
+npm install @flatfile/javascript@latest
+```
+
+```yarn yarn
+yarn add @flatfile/javascript@latest
+```
+
+</CodeGroup>
+
+## Embed a Space
+
+### Part 1: Add a button
+
+Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
+
+<CodeGroup>
+```html public/index.html (snippet)
+<button onclick="openFlatfile('pk_1234')">
+    Create new Space
+</button>
+```
+```html public/index.html (full page)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, world!</title>
+    <script type="module" src="../src/client.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h2><code>&lt;Flatfile /&gt;</code></h2>
+        <p>Embed Flatfile in just a few lines of code.</p>
+
+        <!-- Button to trigger the modal -->
+        <div>
+          <button
+            class="contrast"
+            onclick="openFlatfile('pk_1234')"
+          >
+            Create new Space
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+```
+</CodeGroup>
+
+### Part 2: initializeFlatfile()
+
+Import @flatfile/javascript to initializeFlatfile. Pass it any [options](#properties). Only `publishableKey` is required.
+
+```js src/client.js
+import { initializeFlatfile } from "@flatfile/javascript";
+
+//create a new space in modal
+window.openFlatfile = (publishableKey) => {
+  const flatfileOptions = {
+    publishableKey
+    // Additional props...
+  };
+
+  initializeFlatfile(flatfileOptions);
+};
+```
+
+### Part 3: Override Styles
+
+The css here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog and the dialog wrapper. Theming the Flatfile application is done [here](../../../guides/theming). 
+
+```css public/style.css
+/* Styles for home page */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #090b2b;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.content {
+  /* Adjust the width and height as needed */
+  width: 800px;
+  height: 200px;
+  padding: 0 20px 0 50px;
+}
+
+.contrast {
+  padding: 10px;
+  margin: 10px 5px 0 0;
+  border-radius: 4px;
+  border: 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* End of styles for home page */
+
+/* Begin style overrides for Flatfile Dialog */
+
+.flatfile_displayAsModal {
+  padding: 50px !important;
+  width: calc(100% - 100px) !important;
+  height: calc(100vh - 100px) !important;
+}
+
+:root {
+  --ff-primary-color: red !important;
+  --ff-secondary-color: #616a7d !important;
+  --ff-text-color: #090b2b !important;
+  --ff-dialog-border-radius: 4px !important;
+  --ff-border-radius: 5px !important;
+  --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* .flatfile_iframe-wrapper {
+} */
+
+/* .flatfile_iframe-wrapper {
+} */
+
+.flatfile_iframe-wrapper.flatfile_displayAsModal {
+  background: var(--ff-bg-fade);
+}
+
+/* .flatfile_displayAsModal .flatfile_close-button {
+} */
+
+.flatfile_displayAsModal .flatfile_close-button svg {
+  fill: var(--ff-secondary-color);
+}
+
+/* #flatfile_iframe {
+} */
+
+.flatfile_displayAsModal #flatfile_iframe {
+  border-radius: var(--ff-border-radius);
+}
+
+.flatfile_outer-shell {
+  background-color: var(--ff-bg-fade);
+  border-radius: var(--ff-border-radius);
+}
+
+/* .flatfile_inner-shell {
+} */
+
+.flatfile_modal {
+  border-radius: var(--ff-dialog-border-radius);
+}
+
+/* .flatfile_button-group {
+} */
+
+/* .flatfile_button {
+} */
+
+.flatfile_primary {
+  border: 1px solid var(--ff-primary-color);
+  background-color: var(--ff-primary-color);
+  color: #fff;
+}
+
+.flatfile_secondary {
+  color: var(--ff-secondary-color);
+}
+
+.flatfile_modal-heading {
+  color: var(--ff-text-color);
+}
+
+.flatfile_modal-text {
+  color: var(--ff-secondary-color);
+}
+
+```
+
+### Part 4: Review File Structure
+
+When you're finished, your app should look something like this:
+
+```
+- public
+  |__ index.html
+  |__ style.css
+
+- src
+  |__ client.js
+
+- package.json
+```
+
+In this file structure, your app should have two main directories, `public` and `src.`
+
+The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe. 
+
+The `src` directory contains the main components and logic of the application, including the "client.js" file, which initializes Flatfile and passes in available options.
+
+### Part 5: Start your event listener or reuse a Space
+
+In this step, we'll kickstart an event listener, which will await the creation of a new Space. This listener will configure the Space as Flatfile is initialized.
+
+[Learn how to configure a new Space.](../../../guides/dynamic-configurations#configuring-a-new-space)
+
+<Info>If you don't want to do this yet, you can also [reuse an existing Space](#space) and simply pass that info in.</Info>
+
+
+## Properties
+
+`initializeFlatfile` takes the following options:
+
+<ParamField path="publishableKey" type="string">
+  Publishable key accessed via Flatfile dashboard > Developer settings.
+  Required if not passing in an existing Space.
+</ParamField>
+
+<ParamField path="space" type="{id: string, accessToken: string}">
+  Pass in an existing Space instead of creating a new one each time.
+  
+  [Learn More](#space)
+</ParamField>
+
+<ParamField path="displayAsModal" type="boolean" default="true">
+  Display Flatfile as a full screen modal or inline on the page.
+
+  [Learn More](#inline)
+</ParamField>
+
+<ParamField path="mountElement" type="string" default="flatfile_iFrameContainer">
+  The element Flatfile will mount to. (Will create if it doesn't already exist.) 
+</ParamField>
+
+<ParamField path="apiUrl" type="string" default="https://platform.flatfile.com/api">
+  The endpoint used to interact with the Flatfile API
+</ParamField>
+
+<ParamField path="baseUrl" type="string" default="https://spaces.flatfile.com">
+  The base URL for accessing the Flatfile Spaces API.
+</ParamField>
+
+<ParamField path="exitTitle" type="string" default="Close Window">
+  The title on the dialog that appears when exiting out of Flatfile. 
+</ParamField>
+
+<ParamField path="exitText" type="string" default="See below">
+  The text on the dialog that appears when exiting out of Flatfile. 
+
+  Default: "Are you sure you would like to close this window? This will end your current data import session."
+</ParamField>
+
+### space
+
+To reuse an existing Space, we'll update our files to pass in a Space Id. We'll then make a server-side request using our `secretKey` to get the Space and its access token. 
+
+<Warning>Unlike the `publishableKey`, the `secretKey` shouldn't be passed through the browser as it will have full access. This is why we are showing this example in a server-side call</Warning>
+
+#### Install packages
+
+<CodeGroup>
+
+```npm npm
+npm install @flatfile/api@latest dotenv express cors parcel
+```
+
+```yarn yarn
+yarn add @flatfile/api@latest dotenv express cors parcel
+```
+</CodeGroup>
+
+#### Get a Space
+
+<CodeGroup>
+
+
+```html public/index.html
+<button class="contrast" onclick="openFlatfile()">
+    Open existing Space
+</button>
+```
+
+```js src/client.js
+window.openFlatfile = () => {
+  fetch(server_url + "/space") // Make a request to the server endpoint
+    .then((response) => response.json())
+    .then((space) => {
+      const flatfileOptions = {
+        space: {
+          id: space && space.data && space.data.id,
+          accessToken: space && space.data && space.data.accessToken,
+        },
+        displayAsModal: false,
+      };
+      initializeFlatfile(flatfileOptions);
+    })
+    .catch((error) => {
+      console.error("Error retrieving space in client:", error);
+    });
+};
+```
+
+```js src/server.mjs
+import dotenv from "dotenv";
+import express from "express";
+import { FlatfileClient } from "@flatfile/api";
+import cors from "cors"; // Import the cors module
+
+dotenv.config();
+
+const app = express();
+const port = 8080;
+
+const flatfile = new FlatfileClient({
+  token: process.env.SECRET_KEY,
+  environment: process.env.BASE_URL + "/v1",
+});
+
+// Enable CORS middleware
+app.use(cors());
+
+app.get("/", (req, res) => {
+  res.send("Hello, world!");
+});
+
+app.get("/space", async (req, res) => {
+  try {
+    const space = await flatfile.spaces.get(process.env.SPACE_ID);
+    res.json(space);
+  } catch (error) {
+    console.error("Error retrieving space:", error);
+    res.status(500).json({ error: "Failed to retrieve space" });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+```
+
+```json .env
+SECRET_KEY=sk_1234
+BASE_URL=https://platform.flatfile.com/api
+SPACE_ID=us_sp_123
+```
+
+```json package.json
+{
+  "name": "",
+  "version": "",
+  "description": "",
+  "scripts": {
+    "start": "parcel public/index.html",
+    "server": "node src/server.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "@flatfile/api": "1.5.15",
+    "@flatfile/javascript": "0.1.1",
+    "cors": "^2.8.5",
+    "express": "4.18.2",
+    "parcel": "2.8.3"
+  },
+  "devDependencies": {
+    "@parcel/resolver-default": "^2.9.3",
+    "buffer": "^5.7.1",
+    "crypto-browserify": "^3.12.0",
+    "events": "^3.3.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "url": "^0.11.1"
+  }
+}
+```
+
+</CodeGroup>
+
+### displayAsModal
+
+Toggling off this property will update the wrapper css to make the iframe fully inline thereby hiding the close button. All of the child divs will no longer include: `.flatfile_displayAsModal` which removes all the dialog styling.
+
+The default width and height of the container can be overriden in style.css.
+
+```css style.css
+.flatfile_iframe-wrapper {
+  min-width: 768px;
+  min-height: 600px;
+  width: 992px;
+  height: 600px;
+}
+```
+
+
+
+## Example Project
+
+Find an example project in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card title="create-flatfile-javascript" icon="js" href="https://github.com/FlatFilers/create-flatfile-javascript">
+  Clone the Flatfile Javascript tutorial here.
+  </Card>
+</CardGroup>
