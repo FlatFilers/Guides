@@ -1,14 +1,10 @@
 <CodeGroup>
 
 ```javascript node
-import { FlatfileClient } from "@flatfile/api";
+import flatfile from "@flatfile/api";
 import fs from "fs";
 
 const stream = fs.createReadStream("/path/to/file");
-
-const flatfile = new FlatfileClient({
-  token: "sk_test_123",
-});
 
 try {
   flatfile.spaces.create({
@@ -17,7 +13,7 @@ try {
     autoConfigure: true,
   });
 } catch (eror) {
-  console.error(error);
+  console.error(JSON.stringify(error, null, 2));
 }
 ```
 

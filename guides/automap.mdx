@@ -8,7 +8,7 @@ icon: "bolt-auto"
 
 A key component of Flatfile's headless automation workflow is our the automapping functionality provided by our [Automap Plugin](../plugins/automations/automap).
 
-Upon uploading a file, after file extraction is complete, the data needs to be mapped to our destination Workbook. In non-headless environment a human might do this manually. But in a headless environment we'll automate this process.
+Upon uploading a file, after file extraction is complete, the data needs to be mapped to a destination Workbook. In non-headless environment a human might do this manually. But in a headless environment we'll automate this process.
 
 We'll use Automap to this for us.
 
@@ -16,81 +16,26 @@ We'll use Automap to this for us.
 
 First, add the plugin to your project.
 
-<CodeGroup>
-
-```npm npm
-npm install @flatfile/plugin-automap
-```
-
-```yarn yarn
-yarn add @flatfile/plugin-automap
-```
-
-</CodeGroup>
+<Snippet file="guides/automap/block1.mdx" />
 
 ### Configure
 
-Next, configure the plugin. Chose an accuracy level, a default target sheet, and a regex expression to test incoming files.
+Next, configure the plugin. Choose an accuracy level, a default target sheet, and a regex expression to test incoming files.
 
 **accuracy:** either `confident` or `exact` \
 **defaultTargetSheet:** the name of the sheet you want to map to \
 **matchFilename:** regex that will match on incoming files
 
-<CodeGroup>
-
-```jsx javascript
-import { Client, FlatfileEvent } from "@flatfile/listener";
-import { automap } from "@flatfile/plugin-automap";
-
-export default function flatfileEventListener(listener) {
-  listener.use(
-    automap({
-      accuracy: "confident",
-      defaultTargetSheet: "Contact",
-      matchFilename: /^.*-contacts\.csv$/,
-    })
-  );
-}
-```
-
-```jsx typescript
-import { Client, FlatfileEvent } from "@flatfile/listener";
-import { automap } from "@flatfile/plugin-automap";
-
-export default function flatfileEventListener(listener: Client) {
-  listener.use(
-    automap({
-      accuracy: "confident",
-      debug: true,
-      defaultTargetSheet: "Contact",
-      matchFilename: /test.csv$/g,
-      onFailure: (event: FlatfileEvent) => {
-        console.error(
-          `Failed to automap! Please visit https://spaces.flatfile.com/space/${event.context.spaceId}/files?mode=import to manually import file.`
-        );
-      },
-    })
-  );
-}
-```
-
-</CodeGroup>
+<Snippet file="guides/automap/block2.mdx" />
 <br></br>
 <Note>
-  Note you may also set optional `debug` and `onFailure` configurations.
+  Note you may also set `debug` to true for useful error messages in devlopment.
 </Note>
 
 ### Deploy and watch it work
 
 Add your configured listener to your project and deploy it to Flatfile.
 
-```terminal
-> npx flatfile deploy
-
-✔  Code package compiled to .flatfile/build.js
-✔  Code package passed validation
-✔  Environment "Default" selected
-✔  Event listener deployed and running on your environment "Default". us_ag_1234
-```
+<Snippet file="guides/automap/block3.mdx" />
 
 Upload a file and head over to your dashboard to see your you data auto mapped and ready to use!
