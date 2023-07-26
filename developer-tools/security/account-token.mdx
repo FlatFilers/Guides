@@ -20,7 +20,7 @@ Your `publishableKey` and `secretKey` are specific to an environment therefore, 
 4. Using the key pair, call the auth endpoint:
 
 ```ssh
-curl -X POST https://api.x.flatfile.run/v1/auth -H 'Content-Type: application/json' -d '{"clientId":"1234-1234", "secret":"1234-1234"}'
+curl -X POST https://platform.flatfile.com/v1/auth -H 'Content-Type: application/json' -d '{"clientId":"1234-1234", "secret":"1234-1234"}'
 ```
 
 5. The response will include an `accessToken`. Present that as your **Bearer `token`** in place of the `secretKey`.
