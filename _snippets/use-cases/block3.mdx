@@ -1,0 +1,65 @@
+<CodeGroup>
+
+```javascript node
+import { FlatfileClient } from "@flatfile/api";
+const nodemailer = require("nodemailer");
+const fs = require("fs");
+const util = require("util");
+
+const flatfile = new FlatfileClient({
+  token: "sk_test_123",
+});
+
+export default function (listener) {
+  listener.filter({ job: "sheet:submitAction" }, (configure) => {
+    configure.on("job:ready", async (event) => {
+      const { jobId, sheetId } = event.context;
+      try {
+        await flatfile.jobs.ack(jobId, {
+          info: "Starting job...",
+          progress: 10,
+        });
+
+        const csv = await flatfile.sheets.getRecordsAsCsv(sheetId, "contacts");
+
+        const transporter = nodemailer.createTransport({
+          service: "Gmail",
+          auth: {
+            user: "email@gmail.com",
+            pass: "EMAIL_PASSWORD",
+          },
+        });
+
+        const mailOptions = {
+          from: "email@gmail.com",
+          to: "email@gmail.com",
+          subject: "Processed Data",
+          text: "Flatfile export attached.",
+          attachments: [
+            {
+              filename: `${sheetId}.csv`,
+              content: csv,
+            },
+          ],
+        };
+
+        const sendMail = util.promisify(transporter.sendMail.bind(transporter));
+        await sendMail(mailOptions);
+
+        if (callback.success) {
+          await flatfile.jobs.complete(jobId, {
+            info: "Job completed successfully.",
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        await flatfile.jobs.fail(jobId, {
+          info: "Job failed to run correctly.",
+        });
+      }
+    });
+  });
+}
+```
+
+</CodeGroup>

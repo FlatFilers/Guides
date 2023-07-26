@@ -1,0 +1,29 @@
+<CodeGroup>
+
+```javascript node
+import fs from "fs";
+const stream = fs.createReadStream("/path/to/file");
+
+try {
+  flatfile.files.upload(readStream, {
+    spaceId: "us_spa_123",
+    environmentId: "us_env_123",
+  });
+} catch (eror) {
+  console.error(error);
+}
+```
+
+```shell curl
+
+curl --request POST \
+  --url https://platform.flatfile.com/v1/files \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
+  --header 'Content-Type: multipart/form-data' \
+  --form spaceId="us_spa_123" \
+  --form file="@/path/to/file"
+
+```
+
+</CodeGroup>

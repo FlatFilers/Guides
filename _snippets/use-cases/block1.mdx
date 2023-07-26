@@ -1,0 +1,38 @@
+<CodeGroup>
+
+```javascript node
+import { FlatfileClient } from "@flatfile/api";
+import fs from "fs";
+
+const stream = fs.createReadStream("/path/to/file");
+
+const flatfile = new FlatfileClient({
+  token: "sk_test_123",
+});
+
+try {
+  flatfile.spaces.create({
+    name: "My Space",
+    environmentId: "us_env_123",
+    autoConfigure: true,
+  });
+} catch (eror) {
+  console.error(error);
+}
+```
+
+```shell curl
+
+curl --request POST \
+  --url https://platform.flatfile.com/v1/spaces \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer sk_test_123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "environmentId": "us_env_123",
+  "name": "My Space",
+  "autoConfigure": true,
+}'
+```
+
+</CodeGroup>
