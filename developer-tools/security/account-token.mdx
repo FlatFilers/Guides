@@ -1,0 +1,46 @@
+---
+title: "Personal Access Token"
+description: "Learn how to authenticate above the Environment level."
+icon: "key-skeleton-left-right"
+---
+
+<Snippet file="shared/dxpbanner.mdx"/>
+
+You can leverage your admin API key (personal access token) to query items outside of specific environments. This opens up possibilities for various use cases, including building audit logs, managing Spaces, and monitoring agents across environments.
+
+
+## Retrieving a Personal Access Token
+
+Your `publishableKey` and `secretKey` are specific to an environment therefore, to interact at a higher level, you'll have to use a personal access token.
+
+1. From the dashboard, open **Settings**
+2. Click to **Personal Tokens**
+3. Retrieve your `clientId` and `secret`.
+
+4. Using the key pair, call the auth endpoint:
+
+```ssh
+curl -X POST https://platform.flatfile.com/v1/auth -H 'Content-Type: application/json' -d '{"clientId":"1234-1234", "secret":"1234-1234"}'
+```
+
+5. The response will include an `accessToken`. Present that as your **Bearer `token`** in place of the `secretKey`.
+
+## Retrieving Account-Level Objects
+
+With the obtained `accessToken`, you can use it as a Bearer token in place of the `secretKey` to perform account-level queries. This allows you to access to every object across the Account.
+
+By using the admin API key, you can query for all events across all environments, list all users and guests, determine the number of Spaces and their presence in different environments, and identify environments with agents deployed.
+
+## Example Use Cases
+
+### Building an Audit Log
+
+Query for all events across all environments and combine them with user and guest data to create a comprehensive audit log, providing a detailed history of actions within the application.
+
+### Managing Spaces Across Environments
+
+Determine the number of Spaces available and identify which Spaces exist in different environments, allowing you to efficiently manage and organize your data.
+
+### Monitoring Agents Across Environments
+
+Keep track of agents deployed to various environments by retrieving information about their presence, ensuring smooth and efficient data import processes.
