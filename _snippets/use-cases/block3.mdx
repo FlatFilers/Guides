@@ -1,14 +1,11 @@
 <CodeGroup>
 
 ```javascript node
-import { FlatfileClient } from "@flatfile/api";
-const nodemailer = require("nodemailer");
-const fs = require("fs");
-const util = require("util");
-
-const flatfile = new FlatfileClient({
-  token: "sk_test_123",
-});
+import flatfile from "@flatfile/api";
+import listener from "@flatfile/listener";
+import nodemailer from "nodemailer";
+import fs from "fs";
+import util from "util";
 
 export default function (listener) {
   listener.filter({ job: "sheet:submitAction" }, (configure) => {
@@ -46,13 +43,10 @@ export default function (listener) {
         const sendMail = util.promisify(transporter.sendMail.bind(transporter));
         await sendMail(mailOptions);
 
-        if (callback.success) {
-          await flatfile.jobs.complete(jobId, {
-            info: "Job completed successfully.",
-          });
-        }
+        await flatfile.jobs.complete(jobId, {
+          info: "Job completed successfully.",
+        });
       } catch (error) {
-        console.error(error);
         await flatfile.jobs.fail(jobId, {
           info: "Job failed to run correctly.",
         });
