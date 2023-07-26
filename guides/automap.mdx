@@ -4,48 +4,15 @@ description: "Learn how to automatically map your data fields."
 icon: "bolt-auto"
 ---
 
-## Overview
-
-Remove the need for a human in the middle with Flatfile's flexible platform tooling. With Flatfile's powerful headless data import capabilities, you can seamlessly integrate data import functionality into your applications and workflows without requiring manual intervention.
-
-Headless automation allows your systems to interact with Flatfile programmatically, eliminating the need for end-users to manually handle data imports. This ensures a smooth and efficient data onboarding process, making it perfect for scenarios where large volumes of data need to be processed automatically and swiftly.
-
 ### Usage
 
-This step by step guide will walk you through the process of configuring Flatfile to work in a headless mode. We'll cover the following topics:
+A key component of Flatfile's headless automation workflow is our the automapping functionality provided by our [Automap Plugin](../plugins/automations/automap).
 
-[Configure a destination Workbook](#configure-a-destination-workbook) |
-[Configure extraction](#configure-extraction) |
-[Automate mapping](#automate-mapping) |
-[Automate validation and transformation](#automate-validation-and-transformation) |
+Upon uploading a file, after file extraction is complete, the data needs to be mapped to our destination Workbook. In non-headless environment a human might do this manually. But in a headless environment we'll automate this process.
 
-### Configure a destination Workbook
+We'll use Automap to this for us.
 
-First, we'll need to create a Workbook. This will be the destination for the data in our Files once it is extracted and automapped. Each Workbook is defined by a <Tooltip tip="A collection of fields...">[Blueprint](../blueprint/overview)</Tooltip> and created within a <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip>. You can think of a Space as a micro-application, each has it's own database and configurations.
-
-<Info>
-  In these examples, we'll reference the Workbook from the [Quickstart
-  guide](/quickstart/meet-the-workbook#building-your-first-workbook).
-</Info>
-
-### Configure extraction
-
-Next, we'll configure extraction. In this scenario we'll be uploading our contact data as a CSV file. Flatfile immediately extracts these to a Workbook, so we don't need to configure anything further.
-
-<Note>
-  If you're uploading a different file type, you'll need to configure a listener
-  to handle extraction. Listen for a `file:created` event and run your
-  subsequent extraction logic as an asynchronous{" "}
-  <Tooltip>[Job](../concepts/jobs)</Tooltip>. See our{" "}
-  <Tooltip>[Extractor Plugins](../plugins/extractors)</Tooltip> for plug and
-  play options or build your own.
-</Note>
-
-### Automate mapping
-
-After extraction is complete, we'll need to map the ingress data to our destination Workbook.
-
-Here we will use Flatfile's <Tooltip>[Automap Plugin](../plugins/automations/automap)</Tooltip> to automatically map our file's data fields to the fields configured on our Workbook.
+### Install
 
 First, add the plugin to your project.
 
@@ -61,13 +28,13 @@ yarn add @flatfile/plugin-automap
 
 </CodeGroup>
 
-Then configure your mapping options:
+### Configure
+
+Next, configure the plugin. Chose an accuracy level, a default target sheet, and a regex expression to test incoming files.
 
 **accuracy:** either `confident` or `exact` \
 **defaultTargetSheet:** the name of the sheet you want to map to \
 **matchFilename:** regex that will match on incoming files
-
-Here's an example:
 
 <CodeGroup>
 
@@ -108,90 +75,14 @@ export default function flatfileEventListener(listener: Client) {
 ```
 
 </CodeGroup>
-#
+<br></br>
 <Note>
   Note you may also set optional `debug` and `onFailure` configurations.
 </Note>
 
-### Automate validation and transformation
+### Deploy and watch it work
 
-Once Automap has automatically matched our file's data fields to the fields in our Workbook, we can extend our automations to include data validation and transformation.
-
-Say we want to ensure that every contact has a full name field; we can leverage Flatfile's <Tooltip>[Event](../concepts/events)</Tooltip>-driven system to transform our ingress data during import.
-
-First, add the <Tooltip>[Record Hook Plugin](../plugins/transform/record-hook)</Tooltip> to your project.
-
-<CodeGroup>
-
-```npm npm
-npm install @flatfile/plugin-record-hook
-```
-
-```yarn yarn
-yarn add @flatfile/plugin-record-hook
-```
-
-</CodeGroup>
-
-Then configure your listener to perform the transformation you would like to execute.
-
-In our example, we set a new our new field and add a helpful comment about the transformation:
-
-<CodeGroup>
-
-```jsx javascript
-import { recordHook } from "@flatfile/record-hooks";
-
-listener.use(
-  recordHook("Contact", (record, event) => {
-    const firstName = record.get("firstName");
-    const lastName = record.get("lastName");
-
-    if (firstName && lastName && !record.get("fullName")) {
-      const fullName = `${firstName} ${lastName}`;
-      record.set("fullName", fullName);
-
-      record.addComment(
-        "fullName",
-        "fullName was populated from firstName and lastName."
-      );
-    }
-
-    return record;
-  })
-);
-```
-
-```jsx typescript
-import { recordHook } from "@flatfile/record-hooks";
-
-listener.use(
-  recordHook("Contact", (record: FlatfileRecord, event: FlatfileEvent) => {
-    const firstName = record.get("firstName");
-    const lastName = record.get("lastName");
-
-    if (firstName && lastName && !record.get("fullName")) {
-      const fullName = `${firstName} ${lastName}`;
-      record.set("fullName", fullName);
-
-      record.addComment(
-        "fullName",
-        "fullName was populated from firstName and lastName."
-      );
-    }
-
-    return record;
-  })
-);
-```
-
-</CodeGroup>
-
-For further information se our <Tooltip>[Data Handling](../guides/handling-data)</Tooltip> Guide.
-
-By configuring our listener to automate data mapping as well as any validation and transformations we need, we can ensure that our data is always clean and ready to be used, without a human in the middle.
-
-Finally let's deploy this using our <Tooltip>[CLI](../developer-tools/cli)</Tooltip>.
+Add your configured listener to your project and deploy it to Flatfile.
 
 ```terminal
 > npx flatfile deploy
@@ -202,29 +93,4 @@ Finally let's deploy this using our <Tooltip>[CLI](../developer-tools/cli)</Tool
 ✔  Event listener deployed and running on your environment "Default". us_ag_1234
 ```
 
-### Watch it work
-
-We've set up our headless system up to to extract, map, and transform our data. So let's drop a file into our system and see this all work together.
-
-You can chose to upload your file however you wish. Common automated use cases include: cron jobs, cloud functions, or scripts that target our API.
-
-We'll upload our file via API. Simply copy the cURL command below and add your secret key and the path to your file. Or you can head over to your dashboard and drop the file in directly.
-
-You can use <Tooltip>[this](april-contacts.csv)</Tooltip> file to test.
-
-<CodeGroup>
-
-```shell curl
-
-curl --request POST \
-  --url https://platform.flatfile.com/v1/files \
-  --header 'Accept: application/json' \
-  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
-  --header 'Content-Type: multipart/form-data' \
-  --form file=@/path/to/file.csv
-
-```
-
-</CodeGroup>
-
-Once the file is accepted head over to your dashboard to see it extracted, mapped, validated/transformed and ready to use!
+Upload a file and head over to your dashboard to see your you data auto mapped and ready to use!
