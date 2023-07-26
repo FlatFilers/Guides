@@ -34,7 +34,7 @@ yarn add @flatfile/react@latest
 
 Create a Workbook to configure your Space.
 
-```js config.ts
+```js src/config.ts
 import { Flatfile } from '@flatfile/api'
 
 export const config: Pick<
@@ -106,7 +106,7 @@ npm i @flatfile/plugin-record-hook
 
 #### Build the listener
 
-```js listener.ts
+```js src/listener.ts
 import { recordHook } from "@flatfile/plugin-record-hook";
 import api from "@flatfile/api"
 import { FlatfileListener } from "@flatfile/listener"; 
@@ -164,7 +164,7 @@ Now that we have our configuration defined in our Workbook, and our Event handle
 The `useSpace` hook will create a Space component and pass it the configuration and listener as options:
 
 <CodeGroup>
-```js app.ts
+```js src/App.tsx
 import { useSpace, ISpace, makeTheme } from '@flatfile/react'
 import { config } from './config.ts'
 import { listener } from './listener.ts'
@@ -207,7 +207,7 @@ return (
 When closing the Flatfile iframe, end users will see a dialog asking them if they are sure they want to exit. To style this dialog to match your application, add a `style.css` file to your public folder and link to it from `index.html`, also in the public folder.
 
 <CodeGroup>
-```css style.css
+```css public/style.css
 @font-face {
   font-family: sans-serif;
   font-weight: 700;
@@ -239,7 +239,7 @@ body {
 
 ```
 
-```html index.html
+```html public/index.html
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -288,21 +288,76 @@ The `src` directory contains the main components and logic of the application, i
 
 `useSpace` takes the following options:
 
-| Name             | Description                                                               | Type                    | Required |
-| ---------------- | ------------------------------------------------------------------------- | ----------------------- | -------- |
-| `name`           | Name of the Space                                                             | string                  | No       |
-| `publishableKey` | Publishable key accessed via Flatfile dashboard > Developer               | string                  | Yes      |
-| `environmentId`  | Environment ID accessed via Flatfile dashboard > Developer                                               | string                  | Yes      |
-| [workbook](#part-1-build-a-workbook)       | Shape of data you will be receiving                                       | Flatfile.WorkbookConfig | Yes      |
-| [listener](#build-the-listener)        | Event listener for responding to Events                                | Listener                  | No       |
-| [closeSpace](#closespace)    | Options for when to close the iframe and a callback function when session is complete | operation: string, onClose: (data: any) => void | No       |
-| [error](#error)          | Error element to display if component throws an error                              | (error: Error \| string) => React.ReactElement | No       |
-| [spaceInfo](#spaceinfo)      | Additional metadata to be passed to the space                              |  ISpaceInfo | No       |
-| [iframeStyles](#iframestyles)   | Styles the iframe using CSS Properties                                     | React.CSSProperties     | No       |
-| [themeConfig](#themeconfig)    | Theme determining the look and feel of the Space                            | IThemeConfig            | No       |
-| [sidebarConfig](#sidebarconfig)  | Options for show or hide various UI elements                               | ISidebarConfig          | No       |
-| [document](#document)       | Document to pass to space                                                 | Flatfile.DocumentConfig | No       |
-| [loading](#loading)       | Loading element to display while space loads                              | React.ReactElement      | No       |
+<ParamField path="publishableKey" type="string" required>
+  Publishable key accessed via Flatfile dashboard > Developer settings.
+</ParamField>
+
+<ParamField path="name" default="Embedded Space" type="string">
+  Name of the Space. [Learn More](#name)
+</ParamField>
+
+<ParamField path="environmentId" type="string">
+  Environment ID accessed via Flatfile dashboard > Developer settings.
+</ParamField>
+
+<ParamField path="workbook" type="Flatfile.WorkbookConfig" required>
+  Shape of data you will be receiving. [Learn More](#part-1-build-a-workbook)
+</ParamField>
+
+<ParamField path="listener" type="Listener">
+  Event listener for responding to Events. 
+  
+  [Learn More](#build-the-listener)
+</ParamField>
+
+<ParamField path="closeSpace" type="operation: string, onClose: (data: any) => void">
+  Options for when to close the iframe and a callback function when the session is complete. 
+  
+  [Learn More](#closespace)
+</ParamField>
+
+<ParamField path="error" type="(error: Error | string) => React.ReactElement">
+  Error element to display if the component throws an error. 
+  
+  [Learn More](#error)
+</ParamField>
+
+<ParamField path="spaceInfo" type="ISpaceInfo">
+  Additional metadata to be passed to the space. 
+  
+  [Learn More](#spaceinfo)
+</ParamField>
+
+<ParamField path="iframeStyles" type="React.CSSProperties">
+  Styles the iframe using CSS Properties. 
+  
+  [Learn More](#iframestyles)
+</ParamField>
+
+<ParamField path="themeConfig" type="IThemeConfig">
+  Theme determining the look and feel of the Space. 
+  
+  [Learn More](#themeconfig)
+</ParamField>
+
+<ParamField path="sidebarConfig" type="ISidebarConfig">
+  Options for show or hide various UI elements. 
+  
+  [Learn More](#sidebarconfig)
+</ParamField>
+
+<ParamField path="document" type="Flatfile.DocumentConfig">
+  Document to pass to space. 
+  
+  [Learn More](#document)
+</ParamField>
+
+<ParamField path="loading" type="React.ReactElement">
+  Loading element to display while space loads. 
+  
+  [Learn More](#loading)
+</ParamField>
+
 
 ### closeSpace
 
@@ -500,3 +555,13 @@ const space = useSpace({
 ### loading
 
 We provide a default loading state when the Space is loading. You can also pass a custom loading component using the `loading` prop.
+
+## Example Project
+
+Find an example project in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card title="create-flatfile-react" icon="react" href="https://github.com/FlatFilers/create-flatfile-react">
+  Clone the Flatfile React tutorial here.
+  </Card>
+</CardGroup>
