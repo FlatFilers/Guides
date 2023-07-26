@@ -117,9 +117,9 @@
           "group": "Embed in your app",
           "icon": "person-to-portal",
           "pages": [
-            "use-cases/embed/overview",
-            "use-cases/embed/javascript/guide",
-            "use-cases/embed/react/guide"
+            "use-cases/embedding/overview",
+            "use-cases/embedding/javascript/guide",
+            "use-cases/embedding/react/guide"
           ]
         },
         "use-cases/headless",
