@@ -4,10 +4,6 @@ description: Securely and easily build an embedded Flatfile import experience in
 icon: "react"
 ---
 
-Embed React is a front-end SDK wrapper around the [Flatfile API](https://reference.flatfile.com/docs/api/). It allows you to securely and easily add an embedded data import experience, also known as a [Space](/concepts/spaces), to any React app.
-
-Using an iframe, Embed React seamlessly integrates into your website or application, providing a simple yet robust experience for collecting and transforming data from your customers.
-
 ## Before you begin
 
 <Snippet file="shared/account_needed.mdx" />
@@ -98,7 +94,7 @@ In the event listener below, first we will use Flatfile's record hook plugin to 
 
 Since we have a defined "Submit" action in our Workbook, next we utilize the Event listener to determine the method by which we want to submit records.
 
-<Warning>While a client-side listener will be able to handle a lot of the interaction and updates in the browser, there may be operations it can't perform due to these limitations. For tasks that need to access server resources or capabilities, a server-side listener will also be required. [Learn more](../developer-tools/client_server_side)</Warning>
+<Warning>While a client-side listener will be able to handle a lot of the interaction and updates in the browser, there may be operations it can't perform due to these limitations. For tasks that need to access server resources or capabilities, a server-side listener will also be required. [Learn more](../../../developer-tools/client_server_side)</Warning>
 
 #### Install the plugin
 
@@ -392,7 +388,7 @@ const space = useSpace({
 
 #### Option 2: Manual CSS overrides
 
-If you prefer to set colors manually using the actual CSS variables referenced in the app, you can construct the theme yourself using our [Theming Reference](../guides/theming).
+If you prefer to set colors manually using the actual CSS variables referenced in the app, you can construct the theme yourself using our [Theming Reference](../../../guides/theming).
 
 ```typescript
 const theme = {
@@ -432,7 +428,7 @@ const space = useSpace({
 
 ### sidebarConfig
 
-See [Sidebar Reference](../guides/guest_sidebar) to learn the options for the sidebar. You can also hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+See [Sidebar Reference](../../../guides/guest_sidebar) to learn the options for the sidebar. You can also hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
 
 <Note>If multiple values are provided for defaultPage, it with prioritize in the following order: Sheet, Workbook, Document, Checklist.</Note>
 
@@ -468,7 +464,7 @@ const space = useSpace({
 
 ### document
 
-[Documents](../guides/documents), written in Markdown, provide extra clarification and instructions to users of
+[Documents](../../../guides/documents), written in Markdown, provide extra clarification and instructions to users of
 a Space. Each Document will appear in the sidebar of a Space. Standard syntax is
 supported.
 
