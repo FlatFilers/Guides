@@ -1,51 +1,227 @@
 ---
-title: "Setup headless file feeds"
-description: "Learn how to create adaptable data connections."
+title: "Automate with headless"
+description: "Learn how to configure Flatfile to deliver a completely automated data import experience."
 icon: "bolt-auto"
 ---
 
-File feeds are one of the most common ways to exchange batches of data on a regular basis. 
-One key challenge for a traditional file feed, however, is its inflexibility.
+File feeds are one of the most common ways to exchange batches of data on a regular basis.
+One key challenge for a traditional feed, however, is its inflexibility.
 If anything changes about the way source data is extracted, or the destination schema is configured, the feed is all but guaranteed to break.
 
-Flatfile offers an alternative way to think about file feeds: as adaptable data connections that leverage a human in the loop, when necessary.
+With Flatfile's powerful headless data import capabilities, you can seamlessly integrate a headless but _adaptable_ data connection into your system.
 
 ## How it works
 
-### Upload files
-Because of Flatfile's Event-driven architecture, it's easy to set up a <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip> as a destination for any incoming files. 
-You can write a cron job, Lambda function, or Python script that targets the Space with incoming files. 
+You can achieve a fully automated data exchange between systems in just three steps:
 
-### Extract data from files
-You can listen for `file:created` and subsequently trigger any custom extraction logic. Extractions are <Tooltip tip="Large asynchronous work...">[Job](../concepts/jobs)</Tooltip> that process asyncronously.
+[Automate ingress](#automate-ingress) \
+Implement a flexible data pipeline that seamlessly uploads files to Flatfile without manual intervention, streamlining the process of data intake.
 
-(Note: CSVs uploaded to Flatfile will always be immediately extracted to a raw Workbook.)
+[Flatfile processing](#flatfile-processing) \
+Within the Flatfile Platform, build a comprehensive configuration that enables automated extraction, mapping, validation, and transformation of your data.
+
+[Automate egress](#automate-egress) \
+Finally, leverage Flatfile's [Event](../concepts/events) driven system to automatically export the processed and transformed data from Flatfile to the designated destination system, eliminating the need for manual exporting and ensuring a continuous flow of data to the intended location.
+
+## Automate ingress
+
+Data comes from many sources, and Flatfile can handle them all. Set up automatic feeds via cron job, cloud function, or any other method that works for your business.
+
+All ingress proceses will leverage either our [API](../api/overview) or our [SDKs](../sdk/overview).
+
+First, configure our ingress destination. Our files will be contained in a Space. You can think of a <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip> as a micro-application, each has it's own database and configurations.
+
+<CodeGroup>
+
+```javascript node
+import { FlatfileClient } from "@flatfile/api";
+import fs from "fs";
+
+const stream = fs.createReadStream("/path/to/file");
+
+const flatfile = new FlatfileClient({
+  token: "sk_test_123",
+});
+
+try {
+  flatfile.spaces.create({
+    name: "My Space",
+    environmentId: "us_env_123",
+    autoConfigure: true,
+  });
+} catch (eror) {
+  console.error(error);
+}
+```
+
+```shell curl
+
+curl --request POST \
+  --url https://platform.flatfile.com/v1/spaces \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer sk_test_123' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "environmentId": "us_env_123",
+  "name": "My Space",
+  "autoConfigure": true,
+}'
+```
+
+</CodeGroup>
+<br></br>
+<Note>
+  Our deployed agent will automatically configure this space. For more
+  information on how to configure a space, see our [Dynamic
+  Configurations](...guides/dynamic-configurations#configuring-a-new-space).
+</Note>
+
+Next, we'll upload our file to Flatfile.
+
+<CodeGroup>
+
+```javascript node
+import fs from "fs";
+const stream = fs.createReadStream("/path/to/file");
+
+try {
+  flatfile.files.upload(readStream, {
+    spaceId: "us_spa_123",
+    environmentId: "us_env_123",
+  });
+} catch (eror) {
+  console.error(error);
+}
+```
+
+```shell curl
+
+curl --request POST \
+  --url https://platform.flatfile.com/v1/files \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
+  --header 'Content-Type: multipart/form-data' \
+  --form spaceId="us_spa_123" \
+  --form file="@/path/to/file"
+
+```
+
+</CodeGroup>
+
+## Flatfile Processing
+
+### Extract incoming data
+
+Incoming CSV files are automatically extracted to a <Tooltip tip="A collection of data...">[Workbook](../concepts/workbooks)</Tooltip>.
+
+However, if you're sending a different file type, you'll need to configure a listener to handle extraction. Listen for a `file:created` event and run your subsequent extraction logic as an asynchronous [Job](../concepts/jobs).
+
+<Note>
+  See our [Extractor Plugins](../plugins/extractors) for plug and play options
+  or build your own.
+</Note>
 
 ### Automate mapping
-Mapping in Flatfile is a unique type of Job. Each mapping execution is driven by a Job Plan that is progressively improved over time. 
-After the first couple of Files are mapped to a particular <Tooltip tip="A Data Definition Language...">[Blueprint](../blueprint/overview)</Tooltip>, Flatfile will automatically suggest field and category-level mappings.
-While listening for an extraction Job to complete, you can poll the Space for the most recently used Job Plan and then execute a mapping Job.
 
-### Automate validation and transformation
-Similarly, validation and pre-configured transformation operations can run immediately on `records:created` and `records:updated`.
+Once our file are being automatically uploaded and extracted, we'll need to atomate the mapping of our data to our destination schema. Our Automap Plugin will automatically map the data, matching based on configureable options. See our [Automap Guide](../guides/automap) for more information.
 
-### Automate an egress Job
-Finally, you can configure a Job to run immediately after any validation / transformation is completed in a Workbook. 
-You could choose to egress all data regardless of its validity. Another option is to only egress `valid` data and notify the appropriate user that attention is needed on any `invalid` data.
+### Validate & Transform
 
-(Suggestion: You can also have the Job set a timestamp for the most recent data sync using the `metadata` object. 
-This gives you a consistent point-in-time reference for your syncing logic.)
+Similarly, validation and pre-configured transformation operations can run immediately on `records:created` and `records:updated`. See our [Data Handling Guide](../guides/handling-data) for more information.
 
+### Automate egress
+
+Now that we've leveraged the power of the Flatfile platform to extract, map, validate, and transform our data, we can automate the egress of our data to our destination system.
+
+We'll listen on the `sheet:submitAction` event, set in our Dynamically Configured Space, and run our egress logic as an asynchronous [Job](../concepts/jobs). Here's an example where we automate emailing the processed data.
+
+<CodeGroup>
+
+```javascript node
+import { FlatfileClient } from "@flatfile/api";
+const nodemailer = require("nodemailer");
+const fs = require("fs");
+const util = require("util");
+
+const flatfile = new FlatfileClient({
+  token: "sk_test_123",
+});
+
+export default function (listener) {
+  listener.filter({ job: "sheet:submitAction" }, (configure) => {
+    configure.on("job:ready", async (event) => {
+      const { jobId, sheetId } = event.context;
+      try {
+        await flatfile.jobs.ack(jobId, {
+          info: "Starting job...",
+          progress: 10,
+        });
+
+        const csv = await flatfile.sheets.getRecordsAsCsv(sheetId, "contacts");
+
+        const transporter = nodemailer.createTransport({
+          service: "Gmail",
+          auth: {
+            user: "email@gmail.com",
+            pass: "EMAIL_PASSWORD",
+          },
+        });
+
+        const mailOptions = {
+          from: "email@gmail.com",
+          to: "email@gmail.com",
+          subject: "Processed Data",
+          text: "Flatfile export attached.",
+          attachments: [
+            {
+              filename: `${sheetId}.csv`,
+              content: csv,
+            },
+          ],
+        };
+
+        const sendMail = util.promisify(transporter.sendMail.bind(transporter));
+        await sendMail(mailOptions);
+
+        if (callback.success) {
+          await flatfile.jobs.complete(jobId, {
+            info: "Job completed successfully.",
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        await flatfile.jobs.fail(jobId, {
+          info: "Job failed to run correctly.",
+        });
+      }
+    });
+  });
+}
+```
+
+</CodeGroup>
+<br></br>
+<Note>
+  Egress Jobs may need to leverage Flatfile Secrets as credentails for outgoing connections. See our [Secrets Guide](../guides/secrets) for more information.
+</Note>
 
 ## Additional paths
 
 To find the additional Flatfile integration paths that may work better for your business, explore our other use cases:
 
 <CardGroup cols={2}>
-    <Card title="Embed in your app" icon="person-to-portal" href="/use-cases/embedding" >
+  <Card
+    title="Embed in your app"
+    icon="person-to-portal"
+    href="/use-cases/embedding"
+  >
     Securely and easily add an embedded import experience to any app.
   </Card>
-  <Card title="Run onboarding projects" icon="arrow-progress" href="collaborate">
+  <Card
+    title="Run onboarding projects"
+    icon="arrow-progress"
+    href="collaborate"
+  >
     Collaborate across teams on large data onboarding projects.
   </Card>
 </CardGroup>
