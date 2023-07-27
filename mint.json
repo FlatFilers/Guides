@@ -74,10 +74,10 @@
   "navigation": [
     {
       "group": "Documentation",
-      "pages": ["overview"]
+      "pages": ["overview", "starter-projects"]
     },
     {
-      "group": "Quickstart",
+      "group": "Beginner Tutorial",
       "pages": [
         "quickstart/meet-the-workbook",
         "quickstart/add-data-transformation",

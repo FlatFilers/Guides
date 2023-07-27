@@ -63,6 +63,7 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
         </div>
       </div>
     </div>
+
   </body>
 </html>
 ```
@@ -78,7 +79,7 @@ import { initializeFlatfile } from "@flatfile/javascript";
 //create a new space in modal
 window.openFlatfile = (publishableKey) => {
   const flatfileOptions = {
-    publishableKey
+    publishableKey,
     // Additional props...
   };
 
@@ -88,7 +89,7 @@ window.openFlatfile = (publishableKey) => {
 
 ### Part 3: Override Styles
 
-The css here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog and the dialog wrapper. Theming the Flatfile application is done [here](../../../guides/theming). 
+The css here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog and the dialog wrapper. Theming the Flatfile application is done [here](../../../guides/theming).
 
 ```css public/style.css
 /* Styles for home page */
@@ -203,7 +204,6 @@ body {
 .flatfile_modal-text {
   color: var(--ff-secondary-color);
 }
-
 ```
 
 ### Part 4: Review File Structure
@@ -223,7 +223,7 @@ When you're finished, your app should look something like this:
 
 In this file structure, your app should have two main directories, `public` and `src.`
 
-The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe. 
+The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
 
 The `src` directory contains the main components and logic of the application, including the "client.js" file, which initializes Flatfile and passes in available options.
 
@@ -233,35 +233,45 @@ In this step, we'll kickstart an event listener, which will await the creation o
 
 [Learn how to configure a new Space.](../../../guides/dynamic-configurations#configuring-a-new-space)
 
-<Info>If you don't want to do this yet, you can also [reuse an existing Space](#space) and simply pass that info in.</Info>
-
+<Info>
+  If you don't want to do this yet, you can also [reuse an existing
+  Space](#space) and simply pass that info in.
+</Info>
 
 ## Properties
 
 `initializeFlatfile` takes the following options:
 
 <ParamField path="publishableKey" type="string">
-  Publishable key accessed via Flatfile dashboard > Developer settings.
-  Required if not passing in an existing Space.
+  Publishable key accessed via Flatfile dashboard > Developer settings. Required
+  if not passing in an existing Space.
 </ParamField>
 
 <ParamField path="space" type="{id: string, accessToken: string}">
-  Pass in an existing Space instead of creating a new one each time.
-  
-  [Learn More](#space)
+  Pass in an existing Space instead of creating a new one each time. [Learn
+  More](#space)
 </ParamField>
 
 <ParamField path="displayAsModal" type="boolean" default="true">
   Display Flatfile as a full screen modal or inline on the page.
 
-  [Learn More](#inline)
+[Learn More](#inline)
+
 </ParamField>
 
-<ParamField path="mountElement" type="string" default="flatfile_iFrameContainer">
-  The element Flatfile will mount to. (Will create if it doesn't already exist.) 
+<ParamField
+  path="mountElement"
+  type="string"
+  default="flatfile_iFrameContainer"
+>
+  The element Flatfile will mount to. (Will create if it doesn't already exist.)
 </ParamField>
 
-<ParamField path="apiUrl" type="string" default="https://platform.flatfile.com/api">
+<ParamField
+  path="apiUrl"
+  type="string"
+  default="https://platform.flatfile.com/api"
+>
   The endpoint used to interact with the Flatfile API
 </ParamField>
 
@@ -270,20 +280,25 @@ In this step, we'll kickstart an event listener, which will await the creation o
 </ParamField>
 
 <ParamField path="exitTitle" type="string" default="Close Window">
-  The title on the dialog that appears when exiting out of Flatfile. 
+  The title on the dialog that appears when exiting out of Flatfile.
 </ParamField>
 
 <ParamField path="exitText" type="string" default="See below">
-  The text on the dialog that appears when exiting out of Flatfile. 
+  The text on the dialog that appears when exiting out of Flatfile.
 
-  Default: "Are you sure you would like to close this window? This will end your current data import session."
+Default: "Are you sure you would like to close this window? This will end your current data import session."
+
 </ParamField>
 
 ### space
 
-To reuse an existing Space, we'll update our files to pass in a Space Id. We'll then make a server-side request using our `secretKey` to get the Space and its access token. 
+To reuse an existing Space, we'll update our files to pass in a Space Id. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
 
-<Warning>Unlike the `publishableKey`, the `secretKey` shouldn't be passed through the browser as it will have full access. This is why we are showing this example in a server-side call</Warning>
+<Warning>
+  Unlike the `publishableKey`, the `secretKey` shouldn't be passed through the
+  browser as it will have full access. This is why we are showing this example
+  in a server-side call
+</Warning>
 
 #### Install packages
 
@@ -296,17 +311,15 @@ npm install @flatfile/api@latest dotenv express cors parcel
 ```yarn yarn
 yarn add @flatfile/api@latest dotenv express cors parcel
 ```
+
 </CodeGroup>
 
 #### Get a Space
 
 <CodeGroup>
 
-
 ```html public/index.html
-<button class="contrast" onclick="openFlatfile()">
-    Open existing Space
-</button>
+<button class="contrast" onclick="openFlatfile()">Open existing Space</button>
 ```
 
 ```js src/client.js
@@ -424,14 +437,16 @@ The default width and height of the container can be overriden in style.css.
 }
 ```
 
-
-
 ## Example Project
 
-Find an example project in the Flatfile GitHub repository.
+Find the Javascript example project in the Flatfile GitHub repository.
 
 <CardGroup cols={2}>
-  <Card title="create-flatfile-javascript" icon="js" href="https://github.com/FlatFilers/create-flatfile-javascript">
-  Clone the Flatfile Javascript tutorial here.
+  <Card
+    title="create-flatfile-javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-javascript"
+  >
+    Clone the Flatfile Javascript tutorial here.
   </Card>
 </CardGroup>

@@ -35,66 +35,72 @@ yarn add @flatfile/react@latest
 Create a Workbook to configure your Space.
 
 ```js src/config.ts
-import { Flatfile } from '@flatfile/api'
+import { Flatfile } from "@flatfile/api";
 
 export const config: Pick<
   Flatfile.CreateWorkbookConfig,
-  'name' | 'sheets' | 'actions'
+  "name" | "sheets" | "actions"
 > = {
-  name: 'Employees workbook',
+  name: "Employees workbook",
   sheets: [
     {
-      name: 'Contacts',
-      slug: 'Contacts',
+      name: "Contacts",
+      slug: "Contacts",
       fields: [
         {
-          key: 'first_name',
-          type: 'string',
-          label: 'First name',
+          key: "first_name",
+          type: "string",
+          label: "First name",
           constraints: [
             {
-              type: 'required'
-            }
-          ]
+              type: "required",
+            },
+          ],
         },
         {
-          key: 'last_name',
-          type: 'string',
-          label: 'last name',
+          key: "last_name",
+          type: "string",
+          label: "last name",
           constraints: [
             {
-              type: 'unique'
-            }
-          ]
+              type: "unique",
+            },
+          ],
         },
         {
-          key: 'full_name',
-          type: 'string',
-          label: 'full name'
-        }
-      ]
-    }
+          key: "full_name",
+          type: "string",
+          label: "full name",
+        },
+      ],
+    },
   ],
   actions: [
     {
-      label: 'Submit',
-      operation: 'contacts:submit',
-      description: 'Would you like to submit your workbook?',
-      mode: 'foreground',
+      label: "Submit",
+      operation: "contacts:submit",
+      description: "Would you like to submit your workbook?",
+      mode: "foreground",
       primary: true,
-      confirm: true
-    }
-  ]
-}
+      confirm: true,
+    },
+  ],
+};
 ```
 
 ### Part 2: Handle Events
 
-In the event listener below, first we will use Flatfile's record hook plugin to automatically re-format, correct, validate, and enrich data during the data import process. 
+In the event listener below, first we will use Flatfile's record hook plugin to automatically re-format, correct, validate, and enrich data during the data import process.
 
 Since we have a defined "Submit" action in our Workbook, next we utilize the Event listener to determine the method by which we want to submit records.
 
-<Warning>While a client-side listener will be able to handle a lot of the interaction and updates in the browser, there may be operations it can't perform due to these limitations. For tasks that need to access server resources or capabilities, a server-side listener will also be required. [Learn more](../../../developer-tools/client_server_side)</Warning>
+<Warning>
+  While a client-side listener will be able to handle a lot of the interaction
+  and updates in the browser, there may be operations it can't perform due to
+  these limitations. For tasks that need to access server resources or
+  capabilities, a server-side listener will also be required. [Learn
+  more](../../../developer-tools/client_server_side)
+</Warning>
 
 #### Install the plugin
 
@@ -108,22 +114,22 @@ npm i @flatfile/plugin-record-hook
 
 ```js src/listener.ts
 import { recordHook } from "@flatfile/plugin-record-hook";
-import api from "@flatfile/api"
-import { FlatfileListener } from "@flatfile/listener"; 
+import api from "@flatfile/api";
+import { FlatfileListener } from "@flatfile/listener";
 
 async function submit(jobId: string) {
   await api.jobs.ack(jobId, {
     info: "I'm starting the job - inside client",
-    progress: 33
-  })
+    progress: 33,
+  });
 
   // hit your api here
-  await new Promise((res) => setTimeout(res, 2000))
+  await new Promise((res) => setTimeout(res, 2000));
 
   await api.jobs.complete(jobId, {
     info: "Job's work is done",
-    outcome: { next: { type: 'wait' } }
-  })
+    outcome: { next: { type: "wait" } },
+  });
 }
 
 /**
@@ -131,7 +137,6 @@ async function submit(jobId: string) {
  */
 
 export const listener = FlatfileListener.create((client) => {
-
   // Lowercases the first_name field
   client.use(
     recordHook("Contacts", (record) => {
@@ -141,18 +146,18 @@ export const listener = FlatfileListener.create((client) => {
       }
       return record;
     })
-  )
+  );
   // Waits for the submit button to be clicked
   client.on(
-    'job:ready',
+    "job:ready",
     // @ts-ignore
-    { payload: { operation: 'contacts:submit' } },
+    { payload: { operation: "contacts:submit" } },
     async (event: any) => {
-      const { context } = event
-      return submit(context.jobId)
+      const { context } = event;
+      return submit(context.jobId);
     }
-  )
-})
+  );
+});
 ```
 
 ### Part 3: Embed into your app
@@ -175,18 +180,19 @@ const ExampleApp = () => {
 const [showSpace, setShowSpace] = useState(false)
 
 const space = useSpace({
-    name: 'Embedded Space',
-    publishableKey: 'your_publishable_key',
-    environmentId: 'your_environment_id',
-    workbook: config,
-    listener: listener,
-    closeSpace: {
-      operation: 'contacts:submit',
-      onClose: () => setShowSpace(false)
-    }
+name: 'Embedded Space',
+publishableKey: 'your_publishable_key',
+environmentId: 'your_environment_id',
+workbook: config,
+listener: listener,
+closeSpace: {
+operation: 'contacts:submit',
+onClose: () => setShowSpace(false)
+}
 })
 
 return (
+
   <div style={{ padding: "16px" }}>
     <button
       onClick={() => {
@@ -234,10 +240,10 @@ body {
 }
 
 .flatfile-close-button {
-  display: block;
+display: block;
 }
 
-```
+````
 
 ```html public/index.html
 <!DOCTYPE html>
@@ -256,7 +262,8 @@ body {
     <div id="root"></div>
   </body>
 </html>
-```
+````
+
 </CodeGroup>
 
 ### Part 5: Review File Structure
@@ -279,10 +286,9 @@ When you're finished, your app should look something like this:
 
 In this file structure, your app should have two main directories, `public` and `src.`
 
-The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe. 
+The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
 
 The `src` directory contains the main components and logic of the application, including the "App.tsx" file, which represents the root component, the "config.ts" file for creating your Workbook, the "index.tsx" file, which is the entry point of your application's code, and the "listener.ts" file, which handles your specific functionality related to listening to events.
-
 
 ## Space properties
 
@@ -305,59 +311,45 @@ The `src` directory contains the main components and logic of the application, i
 </ParamField>
 
 <ParamField path="listener" type="Listener">
-  Event listener for responding to Events. 
-  
-  [Learn More](#build-the-listener)
+  Event listener for responding to Events. [Learn More](#build-the-listener)
 </ParamField>
 
-<ParamField path="closeSpace" type="operation: string, onClose: (data: any) => void">
-  Options for when to close the iframe and a callback function when the session is complete. 
-  
-  [Learn More](#closespace)
+<ParamField
+  path="closeSpace"
+  type="operation: string, onClose: (data: any) => void"
+>
+  Options for when to close the iframe and a callback function when the session
+  is complete. [Learn More](#closespace)
 </ParamField>
 
 <ParamField path="error" type="(error: Error | string) => React.ReactElement">
-  Error element to display if the component throws an error. 
-  
-  [Learn More](#error)
+  Error element to display if the component throws an error. [Learn
+  More](#error)
 </ParamField>
 
 <ParamField path="spaceInfo" type="ISpaceInfo">
-  Additional metadata to be passed to the space. 
-  
-  [Learn More](#spaceinfo)
+  Additional metadata to be passed to the space. [Learn More](#spaceinfo)
 </ParamField>
 
 <ParamField path="iframeStyles" type="React.CSSProperties">
-  Styles the iframe using CSS Properties. 
-  
-  [Learn More](#iframestyles)
+  Styles the iframe using CSS Properties. [Learn More](#iframestyles)
 </ParamField>
 
 <ParamField path="themeConfig" type="IThemeConfig">
-  Theme determining the look and feel of the Space. 
-  
-  [Learn More](#themeconfig)
+  Theme determining the look and feel of the Space. [Learn More](#themeconfig)
 </ParamField>
 
 <ParamField path="sidebarConfig" type="ISidebarConfig">
-  Options for show or hide various UI elements. 
-  
-  [Learn More](#sidebarconfig)
+  Options for show or hide various UI elements. [Learn More](#sidebarconfig)
 </ParamField>
 
 <ParamField path="document" type="Flatfile.DocumentConfig">
-  Document to pass to space. 
-  
-  [Learn More](#document)
+  Document to pass to space. [Learn More](#document)
 </ParamField>
 
 <ParamField path="loading" type="React.ReactElement">
-  Loading element to display while space loads. 
-  
-  [Learn More](#loading)
+  Loading element to display while space loads. [Learn More](#loading)
 </ParamField>
-
 
 ### closeSpace
 
@@ -399,7 +391,6 @@ const spaceInfo: ISpaceInfo = {
   name: "My Space",
 };
 ```
-
 
 ### themeConfig
 
@@ -485,7 +476,10 @@ const space = useSpace({
 
 See [Sidebar Reference](../../../guides/guest_sidebar) to learn the options for the sidebar. You can also hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
 
-<Note>If multiple values are provided for defaultPage, it with prioritize in the following order: Sheet, Workbook, Document, Checklist.</Note>
+<Note>
+  If multiple values are provided for defaultPage, it with prioritize in the
+  following order: Sheet, Workbook, Document, Checklist.
+</Note>
 
 <CodeGroup>
 ```typescript sidebarConfig
@@ -511,11 +505,11 @@ const space = useSpace({
 
 </CodeGroup>
 
-| Property            | Type                                                                           | Description                                                                      |
-| ------------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
-| `defaultPage`       | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string }, checklist?: boolean  }` | Landing page upon loading a Space. Defaults to primary Workbook.                 |
-| `showDataChecklist` | `boolean`                                                                      | Toggle data config for Space. Defaults to false.                                 |
-| `showSidebar`       | `boolean`                                                                      | Determines if a guest can see the sidebar. If the sidebar is hidden and there are multiple Workbooks in your Space, please specify the desired Workbook ID as your defaultPage. |
+| Property            | Type                                                                                                 | Description                                                                                                                                                                     |
+| ------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `defaultPage`       | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string }, checklist?: boolean  }` | Landing page upon loading a Space. Defaults to primary Workbook.                                                                                                                |
+| `showDataChecklist` | `boolean`                                                                                            | Toggle data config for Space. Defaults to false.                                                                                                                                |
+| `showSidebar`       | `boolean`                                                                                            | Determines if a guest can see the sidebar. If the sidebar is hidden and there are multiple Workbooks in your Space, please specify the desired Workbook ID as your defaultPage. |
 
 ### document
 
@@ -558,10 +552,14 @@ We provide a default loading state when the Space is loading. You can also pass 
 
 ## Example Project
 
-Find an example project in the Flatfile GitHub repository.
+Find the React example project in the Flatfile GitHub repository.
 
 <CardGroup cols={2}>
-  <Card title="create-flatfile-react" icon="react" href="https://github.com/FlatFilers/create-flatfile-react">
-  Clone the Flatfile React tutorial here.
+  <Card
+    title="create-flatfile-react"
+    icon="react"
+    href="https://github.com/FlatFilers/create-flatfile-react"
+  >
+    Clone the Flatfile React tutorial here.
   </Card>
 </CardGroup>
