@@ -31,7 +31,7 @@ All ingress processes will leverage either our [API](../api/overview) or our SDK
 
 First, configure an ingress destination. Our files will be contained in a Space. You can think of a <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip> as a micro-application, each has it's own database and configurations.
 
-<Snippet file="use-cases/block1.mdx" />
+<Snippet file="use-cases/headless/block1.mdx" />
 <br></br>
 <Note>
   Our deployed agent will automatically configure a Space. For more
@@ -41,7 +41,7 @@ First, configure an ingress destination. Our files will be contained in a Space.
 
 Next, we'll upload our file to Flatfile.
 
-<Snippet file="use-cases/block2.mdx" />
+<Snippet file="use-cases/headless/block2.mdx" />
 
 ## Flatfile Processing
 
@@ -70,7 +70,7 @@ Now that we've leveraged the power of the Flatfile platform to extract, map, val
 
 We'll listen on the `sheet:submitAction` event, set in our Dynamically Configured Space, and run our egress logic as an asynchronous [Job](../concepts/jobs). Here's an example where we automate emailing the processed data.
 
-<Snippet file="use-cases/block3.mdx" />
+<Snippet file="use-cases/headless/block3.mdx" />
 <br></br>
 <Note>
   Egress Jobs may need to leverage Flatfile Secrets as credentials for outgoing
