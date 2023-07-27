@@ -1,0 +1,58 @@
+---
+title: "@flatfile/plugin-export-workbook"
+description: "A plugin for exporting data in Flatfile to Workbooks."
+icon: "download"
+---
+
+<CardGroup cols={1}>
+    <Card title="@flatfile/plugin-export-workbook" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/export-workbook" icon="github" >
+    *currently v0.0.1*
+    <br/>
+    **Contributors**<br/>
+    Flatfile, Inc.<br/>
+    <br/>
+    **Last updated**<br/>
+    July 25, 2023
+    </Card>
+</CardGroup>
+
+
+### Overview
+
+This plugin exports data in Flatfile a Workbook. Currently, `.xlsx` is supported.
+
+
+```SSH Install
+npm i @flatfile/plugin-export-workbook
+```
+
+
+---
+
+## Import
+
+```ts
+import { exportWorkbookPlugin } from "@flatfile/plugin-export-workbook";
+```
+
+## Usage
+
+An action with the operation name of "downloadExcelWorkbook" must be configured on a Workbook (not a Sheet) in order to the plugin to be triggered.
+
+```ts
+  // ... inside Workbook configuration
+  "actions": [
+    {
+      "operation": "downloadExcelWorkbook",
+      "mode": "foreground",
+      "label": "Download Excel Workbook",
+      "description": "Downloads Excel Workbook of Data",
+      "primary": true
+    }
+  ]
+  // ...
+```
+
+```ts
+listener.use(exportWorkbookPlugin());
+```
