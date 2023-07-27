@@ -2,9 +2,7 @@
 
 ```javascript node
 import flatfile from "@flatfile/api";
-import listener from "@flatfile/listener";
 import nodemailer from "nodemailer";
-import fs from "fs";
 import util from "util";
 
 export default function (listener) {
@@ -17,7 +15,7 @@ export default function (listener) {
           progress: 10,
         });
 
-        const csv = await flatfile.sheets.getRecordsAsCsv(sheetId, "contacts");
+        const csv = await flatfile.sheets.getRecordsAsCsv(sheetId);
 
         const transporter = nodemailer.createTransport({
           service: "Gmail",
