@@ -2,9 +2,6 @@
 
 ```javascript node
 import flatfile from "@flatfile/api";
-import fs from "fs";
-
-const stream = fs.createReadStream("/path/to/file");
 
 try {
   flatfile.spaces.create({
@@ -12,7 +9,7 @@ try {
     environmentId: "us_env_123",
     autoConfigure: true,
   });
-} catch (eror) {
+} catch (error) {
   console.error(JSON.stringify(error, null, 2));
 }
 ```

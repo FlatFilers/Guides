@@ -7,11 +7,11 @@ import fs from "fs";
 const stream = fs.createReadStream("/path/to/file");
 
 try {
-  flatfile.files.upload(readStream, {
+  flatfile.files.upload(stream, {
     spaceId: "us_spa_123",
     environmentId: "us_env_123",
   });
-} catch (eror) {
+} catch (error) {
   console.error(error);
 }
 ```
@@ -21,7 +21,7 @@ try {
 curl --request POST \
   --url https://platform.flatfile.com/v1/files \
   --header 'Accept: application/json' \
-  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
+  --header 'Authorization: Bearer sk_test_123' \
   --header 'Content-Type: multipart/form-data' \
   --form spaceId="us_spa_123" \
   --form file="@/path/to/file"
