@@ -4,16 +4,15 @@ description: "Learn how to get data out of Flatfile."
 icon: "ufo"
 ---
 
-
 After your customers have imported their data, the process of transmitting that data to an external destination or network is referred to as "egress out."
 
 ## Egress via Workbook-level Action
 
-This code listens for a job event of type `workbook:submitAction` and when triggered, it retrieves the Sheets and records associated with the workbook. 
+This code listens for a job event of type `workbook:submitAction` and when triggered, it retrieves the Sheets and records associated with the workbook.
 
-It then prepares the data and sends a `POST` request to a specified webhook URL using Axios. The payload includes information about the Sheets, records, and other relevant data. 
+It then prepares the data and sends a `POST` request to a specified webhook URL using Axios. The payload includes information about the Sheets, records, and other relevant data.
 
-If the request is successful, it marks the job as complete. If there is an error, it marks the job as failed. 
+If the request is successful, it marks the job as complete. If there is an error, it marks the job as failed.
 
 #### Testing with webhook.site
 
@@ -22,3 +21,24 @@ If the request is successful, it marks the job as complete. If there is an error
 3. Next, add the following to your default export function.
 
 <Snippet file="shared/workbook_submit.mdx" />
+
+## Example Project
+
+Find the egress example in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="typescript"
+    icon="code-merge"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/egress/index.ts"
+  >
+    Clone the egress example in Typescript
+  </Card>
+  <Card
+    title="javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/egress/index.js"
+  >
+    Clone the egress example in Javascript
+  </Card>
+</CardGroup>
