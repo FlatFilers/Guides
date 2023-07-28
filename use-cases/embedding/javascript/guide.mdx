@@ -252,15 +252,21 @@ In this step, we'll kickstart an event listener, which will await the creation o
   More](#space)
 </ParamField>
 
-<ParamField path="spaceBody" type="object">
-  Pass in space options to configure a new Space. [Learn More](#space)
+<ParamField
+  path="closeSpace"
+  type="operation: string, onClose: (data: any) => void"
+>
+  Options for when to close the iframe and a callback function when the session
+  is complete. [Learn More](#closespace)
 </ParamField>
 
 <ParamField path="displayAsModal" type="boolean" default="true">
-  Display Flatfile as a full screen modal or inline on the page.
+  Display Flatfile as a full screen modal or inline on the page. [Learn More](#displayAsModal)
 
-[Learn More](#inline)
+</ParamField>
 
+<ParamField path="spaceBody" type="object">
+  Pass in space options to configure a new Space. [Learn More](#space)
 </ParamField>
 
 <ParamField
@@ -295,8 +301,9 @@ Default: "Are you sure you would like to close this window? This will end your c
 </ParamField>
 
 <ParamField path="errorTitle" type="string" default="Something went wrong">
-  The title on the dialog that appears when an unexpected error occurs when loading Flatfile.
-  Note: the error dialog will also include error details regarding the error that occurred.
+  The title on the dialog that appears when an unexpected error occurs when
+  loading Flatfile. Note: the error dialog will also include error details
+  regarding the error that occurred.
 </ParamField>
 
 ### space
@@ -431,6 +438,21 @@ SPACE_ID=us_sp_123
 
 </CodeGroup>
 
+### closeSpace
+
+```typescript
+const flatfileOptions = {
+    publishableKey,
+    //additional props
+    closeSpace = {
+      operation: "contacts:submit",
+      onClose: () => {},
+    };
+  }
+```
+
+This `onClose` callback function is called when the Action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
+
 ### displayAsModal
 
 Toggling off this property will update the wrapper css to make the iframe fully inline thereby hiding the close button. All of the child divs will no longer include: `.flatfile_displayAsModal` which removes all the dialog styling.
@@ -444,6 +466,20 @@ The default width and height of the container can be overriden in style.css.
   width: 992px;
   height: 600px;
 }
+```
+
+### spaceBody
+
+Optionally, you can pass in additional properties on the Space as it's created.
+
+```typescript
+const flatfileOptions = {
+    publishableKey,
+    //additional props
+    spaceBody = {
+      namespace: "Red",
+    };
+  }
 ```
 
 ## Example Project
