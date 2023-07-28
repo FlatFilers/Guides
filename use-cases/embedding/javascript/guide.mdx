@@ -252,6 +252,10 @@ In this step, we'll kickstart an event listener, which will await the creation o
   More](#space)
 </ParamField>
 
+<ParamField path="spaceBody" type="object">
+  Pass in space options to configure a new Space. [Learn More](#space)
+</ParamField>
+
 <ParamField path="displayAsModal" type="boolean" default="true">
   Display Flatfile as a full screen modal or inline on the page.
 
@@ -288,6 +292,11 @@ In this step, we'll kickstart an event listener, which will await the creation o
 
 Default: "Are you sure you would like to close this window? This will end your current data import session."
 
+</ParamField>
+
+<ParamField path="errorTitle" type="string" default="Something went wrong">
+  The title on the dialog that appears when an unexpected error occurs when loading Flatfile.
+  Note: the error dialog will also include error details regarding the error that occurred.
 </ParamField>
 
 ### space

@@ -166,7 +166,9 @@ Now that we have our configuration defined in our Workbook, and our Event handle
 
 #### Create a Space component
 
-The `useSpace` hook will create a Space component and pass it the configuration and listener as options:
+The `useSpace` hook configures a Space component. You many opt either to load an existing space, or create a new one. 
+
+Here's an example that creates a new space:
 
 <CodeGroup>
 ```js src/App.tsx
@@ -208,6 +210,31 @@ return (
 ```
 </CodeGroup>
 
+To reuse a space we would remove the `name`, `publishableKey`, and `workbook` parameters and add a `space` configuration.
+
+Please note the space configuration uses your `secretKey` instead of your `publishableKey`.
+
+```jsx javascript 
+const space = useSpace({
+environmentId: 'your_environment_id',
+listener: listener,
+closeSpace: {
+operation: 'contacts:submit',
+onClose: () => setShowSpace(false)
+}
+space: {
+id: 'us_sp_DrdXetPN',
+accessToken: 'sk_23ghsyuyshs7dcrty'
+}
+})
+```
+
+<Warning>
+  Unlike the `publishableKey`, the `secretKey` shouldn't be exposed in your browser. You must use an environment variable to protect your secret key.
+</Warning>
+
+For more information on the optional, required, or never used properties in either scenario please see [Property usage](#property-usage).
+
 ### Part 4: Configure the Close Dialog
 
 When closing the Flatfile iframe, end users will see a dialog asking them if they are sure they want to exit. To style this dialog to match your application, add a `style.css` file to your public folder and link to it from `index.html`, also in the public folder.
@@ -242,8 +269,7 @@ body {
 .flatfile-close-button {
 display: block;
 }
-
-````
+```
 
 ```html public/index.html
 <!DOCTYPE html>
@@ -262,7 +288,7 @@ display: block;
     <div id="root"></div>
   </body>
 </html>
-````
+```
 
 </CodeGroup>
 
@@ -350,6 +376,62 @@ The `src` directory contains the main components and logic of the application, i
 <ParamField path="loading" type="React.ReactElement">
   Loading element to display while space loads. [Learn More](#loading)
 </ParamField>
+
+<ParamField
+  path="apiUrl"
+  type="string"
+  default="https://platform.flatfile.com/api"
+>
+  The endpoint used to interact with the Flatfile API
+</ParamField>
+
+<ParamField
+  path="mountElement"
+  type="string"
+  default="flatfile_iFrameContainer"
+>
+  The element Flatfile will mount to. (Will create if it doesn't already exist.)
+</ParamField>
+
+<ParamField path="exitTitle" type="string" default="Close Window">
+  The title on the dialog that appears when exiting out of Flatfile.
+</ParamField>
+
+<ParamField path="exitText" type="string" default="See below">
+  The text on the dialog that appears when exiting out of Flatfile.
+
+Default: "Are you sure you would like to close this window? This will end your current data import session."
+
+</ParamField>
+
+<ParamField path="space" type="{id: string, accessToken: string}">
+  Pass in an existing Space instead of creating a new one each time. [Learn
+  More](#space)
+</ParamField>
+
+### Property usage
+
+| React Component Property | Create New Space           | Load Existing Space        |
+|--------------------------|----------------------------|----------------------------|
+| apiUrl                   | Optional                   | Optional                   |
+| closeSpace               | Optional                   | Optional                   |
+| document                 | Optional                   | Never used                 |
+| environmentId            | Required                   | Required                   |
+| error                    | Optional                   | Optional                   |
+| exitText                 | Optional                   | Optional                   |
+| exitTitle                | Optional                   | Optional                   |
+| iframeStyles             | Optional                   | Optional                   |
+| listener                 | Optional                   | Optional                   |
+| loading                  | Optional                   | Optional                   |
+| mountElement             | Optional                   | Optional                   |
+| name                     | Required                   | Never used                 |
+| publishableKey           | Required                   | Never used                 |
+| sidebarConfig            | Optional                   | Never used                 |
+| space                    | Never used                 | Required                   |
+| spaceInfo                | Optional                   | Never used                 |
+| themeConfig              | Optional                   | Never used                 |
+| workbook                 | Required                   | Never used                 |
+
 
 ### closeSpace
 
