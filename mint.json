@@ -111,7 +111,7 @@
     },
     {
       "group": "Use cases",
-      
+
       "pages": [
         {
           "group": "Embed in your app",
@@ -191,14 +191,15 @@
       "pages": [
         "plugins/extractors/xlsx-extractor",
         "plugins/extractors/json-extractor",
+        "plugins/extractors/xml-extractor",
+        "plugins/extractors/zip-extractor",
         "plugins/extractors/psv-extractor",
-        "plugins/extractors/pdf-extractor",
         {
           "group": "More in development",
           "icon": "clock",
           "pages": [
             "plugins/extractors/doc-extractor",
-            "plugins/extractors/zip-extractor"
+            "plugins/extractors/pdf-extractor"
           ]
         }
       ]
