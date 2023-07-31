@@ -1,20 +1,48 @@
 ---
 title: "@flatfile/plugin-zip-extractor"
 description: "A plugin for parsing .zip files in Flatfile."
-icon: "clock"
+icon: "download"
 ---
 
 <CardGroup cols={1}>
-    <Card title="@flatfile/plugin-zip-extractor" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/" icon="github" >
-    *currently in development*<br/>
-    <br/>
-    check back soon for updates
-    </Card>
+  <Card
+    title="@flatfile/plugin-zip-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/zip-extractor"
+    icon="github"
+  >
+    *currently v0.1.0*
+    <br />
+    **Contributors**
+    <br />
+    Carl Brugger
+    <br />
+    <br />
+    **Last updated**
+    <br />
+    July 31, 2023
+  </Card>
 </CardGroup>
 
 ### Overview
 
-This plugin will parse all data in a zip file and extract it into Flatfile.
+This plugin parses all Sheets in an ZIP file and extracts them into Flatfile.
 
+```SSH Install
+npm i @flatfile/plugin-zip-extractor
+```
 
 ---
+
+## Import
+
+```js
+import { zipExtractorPlugin } from "@flatfile/plugin-zip-extractor";
+```
+
+## Usage
+
+Listen for an ZIP file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
+
+```js
+listener.use(zipExtractorPlugin());
+```

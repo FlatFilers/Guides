@@ -1,0 +1,191 @@
+---
+title: "@flatfile/plugin-xml-extractor"
+description: "A plugin for parsing .xml files in Flatfile."
+icon: "download"
+---
+
+<CardGroup cols={1}>
+  <Card
+    title="@flatfile/plugin-xml-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/xml-extractor"
+    icon="github"
+  >
+    *currently v0.1.0*
+    <br />
+    **Contributors**
+    <br />
+    David Boskovic, Carl Brugger
+    <br />
+    <br />
+    **Last updated**
+    <br />
+    July 31, 2023
+  </Card>
+</CardGroup>
+
+### Overview
+
+This plugin parses all Sheets in an XML file and extracts them into Flatfile.
+
+```SSH Install
+npm i @flatfile/plugin-xml-extractor
+```
+
+---
+
+## Import
+
+```js
+import { XMLExtractorPlugin } from "@flatfile/plugin-xml-extractor";
+```
+
+## Usage
+
+Listen for an XML file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
+
+```js
+listener.use(XMLExtractorPlugin());
+```
+
+## Additional Options
+
+The extractor can accept additional properties. Props will be passed along to the Sheet.js parsing engine.
+
+```js
+listener.use(
+  XMLExtractor({
+    separator: "/",
+    attributePrefix: "#",
+    transform: (row: Record<string, any>) => {},
+  })
+);
+```
+
+### Properties
+
+#### separator
+
+<ParamField path="separator" type="string" default="/" optional>
+  The separator to use when joining or flattening nested attributes.
+</ParamField>
+
+<CodeGroup>
+```xml before
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+    <person>
+        <name>John</name>
+        <age>30</age>
+        <country>
+            <name>USA</name>
+            <code>US</code>
+        </country>
+    </person>
+</root>
+```
+
+```json after
+[
+  {
+    "name": "John",
+    "age": "30",
+    "country/name": "USA",
+    "country/code": "US"
+  }
+]
+```
+
+</CodeGroup>
+
+#### attributePrefix
+
+<ParamField path="attributePrefix" type="string" default="#" optional>
+  The prefix to use when flattening attributes of XML tags.
+</ParamField>
+
+<CodeGroup>
+```xml before
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+    <person>
+        <name>John</name>
+        <age>30</age>
+        <country code="US">USA</country>
+    </person>
+</root>
+```
+
+```json after
+[
+  {
+    "name": "John",
+    "age": "30",
+    "country": "USA",
+    "country#code": "US"
+  }
+]
+```
+
+</CodeGroup>
+
+#### transform
+
+<ParamField path="transform" type="(row) => Record<string, any>" optional>
+  A function that takes a row and returns a transformed row. This is useful for
+  adjusting the data before it is loaded into Flatfile.
+</ParamField>
+
+<CodeGroup>
+```xml before
+<?xml version="1.0" encoding="utf-8" ?>
+<root>
+    <person>
+        <name>John</name>
+        <age>30</age>
+        <country code="US">USA</country>
+    </person>
+    <person>
+        <name>Jane</name>
+        <age>25</age>
+        <country code="CA">Canada</country>
+
+    </person>
+
+</root>
+```
+
+```js listener.js
+import { XMLExtractor } from "@flatfile/plugin-xml-extractor";
+
+export default (listener) => {
+  listener.use(
+    XMLExtractor({
+      transform: (row) => {
+        return {
+          ...row,
+          age: parseInt(row.age),
+        };
+      },
+    })
+  );
+};
+```
+
+```json after
+[
+  {
+    "name": "John",
+    "age": 30,
+    "country": "USA",
+    "country#code": "US"
+  },
+  {
+    "name": "Jane",
+    "age": 25,
+    "country": "Canada",
+    "country#code": "CA"
+  }
+]
+```
+
+</CodeGroup>
