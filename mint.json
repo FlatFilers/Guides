@@ -51,21 +51,6 @@
   ],
   "anchors": [
     {
-      "name": "Blueprint",
-      "icon": "compass-drafting",
-      "url": "blueprint"
-    },
-    {
-      "name": "Plugins",
-      "icon": "plug",
-      "url": "plugins"
-    },
-    {
-      "name": "Developers",
-      "icon": "brackets-curly",
-      "url": "developer-tools"
-    },
-    {
       "name": "API Reference",
       "icon": "rectangle-terminal",
       "url": "https://reference.flatfile.com/docs/api/"
@@ -263,16 +248,20 @@
   },
   "tabs": [
     {
-      "name": "Beginner Tutorial",
-      "url": "quickstart"
-    },
-    {
       "name": "Guides",
       "url": "guides"
     },
     {
-      "name": "Concepts",
-      "url": "concepts"
+      "name": "Blueprint",
+      "url": "blueprint"
+    },
+    {
+      "name": "Plugins",
+      "url": "plugins"
+    },
+    {
+      "name": "Developers",
+      "url": "developer-tools"
     }
   ]
 }
