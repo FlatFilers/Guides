@@ -1,7 +1,7 @@
 ---
 title: "Handling data"
 description: "Learn how to process data with Data Hooks"
-icon: 'wand-sparkles'
+icon: "wand-sparkles"
 ---
 
 **Data Hooks&reg;** are concise functions that automatically **re-format**, **correct**, **validate**, and **enrich** data during the data import process. These hooks can be executed on a complete record, or row, of data using methods on the `FlatfileRecord` class.
@@ -15,11 +15,12 @@ The `FlatfileRecord` class provides methods to manipulate and interact with a re
 Listen for updates to data records, and respond with three types of record hooks: `compute`, `computeIfPresent`, and `validate`. These hooks are available as methods on the `FlatfileRecord` class.
 
 ```js
-import { recordHook, FlatfileRecord } from '@flatfile/plugin-record-hook'
+import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
 ```
 
 <Info>
-In these examples, we'll reference the Workbook from the [Quickstart guide](/quickstart/meet-the-workbook#building-your-first-workbook).
+  In these examples, we'll reference the Workbook from the [Quickstart
+  guide](/quickstart/meet-the-workbook#building-your-first-workbook).
 </Info>
 
 ## Record Hooks
@@ -31,15 +32,20 @@ Computes a new value for a field based on its original value or other field valu
 <h4>Syntax</h4>
 
 ```js
-FlatfileRecord.compute(fieldName, transformation, message)
+FlatfileRecord.compute(fieldName, transformation, message);
 ```
 
 <ParamField path="fieldName" type="string">
   The name of the field to transform.
 </ParamField>
 
-<ParamField path="transformation" type="(value, record) => string | number | boolean | null">
-  The transformation to perform on the field value. Receives the initial value of the field, as well as the entire record if you want to access other field values on the record.
+<ParamField
+  path="transformation"
+  type="(value, record) => string | number | boolean | null"
+>
+  The transformation to perform on the field value. Receives the initial value
+  of the field, as well as the entire record if you want to access other field
+  values on the record.
 </ParamField>
 
 <ParamField path="message" type="string">
@@ -66,19 +72,20 @@ listener.use(
 
 ```js typescript
 listener.use(
-  recordHook('contacts', (record: FlatfileRecord) => {
+  recordHook("contacts", (record: FlatfileRecord) => {
     record.compute(
-      'email',
+      "email",
       (email, record) => {
-        return `${record.get('firstName')}${record.get('lastName')}@gmail.com`;
+        return `${record.get("firstName")}${record.get("lastName")}@gmail.com`;
       },
       // optional
-      'Email was generated from first and last name.'
+      "Email was generated from first and last name."
     );
     return record;
   })
 );
 ```
+
 </CodeGroup>
 
 ### `FlatfileRecord.computeIfPresent`
@@ -88,15 +95,20 @@ Same as [`compute`](#flatfilerecord-compute), but only computes a new value if a
 <h4>Syntax</h4>
 
 ```js
-FlatfileRecord.computeIfPresent(fieldName, transformation, message)
+FlatfileRecord.computeIfPresent(fieldName, transformation, message);
 ```
 
 <ParamField path="fieldName" type="string">
   The name of the field to transform.
 </ParamField>
 
-<ParamField path="transformation" type="(value, record) => string | number | boolean | null">
-  The transformation to perform on the field value. Receives the initial value of the field, as well as the entire record if you want to access other field values on the record.
+<ParamField
+  path="transformation"
+  type="(value, record) => string | number | boolean | null"
+>
+  The transformation to perform on the field value. Receives the initial value
+  of the field, as well as the entire record if you want to access other field
+  values on the record.
 </ParamField>
 
 <ParamField path="message" type="string">
@@ -124,17 +136,18 @@ listener.use(
 
 ```js typescript
 listener.use(
-  recordHook('contacts', (record: FlatfileRecord) => {
+  recordHook("contacts", (record: FlatfileRecord) => {
     record.computeIfPresent(
-      'email',
+      "email",
       (email: string) => email.toLowerCase(),
       // optional
-      'Email was converted to lowercase.'
+      "Email was converted to lowercase."
     );
     return record;
   })
 );
 ```
+
 </CodeGroup>
 
 ### `FlatfileRecord.validate`
@@ -144,7 +157,7 @@ Sets a field as invalid if its value does not meet a specified condition, and di
 <h4>Syntax</h4>
 
 ```js
-validate(fieldName, validator, message)
+validate(fieldName, validator, message);
 ```
 
 <ParamField path="fieldName" type="string">
@@ -152,7 +165,9 @@ validate(fieldName, validator, message)
 </ParamField>
 
 <ParamField path="validator" type="(value, record) => boolean">
-  A function that determines whether a given field value is valid. Receives the intial value of the field, as well as the entire record if you want to access other field values on the record.
+  A function that determines whether a given field value is valid. Receives the
+  intial value of the field, as well as the entire record if you want to access
+  other field values on the record.
 </ParamField>
 
 <ParamField path="message" type="string">
@@ -177,19 +192,20 @@ listener.use(
 
 ```js typescript
 listener.use(
-  recordHook('contacts', (record: FlatfileRecord) => {
+  recordHook("contacts", (record: FlatfileRecord) => {
     record.validate(
-      'lastName',
-      (value) => typeof value === 'string' && !/\d/.test(value),
-      'Last name cannot contain numbers'
+      "lastName",
+      (value) => typeof value === "string" && !/\d/.test(value),
+      "Last name cannot contain numbers"
     );
     return record;
   })
 );
 ```
+
 </CodeGroup>
 
-## Messages 
+## Messages
 
 Attach comments, errors, and warnings to specific fields in each record. These messages provide contextual information or alerts to users who interact with the record, helping them understand any issues or actions required.
 
@@ -202,27 +218,26 @@ This method adds an information message to one or more fields in the record.
 <h4>Syntax</h4>
 
 ```jsx
-addInfo(fields, message)
+addInfo(fields, message);
 ```
 
 <ParamField path="fields" type="string | string[]">
-  Can be either a string representing a single field or an array of strings representing multiple fields
+  Can be either a string representing a single field or an array of strings
+  representing multiple fields
 </ParamField>
 
 <ParamField path="message" type="string">
   The content of the message
 </ParamField>
 
-
 <h4>Example</h4>
-```jsx
-const email = record.get("email");
-const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+```jsx const email = record.get("email"); const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 if (email !== null && validEmailAddress.test(email)) {
-  record.addInfo("email", "This email was verified.");
+record.addInfo("email", "This email was verified.");
 }
-```
+
+````
 
 ### `FlatfileRecord.addError()`
 
@@ -234,26 +249,25 @@ This method adds an error message to one or more fields in the record.
 
 ```jsx
 addError(fields, message)
-```
+````
 
 <ParamField path="fields" type="string | string[]">
-  Can be either a string representing a single field or an array of strings representing multiple fields
+  Can be either a string representing a single field or an array of strings
+  representing multiple fields
 </ParamField>
 
 <ParamField path="message" type="string">
   The content of the message
 </ParamField>
 
-
 <h4>Example</h4>
-```jsx
-const email = record.get("email");
-const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+```jsx const email = record.get("email"); const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 if (email !== null && !validEmailAddress.test(email)) {
-  record.addError("email", "This is not a valid email address.");
+record.addError("email", "This is not a valid email address.");
 }
-```
+
+````
 
 ### `FlatfileRecord.addWarning()`
 
@@ -265,25 +279,25 @@ This method adds a warning message to one or more fields in the record.
 
 ```jsx
 FlatfileRecord.addWarning(fields, message)
-```
+````
 
 <ParamField path="fields" type="string | string[]">
-  Can be either a string representing a single field or an array of strings representing multiple fields
+  Can be either a string representing a single field or an array of strings
+  representing multiple fields
 </ParamField>
 
 <ParamField path="message" type="string">
   The content of the message
 </ParamField>
 
-
 <h4>Example</h4>
-```jsx
-const email = record.get("email");
+```jsx const email = record.get("email");
 
 if (email === null) {
-  record.addWarning("email", "Without an email, we will default to name for unique id.");
+record.addWarning("email", "Without an email, we will default to name for unique id.");
 }
-```
+
+````
 
 ## Accessing an API
 
@@ -295,7 +309,7 @@ When a record is created or updated, you may need to fetch data from an API. Usi
 
 <h4>Example</h4>
 
-In this example, an API call is made to retrieve beer data, which is then used to update the record object by setting the "assignedBeer" field with a random name from the beer data. 
+In this example, an API call is made to retrieve beer data, which is then used to update the record object by setting the "assignedBeer" field with a random name from the beer data.
 
 If an error occurs, we update the `status` field to "Failed" and add an error message. The modified record is then returned from the `recordHook`.
 
@@ -330,7 +344,7 @@ listener.use(
     }
   )
 );
-```
+````
 
 ```jsx typescript
 listener.use(
@@ -353,7 +367,10 @@ listener.use(
         );
       } catch (error) {
         record.set("status", "Failed");
-        record.addError("status", "Couldn't get assigned beer data from the api.");
+        record.addError(
+          "status",
+          "Couldn't get assigned beer data from the api."
+        );
       } finally {
         // Clean up or perform any necessary actions after the try/catch block
       }
@@ -372,7 +389,7 @@ When a record is created or updated, you may need to send data to an API. Sends 
 
 <h4>Example</h4>
 
-In this example, we are making a `POST` request to a webhook endpoint using axios. We pass the payload, method, and record as the request body and handle the response. 
+In this example, we are making a `POST` request to a webhook endpoint using axios. We pass the payload, method, and record as the request body and handle the response.
 
 If the request is successful, we update the `status` field of the record to "Success" and add a comment. If an error occurs, we update the `status` field to "Failed" and add an error message. The modified record is then returned from the `recordHook`.
 
@@ -416,9 +433,11 @@ listener.use(
 
       return record;
     }
-  )
+
+)
 );
-```
+
+````
 
 ```jsx typescript
 listener.use(
@@ -460,6 +479,29 @@ listener.use(
       return record;
     }
   )
-);
-```
+)
+    ```
 </CodeGroup>
+
+
+## getLinks
+
+The `getLinks` method is a feature of the FlatfileRecord class. When a field in your record is of the Reference Field type and links to another record, getLinks can fetch those linked fields for you.
+
+### Usage
+
+When processing a record, you may find references to a related record. To retrieve the fields from the related record, use the `getLinks` method. Provide the field key of the Reference Field type, the part of the record that holds the reference to the other records, like this:
+
+```javascript
+const relatedRecords = record.getLinks('referenceFieldKey');
+````
+
+The getLinks method will then return an array containing all fields from the linked record associated with the provided 'referenceFieldKey'. If there is not a linked record associated with this field, an empty array will be returned.
+
+### Benefits
+
+Using `getLinks` provides access to all related information. It's particularly useful when you want to perform operations similar to VLOOKUPs in spreadsheets, or when you need to compare data across referenced fields.
+
+For instance, you could use `getLinks` to fetch all the fields related to a particular record and enrich your data, or compare the related records for validation.
+
+With `getLinks`, processing related datasets becomes much more manageable in Flatfile. This method provides you with an effective way to navigate, enrich, and validate your data.
