@@ -111,6 +111,7 @@
     },
     {
       "group": "Use cases",
+
       "pages": [
         {
           "group": "Embed in your app",
@@ -260,19 +261,5 @@
   },
   "search": {
     "prompt": "Ask any question (ChatGPT powered)"
-  },
-  "tabs": [
-    {
-      "name": "Beginner Tutorial",
-      "url": "quickstart"
-    },
-    {
-      "name": "Guides",
-      "url": "guides"
-    },
-    {
-      "name": "Concepts",
-      "url": "concepts"
-    }
-  ]
+  }
 }
