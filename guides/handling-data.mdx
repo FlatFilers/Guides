@@ -459,6 +459,36 @@ listener.use(
 
       return record;
     }
+
+## getLinks
+
+Certainly, let's adjust the explanation to match the style of the existing documentation:
+
+---
+
+### `getLinks` Method
+
+**Overview:**
+
+The getLinks method is a feature of the FlatfileRecord class. When a field in your record is of the Reference Field type and links to another record, getLinks can fetch those linked fields for you.
+
+**Usage:**
+
+When processing a record, you may find references to a related record. To retrieve the fields from the related record, use the `getLinks` method. Provide the field key of the Reference Field type, the part of the record that holds the reference to the other records, like this:
+
+```javascript
+const relatedRecords = record.getLinks('referenceFieldKey');
+```
+
+The getLinks method will then return an array containing all fields from the linked record associated with the provided 'referenceFieldKey'. If there is not a linked record associated with this field, an empty array will be returned.
+
+**Benefits:**
+
+Using `getLinks` provides access to all related information. It's particularly useful when you want to perform operations similar to VLOOKUPs in spreadsheets, or when you need to compare data across referenced fields.
+
+For instance, you could use `getLinks` to fetch all the fields related to a particular record and enrich your data, or compare the related records for validation.
+
+With `getLinks`, processing related datasets becomes much more manageable in Flatfile. This method provides you with an effective way to navigate, enrich, and validate your data.
   )
 );
 ```
