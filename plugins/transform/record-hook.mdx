@@ -6,21 +6,20 @@ icon: "download"
 
     <CardGroup cols={1}>
         <Card title="@flatfile/plugin-record-hook" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/record-hook" icon="github" >
-        *currently v0.1.9*
+        *currently v0.2.0*
         <br/>
         **Contributors**<br/>
         Alex Hollenbeck, Alex Rock<br/>
         <br/>
         **Last updated**<br/>
-        June 14, 2023
+        August 1, 2023
         </Card>
     </CardGroup>
 
 ### Overview
 
-This plugin exports a function named `recordHook` that sets up an Event listener for the `commit:created` Event. 
+This plugin exports a function named `recordHook` that sets up an Event listener for the `commit:created` Event.
 The purpose of this plugin is to provide a concise syntax for running custom logic on individual data records in Flatfile.
-
 
 ```SSH install
 npm i @flatfile/plugin-record-hook @flatfile/hooks
@@ -31,7 +30,7 @@ npm i @flatfile/plugin-record-hook @flatfile/hooks
 ## Import
 
 ```js
-import { FlatfileRecord, recordHook } from '@flatfile/plugin-record-hook'
+import { FlatfileRecord, recordHook } from "@flatfile/plugin-record-hook";
 import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 ```
 
@@ -72,20 +71,20 @@ Use the this plugin to set up a hook that responds to data changes:
 <CodeGroup>
 
 ```js javascript
-import { FlatfileRecord, recordHook } from '@flatfile/plugin-record-hook'
+import { FlatfileRecord, recordHook } from "@flatfile/plugin-record-hook";
 
 listener.use(
-  recordHook('my-sheet', (record, event) => {
+  recordHook("my-sheet", (record, event) => {
     // Your logic goes here
   })
 );
 ```
 
 ```js typescript
-import { FlatfileRecord, recordHook } from '@flatfile/plugin-record-hook'
+import { FlatfileRecord, recordHook } from "@flatfile/plugin-record-hook";
 
 listener.use(
-  recordHook('my-sheet', (record: FlatfileRecord, event: FlatfileEvent) => {
+  recordHook("my-sheet", (record: FlatfileRecord, event: FlatfileEvent) => {
     // Your logic goes here
   })
 );
@@ -97,13 +96,13 @@ Replace `my-sheet` with the slug of the Sheet you want to attach this hook to.
 
 ## Example usage
 
-This example sets up a record hook using listener.use to modify records 
-in the "my-sheet" sheet. 
+This example sets up a record hook using listener.use to modify records
+in the "my-sheet" sheet.
 
-When a record is processed by the hook, it checks if the "firstName" and "lastName" fields exist and if the "fullName" field is not already populated. 
-If these conditions are met, it sets the "fullName" field by concatenating the "firstName" and "lastName" values with a space in between. 
+When a record is processed by the hook, it checks if the "firstName" and "lastName" fields exist and if the "fullName" field is not already populated.
+If these conditions are met, it sets the "fullName" field by concatenating the "firstName" and "lastName" values with a space in between.
 
-Additionally, it adds a comment to the "fullName" 
+Additionally, it adds a comment to the "fullName"
 field in the user interface indicating that it was populated from the first and last name.
 
 <CodeGroup>
@@ -121,9 +120,11 @@ listener.use(
     }
 
     return record;
-  })
+
+})
 );
-```
+
+````
 
 ```js typescript
 listener.use(
@@ -141,6 +142,6 @@ listener.use(
     return record;
   })
 );
-```
-</CodeGroup>
+````
 
+</CodeGroup>
