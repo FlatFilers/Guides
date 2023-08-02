@@ -252,6 +252,11 @@ In this step, we'll kickstart an event listener, which will await the creation o
   More](#space)
 </ParamField>
 
+<Note>
+  Note: the provided space must have `guest_authentication` configured with
+  `shared_link` as an option.
+</Note>
+
 <ParamField
   path="closeSpace"
   type="operation: string, onClose: (data: any) => void"
