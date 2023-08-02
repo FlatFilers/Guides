@@ -230,6 +230,10 @@
     {
       "group": "Migrations",
       "pages": ["plugins/migrations/dxp-configure"]
+    },
+    {
+      "group": "Utils",
+      "pages": ["plugins/utils/extractor", "plugins/utils/file-buffer"]
     }
   ],
   "footerSocials": {
