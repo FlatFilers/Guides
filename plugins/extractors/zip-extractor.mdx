@@ -36,7 +36,7 @@ npm i @flatfile/plugin-zip-extractor
 ## Import
 
 ```js
-import { zipExtractorPlugin } from "@flatfile/plugin-zip-extractor";
+import { ZipExtractor } from "@flatfile/plugin-zip-extractor";
 ```
 
 ## Usage
@@ -44,5 +44,5 @@ import { zipExtractorPlugin } from "@flatfile/plugin-zip-extractor";
 Listen for an ZIP file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
 
 ```js
-listener.use(zipExtractorPlugin());
+listener.use(ZipExtractor());
 ```

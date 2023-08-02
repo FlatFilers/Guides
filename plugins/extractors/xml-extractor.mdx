@@ -36,7 +36,7 @@ npm i @flatfile/plugin-xml-extractor
 ## Import
 
 ```js
-import { XMLExtractorPlugin } from "@flatfile/plugin-xml-extractor";
+import { XMLExtractor } from "@flatfile/plugin-xml-extractor";
 ```
 
 ## Usage
@@ -44,7 +44,7 @@ import { XMLExtractorPlugin } from "@flatfile/plugin-xml-extractor";
 Listen for an XML file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
 
 ```js
-listener.use(XMLExtractorPlugin());
+listener.use(XMLExtractor());
 ```
 
 ## Additional Options
