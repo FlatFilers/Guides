@@ -1,0 +1,31 @@
+<CodeGroup>
+```js javascript
+listener.use(
+  recordHook('contacts', (record) => {
+    record.compute(
+      'email',
+      (email, record) => `${record.get('firstName')}${record.get('lastName')}@gmail.com`,
+      'Email was generated from first and last name.'
+    );
+    return record;
+  })
+);
+```
+
+```js typescript
+listener.use(
+  recordHook("contacts", (record: FlatfileRecord) => {
+    record.compute(
+      "email",
+      (email, record) => {
+        return `${record.get("firstName")}${record.get("lastName")}@gmail.com`;
+      },
+      // optional
+      "Email was generated from first and last name."
+    );
+    return record;
+  })
+);
+```
+
+</CodeGroup>

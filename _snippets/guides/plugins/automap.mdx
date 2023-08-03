@@ -1,0 +1,15 @@
+```ts
+listener.use(
+  automap({
+    accuracy: "confident",
+    defaultTargetSheet: "Contact",
+    matchFilename: /test.csv$/g,
+    onFailure: (event: FlatfileEvent) => {
+      // send an SMS, an email, post to an endpoint, etc.
+      console.error(
+        `Please visit https://spaces.flatfile.com/space/${event.context.spaceId}/files?mode=import to manually import file.`
+      );
+    },
+  })
+);
+```
