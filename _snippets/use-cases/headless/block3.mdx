@@ -6,49 +6,11 @@ import nodemailer from "nodemailer";
 import util from "util";
 
 export default function (listener) {
-  listener.filter({ job: "sheet:submitAction" }, (configure) => {
-    configure.on("job:ready", async (event) => {
-      const { jobId, sheetId } = event.context;
-      try {
-        await flatfile.jobs.ack(jobId, {
-          info: "Starting job...",
-          progress: 10,
-        });
-
-        const csv = await flatfile.sheets.getRecordsAsCsv(sheetId);
-
-        const transporter = nodemailer.createTransport({
-          service: "Gmail",
-          auth: {
-            user: "email@gmail.com",
-            pass: "EMAIL_PASSWORD",
-          },
-        });
-
-        const mailOptions = {
-          from: "email@gmail.com",
-          to: "email@gmail.com",
-          subject: "Processed Data",
-          text: "Flatfile export attached.",
-          attachments: [
-            {
-              filename: `${sheetId}.csv`,
-              content: csv,
-            },
-          ],
-        };
-
-        const sendMail = util.promisify(transporter.sendMail.bind(transporter));
-        await sendMail(mailOptions);
-
-        await flatfile.jobs.complete(jobId, {
-          info: "Job completed successfully.",
-        });
-      } catch (error) {
-        await flatfile.jobs.fail(jobId, {
-          info: "Job failed to run correctly.",
-        });
-      }
+  listener.filter({ job: "workbook:map" }, (configure) => {
+    configure.on("job:completed", async (event: FlatfileEvent) => {
+      const { data } = await api.workbooks.get(event.context.workbookId);
+      const apiKey = await event.secrets("api_key");
+      // Automate an egress for your data, integrating with your existing sytems
     });
   });
 }

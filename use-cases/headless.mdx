@@ -27,15 +27,15 @@ Finally, leverage Flatfile's [Event](../concepts/events) driven system to automa
 
 Data comes from many sources, and Flatfile can handle them all. Set up automatic feeds via cron job, cloud function, or any other method that works for your business.
 
-All ingress processes will leverage either our [API](../api/overview) or our SDKs.
+All ingress processes will leverage either our API or our SDKs.
 
 First, configure an ingress destination. Our files will be contained in a Space. You can think of a <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip> as a micro-application, each has it's own database and configurations.
 
 <Snippet file="use-cases/headless/block1.mdx" />
 <br></br>
 <Note>
-  Our deployed agent will automatically configure a Space. For more
-  information on how to configure a Space, see our [Dynamic
+  Our deployed agent will automatically configure a Space. For more information
+  on how to configure a Space, see our [Dynamic
   Configurations](...guides/dynamic-configurations#configuring-a-new-space).
 </Note>
 
@@ -49,7 +49,7 @@ Next, we'll upload our file to Flatfile.
 
 Incoming CSV files are automatically extracted to a <Tooltip tip="A collection of data...">[Workbook](../concepts/workbooks)</Tooltip>.
 
-However, if you're sending a different file type, you'll need to configure a listener to handle extraction. Listen for a `file:created` event and run your subsequent extraction logic as an asynchronous [Job](../concepts/jobs).
+However, if you're sending a different file type, you'll need to configure a listener to handle extraction.
 
 <Note>
   See our [Extractor Plugins](../plugins/extractors) for plug and play options
@@ -58,17 +58,17 @@ However, if you're sending a different file type, you'll need to configure a lis
 
 ### Automate mapping
 
-Once our files are being automatically uploaded and extracted, we'll need to automate the mapping of our data to our destination schema. Our Automap Plugin will automatically map the data, matching based on configureable options. See our [Automap Guide](../guides/automap) for more information.
+Once our files are extracted, we'll need to automate the mapping of our data according to our schema. Our Automap Plugin will automatically map the data, matching based on configureable options. See our [Automap Guide](../guides/automap) for more information.
 
 ### Validate & Transform
 
-Similarly, validation and transformation operations can run immediately on `records:created` and `records:updated` events. See our [Data Handling Guide](../guides/handling-data) for more information.
+Similarly, validation and transformation operations can run immediately on `records:*` events with RecordHooks. See our [Data Handling Guide](../guides/handling-data) for more information.
 
 ### Automate egress
 
 Now that we've leveraged the power of the Flatfile platform to extract, map, validate, and transform our data, we can automate the egress of our data to our destination system.
 
-We'll listen on the `sheet:submitAction` event, set in our Dynamically Configured Space, and run our egress logic as an asynchronous [Job](../concepts/jobs). Here's an example where we automate emailing the processed data.
+We'll have our listener filter on the `workbook:map` job and configure it to run our egress logic on `job:completed`. Here's an example where we automate emailing the processed data.
 
 <Snippet file="use-cases/headless/block3.mdx" />
 <br></br>
@@ -76,6 +76,8 @@ We'll listen on the `sheet:submitAction` event, set in our Dynamically Configure
   Egress Jobs may need to leverage Flatfile Secrets as credentials for outgoing
   connections. See our [Secrets Guide](../guides/secrets) for more information.
 </Note>
+
+To pull a working demo of a headless integration, check out our [Example Projects](../starter-projects).
 
 ## Additional paths
 

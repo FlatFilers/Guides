@@ -9,7 +9,7 @@ export default function flatfileEventListener(listener) {
     automap({
       accuracy: "confident",
       defaultTargetSheet: "Contact",
-      matchFilename: /^.*-contacts\.csv$/,
+      matchFilename: /^.*contacts\.csv$/,
       onFailure: (event: FlatfileEvent) => {
         console.error(
           `Failed to automap! Please visit https://spaces.flatfile.com/space/${event.context.spaceId}/files?mode=import to manually import file.`

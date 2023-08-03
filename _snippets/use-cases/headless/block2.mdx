@@ -1,13 +1,11 @@
-<CodeGroup>
-
 ```javascript node
-import flatfile from "@flatfile/api";
-import fs from "fs";
+const { FlatfileClient } = require("@flatfile/api");
+const api = new FlatfileClient({ token: process.env.FLATFILE_API_KEY });
 
-const stream = fs.createReadStream("/path/to/file");
+const readStream = fs.createReadreadStream("/path/to/file");
 
 try {
-  flatfile.files.upload(stream, {
+  api.files.upload(stream, {
     spaceId: "us_spa_123",
     environmentId: "us_env_123",
   });
@@ -15,17 +13,3 @@ try {
   console.error(error);
 }
 ```
-
-```shell curl
-
-curl --request POST \
-  --url https://platform.flatfile.com/v1/files \
-  --header 'Accept: application/json' \
-  --header 'Authorization: Bearer sk_test_123' \
-  --header 'Content-Type: multipart/form-data' \
-  --form spaceId="us_spa_123" \
-  --form file="@/path/to/file"
-
-```
-
-</CodeGroup>
