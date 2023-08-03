@@ -1,0 +1,40 @@
+---
+title: "Automate with automap"
+description: "Learn how to automatically map your data fields."
+icon: "bolt-auto"
+---
+
+### Usage
+
+A key component of Flatfile's headless automation workflow is the automapping functionality provided by our [Automap Plugin](../plugins/automations/automap).
+
+Upon uploading a file, after file extraction is complete, the data needs to be mapped to a destination Workbook. In a non-headless environment a human might do this manually. But in a headless environment, we'll automate this process.
+
+We'll use Automap to do this for us.
+
+### Install
+
+First, add the plugin to your project.
+
+<Snippet file="guides/automap/block1.mdx" />
+
+### Configure
+
+Next, configure the plugin. Choose an accuracy level, a default target sheet, and a regex expression to test incoming files.
+
+**accuracy:** either `confident` or `exact` \
+**defaultTargetSheet:** the name of the sheet you want to map to \
+**matchFilename:** regex that will match on incoming files
+
+<Snippet file="guides/automap/block2.mdx" />
+<br></br>
+<Note>
+  Note you may also set `debug` to true for useful error messages in
+  development.
+</Note>
+
+### Deploy and watch it work
+
+Add your configured listener to your project and deploy it to Flatfile.
+
+<Snippet file="guides/automap/block3.mdx" />
