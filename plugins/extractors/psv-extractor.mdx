@@ -4,45 +4,111 @@ description: "A plugin for parsing .psv files in Flatfile."
 icon: "download"
 ---
 
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
+
 <CardGroup cols={1}>
   <Card
     title="@flatfile/plugin-psv-extractor"
-    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/psv-extractor"
     icon="github"
   >
-    *currently v1.3.0*
-    <br />
-    **Contributors**
-    <br />
-    Ashley Mulligan, Eric Crane
-    <br />
-    <br />
-    **Last updated**
-    <br />
-    August 2, 2023
+    The `@flatfile/plugin-psv-extractor` package is a plugin for parsing .psv files and extracting them into Flatfile. It utilizes various libraries to parse PSV files and retrieve the structured data efficiently.
+    <br/>
+    <br/>
+    **Event Type:**<br/>`listener.on('file:created')`
+    <br/>
+    **Supported file types:**<br/>`.psv`
+
   </Card>
 </CardGroup>
 
-### Overview
+## Parameters
 
-This plugin parses all Sheets in an PSV file and extracts them into Flatfile.
+<ParamField path="dynamicTyping" type="boolean" default="false">
+  If `true`, numeric and boolean data will be converted to their type instead of
+  remaining strings. Numeric data must conform to the definition of a decimal
+  literal. Numerical values greater than 2^53 or less than -2^53 will not be
+  converted to numbers to preserve precision. European-formatted numbers must
+  have commas and dots swapped.
+</ParamField>
 
-```SSH Install
-npm i @flatfile/plugin-psv-extractor
-```
+<ParamField path="skipEmptyLines" type="boolean | 'greedy'">
+  If `true`, lines that are completely empty (those which evaluate to an empty
+  string) will be skipped. If set to `greedy`, lines that don't have any content
+  (those which have only whitespace after parsing) will also be skipped.
+</ParamField>
 
----
+<ParamField path="transform" type="function">
+  A function to apply on each value. The function receives the value as an
+  argument The return value of the function will replace the value it received.
+  The transform function is applied before `dynamicTyping`.
+</ParamField>
 
-## Import
+## API Calls
 
-```js
-import { PSVExtractor } from "@flatfile/plugin-psv-extractor";
-```
+- `api.files.download`
+- `api.files.get`
+- `api.files.update`
+- `api.jobs.ack`
+- `api.jobs.complete`
+- `api.jobs.create`
+- `api.jobs.fail`
+- `api.jobs.update`
+- `api.records.insert`
+- `api.workbooks.create`
+
+## Imported NPM Packages
+
+- [`@flatfile/delimiter-extractor`](../plugins/extractors/delimiter-extractor) is a generic extractor for extracting and parsing delimited data from various file formats and sources.
 
 ## Usage
 
 Listen for an PSV file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
 
-```js
+```SSH install
+npm i @flatfile/plugin-psv-extractor
+```
+
+```js import
+import { PSVExtractor } from "@flatfile/plugin-psv-extractor";
+```
+
+```js listener.js
 listener.use(PSVExtractor());
 ```
+
+### Full Example
+
+In this example, the PSVExtractor is initialized with optional options, and then registered as middleware with the Flatfile listener. When a PSV file is uploaded, the plugin will extract the structured data and process it using the extractor's parser.
+
+```javascript
+import { PSVExtractor } from "@flatfile/psv-extractor";
+
+// Define optional options for the extractor (e.g., { dynamicTyping: true })
+const options = {
+  dynamicTyping: true,
+  skipEmptyLines: true,
+  transform: (value) => value.toUpperCase(),
+};
+
+// Initialize the PSV extractor
+const psvExtractor = PSVExtractor(options);
+
+// Register the extractor as a middleware for the Flatfile listener
+listener.use(psvExtractor);
+
+// When a PSV file is uploaded, the data will be extracted and processed using the extractor's parser.
+```
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-psv-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/psv-extractor"
+    icon="github"
+  ></Card>
+</CardGroup>
