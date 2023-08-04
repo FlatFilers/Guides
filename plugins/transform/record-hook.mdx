@@ -188,15 +188,15 @@ export default async function (listener) {
     recordHook(
       'my-sheet',
       (record) => {
-        const email = r.get('email') as string
+        const email = record.get('email') as string
         if (!email) {
           console.log('Email is required')
-          r.addError('email', 'Email is required')
+          record.addError('email', 'Email is required')
         }
         const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (email !== null && !validEmailAddress.test(email)) {
           console.log('Invalid email address')
-          r.addError('email', 'Invalid email address')
+          record.addError('email', 'Invalid email address')
         }
         return record
       },
@@ -215,15 +215,15 @@ export default async function (listener: FlatfileListener) {
     recordHook(
       'contacts',
       (record: FlatfileRecord) => {
-        const email = r.get('email') as string
+        const email = record.get('email') as string
         if (!email) {
           console.log('Email is required')
-          r.addError('email', 'Email is required')
+          record.addError('email', 'Email is required')
         }
         const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (email !== null && !validEmailAddress.test(email)) {
           console.log('Invalid email address')
-          r.addError('email', 'Invalid email address')
+          record.addError('email', 'Invalid email address')
         }
         return record
       }
