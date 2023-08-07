@@ -196,7 +196,7 @@
     },
     {
       "group": "Automation",
-      "pages": ["plugins/automations/automap"]
+      "pages": ["plugins/automations/automap", "plugins/automations/dedupe"]
     },
     {
       "group": "Export",

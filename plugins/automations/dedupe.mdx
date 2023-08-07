@@ -1,0 +1,90 @@
+---
+title: "@flatfile/plugin-dedupe"
+description: "Dedupe records in a sheet via a sheet level custom action."
+icon: "download"
+---
+
+<CardGroup cols={1}>
+    <Card title="@flatfile/plugin-dedupe" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/dedupe" icon="github" >
+    *currently v0.0.1*
+    <br/>
+    **Contributors**<br/>
+    Flatfile, Inc.<br/>
+    <br/>
+    **Last updated**<br/>
+    Aug 7, 2023
+    </Card>
+</CardGroup>
+
+
+### Overview
+
+This plugin dedupes records in a sheet via a sheet level custom action.
+
+
+```SSH Install
+npm i @flatfile/plugin-dedupe
+```
+
+
+---
+
+## Import
+
+```ts
+import { dedupePlugin } from "@flatfile/plugin-dedupe";
+```
+
+## Usage
+
+An action with the operation name of "dedupe-email" must be configured on a Sheet in order to the plugin to be triggered.
+
+```ts
+// ... inside Workbook configuration
+"actions": [
+  {
+    "operation": "dedupe-email",
+    "mode": "background",
+    "label": "Dedupe emails",
+    "description": "Remove duplicate emails"
+  }
+]
+// ...
+```
+
+```ts
+// common usage
+// Keep the last record encountered (from top to bottom) based on the`email` field key.
+// Must have a Sheet level action specified with the operation name `dedupe-email`
+listener.use(
+  dedupePlugin("dedupe-email", {
+    on: "email",
+    keep: "last",
+  }),
+);
+
+// user specified dedupe function using RemedaJS
+// must return a list a record id's for deletion
+listener.use(
+  dedupePlugin("dedupe-email", {
+    custom: (records: Flatfile.RecordsWithLinks) => {
+      let uniques = new Set();
+
+      return R.pipe(
+        records,
+        R.reduce((acc, record) => {
+          const { value } = record.values["email"];
+
+          if (uniques.has(value)) {
+            return [...acc, record.id];
+          } else {
+            uniques.add(value);
+
+            return acc;
+          }
+        }, [] as Array<string>),
+      );
+    },
+  }),
+);
+```
