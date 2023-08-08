@@ -192,11 +192,11 @@
     },
     {
       "group": "Transform",
-      "pages": ["plugins/transform/record-hook", "plugins/transform/autocast"]
+      "pages": ["plugins/transform/record-hook", "plugins/transform/autocast", "plugins/transform/dedupe"]
     },
     {
       "group": "Automation",
-      "pages": ["plugins/automations/automap", "plugins/automations/dedupe"]
+      "pages": ["plugins/automations/automap"]
     },
     {
       "group": "Export",
