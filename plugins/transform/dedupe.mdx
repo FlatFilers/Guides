@@ -4,40 +4,78 @@ description: "Dedupe records in a sheet via a sheet level custom action."
 icon: "download"
 ---
 
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
+
 <CardGroup cols={1}>
-    <Card title="@flatfile/plugin-dedupe" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/dedupe" icon="github" >
-    *currently v0.0.1*
-    <br/>
-    **Contributors**<br/>
-    Flatfile, Inc.<br/>
-    <br/>
-    **Last updated**<br/>
-    Aug 7, 2023
-    </Card>
+  <Card
+    title="@flatfile/plugin-dedupe"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/dedupe"
+    icon="github"
+  >
+    <br />
+    This plugin dedupes records in a sheet via a sheet level custom action.
+    <br />
+    <br />
+    **Event Type:**
+    <br />
+    `listener.on('job:ready')`
+  </Card>
 </CardGroup>
 
+## Parameters
 
-### Overview
+<ParamField path="jobOperation" type="string" required>
+  The `jobOperation` parameter specifies the name of the job operation to match
+  on.
+</ParamField>
 
-This plugin dedupes records in a sheet via a sheet level custom action.
+<ParamField path="opt.on" type="string">
+  The `on` parameter specifieds which field key to match on.
+</ParamField>
 
+<ParamField path="opt.keep" type="'first' | 'last'">
+  The `keep` option lets you choose whether to keep the first or last duplicate
+  record.
+</ParamField>
 
-```SSH Install
-npm i @flatfile/plugin-dedupe
-```
+<ParamField path="opt.custom" type="function">
+  The `custom` parameter accepts a custom dedupe function. This will override
+  the `keep` parameter.
+</ParamField>
 
+<ParamField path="opt.debug" type="boolean">
+  The `debug` parameter lets you toggle on/off helpful debugging messages for
+  development purposes.
+</ParamField>
 
----
+## API Calls
 
-## Import
+- `api.records.get`
+- `api.jobs.ack`
+- `api.records.delete`
+- `api.jobs.fail`
+- `api.jobs.complete`
 
-```ts
-import { dedupePlugin } from "@flatfile/plugin-dedupe";
-```
+## Imported NPM Packages
+
+- [`ts-pattern`](https://www.npmjs.com/package/ts-pattern) The exhaustive Pattern Matching library for TypeScript with smart type inference.
+- [`remeda`](https://www.npmjs.com/package/remeda) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
 
 ## Usage
 
 An action with the operation name of "dedupe-email" must be configured on a Sheet in order to the plugin to be triggered.
+
+```SSH install
+npm i @flatfile/plugin-dedupe
+```
+
+```js import
+import { dedupePlugin } from "@flatfile/plugin-dedupe";
+```
 
 ```ts
 // ... inside Workbook configuration
@@ -52,7 +90,44 @@ An action with the operation name of "dedupe-email" must be configured on a Shee
 // ...
 ```
 
-```ts
+<CodeGroup>
+```js listener.js
+// common usage
+// Keep the last record encountered (from top to bottom) based on the`email` field key.
+// Must have a Sheet level action specified with the operation name `dedupe-email`
+listener.use(
+  dedupePlugin("dedupe-email", {
+    on: "email",
+    keep: "last",
+  })
+);
+
+// user specified dedupe function using RemedaJS
+// must return a list a record id's for deletion
+listener.use(
+  dedupePlugin("dedupe-email", {
+    custom: (records) => {
+      let uniques = new Set();
+      return R.pipe(
+        records,
+        R.reduce((acc, record) => {
+          const { value } = record.values["email"];
+
+          if (uniques.has(value)) {
+            return [...acc, record.id];
+          } else {
+            uniques.add(value);
+
+            return acc;
+          }
+        }, [] as Array<string>)
+      );
+    },
+  })
+);
+```
+
+```ts listener.ts
 // common usage
 // Keep the last record encountered (from top to bottom) based on the`email` field key.
 // Must have a Sheet level action specified with the operation name `dedupe-email`
@@ -88,3 +163,15 @@ listener.use(
   }),
 );
 ```
+
+</CodeGroup>
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-dedupe"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/dedupe"
+    icon="github"
+  ></Card>
+</CardGroup>
