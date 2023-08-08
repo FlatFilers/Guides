@@ -5,40 +5,24 @@ icon: "download"
 ---
 
 <CardGroup cols={1}>
-  <Card title="@flatfile/plugin-dxp-configure" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/dxp-configure" icon="github" >
-      *currently v0.0.5*
-      <br/>
-      **Author**<br/>
-      David Boskovic<br/>
-      <br/>
-      **Last updated**<br/>
-      June 14, 2023
-    </Card>
-  </CardGroup>
-
-### Overview
-
-This plugin lets you easily attach your implementation of the class-based schema configuration library `@flatfile/configure` to `@flatfile/listener`.
-
-
-```SSH Install
-npm i @flatfile/plugin-dxp-configure
-```
-
-
----
-
-## Import
-
-```js
-import { dxpConfigure } from '@flatfile/plugin-dxp-configure'
-```
+  <Card title="@flatfile/plugin-dxp-configure" icon="download">
+    The `@flatfile/plugin-dxp-configure` plugin lets you easily attach your
+    implementation of the class-based schema configuration library
+    `@flatfile/configure` to `@flatfile/listener`.
+  </Card>
+</CardGroup>
 
 ## Usage
 
 You can simply attach any existing workbook configuration you have to a listener and it'll automatically apply to your next Space.
 
-`listener`
+```SSH install
+npm i @flatfile/plugin-dxp-configure
+```
+
+```js import
+import { dxpConfigure } from "@flatfile/plugin-dxp-configure";
+```
 
 <CodeGroup>
 ```js listener.js
@@ -51,34 +35,43 @@ export default (listener) => {
 ```
 
 ```js listener.ts
-import { MyWorkbook } from './my-dxp-workbook.js'
-import { dxpConfigure } from '@flatfile/plugin-dxp-configure'
+import { MyWorkbook } from "./my-dxp-workbook.js";
+import { dxpConfigure } from "@flatfile/plugin-dxp-configure";
 import { FlatfileListener } from "@flatfile/listener";
 
 export default (listener: FlatfileListener) => {
-  listener.use(dxpConfigure(MyWorkbook))
-}
+  listener.use(dxpConfigure(MyWorkbook));
+};
 ```
 
 </CodeGroup>
 
-`my-dxp-workbook`
-```js 
-import { Sheet, TextField, Workbook } from '@flatfile/configure'
+```js my-dxp-workbook.js
+import { Sheet, TextField, Workbook } from "@flatfile/configure";
 
 export const MyWorkbook = new Workbook({
-  name: 'My Workbook',
-  namespace: 'test',
+  name: "My Workbook",
+  namespace: "test",
   sheets: {
-    mySheet: new Sheet('Test', {
-      name: TextField('Full Name'),
+    mySheet: new Sheet("Test", {
+      name: TextField("Full Name"),
       email: TextField({
-        name: 'Email Address',
+        name: "Email Address",
         compute: (val) => {
-          return val.toLowerCase()
+          return val.toLowerCase();
         },
       }),
     }),
   },
-})
+});
 ```
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-dxp-configure"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/dxp-configure"
+    icon="github"
+  ></Card>
+</CardGroup>

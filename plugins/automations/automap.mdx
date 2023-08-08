@@ -4,46 +4,67 @@ description: "A plugin to provide automapping imported files for headless workfl
 icon: "download"
 ---
 
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
+
 <CardGroup cols={1}>
-  <Card
-    title="@flatfile/plugin-automap"
-    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/automap"
-    icon="github"
-  >
-    *currently v0.0.2*
-    <br />
-    **Contributors**
-    <br />
-    David Boskovic, Hans Hoffman
-    <br />
-    <br />
-    **Last updated**
-    <br />
-    July 12, 2023
+  <Card title="@flatfile/plugin-automap" icon="download">
+    The `@flatfile/plugin-automap` plugin listens for and responds to file
+    extraction jobs and then creates a mapping job for automation. Currently,
+    every field in the Job Execution plan must meet the minimum confidence level
+    specified by the `accuracy` config prop.
   </Card>
 </CardGroup>
 
-### Overview
+## Parameters
 
-This plugin listens for and responds to file extraction jobs and then creates a mapping job for automation. Currently, every field in the Job Execution plan must meet the minimum confidence level specified by the `accuracy` config prop.
+<ParamField path="accuracy" required type="string"></ParamField>
 
-```SSH Install
-npm i @flatfile/plugin-automap
-```
+<ParamField path="debug" type="boolean"></ParamField>
 
----
+<ParamField path="defaultTargetSheet" type="string"></ParamField>
 
-## Import
+<ParamField path="matchFilename" type="RegExp"></ParamField>
 
-```ts
-import { automap } from "@flatfile/plugin-automap";
-```
+<ParamField path="onFailure" type="(event: FlatfileEvent) => void"></ParamField>
+
+<ParamField path="targetWorkbook" type="string"></ParamField>
+
+## API Calls
+
+- `api.files.download`
+- `api.files.get`
+- `api.files.update`
+- `api.jobs.ack`
+- `api.jobs.complete`
+- `api.jobs.create`
+- `api.jobs.fail`
+- `api.jobs.update`
+- `api.records.insert`
+- `api.workbooks.create`
+
+## Imported NPM Packages
+
+- [`@flatfile/util-extractor`](../utils/extractor) provides utility functions for extracting and parsing data from various file formats and sources, streamlining data import processes.
+- [`remeda`](https://remedajs.com/) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
+- [`xlsx`](https://sheetjs.com/) allows for reading, writing, and manipulating Microsoft Excel files in JavaScript applications.
 
 ## Usage
 
 For automation workflows, upload a file using the `files` endpoint. For testing, you import via the Files area in the UI and use the `debug` config property.
 
+```SSH install
+npm i @flatfile/plugin-automap
+```
+
 ```ts
+import { automap } from "@flatfile/plugin-automap";
+```
+
+```ts listener.ts
 listener.use(
   automap({
     accuracy: "confident",
@@ -58,3 +79,13 @@ listener.use(
   })
 );
 ```
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-dxp-configure"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/automap"
+    icon="github"
+  ></Card>
+</CardGroup>

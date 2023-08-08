@@ -82,19 +82,21 @@ listener.use(ExcelExtractor({ rawNumbers: true }));
 
 In this example, the `ExcelExtractor` is initialized with optional options, and then registered as middleware with the Flatfile listener. When an Excel file is uploaded, the plugin will extract the structured data and process it using the extractor's parser.
 
-```javascript
+```js listener.js
 import { ExcelExtractor } from "@flatfile/xlsx-extractor";
 
-// Define optional options for the extractor (e.g., { rawNumbers: true })
-const options = { rawNumbers: true };
+export default async function (listener) {
+  // Define optional options for the extractor (e.g., { rawNumbers: true })
+  const options = { rawNumbers: true };
 
-// Initialize the Excel extractor
-const excelExtractor = ExcelExtractor(options);
+  // Initialize the Excel extractor
+  const excelExtractor = ExcelExtractor(options);
 
-// Register the extractor as a middleware for the Flatfile listener
-listener.use(excelExtractor);
+  // Register the extractor as a middleware for the Flatfile listener
+  listener.use(excelExtractor);
 
-// When an Excel file is uploaded, the data will be extracted and processed using the extractor's parser.
+  // When an Excel file is uploaded, the data will be extracted and processed using the extractor's parser.
+}
 ```
 
 ## See the code
