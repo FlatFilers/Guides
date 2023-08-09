@@ -1,27 +1,8 @@
 ---
 title: "@flatfile/plugin-xlsx-extractor"
-description: "A plugin for parsing Excel files in Flatfile."
+description: "A plugin for parsing Excel files in Flatfile"
 icon: "download"
 ---
-
-<CardGroup cols={1}>
-  <Card
-    title="@flatfile/plugin-xlsx-extractor"
-    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/xlsx-extractor"
-    icon="github"
-  >
-    *currently v1.3.0*
-    <br />
-    **Contributors**
-    <br />
-    David Boskovic, Ashley Mulligan, Carl Brugger
-    <br />
-    <br />
-    **Last updated**
-    <br />
-    August 2, 2023
-  </Card>
-</CardGroup>
 
 <Warning>
   When embedding Flatfile, this plugin should be deployed in a server-side
@@ -29,85 +10,101 @@ icon: "download"
   more](../../developer-tools/client_server_side#server-side-listeners)
 </Warning>
 
-### Overview
+<CardGroup cols={1}>
+  <Card
+    title="@flatfile/plugin-xlsx-extractor"
+    icon="download"
+  >
+    <br />
+    The `@flatfile/xlsx-extractor` plugin is designed to extract structured data from Excel files. It utilizes various libraries to parse Excel files and retrieve the structured data efficiently.
+    <br/>
+    <br/>
+    **Event Type:**<br/>`listener.on('file:created')`
+    <br/>
+    **Supported file types:**<br/>`.xls`, `.xlsx`, `.xlsm`, `.xlsb`, `.xltx`, `.xltm`
 
-The `@flatfile/xlsx-extractor` plugin is designed to extract structured data from Excel files (`.xlsx`, `.xlsm`, `.xlsb`, `.xltx`, `.xltm`, etc.). It utilizes the `@flatfile/util-extractor` utility and the powerful `xlsx` library to parse Excel files and retrieve the structured data efficiently.
+  </Card>
+</CardGroup>
 
-```SSH Install
-npm i @flatfile/plugin-xlsx-extractor
-```
+## Parameters
 
----
-
-## Import
-
-```js
-import { ExcelExtractor } from "@flatfile/plugin-xlsx-extractor";
-```
-
-## Usage
-
-Listen for an Excel file (all extensions supported) to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
-
-```js
-listener.use(ExcelExtractor());
-```
-
-## Additional Options
-
-The extractor can accept additional properties. Props will be passed along to the Sheet.js parsing engine.
-
-```js
-listener.use(ExcelExtractor({ rawNumbers: true }));
-```
-
-### Properties
-
-<ParamField path="rawNumbers" type="boolean" optional>
+<ParamField path="rawNumbers" type="boolean">
   In Excel, you could have rounding or formatting on a number cell to only
   display say 2 decimal places. By default, Flatfile will just take the
   displayed decimal places versus the raw numbers. Set this value to true to
   take the raw numbers and disregard how it’s displayed in Excel.
 </ParamField>
 
-## Under the Hood
+## API Calls
 
-### Code Breakdown
+- `api.files.download`
+- `api.files.get`
+- `api.files.update`
+- `api.jobs.ack`
+- `api.jobs.complete`
+- `api.jobs.create`
+- `api.jobs.fail`
+- `api.jobs.update`
+- `api.records.insert`
+- `api.workbooks.create`
 
-The `@flatfile/excel-extractor` plugin consists of two main files: `index.ts` and `parser.ts`. It also leverages a share utility for extraction: [@flatfile/util-extractor](../utils/extractor).
+## Imported NPM Packages
 
-Let's break down the key components of each file:
+- [`@flatfile/util-extractor`](../utils/extractor) provides utility functions for extracting and parsing data from various file formats and sources, streamlining data import processes.
+- [`remeda`](https://remedajs.com/) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
+- [`xlsx`](https://sheetjs.com/) allows for reading, writing, and manipulating Microsoft Excel files in JavaScript applications.
 
-#### **index.ts**
+## Usage
 
-- The `index.ts` file serves as the entry point for the Excel extractor plugin. It exports one function: `ExcelExtractor`.
-- `ExcelExtractor` is the main function that initializes the extractor using the `Extractor` utility from `@flatfile/util-extractor`. It takes an optional `options` object as a parameter.
-- The `Extractor` function is configured to match Excel files (`.xlsx`, `.xlsm`, `.xlsb`, `.xltx`, `.xltm`, etc.) using a regular expression. It calls the `parseBuffer` function defined in `parser.ts` to extract the data.
+Listen for an Excel file (all extensions supported) to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
 
-#### **parser.ts**
-
-- The `parser.ts` file contains the `parseBuffer` function, which is responsible for processing the Excel file buffer and returning a structured `WorkbookCapture`.
-- Inside the `parseBuffer` function, the `xlsx` library is used to read the Excel buffer and convert it into a `workbook` object.
-- The `convertSheet` function is called to convert each sheet of the workbook into a structured `SheetCapture` object containing headers, required fields, and data.
-- The `detectHeader` function analyzes rows of the sheet to detect the header row and skip unnecessary rows during extraction.
-- The `countNonEmptyCells` function is a utility to count non-empty cells in a row, which helps identify the header row.
-- The `isHeaderCandidate` function is used to determine if a row could be a header based on a simple pattern matching rule. It checks up to Row 10 for a header.
-
-## Example Usage
-
-```javascript
-import { ExcelExtractor } from "@flatfile/xlsx-extractor";
-
-// Define optional options for the extractor (e.g., { rawNumbers: true })
-const options = { rawNumbers: true };
-
-// Initialize the Excel extractor
-const excelExtractor = ExcelExtractor(options);
-
-// Register the extractor as a middleware for the Flatfile listener
-listener.use(excelExtractor);
-
-// When an Excelfile is uploaded, the data will be extracted and processed using the provided callback function.
+```SSH install
+npm i @flatfile/plugin-xlsx-extractor
 ```
 
-In this example, the ExcelExtractor is initialized with optional options, and then registered as middleware with the Flatfile listener. When an Excel file is uploaded, the plugin will extract the structured data and process it using the provided callback function.
+```js import
+import { ExcelExtractor } from "@flatfile/plugin-xlsx-extractor";
+```
+
+<CodeGroup>
+
+```js listener.js
+listener.use(ExcelExtractor());
+```
+
+```js additional options
+listener.use(ExcelExtractor({ rawNumbers: true }));
+```
+
+</CodeGroup>
+
+### Full Example
+
+In this example, the `ExcelExtractor` is initialized with optional options, and then registered as middleware with the Flatfile listener. When an Excel file is uploaded, the plugin will extract the structured data and process it using the extractor's parser.
+
+```js listener.js
+import { ExcelExtractor } from "@flatfile/xlsx-extractor";
+
+export default async function (listener) {
+  // Define optional options for the extractor (e.g., { rawNumbers: true })
+  const options = { rawNumbers: true };
+
+  // Initialize the Excel extractor
+  const excelExtractor = ExcelExtractor(options);
+
+  // Register the extractor as a middleware for the Flatfile listener
+  listener.use(excelExtractor);
+
+  // When an Excel file is uploaded, the data will be extracted and processed using the extractor's parser.
+}
+```
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-xlsx-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/xlsx-extractor"
+    icon="github"
+  ></Card>
+</CardGroup>

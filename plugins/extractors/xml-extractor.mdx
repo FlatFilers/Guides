@@ -4,66 +4,31 @@ description: "A plugin for parsing .xml files in Flatfile."
 icon: "download"
 ---
 
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
+
 <CardGroup cols={1}>
-  <Card
-    title="@flatfile/plugin-xml-extractor"
-    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/xml-extractor"
-    icon="github"
-  >
-    *currently v0.1.0*
+  <Card title="@flatfile/plugin-xml-extractor" icon="download">
     <br />
-    **Contributors**
-    <br />
-    David Boskovic, Carl Brugger
+    The `@flatfile/xml-extractor` plugin is designed to extract structured data from
+    XML files. It utilizes various libraries to parse Excel files and retrieve the
+    structured data efficiently.
     <br />
     <br />
-    **Last updated**
+    **Event Type:**
     <br />
-    July 31, 2023
+    `listener.on('file:created')`
+    <br />
+    **Supported file types:**
+    <br />
+    `.xml`
   </Card>
 </CardGroup>
 
-### Overview
-
-This plugin parses all Sheets in an XML file and extracts them into Flatfile.
-
-```SSH Install
-npm i @flatfile/plugin-xml-extractor
-```
-
----
-
-## Import
-
-```js
-import { XMLExtractor } from "@flatfile/plugin-xml-extractor";
-```
-
-## Usage
-
-Listen for an XML file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
-
-```js
-listener.use(XMLExtractor());
-```
-
-## Additional Options
-
-The extractor can accept additional properties. Props will be passed along to the Sheet.js parsing engine.
-
-```js
-listener.use(
-  XMLExtractor({
-    separator: "/",
-    attributePrefix: "#",
-    transform: (row: Record<string, any>) => {},
-  })
-);
-```
-
-### Properties
-
-#### separator
+## Parameters
 
 <ParamField path="separator" type="string" default="/" optional>
   The separator to use when joining or flattening nested attributes.
@@ -97,7 +62,7 @@ listener.use(
 
 </CodeGroup>
 
-#### attributePrefix
+<br />
 
 <ParamField path="attributePrefix" type="string" default="#" optional>
   The prefix to use when flattening attributes of XML tags.
@@ -128,7 +93,7 @@ listener.use(
 
 </CodeGroup>
 
-#### transform
+<br />
 
 <ParamField path="transform" type="(row) => Record<string, any>" optional>
   A function that takes a row and returns a transformed row. This is useful for
@@ -189,3 +154,33 @@ export default (listener) => {
 ```
 
 </CodeGroup>
+
+## Usage
+
+Listen for an XML file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
+
+```SSH install
+npm i @flatfile/plugin-xml-extractor
+```
+
+```js import
+import { XMLExtractor } from "@flatfile/plugin-xml-extractor";
+```
+
+```js listener.js
+listener.use(XMLExtractor());
+```
+
+### Additional Options
+
+The extractor can accept additional properties. Props will be passed along to the Sheet.js parsing engine.
+
+```js
+listener.use(
+  XMLExtractor({
+    separator: "/",
+    attributePrefix: "#",
+    transform: (row: Record<string, any>) => {},
+  })
+);
+```

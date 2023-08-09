@@ -1,0 +1,15 @@
+```javascript node
+const { FlatfileClient } = require("@flatfile/api");
+const api = new FlatfileClient({ token: process.env.FLATFILE_API_KEY });
+
+const readStream = fs.createReadreadStream("/path/to/file");
+
+try {
+  api.files.upload(stream, {
+    spaceId: "us_spa_123",
+    environmentId: "us_env_123",
+  });
+} catch (error) {
+  console.error(error);
+}
+```

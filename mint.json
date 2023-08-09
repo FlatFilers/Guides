@@ -82,7 +82,8 @@
         "guides/theming",
         "guides/guest_sidebar",
         "guides/documents",
-        "guides/secrets"
+        "guides/secrets",
+        "guides/automap"
       ]
     },
     {
@@ -178,7 +179,7 @@
         "plugins/extractors/json-extractor",
         "plugins/extractors/xml-extractor",
         "plugins/extractors/zip-extractor",
-        "plugins/extractors/psv-extractor",
+        "plugins/extractors/delimiter-extractor",
         {
           "group": "More in development",
           "icon": "clock",
@@ -191,7 +192,7 @@
     },
     {
       "group": "Transform",
-      "pages": ["plugins/transform/record-hook", "plugins/transform/autocast"]
+      "pages": ["plugins/transform/record-hook", "plugins/transform/autocast", "plugins/transform/dedupe"]
     },
     {
       "group": "Automation",

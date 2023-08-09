@@ -4,9 +4,20 @@ description: "A shared utility for defining a data extraction."
 icon: "download"
 ---
 
-## Overview
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
 
-The `@flatfile/extractor` utility is designed to handle various file formats and extract structured data efficiently. It leverages the power of the Flatfile API to facilitate smooth data extraction and processing.
+<CardGroup cols={1}>
+  <Card title="@flatfile/util-extractor" icon="download">
+    <br />
+    The `@flatfile/util-extractor` utility is designed to handle various file formats
+    and extract structured data efficiently. It leverages the power of the Flatfile
+    API to facilitate smooth data extraction and processing.
+  </Card>
+</CardGroup>
 
 ## Code Breakdown
 
@@ -41,3 +52,13 @@ This code defines a shared utility used in Flatfile Extractor plugins for data e
 ### **Type Definitions**
 
 - The code defines two generic type structures: `WorkbookCapture` and `SheetCapture`. These types represent the structure of captured workbooks and sheets.
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/util-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/utils/extractor"
+    icon="github"
+  ></Card>
+</CardGroup>
