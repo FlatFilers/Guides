@@ -179,7 +179,7 @@
         "plugins/extractors/json-extractor",
         "plugins/extractors/xml-extractor",
         "plugins/extractors/zip-extractor",
-        "plugins/extractors/psv-extractor",
+        "plugins/extractors/delimiter-extractor",
         {
           "group": "More in development",
           "icon": "clock",

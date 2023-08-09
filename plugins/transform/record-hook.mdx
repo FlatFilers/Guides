@@ -4,43 +4,76 @@ description: "A plugin for running custom logic on individual data records in Fl
 icon: "download"
 ---
 
-    <CardGroup cols={1}>
-        <Card title="@flatfile/plugin-record-hook" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/record-hook" icon="github" >
-        *currently v1.0.0*
-        <br/>
-        **Contributors**<br/>
-        Alex Hollenbeck, Alex Rock, Carl Brugger<br/>
-        <br/>
-        **Last updated**<br/>
-        August 2, 2023
-        </Card>
-    </CardGroup>
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
 
-### Overview
+<CardGroup cols={1}>
+  <Card title="@flatfile/plugin-record-hook" icon="download">
+    <br />
+    The `@flatfile/plugin-record-hook` plugin offers a convenient way to execute
+    custom logic on individual data records within Flatfile. By setting up an event
+    listener for the `commit:created` event, this plugin seamlessly integrates with
+    the data processing flow.
+    <br />
+    <br />
+    **Event Type:**
+    <br />
+    `listener.on('commit:created')`
+  </Card>
+</CardGroup>
 
-`@flatfile/plugin-record-hook` offers a convenient way to execute custom logic on individual data records within Flatfile. By setting up an event listener for the `commit:created` event, this plugin seamlessly integrates with the data processing flow.
+## Parameters
+
+<ParamField path="sheetSlug" type="string">
+  The `sheetSlug` parameter is the slug of the sheet you want to listen to.
+</ParamField>
+
+<ParamField path="callback" type="function">
+  The `callback` parameter takes a function that will be run on the record or
+  records.
+</ParamField>
+
+<ParamField path="options.chunkSize" default="1000" type="number">
+  The `chunkSize` parameter allows you to specify the quantity of records to in
+  each chunk.
+</ParamField>
+
+<ParamField path="options.parallel" default="1" type="number">
+  The `parallel` parameter allows you to specify the number of chunks to process
+  in parallel.
+</ParamField>
+
+## Imported NPM Packages
+
+- [`@flatfile/api`](../api) provides the API calls.
+- [`@flatfile/hooks`](../hooks) provides the record type.
+- [`@flatfile/listener`](../listener) provides the listener and event types.
+- [`@flatfile/util-common`](../utils/common) provides utility functions for asynchronously batching.
+
+## Usage
 
 ```SSH install
 npm i @flatfile/plugin-record-hook @flatfile/hooks
 ```
 
----
-
-## Import
+### Import
 
 <CodeGroup>
-  ```js recordHook
-  import {FlatfileRecord, recordHook} from "@flatfile/plugin-record-hook"; 
-  import {FlatfileEvent, FlatfileListener} from "@flatfile/listener"; 
-  ``` 
-  
-  ```js bulkRecordHook
-  import {FlatfileRecord, bulkRecordHook} from "@flatfile/plugin-record-hook"; 
-  import {FlatfileEvent, FlatfileListener} from "@flatfile/listener"; 
-  ```
-</CodeGroup>
 
-## Usage
+```js recordHook
+import { FlatfileRecord, recordHook } from "@flatfile/plugin-record-hook";
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
+```
+
+```js bulkRecordHook
+import { FlatfileRecord, bulkRecordHook } from "@flatfile/plugin-record-hook";
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
+```
+
+</CodeGroup>
 
 Pass `recordHook` or `bulkRecordHook` to a Flatfile data listener and provide a function to run when data is added or updated.
 
@@ -112,7 +145,7 @@ export default async function (listener: FlatfileListener) {
 
 </CodeGroup>
 
-## Additional Options
+### Additional Options
 
 `bulkRecordHook` can accept additional properties. Props will be passed along to the transformer.
 
@@ -157,7 +190,7 @@ export default async function (listener: FlatfileListener) {
 
 </CodeGroup>
 
-### Flexible Options
+#### Flexible Options
 
 <ParamField path="chunkSize" type="number" default="1000" optional>
   Define how many records you want to process in each batch. This allows you to
@@ -293,3 +326,13 @@ export default async function (listener: FlatfileListener) {
 ```
 
 </CodeGroup>
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-record-hook"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/record-hook"
+    icon="github"
+  ></Card>
+</CardGroup>

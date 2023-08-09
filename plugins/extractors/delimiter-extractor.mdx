@@ -1,0 +1,124 @@
+---
+title: "@flatfile/plugin-delimiter-extractor"
+description: "A plugin for parsing .delimiter files in Flatfile."
+icon: "download"
+---
+
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
+
+<CardGroup cols={1}>
+  <Card
+    title="@flatfile/plugin-delimiter-extractor"
+    icon="download"
+  >
+    The `@flatfile/plugin-delimiter-extractor` package is a plugin for parsing delimited files (i.e. PSV or TSV) and extracting them into Flatfile. It utilizes various libraries to parse PSV files and retrieve the structured data efficiently.
+    <br/>
+    <br/>
+    **Event Type:**
+    <br/>
+    `listener.on('file:created')`
+    <br/>
+    **Supported delimiters:**
+    <br/>
+    `\t`, `|`, `;`, `:`, `~`, `^`, `#`
+
+  </Card>
+</CardGroup>
+
+## Parameters
+
+<ParamField path="fileExt" type="string" required>
+  The `fileExt` parameter is used to specify the file name or extension to
+  listen for.
+</ParamField>
+
+<ParamField path="options.delimiter" type="string" required>
+  The `delimiter` parameter is used to specify the delimiter used in the file.
+</ParamField>
+
+<ParamField path="options.dynamicTyping" type="boolean" default="false">
+  If `true`, numeric and boolean data will be converted to their type instead of
+  remaining strings. Numeric data must conform to the definition of a decimal
+  literal. Numerical values greater than 2^53 or less than -2^53 will not be
+  converted to numbers to preserve precision. European-formatted numbers must
+  have commas and dots swapped.
+</ParamField>
+
+<ParamField path="options.skipEmptyLines" type="boolean | 'greedy'">
+  If `true`, lines that are completely empty (those which evaluate to an empty
+  string) will be skipped. If set to `greedy`, lines that don't have any content
+  (those which have only whitespace after parsing) will also be skipped.
+</ParamField>
+
+<ParamField path="options.transform" type="function">
+  A function to apply on each value. The function receives the value as an
+  argument The return value of the function will replace the value it received.
+  The transform function is applied before `dynamicTyping`.
+</ParamField>
+
+## API Calls
+
+- `api.files.download`
+- `api.files.get`
+- `api.files.update`
+- `api.jobs.ack`
+- `api.jobs.complete`
+- `api.jobs.create`
+- `api.jobs.fail`
+- `api.jobs.update`
+- `api.records.insert`
+- `api.workbooks.create`
+
+## Usage
+
+Listen for an PSV file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
+
+```SSH install
+npm i @flatfile/plugin-delimiter-extractor
+```
+
+```js import
+import { DelimiterExtractor } from "@flatfile/plugin-delimiter-extractor";
+```
+
+```js listener.js
+listener.use(DelimiterExtractor(".psv" { delimiter: "|" }));
+```
+
+### Full Example
+
+In this example, the DelimiterExtractor is initialized for extracting PSV files with optional options, and then registered as middleware with the Flatfile listener. When a PSV file is uploaded, the plugin will extract the structured data and process it using the extractor's parser.
+
+```javascript
+import { DelimiterExtractor } from "@flatfile/plugin-delimiter-extractor";
+
+// Define optional options for the extractor (e.g., { dynamicTyping: true })
+const options = {
+  delimiter: "|",
+  dynamicTyping: true,
+  skipEmptyLines: true,
+  transform: (value) => value.toUpperCase(),
+};
+
+// Initialize the PSV extractor
+const delimiterExtractor = DelimiterExtractor(".psv", options);
+
+// Register the extractor as a middleware for the Flatfile listener
+listener.use(delimiterExtractor);
+
+// When a PSV file is uploaded, the data will be extracted and processed using the extractor's parser.
+```
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-delimiter-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/delimiter-extractor"
+    icon="github"
+  ></Card>
+</CardGroup>

@@ -4,46 +4,51 @@ description: "A plugin for exporting data in Flatfile to Workbooks."
 icon: "download"
 ---
 
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
+
 <CardGroup cols={1}>
-  <Card
-    title="@flatfile/plugin-export-workbook"
-    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/export-worbook"
-    icon="github"
-  >
-    *currently v0.0.1*
+  <Card title="@flatfile/plugin-export-workbook" icon="download">
     <br />
-    **Contributors**
-    <br />
-    Flatfile, Inc.
+    The `@flatfile/plugin-export-workbook` plugin exports data in a Flatfile Workbook.
     <br />
     <br />
-    **Last updated**
+    **Event Type:**
     <br />
-    July 25, 2023
+    `listener.on('job:ready')` **Supported file types:**
+    <br />
+    `.xlsx`
   </Card>
 </CardGroup>
 
-### Overview
+## Parameters
 
-This plugin exports data in Flatfile a Workbook. Currently, `.xlsx` is supported.
+<ParamField path="debug" type="boolean">
+  The `debug` parameter lets you toggle on/off helpful debugging messages for
+  development purposes.
+</ParamField>
 
-```SSH Install
-npm i @flatfile/plugin-export-workbook
-```
+## Imported NPM Packages
 
----
-
-## Import
-
-```ts
-import { exportWorkbookPlugin } from "@flatfile/plugin-export-workbook";
-```
+- [`remeda`](https://remedajs.com/) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
+- [`xlsx`](https://sheetjs.com/) allows for reading, writing, and manipulating Microsoft Excel files in JavaScript applications.
 
 ## Usage
 
 An action with the operation name of "downloadExcelWorkbook" must be configured on a Workbook (not a Sheet) in order to the plugin to be triggered.
 
-```ts
+```SSH install
+npm i @flatfile/plugin-export-workbook
+```
+
+```ts import
+import { exportWorkbookPlugin } from "@flatfile/plugin-export-workbook";
+```
+
+```ts workbook.config.json
   // ... inside Workbook configuration
   "actions": [
     {
@@ -57,6 +62,16 @@ An action with the operation name of "downloadExcelWorkbook" must be configured 
   // ...
 ```
 
-```ts
+```ts listener.js
 listener.use(exportWorkbookPlugin());
 ```
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-xlsx-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/export-worbook"
+    icon="github"
+  ></Card>
+</CardGroup>
