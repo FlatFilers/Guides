@@ -73,6 +73,12 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
 Import @flatfile/javascript to initializeFlatfile. Pass it any [options](#properties). Only `publishableKey` is required.
 
+<Note>
+  Note: the Space must have `guestAuthentication` configured with `shared_link`
+  as an option. This is inherited from Environment. [Learn
+  more](../../../developer-tools/environment#guest-authentication).
+</Note>
+
 ```js src/client.js
 import { initializeFlatfile } from "@flatfile/javascript";
 
@@ -252,11 +258,6 @@ In this step, we'll kickstart an event listener, which will await the creation o
   More](#space)
 </ParamField>
 
-<Note>
-  Note: the provided space must have `guest_authentication` configured with
-  `shared_link` as an option.
-</Note>
-
 <ParamField
   path="closeSpace"
   type="operation: string, onClose: (data: any) => void"
@@ -312,6 +313,12 @@ Default: "Are you sure you would like to close this window? This will end your c
 </ParamField>
 
 ### space
+
+<Note>
+  Note: the Space must have `guestAuthentication` configured with `shared_link`
+  as an option. This is inherited from Environment. [Learn
+  more](../../../developer-tools/environment#guest-authentication).
+</Note>
 
 To reuse an existing Space, we'll update our files to pass in a Space Id. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
 
