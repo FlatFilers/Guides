@@ -12,10 +12,29 @@ icon: "download"
 
 <CardGroup cols={1}>
   <Card title="@flatfile/plugin-export-workbook" icon="download">
-    The `@flatfile/plugin-export-workbook` plugin exports data in a Flatfile
-    Workbook. Currently, `.xlsx` is supported.
+    <br />
+    The `@flatfile/plugin-export-workbook` plugin exports data in a Flatfile Workbook.
+    <br />
+    <br />
+    **Event Type:**
+    <br />
+    `listener.on('job:ready')` **Supported file types:**
+    <br />
+    `.xlsx`
   </Card>
 </CardGroup>
+
+## Parameters
+
+<ParamField path="debug" type="boolean">
+  The `debug` parameter lets you toggle on/off helpful debugging messages for
+  development purposes.
+</ParamField>
+
+## Imported NPM Packages
+
+- [`remeda`](https://remedajs.com/) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
+- [`xlsx`](https://sheetjs.com/) allows for reading, writing, and manipulating Microsoft Excel files in JavaScript applications.
 
 ## Usage
 

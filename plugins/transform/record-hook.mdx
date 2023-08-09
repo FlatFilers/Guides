@@ -27,11 +27,23 @@ icon: "download"
 
 ## Parameters
 
-<ParamField path="rawNumbers" type="boolean">
-  In Excel, you could have rounding or formatting on a number cell to only
-  display say 2 decimal places. By default, Flatfile will just take the
-  displayed decimal places versus the raw numbers. Set this value to true to
-  take the raw numbers and disregard how it's displayed in Excel.
+<ParamField path="sheetSlug" type="string">
+  The `sheetSlug` parameter is the slug of the sheet you want to listen to.
+</ParamField>
+
+<ParamField path="callback" type="function">
+  The `callback` parameter takes a function that will be run on the record or
+  records.
+</ParamField>
+
+<ParamField path="options.chunkSize" default="1000" type="number">
+  The `chunkSize` parameter allows you to specify the quantity of records to in
+  each chunk.
+</ParamField>
+
+<ParamField path="options.parallel" default="1" type="number">
+  The `parallel` parameter allows you to specify the number of chunks to process
+  in parallel.
 </ParamField>
 
 ## Imported NPM Packages

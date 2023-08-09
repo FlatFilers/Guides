@@ -21,36 +21,49 @@ icon: "download"
 
 ## Parameters
 
-<ParamField path="accuracy" required type="string"></ParamField>
+<ParamField path="accuracy" required type="'confident' | 'exact'">
+  The `accuracy` parameter match columns either by 'confident' (> 90% match) or
+  'exact' (100% match).
+</ParamField>
 
-<ParamField path="debug" type="boolean"></ParamField>
+<ParamField path="debug" type="boolean">
+  The `debug` parameter lets you toggle on/off helpful debugging messages for
+  development purposes.
+</ParamField>
 
-<ParamField path="defaultTargetSheet" type="string"></ParamField>
+<ParamField path="defaultTargetSheet" type="string">
+  The `defaultTargetSheet` parameter takes the exact sheet name to import data
+  to.
+</ParamField>
 
-<ParamField path="matchFilename" type="RegExp"></ParamField>
+<ParamField path="matchFilename" type="RegExp">
+  The `matchFilename` parameter takes a regular expression to match specific
+  files to perform automapping on.
+</ParamField>
 
-<ParamField path="onFailure" type="(event: FlatfileEvent) => void"></ParamField>
+<ParamField path="onFailure" type="(event: FlatfileEvent) => void">
+  The `onFailure` parameter takes a callback function to be executed when plugin
+  bails.
+</ParamField>
 
-<ParamField path="targetWorkbook" type="string"></ParamField>
+<ParamField path="targetWorkbook" type="string">
+  The `targetWorkbook` parameter specifies destination Workbook id or name.
+</ParamField>
 
 ## API Calls
 
-- `api.files.download`
 - `api.files.get`
 - `api.files.update`
-- `api.jobs.ack`
-- `api.jobs.complete`
 - `api.jobs.create`
-- `api.jobs.fail`
-- `api.jobs.update`
-- `api.records.insert`
-- `api.workbooks.create`
+- `api.jobs.execute`
+- `api.jobs.getExecutionPlan`
+- `api.workbooks.list`
+- `api.workbooks.get`
 
 ## Imported NPM Packages
 
-- [`@flatfile/util-extractor`](../utils/extractor) provides utility functions for extracting and parsing data from various file formats and sources, streamlining data import processes.
+- [`@flatfile/utils-debugger`](https://www.npmjs.com/package/@flatfile/utils-debugger) is a utility debugger designed to facilitate the tracking, logging and debugging of various events, issues and processes in your application.
 - [`remeda`](https://remedajs.com/) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
-- [`xlsx`](https://sheetjs.com/) allows for reading, writing, and manipulating Microsoft Excel files in JavaScript applications.
 
 ## Usage
 
