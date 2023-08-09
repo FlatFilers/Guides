@@ -168,6 +168,12 @@ Now that we have our configuration defined in our Workbook, and our Event handle
 
 The `useSpace` hook configures a Space component.
 
+<Note>
+  Note: the Space must have `guestAuthentication` configured with `shared_link`
+  as an option. This is inherited from Environment. [Learn
+  more](../../../developer-tools/environment#guest-authentication).
+</Note>
+
 A new Space will be created each time Flatfile is initialized. To reuse a space, learn more about the [space](#space) property.
 
 ```js src/App.tsx
@@ -388,6 +394,12 @@ Default: "Are you sure you would like to close this window? This will end your c
 </ParamField>
 
 ### space
+
+<Note>
+  Note: the Space must have `guestAuthentication` configured with `shared_link`
+  as an option. This is inherited from Environment. [Learn
+  more](../../../developer-tools/environment#guest-authentication).
+</Note>
 
 To reuse an existing Space, we’ll update our App.tsx to pass in a Space Id.
 You'll then want to make a server-side request using your secretKey to get the Space and its access token.
