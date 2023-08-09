@@ -1,6 +1,6 @@
 ---
-title: "@flatfile/plugin-psv-extractor"
-description: "A plugin for parsing .psv files in Flatfile."
+title: "@flatfile/plugin-delimiter-extractor"
+description: "A plugin for parsing .delimiter files in Flatfile."
 icon: "download"
 ---
 
@@ -12,22 +12,35 @@ icon: "download"
 
 <CardGroup cols={1}>
   <Card
-    title="@flatfile/plugin-psv-extractor"
+    title="@flatfile/plugin-delimiter-extractor"
     icon="download"
   >
-    The `@flatfile/plugin-psv-extractor` package is a plugin for parsing .psv files and extracting them into Flatfile. It utilizes various libraries to parse PSV files and retrieve the structured data efficiently.
+    The `@flatfile/plugin-delimiter-extractor` package is a plugin for parsing delimited files (i.e. PSV or TSV) and extracting them into Flatfile. It utilizes various libraries to parse PSV files and retrieve the structured data efficiently.
     <br/>
     <br/>
-    **Event Type:**<br/>`listener.on('file:created')`
+    **Event Type:**
     <br/>
-    **Supported file types:**<br/>`.psv`
+    `listener.on('file:created')`
+    <br/>
+    **Supported delimiters:**
+    <br/>
+    `\t`, `|`, `;`, `:`, `~`, `^`, `#`
 
   </Card>
 </CardGroup>
 
 ## Parameters
 
-<ParamField path="dynamicTyping" type="boolean" default="false">
+<ParamField path="fileExt" type="string" required>
+  The `fileExt` parameter is used to specify the file name or extension to
+  listen for.
+</ParamField>
+
+<ParamField path="options.delimiter" type="string" required>
+  The `delimiter` parameter is used to specify the delimiter used in the file.
+</ParamField>
+
+<ParamField path="options.dynamicTyping" type="boolean" default="false">
   If `true`, numeric and boolean data will be converted to their type instead of
   remaining strings. Numeric data must conform to the definition of a decimal
   literal. Numerical values greater than 2^53 or less than -2^53 will not be
@@ -35,13 +48,13 @@ icon: "download"
   have commas and dots swapped.
 </ParamField>
 
-<ParamField path="skipEmptyLines" type="boolean | 'greedy'">
+<ParamField path="options.skipEmptyLines" type="boolean | 'greedy'">
   If `true`, lines that are completely empty (those which evaluate to an empty
   string) will be skipped. If set to `greedy`, lines that don't have any content
   (those which have only whitespace after parsing) will also be skipped.
 </ParamField>
 
-<ParamField path="transform" type="function">
+<ParamField path="options.transform" type="function">
   A function to apply on each value. The function receives the value as an
   argument The return value of the function will replace the value it received.
   The transform function is applied before `dynamicTyping`.
@@ -60,45 +73,42 @@ icon: "download"
 - `api.records.insert`
 - `api.workbooks.create`
 
-## Imported NPM Packages
-
-- [`@flatfile/delimiter-extractor`](../plugins/extractors/delimiter-extractor) is a generic extractor for extracting and parsing delimited data from various file formats and sources.
-
 ## Usage
 
 Listen for an PSV file to be uploaded to Flatfile. The platform will then extract the file automatically. Once complete, the file will be ready for import in the Files area.
 
 ```SSH install
-npm i @flatfile/plugin-psv-extractor
+npm i @flatfile/plugin-delimiter-extractor
 ```
 
 ```js import
-import { PSVExtractor } from "@flatfile/plugin-psv-extractor";
+import { DelimiterExtractor } from "@flatfile/plugin-delimiter-extractor";
 ```
 
 ```js listener.js
-listener.use(PSVExtractor());
+listener.use(DelimiterExtractor(".psv" { delimiter: "|" }));
 ```
 
 ### Full Example
 
-In this example, the PSVExtractor is initialized with optional options, and then registered as middleware with the Flatfile listener. When a PSV file is uploaded, the plugin will extract the structured data and process it using the extractor's parser.
+In this example, the DelimiterExtractor is initialized for extracting PSV files with optional options, and then registered as middleware with the Flatfile listener. When a PSV file is uploaded, the plugin will extract the structured data and process it using the extractor's parser.
 
 ```javascript
-import { PSVExtractor } from "@flatfile/psv-extractor";
+import { DelimiterExtractor } from "@flatfile/plugin-delimiter-extractor";
 
 // Define optional options for the extractor (e.g., { dynamicTyping: true })
 const options = {
+  delimiter: "|",
   dynamicTyping: true,
   skipEmptyLines: true,
   transform: (value) => value.toUpperCase(),
 };
 
 // Initialize the PSV extractor
-const psvExtractor = PSVExtractor(options);
+const delimiterExtractor = DelimiterExtractor(".psv", options);
 
 // Register the extractor as a middleware for the Flatfile listener
-listener.use(psvExtractor);
+listener.use(delimiterExtractor);
 
 // When a PSV file is uploaded, the data will be extracted and processed using the extractor's parser.
 ```
@@ -107,8 +117,8 @@ listener.use(psvExtractor);
 
 <CardGroup cols={2}>
   <Card
-    title="@flatfile/plugin-psv-extractor"
-    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/psv-extractor"
+    title="@flatfile/plugin-delimiter-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/delimiter-extractor"
     icon="github"
   ></Card>
 </CardGroup>
