@@ -1,24 +1,41 @@
 ---
 title: "@flatfile/plugin-pdf-extractor"
 description: "A plugin for parsing .pdf files in Flatfile."
-icon: "clock"
+icon: "download"
 ---
 
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
+
 <CardGroup cols={1}>
-  <Card title="@flatfile/plugin-pdf-extractor" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/" icon="github" >
-    *currently in development*<br/>
-    <br/>
-    check back soon for updates
+  <Card title="@flatfile/plugin-pdf-extractor" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/pdf-extractor" icon="github" >
+    <br />
+    This plugin will parse a data table in a PDF file and extract it into Flatfile.
+    <br />
+    <br />
+    **Event Type:**
+    <br />
+    `listener.on('file:created')`
   </Card>
 </CardGroup>
 
+## Usage
 
-### Overview
+A subscription to `pdftables.com` is required for this plugin to work. Create an API key there and use it below.
 
-This plugin will parse all data in a PDF file and extract it into Flatfile.
+```SSH install
+npm i @flatfile/plugin-pdf-extractor
+```
 
+```ts import
+import { pdfExtractorPlugin } from "@flatfile/plugin-pdf-extractor";
+```
 
-
-
-
----
+```ts
+export default function (listener: FlatfileListener) {
+  listener.use(pdfExtractorPlugin({ apiKey: "key" }));
+}
+```
