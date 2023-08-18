@@ -487,8 +487,9 @@ Optionally, you can pass in additional properties on the Space as it's created.
 ```typescript
 const flatfileOptions = {
     publishableKey,
-    //additional props
+    //additional props, see Create Space endpoint for all the full list of properties (https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space)
     spaceBody: {
+      name: "New Space"
       namespace: "Red",
     };
   }
