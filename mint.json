@@ -90,6 +90,7 @@
       "group": "Concepts",
       "pages": [
         "concepts/workbooks",
+        "concepts/actions",
         "concepts/jobs",
         "concepts/events",
         "concepts/spaces"

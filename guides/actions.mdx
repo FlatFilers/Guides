@@ -71,6 +71,8 @@ sheets : [
   }
 ]
 ```
+</CodeGroup>
+<CodeGroup>
 
 ```jsx listener.js
 listener.filter({ job: "sheet:duplicate" }, (configure) => {
@@ -245,7 +247,7 @@ File-mounted actions are represented as a dropdown menu for each file in the Fil
 
 ### Usage
 
-Listen for a `file:ready` and one or more actions to the file. Next, listen for `job:ready` and filter on the `domain` (file) and the `operation` of where the Action was placed. Be sure to complete to job when it's complete.
+Listen for a `file:ready` event and add one or more actions to the file. 
 
 <CodeGroup>
 
@@ -294,7 +296,11 @@ listener.on("file:created", async ({ context: { fileId } }: FlatfileEvent) => {
   });
 });
 ```
+</CodeGroup>
 
+Next, listen for `job:ready` and filter on the `domain` (file) and the `operation` of where the Action was placed. Be sure to complete to job when it's complete.
+
+<CodeGroup>
 ```jsx listener.js job:ready
 //when the button is clicked in the file dropdown
 
