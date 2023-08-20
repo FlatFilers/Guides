@@ -192,7 +192,11 @@
     },
     {
       "group": "Transform",
-      "pages": ["plugins/transform/record-hook", "plugins/transform/autocast", "plugins/transform/dedupe"]
+      "pages": [
+        "plugins/transform/record-hook",
+        "plugins/transform/autocast",
+        "plugins/transform/dedupe"
+      ]
     },
     {
       "group": "Automation",
@@ -235,6 +239,11 @@
     {
       "group": "Utils",
       "pages": ["plugins/utils/extractor", "plugins/utils/file-buffer"]
+    },
+    {
+      "group": "Data Experience",
+
+      "pages": ["data-experience/overview"]
     }
   ],
   "footerSocials": {
@@ -268,6 +277,10 @@
     {
       "name": "Developers",
       "url": "developer-tools"
+    },
+    {
+      "name": "Data Experience",
+      "url": "data-experience"
     }
   ]
 }
