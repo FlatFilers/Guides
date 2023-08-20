@@ -59,7 +59,7 @@
   "navigation": [
     {
       "group": "Documentation",
-      "pages": ["overview", "starter-projects"]
+      "pages": ["overview", "starter-projects", "changelog"]
     },
     {
       "group": "Beginner Tutorial",
@@ -180,13 +180,11 @@
         "plugins/extractors/xml-extractor",
         "plugins/extractors/zip-extractor",
         "plugins/extractors/delimiter-extractor",
-        "plugins/extractors/pdf-extractor"
+        "plugins/extractors/pdf-extractor",
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": [
-            "plugins/extractors/doc-extractor"
-          ]
+          "pages": ["plugins/extractors/doc-extractor"]
         }
       ]
     },
