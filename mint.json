@@ -237,11 +237,6 @@
     {
       "group": "Utils",
       "pages": ["plugins/utils/extractor", "plugins/utils/file-buffer"]
-    },
-    {
-      "group": "Data Experience",
-
-      "pages": ["data-experience/overview"]
     }
   ],
   "footerSocials": {
