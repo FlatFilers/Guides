@@ -58,8 +58,12 @@
   ],
   "navigation": [
     {
+      "group": "Updates by area",
+      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
+    },
+    {
       "group": "Documentation",
-      "pages": ["overview", "starter-projects", "changelog"]
+      "pages": ["overview", "starter-projects"]
     },
     {
       "group": "Beginner Tutorial",
@@ -154,8 +158,9 @@
       "group": "Core libraries",
       "pages": [
         "developer-tools/core-libraries/flatfile",
+        "developer-tools/core-libraries/listener",
         "developer-tools/core-libraries/api",
-        "developer-tools/core-libraries/listener"
+        "developer-tools/core-libraries/api-python"
       ]
     },
     {
@@ -257,7 +262,7 @@
   "tabs": [
     {
       "name": "Changelog",
-      "url": "changelog.mdx"
+      "url": "changelog"
     },
     {
       "name": "Guides",

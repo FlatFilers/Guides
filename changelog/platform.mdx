@@ -1,0 +1,172 @@
+---
+title: Platform
+description: "Additions and updates to the Flatfile platform"
+icon: "layer-group"
+---
+
+## August 20, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/turntable.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Introducing Command+k Triggered Search and Transformation (Early Access)**
+
+    This update enhances your workflow by centralizing experiences under the Command+k shortcut.
+
+    A straightforward forward slash, followed by these options, grants access to our data transformation and query tools:
+
+    - `/transform` (AI-powered)
+    - `/query` (AI-powered)
+    - `/search` (global search)
+    - `/filter` (Flatfile Query Language, ffql)
+    - `/in` (field-specific search)
+
+    Ask to have this feature flagged on in your Account today!
+
+    </div>
+
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/turntable.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    There is now a count at the top of the files list that shows the total
+    number of files.
+  </div>
+</div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      The Sidebar now has three different states:
+      - Collapsed state
+      - Open state
+      - Totally hidden state
+
+      Additionally, the Sidebar will now automatically collapse itself on smaller screens.
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       We now handle overflowing space name(s) by:
+      - Breaking the word
+      - Limiting the name to two lines and giving it an ellipsis if it overflows
+      - Adding a tooltip with the space name to truncated names
+      - Previously, badge names in the data checklist could break to two lines making them hard to read. This is also fixed.
+
+  </div>
+
+  </div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/theming.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    When determining the lighter shades of each main theme colors, i.e. primary,
+    danger, warning and success, there are now checks to ensure no colors end up
+    as white.
+  </div>
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    The filename was added to the mapping scene so users can now see which file
+    they are currently mapping.
+  </div>
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Cells with no data can now be unmapped using “Do not import”, if previously
+    mapped to a value.
+  </div>
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/turntable.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Filter: "Last Name" like A% will now retrieve all records where Last Name
+    starts with “A”. Previously, it was retrieving records that contained “A”.
+  </div>
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/turntable.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    The continue button is now disabled on mapping scene while mappings are
+    loading. This ensures user can only advance to review scene after mappings
+    are saved.
+  </div>
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Now, you can set a description for each Option Field value via API. End
+    users can then view this description as a tooltip during mapping.
+  </div>
+</div>
+
+</div>
