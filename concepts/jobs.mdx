@@ -49,18 +49,13 @@ otherwise it can be triggered with a POST to the `/jobs/:id/execute` endpoint.
 
 ## Job Lifecycle Events
 
-Jobs emit the following Events throughout their lifecycle that you can listen for:
+Jobs fire during the following Events throughout their lifecycle that you can listen for (listed in chronological order):
 
-- `job:completed` - emitted when a Job has completed successfully
-- `job:created` - ??
-- `job:deleted` - emitted when a Job has been deleted
-- `job:failed` - emitted when a Job has failed
-- `job:outcome-acknowleged` - ??
-- `job:ready` - ??
-- `job:scheduled` - ??
-- `job:started` - emitted right before a Job starts execution
-- `job:updated` - emitted when a Job's progress is updated
-- `job:waiting` - emitted after a Job is created but before it begins executing
+- `job:created` - fires when a job is created, but before it does anything
+- `job:ready` - fires when a job is created and is ready to move into execution stage, but before it does anything
+- `job:updated` - fires when a job’s progress is updated while is it executing
+- `job:completed or `job:failed` - `job:completed` fires when a job is completed and is successful. If a job is completed but fails, `job:failed` will fire instead. One or the other event fires when a job is completed, but never both
+- `job:outcome-acknowledged` - fires when a user clicks a button on the pop up window in the UI to acknowledge a job is completed
 
 ## Building with Jobs
 
