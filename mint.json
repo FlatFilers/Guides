@@ -256,6 +256,10 @@
   },
   "tabs": [
     {
+      "name": "Changelog",
+      "url": "changelog.mdx"
+    },
+    {
       "name": "Guides",
       "url": "guides"
     },
@@ -270,10 +274,6 @@
     {
       "name": "Developers",
       "url": "developer-tools"
-    },
-    {
-      "name": "Data Experience",
-      "url": "data-experience"
     }
   ]
 }
