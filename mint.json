@@ -58,12 +58,12 @@
   ],
   "navigation": [
     {
-      "group": "Updates by area",
-      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
-    },
-    {
       "group": "Documentation",
       "pages": ["overview", "starter-projects"]
+    },
+    {
+      "group": "Updates by area",
+      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
     },
     {
       "group": "Beginner Tutorial",
