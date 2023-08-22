@@ -1,21 +1,7 @@
 ---
 title: "Transform & validate data"
 description: "Begin the process of validating and transforming data in Flatfile by implementing a basic Event handler."
-icon: "circle-2"
----
-
-<Snippet file="shared/dxpbanner.mdx" />
-
-### Add data to your Workbook
-
-Now that you have a Workbook, you're now ready to start importing data with Flatfile!
-
-1. Head to your <Tooltip tip="Go to dashboard">[Spaces Dashboard](https://platform.flatfile.com)</Tooltip> and click on
-   the Workbook you just created (My First Workbook). You may need to refresh the page.
-2. Upload a [test file](https://assets.ctfassets.net/hjneo4qi4goj/6I48ynsesoL1s1YhPK8Pvx/1d5ed30534c1ef44166d440a08612621/getting-started.csv) in the Files section, and then click the "Import" Action for the file. Follow the steps to map the example data into the "Contact" Sheet in the Workbook.
-3. After mapping is complete, you can click on the "Contact" icon in the left sidebar and see the imported data.
-4. Additionally, you can make changes to the Workbook in the Contact Sheet's user interface by modifying existing records or adding new rows entirely.
-
+icon: "circle-4"
 ---
 
 In the previous step, you performed a number of actions:
@@ -38,10 +24,11 @@ Using the Flatfile SDK, you can register any javascript function as an Event lis
 
 Follow these steps:
 
-1. [Fork this Replit](https://replit.com/@flatfile/get-started)
-2. Hit the Run green button or type `npx flatfile@latest develop` in console
-3. Go back to your Flatfile Workbook and make a few changes. For example try uploading a CSV and then importing the data to the Workbook.
-4. Finally return to your terminal in Replit to see how those Events were logged
+1. [Fork this code in Github](https://github.com/FlatFilers/getting-started)
+2. Rename `.env.examples to `.env` and add your creds.
+3. Run `npx flatfile@latest develop` from your terminal
+4. Go back to your Flatfile Workbook and make a few changes. For example, try uploading a CSV and then importing the data to the Workbook.
+5. Finally return to your terminal to see how those Events were logged.
 
 Here's an example of a very basic Event listener:
 
@@ -216,6 +203,6 @@ Once you take focus off of the field, your validation will run and the Sheet use
 
 ## Recap & Next Steps
 
-You now have an example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations.
+Congratulations! You now now have an example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations. Your Workbook also has a submit Action for getting the data out!
 
-Next, we will [add an Action](../quickstart/submit-action) that will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
+To this point, we’ve been running our listener code locally using the develop command. Next, you should deploy your code.
