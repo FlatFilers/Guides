@@ -1,6 +1,6 @@
 ---
-title: "Create a Workbook"
-description: "To create a new Workbook using Flatfile's API, paste the cURL request on the right in your terminal or build out your Sheet and Fields in the Body tab."
+title: "Add Submit to your Workbook"
+description: "To add an action to your Workbook, paste the cURL request on the right in your terminal or send the request directly from here by building out the sheet and fields in the Body tab."
 api: "POST https://platform.flatfile.com/api/v1/workbooks"
 ---
 
@@ -48,6 +48,7 @@ api: "POST https://platform.flatfile.com/api/v1/workbooks"
       The slug of the Sheet
     </ParamField>
     <ParamField body="fields" type="array" required>
+
       <Expandable title="Field">
         <ParamField
           body="key"
@@ -85,67 +86,6 @@ api: "POST https://platform.flatfile.com/api/v1/workbooks"
   </Expandable>
 </ParamField>
 
-<ParamField body="actions" type="array" required>
-  <Expandable title="Action">
-
-{" "}
-
-<ParamField
-  body="operation"
-  type="string"
-  initialValue="submitAction"
-  default="submitAction"
-  placeholder="submitAction"
->
-  The name of the job operation
-</ParamField>
-
-     <ParamField
-      body="mode"
-      required
-      type="string"
-      initialValue="foreground"
-      default="foreground"
-      placeholder="foreground"
-    >
-      foreground / background - informs if the job blocks the UI while
-      processing
-    </ParamField>
-
-    <ParamField
-      body="label"
-      required
-      type="string"
-      initialValue="Submit"
-      default="Submit"
-      placeholder="Submit"
-    >
-      The text on the button
-    </ParamField>
-
-    <ParamField
-      body="description"
-      type="string"
-      initialValue="Submit data to webhook.site"
-      default="Submit data to webhook.site"
-      placeholder="Submit data to webhook.site"
-    >
-      The text that shows up in dialog when action is clicked.
-    </ParamField>
-
-    <ParamField
-      body="primary"
-      type="boolean"
-      initialValue="true"
-      default="true"
-      placeholder="true"
-    >
-      Decides if the button will appear prominently.
-    </ParamField>
-
-  </Expandable>
-</ParamField>
-
 ### Request headers
 
 <ParamField
@@ -174,7 +114,6 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --data '{
   "name": "My First Workbook",
-  "labels": ["simple-demo"],
   "sheets": [
     {
       "name": "Contacts",
@@ -197,22 +136,20 @@ curl --request POST \
         }
       ]
     }
-  ],
-  "actions": [
-    {
-      "operation": "submitAction",
-      "mode": "foreground",
-      "label": "Submit",
-      "description": "Submit data to webhook.site",
-      "primary": true
-    }
   ]
 }'
 ```
 </RequestExample>
 
+#### Testing your Action
+
+1. With the `develop` command still running in terminal, head to your Workbook and click the submit Action in the top right corner.
+2. In webhook.site, look at the query log and observe that the webhook received a call; this is the Action running.
+
 ---
 
 ## Recap & Next Steps
 
-Now that you've created a Workbook, we will author code to listen and react to Events as they occur.
+Congratulations! You now have a Workbook with transformations, validations, and a submit Action to get the data out.
+
+To this point, we've been running our listener code locally using the `develop` command. Next, you should [deploy your code](../developer-tools/deploying).
