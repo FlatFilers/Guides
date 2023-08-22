@@ -1,0 +1,111 @@
+---
+title: "Create a Workbook"
+description: "We'll begin by creating a new Workbook using Flatfile's API. Paste the cURL request on the right in your terminal to create a simple Workbook or send the request directly from here."
+api: "POST https://api.x.flatfile.com/v1/workbooks"
+---
+
+<Tip>
+  Use your [secret
+  key](../developer-tools/security/authentication#secret-and-publishable-keys)
+  from the `development` environment. Secret key format is "sk_abcd..." and is
+  found in [your Flatfile Dashboard
+  here](https://platform.flatfile.com/developers).
+</Tip>
+
+### Body
+
+<ParamField
+  body="name"
+  type="string"
+  required
+  initialValue="My First Workbook"
+  default="My First Workbook"
+  placeholder="My First Workbook"
+>
+  The name of the Workbook
+</ParamField>
+
+<ParamField body="sheets" type="array" required>
+  <Expandable title="Sheet">
+    <ParamField
+      body="name"
+      type="string"
+      required
+      initialValue="Contacts"
+      default="Contacts"
+      placeholder="Contacts"
+    >
+      The name of the Sheet
+    </ParamField>
+    <ParamField
+      body="slug"
+      type="string"
+      required
+      initialValue="contacts"
+      default="contacts"
+      placeholder="contacts"
+    >
+      The slug of the Sheet
+    </ParamField>
+    <ParamField body="fields" type="array" required>
+
+      <Expandable title="Field">
+        <ParamField
+          body="key"
+          type="string"
+          required
+          initialValue="firstName"
+          default="firstName"
+          placeholder="firstName"
+        >
+          The field key
+        </ParamField>
+        <ParamField
+          body="type"
+          type="string"
+          required
+          initialValue="string"
+          default="string"
+          placeholder="string"
+        >
+          The field type
+        </ParamField>
+        <ParamField
+          body="label"
+          type="string"
+          required
+          initialValue="First Name"
+          default="First Name"
+          placeholder="First Name"
+        >
+          The field label
+        </ParamField>
+      </Expandable>
+    </ParamField>
+
+  </Expandable>
+</ParamField>
+
+### Request headers
+
+<ParamField
+  header="Accept"
+  required
+  default="application/json"
+  placeholder="application/json"
+>
+  Request header
+</ParamField>
+
+<ParamField
+  header="Content-type"
+  required
+  default="application/json"
+  placeholder="application/json"
+>
+  Request header
+</ParamField>
+
+### Using schemas
+
+Flatfile’s <Tooltip tip="A Data Definition Language...">[Blueprint](../blueprint/overview)</Tooltip> is a robust data definition language (DDL) that emphasizes validation and data preparation. Flatfile's API expects the Blueprint format creating or updating a schema definition.

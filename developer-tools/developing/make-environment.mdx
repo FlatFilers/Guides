@@ -1,11 +1,14 @@
 ---
 title: "Create an environment"
-api: "POST https://platform.flatfile.com/api/v1/environments"
+api: "POST https://api.x.flatfile.com/v1/environments"
 ---
 
 This endpoint creates a new environment. `name` and `isProd` are required to create an environment.
 
-<Warning>You'll first need to retrieve an [Account level bearer token](../security/account-token). </Warning>
+<Warning>
+  You'll first need to retrieve an [Account level bearer
+  token](../security/account-token).{" "}
+</Warning>
 
 ### Body
 
@@ -13,22 +16,40 @@ This endpoint creates a new environment. `name` and `isProd` are required to cre
   body="name"
   type="string"
   required
+  initialValue="isolated_dev_myname"
   placeholder="isolated_dev_myname"
   default="isolated_dev_myname"
 >
   The name of the environment
 </ParamField>
 
-<ParamField body="isProd" type="boolean" required default="false" placeholder="false">
+<ParamField
+  body="isProd"
+  type="boolean"
+  required
+  initialValue="false"
+  default="false"
+  placeholder="false"
+>
   Whether or not the environment is a production environment
 </ParamField>
 
 ### Request headers
 
-<ParamField header="Accept" required default="application/json" placeholder="application/json">
+<ParamField
+  header="Accept"
+  required
+  default="application/json"
+  placeholder="application/json"
+>
   Request header
 </ParamField>
 
-<ParamField header="Content-Type" required default="application/json" placeholder="application/json">
+<ParamField
+  header="Content-type"
+  required
+  default="application/json"
+  placeholder="application/json"
+>
   Request header
 </ParamField>

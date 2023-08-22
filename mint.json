@@ -11,9 +11,6 @@
     "baseUrl": "https://platform.flatfile.com/api",
     "auth": {
       "method": "bearer"
-    },
-    "playground": {
-      "mode": "simple"
     }
   },
   "favicon": "/favicon.jpg",
@@ -69,6 +66,7 @@
       "group": "Beginner Tutorial",
       "pages": [
         "quickstart/meet-the-workbook",
+        "quickstart/create-your-workbook",
         "quickstart/add-data-transformation",
         "quickstart/submit-action",
         "quickstart/deploying"

@@ -10,13 +10,42 @@ Actions refer to buttons added to the user interface that trigger <Tooltip tip="
 
 ## Adding your first Action
 
+First, add a primary action to your Workbook using Flatfile's API. Paste this cURL request in your terminal to update your Workbook.</Tooltip>.
+
+<Tip>
+  Use your [secret
+  key](../developer-tools/security/authentication#secret-and-publishable-keys)
+  from the `development` environment. Secret key format is "sk_abcd..." and is
+  found in [your Flatfile Dashboard
+  here](https://platform.flatfile.com/developers).
+</Tip>
+
+```shell Shell / cURL
+curl --request POST \
+  --url https://platform.flatfile.com/api/v1/workbooks \
+  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "name": "My First Workbook",
+  "actions": [
+    {
+      "operation": "submitAction",
+      "mode": "foreground",
+      "label": "Submit",
+      "description": "Submit data to webhook.site",
+      "primary": true
+    }
+  ]
+}'
+```
+
 In this example, we're going to add behavior to our Workbook's primary Action (`submitAction`). When the button is clicked by a user, a job is created. We will [listen for that job to be ready](../concepts/events#job-ready), and our code will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
 
 1. To create the receiver, navigate to [webhook.site](https://webhook.site)
 1. Copy the value of the path after webhook.site for `Your unique URL`.
 1. Next, add the following to your default export function.
 
-<Snippet file="workbook_submit.mdx" />
+<Snippet file="shared/workbook_submit_pt2.mdx" />
 
 #### Testing your Action
 
