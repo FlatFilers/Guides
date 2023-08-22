@@ -11,9 +11,6 @@
     "baseUrl": "https://platform.flatfile.com/api",
     "auth": {
       "method": "bearer"
-    },
-    "playground": {
-      "mode": "simple"
     }
   },
   "favicon": "/favicon.jpg",
@@ -62,11 +59,17 @@
       "pages": ["overview", "starter-projects"]
     },
     {
+      "group": "Updates by area",
+      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
+    },
+    {
       "group": "Beginner Tutorial",
       "pages": [
         "quickstart/meet-the-workbook",
-        "quickstart/add-data-transformation",
+        "quickstart/create-your-workbook",
         "quickstart/submit-action",
+        "quickstart/review-your-workbook",
+        "quickstart/add-data-transformation",
         "quickstart/deploying"
       ]
     },
@@ -155,8 +158,9 @@
       "group": "Core libraries",
       "pages": [
         "developer-tools/core-libraries/flatfile",
+        "developer-tools/core-libraries/listener",
         "developer-tools/core-libraries/api",
-        "developer-tools/core-libraries/listener"
+        "developer-tools/core-libraries/api-python"
       ]
     },
     {
@@ -181,19 +185,21 @@
         "plugins/extractors/xml-extractor",
         "plugins/extractors/zip-extractor",
         "plugins/extractors/delimiter-extractor",
+        "plugins/extractors/pdf-extractor",
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": [
-            "plugins/extractors/doc-extractor",
-            "plugins/extractors/pdf-extractor"
-          ]
+          "pages": ["plugins/extractors/doc-extractor"]
         }
       ]
     },
     {
       "group": "Transform",
-      "pages": ["plugins/transform/record-hook", "plugins/transform/autocast", "plugins/transform/dedupe"]
+      "pages": [
+        "plugins/transform/record-hook",
+        "plugins/transform/autocast",
+        "plugins/transform/dedupe"
+      ]
     },
     {
       "group": "Automation",
@@ -254,6 +260,10 @@
     "prompt": "Ask any question (ChatGPT powered)"
   },
   "tabs": [
+    {
+      "name": "Changelog",
+      "url": "changelog"
+    },
     {
       "name": "Guides",
       "url": "guides"

@@ -1,0 +1,180 @@
+---
+title: SDKs
+description: "Additions and updates to Flatfile SDKs"
+icon: "cube"
+---
+
+## August 20, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/api@1.5.21`
+
+      The response type for the `getRecordsAsCSV` endpoint was incorrectly typed as a string instead of a file. This fixes downloading a sheet as a CSV via SDk.
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/listener@0.3.15`
+      
+      This version has four great updates:
+
+      - Previously, you had to fake-out TypeScript because the event time was not exposed (it was a private class variable) for FlatfileEvents. We have now added `createdAt` to the FlatfileEvent.
+      - Axios responses 200-399 now no longer throw Errors.
+      - Created a secrets cache based on `environmentId` and `spaceId`.
+        - Previously, if your listener fetched secrets for multiple environments, those maps would entirely override each other.
+        - If your listener fetched `spaceId` overrides first, and then environment -- you would get the space id overrides.
+      - We now make sure that the fetch URL in the listener is formatted properly whether or not the user puts a trailing slash in the environment variable.
+
+    </div>
+
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/listener@0.3.14` `event.secrets` now defaults to `spaceId`. It
+    will throw if no `environmentId` is available for secrets retrieval.
+  </div>
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/wrappers.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/react@7.2.15` You can now pass in a spacebody. This will allow
+    you to send more than any already-defined parameters allowed on space
+    creation.
+  </div>
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/wrappers.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/react@7.2.14` The close button and iframe now have a proper class
+    name to allow for CSS overrides.
+  </div>
+</div>
+
+</div>
+
+### Plugins
+
+<div style={{ display: "table", width: "auto" }}>
+
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      **Introducing `@flatfile/@flatfile/plugin-dedupe`**
+
+      @flatfile/plugin-dedupe adds a touch of magic by seamlessly removing duplicate records right within a sheet with several options to fit your use case:
+
+        -     	`opt.keep`: Decide whether to hang on to the first or last duplicate record.
+        -     	`opt.custom`: Craft your own dedupe function, for those out-of-the-box scenarios.
+        -     	`opt.debug`: Toggle on those helpful debug messages when you’re in the lab.
+
+        Tech:
+
+        -     	Powered by `ts-pattern` for in-depth Pattern Matching in TypeScript.
+        -     	Leverages the mighty `remeda` for JavaScript’s functional programming and data wizardry.
+
+
+        [See the docs](../plugins/transform/dedupe)
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      **Introducing `@flatfile/plugin-delimiter-extractor`**
+
+      Introducing the latest addition to our extractor plugins: @flatfile/plugin-delimiter-extractor. Designed to streamline your data extraction tasks, this plugin is tailored to process delimited files including tab (\t), pipe (|), semicolon (;), colon (:), tilde (~), caret (^), and hash (#).
+
+      Parameters and Options:
+
+      -     	`fileExt` specifies the file name or extension to listen for, allowing you to define the file types to process.
+      -     	`options.delimiter` the delimiter character used in the file.
+      -     	`options.dynamicTyping` automatically convert numeric and boolean data in the file to their appropriate data types, ensuring accurate processing.
+      -     	`options.skipEmptyLines`: With ‘true’, completely empty lines (evaluating to an empty string) will be skipped during parsing. With ‘greedy’, lines with only whitespace characters are also skipped.
+      -     	`options.transform `define a function to be applied to each parsed value before dynamicTyping.
+
+
+      [See the docs](../plugins/extractors/delimiter-extractor)
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-xlsx-extractor@1.4.0`
+
+      Includes a fix for ghost rows in Excel files (happened if there was formatting on a cell but no data)
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-delimiter-extractor@0.4.0` & `@flatfile/plugin-xlsx-extractor@1.5.0`
+
+      Adds ability to support duplicate headers with non-unique header keys.
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-delimiter-extractor@0.3.0` & `@flatfile/plugin-xlsx-extractor@1.3.2`
+
+      Adds header row auto-detection (the same function used for CSVs in platform) 
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-zip-extractor@0.3.2`
+
+      Includes a fix to exclude unwanted dir (MACOSX) and it now checks file name not full path
+
+    </div>
+
+  </div>
+
+</div>
