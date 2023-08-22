@@ -13,7 +13,15 @@ icon: "circle-1"
   />
 </video>
 
+## About the Workbook
+
 A <Tooltip tip="Analogous to a database...">[Workbook](https://flatfileinc.mintlify.dev/docs/concepts/workbooks)</Tooltip> replaces the spreadsheet template(s) that you may currently share with others when requesting data. Unlike a spreadsheet, a Workbook enables your users to import, validate, and correct data before sending it back to you.
+
+### Using schemas in Workbooks
+
+Flatfile’s <Tooltip tip="A Data Definition Language...">[Blueprint](../blueprint/overview)</Tooltip> is a robust data definition language (DDL) that emphasizes validation and data preparation. Flatfile's API expects the Blueprint format creating or updating a schema definition.
+
+## Before you begin
 
 <Info>
   Prerequisites: You'll need a Flatfile account and your [secret
@@ -23,82 +31,10 @@ A <Tooltip tip="Analogous to a database...">[Workbook](https://flatfileinc.mintl
   your `development` environment for this tutorial.
 </Info>
 
-## Before you begin
-
-The minimum supported version of Node is v18.
-
-## Building your first Workbook
-
-#### Create a Workbook
-
-We'll begin by creating a new Workbook using Flatfile's API. Paste this cURL request in your terminal to create a simple Workbook or <Tooltip tip="Create a sample Workbook">[run this command directly from our docs](https://reference.flatfile.com/docs/api/tjt005wdogklo-create-a-sample-workbook)</Tooltip>.
-
-<Tip>
-  Use your [secret
-  key](../developer-tools/security/authentication#secret-and-publishable-keys)
-  from the `development` environment. Secret key format is "sk_abcd..." and is
-  found in [your Flatfile Dashboard
-  here](https://platform.flatfile.com/developers).
-</Tip>
-
-```shell Shell / cURL
-curl --request POST \
-  --url https://platform.flatfile.com/api/v1/workbooks \
-  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "name": "My First Workbook",
-  "sheets": [
-    {
-      "name": "Contact",
-      "slug": "contacts",
-      "fields": [
-        {
-          "key": "firstName",
-          "type": "string",
-          "label": "First Name"
-        },
-        {
-          "key": "lastName",
-          "type": "string",
-          "label": "Last Name"
-        },
-        {
-          "key": "email",
-          "type": "string",
-          "label": "Email"
-        }
-      ]
-    }
-  ],
-  "actions": [
-    {
-      "operation": "submitAction",
-      "mode": "foreground",
-      "label": "Submit",
-      "description": "Submit data to webhook.site",
-      "primary": true
-    }
-  ]
-}'
-```
-
-### Using schemas
-
-Flatfile’s <Tooltip tip="A Data Definition Language...">[Blueprint](../blueprint/overview)</Tooltip> is a robust data definition language (DDL) that emphasizes validation and data preparation. Flatfile's API expects the Blueprint format creating or updating a schema definition.
-
-### Add data to your Workbook
-
-Now that you have a Workbook, you're now ready to start importing data with Flatfile!
-
-1. Head to your <Tooltip tip="Go to dashboard">[Spaces Dashboard](https://platform.flatfile.com)</Tooltip> and click on
-   the Workbook you just created (My First Workbook). You may need to refresh the page.
-2. Upload a [test file](https://assets.ctfassets.net/hjneo4qi4goj/6I48ynsesoL1s1YhPK8Pvx/1d5ed30534c1ef44166d440a08612621/getting-started.csv) in the Files section, and then click the "Import" Action for the file. Follow the steps to map the example data into the "Contact" Sheet in the Workbook.
-3. After mapping is complete, you can click on the "Contact" icon in the left sidebar and see the imported data.
-4. Additionally, you can make changes to the Workbook in the Contact Sheet's user interface by modifying existing records or adding new rows entirely.
+<Note>For the best experience, switch to Node v18.</Note>
 
 ---
 
 ## Recap & Next Steps
 
-In the next step, we will dive deeper into responding to record Events with transformations and validations.
+Now that you have a basic understanding of Workbooks and schemas, you're ready to [create a Workbook](../quickstart/create-your-workbook) using Flatfile's API.
