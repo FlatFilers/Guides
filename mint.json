@@ -90,10 +90,6 @@
       ]
     },
     {
-      "group": "Upgrade",
-      "pages": ["guides/upgrade/v2_upgrade"]
-    },
-    {
       "group": "Concepts",
       "pages": [
         "concepts/workbooks",
