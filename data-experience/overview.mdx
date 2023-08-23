@@ -23,7 +23,7 @@ Errors are highlighted in red, though this color can be custom configured to be 
 
 ![image](../images/data-experience/1_Errors.png)
 
-It’s very easy to filter any dataset to just show records with errors, using our *record status quick filter*:
+It’s very easy to filter any dataset to just show records with errors, using our **record status quick filter**:
 
 ![image](../images/data-experience/2_Record_status_filters.png)
 
@@ -42,13 +42,13 @@ You can configure record hooks that automatically modify data to correct it in y
 
 ### Filtering data
 
-Earlier, we referenced the *record rtatus quick filter*. This is a quick filter optimized to surface records based on whether they are valid or invalid. This button group shows counts by status – it’s a great way to get a high level of view of the dataset. This makes it really easy for your users to find dirty data.
+Earlier, we referenced the **record rtatus quick filter**. This is a quick filter optimized to surface records based on whether they are valid or invalid. This button group shows counts by status – it’s a great way to get a high level of view of the dataset. This makes it really easy for your users to find dirty data.
 
 ![image](../images/data-experience/5_Record_status_filters.png)
 
 #### Filter by Error
 
-Users can also further filter data by using the *filter by error* feature. Clicking this opens a dropdown that offers a list of field names – selecting a field name will filter the dataset to records that have an error on that field.
+Users can also further filter data by using the **filter by error** feature. Clicking this opens a dropdown that offers a list of field names – selecting a field name will filter the dataset to records that have an error on that field.
 ![image](../images/data-experience/6_Filter_by_error.png)
 
 The Record Status button group updates counts to show both “all” and “filtered” counts by status:
@@ -62,7 +62,7 @@ Users can also filter data using [FFQL](https://flatfile.com/docs/developer-tool
 
 #### AI Assisted Filtering
 
-Users can also use our *AI Assist* feature and ask AI to write a query for them. Type “Cmd+K” or “Ctrl+K” and type “/query” followed by a description of the filter criteria.
+Users can also use our **AI Assist** feature and ask AI to write a query for them. Type “Cmd+K” or “Ctrl+K” and type “/query” followed by a description of the filter criteria.
 
 ![image](../images/data-experience/9_AI_assist.png)
 
@@ -70,29 +70,29 @@ Users can also use our *AI Assist* feature and ask AI to write a query for them.
 
 ### Bulk Resolution of Errors
 
-Flatfile offers two out of the box features for bulk resolution of common errors – *find and replace* and *replace empty values*. You can find this functionality by clicking on the column context menu – a three dot icon that appears when you hover over a column header:
+Flatfile offers two out of the box features for bulk resolution of common errors – **find and replace** and **replace empty values**. You can find this functionality by clicking on the column context menu – a three dot icon that appears when you hover over a column header:
 
 ![image](../images/data-experience/11_column_context_menu.png)
 
-Both *find and replace* and *replace empty values* are restricted to the column from which they are triggered. We have also encoded additional guardrails based on data types. For example, if you trigger *find and replace* from a categorical data type field, we limit the “replace” options to only the valid option encoded into that field in the Blueprint. This prevents a user from accidentally introducing new errors when using a bulk action.
+Both **find and replace** and **replace empty values** are restricted to the column from which they are triggered. We have also encoded additional guardrails based on data types. For example, if you trigger *find and replace* from a categorical data type field, we limit the “replace” options to only the valid option encoded into that field in the Blueprint. This prevents a user from accidentally introducing new errors when using a bulk action.
 
-Here is an example of the available “replace” options in a *find and replace* triggered from a field named “Deal Status” for which the encoded valid options in the Blueprint are “Interested”, “Meeting”, “New”, “Not a fit” and “Opportunity”:
+Here is an example of the available “replace” options in a **find and replace** triggered from a field named “Deal Status” for which the encoded valid options in the Blueprint are “Interested”, “Meeting”, “New”, “Not a fit” and “Opportunity”:
 
 ![image](../images/data-experience/12_find_and_replace-categorical.png)
 
-Similarly, if you trigger *find and replace* from a numerical field, the only accepted inputs are numerical values. For boolean fields, you must choose from one of the two encoded boolean values.
+Similarly, if you trigger **find and replace** from a numerical field, the only accepted inputs are numerical values. For boolean fields, you must choose from one of the two encoded boolean values.
 
 We do not offer these features on fields that have been configured with a “unique” requirement, since it would make no sense to bulk replace cells with identical values that would break the “unique” rule encoded into the Blueprint. (Note: I don’t think this is true right now and we should fix this)
 
 ## Sheet Actions
 
-You can configure more specific methods of bulk error resolution using our [Action framework](https://flatfile.com/docs/guides/actions) that are specific to the nature of the data that you expect to see.
+You can configure more specific methods of bulk error resolution using our [Actions framework](https://flatfile.com/docs/guides/actions) that are specific to the nature of the data that you expect to see.
 
 For example, if you know that your customers often bring in a column that contains full names but your blueprint wants a First Name and Last Name in two separate columns you can configure a “Name Splitter” action that detects if either of your configured blueprint fields, “First Name” or “Last Name” contain a full name, and if so, to split the name and place the first name in the “First Name” field and the “Last Name” in the last name field.
 
 ## Combining filters with bulk error resolution methods
 
-Flatfile offers multiple ways in which a user can slice and dice data via the *record Status quick filter*, *filter by error* feature and *FFQL*. Users can select all data using our checkbox UI by clicking on the checkbox on the top left of the table, or more granularly select data by individually checking boxes.
+Flatfile offers multiple ways in which a user can slice and dice data via the **record Status quick filter**, **filter by error** feature and **FFQL**. Users can select all data using our checkbox UI by clicking on the checkbox on the top left of the table, or more granularly select data by individually checking boxes.
 
 ![image](../images/data-experience/13_Filters_checkbox.png)
 
