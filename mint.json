@@ -44,7 +44,7 @@
   "versions": [
     "latest",
     { "name": "v3", "url": "https://flatfile.com/versioned-docs/3.0" },
-    { "name": "v2", "url": "https://flatfile.com/versioned-docs/3.0" }
+    { "name": "v2", "url": "https://flatfile.com/versioned-docs/2.0" }
   ],
   "anchors": [
     {
@@ -88,6 +88,10 @@
         "guides/secrets",
         "guides/automap"
       ]
+    },
+    {
+      "group": "Upgrade",
+      "pages": ["guides/upgrade/v2_upgrade"]
     },
     {
       "group": "Concepts",
