@@ -1,7 +1,7 @@
 ---
 title: "Transform & validate data"
 description: "Begin the process of validating and transforming data in Flatfile by implementing a basic Event handler."
-icon: "circle-4"
+icon: "circle-3"
 ---
 
 Flatfile provides a number of [transformation & validation plugins](../plugins/transform) to reshape data before it gets updated. These plugins build on the listener and provide a simpler interface for working with your data.
@@ -69,7 +69,6 @@ listener.use(
     return record;
   })
 );
-
 ````
 
 </CodeGroup>
@@ -150,6 +149,4 @@ Once you take focus off of the field, your validation will run and the Sheet use
 
 ## Recap & Next Steps
 
-Congratulations! You now now have an example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations. Your Workbook also has a submit Action for getting the data out!
-
-To this point, we’ve been running our listener code locally using the develop command. Next, you should deploy your code.
+Now that you've added transformations and validations, we will [configure the Workbook Action](../quickstart/submit-action) to call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
