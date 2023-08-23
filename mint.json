@@ -11,9 +11,6 @@
     "baseUrl": "https://platform.flatfile.com/api",
     "auth": {
       "method": "bearer"
-    },
-    "playground": {
-      "mode": "simple"
     }
   },
   "favicon": "/favicon.jpg",
@@ -59,12 +56,18 @@
   "navigation": [
     {
       "group": "Documentation",
-      "pages": ["overview", "starter-projects", "changelog"]
+      "pages": ["overview", "starter-projects"]
+    },
+    {
+      "group": "Updates by area",
+      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
     },
     {
       "group": "Beginner Tutorial",
       "pages": [
         "quickstart/meet-the-workbook",
+        "quickstart/create-your-workbook",
+        "quickstart/meet-the-listener",
         "quickstart/add-data-transformation",
         "quickstart/submit-action",
         "quickstart/deploying"
@@ -154,8 +157,9 @@
       "group": "Core libraries",
       "pages": [
         "developer-tools/core-libraries/flatfile",
+        "developer-tools/core-libraries/listener",
         "developer-tools/core-libraries/api",
-        "developer-tools/core-libraries/listener"
+        "developer-tools/core-libraries/api-python"
       ]
     },
     {
@@ -255,6 +259,10 @@
     "prompt": "Ask any question (ChatGPT powered)"
   },
   "tabs": [
+    {
+      "name": "Changelog",
+      "url": "changelog"
+    },
     {
       "name": "Guides",
       "url": "guides"

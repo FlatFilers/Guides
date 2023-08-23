@@ -1,22 +1,30 @@
 ---
 title: Configure a submit Action
 description: "Learn how to create a simple submit Action in Flatfile."
-icon: "circle-3"
+icon: "circle-4"
 ---
-
-<Snippet file="shared/dxpbanner.mdx" />
 
 Actions refer to buttons added to the user interface that trigger <Tooltip tip="Large asynchronous work...">[Jobs](../concepts/jobs)</Tooltip> within the Flatfile platform when clicked by users. They enable you to run complex operations and streamline workflows. They are declared as part of the Blueprint that defines a Workbook.
 
-## Adding your first Action
+<Tip>
+  Use your [secret
+  key](../developer-tools/security/authentication#secret-and-publishable-keys)
+  from the `development` environment. Secret key format is "sk_abcd..." and is
+  found in [your Flatfile Dashboard
+  here](https://platform.flatfile.com/developers).
+</Tip>
 
-In this example, we're going to add behavior to our Workbook's primary Action (`submitAction`). When the button is clicked by a user, a job is created. We will [listen for that job to be ready](../concepts/events#job-ready), and our code will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
+In this example, we're going to add behavior to our Workbook's primary Action (`submitAction`).
+
+### Adding behavior to the action
+
+When the button is clicked by a user, a job is created. We will [listen for that job to be ready](../concepts/events#job-ready), and our code will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
 
 1. To create the receiver, navigate to [webhook.site](https://webhook.site)
 1. Copy the value of the path after webhook.site for `Your unique URL`.
 1. Next, add the following to your default export function.
 
-<Snippet file="workbook_submit.mdx" />
+<Snippet file="shared/workbook_submit_pt2.mdx" />
 
 #### Testing your Action
 
@@ -27,6 +35,6 @@ In this example, we're going to add behavior to our Workbook's primary Action (`
 
 ## Recap & Next Steps
 
-Congratulations! You now have a Workbook with transformations, validations, and a submit Action to get the data out.
+Congratulations! You now now have an example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations. Your Workbook also has a submit Action for getting the data out!
 
-To this point, we've been running our listener code locally using the `develop` command. Next, you should [deploy your code](../developer-tools/deploying).
+To this point, we’ve been running our listener code locally using the develop command. Next, you should deploy your code.
