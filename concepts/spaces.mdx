@@ -1,22 +1,31 @@
 ---
 title: "Spaces"
 description: "The anatomy of Spaces."
-icon: 'planet-ringed'
+icon: "planet-ringed"
 ---
 
-Flatfile Spaces are micro-applications, each having their own database, filestore, and auth. 
-Use Spaces to integrate Flatfile into your data exchange workflow, whether that happens directly 
-in your application or as part of a currently offline process. 
+Flatfile Spaces are micro-applications, each having their own database, filestore, and auth.
+Use Spaces to integrate Flatfile into your data exchange workflow, whether that happens directly
+in your application or as part of a currently offline process.
 
 With Spaces, you can:
 
 <CardGroup cols={3}>
-  <Card title="Embed Flatfile in your app" icon="person-to-portal" href="/use-cases/embedding" >
-  </Card>
-  <Card title="Setup headless file feeds" icon="bolt-auto" href="/use-cases/headless" >
-  </Card>
-  <Card title="Run onboarding projects" icon="arrow-progress" href="/use-cases/collaborate">
-  </Card>
+  <Card
+    title="Embed Flatfile in your app"
+    icon="person-to-portal"
+    href="/guides/use-cases/embedding"
+  ></Card>
+  <Card
+    title="Setup headless file feeds"
+    icon="bolt-auto"
+    href="/guides/use-cases/headless"
+  ></Card>
+  <Card
+    title="Run onboarding projects"
+    icon="arrow-progress"
+    href="/guides/use-cases/collaborate"
+  ></Card>
 </CardGroup>
 
 ---
@@ -25,28 +34,40 @@ With Spaces, you can:
 
 A Space is comprised of Workbooks, Files, Users, Documents, Themes and Metadata.
 
-<img src="../images/concepts/spaces_anatomy.png" caption="The anatomy of a Space"/>
+<img
+  src="../images/concepts/spaces_anatomy.png"
+  caption="The anatomy of a Space"
+/>
 
 ### Reference
 
 [See API Reference](https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space)
 
-#### `Workbooks` *object*
+#### `Workbooks` _object_
+
 A Space contains any number of Workbooks. Each <Tooltip tip="Analogous to a database...">[Workbook](../concepts/workbooks)</Tooltip> is a Blueprint-defined database.
 
-<Tip>Add the label 'pinned' to your workbook to ensure it appears as the first workbook in the sidebar.</Tip>
+<Tip>
+  Add the label 'pinned' to your workbook to ensure it appears as the first
+  workbook in the sidebar.
+</Tip>
 
-#### `Files` *object*
+#### `Files` _object_
+
 Files are uploaded directly to a Space.
 
-#### `Users` *object*
+#### `Users` _object_
+
 By default, all global Admins in Flatfile have access to all Spaces. Additionally, you can configure a Space to allow for either temporary (`shared_link`) or named (`magic_link`) Guest Users.
 
-#### `Documents` *object*
-Documents are custom pages that are mounted on the Space and display in the sidebar of a Space in the order of their addition to the Space. 
+#### `Documents` _object_
 
-#### `Theme` *object*
+Documents are custom pages that are mounted on the Space and display in the sidebar of a Space in the order of their addition to the Space.
+
+#### `Theme` _object_
+
 Theming of Flatfile is controlled at the Space level. A comprehensive list of Theme options are available [here](../guides/theming).
 
-#### `Metadata` *object*
+#### `Metadata` _object_
+
 Spaces can be created and updated with Metadata. This could include a company-specific identifier such as a UUID for use in API operations in the Space.

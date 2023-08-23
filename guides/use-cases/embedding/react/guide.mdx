@@ -99,7 +99,7 @@ Since we have a defined "Submit" action in our Workbook, next we utilize the Eve
   and updates in the browser, there may be operations it can't perform due to
   these limitations. For tasks that need to access server resources or
   capabilities, a server-side listener will also be required. [Learn
-  more](../../../developer-tools/client_server_side)
+  more](../../../../developer-tools/client_server_side)
 </Warning>
 
 #### Install the plugin
@@ -171,7 +171,7 @@ The `useSpace` hook configures a Space component.
 <Note>
   Note: the Space must have `guestAuthentication` configured with `shared_link`
   as an option. This is inherited from Environment. [Learn
-  more](../../../developer-tools/environment#guest-authentication).
+  more](../../../../developer-tools/environment#guest-authentication).
 </Note>
 
 A new Space will be created each time Flatfile is initialized. To reuse a space, learn more about the [space](#space) property.
@@ -232,15 +232,23 @@ When closing the Flatfile iframe, end users will see a dialog asking them if the
   --color-pigeon-600: #8b93a4; //text color (confirmation pop up)
   --color-pigeon-300: #d7dee8; // color of the border around secondary button (confirmation pop up)
   --color-pigeon-200: #e8edf4; //secondary button color (confirmation pop up)
-  --color-text: var(--color-pigeon-primary); //header text color and secondary button text color (confirmation pop up)
+  --color-text: var(
+    --color-pigeon-primary
+  ); //header text color and secondary button text color (confirmation pop up)
   --text-font: var(--brand-font-sans-serif);
   --size-base: 15px; //size of the header text (confirmation pop up)
 }
 body {
   background-color: #fff; //background color behind the Flatfile button
-  color: var(--color-text); //text color when text is present on the page where Flatfile button is embedded (text defined inside "index.html" file
-  font-family: var(--text-font); //font style of the text that is on the page where Flatfile button is embedded (text defined inside "index.html" file
-  font-size: var(--size-base); //font size of the text that is on the page where Flatfile button is embedded (text defined inside "index.html" file
+  color: var(
+    --color-text
+  ); //text color when text is present on the page where Flatfile button is embedded (text defined inside "index.html" file
+  font-family: var(
+    --text-font
+  ); //font style of the text that is on the page where Flatfile button is embedded (text defined inside "index.html" file
+  font-size: var(
+    --size-base
+  ); //font size of the text that is on the page where Flatfile button is embedded (text defined inside "index.html" file
   line-height: 1.5; //distance between the text that is defined in "index.html" file and the Flatfile button. Also distance between header text and description on confirmation pop up.
   margin: 0;
 }
@@ -398,7 +406,7 @@ Default: "Are you sure you would like to close this window? This will end your c
 <Note>
   Note: the Space must have `guestAuthentication` configured with `shared_link`
   as an option. This is inherited from Environment. [Learn
-  more](../../../developer-tools/environment#guest-authentication).
+  more](../../../../developer-tools/environment#guest-authentication).
 </Note>
 
 To reuse an existing Space, we’ll update our App.tsx to pass in a Space Id.
@@ -511,7 +519,7 @@ const space = useSpace({
 
 #### Option 2: Manual CSS overrides
 
-If you prefer to set colors manually using the actual CSS variables referenced in the app, you can construct the theme yourself using our [Theming Reference](../../../guides/theming).
+If you prefer to set colors manually using the actual CSS variables referenced in the app, you can construct the theme yourself using our [Theming Reference](../../../../guides/theming).
 
 ```typescript
 const theme = {
@@ -551,7 +559,7 @@ const space = useSpace({
 
 ### sidebarConfig
 
-See [Sidebar Reference](../../../guides/guest_sidebar) to learn the options for the sidebar. You can also hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
+See [Sidebar Reference](../../../../guides/guest_sidebar) to learn the options for the sidebar. You can also hide it completely (most common). Pass your sidebar configuration to your `useSpace` hook or `Space` component.
 
 <Note>
   If multiple values are provided for defaultPage, it with prioritize in the
@@ -590,7 +598,7 @@ const space = useSpace({
 
 ### document
 
-[Documents](../../../guides/documents), written in Markdown, provide extra clarification and instructions to users of
+[Documents](../../../../guides/documents), written in Markdown, provide extra clarification and instructions to users of
 a Space. Each Document will appear in the sidebar of a Space. Standard syntax is
 supported.
 
