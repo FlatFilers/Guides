@@ -86,9 +86,12 @@
         "guides/guest_sidebar",
         "guides/documents",
         "guides/secrets",
-        "guides/automap",
-        "guides/upgrade"
+        "guides/automap"
       ]
+    },
+    {
+      "group": "Upgrade",
+      "pages": ["guides/upgrade/v2_upgrade"]
     },
     {
       "group": "Concepts",
