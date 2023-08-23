@@ -74,7 +74,7 @@
       ]
     },
     {
-      "group": "Guides",
+      "group": "By Feature",
       "pages": [
         "guides/handling-data",
         "guides/actions",
@@ -99,20 +99,20 @@
       ]
     },
     {
-      "group": "Use cases",
+      "group": "By use case",
 
       "pages": [
         {
           "group": "Embed in your app",
           "icon": "person-to-portal",
           "pages": [
-            "use-cases/embedding/overview",
-            "use-cases/embedding/javascript/guide",
-            "use-cases/embedding/react/guide"
+            "guides/use-cases/embedding/overview",
+            "guides/use-cases/embedding/javascript/guide",
+            "guides/use-cases/embedding/react/guide"
           ]
         },
-        "use-cases/headless",
-        "use-cases/collaborate"
+        "guides/use-cases/headless",
+        "guides/use-cases/collaborate"
       ]
     },
     {
@@ -276,7 +276,7 @@
       "url": "plugins"
     },
     {
-      "name": "Developers",
+      "name": "CLI",
       "url": "developer-tools"
     }
   ]
