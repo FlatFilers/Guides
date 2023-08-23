@@ -4,8 +4,33 @@ description: "The anatomy of Actions"
 icon: "bolt"
 ---
 
-The end user can trigger an action on a sheet or workbook.
-
+An Action is a code-based operation that runs where that Action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile. Actions can be mounted on a Sheet, a Workbook, a Space, or a file.
 
 ## The Anatomy of an Action
-An action has a label and a slug and some booleans.
+
+All Actions contain the the information needed to let a user run the Action. This includes:
+- `operation` - A unique identifier for the Action that is used by the listener to determine what work to do as part of the resulting Job
+- `label` - The text that will be displayed to the user in the UI as a button or menu item
+
+Optionally, an Action can also contain extra details about how it appears in the UI. These include:
+- `primary` - Whether the Action is a primary Action for the resource. Depending on the resource, primary Actions are displayed in the UI in a more prominent way.
+- `confirm` - When set to `true`, a modal is shown to confirm the Action
+- `description` -  The text that will be displayed to the user when a confirmation modal is used. Phrase this as a question.      
+- `requireSelection`- Setting this to `true` will disable a Sheet Action when no records in the Sheet are selected.
+- `mode` - Can be `foreground` or `background`. Foreground actions will prevent interacting with the resource until complete. The default value is `background`.
+
+## Example
+
+An Action with all of the above properties would look like this:
+
+```js
+{
+  operation: 'my-action',
+  label: 'My Action',
+  primary: true,
+  confirm: true,
+  description: 'Are you sure you want to run this action?',
+  requireSelection: true,
+  mode: 'foreground'
+}
+```
