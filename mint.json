@@ -44,7 +44,7 @@
   "versions": [
     "latest",
     { "name": "v3", "url": "https://flatfile.com/versioned-docs/3.0" },
-    { "name": "v2", "url": "https://flatfile.com/versioned-docs/3.0" }
+    { "name": "v2", "url": "https://flatfile.com/versioned-docs/2.0" }
   ],
   "anchors": [
     {
@@ -86,7 +86,8 @@
         "guides/guest_sidebar",
         "guides/documents",
         "guides/secrets",
-        "guides/automap"
+        "guides/automap",
+        "guides/upgrade"
       ]
     },
     {
