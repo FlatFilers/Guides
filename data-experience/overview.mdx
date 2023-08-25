@@ -15,7 +15,7 @@ You define a target structure for each dataset, and the end user maps their data
 
 ### Highlighting Anomalies
 
-You can further encode validation rules as errors or warning, each gets slightly different treatment:
+You can further [encode validation rules as errors or warnings](https://flatfile.com/docs/guides/handling-data#flatfilerecord-validate), each gets slightly different treatment:
 
 #### Errors
 
@@ -100,29 +100,29 @@ This can be a powerful tool when combined with the various methods for the bulk 
 
 ## Just Good Data UX
 
-Flatfile has a few core data types, and they are styled differently to make it super easy for a user to immediately understand what kind of data they’re looking at, to learn more about data in a cell and to edit data.
+Flatfile has a few [core data types](https://flatfile.com/docs/blueprint/field-types), and they are styled differently to make it super easy for a user to immediately understand what kind of data they’re looking at, to learn more about data in a cell and to edit data.
 
 ### Strings
 
-Strings or free text data are the most simply styled: our default font, with text aligned to the left, as is most of the data in our data table:
+[Strings](https://flatfile.com/docs/blueprint/field-types#string-default) or free text data are the most simply styled: our default font, with text aligned to the left, as is most of the data in our data table:
 
 ![image](../images/data-experience/14_string.png)
 
 ### Numbers
 
-Numbers are displayed in a monospaced font that is easily visually differentiated from our default text font, and are right aligned. We think it’s important to make numerical and string data visually distinct, since it can be easy to conflate string data that look like numbers (for example, a userid that contains only numbers) with numerical data.
+[Numbers](https://flatfile.com/docs/blueprint/field-types#number) are displayed in a monospaced font that is easily visually differentiated from our default text font, and are right aligned. We think it’s important to make numerical and string data visually distinct, since it can be easy to conflate string data that look like numbers (for example, a userid that contains only numbers) with numerical data.
 
 ![image](../images/data-experience/15_number.png)
 
 ### Enums
 
-Categorical data or enums are displayed as tags, and the edit experience is similar to that of a dropdown. This makes it really easy for a user to switch between different valid option. The dropdown is searchable to make for a pleasant user experience when the number of valid options is large. We restrict the entry of new data in these fields to valid options.
+Categorical data or [enums](https://flatfile.com/docs/blueprint/field-types#enum) are displayed as tags, and the edit experience is similar to that of a dropdown. This makes it really easy for a user to switch between different valid option. The dropdown is searchable to make for a pleasant user experience when the number of valid options is large. We restrict the entry of new data in these fields to valid options.
 
 ![image](../images/data-experience/16_enum.png)
 
 ### Booleans
 
-Booleans are displayed along with a tiny toggle UI. The “on” state of the toggle is brightly colored, while the “off” state is gray. This makes it easy to visually see how many values are “on” vs “off”. Clicking the toggle switches the value.
+[Booleans](https://flatfile.com/docs/blueprint/field-types#boolean) are displayed along with a tiny toggle UI. The “on” state of the toggle is brightly colored, while the “off” state is gray. This makes it easy to visually see how many values are “on” vs “off”. Clicking the toggle switches the value.
 
 When there’s an unexpected value in a Boolean field, it turns yellow or red, depending on whether it’s a warning or error. No data is represented by an empty cell – but if a user were to hover over that cell a toggle in “off” state appears.
 
