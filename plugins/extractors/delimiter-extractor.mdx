@@ -15,7 +15,7 @@ icon: "download"
     title="@flatfile/plugin-delimiter-extractor"
     icon="download"
   >
-    The `@flatfile/plugin-delimiter-extractor` package is a plugin for parsing delimited files (i.e. PSV or TSV) and extracting them into Flatfile. It utilizes various libraries to parse PSV files and retrieve the structured data efficiently.
+    The `@flatfile/plugin-delimiter-extractor` package is a plugin for parsing delimited files and extracting them into Flatfile. It utilizes various libraries to parse files and retrieve the structured data efficiently.
     <br/>
     <br/>
     **Event Type:**
@@ -24,7 +24,9 @@ icon: "download"
     <br/>
     **Supported delimiters:**
     <br/>
-    `\t`, `|`, `;`, `:`, `~`, `^`, `#`
+    `;`, `:`, `~`, `^`, `#`
+    <br/>
+    **Note:** `\t`, `|`, and `,` are handled natively in the platform.
 
   </Card>
 </CardGroup>
@@ -86,31 +88,31 @@ import { DelimiterExtractor } from "@flatfile/plugin-delimiter-extractor";
 ```
 
 ```js listener.js
-listener.use(DelimiterExtractor(".psv", { delimiter: "|" }));
+listener.use(DelimiterExtractor(".txt", { delimiter: ":" }));
 ```
 
 ### Full Example
 
-In this example, the DelimiterExtractor is initialized for extracting PSV files with optional options, and then registered as middleware with the Flatfile listener. When a PSV file is uploaded, the plugin will extract the structured data and process it using the extractor's parser.
+In this example, the DelimiterExtractor is initialized for extracting TXT files with optional options, and then registered as middleware with the Flatfile listener. When a TXT file is uploaded, the plugin will extract the structured data and process it using the extractor's parser.
 
 ```javascript
 import { DelimiterExtractor } from "@flatfile/plugin-delimiter-extractor";
 
 // Define optional options for the extractor (e.g., { dynamicTyping: true })
 const options = {
-  delimiter: "|",
+  delimiter: ":",
   dynamicTyping: true,
   skipEmptyLines: true,
   transform: (value) => value.toUpperCase(),
 };
 
-// Initialize the PSV extractor
-const delimiterExtractor = DelimiterExtractor(".psv", options);
+// Initialize the TXT extractor
+const delimiterExtractor = DelimiterExtractor(".txt", options);
 
 // Register the extractor as a middleware for the Flatfile listener
 listener.use(delimiterExtractor);
 
-// When a PSV file is uploaded, the data will be extracted and processed using the extractor's parser.
+// When a TXT file is uploaded, the data will be extracted and processed using the extractor's parser.
 ```
 
 ## See the code
