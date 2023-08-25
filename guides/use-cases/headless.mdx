@@ -21,7 +21,7 @@ Implement a flexible data pipeline that seamlessly uploads files to Flatfile wit
 Within the Flatfile Platform, build a comprehensive configuration that enables automated extraction, mapping, validation, and transformation of your data.
 
 [Automate egress](#automate-egress) \
-Finally, leverage Flatfile's [Event](../concepts/events) driven system to automatically export the processed and transformed data from Flatfile to the designated destination system, eliminating the need for manual exporting and ensuring a continuous flow of data to the intended location.
+Finally, leverage Flatfile's [Event](../../concepts/events) driven system to automatically export the processed and transformed data from Flatfile to the designated destination system, eliminating the need for manual exporting and ensuring a continuous flow of data to the intended location.
 
 ## Automate ingress
 
@@ -29,14 +29,14 @@ Data comes from many sources, and Flatfile can handle them all. Set up automatic
 
 All ingress processes will leverage either our API or our SDKs.
 
-First, configure an ingress destination. Our files will be contained in a Space. You can think of a <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip> as a micro-application, each has it's own database and configurations.
+First, configure an ingress destination. Our files will be contained in a Space. You can think of a <Tooltip tip="A micro-application...">[Space](../../concepts/spaces)</Tooltip> as a micro-application, each has it's own database and configurations.
 
 <Snippet file="use-cases/headless/block1.mdx" />
 <br></br>
 <Note>
   Our deployed agent will automatically configure a Space. For more information
   on how to configure a Space, see our [Dynamic
-  Configurations](...guides/dynamic-configurations#configuring-a-new-space).
+  Configurations](../../guides/dynamic-configurations).
 </Note>
 
 Next, we'll upload our file to Flatfile.
@@ -47,22 +47,22 @@ Next, we'll upload our file to Flatfile.
 
 ### Extract incoming data
 
-Incoming CSV files are automatically extracted to a <Tooltip tip="A collection of data...">[Workbook](../concepts/workbooks)</Tooltip>.
+Incoming CSV files are automatically extracted to a <Tooltip tip="A collection of data...">[Workbook](../../concepts/workbooks)</Tooltip>.
 
 However, if you're sending a different file type, you'll need to configure a listener to handle extraction.
 
 <Note>
-  See our [Extractor Plugins](../plugins/extractors) for plug and play options
-  or build your own.
+  See our [Extractor Plugins](../../plugins/extractors) for plug and play
+  options or build your own.
 </Note>
 
 ### Automate mapping
 
-Once our files are extracted, we'll need to automate the mapping of our data according to our schema. Our Automap Plugin will automatically map the data, matching based on configureable options. See our [Automap Guide](../guides/automap) for more information.
+Once our files are extracted, we'll need to automate the mapping of our data according to our schema. Our Automap Plugin will automatically map the data, matching based on configureable options. See our [Automap Guide](../../guides/automap) for more information.
 
 ### Validate & Transform
 
-Similarly, validation and transformation operations can run immediately on `records:*` events with RecordHooks. See our [Data Handling Guide](../guides/handling-data) for more information.
+Similarly, validation and transformation operations can run immediately on `records:*` events with RecordHooks. See our [Data Handling Guide](../../guides/handling-data) for more information.
 
 ### Automate egress
 
@@ -74,10 +74,11 @@ We'll have our listener filter on the `workbook:map` job and configure it to run
 <br></br>
 <Note>
   Egress Jobs may need to leverage Flatfile Secrets as credentials for outgoing
-  connections. See our [Secrets Guide](../guides/secrets) for more information.
+  connections. See our [Secrets Guide](../../guides/secrets) for more
+  information.
 </Note>
 
-To pull a working demo of a headless integration, check out our [Example Projects](../starter-projects).
+To pull a working demo of a headless integration, check out our [Example Projects](../../starter-projects).
 
 ## Additional paths
 
@@ -87,14 +88,14 @@ To find the additional Flatfile integration paths that may work better for your 
   <Card
     title="Embed in your app"
     icon="person-to-portal"
-    href="../use-cases/embedding"
+    href="../../guides/use-cases/embedding"
   >
     Securely and easily add an embedded import experience to any app.
   </Card>
   <Card
     title="Run onboarding projects"
     icon="arrow-progress"
-    href="../use-cases/collaborate"
+    href="../../guides/use-cases/collaborate"
   >
     Collaborate across teams on large data onboarding projects.
   </Card>
