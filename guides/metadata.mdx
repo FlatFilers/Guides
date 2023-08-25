@@ -6,8 +6,25 @@ icon: "file-circle-info"
 
 ## Overview
 
-Metadata allows you to store and retrieve additional data about a Space, Record, or Field without
+Metadata allows you to store and retrieve additional data about an Environment, Space, Record, or Field without
 exposing it to end users.
+
+## Environment-level
+
+On the environment level `metadata` can be configured to to record details about your current enivornment state. This can be useful for developers to store information about their deployments and even aggregate information about spaces, users and data therin.
+
+### Usage
+
+Utilize `@flatfile/api` to create or update an Environment with metadata.
+
+```jsx
+await api.environments.update(environmentId, {
+  metadata: {
+    version: "0.0.0",
+    deployedAt: new Date().toISOString(),
+  },
+});
+```
 
 ## Space-level
 
@@ -41,10 +58,6 @@ information about a record that goes beyond what the data owner provides.
 
 The `metadata` object on the record allows you to
 include details like record IDs or reference IDs to other tables.
-
-## Environment-level
-
-Metadata on the enviornment level can be configured to to record details about your environment. This can be useful for developers to store information about their deployments and even the spaces and users active there.
 
 ### Usage
 
