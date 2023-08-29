@@ -41,6 +41,22 @@ Using an iframe, Flatfile seamlessly integrates into your website or application
   if not passing in an existing Space.
 </ParamField>
 
+<ParamField path="name" type="string">
+  Name to the space
+</ParamField>
+
+<ParamField path="themeConfig" type="object">
+  Theme values for space, sidebar and data table
+</ParamField>
+
+<ParamField path="sidebarConfig" type="object">
+  Sidebar config values to toggle UI elements
+</ParamField>
+
+<ParamField path="document" type="object">
+  Document to pass to space
+</ParamField>
+
 <ParamField path="space" type="{id: string, accessToken: string}">
   Pass in an existing Space instead of creating a new one each time. [Learn
   More](#space)
@@ -56,11 +72,30 @@ Using an iframe, Flatfile seamlessly integrates into your website or application
 
 <ParamField path="displayAsModal" type="boolean" default="true">
   Display Flatfile as a full screen modal or inline on the page. [Learn More](#displayAsModal)
+</ParamField>
 
+<ParamField path="spaceUrl" type="string">
+  Url to override default flatfile space url
+</ParamField>
+
+<ParamField path="userInfo" type="{ userId: string, name: string, companyId: string, companyName: string }">
+  Additional metadata to be passed to the space
 </ParamField>
 
 <ParamField path="spaceBody" type="object">
   Pass in space options to configure a new Space. [Learn More](#space)
+</ParamField>
+
+<ParamField path="environmentId" type="string">
+  Identifier for environment
+</ParamField>
+
+<ParamField path="workbook" type="object">
+  Config of the workbook to be created
+</ParamField>
+
+<ParamField path="loading" type="ReactElement">
+  Loading element to override default Loading component
 </ParamField>
 
 <ParamField
@@ -103,6 +138,10 @@ Default: "Are you sure you would like to close this window? This will end your c
 <ParamField path="listener" type="Listener">
   **React only** Event listener for responding to Events. [Learn
   More](#build-the-listener)
+</ParamField>
+
+<ParamField path="iframeStyles" type="CSSProperties">
+  Style the iframe using CSS Properties
 </ParamField>
 
 ### space
