@@ -1,0 +1,105 @@
+---
+title: "@flatfile/plugin-job-handler"
+description: "A plugin for handling Flatfile jobs."
+icon: "download"
+---
+
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
+
+<CardGroup cols={1}>
+  <Card
+    title="@flatfile/plugin-job-handler"
+    icon="download"
+  >
+    The `@flatfile/plugin-job-handler` package is a plugin designed to streamline handling Flatfile jobs.
+    <br/>
+    <br/>
+    **Event Type:**
+    <br/>
+    `listener.on('job:ready')`
+
+  </Card>
+</CardGroup>
+
+## Parameters
+
+<ParamField path="job" type="string" required>
+  The `job` parameter is applied as a filter when listening for `job:ready`.
+</ParamField>
+
+<ParamField path="handler" type="function" required>
+ The `handler` parameter is a callback where you execute your code. It accepts two arguments: `event` and `tick`.
+
+- `event`: Represents the `FlatfileEvent`, giving context to the handler.
+- `tick`: A function that can be used to update job progress. It accepts two optional parameters:
+  - `progress`: A number between 0 and 100 indicating the progress percentage.
+  - `message`: A descriptive string.
+
+Invoking the `tick` function returns a promise that resolves to a JobResponse object. However, using the `tick` function is optional.
+
+</ParamField>
+
+<ParamField path="opts.debug" type="boolean" default="false">
+  The `debug` parameter is used to enable debug logging for the plugin.
+</ParamField>
+
+## API Calls
+
+- `@flatfile/listener`
+- `@flatfile/api`
+- `@flatfile/util-common`
+
+## Usage
+
+The `jobHandler` plugin manages Flatfile jobs. It listens for the `job:ready` event and screens it based on the `job` parameter.
+
+When a `job:ready` event occurs:
+
+- The `handler` callback is triggered with the `FlatfileEvent` and an optional `tick` function.
+- This `tick` function, if used, updates the job's progress.
+- The `handler` may yield a promise that culminates in a `JobResponse` object, allowing for a customized successful job status.
+
+```SSH install
+npm i @flatfile/plugin-job-handler
+```
+
+```js import
+import { jobHandler } from "@flatfile/plugin-job-handler";
+```
+
+Replace `"event:type"` with the event type you want to listen for.
+
+```js listener.js
+listener.use(
+  jobHandler("event:type", async (event, tick) => {
+    try {
+      // your code here...
+      tick(50, "Halfway there!"); // update job progress
+      // ...continue your code...
+      tick(75, "Three quarters there!"); // update job progress
+      // ...continue your code...
+      return {
+        outcome: {
+          message: "Job complete",
+        },
+      };
+    } catch (error) {
+      throw error; // will fail the job
+    }
+  })
+);
+```
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-job-handler"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/job-handler"
+    icon="github"
+  ></Card>
+</CardGroup>
