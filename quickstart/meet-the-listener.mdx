@@ -54,14 +54,21 @@ Listeners are the basic building block of Flatfile logic. They span from simple 
 git clone https://github.com/FlatFilers/getting-started.git
 ```
 2. Create a .env and update it with your secret key. This file should look like:
+
 ```terminal
   FLATFILE_API_KEY=sk_1234
 ```
+
 3. To start a local listener, run one of the following from the root folder of the getting-started directory: 
 
-If using javascript, run `npx flatfile@latest develop javascript/index.js`
-
-If using typescript, run `npx flatfile@latest develop typescript/index.ts`
+<CodeGroup>
+```terminal
+npx flatfile@latest develop javascript/index.js
+```
+```terminal
+npx flatfile@latest develop typescript/index.ts
+```
+</CodeGroup>
 
 <Note>
   {" "}
