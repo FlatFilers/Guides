@@ -53,8 +53,15 @@ Listeners are the basic building block of Flatfile logic. They span from simple 
 ```terminal
 git clone https://github.com/FlatFilers/getting-started.git
 ```
+2. Create a .env and update it with your secret key. This file should look like:
+```terminal
+  FLATFILE_API_KEY=sk_1234
+```
+3. To start a local listener, run one of the following from the root folder of the getting-started directory: 
 
-2. Update your .env file and run `npx flatfile@latest develop` from your terminal from the root directory
+If using javascript, run `npx flatfile@latest develop javascript/index.js`
+
+If using typescript, run `npx flatfile@latest develop typescript/index.ts`
 
 <Note>
   {" "}
@@ -67,21 +74,22 @@ git clone https://github.com/FlatFilers/getting-started.git
 4. Finally, return to your terminal to see how those Events were logged.
 
 ```ssh Console
-> getting-started % npx flatfile develop
+> getting-started % npx flatfile@latest develop typescript/index.ts
 ✔ 1 environment(s) found for these credentials
 ✔ Environment "development" selected
 ncc: Version 0.36.1
 ncc: Compiling file index.js into CJS
-  ✓ 427ms      GET    200 https://platform.flatfile.com/api/v1/subscription 12345
+ncc: Using typescript@4.9.5 (local user-provided)
+  ✓ Connected to event stream for scope us_env_XkBU0amr
 
  File change detected. 🚀
-  ✓ Connected to event stream for scope us_env_1234
- ▶ commit:created  10:13:05.159 AM us_evt_1234
+ ▶ records:updated  6:09:45.036 PM us_env_1234
+ ↳ on(**, {})
+Received event: records:updated
+ ▶ commit:created  6:09:45.085 PM us_env_1234
  ↳ on(**, {})
  ↳ on(commit:created, {"sheetSlug":"contacts"})
-
 ```
-
 ---
 
 ## Recap & Next Steps
