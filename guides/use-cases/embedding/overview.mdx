@@ -38,6 +38,8 @@ The importer takes the following options:
 
 ### URL Overrides
 
+URL Overrides enabls you to connect with the Flatfile API from a different location, whether for specialized security measures or integration purposes.
+
 #### apiUrl
 
 <ParamField
@@ -55,6 +57,8 @@ The importer takes the following options:
 </ParamField>
 
 ### New Spaces
+
+While setting up embedded Flatfile, you have the option to either establish a fresh Space during each initialization or reuse an existing Space. These attributes specifically apply when you're in the process of crafting a new Space.
 
 #### publishableKey
 
@@ -77,7 +81,7 @@ The importer takes the following options:
 #### spaceBody
 
 <ParamField path="spaceBody" type="object">
-  Pass in space options to configure a new Space. [Learn More](#space)
+  Pass in space options to configure a new Space. [Learn More](#spacebody-2)
 </ParamField>
 
 #### userInfo
@@ -91,11 +95,13 @@ The importer takes the following options:
 
 ### Reusing Spaces
 
+During the configuration of embedded Flatfile, you have the flexibility to either reuse an existing Space or generate a new one. These aspects come into play when you're working with an already established Space.
+
 #### space
 
 <ParamField path="space" type="{id: string, accessToken: string}" required>
   Pass in an existing Space instead of creating a new one each time. [Learn
-  More](#space)
+  More](#space-2)
 </ParamField>
 
 ### Configuration
@@ -113,11 +119,10 @@ The importer takes the following options:
 #### displayAsModal
 
 <ParamField path="displayAsModal" type="boolean" default="true">
-  Display Flatfile as a full screen modal or inline on the page. [Learn
-  More](#displayAsModal)
+  Display Flatfile as a full screen modal or inline on the page.
 </ParamField>
 
-#### mountElemebt
+#### mountElement
 
 <ParamField
   path="mountElement"
@@ -132,13 +137,13 @@ The importer takes the following options:
 #### loading
 
 <ParamField path="loading" type="ReactElement">
-  Loading element to override default Loading component
+  Loading element to override default Loading component [Learn More](#loading-2)
 </ParamField>
 
 #### iframeStyles
 
 <ParamField path="iframeStyles" type="CSSProperties">
-  Style the iframe using CSS Properties [Learn More](#error)
+  Style the iframe using CSS Properties [Learn More](#iframeStyles)
 </ParamField>
 
 #### exitTitle
@@ -154,13 +159,6 @@ The importer takes the following options:
 
 Default: "Are you sure you would like to close this window? This will end your current data import session."
 
-</ParamField>
-
-#### error
-
-<ParamField path="error" type="(error: Error | string) => React.ReactElement">
-  Error element to display if the component throws an error. [Learn
-  More](#error)
 </ParamField>
 
 #### errorTitle
@@ -360,6 +358,12 @@ const flatfileOptions = {
 
 This `onClose` callback function is called when the Action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
 
+### loading
+
+We provide a default loading state when the Space is loading. You can also pass a custom loading component using the `loading` prop.
+
+\*example goes here
+
 ### displayAsModal
 
 Toggling off this property will update the wrapper css to make the iframe fully inline thereby hiding the close button. All of the child divs will no longer include: `.flatfile_displayAsModal` which removes all the dialog styling.
@@ -386,6 +390,22 @@ const flatfileOptions = {
     spaceBody: {
       name: "New Space"
       namespace: "Red",
+    };
+  }
+```
+
+### userInfo
+
+Optionally, you can pass in additional user properties on the Space as it's created.
+
+```typescript
+const flatfileOptions = {
+    publishableKey,
+    userInfo: {
+      userId: "string";
+      name: "string";
+      companyId: "string";
+      companyName: "string";
     };
   }
 ```
