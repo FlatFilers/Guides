@@ -32,79 +32,13 @@ Using an iframe, Flatfile seamlessly integrates into your website or application
   </Card>
 </CardGroup>
 
-## Properties
+## Properties Overview
 
-`initializeFlatfile` takes the following options:
+The importer takes the following options:
 
-<ParamField path="publishableKey" type="string">
-  Publishable key accessed via Flatfile dashboard > Developer settings. Required
-  if not passing in an existing Space.
-</ParamField>
+### URL Overrides
 
-<ParamField path="name" type="string">
-  Name to the space
-</ParamField>
-
-<ParamField path="themeConfig" type="object">
-  Theme values for space, sidebar and data table
-</ParamField>
-
-<ParamField path="sidebarConfig" type="object">
-  Sidebar config values to toggle UI elements
-</ParamField>
-
-<ParamField path="document" type="object">
-  Document to pass to space
-</ParamField>
-
-<ParamField path="space" type="{id: string, accessToken: string}">
-  Pass in an existing Space instead of creating a new one each time. [Learn
-  More](#space)
-</ParamField>
-
-<ParamField
-  path="closeSpace"
-  type="operation: string, onClose: (data: any) => void"
->
-  Options for when to close the iframe and a callback function when the session
-  is complete. [Learn More](#closespace)
-</ParamField>
-
-<ParamField path="displayAsModal" type="boolean" default="true">
-  Display Flatfile as a full screen modal or inline on the page. [Learn More](#displayAsModal)
-</ParamField>
-
-<ParamField path="spaceUrl" type="string">
-  Url to override default flatfile space url
-</ParamField>
-
-<ParamField path="userInfo" type="{ userId: string, name: string, companyId: string, companyName: string }">
-  Additional metadata to be passed to the space
-</ParamField>
-
-<ParamField path="spaceBody" type="object">
-  Pass in space options to configure a new Space. [Learn More](#space)
-</ParamField>
-
-<ParamField path="environmentId" type="string">
-  Identifier for environment
-</ParamField>
-
-<ParamField path="workbook" type="object">
-  Config of the workbook to be created
-</ParamField>
-
-<ParamField path="loading" type="ReactElement">
-  Loading element to override default Loading component
-</ParamField>
-
-<ParamField
-  path="mountElement"
-  type="string"
-  default="flatfile_iFrameContainer"
->
-  The element Flatfile will mount to. (Will create if it doesn't already exist.)
-</ParamField>
+#### apiUrl
 
 <ParamField
   path="apiUrl"
@@ -114,13 +48,106 @@ Using an iframe, Flatfile seamlessly integrates into your website or application
   The endpoint used to interact with the Flatfile API
 </ParamField>
 
-<ParamField path="baseUrl" type="string" default="https://spaces.flatfile.com">
-  The base URL for accessing the Flatfile Spaces API.
+#### spaceUrl
+
+<ParamField path="spaceUrl" type="string" default="https://spaces.flatfile.com">
+  The URL for accessing the Flatfile Spaces API.
 </ParamField>
+
+### New Spaces
+
+#### publishableKey
+
+<ParamField path="publishableKey" type="string" required>
+  Publishable key accessed via Flatfile dashboard > Developer settings.
+</ParamField>
+
+#### environmentId
+
+<ParamField path="environmentId" type="string" required>
+  Identifier for environment
+</ParamField>
+
+#### name
+
+<ParamField path="name" type="string" required>
+  Name of the space
+</ParamField>
+
+#### spaceBody
+
+<ParamField path="spaceBody" type="object">
+  Pass in space options to configure a new Space. [Learn More](#space)
+</ParamField>
+
+#### userInfo
+
+<ParamField
+  path="userInfo"
+  type="{ userId: string, name: string, companyId: string, companyName: string }"
+>
+  Additional metadata to be passed to the space
+</ParamField>
+
+### Reusing Spaces
+
+#### space
+
+<ParamField path="space" type="{id: string, accessToken: string}" required>
+  Pass in an existing Space instead of creating a new one each time. [Learn
+  More](#space)
+</ParamField>
+
+### Configuration
+
+#### closeSpace
+
+<ParamField
+  path="closeSpace"
+  type="operation: string, onClose: (data: any) => void"
+>
+  Options for when to close the iframe and a callback function when the session
+  is complete. [Learn More](#closespace)
+</ParamField>
+
+#### displayAsModal
+
+<ParamField path="displayAsModal" type="boolean" default="true">
+  Display Flatfile as a full screen modal or inline on the page. [Learn
+  More](#displayAsModal)
+</ParamField>
+
+#### mountElemebt
+
+<ParamField
+  path="mountElement"
+  type="string"
+  default="flatfile_iFrameContainer"
+>
+  The element Flatfile will mount to. (Will create if it doesn't already exist.)
+</ParamField>
+
+### Styling
+
+#### loading
+
+<ParamField path="loading" type="ReactElement">
+  Loading element to override default Loading component
+</ParamField>
+
+#### iframeStyles
+
+<ParamField path="iframeStyles" type="CSSProperties">
+  Style the iframe using CSS Properties
+</ParamField>
+
+#### exitTitle
 
 <ParamField path="exitTitle" type="string" default="Close Window">
   The title on the dialog that appears when exiting out of Flatfile.
 </ParamField>
+
+#### exitText
 
 <ParamField path="exitText" type="string" default="See below">
   The text on the dialog that appears when exiting out of Flatfile.
@@ -129,20 +156,49 @@ Default: "Are you sure you would like to close this window? This will end your c
 
 </ParamField>
 
+#### errorTitle
+
 <ParamField path="errorTitle" type="string" default="Something went wrong">
   The title on the dialog that appears when an unexpected error occurs when
   loading Flatfile. Note: the error dialog will also include error details
   regarding the error that occurred.
 </ParamField>
 
-<ParamField path="listener" type="Listener">
-  **React only** Event listener for responding to Events. [Learn
-  More](#build-the-listener)
+### Client-Side Setup
+
+<Warning>Currently only available in the `@flatfile/react` wrapper.</Warning>
+
+#### workbook
+
+<ParamField path="workbook" type="object">
+  Config of the workbook to be created [Learn More](#part-1-build-a-workbook)
 </ParamField>
 
-<ParamField path="iframeStyles" type="CSSProperties">
-  Style the iframe using CSS Properties
+#### listener
+
+<ParamField path="listener" type="Listener">
+  Event listener for responding to Events. [Learn More](#build-the-listener)
 </ParamField>
+
+#### themeConfig
+
+<ParamField path="themeConfig" type="object">
+  Theme values for space, sidebar and data table
+</ParamField>
+
+#### sidebarConfig
+
+<ParamField path="sidebarConfig" type="object">
+  Sidebar config values to toggle UI elements
+</ParamField>
+
+#### document
+
+<ParamField path="document" type="object">
+  Document to pass to space
+</ParamField>
+
+## Deep Dive
 
 ### space
 
@@ -401,7 +457,7 @@ Since we have a defined "Submit" action in our Workbook, next we utilize the Eve
   more](../../../../developer-tools/client_server_side)
 </Warning>
 
-#### Install the plugin
+##### Install the plugin
 
 First, download the `recordHook` plugin from npm.
 
@@ -458,3 +514,5 @@ export const listener = FlatfileListener.create((client) => {
   );
 });
 ```
+
+#### Part 4: Hello
