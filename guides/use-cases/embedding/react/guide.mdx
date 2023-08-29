@@ -30,139 +30,9 @@ yarn add @flatfile/react@latest
 
 ## Embed a Space
 
-### Part 1: Build a Workbook
+### Part 1: Add a button
 
-Create a Workbook to configure your Space.
-
-```js src/config.ts
-import { Flatfile } from "@flatfile/api";
-
-export const config: Pick<
-  Flatfile.CreateWorkbookConfig,
-  "name" | "sheets" | "actions"
-> = {
-  name: "Employees workbook",
-  sheets: [
-    {
-      name: "Contacts",
-      slug: "Contacts",
-      fields: [
-        {
-          key: "first_name",
-          type: "string",
-          label: "First name",
-          constraints: [
-            {
-              type: "required",
-            },
-          ],
-        },
-        {
-          key: "last_name",
-          type: "string",
-          label: "last name",
-          constraints: [
-            {
-              type: "unique",
-            },
-          ],
-        },
-        {
-          key: "full_name",
-          type: "string",
-          label: "full name",
-        },
-      ],
-    },
-  ],
-  actions: [
-    {
-      label: "Submit",
-      operation: "contacts:submit",
-      description: "Would you like to submit your workbook?",
-      mode: "foreground",
-      primary: true,
-      confirm: true,
-    },
-  ],
-};
-```
-
-### Part 2: Handle Events
-
-In the event listener below, first we will use Flatfile's record hook plugin to automatically re-format, correct, validate, and enrich data during the data import process.
-
-Since we have a defined "Submit" action in our Workbook, next we utilize the Event listener to determine the method by which we want to submit records.
-
-<Warning>
-  While a client-side listener will be able to handle a lot of the interaction
-  and updates in the browser, there may be operations it can't perform due to
-  these limitations. For tasks that need to access server resources or
-  capabilities, a server-side listener will also be required. [Learn
-  more](../../../../developer-tools/client_server_side)
-</Warning>
-
-#### Install the plugin
-
-First, download the `recordHook` plugin from npm.
-
-```
-npm i @flatfile/plugin-record-hook
-```
-
-#### Build the listener
-
-```js src/listener.ts
-import { recordHook } from "@flatfile/plugin-record-hook";
-import api from "@flatfile/api";
-import { FlatfileListener } from "@flatfile/listener";
-
-async function submit(jobId: string) {
-  await api.jobs.ack(jobId, {
-    info: "I'm starting the job - inside client",
-    progress: 33,
-  });
-
-  // hit your api here
-  await new Promise((res) => setTimeout(res, 2000));
-
-  await api.jobs.complete(jobId, {
-    info: "Job's work is done",
-    outcome: { next: { type: "wait" } },
-  });
-}
-
-/**
- * Example Listener
- */
-
-export const listener = FlatfileListener.create((client) => {
-  // Lowercases the first_name field
-  client.use(
-    recordHook("Contacts", (record) => {
-      const value = record.get("first_name");
-      if (typeof value === "string") {
-        record.set("first_name", value.toLowerCase());
-      }
-      return record;
-    })
-  );
-  // Waits for the submit button to be clicked
-  client.on(
-    "job:ready",
-    // @ts-ignore
-    { payload: { operation: "contacts:submit" } },
-    async (event: any) => {
-      const { context } = event;
-      return submit(context.jobId);
-    }
-  );
-});
-```
-
-### Part 3: Embed into your app
-
-Now that we have our configuration defined in our Workbook, and our Event handlers defined in our listener, we are ready to embed our Space.
+Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
 
 #### Create a Space component
 
@@ -178,8 +48,6 @@ A new Space will be created each time Flatfile is initialized. To reuse a space,
 
 ```js src/App.tsx
 import { useSpace, ISpace, makeTheme } from '@flatfile/react'
-import { config } from './config.ts'
-import { listener } from './listener.ts'
 import { useState } from 'react'
 
 const ExampleApp = () => {
@@ -190,8 +58,6 @@ const space = useSpace({
 name: 'Embedded Space',
 publishableKey: 'your_publishable_key',
 environmentId: 'your_environment_id',
-workbook: config,
-listener: listener,
 closeSpace: {
 operation: 'contacts:submit',
 onClose: () => setShowSpace(false)
@@ -213,7 +79,7 @@ return (
 </div>) }
 ```
 
-### Part 4: Configure the Close Dialog
+### Part 2: Override styles
 
 When closing the Flatfile iframe, end users will see a dialog asking them if they are sure they want to exit. To style this dialog to match your application, add a `style.css` file to your public folder and link to it from `index.html`, also in the public folder.
 
@@ -279,7 +145,7 @@ body {
 
 </CodeGroup>
 
-### Part 5: Review File Structure
+### Part 3: Review File Structure
 
 When you're finished, your app should look something like this:
 
@@ -302,6 +168,17 @@ In this file structure, your app should have two main directories, `public` and 
 The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
 
 The `src` directory contains the main components and logic of the application, including the "App.tsx" file, which represents the root component, the "config.ts" file for creating your Workbook, the "index.tsx" file, which is the entry point of your application's code, and the "listener.ts" file, which handles your specific functionality related to listening to events.
+
+### Part 3: Start your event listener or reuse a Space
+
+In this step, we'll kickstart an event listener, which will await the creation of a new Space. This listener will configure the Space as Flatfile is initialized.
+
+[Learn how to configure a new Space.](../../../../guides/dynamic-configurations)
+
+<Info>
+  If you don't want to do this yet, you can also [reuse an existing
+  Space](#space) and simply pass that info in.
+</Info>
 
 ## Example Project
 

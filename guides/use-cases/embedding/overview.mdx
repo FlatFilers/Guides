@@ -2,7 +2,6 @@
 title: "Overview"
 description: "Securely and easily build an embedded Flatfile import experience into your client-side application"
 icon: "hand-wave"
-mode: "wide"
 ---
 
 Front-end SDK wrappers around the [Flatfile API](https://reference.flatfile.com/docs/api/) allow you to securely and easily add an embedded data import experience, also known as a [Space](/concepts/spaces), directly into to your application.
@@ -290,6 +289,88 @@ const flatfileOptions = {
 ```
 
 ### listener
+
+#### Part 1: Build a Workbook
+
+Create a Workbook to configure your Space.
+
+```js src/config.ts
+import { Flatfile } from "@flatfile/api";
+
+export const config: Pick<
+  Flatfile.CreateWorkbookConfig,
+  "name" | "sheets" | "actions"
+> = {
+  name: "Employees workbook",
+  sheets: [
+    {
+      name: "Contacts",
+      slug: "Contacts",
+      fields: [
+        {
+          key: "first_name",
+          type: "string",
+          label: "First name",
+          constraints: [
+            {
+              type: "required",
+            },
+          ],
+        },
+        {
+          key: "last_name",
+          type: "string",
+          label: "last name",
+          constraints: [
+            {
+              type: "unique",
+            },
+          ],
+        },
+        {
+          key: "full_name",
+          type: "string",
+          label: "full name",
+        },
+      ],
+    },
+  ],
+  actions: [
+    {
+      label: "Submit",
+      operation: "contacts:submit",
+      description: "Would you like to submit your workbook?",
+      mode: "foreground",
+      primary: true,
+      confirm: true,
+    },
+  ],
+};
+```
+
+#### Part 2: Handle Events
+
+In the event listener below, first we will use Flatfile's record hook plugin to automatically re-format, correct, validate, and enrich data during the data import process.
+
+Since we have a defined "Submit" action in our Workbook, next we utilize the Event listener to determine the method by which we want to submit records.
+
+<Warning>
+  While a client-side listener will be able to handle a lot of the interaction
+  and updates in the browser, there may be operations it can't perform due to
+  these limitations. For tasks that need to access server resources or
+  capabilities, a server-side listener will also be required. [Learn
+  more](../../../../developer-tools/client_server_side)
+</Warning>
+
+#### Install the plugin
+
+First, download the `recordHook` plugin from npm.
+
+```
+npm i @flatfile/plugin-record-hook
+```
+
+#### Part 3: Build the listener
 
 ```js src/listener.ts
 import { recordHook } from "@flatfile/plugin-record-hook";
