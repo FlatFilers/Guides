@@ -32,7 +32,7 @@ icon: "download"
 </ParamField>
 
 <ParamField path="callback" type="function">
-  The `callback` parameter receives three arguments: `event`, `workbookId`, and
+  The `callback` parameter receives three arguments: `event`, `workbookIds`, and
   a `tick` function. The `tick` function can be used to update the job's
   progress. The `callback` function is invoked once the space and workbooks are
   fully configured.
@@ -69,19 +69,14 @@ listener.use(
             slug: "contacts",
             fields: [
               {
-                key: "firstName",
+                key: "name",
                 type: "string",
-                label: "First Name",
-              },
-              {
-                key: "lastName",
-                type: "string",
-                label: "Last Name",
+                label: "Name",
               },
               {
                 key: "email",
                 type: "string",
-                label: "Primary Email",
+                label: "Email",
               },
             ],
           },
