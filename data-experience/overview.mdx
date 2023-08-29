@@ -60,14 +60,6 @@ Users can also filter data using [FFQL](https://flatfile.com/docs/developer-tool
 
 ![image](../images/data-experience/8_FFQL.png)
 
-#### AI Assisted Filtering
-
-Users can also use our *AI Assist* feature and ask AI to write a query for them. Type “Cmd+K” or “Ctrl+K” and type “/query” followed by a description of the filter criteria.
-
-![image](../images/data-experience/9_AI_assist.png)
-
-![image](../images/data-experience/10_AI_assist_query.png)
-
 ### Bulk Resolution of Errors
 
 Flatfile offers two out of the box features for bulk resolution of common errors – *find and replace* and *replace empty values*. You can find this functionality by clicking on the column context menu – a three dot icon that appears when you hover over a column header:
@@ -84,13 +76,13 @@ Similarly, if you trigger *find and replace* from a numerical field, the only ac
 
 We do not offer these features on fields that have been configured with a “unique” requirement, since it would make no sense to bulk replace cells with identical values that would break the “unique” rule encoded into the Blueprint. (Note: I don’t think this is true right now and we should fix this)
 
-## Sheet Actions
+#### Sheet Actions
 
 You can configure more specific methods of bulk error resolution using our [Actions framework](https://flatfile.com/docs/guides/actions) that are specific to the nature of the data that you expect to see.
 
 For example, if you know that your customers often bring in a column that contains full names but your blueprint wants a First Name and Last Name in two separate columns you can configure a “Name Splitter” action that detects if either of your configured blueprint fields, “First Name” or “Last Name” contain a full name, and if so, to split the name and place the first name in the “First Name” field and the “Last Name” in the last name field.
 
-## Combining Filters with Bulk Error Resolution Methods
+### Combining Filters with Bulk Error Resolution Methods
 
 Flatfile offers multiple ways in which a user can slice and dice data via the *record Status quick filter*, *filter by error* feature and *FFQL*. Users can select all data using our checkbox UI by clicking on the checkbox on the top left of the table, or more granularly select data by individually checking boxes.
 
@@ -98,29 +90,29 @@ Flatfile offers multiple ways in which a user can slice and dice data via the *r
 
 This can be a powerful tool when combined with the various methods for the bulk resolution for errors. Users can select specific data and then only perform either a default or custom action on that data.
 
-## Just Good Data UX
+### Just Good Data UX
 
 Flatfile has a few core data types, and they are styled differently to make it super easy for a user to immediately understand what kind of data they’re looking at, to learn more about data in a cell and to edit data.
 
-### Strings
+#### Strings
 
 Strings or free text data are the most simply styled: our default font, with text aligned to the left, as is most of the data in our data table:
 
 ![image](../images/data-experience/14_string.png)
 
-### Numbers
+#### Numbers
 
 Numbers are displayed in a monospaced font that is easily visually differentiated from our default text font, and are right aligned. We think it’s important to make numerical and string data visually distinct, since it can be easy to conflate string data that look like numbers (for example, a userid that contains only numbers) with numerical data.
 
 ![image](../images/data-experience/15_number.png)
 
-### Enums
+#### Enums
 
 Categorical data or enums are displayed as tags, and the edit experience is similar to that of a dropdown. This makes it really easy for a user to switch between different valid option. The dropdown is searchable to make for a pleasant user experience when the number of valid options is large. We restrict the entry of new data in these fields to valid options.
 
 ![image](../images/data-experience/16_enum.png)
 
-### Booleans
+#### Booleans
 
 Booleans are displayed along with a tiny toggle UI. The “on” state of the toggle is brightly colored, while the “off” state is gray. This makes it easy to visually see how many values are “on” vs “off”. Clicking the toggle switches the value.
 
