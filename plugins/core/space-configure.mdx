@@ -99,10 +99,10 @@ listener.use(
 
 ## Full Example
 
-```typescript contactSheet.ts
+```typescript contactsSheet.ts
 import { Flatfile } from "@flatfile/api";
 
-export const gettingStartedSheet: Flatfile.SheetConfig = {
+export const contactsSheet: Flatfile.SheetConfig = {
   name: "Contacts",
   slug: "contacts",
   fields: [
@@ -150,34 +150,34 @@ export const gettingStartedSheet: Flatfile.SheetConfig = {
 };
 ```
 
-```typescript companySheet.ts
-import { Flatfile } from '@flatfile/api'
+```typescript companiesSheet.ts
+import { Flatfile } from "@flatfile/api";
 
-export const companySheet: Flatfile.SheetConfig = {
-  name: 'Companies',
-  slug: 'companies',
-  fields: {
+export const companiesSheet: Flatfile.SheetConfig = {
+  name: "Companies",
+  slug: "companies",
+  fields: [
     {
-      key: 'name',
-      type: 'string',
-      label: 'Name',
+      key: "name",
+      type: "string",
+      label: "Name",
     },
     {
-      key: 'website',
-      type: 'string',
-      label: 'Website',
+      key: "website",
+      type: "string",
+      label: "Website",
     },
     //...
-  }
-}
+  ],
+};
 ```
 
 ```typescript listener.ts
 import api from "@flatfile/api";
 import type { FlatfileListener } from "@flatfile/listener";
 import { configureSpace } from "@flatfile/plugin-space-configure";
-import { contactSheet } from "./contactSheet";
-import { companySheet } from "./companySheet";
+import { contactsSheet } from "./contactsSheet";
+import { companiesSheet } from "./companiesSheet";
 
 export default function (listener: FlatfileListener) {
   listener.use(
@@ -186,7 +186,7 @@ export default function (listener: FlatfileListener) {
         workbooks: [
           {
             name: "Workbook 1",
-            sheets: [contactSheet, companySheet],
+            sheets: [contactsSheet, companiesSheet],
             actions: [
               {
                 operation: "submitActionFg",
