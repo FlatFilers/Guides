@@ -34,6 +34,14 @@ icon: "download"
   The separator to use when joining or flattening nested attributes.
 </ParamField>
 
+<ParamField path="options.chunkSize" type="number">
+  Specifies the quantity of Records per chunk. Default value is `3000`.
+</ParamField>
+
+<ParamField path="options.parallel" type="number">
+  Determines how many chunks are processed simultaneously. Default value is `1`.
+</ParamField>
+
 <CodeGroup>
 ```xml before
 <?xml version="1.0" encoding="utf-8" ?>

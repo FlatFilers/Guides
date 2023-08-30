@@ -62,6 +62,14 @@ icon: "download"
   The transform function is applied before `dynamicTyping`.
 </ParamField>
 
+<ParamField path="options.chunkSize" type="number">
+  Specifies the quantity of Records per chunk. Default value is `3000`.
+</ParamField>
+
+<ParamField path="options.parallel" type="number">
+  Determines how many chunks are processed simultaneously. Default value is `1`.
+</ParamField>
+
 ## API Calls
 
 - `api.files.download`
