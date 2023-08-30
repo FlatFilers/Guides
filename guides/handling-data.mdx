@@ -14,9 +14,17 @@ The `FlatfileRecord` class provides methods to manipulate and interact with a re
 
 Listen for updates to data records, and respond with three types of record hooks: `compute`, `computeIfPresent`, and `validate`. These hooks are available as methods on the `FlatfileRecord` class.
 
-```js
+<CodeGroup>
+
+```js recordHook
 import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
 ```
+
+```js bulkRecordHook
+import { bulkRecordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
+```
+
+</CodeGroup>
 
 <Info>
   In these examples, we'll reference the Workbook from the [Quickstart
@@ -57,20 +65,22 @@ FlatfileRecord.compute(fieldName, transformation, message);
 Generate email from first and last name:
 
 <CodeGroup>
-```js javascript
+
+```js javascript recordHook()
 listener.use(
-  recordHook('contacts', (record) => {
+  recordHook("contacts", (record) => {
     record.compute(
-      'email',
-      (email, record) => `${record.get('firstName')}${record.get('lastName')}@gmail.com`,
-      'Email was generated from first and last name.'
+      "email",
+      (email, record) =>
+        `${record.get("firstName")}${record.get("lastName")}@gmail.com`,
+      "Email was generated from first and last name."
     );
     return record;
   })
 );
 ```
 
-```js typescript
+```js typescript recordHook()
 listener.use(
   recordHook("contacts", (record: FlatfileRecord) => {
     record.compute(
@@ -82,6 +92,42 @@ listener.use(
       "Email was generated from first and last name."
     );
     return record;
+  })
+);
+```
+
+```js javascript bulkRecordHook()
+listener.use(
+  bulkRecordHook("contacts", (records) => {
+    records.map((record) => {
+      record.compute(
+        "email",
+        (email, record) =>
+          `${record.get("firstName")}${record.get("lastName")}@gmail.com`,
+        "Email was generated from first and last name."
+      );
+      return record;
+    });
+  })
+);
+```
+
+```js typescript bulkRecordHook()
+listener.use(
+  bulkRecordHook("contacts", (records: FlatfileRecord[]) => {
+    records.map((record: FlatfileRecord) => {
+      record.compute(
+        "email",
+        (email, record) => {
+          return `${record.get("firstName")}${record.get(
+            "lastName"
+          )}@gmail.com`;
+        },
+        // optional
+        "Email was generated from first and last name."
+      );
+      return record;
+    });
   })
 );
 ```
@@ -120,21 +166,22 @@ FlatfileRecord.computeIfPresent(fieldName, transformation, message);
 Change email to lower case:
 
 <CodeGroup>
-```js javascript
+
+```js javascript recordHook()
 listener.use(
-  recordHook('contacts', (record) => {
+  recordHook("contacts", (record) => {
     record.computeIfPresent(
-      'email',
+      "email",
       (email: string) => email.toLowerCase(),
       // optional
-      'Email was converted to lowercase.'
+      "Email was converted to lowercase."
     );
     return record;
   })
 );
 ```
 
-```js typescript
+```js typescript recordHook()
 listener.use(
   recordHook("contacts", (record: FlatfileRecord) => {
     record.computeIfPresent(
@@ -144,6 +191,38 @@ listener.use(
       "Email was converted to lowercase."
     );
     return record;
+  })
+);
+```
+
+```js javascript bulkRecordHook()
+listener.use(
+  bulkRecordHook("contacts", (records) => {
+    records.map((record) => {
+      record.computeIfPresent(
+        "email",
+        (email: string) => email.toLowerCase(),
+        // optional
+        "Email was converted to lowercase."
+      );
+      return record;
+    });
+  })
+);
+```
+
+```js typescript bulkRecordHook()
+listener.use(
+  bulkRecordHook("contacts", (records: FlatfileRecord[]) => {
+    records.map((record: FlatfileRecord) => {
+      record.computeIfPresent(
+        "email",
+        (email: string) => email.toLowerCase(),
+        // optional
+        "Email was converted to lowercase."
+      );
+      return record;
+    });
   })
 );
 ```
@@ -177,20 +256,21 @@ validate(fieldName, validator, message);
 #### Example
 
 <CodeGroup>
-```js javascript
+
+```js javascript recordHook()
 listener.use(
-  recordHook('contacts', (record) => {
+  recordHook("contacts", (record) => {
     record.validate(
-      'lastName',
+      "lastName",
       (value: any) => !/\d/.test(value.toString()),
-      'Last name cannot contain numbers'
+      "Last name cannot contain numbers"
     );
     return record;
   })
 );
 ```
 
-```js typescript
+```js typescript recordHook()
 listener.use(
   recordHook("contacts", (record: FlatfileRecord) => {
     record.validate(
@@ -199,6 +279,36 @@ listener.use(
       "Last name cannot contain numbers"
     );
     return record;
+  })
+);
+```
+
+```js javascript bulkRecordHook()
+listener.use(
+  bulkRecordHook("contacts", (records) => {
+    records.map((record) => {
+      record.validate(
+        "lastName",
+        (value: any) => !/\d/.test(value.toString()),
+        "Last name cannot contain numbers"
+      );
+      return record;
+    });
+  })
+);
+```
+
+```js typescript bulkRecordHook()
+listener.use(
+  recordHook("contacts", (records: FlatfileRecord[]) => {
+    records.map((record: FlatfileRecord) => {
+      record.validate(
+        "lastName",
+        (value) => typeof value === "string" && !/\d/.test(value),
+        "Last name cannot contain numbers"
+      );
+      return record;
+    });
   })
 );
 ```
@@ -301,7 +411,7 @@ if (email === null) {
 
 ## Accessing an API
 
-Accessing an API within a `recordHook` allows for retrieving additional data or performing external operations to enrich or modify existing data. This approach integrates external data sources or services into the data manipulation workflow, enabling real-time or dynamic information to enhance the data. It is particularly useful when fetching related data, validating information, performing calculations, or any operation that relies on external input before modifying the data.
+Accessing an API within a `recordHook` or a `bulkRecordHook` allows for retrieving additional data or performing external operations to enrich or modify existing data. This approach integrates external data sources or services into the data manipulation workflow, enabling real-time or dynamic information to enhance the data. It is particularly useful when fetching related data, validating information, performing calculations, or any operation that relies on external input before modifying the data.
 
 ### Using `GET`
 
@@ -314,41 +424,37 @@ In this example, an API call is made to retrieve beer data, which is then used t
 If an error occurs, we update the `status` field to "Failed" and add an error message. The modified record is then returned from the `recordHook`.
 
 <CodeGroup>
-```jsx javascript
+
+```js javascript recordHook()
 listener.use(
-  recordHook(
-    "contacts",
-    async (record, event) => {
-      try {
-        const { payload } = event.payload;
+  recordHook("contacts", async (record, event) => {
+    try {
+      const { payload } = event.payload;
 
-        const getResponse = await axios.get(
-          "https://api.sampleapis.com/beers/ale"
-        );
-        record.set(
-          "assignedBeer",
-          getResponse.data[Math.floor(Math.random() * 20)].name
-        );
-        record.addInfo(
-          "assignedBeer",
-          "Got this from " + getResponse.config.url
-        );
-      } catch (error) {
-        record.set("status", "Failed");
-        record.addError("status", "Couldn't get assigned beer data from the api.");
-      } finally {
-        // Clean up or perform any necessary actions after the try/catch block
-      }
-
-      return record;
+      const getResponse = await axios.get(
+        "https://api.sampleapis.com/beers/ale"
+      );
+      record.set(
+        "assignedBeer",
+        getResponse.data[Math.floor(Math.random() * 20)].name
+      );
+      record.addInfo("assignedBeer", "Got this from " + getResponse.config.url);
+    } catch (error) {
+      record.set("status", "Failed");
+      record.addError(
+        "status",
+        "Couldn't get assigned beer data from the api."
+      );
+    } finally {
+      // Clean up or perform any necessary actions after the try/catch block
     }
 
-)
+    return record;
+  })
 );
+```
 
-````
-
-```jsx typescript
+```jsx typescript recordHook()
 listener.use(
   recordHook(
     "contacts",
@@ -381,7 +487,81 @@ listener.use(
     }
   )
 );
-````
+```
+
+```js javascript bulkRecordHook()
+listener.use(
+  bulkRecordHook(
+    "contacts",
+    async (records, event) => {
+      records.map((record) => {
+        try {
+          const { payload } = event.payload;
+
+          const getResponse = await axios.get(
+            "https://api.sampleapis.com/beers/ale"
+          );
+          record.set(
+            "assignedBeer",
+            getResponse.data[Math.floor(Math.random() * 20)].name
+          );
+          record.addInfo(
+            "assignedBeer",
+            "Got this from " + getResponse.config.url
+          );
+        } catch (error) {
+          record.set("status", "Failed");
+          record.addError(
+            "status",
+            "Couldn't get assigned beer data from the api."
+          );
+        } finally {
+          // Clean up or perform any necessary actions after the try/catch block
+        }
+
+        return record;
+      });
+    }
+  )
+);
+```
+
+```jsx typescript bulkRecordHook()
+listener.use(
+  bulkRecordHook(
+    "contacts",
+    async (records: FlatfileRecord[], event: FlatfileEvent) => {
+      records.map((record: FlatfileRecord) => {
+        try {
+          const { payload } = event.payload;
+
+          const getResponse = await axios.get(
+            "https://api.sampleapis.com/beers/ale"
+          );
+          record.set(
+            "assignedBeer",
+            getResponse.data[Math.floor(Math.random() * 20)].name
+          );
+          record.addInfo(
+            "assignedBeer",
+            "Got this from " + getResponse.config.url
+          );
+        } catch (error) {
+          record.set("status", "Failed");
+          record.addError(
+            "status",
+            "Couldn't get assigned beer data from the api."
+          );
+        } finally {
+          // Clean up or perform any necessary actions after the try/catch block
+        }
+
+        return record;
+      });
+    }
+  )
+);
+```
 
 </CodeGroup>
 
@@ -396,52 +576,48 @@ In this example, we are making a `POST` request to a webhook endpoint using axio
 If the request is successful, we update the `status` field of the record to "Success" and add a comment. If an error occurs, we update the `status` field to "Failed" and add an error message. The modified record is then returned from the `recordHook`.
 
 <CodeGroup>
-```jsx javascript
+
+```jsx javascript recordHook()
 listener.use(
-  recordHook(
-    "contacts",
-    async (record, event) => {
-      try {
-        const { payload } = event.payload;
+  recordHook("contacts", async (record, event) => {
+    try {
+      const { payload } = event.payload;
 
-        const webhookReceiver =
-          process.env.WEBHOOK_SITE_URL ||
-          "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
+      const webhookReceiver =
+        process.env.WEBHOOK_SITE_URL ||
+        "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
 
-        const postResponse = await axios.post(
-          webhookReceiver,
-          {
-            ...payload,
-            method: "axios",
-            record,
+      const postResponse = await axios.post(
+        webhookReceiver,
+        {
+          ...payload,
+          method: "axios",
+          record,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
           },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        record.set("status", "Success");
-        record.addComment(
-          "status",
-          "Record data sent to " + postResponse.config.url
-        );
-      } catch (error) {
-        record.set("status", "Failed");
-        record.addError("status", "Couldn't send record to the destination.");
-      } finally {
-        // Clean up or perform any necessary actions after the try/catch block
-      }
-
-      return record;
+        }
+      );
+      record.set("status", "Success");
+      record.addComment(
+        "status",
+        "Record data sent to " + postResponse.config.url
+      );
+    } catch (error) {
+      record.set("status", "Failed");
+      record.addError("status", "Couldn't send record to the destination.");
+    } finally {
+      // Clean up or perform any necessary actions after the try/catch block
     }
 
-)
+    return record;
+  })
 );
+```
 
-````
-
-```jsx typescript
+```jsx typescript recordHook()
 listener.use(
   recordHook(
     "contacts",
@@ -481,8 +657,95 @@ listener.use(
       return record;
     }
   )
-)
-````
+);
+```
+
+```jsx javascript bulkRecordHook()
+listener.use(
+  bulkRecordHook("contacts", async (records, event) => {
+    records.map((record) => {
+      try {
+        const { payload } = event.payload;
+
+        const webhookReceiver =
+          process.env.WEBHOOK_SITE_URL ||
+          "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
+
+        const postResponse = await axios.post(
+          webhookReceiver,
+          {
+            ...payload,
+            method: "axios",
+            record,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        record.set("status", "Success");
+        record.addComment(
+          "status",
+          "Record data sent to " + postResponse.config.url
+        );
+      } catch (error) {
+        record.set("status", "Failed");
+        record.addError("status", "Couldn't send record to the destination.");
+      } finally {
+        // Clean up or perform any necessary actions after the try/catch block
+      }
+
+      return record;
+    });
+  })
+);
+```
+
+```jsx typescript bulkRecordHook()
+listener.use(
+  bulkRecordHook(
+    "contacts",
+    async (records: FlatfileRecord[], event: FlatfileEvent) => {
+      records.map((record: FlatfileRecord) => {
+        try {
+          const { payload } = event.payload;
+
+          const webhookReceiver =
+            process.env.WEBHOOK_SITE_URL ||
+            "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
+
+          const postResponse = await axios.post(
+            webhookReceiver,
+            {
+              ...payload,
+              method: "axios",
+              record,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          record.set("status", "Success");
+          record.addComment(
+            "status",
+            "Record data sent to " + postResponse.config.url
+          );
+        } catch (error) {
+          record.set("status", "Failed");
+          record.addError("status", "Couldn't send record to the destination.");
+        } finally {
+          // Clean up or perform any necessary actions after the try/catch block
+        }
+
+        return record;
+      });
+    }
+  )
+);
+```
 
 </CodeGroup>
 
