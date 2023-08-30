@@ -35,6 +35,16 @@ icon: "download"
   take the raw numbers and disregard how it’s displayed in Excel.
 </ParamField>
 
+<ParamField path="options.chunkSize" default="3000" type="number" optional>
+  The `chunkSize` parameter allows you to specify the quantity of records to in
+  each chunk.
+</ParamField>
+
+<ParamField path="options.parallel" default="1" type="number" optional>
+  The `parallel` parameter allows you to specify the number of chunks to process
+  in parallel.
+</ParamField>
+
 ## API Calls
 
 - `api.files.download`
