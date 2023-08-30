@@ -1,6 +1,6 @@
 ---
 title: "@flatfile/plugin-job-handler"
-description: "A plugin for handling Flatfile jobs."
+description: "A plugin for handling Flatfile Jobs."
 icon: "download"
 ---
 
@@ -15,7 +15,8 @@ icon: "download"
     title="@flatfile/plugin-job-handler"
     icon="download"
   >
-    The `@flatfile/plugin-job-handler` package is a plugin designed to streamline handling Flatfile jobs.
+    The `@flatfile/plugin-job-handler` package is a plugin designed to streamline handling Flatfile Jobs, 
+    which are a large unit of work performed asynchronously on a resource such as a file, Workbook, or Sheet.
     <br/>
     <br/>
     **Event Type:**
@@ -35,7 +36,7 @@ icon: "download"
  The `handler` parameter is a callback where you execute your code. It accepts two arguments: `event` and `tick`.
 
 - `event`: Represents the `FlatfileEvent`, giving context to the handler.
-- `tick`: A function that can be used to update job progress. It accepts two optional parameters:
+- `tick`: A function that can be used to update Job progress. It accepts two optional parameters:
   - `progress`: A number between 0 and 100 indicating the progress percentage.
   - `message`: A descriptive string.
 
@@ -55,13 +56,13 @@ Invoking the `tick` function returns a promise that resolves to a JobResponse ob
 
 ## Usage
 
-The `jobHandler` plugin manages Flatfile jobs. It listens for the `job:ready` event and screens it based on the `job` parameter.
+The `jobHandler` plugin manages Flatfile Jobs. It listens for the `job:ready` event and screens it based on the `job` parameter.
 
 When a `job:ready` event occurs:
 
 - The `handler` callback is triggered with the `FlatfileEvent` and an optional `tick` function.
-- This `tick` function, if used, updates the job's progress.
-- The `handler` may yield a promise that culminates in a `JobResponse` object, allowing for a customized successful job status.
+- This `tick` function, if used, updates the Job's progress.
+- The `handler` may yield a promise that culminates in a `JobResponse` object, allowing for a customized successful Job status.
 
 ```SSH install
 npm i @flatfile/plugin-job-handler
@@ -71,16 +72,16 @@ npm i @flatfile/plugin-job-handler
 import { jobHandler } from "@flatfile/plugin-job-handler";
 ```
 
-Replace `"event:type"` with the event type you want to listen for.
+Replace `"domain:operation"` with the domain and operation you want to listen for.
 
 ```js listener.js
 listener.use(
-  jobHandler("event:type", async (event, tick) => {
+  jobHandler("domain:operation", async (event, tick) => {
     try {
       // your code here...
-      tick(50, "Halfway there!"); // update job progress
+      tick(50, "Halfway there!"); // update Job progress
       // ...continue your code...
-      tick(75, "Three quarters there!"); // update job progress
+      tick(75, "Three quarters there!"); // update Job progress
       // ...continue your code...
       return {
         outcome: {
@@ -88,7 +89,7 @@ listener.use(
         },
       };
     } catch (error) {
-      throw error; // will fail the job
+      throw error; // will fail the Job
     }
   })
 );
