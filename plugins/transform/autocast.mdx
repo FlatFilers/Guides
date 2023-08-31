@@ -56,11 +56,14 @@ icon: "download"
 
 ## Usage
 
-The `autocast` plugin will listen for the `commit:created` event and cast numbers, booleans, and dates to the appropriate Blueprint type.
+The `autocast` plugin will listen for the `commit:created` event and cast numbers, booleans,
+and dates to the appropriate Blueprint type. Note that the `recordHook` and `bulkRecordHook` plugins
+listen for the same event type. Plugins will fire in the order they are placed in the listener.
 
 ### Numbers
 
-String numbers (i.e `'1'`), string decimals (i.e `'1.1'`), and string numbers with commas (i.e `'1,000'`) are interpreted as numbers.
+String numbers (i.e `'1'`), string decimals (i.e `'1.1'`), and string numbers with commas (i.e `'1,000'`)
+are interpreted as numbers.
 
 ### Booleans
 
