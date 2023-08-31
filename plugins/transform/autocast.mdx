@@ -13,13 +13,17 @@ icon: "download"
 <CardGroup cols={1}>
   <Card title="@flatfile/plugin-autocast" icon="download">
     <br />
-    The `@flatfile/plugin-autocast` plugin will automatically convert the initial
-    user-inputted data to the correct type needed for that field so it can be processed.
+    The `@flatfile/plugin-autocast` plugin is an opinionated transformer that will
+    automatically convert the data in the Sheet to match the type defined by the
+    Blueprint.
     <br />
     <br />
     **Event Type:**
     <br />
     `listener.on('commit:created')`
+    <br />
+    **Supported field types:**<br />`number`, `boolean`, `date`
+
   </Card>
 </CardGroup>
 
@@ -52,6 +56,30 @@ icon: "download"
 
 ## Usage
 
+The `autocast` plugin will listen for the `commit:created` event and cast numbers, booleans, and dates to the appropriate Blueprint type.
+
+### Numbers
+
+String numbers (i.e `'1'`), string decimals (i.e `'1.1'`), and string numbers with commas (i.e `'1,000'`) are interpreted as numbers.
+
+### Booleans
+
+`'1'`, `'yes'`, `'true'`, `'on'`, `'t'`, `'y'`, and `1` are interpreted as truthy values.
+
+`'-1'`, `'0'`, `'no'`, `'false'`, `'off'`, `'f'`, `'n'`, `0`, `-1` are interpreted as falsy values.
+
+### Dates
+
+Date strings and numbers are cast to a UTC string. These are example of dates that will be cast:
+
+- `'2023-08-16'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `'08-16-2023'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `'08/16/2023'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `'Aug 16, 2023'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `'August 16, 2023'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `'2023-08-16T00:00:00.000Z'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `1692144000000` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+
 ```SSH install
 npm i @flatfile/plugin-autocast
 ```
@@ -60,9 +88,17 @@ npm i @flatfile/plugin-autocast
 import { autocast } from "@flatfile/plugin-autocast";
 ```
 
-```js
+<CodeGroup>
+
+```js listener.js
 listener.use(autocast("us_sp_123456789"));
 ```
+
+```js listener.js w/ options
+listener.use(autocast("us_sp_123456789", { chunkSize: 10000, parallel: 2 }));
+```
+
+</CodeGroup>
 
 <CardGroup cols={2}>
   <Card
