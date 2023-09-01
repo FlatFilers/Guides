@@ -23,8 +23,17 @@ icon: "download"
 
 ## Parameters
 
-<ParamField path="sheetId" type="string" required>
-  The `sheetId` parameter specifies the ID of the sheet you wish to monitor.
+<ParamField path="sheetFilter" type="object" required>
+  Use the `sheetFilter` parameter to select specific sheets for the plugin to
+  monitor. You must provide either a `sheetId` or a `sheetSlug`. The `sheetId`
+  specifies the unique ID of the sheet you want to monitor. The `sheetSlug`
+  indicates the unique slug name of the sheet you want to monitor.
+</ParamField>
+
+<ParamField path="fieldFilters" type="string[]">
+  Use the `fieldFilters` parameter to select specific fields to monitor. Without
+  any specified `fieldFilters`, the plugin will automatically monitor
+  castable-field (number, boolean & Date).
 </ParamField>
 
 <ParamField path="options.chunkSize" default="3000" type="number" optional>
@@ -43,10 +52,10 @@ icon: "download"
 
 ## Imported NPM Packages
 
-- [`@flatfile/api`](https://www.npmjs.com/package/@flatfile/api)
-- [`@flatfile/listener`](https://www.npmjs.com/package/@flatfile/listener)
-- [`@flatfile/hooks`](https://www.npmjs.com/package/@flatfile/hooks)
-- [`@flatfile/plugin-record-hook`](./record-hook)
+- [`@flatfile/api@1.4.9+`](https://www.npmjs.com/package/@flatfile/api)
+- [`@flatfile/listener@0.3.15+`](https://www.npmjs.com/package/@flatfile/listener)
+- [`@flatfile/plugin-record-hook@1.0.4+`](./record-hook)
+- [`@flatfile/util-common@0.1.1+`](./util-common)
 
 ## Usage
 
@@ -88,11 +97,20 @@ import { autocast } from "@flatfile/plugin-autocast";
 <CodeGroup>
 
 ```js listener.js
-listener.use(autocast("us_sh_123456789"));
+listener.use(autocast("sheetSlug"));
 ```
 
-```js listener.js w/ options
-listener.use(autocast("us_sh_123456789", { chunkSize: 10000, parallel: 2 }));
+```js listener.js w/ fieldFilters
+listener.use(autocast("sheetSlug", ["numberField", "dateField"]));
+```
+
+```js listener.js w/ fieldFilters & options
+listener.use(
+  autocast("sheetSlug", ["numberField", "dateField"], {
+    chunkSize: 10000,
+    parallel: 2,
+  })
+);
 ```
 
 </CodeGroup>
