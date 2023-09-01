@@ -93,7 +93,7 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
         width: "calc(80% - 30px)",
       }}
     >
-      A custom button has been integrated into searchable dropdowns. This addition prevents filtering of results upon clicking the standard input. From now on, result filtering will exclusively occur in response to clicking the button only.
+      Previously, attempting to navigate into a dropdown using the keyboard's tab key was unresponsive. This issue has been addressed, and tabbing via keyboard now smoothly activates dropdowns, accompanied by a focus outline for the custom trigger.
 
       </div>
 
@@ -117,22 +117,6 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 
   </div>
 
-        <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div
-      style={{
-        float: "left",
-        display: "table-column",
-        paddingLeft: "30px",
-        width: "calc(80% - 30px)",
-      }}
-    >
-      In the recent change for instant extraction, we noticed header detection involved parsing the entire file, which posed challenges for large files. Now, we've limited this process to the first N lines.
-
-      </div>
-
-  </div>
-  
 </div>
 
 ## August 25, 2023
