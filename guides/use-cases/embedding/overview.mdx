@@ -218,7 +218,14 @@ This `onClose` callback function is called when the Action defined in `operation
 
 We provide a default loading state when the Space is loading. You can also pass a custom loading component using the `loading` prop.
 
-\*example goes here
+```typescript
+const LoadingComponent = () => <label>Loading data...</label>
+
+const flatfileOptions = {
+    //additional props
+    loading: <LoadingComponent />
+  }
+```
 
 ### displayAsModal
 
