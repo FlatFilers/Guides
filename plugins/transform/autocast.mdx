@@ -23,11 +23,8 @@ icon: "download"
 
 ## Parameters
 
-<ParamField path="sheetFilter" type="object" required>
-  Use the `sheetFilter` parameter to select specific sheets for the plugin to
-  monitor. You must provide either a `sheetId` or a `sheetSlug`. The `sheetId`
-  specifies the unique ID of the sheet you want to monitor. The `sheetSlug`
-  indicates the unique slug name of the sheet you want to monitor.
+<ParamField path="sheetSlug" type="string" required>
+  The `sheetSlug` indicates the slug name of the sheet you want to monitor.
 </ParamField>
 
 <ParamField path="fieldFilters" type="string[]">
