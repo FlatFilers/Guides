@@ -93,6 +93,7 @@
       "group": "Concepts",
       "pages": [
         "concepts/workbooks",
+        "concepts/actions",
         "concepts/jobs",
         "concepts/events",
         "concepts/spaces"
@@ -237,6 +238,10 @@
     {
       "group": "Migrations",
       "pages": ["plugins/migrations/dxp-configure"]
+    },
+    {
+      "group": "Core",
+      "pages": ["plugins/core/job-handler", "plugins/core/space-configure"]
     },
     {
       "group": "Utils",

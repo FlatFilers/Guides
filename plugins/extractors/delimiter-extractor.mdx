@@ -62,6 +62,16 @@ icon: "download"
   The transform function is applied before `dynamicTyping`.
 </ParamField>
 
+<ParamField path="options.chunkSize" default="3000" type="number" optional>
+  The `chunkSize` parameter allows you to specify the quantity of records to in
+  each chunk.
+</ParamField>
+
+<ParamField path="options.parallel" default="1" type="number" optional>
+  The `parallel` parameter allows you to specify the number of chunks to process
+  in parallel.
+</ParamField>
+
 ## API Calls
 
 - `api.files.download`
@@ -74,6 +84,14 @@ icon: "download"
 - `api.jobs.update`
 - `api.records.insert`
 - `api.workbooks.create`
+
+# Imported NPM Packages
+
+- [`@flatfile/api@1.5.13+`](https://npmjs.com/package/@flatfile/api)
+- [`@flatfile/listener@0.3.15+`](https://npmjs.com/package/@flatfile/listener)
+- [`@flatfile/util-extractor@0.3.0`](../utils/extractor)
+- [`papaparse@5.4.1+`](https://npmjs.com/package/papaparse)
+- [`remeda@1.14.0+`](https://npmjs.com/package/remeda)
 
 ## Usage
 
