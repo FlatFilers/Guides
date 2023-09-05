@@ -4,6 +4,221 @@ description: "Additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## September 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+    **Improved FFQL handling of dates and number comparisons**
+
+      **Enhanced Number Field Queries:** When conducting equality or inequality FFQL comparisons for `number` fields, the query value is now cast to a number and then compared with the parsed "shadow" value. This rectifies issues related to numeric comparisons. Additionally, we've resolved a bug where numbers with no digits before the decimal point (e.g., ".3") were not being properly parsed into shadow values.
+
+      **Advanced Date Field Handling:** For `date` fields, query values are now attempted to be parsed into dates. On the SQL side, a `CASE` statement is employed to parse the stored values into dates for accurate comparison. To accommodate SQL-side date parsing requirements, we've integrated a regex pattern to detect `YYYY-MM-DD`, `m/d/yy`, and `m/d/yyyy` formats. This ensures correct parsing and comparison of date values.
+
+      **Fix for Invalid Number Input:** We've resolved a bug where changing a number field to an invalid number left the previous "shadow" value intact. Now, in such cases, the previous shadow value is properly cleared, leading to consistent and accurate behavior.
+
+      These updates contribute to improved query handling, better data integrity, and a more seamless experience when working with number and date fields.
+
+      </div>
+
+    </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+
+      Introducing caching for record counts, resulting in significantly improved performance for API requests.
+
+      </div>
+
+    </div>
+
+      <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+
+     The `PATCH /sheets` endpoint has been upgraded to accept both an array of SheetUpdates and an array of SheetConfigs (backwards compatible). This expanded capability empowers users with more flexible and efficient options when updating Sheets.
+
+      </div>
+
+    </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+
+      ![image](../changelog/images/tooltips-actions.png)
+
+      We've introduced a new parameter: `tooltip` to Actions, allowing the addition of tooltips. These tooltips are now visible in the user interface for both buttons and list items whenever the associated Action is enabled. This enhancement provides users with clear and context-aware explanations for enabled Actions, contributing to an improved overall user experience.
+
+      </div>
+
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+
+      Fixed a cosmetic issue with scrolling through Workbooks. The problem stemmed from the outer container scrolling based on the inner content's height. By applying overflow properties to the inner component, which holds a list of items within a flex container, we have resolved this issue.
+
+      </div>
+
+    </div>
+
+  </div>
+
+## August 30, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      **🚀 4 New Example Spaces**
+
+      Visit the **Getting Started** page on your Dashboard to discover four new options for effortlessly generating demo spaces:
+      1. Namespaces
+      2. Metadata
+      3. Egress
+      4. Sidebar Customization
+
+Similar to the rest of the options, we've provided the underlying code for each Space, simplifying the process of breaking down and comprehending the elements on display.
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      **Authentication Query Enhancement**
+
+      The authentication query has been streamlined for optimized performance. Extensive benchmarking has revealed that this refinement contributes to a reduction of approximately 20 milliseconds for each request. This enhancement results in faster overall processing and improved response times.
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      The **Data Checklist** now includes data types that correspond to each field. Additionally, the searchable dropdowns are now more user friendly.
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      A pagination logic issue concerning **Environments** has been resolved. The correction ensures accurate calculation of the number of pages and consistent delivery of valid responses in accordance with the [Pagination](https://reference.flatfile.com/docs/api/1dcb99aada63f-pagination) type.
+
+Furthermore, the default page size for **Spaces** has been set to 10, aligning it with the specifications outlined in the API documentation.
+
+      </div>
+
+  </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Previously, attempting to navigate into a dropdown using the keyboard's tab key was unresponsive. This issue has been addressed, and tabbing via keyboard now smoothly activates dropdowns, accompanied by a focus outline for the custom trigger.
+
+      </div>
+
+  </div>
+
+      <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      The API specification has been updated to facilitate the mapping of `enum` values of various types such as `string`, `integer`, or `boolean`. This modification effectively resolves a server error response that was previously encountered when utilizing such `enum` values within the API.
+
+      In addition, the loading state of the "Continue" button has been refined to ensure smooth recovery from server errors. This adjustment enhances the overall user experience by providing more graceful handling of unexpected issues during the process.
+
+      </div>
+
+  </div>
+
+</div>
+
 ## August 25, 2023
 
 <div style={{ display: "table", width: "auto" }}>
@@ -52,6 +267,8 @@ icon: "layer-group"
     >
       **🚀 A Revamped Starting Point**
 
+      ![image](../changelog/images/get-started.png)
+
       Navigate to your Dashboard's Getting Started page to find an array of new options for effortlessly creating demo spaces. Additionally, we've included the underlying code for each Space, making it straightforward to deconstruct and understand what you're seeing.
 
       </div>
@@ -71,6 +288,7 @@ icon: "layer-group"
      **🚀 Major improvements to our queue system**
 
     We’ve implemented a state-of-the-art technology to substantially enhance the reliability and performance of our queue system. This improvement has a profound impact on the execution of asynchronous tasks, like data validation.
+
   </div>
 </div>
 
@@ -255,6 +473,8 @@ icon: "layer-group"
     >
       **🚀 Introducing Command+k Triggered Search and Transformation (Early Access)**
 
+      ![image](../changelog/images/AI-assist.png)
+
       This update enhances your workflow by centralizing experiences under the Command+k shortcut.
 
       A straightforward forward slash, followed by these options, grants access to our data transformation and query tools:
@@ -291,6 +511,9 @@ icon: "layer-group"
     <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
       <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+      ![image](../changelog/images/sidebar_collapsed.png)
+
         The Sidebar now has three different states:
         - Collapsed state
         - Open state

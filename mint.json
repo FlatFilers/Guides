@@ -240,6 +240,10 @@
       "pages": ["plugins/migrations/dxp-configure"]
     },
     {
+      "group": "Core",
+      "pages": ["plugins/core/job-handler", "plugins/core/space-configure"]
+    },
+    {
       "group": "Utils",
       "pages": ["plugins/utils/extractor", "plugins/utils/file-buffer"]
     }

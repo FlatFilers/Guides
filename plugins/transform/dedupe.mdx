@@ -62,8 +62,11 @@ icon: "download"
 
 ## Imported NPM Packages
 
-- [`ts-pattern`](https://www.npmjs.com/package/ts-pattern) The exhaustive Pattern Matching library for TypeScript with smart type inference.
-- [`remeda`](https://www.npmjs.com/package/remeda) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
+- [`@flatfile/api@1.5.14+`](https://www.npmjs.com/package/@flatfile/api)
+- [`@flatfile/hooks`](https://www.npmjs.com/package/@flatfile/hooks)
+- [`@flatfile/listener@0.3.15+`](https://www.npmjs.com/package/@flatfile/listener)
+- [`remeda@1.14.0+`](https://www.npmjs.com/package/remeda) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
+- [`ts-pattern@5.0.4+`](https://www.npmjs.com/package/ts-pattern) The exhaustive Pattern Matching library for TypeScript with smart type inference.
 
 ## Usage
 
@@ -91,6 +94,7 @@ import { dedupePlugin } from "@flatfile/plugin-dedupe";
 ```
 
 <CodeGroup>
+
 ```js listener.js
 // common usage
 // Keep the last record encountered (from top to bottom) based on the`email` field key.
@@ -135,7 +139,7 @@ listener.use(
   dedupePlugin("dedupe-email", {
     on: "email",
     keep: "last",
-  }),
+  })
 );
 
 // user specified dedupe function using RemedaJS
@@ -157,10 +161,10 @@ listener.use(
 
             return acc;
           }
-        }, [] as Array<string>),
+        }, [] as Array<string>)
       );
     },
-  }),
+  })
 );
 ```
 
