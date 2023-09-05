@@ -4,20 +4,23 @@ description: "The anatomy of Actions"
 icon: "bolt"
 ---
 
-An Action is a code-based operation that runs where that Action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile. Additional Actions can be mounted on a Sheet, a Workbook, or a file.
+An Action is a code-based operation that runs where that Action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile. Additional Actions can be mounted on a Sheet, a Workbook, or a file by a developer.
 
-## Action Types
+## Types of Actions
 
 ### Built-in Actions
 
-Sheets and files come with two default built-in actions:
+Workbooks, Sheets and files come with five default built-in actions:
 
-1. Delete
-2. Download
+1. Mapping data from one workbook to another (moving data from a workbook to a Workbook)
+2. Deleting data from a Workbook (or the entire file)
+3. Exporting (downloading) data from a Workbook (or a file)
+4. Find and Replacing data in a Sheet
+5. Applying a Mutate function to data in a Sheet
 
-When these built-in actions are clicked, they trigger events. You can listen for these events and take appropriate actions if required.
+When these built-in actions are clicked, they create Jobs. You can listen for these events and take appropriate actions if required. Learn more about [Jobs](../concepts/jobs).
 
-### Additional Actions
+### Developer-Created Actions
 
 Additional Actions can be mounted on a Sheet, a Workbook, or a file. When an action is clicked, it will create a job `operation` on the `domain` it is mounted.
 
