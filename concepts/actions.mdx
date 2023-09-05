@@ -76,6 +76,11 @@ UI. These include:
   with the resource until complete.
 </ParamField>
 
+<ParamField path="tooltip" type="string">
+  Setting this will display the text in the UI for both buttons and list items
+  as a tooltip on hover.
+</ParamField>
+
 ## Usage
 
 An Action with all of the above properties would look like this:
@@ -90,6 +95,7 @@ An Action with all of the above properties would look like this:
   requireSelection: true,
   requireAllValid: true,
   mode: 'foreground'
+  tooltip: 'Click to run action'
 }
 ```
 
