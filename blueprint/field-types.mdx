@@ -1,16 +1,17 @@
 ---
 title: Types
 description: "Field Types inform the user interface how to sort and display data."
-icon: 'hashtag'
+icon: "hashtag"
 ---
 
 ## Overview
 
 Blueprint offers 6 supported field types. Field Types inform the user interface how to sort and display data.
 
-
-<Note>Setting a field type does not transform or validate data out-of-the-box. These are still done with [recordHooks](../guides/handling-data).</Note>
-
+<Note>
+  Setting a field type does not transform or validate data out-of-the-box. These
+  are still done with [recordHooks](../guides/handling-data).
+</Note>
 
 ### `string` _(default)_
 
@@ -23,13 +24,12 @@ Defines a property that should be stored and read as a basic string.
   "type": "string"
 },
 ```
-![string](https://github.com/FlatFilers/Guides/assets/19697744/8c612e39-86fd-4438-abcd-11fba94f214b)
 
+![string](https://github.com/FlatFilers/Guides/assets/19697744/8c612e39-86fd-4438-abcd-11fba94f214b)
 
 ### `number`
 
 Defines a property that should be stored and read as either an integer or floating point number. Numbers are displayed using a monospaced font. Database engines should look at the configuration to determine ideal storage format.
-
 
 ```json
 {
@@ -38,15 +38,21 @@ Defines a property that should be stored and read as either an integer or floati
   "type": "number"
 },
 ```
+
 ![number](https://github.com/FlatFilers/Guides/assets/19697744/d5aa1413-1230-44a2-a84b-7ba26f77122a)
-
-
 
 ### `enum`
 
 Defines an enumerated list of options for the user to select from. Matching tooling attempts to resolve incoming data assignment to a valid option. The maximum number of options for this list is `100`. For larger lists, users should use the `reference` lookup types.
 
 ![enum](https://github.com/FlatFilers/Guides/assets/19697744/fa414712-a7b8-4783-af63-1aef9dd69271)
+
+<Warning>
+  Using `config.allow_custom` does not result in these being recognized as valid
+  `enum` values. Consequently, they continue to be flagged as errors. To use
+  custom enum values anyway, end users will choose the option to "leave values
+  as is" on the mapping screen.
+</Warning>
 
 <ParamField path="config.allow_custom" default="false" type="boolean">
   Permit the user to create new options for this specific field.
@@ -55,7 +61,6 @@ Defines an enumerated list of options for the user to select from. Matching tool
 <ParamField path="config.options" required>
   An array of valid options the user can select from
 </ParamField>
-
 
 <Expandable title="options" type="array" defaultOpen={true}>
 
@@ -105,7 +110,6 @@ Defines an enumerated list of options for the user to select from. Matching tool
 },
 ```
 
-
 ### `reference`
 
 Defines a reference to another Sheet. Links should be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
@@ -113,14 +117,14 @@ Defines a reference to another Sheet. Links should be established automatically 
 Learn more about [Relationships](./relationships).
 
 <ParamField path="config.ref" required>
-  The full path reference to another Sheet/table configuration. Must be in the same Workbook.
+  The full path reference to another Sheet/table configuration. Must be in the
+  same Workbook.
 </ParamField>
 <ParamField path="config.relationship" required>
   The type of relationship this defines. Can be `has-one`
 </ParamField>
 
 ![reference](https://github.com/FlatFilers/Guides/assets/19697744/7cacd3c7-4f60-4975-a4b0-e6752a41a601)
-
 
 ### `boolean`
 
@@ -133,14 +137,18 @@ A `true` or `false` value type. This field type will be displayed as a slider.
   "type": "boolean"
 }
 ```
-![boolean](https://github.com/FlatFilers/Guides/assets/19697744/91ca044f-8dd1-45e5-8c6a-b171132c0766)
 
+![boolean](https://github.com/FlatFilers/Guides/assets/19697744/91ca044f-8dd1-45e5-8c6a-b171132c0766)
 
 ### `date`
 
 Store a field as a UTC date. Date fields interpret incoming dates with Month (MM) preceding the Day (DD) in all formats.
 
-<Warning>In order to use "European" dates, formatted as DD-MM-YYYY, where the Day precedes the Month, we recommend using a string field and a Record Hook to interpret the date appropriately. </Warning>
+<Warning>
+  In order to use "European" dates, formatted as DD-MM-YYYY, where the Day
+  precedes the Month, we recommend using a string field and a Record Hook to
+  interpret the date appropriately.{" "}
+</Warning>
 
 ---
 
@@ -151,23 +159,28 @@ Store a field as a UTC date. Date fields interpret incoming dates with Month (MM
 </ParamField>
 
 <ParamField path="type" required>
-  One of `string`, `number`, `boolean`, `date`, `enum`, `reference`. Defines the handling of this property.
+  One of `string`, `number`, `boolean`, `date`, `enum`, `reference`. Defines the
+  handling of this property.
 </ParamField>
 
 <ParamField path="label" default="key" type="string">
-  A user-facing descriptive label designed to be displayed in the UI such as a table header.
+  A user-facing descriptive label designed to be displayed in the UI such as a
+  table header.
 </ParamField>
 
 <ParamField path="description" type="string">
-  A long form description of the property intended to be displayed to an end user.
+  A long form description of the property intended to be displayed to an end
+  user.
 </ParamField>
 
 <ParamField path="constraints" default="[]" type="array">
-  An array of system level Validation Rules meant to be applied after hooks are run.
+  An array of system level Validation Rules meant to be applied after hooks are
+  run.
 </ParamField>
 
 <ParamField path="config" default="{}" type="object">
-  Configuration relevant to the type of column. See property documentation below.
+  Configuration relevant to the type of column. See property documentation
+  below.
 </ParamField>
 
 <ParamField path="metadata" default="{}" type="object">
