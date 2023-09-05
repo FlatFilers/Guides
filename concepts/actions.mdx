@@ -4,22 +4,76 @@ description: "The anatomy of Actions"
 icon: "bolt"
 ---
 
-An Action is a code-based operation that runs where that Action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile. Actions can be mounted on a Sheet, a Workbook, a Space, or a file.
+An Action is a code-based operation that runs where that Action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile. Additional Actions can be mounted on a Sheet, a Workbook, or a file.
+
+## Action Types
+
+### Built-in Actions
+
+Sheets and files come with two default built-in actions:
+
+1. Delete
+2. Download
+
+When these built-in actions are clicked, they trigger events. You can listen for these events and take appropriate actions if required.
+
+### Additional Actions
+
+Additional Actions can be mounted on a Sheet, a Workbook, or a file. When an action is clicked, it will create a job `operation` on the `domain` it is mounted.
+
+For example, an Action with the property `operation: 'my-action'` placed on a Workbook would spawn a job called: `workbook:my-action`. This is the job you'd listen for to respond accordingly.
 
 ## The Anatomy of an Action
 
+### Required Parameters
+
 All Actions contain the the information needed to let a user run the Action. This includes:
-- `operation` - A unique identifier for the Action that is used by the listener to determine what work to do as part of the resulting Job
-- `label` - The text that will be displayed to the user in the UI as a button or menu item
 
-Optionally, an Action can also contain extra details about how it appears in the UI. These include:
-- `primary` - Whether the Action is a primary Action for the resource. Depending on the resource, primary Actions are displayed in the UI in a more prominent way.
-- `confirm` - When set to `true`, a modal is shown to confirm the Action
-- `description` -  The text that will be displayed to the user when a confirmation modal is used. Phrase this as a question.      
-- `requireSelection`- Setting this to `true` will disable a Sheet Action when no records in the Sheet are selected.
-- `mode` - Can be `foreground` or `background`. Foreground actions will prevent interacting with the resource until complete. The default value is `background`.
+<ParamField path="operation" type="string" required>
+  A unique identifier for the Action that is used by the listener to determine
+  what work to do as part of the resulting Job.
+</ParamField>
 
-## Example
+<ParamField path="label" type="string" required>
+  The text that will be displayed to the user in the UI as a button or menu
+  item.
+</ParamField>
+
+### Optional Parameters
+
+Optionally, an Action can also contain extra details about how it appears in the
+UI. These include:
+
+<ParamField path="primary" type="boolean" default="false">
+  Whether the Action is a primary Action for the resource. Depending on the
+  resource, primary Actions are displayed in the UI in a more prominent way.
+</ParamField>
+
+<ParamField path="confirm" type="boolean" default="true">
+  When set to true, a modal is shown to confirm the Action.
+</ParamField>
+
+<ParamField path="description" type="string">
+  The text that will be displayed to the user when a confirmation modal is used.
+  Phrase this as a question.
+</ParamField>
+
+<ParamField path="requireSelection" type="boolean" default="false">
+  Setting this to true will disable a Sheet Action when no records in the Sheet
+  are selected.
+</ParamField>
+
+<ParamField path="requireAllValid" type="boolean" default="false">
+  Setting this to true will disable a Sheet Action when there are invalid
+  records.
+</ParamField>
+
+<ParamField path="mode" type="string" default="background">
+  Can be `foreground` or `background`. Foreground mode will prevent interacting
+  with the resource until complete.
+</ParamField>
+
+## Usage
 
 An Action with all of the above properties would look like this:
 
@@ -31,6 +85,46 @@ An Action with all of the above properties would look like this:
   confirm: true,
   description: 'Are you sure you want to run this action?',
   requireSelection: true,
+  requireAllValid: true,
   mode: 'foreground'
 }
 ```
+
+## Learn more
+
+### Guides
+
+Learn more about Workbook, Sheet, and File Actions.
+
+<CardGroup cols={3}>
+  <Card title="Workbook" icon="bolt" href="../guides/actions#workbook-mounted">
+    Run an operation on the entire dataset
+  </Card>
+  <Card title="Sheet" icon="bolt" href="../guides/actions#sheet-mounted">
+    Run an operation at the Sheet level
+  </Card>
+  <Card title="File" icon="bolt" href="../guides/actions#file-mounted">
+    Attach additional actions to a File
+  </Card>
+</CardGroup>
+
+### Example Projects
+
+Find an Actions example in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="typescript"
+    icon="code-merge"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/actions/index.ts"
+  >
+    Clone the Actions example in Typescript
+  </Card>
+  <Card
+    title="javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/actions/index.js"
+  >
+    Clone the Actions example in Javascript
+  </Card>
+</CardGroup>
