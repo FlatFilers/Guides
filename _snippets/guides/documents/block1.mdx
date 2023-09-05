@@ -1,0 +1,53 @@
+<CodeGroup>
+```js listener.js
+import api from "@flatfile/api";
+
+export default function flatfileEventListener(listener) {
+  listener.on("upload:completed", async ({ context: { spaceId, fileId } }) => {
+    const fileName = (await api.files.get(fileId)).data.name;
+    const bodyText = `# Welcome
+    ### Say hello to your first customer Space in the new Flatfile!
+    Let's begin by first getting acquainted with what you're seeing in your Space initially.
+    ---
+    Your uploaded file, ${fileName}, is located in the Files area.`;
+
+    const documentId = "us_dc_Vsk5VRfF";
+
+    const updateDoc = await api.documents.update(spaceId, documentId, {
+      title: "Getting Started",
+      body: bodyText,
+    });
+  });
+}
+// See full code example (https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/documents/index.js)
+```
+
+```js listener.ts
+import api from "@flatfile/api";
+import { FlatfileEvent, Client } from "@flatfile/listener";
+
+export default function flatfileEventListener(listener: Client) {
+  listener.on(
+    "upload:completed",
+    async ({ context: { spaceId, fileId } }: FlatfileEvent) => {
+      const fileName = (await api.files.get(fileId)).data.name;
+      const bodyText = `# Welcome
+    ### Say hello to your first customer Space in the new Flatfile!
+    Let's begin by first getting acquainted with what you're seeing in your Space initially.
+    ---
+    Your uploaded file, ${fileName}, is located in the Files area.`;
+
+      const documentId = "us_dc_Vsk5VRfF";
+
+      const updateDoc = await api.documents.update(spaceId, documentId, {
+        title: "Getting Started",
+        body: bodyText,
+      });
+    }
+  );
+}
+// See full code example (https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/documents/index.ts)
+```
+</CodeGroup>
+
+See full code example in our [flatfile-docs-kitchen-sink Github repo](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main)

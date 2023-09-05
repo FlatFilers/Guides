@@ -1,20 +1,95 @@
 ---
 title: "@flatfile/plugin-zip-extractor"
 description: "A plugin for parsing .zip files in Flatfile."
-icon: "clock"
+icon: "download"
 ---
+
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
 
 <CardGroup cols={1}>
-    <Card title="@flatfile/plugin-zip-extractor" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/" icon="github" >
-    *currently in development*<br/>
+  <Card title="@flatfile/plugin-zip-extractor" icon="download">
+    <br />
+    The @flatfile/plugin-zip-extractor plugin decompresses ZIP files and uploads their contents to Flatfile for further processing by other extractors.
     <br/>
-    check back soon for updates
-    </Card>
+    <br/>
+    **Event Type:**<br/>`listener.on('file:created')`
+    <br/>
+    **Supported file types:**<br/>`.zip`
+
+  </Card>
 </CardGroup>
 
-### Overview
+## Parameters
 
-This plugin will parse all data in a zip file and extract it into Flatfile.
+<ParamField path="options.debug" default="false" type="boolean" optional>
+  The `debug` parameter lets you toggle on/off helpful debugging messages for
+  development purposes.
+</ParamField>
 
+## API Calls
 
----
+- `api.files.download`
+- `api.files.get`
+- `api.files.update`
+- `api.jobs.ack`
+- `api.jobs.complete`
+- `api.jobs.create`
+- `api.jobs.fail`
+- `api.jobs.update`
+
+## Imported NPM Packages
+
+- [`@flatfile/api@1.4.9+`](https://www.npmjs.com/package/@flatfile/api)
+- [`@flatfile/hooks@1.3.0+`](https://www.npmjs.com/package/@flatfile/hooks)
+- [`@flatfile/listener@0.3.15+`](https://www.npmjs.com/package/@flatfile/listener)
+- [`@flatfile/util-common@0.1.1+`](../utils/common)
+- [`@flatfile/util-file-buffer@0.0.4`](../utils/file-buffer) provides utility functions for processing files and extracting their contents using the Flatfile API.
+- [`AdmZip@0.5.10+`](https://www.npmjs.com/package/adm-zip) provides utility functions for decompressing files and directories from ZIP format.
+- [`os@0.1.2+`](https://nodejs.org/api/os.html) provides utility functions for interacting with the operating system.
+- [`remeda@1.14.0+`](https://remedajs.com/) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
+
+## Usage
+
+Listen for a ZIP file to be uploaded to Flatfile. The file will be downloaded, unzipped, and the contents uploaded back to Flatfile. Once complete, the file will be ready for import in the Files area. This plugin is designed to be used in conjuction with other extractors, such as the [Excel Extractor](../extractors/xlsx-extractor), to extract and process the contents of the files contained in the ZIP file. Files with names beginning with `.` will be ignored as these are typically system files (i.e. `.DS_store`).
+
+```SSH install
+npm i @flatfile/plugin-zip-extractor
+```
+
+```js import
+import { ZipExtractor } from "@flatfile/plugin-zip-extractor";
+```
+
+```js listener.js
+listener.use(ZipExtractor());
+```
+
+### Full Example
+
+In this example, the `ZipExtractor` is initialized, and then registered as middleware with the Flatfile listener. When a JSON file is uploaded, the plugin will extract the contents of the ZIP file and upload the files to FlatFile.
+
+```javascript
+import { ZipExtractor } from "@flatfile/plugin-zip-extractor";
+
+// Initialize the ZIP extractor
+const zipExtractor = ZipExtractor();
+
+// Register the extractor as a middleware for the Flatfile listener
+listener.use(zipExtractor);
+
+// When a ZIP file is uploaded, the files will be extracted and uploaded.
+```
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-zip-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/zip-extractor"
+    icon="github"
+  ></Card>
+</CardGroup>

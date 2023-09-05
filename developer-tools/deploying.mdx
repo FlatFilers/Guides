@@ -4,13 +4,13 @@ description: "Learn how to deploy your code to Flatfile."
 icon: "rocket-launch"
 ---
 
-<Snippet file="dxpbanner.mdx"/>
+<Snippet file="shared/dxpbanner.mdx" />
 
-For a production deployment, listeners can be hosted either in your cloud or directly on the Flatfile platform. 
+For a production deployment, listeners can be hosted either in your cloud or directly on the Flatfile platform.
 
 ## Hosting in your own cloud
 
-Hosting listener code in your own cloud works similarly to how we run the `develop` command in our Quickstart in that: 
+Hosting listener code in your own cloud works similarly to how we run the `develop` command in our Quickstart in that:
 
 1. The listener process is launched
 2. It polls the Flatfile API for updates
@@ -20,8 +20,7 @@ Follow the Quickstart example for a working example on hosting in your own cloud
 
 ## Hosting on the Flatfile platform
 
-While your own cloud provides the maximum level of control over listener code, qualities such as availability and network performance are the responsibility of the hosting provider. Listeners may be securely deployed and run in the Flatfile platform cloud giving you a more consistent, low-latency, high-availability experience. 
-
+While your own cloud provides the maximum level of control over listener code, qualities such as availability and network performance are the responsibility of the hosting provider. Listeners may be securely deployed and run in the Flatfile platform cloud giving you a more consistent, low-latency, high-availability experience.
 
 ### Deploying a Workbook to Flatfile from terminal
 
@@ -30,9 +29,14 @@ by opening the terminal in the root directory and entering this command:
 
 `npx flatfile@latest deploy --token=YOUR_SECRET_KEY`
 
+<Warning>
+  Add the file name to the command: `npx flatfile deploy path-to-file` if you're
+  not running an index file.
+</Warning>
+
 The CLI will give you prompts and updates as it's deploying:
 
-``` terminal
+```terminal
 > npx flatfile@latest deploy --token=sk_123456
 
 ✔  Code package compiled to .flatfile/build.js
@@ -43,17 +47,16 @@ The CLI will give you prompts and updates as it's deploying:
 
 #### See it in your Dashboard
 
-Once your Workbook has been deployed, you’ll be able to see a new Space in your [Dashboard](https://platform.flatfile.com).   Your Workbook will be added to every Space you create. 
+Once your Workbook has been deployed, you’ll be able to see a new Space in your [Dashboard](https://platform.flatfile.com). Your Workbook will be added to every Space you create.
 
 <Note>
-  You can also configure your code to build different Workbooks as a Space is created depending on various factors, but this is a more advanced configuration. 
-  More on how to do this soon. 
+  You can also configure your code to build different Workbooks as a Space is
+  created depending on various factors, but this is a more advanced
+  configuration. More on how to do this soon.
 </Note>
-
 
 ### Deploying more than once
 
-You can deploy any change to your code at any time. 
+You can deploy any change to your code at any time.
 
 For example, if you need to add a Sheet to an already existing Workbook, simply deploy again with the added Sheet and everything will update.
-

@@ -4,7 +4,7 @@ description: "Learn how to use Environments for testing and authentication."
 icon: "seedling"
 ---
 
-<Snippet file="dxpbanner.mdx"/>
+<Snippet file="shared/dxpbanner.mdx"/>
 
 <Tooltip tip="Learn more about Environments">[Environments](../developer-tools/environment)</Tooltip> are isolated entities and are intended to be a safe place to create and test different configurations. 
 Environments serve as self-contained, secure domains where diverse configurations can be created and tested. By default, a development and a production environment are set up.
@@ -15,6 +15,22 @@ Environments serve as self-contained, secure domains where diverse configuration
 | *true* | `production` | When you're ready to launch, create a new environment and swap out your keys. |
 
 <Note>The development environment does not count towards your paid credits.</Note>
+
+## Creating an Environment
+
+Your `publishableKey` and `secretKey` are specific to an environment therefore to create a new Environment, you'll have to use a personal access token.
+
+1. Open Settings
+2. Click to Personal Tokens
+3. You can use the key pair in there to create an environment like:
+
+```ssh
+curl -X POST https://platform.flatfile.com/v1/auth -H 'Content-Type: application/json' -d '{"clientId":"1234-1234", "secret":"1234-1234"}'
+```
+
+4. The response will include an `accessToken`. You can present that as your **Bearer `token`** in place of the `secretKey`.
+
+[Create an environment](./developing/make-environment)
 
 ## Guest Authentication
 

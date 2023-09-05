@@ -31,8 +31,8 @@ await api.spaces.update(spaceId, {
 });
 ```
 
-Learn more about [adding metadata in embedded
-Flatfile](../use-cases/part3#collecting-additional-data).
+Learn more about [adding metadata in React embedded
+Flatfile](../guides/use-cases/embedding/react/guide#spaceinfo).
 
 ## Record-level
 
@@ -52,21 +52,7 @@ and store the length of the name in metadata. This data will now be stored on th
 
 ```jsx javascript
 listener.use(
-  recordHook("contacts", ({ record }) => {
-    const { firstName } = record.get();
-
-    record.setMetadata({
-      firstNameLength: firstName.length,
-    });
-
-    return record;
-  })
-);
-```
-
-```jsx typescript
-listener.use(
-  recordHook("contacts", (record: FlatfileRecord) => {
+  recordHook("contacts", (record) => {
     const firstName = record.get("firstName");
 
     record.setMetadata({
@@ -77,6 +63,21 @@ listener.use(
   })
 );
 ```
+
+```jsx typescript
+listener.use(
+  recordHook("contacts", (record: FlatfileRecord) => {
+    const firstName = record.get("firstName") as string;
+
+    record.setMetadata({
+      firstNameLength: firstName?.length ?? 0,
+    });
+
+    return record;
+  })
+);
+```
+
 </CodeGroup>
 
 ## Field-level

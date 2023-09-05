@@ -4,9 +4,9 @@ description: "Learn how to develop with Flatfile CLI."
 icon: "computer-classic"
 ---
 
-<Snippet file="dxpbanner.mdx" />
+<Snippet file="shared/dxpbanner.mdx" />
 
-When developing with Flatfile, listeners can [deployed](deploying) to Flatfile on every change or they can run directly on your machine.
+When developing with Flatfile, listeners can [deployed](../deploying) to Flatfile on every change or they can run directly on your machine.
 
 ### Before you begin
 
@@ -23,6 +23,11 @@ FLATFILE_API_KEY=sk_123456
 
 Run `npx flatfile develop` from terminal to launch a local listener. As your code changes, file changes are detected and will be reflected
 immediately.
+
+<Warning>
+  Add the file name to the command: `npx flatfile develop path-to-file` if
+  you're not running an index file.
+</Warning>
 
 1. In your terminal, you'll see a detailed log of each HTTP request made within a listener. It includes the request timing and status, enabling tracking and debugging of HTTP operations.
 2. A pub/sub stream system will deliver Events with a latency of approximately 10-50ms. This provides a local development experience closely resembling the production environment speed.
@@ -49,10 +54,13 @@ ncc: Compiling file index.js into CJS
 It is highly recommended to utilize an isolated environment when developing with the local listener. That's why the CLI is warning you when working in an environment that already has a deployed agent.
 
 <CardGroup cols={2}>
-<Card title="Check for existing agents" href="check-for-agents"></Card>
+  <Card
+    title="Check for existing agents"
+    href="../developing/check-for-agents"
+  ></Card>
   <Card
     title="Create a new isolated environment"
-    href="make-environment"
+    href="../developing/make-environment"
   ></Card>
 </CardGroup>
 

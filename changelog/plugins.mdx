@@ -1,0 +1,307 @@
+---
+title: Plugins
+description: "Additions and updates to Flatfile plugins"
+icon: "plug"
+---
+
+## September 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+    `@flatfile/plugin-autocast`
+
+
+    In the most recent update, we’ve introduced some exciting enhancements. You can now implement an optional `fieldFilter` to specify which fields autocast should operate on.
+
+    Check out the example below:
+    `listener.use(autocast({ sheetSlug: 'bar' }, ['numberField', 'dateField']))`
+
+    [Learn more](../plugins/transform/autocast).
+
+    </div>
+
+  </div>
+  
+</div>
+
+## August 31, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+    🚀  **Introducing `@flatfile/plugin-autocast`**
+
+    Effortlessly transform data in your Sheets to align with the field types specified in the Blueprint.
+
+    Supported field types:
+
+    - **Numbers:** String numbers ('1'), string decimals ('1.1'), and string numbers with commas ('1,000') are interpreted as numbers.
+
+    - **Booleans:**
+      - Truthy values: '1', 'yes', 'true', 'on', ' ', 'y', and 1.
+      - Falsy values: '- ', '0', 'no', 'false', 'off', ' ', 'n', 0, -1.
+
+    - **Dates:** Date strings and numbers are cast to a UTC string.
+      - '2023-08-16' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - '08-16-2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - '08/16/2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - 'Aug 16, 2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - 'August 16, 2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - '2023-08-16T00:00:00.000Z' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - 1692144000000 => 'Wed, 16 Aug 2023 00:00:00 GMT'
+
+    Note: **@flatfile/plugin-record-hook** listens for the same event type (commit:created). Plugins will fire in the order they are placed in the listener.
+
+    Check out the [docs](../plugins/transform/autocast).
+
+    </div>
+
+  </div>
+
+</div>
+
+## August 30, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+    🚀  **Introducing `@flatfile/plugin-jobs-handler`**
+
+    Our latest plugin, `@flatfile/plugin-jobs-handler`, streamlines handling Flatfile Jobs, which are a large unit of work performed asynchronously on a resource such as a file, Workbook, or Sheet.
+
+    **Options at your fingertips:**
+
+    - Update Job progress using `tick(progress, message)`, returning a promise for `JobResponse`.
+    - `opts.debug` Enable debug logging for the plugin
+
+    To get started simplifying the management of your Jobs, explore the [README](../plugins/core/jobs-handler).
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+      🚀 **Introducing `@flatfile/plugin-space-configure`**
+
+      Streamline the dynamic setup of new Flatfile Spaces with `@flatfile/plugin-space-configure`.
+
+      **How it works:**
+
+      - The `setup` parameter holds the Blueprint for the new Space.
+      - And the `callback` parameter (invoked once the Space and Workbooks are fully configured) receives three arguments:
+      1. `event`
+      2. `workbookIds`
+      3. Using the `@flatfile/plugin-jobs-handler` under the hood, the `tick` function can be used to update the Job’s progress.
+
+      To simplify auto-configuring your Spaces, explore the [README](../plugins/core/space-configure).
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+      **All extractors now support `chunkSize` and `parallel`**
+
+      A new version of an underlying utility (`@flatfile/util-extractor`) introduces 2 new options for extracting records in all extractor plugins:
+
+      - `chunkSize`: (Default: 3,000) Define how many records you want to process in each batch. This allows you to balance efficiency and resource utilization based on your specific use case.
+      - `parallel`: (Default: 1) Choose whether the records should be processed in parallel. This enables you to optimize the execution time when dealing with large datasets.
+
+      *Note: Previously, we were extracting with a chunkSize of 1,000.*
+
+      **Ex: Excel Usage: (See [docs](../plugins/extractors/xlsx-extractor))**
+
+      ```ts
+      listener.use(ExcelExtractor({ chunkSize: 300, parallel: 2 }))
+      ```
+
+      If you update your extractor plugin to the latest, you will receive these new options.
+
+    </div>
+
+  </div>
+
+</div>
+
+## August 25, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-delimiter-extractor`
+
+      Now that the platform includes native support for TSV and PSV files, developers are no longer required to use a plugin specifically for these formats. As a result of this enhancement, the documentation for the `@flatfile/plugin-delimiter-extractor` has been revised to reflect this update.
+
+      For users who are already utilizing or have integrated a plugin for TSV and PSV files, there's no need to worry about any disruptions. While the extraction will occur twice, resulting in a "extraction complete" status being displayed twice, the process remains functional and intact.
+    </div>
+
+    </div>
+
+</div>
+
+## August 24, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      **🚀 Introducing `@flatfile/plugin-pdf-extractor`**
+
+     Our latest plugin, @flatfile/plugin-pdf-extractor, introduces the power of parsing .pdf files in Flatfile.
+
+     <Note>Note: A subscription to pdftables.com is required.</Note>
+
+      Options at your fingertips:
+      * 		`opt.apiKey`: Feed in your pdftables.com API key to unlock the magic.
+      * 		`opt.debug`: Toggle debugging messages to streamline development.
+
+      Tech Behind the Scenes:
+      * 		Empowered by `remeda` for dynamic functional programming and data handling.
+      * 		Seamlessly integrates Pattern Matching with TypeScript through `ts-pattern`.
+
+      [See the docs](../plugins/extractors/pdf-extractor)
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-dedupe@0.0.2`
+
+     Includes fixes to properly job ack on failure and use a new instance of listener after a filter operation. It also adds server errors to logging.
+
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/util-file-buffer@0.0.3`
+
+    A fix was made to only run `fileBuffer` on uploaded files. This fixes an issue where extraction was occurring during export improperly.
+
+    All extractor plugins went up one tick to leverage this update to the file buffer.
+
+    <Info>The extractor most affected was `xlsx-extractor` as there’s a correlating plugin for exporting to xlsx.</Info>
+
+    </div>
+
+  </div>
+
+</div>
+
+## August 20, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      **🚀 Introducing `@flatfile/@flatfile/plugin-dedupe`**
+
+      @flatfile/plugin-dedupe adds a touch of magic by seamlessly removing duplicate records right within a sheet with several options to fit your use case:
+
+        -     	`opt.keep`: Decide whether to hang on to the first or last duplicate record.
+        -     	`opt.custom`: Craft your own dedupe function, for those out-of-the-box scenarios.
+        -     	`opt.debug`: Toggle on those helpful debug messages when you’re in the lab.
+
+        Tech:
+
+        -     	Powered by `ts-pattern` for in-depth Pattern Matching in TypeScript.
+        -     	Leverages the mighty `remeda` for JavaScript’s functional programming and data wizardry.
+
+
+        [See the docs](../plugins/transform/dedupe)
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      **🚀 Introducing `@flatfile/plugin-delimiter-extractor`**
+
+      Introducing the latest addition to our extractor plugins: @flatfile/plugin-delimiter-extractor. Designed to streamline your data extraction tasks, this plugin is tailored to process delimited files including tab (\t), pipe (|), semicolon (;), colon (:), tilde (~), caret (^), and hash (#).
+
+      Parameters and Options:
+
+      -     	`fileExt` specifies the file name or extension to listen for, allowing you to define the file types to process.
+      -     	`options.delimiter` the delimiter character used in the file.
+      -     	`options.dynamicTyping` automatically convert numeric and boolean data in the file to their appropriate data types, ensuring accurate processing.
+      -     	`options.skipEmptyLines`: With ‘true’, completely empty lines (evaluating to an empty string) will be skipped during parsing. With ‘greedy’, lines with only whitespace characters are also skipped.
+      -     	`options.transform `define a function to be applied to each parsed value before dynamicTyping.
+
+
+      [See the docs](../plugins/extractors/delimiter-extractor)
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-xlsx-extractor@1.4.0`
+
+      Includes a fix for ghost rows in Excel files (happened if there was formatting on a cell but no data)
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-delimiter-extractor@0.4.0` & `@flatfile/plugin-xlsx-extractor@1.5.0`
+
+      Adds ability to support duplicate headers with non-unique header keys.
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-delimiter-extractor@0.3.0` & `@flatfile/plugin-xlsx-extractor@1.3.2`
+
+      Adds header row auto-detection (the same function used for CSVs in platform) 
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-zip-extractor@0.3.2`
+
+      Includes a fix to exclude unwanted dir (MACOSX) and it now checks file name not full path
+
+    </div>
+
+  </div>
+
+</div>

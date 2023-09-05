@@ -11,9 +11,6 @@
     "baseUrl": "https://platform.flatfile.com/api",
     "auth": {
       "method": "bearer"
-    },
-    "playground": {
-      "mode": "simple"
     }
   },
   "favicon": "/favicon.jpg",
@@ -47,24 +44,9 @@
   "versions": [
     "latest",
     { "name": "v3", "url": "https://flatfile.com/versioned-docs/3.0" },
-    { "name": "v2", "url": "https://flatfile.com/versioned-docs/3.0" }
+    { "name": "v2", "url": "https://flatfile.com/versioned-docs/2.0" }
   ],
   "anchors": [
-    {
-      "name": "Blueprint",
-      "icon": "compass-drafting",
-      "url": "blueprint"
-    },
-    {
-      "name": "Plugins",
-      "icon": "plug",
-      "url": "plugins"
-    },
-    {
-      "name": "Developers",
-      "icon": "brackets-curly",
-      "url": "developer-tools"
-    },
     {
       "name": "API Reference",
       "icon": "rectangle-terminal",
@@ -74,19 +56,25 @@
   "navigation": [
     {
       "group": "Documentation",
-      "pages": ["overview"]
+      "pages": ["overview", "starter-projects"]
     },
     {
-      "group": "Quickstart",
+      "group": "Updates by area",
+      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
+    },
+    {
+      "group": "Beginner Tutorial",
       "pages": [
         "quickstart/meet-the-workbook",
+        "quickstart/create-your-workbook",
+        "quickstart/meet-the-listener",
         "quickstart/add-data-transformation",
         "quickstart/submit-action",
         "quickstart/deploying"
       ]
     },
     {
-      "group": "Guides",
+      "group": "By Feature",
       "pages": [
         "guides/handling-data",
         "guides/actions",
@@ -97,7 +85,8 @@
         "guides/theming",
         "guides/guest_sidebar",
         "guides/documents",
-        "guides/secrets"
+        "guides/secrets",
+        "guides/automap"
       ]
     },
     {
@@ -110,20 +99,20 @@
       ]
     },
     {
-      "group": "Use cases",
+      "group": "By use case",
+
       "pages": [
         {
           "group": "Embed in your app",
           "icon": "person-to-portal",
           "pages": [
-            "use-cases/embedding",
-            "use-cases/part2",
-            "use-cases/part3",
-            "use-cases/part4"
+            "guides/use-cases/embedding/overview",
+            "guides/use-cases/embedding/javascript/guide",
+            "guides/use-cases/embedding/react/guide"
           ]
         },
-        "use-cases/headless",
-        "use-cases/collaborate"
+        "guides/use-cases/headless",
+        "guides/use-cases/collaborate"
       ]
     },
     {
@@ -160,6 +149,7 @@
       "group": "Security",
       "pages": [
         "developer-tools/security/authentication",
+        "developer-tools/security/account-token",
         "developer-tools/security/roles-and-permissions"
       ]
     },
@@ -167,8 +157,9 @@
       "group": "Core libraries",
       "pages": [
         "developer-tools/core-libraries/flatfile",
+        "developer-tools/core-libraries/listener",
         "developer-tools/core-libraries/api",
-        "developer-tools/core-libraries/listener"
+        "developer-tools/core-libraries/api-python"
       ]
     },
     {
@@ -189,25 +180,33 @@
       "group": "Extractors",
       "pages": [
         "plugins/extractors/xlsx-extractor",
-        "plugins/extractors/psv-extractor",
+        "plugins/extractors/json-extractor",
+        "plugins/extractors/xml-extractor",
+        "plugins/extractors/zip-extractor",
+        "plugins/extractors/delimiter-extractor",
         "plugins/extractors/pdf-extractor",
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": [
-            "plugins/extractors/doc-extractor",
-            "plugins/extractors/zip-extractor"
-          ]
+          "pages": ["plugins/extractors/doc-extractor"]
         }
       ]
     },
     {
       "group": "Transform",
-      "pages": ["plugins/transform/record-hook", "plugins/transform/autocast"]
+      "pages": [
+        "plugins/transform/record-hook",
+        "plugins/transform/autocast",
+        "plugins/transform/dedupe"
+      ]
     },
     {
       "group": "Automation",
       "pages": ["plugins/automations/automap"]
+    },
+    {
+      "group": "Export",
+      "pages": ["plugins/export/workbook"]
     },
     {
       "group": "Schemas",
@@ -238,6 +237,14 @@
     {
       "group": "Migrations",
       "pages": ["plugins/migrations/dxp-configure"]
+    },
+    {
+      "group": "Core",
+      "pages": ["plugins/core/job-handler", "plugins/core/space-configure"]
+    },
+    {
+      "group": "Utils",
+      "pages": ["plugins/utils/extractor", "plugins/utils/file-buffer"]
     }
   ],
   "footerSocials": {
@@ -251,5 +258,30 @@
   },
   "integrations": {
     "intercom": "q8ccrv3f"
-  }
+  },
+  "search": {
+    "prompt": "Ask any question (ChatGPT powered)"
+  },
+  "tabs": [
+    {
+      "name": "Changelog",
+      "url": "changelog"
+    },
+    {
+      "name": "Guides",
+      "url": "guides"
+    },
+    {
+      "name": "Blueprint",
+      "url": "blueprint"
+    },
+    {
+      "name": "Plugins",
+      "url": "plugins"
+    },
+    {
+      "name": "CLI",
+      "url": "developer-tools"
+    }
+  ]
 }

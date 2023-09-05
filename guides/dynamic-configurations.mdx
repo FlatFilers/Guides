@@ -1,6 +1,6 @@
 ---
-title: "Dynamic configurations"
-description: "Dynamically build your configuration on command."
+title: "Dynamically configure anything"
+description: "Dynamically build your Space configuration as it's created."
 icon: "object-group"
 ---
 
@@ -23,7 +23,7 @@ Continue reading to learn how to configure a Space from scratch, and update it a
 When the "Create New Space" button is clicked on the platform, it triggers a [job `event`](../concepts/events) within the **space** `domain` that initiates a **configure** `operation`. This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space) with the parameter `autoconfigure` set to true.
 
 1. Filter on the `domain` (space) and the `operation` (configure).
-2. Listen for a [`job:ready`](../concepts/events#job-ready event).
+2. Listen for a [`job:ready`](../concepts/events#job-ready) event.
 3. Build your Space, at minimum including one Workbook.
 4. Complete the job.
 5. Optionally, listen for new events that are spawned from within your `space:configure` job.
@@ -31,208 +31,31 @@ When the "Create New Space" button is clicked on the platform, it triggers a [jo
 #### Usage
 
 In the following example, we build a Workbook and our getting started guide.
-You can also follow along in this [Replit](https://replit.com/@flatfile/configure-a-space#index.js) sandbox.
+You can also follow along in the [flatfile-docs-kitchen-sink](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/dynamic-configurations/index.js) Github sandbox.
 
 <Tip>
   Be sure to complete the job when it's complete. This tells the platform that
   you're finished and ready to display the Space to the end user.
 </Tip>
 
-<CodeGroup>
-
-```jsx javascript
-listener.filter({ job: "space:configure" }, (configure) => {
-  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId } }) => {
-    try {
-      await api.jobs.ack(jobId, {
-        info: "Gettin started.",
-        progress: 10,
-      });
-
-      const workbook = await api.workbooks.create({
-        spaceId,
-        environmentId,
-        name: "All Data",
-        labels: ["pinned"],
-        sheets: [
-          {
-            name: "Contacts",
-            slug: "contacts",
-            fields: [
-              {
-                key: "firstName",
-                type: "string",
-                label: "First Name",
-              },
-              {
-                key: "lastName",
-                type: "string",
-                label: "Last Name",
-              },
-              {
-                key: "email",
-                type: "string",
-                label: "Email",
-              },
-            ],
-            actions: [
-              {
-                operation: "duplicate",
-                mode: "background",
-                label: "Duplicate Sheet",
-                type: "string",
-                description: "Duplicate this Sheet and lock down the original.",
-                primary: true,
-              },
-            ],
-          },
-        ],
-        actions: [
-          {
-            operation: "submitActionFg",
-            mode: "foreground",
-            label: "Submit foreground",
-            type: "string",
-            description: "Submit data to webhook.site",
-            primary: true,
-          },
-        ],
-      });
-
-      await api.spaces.update(spaceId, {
-        environmentId,
-        primaryWorkbookId: workbook.id,
-      });
-
-      await api.documents.create(spaceId, {
-        title: "Getting Started",
-        body:
-          "# Welcome\n" +
-          "### Say hello to your first customer Space in the new Flatfile!\n" +
-          "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
-          "---\n",
-      });
-
-      await api.jobs.complete(jobId, {
-        outcome: {
-          message: "This job is now complete.",
-        },
-      });
-    } catch (error) {
-      console.error("Error:", error.stack);
-
-      await api.jobs.fail(jobId, {
-        outcome: {
-          message: "This job encountered an error.",
-        },
-      });
-    }
-  });
-});
-```
-
-```jsx typescript
-listener.filter({ job: "space:configure" }, (configure: FlatfileListener) => {
-  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId } }: FlatfileEvent) => {
-    try {
-      await api.jobs.ack(jobId, {
-        info: "Getting started.",
-        progress: 10,
-      });
-
-      await api.workbooks.create({
-        spaceId,
-        environmentId,
-        name: "All Data",
-        labels: ["pinned"],
-        sheets: [
-          {
-            name: "Contacts",
-            slug: "contacts",
-            fields: [
-              {
-                key: "firstName",
-                type: "string",
-                label: "First Name",
-              },
-              {
-                key: "lastName",
-                type: "string",
-                label: "Last Name",
-              },
-              {
-                key: "email",
-                type: "string",
-                label: "Email",
-              },
-            ],
-            actions: [
-              {
-                operation: "duplicate",
-                mode: "background",
-                label: "Duplicate Sheet",
-                type: "string",
-                description: "Duplicate this Sheet and lock down the original.",
-                primary: true,
-              },
-            ],
-          },
-        ],
-        actions: [
-          {
-            operation: "submitActionFg",
-            mode: "foreground",
-            label: "Submit foreground",
-            type: "string",
-            description: "Submit data to webhook.site",
-            primary: true,
-          },
-        ],
-      });
-
-      await api.documents.create(spaceId, {
-        title: "Getting Started",
-        body:
-          "# Welcome\n" +
-          "### Say hello to your first customer Space in the new Flatfile!\n" +
-          "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
-          "---\n",
-      });
-
-      await api.jobs.complete(jobId, {
-        outcome: {
-          message: "This job is now complete.",
-        },
-      });
-    } catch (error) {
-      console.error("Error:", error.stack);
-
-      await api.jobs.fail(jobId, {
-        outcome: {
-          message: "This job encountered an error.",
-        },
-      });
-    }
-  });
-});
-```
-
-</CodeGroup>
-
-Get the example in the [getting-started](https://github.com/FlatFilers/getting-started/blob/main/plain-js/space-configure.js) repo
+<Snippet file="guides/dynamic-configurations/block1.mdx" />
 
 ### From an embedded button
 
-When embedding Flatfile in your application, a new Space is created every time
-the Flatfile platform is called to open.
+When embedding Flatfile in your application, two things can happen:
 
-Learn more about this [core path](../use-cases/embedding).
+1. A new Space is created every time the Flatfile platform is called to open
+2. Or an existing Space can be passed in.
+
+Listeners can be set up either server-side (use this Guide) and/or client-side within the embedded wrapper SDK.
+
+Learn more about this [use case](../guides/use-cases/embedding).
 
 ### Automatically
 
 New Spaces can be created automatically by setting up headless flows.
 
-Learn more about this [core path](../use-cases/headless).
+Learn more about this [use case](../guides/use-cases/headless).
 
 ---
 
@@ -254,83 +77,7 @@ however, you may also want to adjust some of your configuration at the same time
 In the following example, we lock down access to the original Sheet
 and update our getting started guide to reflect the change.
 
-<CodeGroup>
-
-```jsx listener.js
-listener.filter({ job: "sheet:duplicate" }, (configure) => {
-  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId, sheetId, workbookId, documentId } }) => {
-    try {
-      await api.jobs.ack(jobId, {
-        info: "Getting started.",
-        progress: 10,
-      });
-
-      // Lock down the original Sheet
-      await api.sheets.update(sheetId, {
-        access: [],
-      });
-
-      // Update your Getting Started document
-      await api.documents.update(documentId, {
-        body: "Update something here",
-      });
-
-      await api.jobs.complete(jobId, {
-        outcome: {
-          message: "This job is now complete.",
-        },
-      });
-    } catch (error) {
-      console.error("Error:", error.stack);
-
-      await api.jobs.fail(jobId, {
-        outcome: {
-          message: "This job encountered an error.",
-        },
-      });
-    }
-  });
-});
-```
-
-```jsx listener.ts
-listener.filter({ job: "sheet:duplicate" }, (configure: FlatfileListener) => {
-  configure.on("job:ready", async ({ context: { spaceId, environmentId, jobId, sheetId, workbookId, documentId } }: FlatfileEvent) => {
-    try {
-      await api.jobs.ack(jobId, {
-        info: "Getting started.",
-        progress: 10,
-      });
-
-      // Lock down the original Sheet
-      await api.sheets.update(sheetId, {
-        access: [],
-      });
-
-      // Update your Getting Started document
-      await api.documents.update(documentId, {
-        body: "Update something here",
-      });
-
-      await api.jobs.complete(jobId, {
-        outcome: {
-          message: "This job is now complete.",
-        },
-      });
-    } catch (error) {
-      console.error("Error:", error.stack);
-
-      await api.jobs.fail(jobId, {
-        outcome: {
-          message: "This job encountered an error.",
-        },
-      });
-    }
-  });
-});
-```
-
-</CodeGroup>
+<Snippet file="guides/dynamic-configurations/block2.mdx" />
 
 ### After data changes
 
@@ -339,19 +86,25 @@ In the following example, we listed for a commit created to do just that.
 
 #### Usage
 
-<CodeGroup>
-```jsx listener.js
-listener.filter({ sheet: "SheetName" }, (configure) => {
-  listener.on("commit:created", async (event) => {
-    //make changes after cells in a Sheet have been updated
-  });
-});
-```
-```jsx listener.ts
-listener.filter({ sheet: "SheetName" }, (configure: FlatfileListener) => {
-  listener.on("commit:created", async (event: FlatfileEvent) => {
-    //make changes after cells in a Sheet have been updated
-  });
-});
-```
-</CodeGroup>
+<Snippet file="guides/dynamic-configurations/block3.mdx" />
+
+## Example Project
+
+Find the dynamic-configurations example in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="typescript"
+    icon="code-merge"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/dynamic-configurations/index.ts"
+  >
+    Clone the dynamic-configurations example in Typescript
+  </Card>
+  <Card
+    title="javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/dynamic-configurations/index.js"
+  >
+    Clone the dynamic-configurations example in Javascript
+  </Card>
+</CardGroup>

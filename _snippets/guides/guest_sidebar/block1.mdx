@@ -1,0 +1,61 @@
+<CodeGroup>
+```js listener.js
+import api from "@flatfile/api";
+
+export default function flatfileEventListener(listener) {
+  listener.on(
+    "upload:completed",
+    async ({ context: { spaceId, environmentId } }) => {
+      try {
+        const updateSpace = await api.spaces.update(spaceId, {
+          environmentId,
+          metadata: {
+            sidebarConfig: {
+              showSidebar: false,
+            },
+          },
+        });
+        console.log(updateSpace.data.metadata?.sidebarConfig);
+        // Additional code related to the space update process
+      } catch (error) {
+        console.error("Error:", error.stack);
+        // Handle the error appropriately
+      }
+    }
+  );
+}
+// See full code example (https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/guest-sidebar/index.js)
+```
+```js listener.ts
+import api from "@flatfile/api";
+import { FlatfileEvent, Client } from "@flatfile/listener";
+
+export default function flatfileEventListener(listener: Client) {
+  listener.on(
+    "upload:completed",
+    async ({ context: { spaceId, environmentId } }: FlatfileEvent) => {
+      try {
+        const updateSpace = await api.spaces.update(spaceId, {
+          environmentId,
+          metadata: {
+            sidebarConfig: {
+              showSidebar: false,
+            },
+          },
+        });
+        console.log(updateSpace.data.metadata?.sidebarConfig);
+        // Additional code related to the space update process
+      } catch (error) {
+        console.error("Error:", error.stack);
+        // Handle the error appropriately
+      }
+    }
+  );
+}
+// See full code example (https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/guest-sidebar/index.ts)
+
+```
+</CodeGroup>
+
+See full code example in our [flatfile-docs-kitchen-sink Github repo](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main)
+

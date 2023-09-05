@@ -1,0 +1,89 @@
+---
+title: Setup a listener
+description: "Learn how to listen and respond to events in Flatfile."
+icon: "circle-2"
+---
+
+In the previous step, you performed a few actions:
+
+- Created a Workbook with a simple schema
+- A Space was also auto-generated
+
+These actions create an <Tooltip tip="Anatomy of an Event...">[Event](../concepts/events)</Tooltip>. You can author code to listen and react to these Events by performing tasks such as validating and transforming records, importing and joining data from other sources, and even offloading data processing to your own API.
+
+## About listeners
+
+<Note>
+  Flatfile provides a powerful Typescript/NodeJS SDK for working with Events and
+  plugins. There are a lot of ways to listen to Events in other ways that we
+  describe in the [Events](../concepts/events) docs.
+</Note>
+
+Using the Flatfile SDK, you can register any javascript function as an Event listener and start working with Events.
+
+Here's an example of a very basic Event listener:
+
+<CodeGroup>
+```js javascript
+export default function (listener) {
+  listener.on("**", ({ topic }) => {
+    console.log(`Received event: ${topic}`);
+  });
+}
+```
+```js typescript
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
+
+export default function flatfileEventListener(listener: FlatfileListener) {
+  listener.on("**", ({ topic }: FlatfileEvent) => {
+    console.log(`Received event: ${topic}`);
+  });
+}
+```
+</CodeGroup>
+
+This code exports a single function that accepts an instance of an object (named `listener` in the example). This object can be used to subscribe to different Events within your Flatfile <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip>. The example code subscribes to all Events (using the `**` selector) and writes the Event's topic name to the console.
+
+Listeners are the basic building block of Flatfile logic. They span from simple validations and transformations to complex, multi-sheet workflows.
+
+## Setup your first listener
+
+1. Clone the Getting Started repo
+
+```terminal
+git clone https://github.com/FlatFilers/getting-started.git
+```
+
+2. Update your .env file and run `npx flatfile@latest develop` from your terminal from the root directory
+
+<Note>
+  {" "}
+  If you are working on Flatfile integration in a brand-new IDE instance, ensure
+  you execute `npm install` before you run the command below.
+</Note>
+
+3. Go to your Flatfile Workbook and make a few changes. For example, try typing text into a cell.
+
+4. Finally, return to your terminal to see how those Events were logged.
+
+```ssh Console
+> getting-started % npx flatfile develop
+✔ 1 environment(s) found for these credentials
+✔ Environment "development" selected
+ncc: Version 0.36.1
+ncc: Compiling file index.js into CJS
+  ✓ 427ms      GET    200 https://platform.flatfile.com/api/v1/subscription 12345
+
+ File change detected. 🚀
+  ✓ Connected to event stream for scope us_env_1234
+ ▶ commit:created  10:13:05.159 AM us_evt_1234
+ ↳ on(**, {})
+ ↳ on(commit:created, {"sheetSlug":"contacts"})
+
+```
+
+---
+
+## Recap & Next Steps
+
+Now that you've created a listener, let's hop into the UI and review your new Workbook and add data to it. Then, we will learn how that data is transformed from its original state.

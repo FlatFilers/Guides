@@ -1,7 +1,7 @@
 ---
 title: "Build Documents"
 description: "Learn how to build pages in your sidebar with Documents."
-icon: 'file-code'
+icon: "file-code"
 ---
 
 Documents are standalone webpages for your Flatfile <Tooltip tip="Are micro-applications...">[Spaces](../concepts/spaces)</Tooltip>. They can be rendered from <Tooltip tip="View syntax">[Markdown syntax](https://www.markdownguide.org/basic-syntax/)</Tooltip>.
@@ -9,44 +9,16 @@ Documents are standalone webpages for your Flatfile <Tooltip tip="Are micro-appl
 Often used for getting started guides, Documents become extremely powerful with dynamically generated content that stays updated as Events occur.
 
 <Info>
-  Flatfile also allows you to use HTML tags in your Markdown-formatted text. This
-  is helpful if you prefer certain HTML tags rather than Markdown syntax.
+  Flatfile also allows you to use HTML tags in your Markdown-formatted text.
+  This is helpful if you prefer certain HTML tags rather than Markdown syntax.
 </Info>
 
 ### Building a Document
 
 Learn how to create a Document and update a Document from an Event listener.
 
-<CodeGroup>
+<Snippet file="guides/documents/block1.mdx" />
 
-```js
-const createDoc = await api.documents.create(spaceId, {
-  title: "Getting Started",
-  body: `# Welcome
-  ### Say hello to your first customer Space in the new Flatfile!
-  Let's begin by first getting acquainted with what you're seeing in your Space initially.
-  ---`,
-});
-```
-```js listener.js
-//listen for an event, and update your document to be relevant
-
-listener.on("upload:completed", async (event) => {
-  const fileName = (await api.files.get(event.context.fileId)).data.name;
-  const bodyText = `# Welcome
-  ### Say hello to your first customer Space in the new Flatfile!
-  Let's begin by first getting acquainted with what you're seeing in your Space initially.
-  ---
-  Your uploaded file, ${fileName}, is located in the Files area.
-  `;
-
-  const updateDoc = await api.documents.update(spaceId, documentId, {
-    title: "Getting Started",
-    body: bodyText,
-  });
-});
-```
-</CodeGroup>
 ---
 
 ## Markdown reference
@@ -65,10 +37,15 @@ listener.on("upload:completed", async (event) => {
 **The rendered output looks like:**
 
 # Heading level 1
+
 ## Heading level 2
+
 ### Heading level 3
+
 #### Heading level 4
+
 ##### Heading level 5
+
 ###### Heading level 6
 
 ---
@@ -101,9 +78,9 @@ Use `code` in your Document.
 
 **Love** is bold.
 
-Italicized text is the *cat's meow*.
+Italicized text is the _cat's meow_.
 
-This text is ***bolded and italicized***.
+This text is **_bolded and italicized_**.
 
 Superscript <sup>superscript</sup>
 
@@ -188,3 +165,24 @@ San Juan Mountains are beautiful!](https://i0.wp.com/sjma.org/wp-content/uploads
 | Name     | Full name of user                     |
 | Age      | Reported age                          |
 | Joined   | Whether the user joined the community |
+
+## Example Project
+
+Find the documents example in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="typescript"
+    icon="code-merge"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/documents/index.ts"
+  >
+    Clone the documents example in Typescript
+  </Card>
+  <Card
+    title="javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/documents/index.js"
+  >
+    Clone the documents example in Javascript
+  </Card>
+</CardGroup>
