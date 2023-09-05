@@ -4,6 +4,69 @@ description: "Additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## September 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+    `@flatfile/plugin-autocast`
+
+
+    In the most recent update, we’ve introduced some exciting enhancements. You can now implement an optional `fieldFilter` to specify which fields autocast should operate on.
+
+    Check out the example below:
+    `listener.use(autocast({ sheetSlug: 'bar' }, ['numberField', 'dateField']))`
+
+    [Learn more](../plugins/transform/autocast).
+
+    </div>
+
+  </div>
+  
+</div>
+
+## August 31, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+    🚀  **Introducing `@flatfile/plugin-autocast`**
+
+    Effortlessly transform data in your Sheets to align with the field types specified in the Blueprint.
+
+    Supported field types:
+
+    - **Numbers:** String numbers ('1'), string decimals ('1.1'), and string numbers with commas ('1,000') are interpreted as numbers.
+
+    - **Booleans:**
+      - Truthy values: '1', 'yes', 'true', 'on', ' ', 'y', and 1.
+      - Falsy values: '- ', '0', 'no', 'false', 'off', ' ', 'n', 0, -1.
+
+    - **Dates:** Date strings and numbers are cast to a UTC string.
+      - '2023-08-16' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - '08-16-2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - '08/16/2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - 'Aug 16, 2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - 'August 16, 2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - '2023-08-16T00:00:00.000Z' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+      - 1692144000000 => 'Wed, 16 Aug 2023 00:00:00 GMT'
+
+    Note: **@flatfile/plugin-record-hook** listens for the same event type (commit:created). Plugins will fire in the order they are placed in the listener.
+
+    Check out the [docs](../plugins/transform/autocast).
+
+    </div>
+
+  </div>
+
+</div>
+
 ## August 30, 2023
 
 <div style={{ display: "table", width: "auto" }}>
@@ -53,9 +116,9 @@ icon: "plug"
     <Snippet file="chips/extractors.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
 
-      **@flatfile/util-extractor@0.3.0**
+      **All extractors now support `chunkSize` and `parallel`**
 
-      This version introduces 2 new options for extracting records in all extractor plugins:
+      A new version of an underlying utility (`@flatfile/util-extractor`) introduces 2 new options for extracting records in all extractor plugins:
 
       - `chunkSize`: (Default: 3,000) Define how many records you want to process in each batch. This allows you to balance efficiency and resource utilization based on your specific use case.
       - `parallel`: (Default: 1) Choose whether the records should be processed in parallel. This enables you to optimize the execution time when dealing with large datasets.
@@ -68,7 +131,7 @@ icon: "plug"
       listener.use(ExcelExtractor({ chunkSize: 300, parallel: 2 }))
       ```
 
-      All extractor plugins use `@flatfile/util-extractor` under the hood. If you update your extractor plugin to the latest, you will receive these new options.
+      If you update your extractor plugin to the latest, you will receive these new options.
 
     </div>
 

@@ -23,6 +23,13 @@ icon: "download"
   </Card>
 </CardGroup>
 
+## Parameters
+
+<ParamField path="options.debug" default="false" type="boolean" optional>
+  The `debug` parameter lets you toggle on/off helpful debugging messages for
+  development purposes.
+</ParamField>
+
 ## API Calls
 
 - `api.files.download`
@@ -41,6 +48,7 @@ icon: "download"
 - [`@flatfile/listener@0.3.15+`](https://www.npmjs.com/package/@flatfile/listener)
 - [`@flatfile/util-file-buffer@0.0.4`](../utils/file-buffer) provides utility functions for processing files and extracting their contents using the Flatfile API.
 - [`AdmZip@0.5.10+`](https://www.npmjs.com/package/adm-zip) provides utility functions for decompressing files and directories from ZIP format.
+- [`os@0.1.2`](https://nodejs.org/api/os.html) provides utility functions for interacting with the operating system.
 - [`remeda@1.14.0+`](https://remedajs.com/) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
 
 ## Usage
