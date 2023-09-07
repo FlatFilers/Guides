@@ -228,7 +228,6 @@ When closing the Flatfile iframe, end users will see a dialog asking them if the
 :root {
   --brand-font-sans-serif: "Helvetica", sans-serif;
   --color-electric-800: #3b2fc9; //primary button color on hover (confirmation pop up)
-  --color-electric-700: #4c48ef; //primary button color (confirmation pop up)
   --color-pigeon-600: #8b93a4; //text color (confirmation pop up)
   --color-pigeon-300: #d7dee8; // color of the border around secondary button (confirmation pop up)
   --color-pigeon-200: #e8edf4; //secondary button color (confirmation pop up)
@@ -253,8 +252,27 @@ body {
   margin: 0;
 }
 
+/* Settings for primary button (confirmation pop up) */
+.flatfile_button.flatfile_primary {
+    background-color: #4c48ef;
+}
+
+/* Settings for secondary button (confirmation pop up) */
+.flatfile_button.flatfile_secondary {
+    background-color: whitesmoke;
+}
+
+/* X close button */
 .flatfile-close-button {
-  display: block;
+    /* set this to "block" to see the X close button. To completely hide it, use "none" */
+    display: block;
+    /* distance between edge of iFrame and the X close button*/
+    margin: 25px !important;
+}
+
+.flatfile-close-button svg {
+    /* color of the X button to close the iFrame */
+    fill: black !important;
 }
 ```
 
