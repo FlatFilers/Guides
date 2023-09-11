@@ -32,13 +32,13 @@ Using an iframe, Flatfile seamlessly integrates into your website or application
   </Card>
 </CardGroup>
 
-## Properties Overview
+## Shared Properties
 
-The importer takes the following options:
+All embedded Flatfile importers take the following shared properties.
 
 ### URL Overrides
 
-URL Overrides enabls you to connect with the Flatfile API from a different location, whether for specialized security measures or integration purposes.
+URL Overrides enable you to connect with the Flatfile API from a different location, whether for specialized security measures or integration purposes. These properties enable this functionality.
 
 #### apiUrl
 
@@ -58,7 +58,7 @@ URL Overrides enabls you to connect with the Flatfile API from a different locat
 
 ### New Spaces
 
-While setting up embedded Flatfile, you have the option to either establish a fresh Space during each initialization or reuse an existing Space. These attributes specifically apply when you're in the process of crafting a new Space.
+While setting up embedded Flatfile, you have the option to either establish a fresh Space during each initialization or reuse an existing Space. These properties specifically apply when you're in the process of crafting a new Space.
 
 #### publishableKey
 
@@ -95,7 +95,7 @@ While setting up embedded Flatfile, you have the option to either establish a fr
 
 ### Reusing Spaces
 
-During the configuration of embedded Flatfile, you have the flexibility to either reuse an existing Space or generate a new one. These aspects come into play when you're working with an already established Space.
+During the configuration of embedded Flatfile, you have the flexibility to either reuse an existing Space or generate a new one. These properties come into play when you're working with an already established Space.
 
 #### space
 
@@ -105,6 +105,8 @@ During the configuration of embedded Flatfile, you have the flexibility to eithe
 </ParamField>
 
 ### Configuration
+
+These properties allow you to configure how the importer is mounted, displayed, and closed.
 
 #### closeSpace
 
@@ -119,7 +121,8 @@ During the configuration of embedded Flatfile, you have the flexibility to eithe
 #### displayAsModal
 
 <ParamField path="displayAsModal" type="boolean" default="true">
-  Display Flatfile as a full screen modal or inline on the page.
+  Display Flatfile as a full screen modal or inline on the page. [Learn
+  more](#displayasmodal-2)
 </ParamField>
 
 #### mountElement
@@ -133,6 +136,8 @@ During the configuration of embedded Flatfile, you have the flexibility to eithe
 </ParamField>
 
 ### Styling
+
+These properties give you control over the styling and verbiage of the SDK wrapper components that exist on top of the Flatfile importer.
 
 #### loading
 
@@ -158,13 +163,15 @@ Default: "Are you sure you would like to close this window? This will end your c
 #### exitPrimaryButtonText
 
 <ParamField path="exitPrimaryButtonText" type="string" default="Yes, exit">
-  The text on the dialog primary button that appears when exiting out of Flatfile.
+  The text on the dialog primary button that appears when exiting out of
+  Flatfile.
 </ParamField>
 
 #### exitSecondaryButtonText
 
 <ParamField path="exitPrimaryButtonText" type="string" default="No, stay">
-  The text on the dialog secondary button that appears when exiting out of Flatfile.
+  The text on the dialog secondary button that appears when exiting out of
+  Flatfile.
 </ParamField>
 
 #### errorTitle
@@ -177,6 +184,8 @@ Default: "Are you sure you would like to close this window? This will end your c
 
 ### Client-Side Setup
 
+The primary path for configuring Flatfile is by setting up a server side listener that listens for a Space to be opened or created; however, you can also create a listener that will live in your browser. This can live alongside a server-side listener or on its own. These properties exist for client-side server setup.
+
 #### workbook
 
 <ParamField path="workbook" type="object">
@@ -186,28 +195,30 @@ Default: "Are you sure you would like to close this window? This will end your c
 #### listener
 
 <ParamField path="listener" type="Listener">
-  Event listener for responding to Events. [Learn More](#build-the-listener)
+  Event listener for responding to Events. [Learn More](#part-2-handle-events)
 </ParamField>
 
 #### themeConfig
 
 <ParamField path="themeConfig" type="object">
-  Theme values for space, sidebar and data table
+  Theme values for space, sidebar and data table [Learn more](#themeconfig-2)
 </ParamField>
 
 #### sidebarConfig
 
 <ParamField path="sidebarConfig" type="object">
-  Sidebar config values to toggle UI elements
+  Sidebar config values to toggle UI elements [Learn more](#themeconfig-2)
 </ParamField>
 
 #### document
 
 <ParamField path="document" type="object">
-  Document to pass to space [Learn More](#document)
+  Document to pass to space [Learn More](#document-2)
 </ParamField>
 
 ## Deep Dive
+
+Learn more about shared properties and how to use them.
 
 ### closeSpace
 
@@ -229,12 +240,12 @@ This `onClose` callback function is called when the Action defined in `operation
 We provide a default loading state when the Space is loading. You can also pass a custom loading component using the `loading` prop.
 
 ```typescript
-const LoadingComponent = () => <label>Loading data...</label>
+const LoadingComponent = () => <label>Loading data...</label>;
 
 const flatfileOptions = {
-    //additional props
-    loading: <LoadingComponent />
-  }
+  //additional props
+  loading: <LoadingComponent />,
+};
 ```
 
 ### displayAsModal

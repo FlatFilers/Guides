@@ -4,11 +4,20 @@ description: Securely and easily build an embedded Flatfile import experience in
 icon: "react"
 ---
 
+<Snippet file="shared/embed_concepts.mdx" />
+
 ## Before you begin
 
-<Snippet file="shared/account_needed.mdx" />
+<Snippet file="shared/pk_needed.mdx" />
 
-### Install the package
+### Check for proper `guestAuthentication`
+
+The Space that will be embedded here must have `guestAuthentication`
+configured with `shared_link` as an option. This is inherited from
+the Environment when creating a new Space. [Learn
+more](../../../../developer-tools/environment#guest-authentication).
+
+## Install the package
 
 Install Embed React from the npm/yarn public registry.
 
@@ -26,81 +35,13 @@ yarn add @flatfile/react@latest
 
 </CodeGroup>
 
-## Reuse a space
-
-<Note>
-  Note: the Space must have `guestAuthentication` configured with `shared_link`
-  as an option. This is inherited from Environment. [Learn
-  more](../../../../developer-tools/environment).
-</Note>
-
-To reuse an existing Space, we'll update our files to pass in a Space Id. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
-
-<Warning>
-  Unlike the `publishableKey`, the `secretKey` shouldn't be passed through the
-  browser as it will have full access. This is why we are showing this example
-  in a server-side call
-</Warning>
-
-#### Get a Space
-
-<CodeGroup>
-
-```tsx App.tsx
-import { ISpace, useSpace } from "@flatfile/react";
-import React, { useState } from "react";
-
-const spaceProps: ISpace = {
-  // Additional props...
-  space: {
-    id: 'space id',
-    accessToken: 'secret key'
-  }
-};
-
-export default function ReuseExistentSpace() {
-  const [showSpace, setShowSpace] = useState(false);
-  const space = useSpace({
-    ...spaceProps,
-    closeSpace: {
-      operation: "contacts:submit",
-      onClose: () => setShowSpace(false),
-    },
-  });
-
-  return (
-    <div>
-      <button
-        onClick={() => {
-          setShowSpace(!showSpace);
-        }}
-      >
-        {showSpace === true ? "Close" : "Open"} space
-      </button>
-      {showSpace && space}
-    </div>
-  );
-}
-```
-</CodeGroup>
-
-<Snippet file="shared/embed_concepts.mdx" />
-
 ## Embed a Space
 
 ### Part 1: Add a button
 
-Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
-
-#### Create a Space component
+Add a button to your application to open Flatfile in a modal by creating a `space` component. Pass in your `publishableKey` and a new Space will be created on each page load.
 
 The `useSpace` hook configures a Space component.
-
-<Note>
-  Note: the Space must have `guestAuthentication` configured with `shared_link`
-  as an option. This is inherited from Environment. [Learn
-  more](../../../../developer-tools/environment#guest-authentication).
-</Note>
 
 A new Space will be created each time Flatfile is initialized. To reuse a space, learn more about the [space](#space) property.
 
@@ -235,8 +176,64 @@ In this step, we'll kickstart an event listener, which will await the creation o
 
 <Info>
   If you don't want to do this yet, you can also [reuse an existing
-  Space](#space) and simply pass that info in.
+  Space](#reuse-a-space) and simply pass that info in.
 </Info>
+
+## Reuse a space
+
+To reuse an existing Space, we'll update our files to pass in a Space Id. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
+
+### Before you begin
+
+The Space must have `guestAuthentication` configured with `shared_link` as an
+option. Update your Space if `shared_link` isn't there.
+
+### Get a Space
+
+Note that unlike the `publishableKey`, the `secretKey` shouldn't be passed through the
+browser as it will have full access. This is why we are showing this example
+in a server-side call.
+
+<CodeGroup>
+
+```tsx App.tsx
+import { ISpace, useSpace } from "@flatfile/react";
+import React, { useState } from "react";
+
+const spaceProps: ISpace = {
+  // Additional props...
+  space: {
+    id: "space id",
+    accessToken: "secret key",
+  },
+};
+
+export default function ReuseExistentSpace() {
+  const [showSpace, setShowSpace] = useState(false);
+  const space = useSpace({
+    ...spaceProps,
+    closeSpace: {
+      operation: "contacts:submit",
+      onClose: () => setShowSpace(false),
+    },
+  });
+
+  return (
+    <div>
+      <button
+        onClick={() => {
+          setShowSpace(!showSpace);
+        }}
+      >
+        {showSpace === true ? "Close" : "Open"} space
+      </button>
+      {showSpace && space}
+    </div>
+  );
+}
+```
+
+</CodeGroup>
 
 ## Example Project
 
@@ -250,5 +247,11 @@ Find the React example project in the Flatfile GitHub repository.
   >
     Clone the Flatfile create-react-app tutorial here.
   </Card>
+  <Card
+    title="flatfile-nextjs"
+    icon="javascript"
+    href="https://github.com/FlatFilers/flatfile-nextjs"
+  >
+    Clone the Flatfile Next.js tutorial here.
+  </Card>
 </CardGroup>
-````

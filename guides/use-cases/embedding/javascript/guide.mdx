@@ -4,9 +4,9 @@ description: "Securely and easily build an embedded Flatfile import experience i
 icon: "js"
 ---
 
-## Before you begin
+<Snippet file="shared/embed_concepts.mdx" />
 
-<Snippet file="shared/account_needed.mdx" />
+## Before you begin
 
 ### Install the package
 
@@ -25,6 +25,10 @@ yarn add @flatfile/javascript@latest
 </CodeGroup>
 
 ## Embed a Space
+
+### Before you begin
+
+<Snippet file="shared/pk_needed.mdx" />
 
 ### Part 1: Add a button
 
@@ -71,13 +75,15 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
 ### Part 2: initializeFlatfile()
 
-Import @flatfile/javascript to initializeFlatfile. Pass it any [options](#properties). Only `publishableKey` is required.
+Import `@flatfile/javascript` to initialize Flatfile. Pass it any [options](../overview#shared-properties).
 
-<Note>
-  Note: the Space must have `guestAuthentication` configured with `shared_link`
-  as an option. This is inherited from Environment. [Learn
+<Note>Note: Only `publishableKey` is required.</Note>
+
+<Warning>
+  The Space must have `guestAuthentication` configured with `shared_link` as an
+  option. This is inherited from the Environment. [Learn
   more](../../../../developer-tools/environment).
-</Note>
+</Warning>
 
 ```js src/client.js
 import { initializeFlatfile } from "@flatfile/javascript";
@@ -95,7 +101,7 @@ window.openFlatfile = (publishableKey) => {
 
 ### Part 3: Override Styles
 
-The css here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog and the dialog wrapper. Theming the Flatfile application is done [here](../../../../guides/theming).
+The css here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog and the dialog wrapper. Theming the Flatfile application is done in your listener [here](../../../../guides/theming).
 
 ```css public/style.css
 /* Styles for home page */
@@ -235,32 +241,31 @@ The `src` directory contains the main components and logic of the application, i
 
 ### Part 5: Start your event listener or reuse a Space
 
-In this step, we'll kickstart an event listener, which will await the creation of a new Space. This listener will configure the Space as Flatfile is initialized.
+When the “Open Flatfile” button is clicked on your platform, it triggers a job event within the Space domain that initiates a configure operation. This operation is analogous to performing a POST request to the endpoint /api/v1/spaces with the parameter autoconfigure set to true.
 
-[Learn how to configure a new Space.](../../../../guides/dynamic-configurations)
+In this step, we'll kickstart an event listener where you'll listen for that job and configure your Space on the fly.
+
+Follow [this guide](../../../../guides/dynamic-configurations) to dynamically configure a new Space to your liking.
 
 <Info>
-  If you don't want to do this yet, you can also [reuse an existing
-  Space](#get-a-space) and simply pass that info in.
+  If you don't want to do this part yet, you can also [reuse a demo
+  Space](#reuse-an-existing-space) and simply pass that info in.
 </Info>
 
+## Reuse an existing Space
 
-## Reuse a space
+To reuse an existing Space, we'll update our files to pass in a Space Id instead of a `publishableKey`. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
 
-<Note>
-  Note: the Space must have `guestAuthentication` configured with `shared_link`
-  as an option. This is inherited from Environment. [Learn
-  more](../../../../developer-tools/environment).
-</Note>
+### Before you begin
 
-To reuse an existing Space, we'll update our files to pass in a Space Id. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
+<Snippet file="shared/sk_needed.mdx" />
 
-<Warning>
-  Unlike the `publishableKey`, the `secretKey` shouldn't be passed through the
-  browser as it will have full access. This is why we are showing this example
-  in a server-side call
-</Warning>
-#### Install packages
+#### Check for proper `guestAuthentication`
+
+The Space you're using must have `guestAuthentication` configured with `shared_link` as an
+option. Update your Space if `shared_link` isn't there.
+
+#### Install additional packages
 
 <CodeGroup>
 
@@ -274,15 +279,23 @@ yarn add @flatfile/api@latest dotenv express cors parcel
 
 </CodeGroup>
 
-#### Get a Space
+### Part 1: Add a Flatfile button
 
-<CodeGroup>
+Add a button to your application to open Flatfile in a modal. Note that nothing needs to be passed into the function.
 
 ```html public/index.html
 <button class="contrast" onclick="openFlatfile()">Open existing Space</button>
 ```
 
+### Part 2: initializeFlatfile()
+
+Import `@flatfile/javascript` to initialize Flatfile. Then, retrieve information about your Flatfile space from your server. Last, pass it any [options](../overview#shared-properties).
+
+<Note>Note: Only `space` is required.</Note>
+
 ```js src/client.js
+import { initializeFlatfile } from "@flatfile/javascript";
+
 window.openFlatfile = () => {
   fetch(server_url + "/space") // Make a request to the server endpoint
     .then((response) => response.json())
@@ -301,6 +314,10 @@ window.openFlatfile = () => {
     });
 };
 ```
+
+### Part 3: Create a Server
+
+Create a basic Express.js server that will retrieve your Space data from the Flatfile API.
 
 ```js src/server.mjs
 import dotenv from "dotenv";
@@ -340,11 +357,19 @@ app.listen(port, () => {
 });
 ```
 
+### Part 4: Update your .env
+
+Make sure you now have your `secretKey` and `spaceId` in your .env file.
+
 ```json .env
 SECRET_KEY=sk_1234
 BASE_URL=https://platform.flatfile.com/api
 SPACE_ID=us_sp_123
 ```
+
+### Part 5: Review your package.json
+
+Make sure you have the following packages at minimum in your package.json.
 
 ```json package.json
 {
@@ -380,7 +405,21 @@ SPACE_ID=us_sp_123
 }
 ```
 
-</CodeGroup>
+### Part 6: Review File Structure
+
+When you're finished, your app should look something like this:
+
+```
+- public
+  |__ index.html
+  |__ style.css
+
+- src
+  |__ client.js
+  |__ server.mjs
+
+- package.json
+```
 
 ## Example Project
 
