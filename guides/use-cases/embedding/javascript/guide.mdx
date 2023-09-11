@@ -30,9 +30,48 @@ yarn add @flatfile/javascript@latest
 
 <Snippet file="shared/pk_needed.mdx" />
 
-### Part 1: Add a button
+#### Check for proper guestAuthentication
 
-Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
+The Space you'll create must have `guestAuthentication` configured with `shared_link` as an
+option. This is inherited from the Environment you're working in. This comes standard on any out of the box Environments so you shouldn't have to do anything unless you made a new Environment. If so, update your environment if `shared_link` isn't there.
+
+### Part 1: Review your package.json
+
+Make sure you have the `@flatfile/javascript` packages at minimum in your package.json. You can also copy this exactly and use a Parcel bundler as a starting point if you want to start from a fresh repo.
+
+```json package.json
+{
+  "name": "",
+  "version": "",
+  "description": "",
+  "scripts": {
+    "start": "parcel public/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@flatfile/javascript": "0.1.1"
+  },
+  "devDependencies": {
+    "@parcel/resolver-default": "^2.9.3",
+    "buffer": "^5.7.1",
+    "crypto-browserify": "^3.12.0",
+    "events": "^3.3.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "url": "^0.11.1"
+  }
+}
+```
+
+### Part 2: Add a Flatfile button and start your client
+
+1. Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
+2. Next, start your front end by heading to terminal and `npm run start`
+3. To see that it’s running, visit: https://localhost:1234 and you should see your page and a button.
 
 <CodeGroup>
 ```html public/index.html (snippet)
@@ -78,12 +117,6 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 Import `@flatfile/javascript` to initialize Flatfile. Pass it any [options](../overview#shared-properties).
 
 <Note>Note: Only `publishableKey` is required.</Note>
-
-<Warning>
-  The Space must have `guestAuthentication` configured with `shared_link` as an
-  option. This is inherited from the Environment. [Learn
-  more](../../../../developer-tools/environment).
-</Warning>
 
 ```js src/client.js
 import { initializeFlatfile } from "@flatfile/javascript";
@@ -239,7 +272,7 @@ The `public` directory contains the "index.html" file, which is the entry point 
 
 The `src` directory contains the main components and logic of the application, including the "client.js" file, which initializes Flatfile and passes in available options.
 
-### Part 5: Start your event listener or reuse a Space
+### Part 5: Start your event listener
 
 When the “Open Flatfile” button is clicked on your platform, it triggers a job event within the Space domain that initiates a configure operation. This operation is analogous to performing a POST request to the endpoint /api/v1/spaces with the parameter autoconfigure set to true.
 
@@ -263,7 +296,7 @@ To reuse an existing Space, we'll update our files to pass in a Space Id instead
 #### Check for proper `guestAuthentication`
 
 The Space you're using must have `guestAuthentication` configured with `shared_link` as an
-option. Update your Space if `shared_link` isn't there.
+option. This comes standard on any out of the box Environments (Spaces inherit from Environments) so you shouldn't have to do anything unless you made a new Environment. If so, update your Space if `shared_link` isn't there.
 
 #### Install additional packages
 
@@ -279,15 +312,96 @@ yarn add @flatfile/api@latest dotenv express cors parcel
 
 </CodeGroup>
 
-### Part 1: Add a Flatfile button
+### Part 1: Update your .env
 
-Add a button to your application to open Flatfile in a modal. Note that nothing needs to be passed into the function.
+Make sure you now have your `secretKey` and `spaceId` in your .env file.
 
+```json .env
+SECRET_KEY=sk_1234
+BASE_URL=https://platform.flatfile.com/api
+SPACE_ID=us_sp_123
+```
+
+### Part 2: Review your package.json
+
+Make sure you have the following packages (`dotenv express cors parcel`) and the new server script at minimum in your package.json.
+
+```json package.json
+{
+  "name": "",
+  "version": "",
+  "description": "",
+  "scripts": {
+    "start": "parcel public/index.html",
+    "server": "node src/server.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "@flatfile/api": "1.5.15",
+    "@flatfile/javascript": "0.1.1",
+    "cors": "^2.8.5",
+    "express": "4.18.2",
+    "parcel": "2.8.3"
+  },
+  "devDependencies": {
+    "@parcel/resolver-default": "^2.9.3",
+    "buffer": "^5.7.1",
+    "crypto-browserify": "^3.12.0",
+    "events": "^3.3.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "url": "^0.11.1"
+  }
+}
+```
+
+### Part 3: Add a Flatfile button and start your client
+
+1. Add a button to your application to open Flatfile in a modal. Note that nothing needs to be passed into the function.
+2. Next, start your front end
+3. To see that it's running, visit: https://localhost:1234 and you should see your button.
+
+<CodeGroup>
 ```html public/index.html
 <button class="contrast" onclick="openFlatfile()">Open existing Space</button>
 ```
 
-### Part 2: initializeFlatfile()
+```html public/index.html (full page)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, world!</title>
+    <script type="module" src="../src/client.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h2><code>&lt;Flatfile /&gt;</code></h2>
+        <p>Embed Flatfile in just a few lines of code.</p>
+
+        <!-- Button to trigger the modal -->
+        <div>
+          <button class="contrast" onclick="openFlatfile()">
+            Open existing Space
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+```
+
+</CodeGroup>
+
+### Part 4: initializeFlatfile()
 
 Import `@flatfile/javascript` to initialize Flatfile. Then, retrieve information about your Flatfile space from your server. Last, pass it any [options](../overview#shared-properties).
 
@@ -315,9 +429,11 @@ window.openFlatfile = () => {
 };
 ```
 
-### Part 3: Create a Server
+### Part 5: Create and start a Server
 
-Create a basic Express.js server that will retrieve your Space data from the Flatfile API.
+1. Create a basic Express.js server that will retrieve your Space data from the Flatfile API.
+2. Now, run the server by heading to your terminal and `npm run server`.
+3. To see that it's running, visit: https://localhost:8080 and you should see "Hello, World"
 
 ```js src/server.mjs
 import dotenv from "dotenv";
@@ -357,54 +473,6 @@ app.listen(port, () => {
 });
 ```
 
-### Part 4: Update your .env
-
-Make sure you now have your `secretKey` and `spaceId` in your .env file.
-
-```json .env
-SECRET_KEY=sk_1234
-BASE_URL=https://platform.flatfile.com/api
-SPACE_ID=us_sp_123
-```
-
-### Part 5: Review your package.json
-
-Make sure you have the following packages at minimum in your package.json.
-
-```json package.json
-{
-  "name": "",
-  "version": "",
-  "description": "",
-  "scripts": {
-    "start": "parcel public/index.html",
-    "server": "node src/server.mjs"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.3.1",
-    "@flatfile/api": "1.5.15",
-    "@flatfile/javascript": "0.1.1",
-    "cors": "^2.8.5",
-    "express": "4.18.2",
-    "parcel": "2.8.3"
-  },
-  "devDependencies": {
-    "@parcel/resolver-default": "^2.9.3",
-    "buffer": "^5.7.1",
-    "crypto-browserify": "^3.12.0",
-    "events": "^3.3.0",
-    "os-browserify": "^0.3.0",
-    "path-browserify": "^1.0.1",
-    "process": "^0.11.10",
-    "stream-browserify": "^3.0.0",
-    "url": "^0.11.1"
-  }
-}
-```
-
 ### Part 6: Review File Structure
 
 When you're finished, your app should look something like this:
@@ -434,3 +502,5 @@ Find the Javascript example project in the Flatfile GitHub repository.
     Clone the Flatfile Javascript tutorial here.
   </Card>
 </CardGroup>
+
+##
