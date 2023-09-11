@@ -29,7 +29,7 @@ yarn add @flatfile/api@latest dotenv express cors parcel
 
 </CodeGroup>
 
-## Part 1: Update your .env
+## 1. Update your .env
 
 Make sure you now have your `secretKey` and `spaceId` in your .env file.
 
@@ -39,7 +39,7 @@ BASE_URL=https://platform.flatfile.com/api
 SPACE_ID=us_sp_123
 ```
 
-## Part 2: Review your package.json
+## 2. Review your package.json
 
 Make sure you have the following packages (`dotenv express cors parcel`) and the new server script at minimum in your package.json.
 
@@ -77,7 +77,7 @@ Make sure you have the following packages (`dotenv express cors parcel`) and the
 }
 ```
 
-## Part 3: Add a Flatfile button and start your client
+## 3. Add a Flatfile button and start your client
 
 1. Add a button to your application to open Flatfile in a modal. Note that nothing needs to be passed into the function.
 2. Next, start your front end
@@ -118,7 +118,7 @@ Make sure you have the following packages (`dotenv express cors parcel`) and the
 
 </CodeGroup>
 
-## Part 4: initializeFlatfile()
+## 4. initializeFlatfile()
 
 Import `@flatfile/javascript` to initialize Flatfile. Then, retrieve information about your Flatfile space from your server. Last, pass it any [options](../overview#shared-properties).
 
@@ -146,7 +146,7 @@ window.openFlatfile = () => {
 };
 ```
 
-## Part 5: Create and start a Server
+## 5. Create and start a Server
 
 1. Create a basic Express.js server that will retrieve your Space data from the Flatfile API.
 2. Now, run the server by heading to your terminal and `npm run server`.
@@ -190,7 +190,7 @@ app.listen(port, () => {
 });
 ```
 
-## Part 6: Review File Structure
+## 6. Review File Structure
 
 When you're finished, your app should look something like this:
 

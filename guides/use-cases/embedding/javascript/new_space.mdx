@@ -13,7 +13,7 @@ icon: "js"
 The Space you'll create must have `guestAuthentication` configured with `shared_link` as an
 option. This is inherited from the Environment you're working in. This comes standard on any out of the box Environments so you shouldn't have to do anything unless you made a new Environment. If so, update your environment if `shared_link` isn't there.
 
-## Part 1: Review your package.json
+## 1. Review your package.json
 
 Make sure you have the `@flatfile/javascript` packages at minimum in your package.json. You can also copy this exactly and use a Parcel bundler as a starting point if you want to start from a fresh repo.
 
@@ -45,7 +45,7 @@ Make sure you have the `@flatfile/javascript` packages at minimum in your packag
 }
 ```
 
-## Part 2: Add a Flatfile button and start your client
+## 2. Add a Flatfile button and start your client
 
 1. Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
 2. Next, start your front end by heading to terminal and `npm run start`
@@ -90,7 +90,7 @@ Make sure you have the `@flatfile/javascript` packages at minimum in your packag
 ```
 </CodeGroup>
 
-## Part 3: initializeFlatfile()
+## 3. initializeFlatfile()
 
 Import `@flatfile/javascript` to initialize Flatfile. Pass it any [options](../overview#shared-properties).
 
@@ -110,126 +110,7 @@ window.openFlatfile = (publishableKey) => {
 };
 ```
 
-## Part 4: Override Styles
-
-The css here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog and the dialog wrapper. Theming the Flatfile application is done in your listener [here](../../../../guides/theming).
-
-```css public/style.css
-/* Styles for home page */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background: #090b2b;
-  color: #fff;
-}
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.content {
-  /* Adjust the width and height as needed */
-  width: 800px;
-  height: 200px;
-  padding: 0 20px 0 50px;
-}
-
-.contrast {
-  padding: 10px;
-  margin: 10px 5px 0 0;
-  border-radius: 4px;
-  border: 0;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* End of styles for home page */
-
-/* Begin style overrides for Flatfile Dialog */
-
-.flatfile_displayAsModal {
-  padding: 50px !important;
-  width: calc(100% - 100px) !important;
-  height: calc(100vh - 100px) !important;
-}
-
-:root {
-  --ff-primary-color: red !important;
-  --ff-secondary-color: #616a7d !important;
-  --ff-text-color: #090b2b !important;
-  --ff-dialog-border-radius: 4px !important;
-  --ff-border-radius: 5px !important;
-  --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
-}
-
-/* .flatfile_iframe-wrapper {
-} */
-
-/* .flatfile_iframe-wrapper {
-} */
-
-.flatfile_iframe-wrapper.flatfile_displayAsModal {
-  background: var(--ff-bg-fade);
-}
-
-/* .flatfile_displayAsModal .flatfile_close-button {
-} */
-
-.flatfile_displayAsModal .flatfile_close-button svg {
-  fill: var(--ff-secondary-color);
-}
-
-/* #flatfile_iframe {
-} */
-
-.flatfile_displayAsModal #flatfile_iframe {
-  border-radius: var(--ff-border-radius);
-}
-
-.flatfile_outer-shell {
-  background-color: var(--ff-bg-fade);
-  border-radius: var(--ff-border-radius);
-}
-
-/* .flatfile_inner-shell {
-} */
-
-.flatfile_modal {
-  border-radius: var(--ff-dialog-border-radius);
-}
-
-/* .flatfile_button-group {
-} */
-
-/* .flatfile_button {
-} */
-
-.flatfile_primary {
-  border: 1px solid var(--ff-primary-color);
-  background-color: var(--ff-primary-color);
-  color: #fff;
-}
-
-.flatfile_secondary {
-  color: var(--ff-secondary-color);
-}
-
-.flatfile_modal-heading {
-  color: var(--ff-text-color);
-}
-
-.flatfile_modal-text {
-  color: var(--ff-secondary-color);
-}
-```
-
-## Part 5: Review File Structure
+## 4. Review File Structure
 
 When you're finished, your app should look something like this:
 
@@ -250,7 +131,7 @@ The `public` directory contains the "index.html" file, which is the entry point 
 
 The `src` directory contains the main components and logic of the application, including the "client.js" file, which initializes Flatfile and passes in available options.
 
-## Part 6: Start your event listener
+## 5. Start your event listener
 
 When the “Open Flatfile” button is clicked on your platform, it triggers a job event within the Space domain that initiates a configure operation. This operation is analogous to performing a POST request to the endpoint /api/v1/spaces with the parameter autoconfigure set to true.
 
