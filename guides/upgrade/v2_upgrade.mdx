@@ -341,3 +341,60 @@ curl --request POST \
   ]
 }'
 ```
+
+## Embed your space
+
+The final piece to utilizing the newly created Space is embedding it in your application. There is a [full embed guide](/guides/use-cases/embedding/javascript/guide) for this, but we will cover the bare minimum here.
+
+You'll need to install the Flatfile JavaScript package.
+
+<CodeGroup>
+
+    ```npm npm
+    npm install @flatfile/javascript@latest
+    ```
+
+    ```yarn yarn
+    yarn add @flatfile/javascript@latest
+    ```
+
+</CodeGroup>
+
+You'll then need to attach the `openFlatfile` method to your button. It should look something like this:
+
+```html public/index.html
+<button onclick="openFlatfile('pk_1234')">
+    Create new Space
+</button>
+```
+
+Then in your JavaScript file, you'll need to initialize Flatfile. Note that when attaching the instance to the specific workspace, you will need to head back into your Platform dashboard and get the Space Id and
+
+```js src/client.js
+import { initializeFlatfile } from "@flatfile/javascript";
+
+//create a new space in modal
+window.openFlatfile = (publishableKey) => {
+  const flatfileOptions = {
+    publishableKey,
+    space: {
+        id: 'YOUR_SPACE_ID',
+        accessToken: 'YOUR_PRIVATE_KEY'
+    }
+    // Additional props...
+  };
+
+  initializeFlatfile(flatfileOptions);
+};
+```
+
+Once this is done, you'll see the space you've created open when clicking the button inside your application. 🎉
+
+## Make it more valuable
+
+While this guide is meant to help you understand how your current v2 implementation will look and feel in the new Platform, there are many more new features and items to make what you were doing in Portal more useful. We recommend you check out these resources to help you expand on what you've just created here.
+
+- [Meet the Workbook](../../quickstart/meet-the-workbook)
+- [Get to know Listeners](../../quickstart/meet-the-listener)
+- [Submitting data with Actions](../../quickstart/submit-action)
+- [Deploying Flatfile](../../quickstart/deploying)
