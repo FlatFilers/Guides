@@ -19,7 +19,7 @@ icon: "download"
     <br />
     **Event Type:**
     <br />
-    `listener.on('workbook:{jobParam}')`
+    `listener.on('{jobParam}')` (i.e. `listener.on('workbook:submitActionFg')`)
   </Card>
 </CardGroup>
 
@@ -56,7 +56,7 @@ import { webhookEgress } from "@flatfile/plugin-webhook-egress";
 ```
 
 ```ts listener.js
-listener.use(webhookEgress("submitActionFg"));
+listener.use(webhookEgress("workbook:submitActionFg"));
 ```
 
 ## See the code
