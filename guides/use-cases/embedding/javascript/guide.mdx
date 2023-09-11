@@ -22,22 +22,37 @@ yarn add @flatfile/javascript@latest
 
 ## Choose your path
 
-Something here about choosing your path.
+First, decide if you want to start from scratch or work backwards from an existing project. Then, you'll encounter the choice of creating a new Space for each initialization or reusing an existing Space.
 
 ### Start from scratch
 
-Talk about the Guides here.
+These Guides will walk you through setting up an embedded Flatfile Space from beginning to end. When configuring embedded Flatfile, you'll encounter the choice of creating a new Space for each initialization or reusing an existing Space.
 
 <CardGroup cols={2}>
-  <Card title="Embed a new Space">Talk about this more</Card>
-  <Card title="Reuse an existing Space">Talk about this more</Card>
+  <Card title="Embed a new Space" icon="plus" href="../javascript/new_space">
+    **Most Common** Consider this option when the data import/exchange is
+    synchronous, and users complete the process in a single session. This is
+    suitable for situations where you want to start with a clean slate for each
+    interaction, without any previous data or context.
+  </Card>
+  <Card
+    title="Reuse an existing Space"
+    icon="recycle"
+    href="../javascript/reuse_space"
+  >
+    Opt for this option when there's a possibility that users may need to wait
+    or won't complete the process in a single session. This is ideal for
+    scenarios where continuity and preserving the context of ongoing work are
+    essential, allowing users to pick up where they left off until the process
+    is completed.
+  </Card>
 </CardGroup>
 
 ### Start from an example project
 
-Find the Javascript example project in the Flatfile GitHub repository.
+Clone a full Javascript example project in the Flatfile GitHub repository. This project shows how to both create a new Space and reuse an existing Space.
 
-<CardGroup cols={2}>
+<CardGroup cols={1}>
   <Card
     title="create-flatfile-javascript"
     icon="js"
