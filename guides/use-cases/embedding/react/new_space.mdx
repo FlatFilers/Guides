@@ -19,7 +19,7 @@ more](../../../../developer-tools/environment#guest-authentication).
 
 ## 1. Review your package.json
 
-Make sure you have the @flatfile/react packages at minimum in your package.json. You can also copy this exactly and use `create-react-app` as a starting point if you want to start from a fresh repo.
+Make sure you have the `@flatfile/react` packages at minimum in your package.json. You can also copy this exactly and use `create-react-app` as a starting point if you want to start from a fresh repo.
 
 ```json package.json
 {
@@ -109,8 +109,9 @@ When you're finished, your app should look something like this:
 
 - src
   |__ App.tsx
-  |__ config.ts
   |__ index.tsx
+  //if using a client-side listener
+  |__ config.ts
   |__ listener.ts
 
 - package.json
@@ -120,7 +121,7 @@ In this file structure, your app should have two main directories, `public` and 
 
 The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
 
-The `src` directory contains the main components and logic of the application, including the "App.tsx" file, which represents the root component, the "config.ts" file for creating your Workbook, the "index.tsx" file, which is the entry point of your application's code, and the "listener.ts" file, which handles your specific functionality related to listening to events.
+The `src` directory contains the main components and logic of the application, including the "App.tsx" file, which represents the root component, the "index.tsx" file, which is the entry point of your application's code, and optionally, the "config.ts" file for creating your Workbook client-side, and the "listener.ts" file, which handles your specific functionality related to listening to events client-side.
 
 ## 4. Start your event listener
 

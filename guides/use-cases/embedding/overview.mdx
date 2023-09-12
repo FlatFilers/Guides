@@ -94,8 +94,8 @@ During the configuration of embedded Flatfile, you have the flexibility to eithe
 #### space
 
 <ParamField path="space" type="{id: string, accessToken: string}" required>
-  Pass in an existing Space instead of creating a new one each time. [Learn
-  More](#space-2)
+  Pass in an existing Space instead of creating a new one each time. This looks
+  for your `spaceId` and your `secretKey`.
 </ParamField>
 
 ### Configuration
@@ -109,7 +109,7 @@ These properties allow you to configure how the importer is mounted, displayed, 
   type="operation: string, onClose: (data: any) => void"
 >
   Options for when to close the iframe and a callback function when the session
-  is complete. [Learn More](#closespace)
+  is complete. [Learn More](#closespace-2)
 </ParamField>
 
 #### displayAsModal
@@ -187,7 +187,7 @@ Override the styling of the components Flatfile iframe, like the exit dialog and
 
 ### Client-Side Setup
 
-The primary path for configuring Flatfile is by setting up a server side listener that listens for a Space to be opened or created; however, you can also create a listener that will live in your browser. This can live alongside a server-side listener or on its own. These properties exist for client-side server setup.
+The primary way to configure Flatfile is by setting up a server-side listener that monitors when a Space is opened or created. Alternatively, you can create a browser-based listener. This listener can operate alongside a server-side counterpart or independently. These options are available for configuring the client-side server setup.
 
 #### workbook
 
@@ -234,13 +234,13 @@ Learn more about shared properties and how to use them.
 
 ```typescript
 const flatfileOptions = {
-    publishableKey,
-    //additional props
-    closeSpace: {
-      operation: "contacts:submit",
-      onClose: () => {},
-    };
-  }
+  publishableKey,
+  //additional props
+  closeSpace: {
+    operation: "contacts:submit",
+    onClose: () => {},
+  },
+};
 ```
 
 This `onClose` callback function is called when the Action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
@@ -260,7 +260,12 @@ const flatfileOptions = {
 
 ### iframe Styles
 
-The css here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog and the dialog wrapper. Theming the Flatfile application is done in your listener [here](../../../guides/theming).
+The CSS here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog and the dialog wrapper. This css can go in your `style.css` in your `public` folder. Remember to use `!important` to override values.
+
+<Note>
+  Theming the Flatfile application is done in your listener
+  [here](../../../guides/theming).
+</Note>
 
 ```css public/style.css
 /* Styles for home page */
@@ -381,7 +386,7 @@ body {
 
 Toggling off this property will update the wrapper css to make the iframe fully inline thereby hiding the close button. All of the child divs will no longer include: `.flatfile_displayAsModal` which removes all the dialog styling.
 
-The default width and height of the container can be overriden in style.css.
+The default width and height of the container can be overriden in `style.css`.
 
 ```css style.css
 .flatfile_iframe-wrapper {
@@ -398,13 +403,13 @@ Optionally, you can pass in additional properties on the Space as it's created.
 
 ```typescript
 const flatfileOptions = {
-    publishableKey,
-    //additional props, see Create Space endpoint for all the full list of properties (https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space)
-    spaceBody: {
-      name: "New Space"
-      namespace: "Red",
-    };
-  }
+  publishableKey,
+  //additional props, see Create Space endpoint for all the full list of properties (https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space)
+  spaceBody: {
+    name: "New Space",
+    namespace: "Red",
+  },
+};
 ```
 
 ### userInfo
@@ -413,14 +418,14 @@ Optionally, you can pass in additional user properties on the Space as it's crea
 
 ```typescript
 const flatfileOptions = {
-    publishableKey,
-    userInfo: {
-      userId: "string";
-      name: "string";
-      companyId: "string";
-      companyName: "string";
-    };
-  }
+  publishableKey,
+  userInfo: {
+    userId: "string",
+    name: "string",
+    companyId: "string",
+    companyName: "string",
+  },
+};
 ```
 
 ### listener
