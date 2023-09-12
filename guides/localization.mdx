@@ -1,0 +1,72 @@
+---
+title: "Localisation"
+description: "Translate and customize your Space with text overrides"
+icon: "language"
+---
+
+Flatfile allows you translate and override text in your Space. The entire guest flow can be customized with your own text by providing a translationsPath at either Space or Environment level.
+## Translation Path
+
+You can set the translation path on both the space and environment level. When not set, Spaces will inherit this value from the environment. Otherwise the Space translationPath will override the environment.
+
+### Determining your path
+The translation path should be the start of a URL that points to your JSON translation files. We expect your translations to be in a particular folder structure. 
+
+To help you understand this we will use our public translations repo as an example.
+
+Our public translation files are housed in a public github repository at the following URL: https://github.com/FlatFilers/Platform-Translations
+
+In this repo we have a directory called `locales`. 
+Within locales we have our **language directories** (en, es, de and fr).
+Within each language directory, we have our `translation.json` file.
+
+The structure of your translations directory should look something like this:
+
+```
+yourTranslationsDirectory/
+    └── locales/
+        ├── en/
+        │   └── translation.json
+        ├── es/
+        │   └── translation.json
+        ├── de/
+        │   └── translation.json
+        ├── fr/
+            └── translation.json
+```
+
+The URL needs to return a JSON. In the case of github we can return raw json by using the URL: https://raw.githubusercontent.com/FlatFilers/Platform-Translations/main/locales/en/translation.json.
+
+In this case our translationPath is everything before `locales`: `https://raw.githubusercontent.com/FlatFilers/Platform-Translations/main/`
+- 
+
+## Setting your translation path
+
+You can set the translation path on both the space and environment.
+
+```
+
+
+```
+
+
+## Example Project
+
+Find the localization example in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="typescript"
+    icon="code-merge"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/dynamic-configurations/index.ts"
+  >
+    Clone the localization example in Typescript
+  </Card>
+  <Card
+    title="javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/dynamic-configurations/index.js"
+  >
+    Clone the localization example in Javascript
+  </Card>
+</CardGroup>
