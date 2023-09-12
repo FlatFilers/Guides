@@ -97,7 +97,8 @@
         "guides/theming",
         "guides/guest_sidebar",
         "guides/documents",
-        "guides/secrets"
+        "guides/secrets",
+        "guides/localization"
       ]
     },
     {
