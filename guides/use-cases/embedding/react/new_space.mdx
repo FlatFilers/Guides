@@ -1,0 +1,157 @@
+---
+title: "Embed a new Space"
+description: "Create a new Space every time Flatfile is opened."
+icon: "plus"
+---
+
+For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+
+## Before you begin
+
+<Snippet file="shared/pk_needed.mdx" />
+
+### Check for proper `guestAuthentication`
+
+The Space that will be embedded here must have `guestAuthentication`
+configured with `shared_link` as an option. This is inherited from
+the Environment when creating a new Space. [Learn
+more](../../../../developer-tools/environment#guest-authentication).
+
+## 1. Review your package.json
+
+Make sure you have the @flatfile/react packages at minimum in your package.json. You can also copy this exactly and use `create-react-app` as a starting point if you want to start from a fresh repo.
+
+```json package.json
+{
+  "name": "flatfile-react-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@flatfile/api": "^1.5.21",
+    "@flatfile/listener": "0.3.14",
+    "@flatfile/plugin-record-hook": "^1.0.1",
+    "@flatfile/react": "^7.2.15",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": ["react-app", "react-app/jest"]
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+```
+
+## 2. Add a Flatfile button and start your client
+
+1. Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
+2. Next, start your front end by heading to terminal and `npm run start`
+3. To see that it’s running, visit: https://localhost:1234 and you should see your page and a button.
+
+```js src/App.tsx
+import { useSpace, ISpace, makeTheme } from '@flatfile/react'
+import { useState } from 'react'
+
+const ExampleApp = () => {
+
+const [showSpace, setShowSpace] = useState(false)
+
+const space = useSpace({
+name: 'Embedded Space',
+publishableKey: 'your_publishable_key',
+environmentId: 'your_environment_id',
+closeSpace: {
+operation: 'contacts:submit',
+onClose: () => setShowSpace(false)
+}
+})
+
+return (
+
+{" "}
+<div style={{ padding: "16px" }}>
+  <button
+    onClick={() => {
+      setShowSpace(!showSpace);
+    }}
+  >
+    {showSpace === true ? "Close" : "Open"} space
+  </button>
+  {showSpace && space}
+</div>) }
+```
+
+## 3. Review File Structure
+
+When you're finished, your app should look something like this:
+
+```
+- public
+  |__ index.html
+  |__ style.css
+
+- src
+  |__ App.tsx
+  |__ config.ts
+  |__ index.tsx
+  |__ listener.ts
+
+- package.json
+```
+
+In this file structure, your app should have two main directories, `public` and `src.`
+
+The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+
+The `src` directory contains the main components and logic of the application, including the "App.tsx" file, which represents the root component, the "config.ts" file for creating your Workbook, the "index.tsx" file, which is the entry point of your application's code, and the "listener.ts" file, which handles your specific functionality related to listening to events.
+
+## 4. Start your event listener
+
+When the “Open Flatfile” button is clicked on your platform, it triggers a job event within the Space domain that initiates a configure operation. This operation is analogous to performing a POST request to the endpoint /api/v1/spaces with the parameter autoconfigure set to true.
+
+In this step, we'll kickstart an event listener where you'll listen for that job and configure your Space on the fly.
+
+Follow [this guide](../../../../guides/dynamic-configurations) to dynamically configure a new Space to your liking.
+
+<Info>
+  Coming soon: If you don't want to do this part yet, you can also reuse a demo
+  Space and simply pass that info in.
+</Info>
+
+## Example Project
+
+Find the React example project in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="create-flatfile-react"
+    icon="react"
+    href="https://github.com/FlatFilers/create-flatfile-react"
+  >
+    Clone the Flatfile create-react-app tutorial here.
+  </Card>
+  <Card
+    title="flatfile-nextjs"
+    icon="react"
+    href="https://github.com/FlatFilers/flatfile-nextjs"
+  >
+    Clone the Flatfile Next.js tutorial here.
+  </Card>
+</CardGroup>

@@ -110,7 +110,7 @@
             "guides/use-cases/embedding/overview",
             {
               "group": "Javascript",
-              "icon": "person-to-portal",
+              "icon": "js",
               "pages": [
                 "guides/use-cases/embedding/javascript/guide",
                 "guides/use-cases/embedding/javascript/new_space",
@@ -119,8 +119,11 @@
             },
             {
               "group": "React",
-              "icon": "person-to-portal",
-              "pages": ["guides/use-cases/embedding/react/guide"]
+              "icon": "react",
+              "pages": [
+                "guides/use-cases/embedding/react/guide",
+                "guides/use-cases/embedding/react/new_space"
+              ]
             }
           ]
         },

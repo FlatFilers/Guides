@@ -1,19 +1,8 @@
 ---
-title: "React"
-description: Securely and easily build an embedded Flatfile import experience into your React application
-icon: "react"
+title: "Before you begin"
+description: Securely and easily build an embedded Flatfile import experience into your React application.
+icon: "list-check"
 ---
-
-## Before you begin
-
-<Snippet file="shared/pk_needed.mdx" />
-
-### Check for proper `guestAuthentication`
-
-The Space that will be embedded here must have `guestAuthentication`
-configured with `shared_link` as an option. This is inherited from
-the Environment when creating a new Space. [Learn
-more](../../../../developer-tools/environment#guest-authentication).
 
 ## Install the package
 
@@ -33,209 +22,30 @@ yarn add @flatfile/react@latest
 
 </CodeGroup>
 
-## Embed a Space
+## Choose your path
 
-### Part 1: Add a button
+First, decide if you want to start from scratch or work backwards from an existing project. Then, you'll encounter the choice of creating a new Space for each initialization or reusing an existing Space.
 
-Add a button to your application to open Flatfile in a modal by creating a `space` component. Pass in your `publishableKey` and a new Space will be created on each page load.
+### Start from scratch
 
-The `useSpace` hook configures a Space component.
+These Guides will walk you through setting up an embedded Flatfile Space from beginning to end. When configuring embedded Flatfile, you'll encounter the choice of creating a new Space for each initialization or reusing an existing Space.
 
-A new Space will be created each time Flatfile is initialized. To reuse a space, learn more about the [space](#space) property.
+<CardGroup cols={2}>
+  <Card title="Embed a new Space" icon="plus" href="../react/new_space">
+    **Most Common** For synchronous data import/exchange completed in one
+    session, create a new Space each time Flatfile is opened. This suits
+    situations where a clean slate for every interaction is preferred.
+  </Card>
+  <Card title="Reuse an existing Space" icon="clock">
+    **Coming soon** Choose this when users might need to wait or can't finish in
+    one go. It's great for keeping work context and letting users continue where
+    they left off until the task is done.
+  </Card>
+</CardGroup>
 
-```js src/App.tsx
-import { useSpace, ISpace, makeTheme } from '@flatfile/react'
-import { useState } from 'react'
+### Start from an example project
 
-const ExampleApp = () => {
-
-const [showSpace, setShowSpace] = useState(false)
-
-const space = useSpace({
-name: 'Embedded Space',
-publishableKey: 'your_publishable_key',
-environmentId: 'your_environment_id',
-closeSpace: {
-operation: 'contacts:submit',
-onClose: () => setShowSpace(false)
-}
-})
-
-return (
-
-{" "}
-<div style={{ padding: "16px" }}>
-  <button
-    onClick={() => {
-      setShowSpace(!showSpace);
-    }}
-  >
-    {showSpace === true ? "Close" : "Open"} space
-  </button>
-  {showSpace && space}
-</div>) }
-```
-
-### Part 2: Override styles
-
-When closing the Flatfile iframe, end users will see a dialog asking them if they are sure they want to exit. To style this dialog to match your application, add a `style.css` file to your public folder and link to it from `index.html`, also in the public folder.
-
-<CodeGroup>
-
-```css public/style.css
-@font-face {
-  font-family: sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-:root {
-  --brand-font-sans-serif: "Helvetica", sans-serif;
-  --color-electric-800: #3b2fc9; //primary button color on hover (confirmation pop up)
-  --color-electric-700: #4c48ef; //primary button color (confirmation pop up)
-  --color-pigeon-600: #8b93a4; //text color (confirmation pop up)
-  --color-pigeon-300: #d7dee8; // color of the border around secondary button (confirmation pop up)
-  --color-pigeon-200: #e8edf4; //secondary button color (confirmation pop up)
-  --color-text: var(
-    --color-pigeon-primary
-  ); //header text color and secondary button text color (confirmation pop up)
-  --text-font: var(--brand-font-sans-serif);
-  --size-base: 15px; //size of the header text (confirmation pop up)
-}
-body {
-  background-color: #fff; //background color behind the Flatfile button
-  color: var(
-    --color-text
-  ); //text color when text is present on the page where Flatfile button is embedded (text defined inside "index.html" file
-  font-family: var(
-    --text-font
-  ); //font style of the text that is on the page where Flatfile button is embedded (text defined inside "index.html" file
-  font-size: var(
-    --size-base
-  ); //font size of the text that is on the page where Flatfile button is embedded (text defined inside "index.html" file
-  line-height: 1.5; //distance between the text that is defined in "index.html" file and the Flatfile button. Also distance between header text and description on confirmation pop up.
-  margin: 0;
-}
-
-.flatfile-close-button {
-  display: block;
-}
-```
-
-```html public/index.html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="" />
-
-    <link rel="stylesheet" type="text/css" href="/style.css" />
-
-    <title>Flatfile React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
-</html>
-```
-
-</CodeGroup>
-
-### Part 3: Review File Structure
-
-When you're finished, your app should look something like this:
-
-```
-- public
-  |__ index.html
-  |__ style.css
-
-- src
-  |__ App.tsx
-  |__ config.ts
-  |__ index.tsx
-  |__ listener.ts
-
-- package.json
-```
-
-In this file structure, your app should have two main directories, `public` and `src.`
-
-The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
-
-The `src` directory contains the main components and logic of the application, including the "App.tsx" file, which represents the root component, the "config.ts" file for creating your Workbook, the "index.tsx" file, which is the entry point of your application's code, and the "listener.ts" file, which handles your specific functionality related to listening to events.
-
-### Part 3: Start your event listener or reuse a Space
-
-In this step, we'll kickstart an event listener, which will await the creation of a new Space. This listener will configure the Space as Flatfile is initialized.
-
-[Learn how to configure a new Space.](../../../../guides/dynamic-configurations)
-
-<Info>
-  If you don't want to do this yet, you can also [reuse an existing
-  Space](#reuse-a-space) and simply pass that info in.
-</Info>
-
-## Reuse a space
-
-To reuse an existing Space, we'll update our files to pass in a Space Id. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
-
-### Before you begin
-
-The Space must have `guestAuthentication` configured with `shared_link` as an
-option. Update your Space if `shared_link` isn't there.
-
-### Get a Space
-
-Note that unlike the `publishableKey`, the `secretKey` shouldn't be passed through the
-browser as it will have full access. This is why we are showing this example
-in a server-side call.
-
-<CodeGroup>
-
-```tsx App.tsx
-import { ISpace, useSpace } from "@flatfile/react";
-import React, { useState } from "react";
-
-const spaceProps: ISpace = {
-  // Additional props...
-  space: {
-    id: "space id",
-    accessToken: "secret key",
-  },
-};
-
-export default function ReuseExistentSpace() {
-  const [showSpace, setShowSpace] = useState(false);
-  const space = useSpace({
-    ...spaceProps,
-    closeSpace: {
-      operation: "contacts:submit",
-      onClose: () => setShowSpace(false),
-    },
-  });
-
-  return (
-    <div>
-      <button
-        onClick={() => {
-          setShowSpace(!showSpace);
-        }}
-      >
-        {showSpace === true ? "Close" : "Open"} space
-      </button>
-      {showSpace && space}
-    </div>
-  );
-}
-```
-
-</CodeGroup>
-
-## Example Project
-
-Find the React example project in the Flatfile GitHub repository.
+Clone a full React example project in the Flatfile GitHub repository.
 
 <CardGroup cols={2}>
   <Card
@@ -247,7 +57,7 @@ Find the React example project in the Flatfile GitHub repository.
   </Card>
   <Card
     title="flatfile-nextjs"
-    icon="javascript"
+    icon="react"
     href="https://github.com/FlatFilers/flatfile-nextjs"
   >
     Clone the Flatfile Next.js tutorial here.

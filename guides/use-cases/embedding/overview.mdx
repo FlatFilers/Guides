@@ -66,12 +66,6 @@ While setting up embedded Flatfile, you have the option to either establish a fr
   Publishable key accessed via Flatfile dashboard > Developer settings.
 </ParamField>
 
-#### environmentId
-
-<ParamField path="environmentId" type="string" required>
-  Identifier for environment
-</ParamField>
-
 #### name
 
 <ParamField path="name" type="string" required>
@@ -199,6 +193,13 @@ The primary path for configuring Flatfile is by setting up a server side listene
 
 <ParamField path="workbook" type="object">
   Config of the workbook to be created [Learn More](#part-1-build-a-workbook)
+</ParamField>
+
+#### environmentId
+
+<ParamField path="environmentId" type="string" required>
+  Identifier for environment. You only need this to create a Workbook
+  client-side.
 </ParamField>
 
 #### listener

@@ -1,14 +1,16 @@
 ---
 title: "Embed a new Space"
-description: "Securely and easily build an embedded Flatfile import experience into your javascript application"
-icon: "js"
+description: "Create a new Space every time Flatfile is opened."
+icon: "plus"
 ---
+
+For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
 
 ## Before you begin
 
 <Snippet file="shared/pk_needed.mdx" />
 
-### Check for proper guestAuthentication
+### Check for proper `guestAuthentication`
 
 The Space you'll create must have `guestAuthentication` configured with `shared_link` as an
 option. This is inherited from the Environment you're working in. This comes standard on any out of the box Environments so you shouldn't have to do anything unless you made a new Environment. If so, update your environment if `shared_link` isn't there.

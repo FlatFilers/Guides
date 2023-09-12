@@ -1,16 +1,18 @@
 ---
 title: "Reuse an existing Space"
-description: "Securely and easily build an embedded Flatfile import experience into your javascript application"
-icon: "js"
+description: "Reuse a Space when Flatfile is opened."
+icon: "recycle"
 ---
 
-To reuse an existing Space, we'll update our files to pass in a Space Id instead of a `publishableKey`. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
+Reuse a Space when users might need to wait or can't finish in one go. It's great for keeping work context and letting users continue where they left off until the task is done.
 
 ## Before you begin
 
+To reuse an existing Space, we'll update our files to pass in a Space Id instead of a `publishableKey`. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
+
 <Snippet file="shared/sk_needed.mdx" />
 
-####Check for proper `guestAuthentication`
+#### Check for proper `guestAuthentication`
 
 The Space you're using must have `guestAuthentication` configured with `shared_link` as an
 option. This comes standard on any out of the box Environments (Spaces inherit from Environments) so you shouldn't have to do anything unless you made a new Environment. If so, update your Space if `shared_link` isn't there.
