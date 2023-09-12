@@ -1,15 +1,14 @@
 ---
 title: "Create a Workbook"
-description: "To create a new Workbook using Flatfile's API, paste the cURL request on the right in your terminal or build out your Sheet and Fields in the Body tab."
+description: "Make the API call to create a Workbook from our docs, or copy and run the provided cURL"
 api: "POST https://platform.flatfile.com/api/v1/workbooks"
 ---
 
 <Tip>
-  Use your [secret
-  key](../developer-tools/security/authentication#secret-and-publishable-keys)
-  from the `development` environment. Secret key format is "sk_abcd..." and is
-  found in [your Flatfile Dashboard
-  here](https://platform.flatfile.com/developers).
+  The Bearer token you will need for this call is your unique [secret
+  key](../developer-tools/security/authentication#secret-and-publishable-keys).
+  It can be found in the Developer settings of your Flatfile account [here
+  ](https://platform.flatfile.com/developers).
 </Tip>
 
 ### Body
@@ -213,6 +212,6 @@ curl --request POST \
 
 ---
 
-## Recap & Next Steps
+## Next steps
 
 Now that you've created a Workbook, check it out in your [Dashboard](https://platform.flatfile.com). Next, we will author code to listen and react to Events as they occur.
