@@ -19,6 +19,8 @@ option. This comes standard on any out of the box Environments (Spaces inherit f
 
 ### Install additional packages
 
+If you already have a project, install these additional packages for building a local server.
+
 <CodeGroup>
 
 ```npm npm
@@ -31,19 +33,10 @@ yarn add @flatfile/api@latest dotenv express cors parcel
 
 </CodeGroup>
 
-## 1. Update your .env
+## 1. Review or create your package.json
 
-Make sure you now have your `secretKey` and `spaceId` in your .env file.
-
-```json .env
-SECRET_KEY=sk_1234
-BASE_URL=https://platform.flatfile.com/api
-SPACE_ID=us_sp_123
-```
-
-## 2. Review your package.json
-
-Make sure you have the following packages (`dotenv express cors parcel`) and the new server script at minimum in your package.json.
+1. Make sure you have the following packages (`dotenv express cors parcel`) and the new server script at minimum in your package.json.
+2. Once complete, run `npm install` from your terminal.
 
 ```json package.json
 {
@@ -79,7 +72,36 @@ Make sure you have the following packages (`dotenv express cors parcel`) and the
 }
 ```
 
-## 3. Add a Flatfile button and start your client
+## 2. Review or create file structure
+
+Setup your app to look something like this:
+
+```
+- public
+  |__ index.html
+  |__ style.css
+
+- src
+  |__ client.js
+  |__ server.mjs
+
+- package.json
+- package-lock.json
+
+- .env
+```
+
+## 3. Update your .env
+
+Make sure you have your `secretKey` and `spaceId` in your .env file.
+
+```json .env
+SECRET_KEY=sk_1234
+BASE_URL=https://platform.flatfile.com/api
+SPACE_ID=us_sp_123
+```
+
+## 4. Add a Flatfile button and start your client
 
 1. Add a button to your application to open Flatfile in a modal. Note that nothing needs to be passed into the function.
 2. Next, start your front end by heading to your terminal running `npm start`.
@@ -108,7 +130,7 @@ Make sure you have the following packages (`dotenv express cors parcel`) and the
 
         <!-- Button to trigger the modal -->
         <div>
-          <button class="contrast" onclick="openFlatfile()">
+          <button class="contrast" onclick="openExistingFlatfileSpace()">
             Open existing Space
           </button>
         </div>
@@ -129,7 +151,10 @@ Import `@flatfile/javascript` to initialize Flatfile. Then, retrieve information
 ```js src/client.js
 import { initializeFlatfile } from "@flatfile/javascript";
 
-window.openFlatfile = () => {
+const server_url = "http://localhost:8080";
+
+//open existing space in modal
+window.openExistingFlatfileSpace = () => {
   fetch(server_url + "/space") // Make a request to the server endpoint
     .then((response) => response.json())
     .then((space) => {
@@ -148,7 +173,7 @@ window.openFlatfile = () => {
 };
 ```
 
-## 5. Create and start a Server
+## 5. Create and start a server
 
 1. Create a basic Express.js server that will retrieve your Space data from the Flatfile API.
 2. Now, run the server by heading to your terminal and open a new tab and run `npm run server`.
@@ -190,22 +215,6 @@ app.get("/space", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-```
-
-## 6. Review File Structure
-
-When you're finished, your app should look something like this:
-
-```
-- public
-  |__ index.html
-  |__ style.css
-
-- src
-  |__ client.js
-  |__ server.mjs
-
-- package.json
 ```
 
 ## Example Project

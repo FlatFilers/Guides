@@ -27,10 +27,10 @@ Make sure you have the `@flatfile/react` packages at minimum in your package.jso
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@flatfile/api": "^1.5.21",
-    "@flatfile/listener": "0.3.14",
-    "@flatfile/plugin-record-hook": "^1.0.1",
-    "@flatfile/react": "^7.2.15",
+    "@flatfile/api": "^1.5.24",
+    "@flatfile/listener": "0.3.15",
+    "@flatfile/plugin-record-hook": "^1.1.0",
+    "@flatfile/react": "^7.2.19",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -59,48 +59,9 @@ Make sure you have the `@flatfile/react` packages at minimum in your package.jso
 }
 ```
 
-## 2. Add a Flatfile button and start your client
+## 2. Review or create file structure
 
-1. Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
-2. Next, start your front end by heading to terminal and `npm run start`
-3. To see that it’s running, visit: https://localhost:1234 and you should see your page and a button.
-
-```js src/App.tsx
-import { useSpace, ISpace, makeTheme } from '@flatfile/react'
-import { useState } from 'react'
-
-const ExampleApp = () => {
-
-const [showSpace, setShowSpace] = useState(false)
-
-const space = useSpace({
-name: 'Embedded Space',
-publishableKey: 'your_publishable_key',
-environmentId: 'your_environment_id',
-closeSpace: {
-operation: 'contacts:submit',
-onClose: () => setShowSpace(false)
-}
-})
-
-return (
-
-{" "}
-<div style={{ padding: "16px" }}>
-  <button
-    onClick={() => {
-      setShowSpace(!showSpace);
-    }}
-  >
-    {showSpace === true ? "Close" : "Open"} space
-  </button>
-  {showSpace && space}
-</div>) }
-```
-
-## 3. Review File Structure
-
-When you're finished, your app should look something like this:
+Setup your app to look something like this:
 
 ```
 - public
@@ -110,9 +71,10 @@ When you're finished, your app should look something like this:
 - src
   |__ App.tsx
   |__ index.tsx
-  //if using a client-side listener
-  |__ config.ts
-  |__ listener.ts
+
+  |__ package.json
+  |__ package-lock.json
+  |__ tsconfig.json
 
 - package.json
 ```
@@ -122,6 +84,121 @@ In this file structure, your app should have two main directories, `public` and 
 The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
 
 The `src` directory contains the main components and logic of the application, including the "App.tsx" file, which represents the root component, the "index.tsx" file, which is the entry point of your application's code, and optionally, the "config.ts" file for creating your Workbook client-side, and the "listener.ts" file, which handles your specific functionality related to listening to events client-side.
+
+## 3. Add a Flatfile button and start your client
+
+1. Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
+2. Next, start your front end by heading to terminal and `npm start`
+3. To see that it’s running, visit: https://localhost:1234 and you should see your page and a button.
+
+<CodeGroup>
+
+```typescript src/App.tsx
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { ISpace, useSpace } from "@flatfile/react";
+
+const spaceProps: ISpace = {
+  name: "Embedded Space",
+  publishableKey: "",
+  environmentId: "",
+};
+
+const Space = ({
+  setShowSpace,
+}: {
+  setShowSpace: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const space = useSpace({
+    ...spaceProps,
+    closeSpace: {
+      operation: "contacts:submit",
+      onClose: () => setShowSpace(false),
+    },
+  });
+  return space;
+};
+
+export default function App() {
+  const [showSpace, setShowSpace] = useState(false);
+
+  return (
+    <div style={{ padding: "16px" }}>
+      <button
+        onClick={() => {
+          setShowSpace(!showSpace);
+        }}
+      >
+        {showSpace === true ? "Close" : "Open"} space
+      </button>
+      {showSpace && <Space setShowSpace={setShowSpace} />}
+    </div>
+  );
+}
+```
+
+```typescript src/index.tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+const rootElement = document.getElementById("root")!;
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  rootElement
+);
+```
+
+```html public/index.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
+```
+
+</CodeGroup>
 
 ## 4. Start your event listener
 

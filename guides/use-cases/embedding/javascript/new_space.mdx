@@ -12,12 +12,20 @@ For synchronous data import/exchange completed in one session, create a new Spac
 
 ### Check for proper `guestAuthentication`
 
+<Info>
+  You can skip this if you've not manually created a new Environment in your
+  Account.
+</Info>
+
 The Space you'll create must have `guestAuthentication` configured with `shared_link` as an
-option. This is inherited from the Environment you're working in. This comes standard on any out of the box Environments so you shouldn't have to do anything unless you made a new Environment. If so, update your environment if `shared_link` isn't there.
+option. This is inherited from the Environment you're working in.
 
-## 1. Review your package.json
+This comes standard on any out of the box Environments so you shouldn't have to do anything unless you made a new Environment. If so, update your Environment to include if `shared_link` isn't there.
 
-Make sure you have the `@flatfile/javascript` packages at minimum in your package.json. You can also copy this exactly and use a Parcel bundler as a starting point if you want to start from a fresh repo.
+## 1. Review or create your package.json
+
+1. Make sure you have the `@flatfile/javascript` packages at minimum in your package.json. You can also copy this exactly and use a Parcel bundler as a starting point if you want to start from a fresh repo.
+2. Once complete, run `npm install` from your terminal.
 
 ```json package.json
 {
@@ -31,7 +39,8 @@ Make sure you have the `@flatfile/javascript` packages at minimum in your packag
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@flatfile/javascript": "0.1.1"
+    "@flatfile/javascript": "0.1.1",
+    "parcel": "2.8.3"
   },
   "devDependencies": {
     "@parcel/resolver-default": "^2.9.3",
@@ -47,10 +56,32 @@ Make sure you have the `@flatfile/javascript` packages at minimum in your packag
 }
 ```
 
-## 2. Add a Flatfile button and start your client
+## 2. Review or create file structure
+
+Setup your app to look something like this:
+
+```
+- public
+  |__ index.html
+  |__ style.css
+
+- src
+  |__ client.js
+
+- package.json
+- package-lock.json
+```
+
+In this file structure, your app should have two main directories, `public` and `src.`
+
+The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+
+The `src` directory contains the main components and logic of the application, including the "client.js" file, which initializes Flatfile and passes in available options.
+
+## 3. Add a Flatfile button and start your client
 
 1. Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
-2. Next, start your front end by heading to terminal and `npm run start`
+2. Next, start your front end by heading to terminal and `npm start`
 3. To see that it’s running, visit: https://localhost:1234 and you should see your page and a button.
 
 <CodeGroup>
@@ -92,7 +123,7 @@ Make sure you have the `@flatfile/javascript` packages at minimum in your packag
 ```
 </CodeGroup>
 
-## 3. initializeFlatfile()
+## 4. initializeFlatfile()
 
 Import `@flatfile/javascript` to initialize Flatfile. Pass it any [options](../overview#shared-properties).
 
@@ -111,27 +142,6 @@ window.openFlatfile = (publishableKey) => {
   initializeFlatfile(flatfileOptions);
 };
 ```
-
-## 4. Review File Structure
-
-When you're finished, your app should look something like this:
-
-```
-- public
-  |__ index.html
-  |__ style.css
-
-- src
-  |__ client.js
-
-- package.json
-```
-
-In this file structure, your app should have two main directories, `public` and `src.`
-
-The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
-
-The `src` directory contains the main components and logic of the application, including the "client.js" file, which initializes Flatfile and passes in available options.
 
 ## 5. Start your event listener
 
