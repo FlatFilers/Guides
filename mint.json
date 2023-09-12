@@ -122,7 +122,8 @@
               "icon": "react",
               "pages": [
                 "guides/use-cases/embedding/react/guide",
-                "guides/use-cases/embedding/react/new_space"
+                "guides/use-cases/embedding/react/new_space",
+                "guides/use-cases/embedding/react/reuse_space"
               ]
             }
           ]
