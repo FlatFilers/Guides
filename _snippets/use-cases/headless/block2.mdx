@@ -2,7 +2,7 @@
 const { FlatfileClient } = require("@flatfile/api");
 const api = new FlatfileClient({ token: process.env.FLATFILE_API_KEY });
 
-const readStream = fs.createReadreadStream("/path/to/file");
+const readStream = fs.createReadStream("/path/to/file");
 
 try {
   api.files.upload(stream, {
