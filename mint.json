@@ -34,7 +34,7 @@
   "topbarLinks": [
     {
       "name": "Create account",
-      "url": "https://platform.flatfile.com/account/sign-up"
+      "url": "https://flatfile.com/account/sign-up/"
     }
   ],
   "topbarCtaButton": {
