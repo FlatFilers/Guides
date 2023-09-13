@@ -28,6 +28,10 @@ To provide translations and text overrides you can use the translationsPath para
 - **Space:** Overrides the environment level setting.
 - **Environment:** Used when no space-level path is defined.
 
+<Info>
+Set your translationsPath to the path to your **english JSON URL**. Don't have an english file? You can use any other language instead.
+</Info>
+
 Your `translationsPath` must meet a few requirements to work as expected:
 1. It must be a string. 
 2. The string should be a publicly available URL that returns your JSON translation file.
@@ -43,9 +47,7 @@ Your `translationsPath` must meet a few requirements to work as expected:
     ```
     where `yourCustomTranslationsDirectory` can be swapped out for any path desired.
   
-<Info>
-Set your translationsPath to the path to your **english JSON URL**. Don't have an english file? You can use any other language instead.
-</Info>
+
 <Tip>
 For our translations repository we would set our translationsPath to: https://raw.githubusercontent.com/FlatFilers/Platform-Translations/main/locales/en/translation.json
 </Tip>
@@ -158,10 +160,9 @@ await api.jobs.complete(jobId, {
 <Warning>If a translation key is missing from your `translation.json` file, the system will display the key itself as a fallback. Therefore, it's encouraged to always have a default language translation available to avoid showing raw keys to the users.</Warning>
 
 ## Translating Your Documents
-The same logic that applies to Actions also applies to your documents. 
-
+The same logic that applies to Actions also applies to your Documents. Just pass in the custom translation keys that you added to your translation files!
 <CodeGroup>
-```jsx .../locales/en/translating.json
+```jsx .../locales/en/translation.json
 
 {
   "myDocument": {
@@ -172,12 +173,10 @@ The same logic that applies to Actions also applies to your documents.
 ```
 ```jsx listener.js
 
-export default function flatfileEventListener(listener: Client) {
   await api.documents.create(spaceId, {
     title: "myDocument.title",
     body: "myDocument.body"
   });
-}
 ```
 </CodeGroup>
 ### Guidelines for Creating JSON Keys
