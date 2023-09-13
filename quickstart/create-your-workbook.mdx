@@ -93,9 +93,9 @@ api: "POST https://platform.flatfile.com/api/v1/workbooks"
 <ParamField
   body="operation"
   type="string"
-  initialValue="submitAction"
-  default="submitAction"
-  placeholder="submitAction"
+  initialValue="submitActionFg"
+  default="submitActionFg"
+  placeholder="submitActionFg"
 >
   The name of the job operation
 </ParamField>
@@ -200,7 +200,7 @@ curl --request POST \
   ],
   "actions": [
     {
-      "operation": "submitAction",
+      "operation": "submitActionFg",
       "mode": "foreground",
       "label": "Submit",
       "description": "Submit data to webhook.site",
