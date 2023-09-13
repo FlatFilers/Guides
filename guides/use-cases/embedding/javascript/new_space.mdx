@@ -136,6 +136,10 @@ import { initializeFlatfile } from "@flatfile/javascript";
 window.openFlatfile = (publishableKey) => {
   const flatfileOptions = {
     publishableKey,
+    closeSpace: {
+      operation: "contacts:submit",
+      onClose: () => setShowSpace(false),
+    },
     // Additional props...
   };
 
@@ -147,7 +151,8 @@ window.openFlatfile = (publishableKey) => {
 
 When you click the Flatfile button in your platform, it initiates a job event that can be observed by an event listener. This listener, in turn, constructs your Space on the Flatfile server. You can start by using a predefined event listener, and modify your schema and actions as necessary in the future.
 
-1. Clone the [getting-started Github repo](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main).
+1. Clone the [getting-started Github repo](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main)
+2.
 
 ## Example Project
 
