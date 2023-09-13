@@ -1,0 +1,124 @@
+---
+title: SDKs
+description: "Additions and updates to Flatfile SDKs"
+icon: "cube"
+---
+
+## August 30, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/react@7.2.18`
+
+      This version introduces the following notable updates:
+
+      - **Enhanced Close Dialog**: Class names have been incorporated for all elements within the close dialog, which becomes visible when closing the embedded Flatfile component. This improvement gives you more control on styling.
+
+      - **Utilization of Shared Utilities**: The integration now utilizes the shared `@flatfile/embedded-utils` module. This change lays the groundwork for consistent properties to be shared across all Flatfile wrapper SDKs, promoting standardization and ease of maintenance.
+
+      - **Dependency Refinement**: The dependencies on `vite` and `@flatfile/configure` have been removed. This streamlines the codebase and reduces unnecessary dependencies, contributing to a more efficient and lightweight integration.
+
+    </div>
+
+  </div>
+
+</div>
+
+## August 24, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/react@7.2.17`
+
+      An improvement was made to add the `userInfo` param on `metadata` in a more comprehensible way.
+    </div>
+
+  </div>
+
+</div>
+
+## August 20, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/api@1.5.21`
+
+      The response type for the `getRecordsAsCSV` endpoint was incorrectly typed as a string instead of a file. This fixes downloading a sheet as a CSV via SDk.
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/listener@0.3.15`
+      
+      This version has four great updates:
+
+      - Previously, you had to fake-out TypeScript because the event time was not exposed (it was a private class variable) for FlatfileEvents. We have now added `createdAt` to the FlatfileEvent.
+      - Axios responses 200-399 now no longer throw Errors.
+      - Created a secrets cache based on `environmentId` and `spaceId`.
+        - Previously, if your listener fetched secrets for multiple environments, those maps would entirely override each other.
+        - If your listener fetched `spaceId` overrides first, and then environment -- you would get the space id overrides.
+      - We now make sure that the fetch URL in the listener is formatted properly whether or not the user puts a trailing slash in the environment variable.
+
+    </div>
+
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/listener@0.3.14` `event.secrets` now defaults to `spaceId`. It
+    will throw if no `environmentId` is available for secrets retrieval.
+  </div>
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/wrappers.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/react@7.2.15` You can now pass in a spacebody. This will allow
+    you to send more than any already-defined parameters allowed on space
+    creation.
+  </div>
+</div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/wrappers.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/react@7.2.14` The close button and iframe now have a proper class
+    name to allow for CSS overrides.
+  </div>
+</div>
+
+</div>

@@ -5,11 +5,11 @@ icon: 'spell-check'
 ---
 Constraints allow you to indicate additional validations that will be applied to fields of a Sheet. These constraints are in addition to the implicit constraints based on types of data. (eg: String, Number) For example, a value is required for every record (RequiredConstraint), or every record must contain a unique value for the field (UniqueConstraint).
 
-## RequiredConstraint
+## Required Constraint
 
 Required Constraints indicate that the given field **must** be provided with a non-null value. A `null` value in this case constitutes an empty cell.
 
-## UniqueConstraint 
+## Unique Constraint 
 
 Unique Constraints indicate that the given field value must only appear **once** in all the values for that field. Note: `null` values will appear many times because they are not considered unique as there is no value to compare.
 
@@ -39,6 +39,6 @@ Unique Constraints indicate that the given field value must only appear **once**
 ]
 ```
 
-## ComputedValue
+## Computed Value
 
 You might notice a ComputedValue type within the Blueprint code. Please do not use this value at this time as it is unsupported and may be deprecated without notice.

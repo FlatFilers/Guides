@@ -1,24 +1,89 @@
 ---
 title: "@flatfile/plugin-pdf-extractor"
 description: "A plugin for parsing .pdf files in Flatfile."
-icon: "clock"
+icon: "download"
 ---
 
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
+
 <CardGroup cols={1}>
-  <Card title="@flatfile/plugin-pdf-extractor" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/" icon="github" >
-    *currently in development*<br/>
-    <br/>
-    check back soon for updates
+  <Card
+    title="@flatfile/plugin-pdf-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/pdf-extractor"
+    icon="github"
+  >
+    <br />
+    This plugin will parse a data table in a PDF file and extract it into Flatfile.
+    <br />
+    <br />
+    **Event Type:**
+    <br />
+    `listener.on('file:created')`
   </Card>
 </CardGroup>
 
+## Parameters
 
-### Overview
+<ParamField path="opt.apiKey" type="string" required>
+  The `apiKey` parameter specifies you `pdftables.com` API key.
+</ParamField>
 
-This plugin will parse all data in a PDF file and extract it into Flatfile.
+<ParamField path="opt.debug" type="boolean">
+  The `debug` parameter lets you toggle on/off helpful debugging messages for
+  development purposes.
+</ParamField>
 
+## API Calls
 
+- `api.files.upload`
 
+## Imported NPM Packages
 
+- [`@flatfile/api@1.5.14+`](https://www.npmjs.com/package/@flatfile/api)
+- [`@flatfile/hooks@1.3.1+`](https://www.npmjs.com/package/@flatfile/hooks)
+- [`@flatfile/listener@0.3.15+`](https://www.npmjs.com/package/@flatfile/listener)
+- [`@flatfile/util-file-buffer@0.0.4`](../utils/file-buffer)
+- [`axios@1.4.0+`](https://www.npmjs.com/package/axios) is a promise based HTTP client for the browser and node.js.
+- [`fs-extra@11.1.1+`](https://www.npmjs.com/package/fs-extra) offers a set of utility functions for working with files and directories in Node.js.
+- [`remeda@1.14.0`](https://www.npmjs.com/package/remeda) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
 
----
+## Usage
+
+A subscription to `pdftables.com` is required for this plugin to work. Create an API key there and use it below.
+
+```SSH install
+npm i @flatfile/plugin-pdf-extractor
+```
+
+```ts import
+import { pdfExtractorPlugin } from "@flatfile/plugin-pdf-extractor";
+```
+
+<CodeGroup>
+```js listener.js
+export default function (listener) {
+  listener.use(pdfExtractorPlugin({ apiKey: "key" }));
+}
+```
+
+```ts listener.ts
+export default function (listener: FlatfileListener) {
+  listener.use(pdfExtractorPlugin({ apiKey: "key" }));
+}
+```
+
+</CodeGroup>
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-pdf-extractor"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/pdf-extractor"
+    icon="github"
+  ></Card>
+</CardGroup>
