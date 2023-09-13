@@ -207,7 +207,7 @@
     },
     {
       "group": "Export",
-      "pages": ["plugins/export/workbook"]
+      "pages": ["plugins/export/workbook", "plugins/export/webhook"]
     },
     {
       "group": "Schemas",
