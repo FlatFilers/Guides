@@ -208,9 +208,19 @@ npm start
 
 ### 3. Start an event listener
 
-When the “Open Flatfile” button is clicked on your platform, it triggers a job event within the Space domain that initiates a configure operation. This operation (`space:configure`) is analogous to performing a `POST` request to the endpoint `/api/v1/spaces` with the parameter `autoconfigure` set to `true`.
+When you click the Flatfile button in your platform, this will initiate a job event that can be observed by an event listener. This listener, in turn, constructs your Space on the Flatfile server. You can start by using a predefined event listener, and modify your schema and actions as necessary in the future.
 
-Follow [this guide](../../../../guides/dynamic-configurations) to kickstart an event listener where you'll listen for that job and configure your Space on the fly.
+1. Clone the [getting-started Github repo](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main)
+2. Rename `.env.example` to `.env` and update to your creds
+3. Run these commands:
+
+```ssh
+npm install
+npm run dev
+```
+
+4. Click the Flatfile button in your client. A new Space should have been created.
+5. Now, make adjustments to your Workbook and action to suit your needs, then `npm run deploy` to host your listener code on the Flatfile server.
 
 ## Example Project
 
