@@ -347,14 +347,14 @@ listener.filter({ job: "file:decryptAction" }, (configure) => {
   );
 });
 
-async function acknowledgeJob(jobId: string, info: string, progress: number) {
+async function acknowledgeJob(jobId, info, progress) {
   await api.jobs.ack(jobId, {
     info,
     progress,
   });
 }
 
-async function completeJob(jobId: string, message: string) {
+async function completeJob(jobId, message) {
   await api.jobs.complete(jobId, {
     outcome: {
       message,
@@ -362,7 +362,7 @@ async function completeJob(jobId: string, message: string) {
   });
 }
 
-async function failJob(jobId: string, message: string) {
+async function failJob(jobId, message) {
   await api.jobs.fail(jobId, {
     outcome: {
       message,
