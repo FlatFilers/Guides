@@ -10,19 +10,11 @@ For synchronous data import/exchange completed in one session, create a new Spac
 
 <Snippet file="shared/pk_needed.mdx" />
 
-### Check for proper `guestAuthentication`
+<Snippet file="shared/guestauth.mdx" />
 
-<Info>
-  You can skip this if you've not manually created a new Environment in your
-  Account.
-</Info>
+## Prepare your project
 
-The Space you'll create must have `guestAuthentication` configured with `shared_link` as an
-option. This is inherited from the Environment you're working in.
-
-This comes standard on any out of the box Environments so you shouldn't have to do anything unless you made a new Environment. If so, update your Environment to include if `shared_link` isn't there.
-
-## 1. Review or create your package.json
+### Review or create your package.json
 
 1. Make sure you have the `@flatfile/javascript` packages at minimum in your package.json. You can also copy this exactly and use a Parcel bundler as a starting point if you want to start from a fresh repo.
 2. Once complete, run `npm install` from your terminal.
@@ -56,7 +48,7 @@ This comes standard on any out of the box Environments so you shouldn't have to 
 }
 ```
 
-## 2. Review or create file structure
+### Review or create file structure
 
 Setup your app to look something like this:
 
@@ -78,7 +70,9 @@ The `public` directory contains the "index.html" file, which is the entry point 
 
 The `src` directory contains the main components and logic of the application, including the "client.js" file, which initializes Flatfile and passes in available options.
 
-## 3. Add a Flatfile button and start your client
+## Build your importer
+
+### 1. Add a Flatfile button and start your client
 
 1. Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
 2. Next, start your front end by heading to terminal and `npm start`
@@ -123,7 +117,7 @@ The `src` directory contains the main components and logic of the application, i
 ```
 </CodeGroup>
 
-## 4. initializeFlatfile()
+### 2. initializeFlatfile()
 
 Import `@flatfile/javascript` to initialize Flatfile. Pass it any [options](../overview#shared-properties).
 
@@ -143,7 +137,7 @@ window.openFlatfile = (publishableKey) => {
 };
 ```
 
-## 5. Start your event listener
+### 3. Start your event listener
 
 When the “Open Flatfile” button is clicked on your platform, it triggers a job event within the Space domain that initiates a configure operation. This operation is analogous to performing a POST request to the endpoint /api/v1/spaces with the parameter autoconfigure set to true.
 
