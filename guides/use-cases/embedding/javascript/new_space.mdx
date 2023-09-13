@@ -1,0 +1,178 @@
+---
+title: "Embed a new Space"
+description: "Create a new Space every time Flatfile is opened."
+icon: "plus"
+---
+
+For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+
+## Before you begin
+
+<Snippet file="shared/pk_needed.mdx" />
+
+<Snippet file="shared/guestauth.mdx" />
+
+## Prepare your project
+
+### Review or create your package.json
+
+1. Make sure you have the `@flatfile/javascript` packages at minimum in your package.json. You can also copy this exactly and use a Parcel bundler as a starting point if you want to start from a fresh repo.
+2. Once complete, run `npm install` from your terminal.
+
+```json package.json
+{
+  "name": "",
+  "version": "",
+  "description": "",
+  "scripts": {
+    "start": "parcel public/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@flatfile/javascript": "0.1.1",
+    "parcel": "2.8.3"
+  },
+  "devDependencies": {
+    "@parcel/resolver-default": "^2.9.3",
+    "buffer": "^5.7.1",
+    "crypto-browserify": "^3.12.0",
+    "events": "^3.3.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "url": "^0.11.1"
+  }
+}
+```
+
+### Review or create file structure
+
+Setup your app to look something like this:
+
+```
+- public
+  |__ index.html
+  |__ style.css
+
+- src
+  |__ client.js
+
+- package.json
+- package-lock.json
+```
+
+In this file structure, your app should have two main directories, `public` and `src.`
+
+The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+
+The `src` directory contains the main components and logic of the application, including the "client.js" file, which initializes Flatfile and passes in available options.
+
+## Build your importer
+
+### 1. Add a Flatfile button
+
+Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
+
+<CodeGroup>
+```html public/index.html (snippet)
+<button onclick="openFlatfile('pk_1234')">
+    Create new Space
+</button>
+```
+```html public/index.html (full page)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, world!</title>
+    <script type="module" src="../src/client.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h2><code>&lt;Flatfile /&gt;</code></h2>
+        <p>Embed Flatfile in just a few lines of code.</p>
+
+        <!-- Button to trigger the modal -->
+        <div>
+          <button
+            class="contrast"
+            onclick="openFlatfile('pk_1234')"
+          >
+            Create new Space
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
+```
+</CodeGroup>
+
+### 2. Start your client
+
+Start your front end by heading to terminal and `npm start`. To see that it’s running, visit: https://localhost:1234 and you should see your page and a button.
+
+```ssh
+npm start
+```
+
+### 2. initializeFlatfile()
+
+Import `@flatfile/javascript` to initialize Flatfile. Pass it any [options](../overview#shared-properties).
+
+<Note>Note: Only `publishableKey` is required.</Note>
+
+```js src/client.js
+import { initializeFlatfile } from "@flatfile/javascript";
+
+//create a new space in modal
+window.openFlatfile = (publishableKey) => {
+  const flatfileOptions = {
+    publishableKey,
+    closeSpace: {
+      operation: "contacts:submit",
+      onClose: () => setShowSpace(false),
+    },
+    // Additional props...
+  };
+
+  initializeFlatfile(flatfileOptions);
+};
+```
+
+### 3. Start an event listener
+
+When you click the Flatfile button in your platform, this will initiate a job event that can be observed by an event listener. This listener, in turn, constructs your Space on the Flatfile server. You can start by using a predefined event listener, and modify your schema and actions as necessary in the future.
+
+1. Clone the [getting-started Github repo](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main)
+2. Rename `.env.example` to `.env` and update to your creds
+3. Run these commands:
+
+```ssh
+npm install
+npm run dev
+```
+
+4. Click the Flatfile button in your client. A new Space should have been created.
+5. Now, make adjustments to your Workbook and action to suit your needs, then `npm run deploy` to host your listener code on the Flatfile server.
+
+## Example Project
+
+Find the Javascript example project in the Flatfile GitHub repository.
+
+<CardGroup cols={1}>
+  <Card
+    title="create-flatfile-javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-javascript"
+  >
+    Clone the Flatfile Javascript tutorial here.
+  </Card>
+</CardGroup>

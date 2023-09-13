@@ -108,8 +108,23 @@
           "icon": "person-to-portal",
           "pages": [
             "guides/use-cases/embedding/overview",
-            "guides/use-cases/embedding/javascript/guide",
-            "guides/use-cases/embedding/react/guide"
+            {
+              "group": "Javascript",
+              "icon": "js",
+              "pages": [
+                "guides/use-cases/embedding/javascript/guide",
+                "guides/use-cases/embedding/javascript/new_space",
+                "guides/use-cases/embedding/javascript/reuse_space"
+              ]
+            },
+            {
+              "group": "React",
+              "icon": "react",
+              "pages": [
+                "guides/use-cases/embedding/react/guide",
+                "guides/use-cases/embedding/react/new_space"
+              ]
+            }
           ]
         },
         "guides/use-cases/headless",
