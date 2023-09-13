@@ -4,27 +4,32 @@ description: Securely and easily build an embedded Flatfile import experience in
 icon: "list-check"
 ---
 
-## Install the package
-
-If you already have a project, install Embed React from the npm/yarn public registry.
-
-<CodeGroup>
-
-```npm npm
-npm install @flatfile/react@latest
-# expects "16.0.0" or greater
-```
-
-```yarn yarn
-yarn add @flatfile/react@latest
-# expects "16.0.0" or greater
-```
-
-</CodeGroup>
-
 ## Choose your path
 
 First, decide if you want to start from scratch or work backwards from an existing project. Then, you'll encounter the choice of creating a new Space for each initialization or reusing an existing Space.
+
+### Start from an example project <small>\*recommended</small>
+
+Clone a full React example project in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="flatfile-nextjs"
+    icon="react"
+    href="https://github.com/FlatFilers/flatfile-nextjs"
+  >
+    Clone the Flatfile Next.js tutorial here. This shows both creating a new
+    Space and reusing an existing Space when Flatfile is opened.
+  </Card>
+  <Card
+    title="create-flatfile-react"
+    icon="react"
+    href="https://github.com/FlatFilers/create-flatfile-react"
+  >
+    Clone the Flatfile create-react-app tutorial here. This shows creating a new
+    Space when Flatfile is opened.
+  </Card>
+</CardGroup>
 
 ### Start from scratch
 
@@ -36,30 +41,13 @@ These Guides will walk you through setting up an embedded Flatfile Space from be
     session, create a new Space each time Flatfile is opened. This suits
     situations where a clean slate for every interaction is preferred.
   </Card>
-  <Card title="Reuse an existing Space" icon="clock">
-    **Coming soon** Choose this when users might need to wait or can't finish in
-    one go. It's great for keeping work context and letting users continue where
-    they left off until the task is done.
-  </Card>
-</CardGroup>
-
-### Start from an example project
-
-Clone a full React example project in the Flatfile GitHub repository.
-
-<CardGroup cols={2}>
   <Card
-    title="flatfile-nextjs"
-    icon="react"
-    href="https://github.com/FlatFilers/flatfile-nextjs"
+    title="Reuse an existing Space"
+    icon="recycle"
+    href="../react/reuse_space"
   >
-    Clone the Flatfile Next.js tutorial here.
-  </Card>
-  <Card
-    title="create-flatfile-react"
-    icon="react"
-    href="https://github.com/FlatFilers/create-flatfile-react"
-  >
-    Clone the Flatfile create-react-app tutorial here.
+    Choose this when users might need to wait or can't finish in one go. It's
+    great for keeping work context and letting users continue where they left
+    off until the task is done.
   </Card>
 </CardGroup>

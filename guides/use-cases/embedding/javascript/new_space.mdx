@@ -72,11 +72,9 @@ The `src` directory contains the main components and logic of the application, i
 
 ## Build your importer
 
-### 1. Add a Flatfile button and start your client
+### 1. Add a Flatfile button
 
-1. Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
-2. Next, start your front end by heading to terminal and `npm start`
-3. To see that it’s running, visit: https://localhost:1234 and you should see your page and a button.
+Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
 
 <CodeGroup>
 ```html public/index.html (snippet)
@@ -117,6 +115,14 @@ The `src` directory contains the main components and logic of the application, i
 ```
 </CodeGroup>
 
+### 2. Start your client
+
+Start your front end by heading to terminal and `npm start`. To see that it’s running, visit: https://localhost:1234 and you should see your page and a button.
+
+```ssh
+npm start
+```
+
 ### 2. initializeFlatfile()
 
 Import `@flatfile/javascript` to initialize Flatfile. Pass it any [options](../overview#shared-properties).
@@ -139,22 +145,15 @@ window.openFlatfile = (publishableKey) => {
 
 ### 3. Start your event listener
 
-When the “Open Flatfile” button is clicked on your platform, it triggers a job event within the Space domain that initiates a configure operation. This operation is analogous to performing a POST request to the endpoint /api/v1/spaces with the parameter autoconfigure set to true.
+When you click the Flatfile button in your platform, it initiates a job event that can be observed by an event listener. This listener, in turn, constructs your Space on the Flatfile server. You can start by using a predefined event listener, and modify your schema and actions as necessary in the future.
 
-In this step, we'll kickstart an event listener where you'll listen for that job and configure your Space on the fly.
-
-Follow [this guide](../../../../guides/dynamic-configurations) to dynamically configure a new Space to your liking.
-
-<Info>
-  If you don't want to do this part yet, you can also [reuse a demo
-  Space](../javascript/reuse_space) and simply pass that info in.
-</Info>
+1. Clone the [getting-started Github repo](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main).
 
 ## Example Project
 
 Find the Javascript example project in the Flatfile GitHub repository.
 
-<CardGroup cols={2}>
+<CardGroup cols={1}>
   <Card
     title="create-flatfile-javascript"
     icon="js"
