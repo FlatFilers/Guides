@@ -4,6 +4,44 @@ description: "Additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## September 8, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-extractor-___`
+
+    All extractors have been fine-tuned to seamlessly handle extractions within a job, allowing the plugin more time to complete the extraction with less risk of the Agent timing out.
+
+    Additionally, we've resolved a bug that was causing extractions to falsely indicate completion when running in parallel, ensuring extraction truly finishes before signaling completion.
+
+    </div>
+
+  </div>
+  
+</div>
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+    `@flatfile/plugin-autocast@0.2.2`
+
+
+    Dates that were cast to a UTC string using the autocast plugin were showing as invalid after transformation. A fix for this was added to version 0.2.2.
+
+    [Learn more](../plugins/transform/autocast).
+
+    </div>
+
+  </div>
+  
+</div>
+
 ## September 1, 2023
 
 <div style={{ display: "table", width: "auto" }}>
@@ -17,8 +55,10 @@ icon: "plug"
 
     In the most recent update, we’ve introduced some exciting enhancements. You can now implement an optional `fieldFilter` to specify which fields autocast should operate on.
 
-    Check out the example below:
-    `listener.use(autocast({ sheetSlug: 'bar' }, ['numberField', 'dateField']))`
+    Check it out:
+    ```jsx
+    listener.use(autocast({ sheetSlug: 'bar' }, ['numberField', 'dateField']))
+    ```
 
     [Learn more](../plugins/transform/autocast).
 

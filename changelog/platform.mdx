@@ -4,6 +4,207 @@ description: "Additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## September 8, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Documents in the sidebar are now organized based on their creation date. This enhancement helps developers have more control the order of their Documents.
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      If you have access to multiple Spaces, you'll notice a dropdown menu at the top left corner of each Space. Previously, there was an issue where all the data within the Space would update correctly, except for Workbooks/Sheets in the sidebar. This issue has been successfully resolved.
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      2 new Demo spaces were added: Documents & Theming. In these demo Spaces, you'll learn how to:
+      1. Add Markdown + HTML Documents to your Space
+      2. Customize the look and feel of Flatfile to match your brand
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+
+      We've extended the `job:ready` timeout to 10 minutes, aligning it with the extractor timeout. This adjustment provides more time for all jobs running within an Agent.
+      </div>
+
+  </div>
+
+</div>
+
+## September 6, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      **New Job Outcome Acknowledgements**
+
+      **`acknowledge: false`**
+
+      ![image](../changelog/images/outcome_modal.png)
+
+      By default, job outcomes are reported through a toast notification in the top-right corner. To utilize this, simply set `outcome => message`. This approach ensures that your job completion status is promptly communicated to the end user.
+
+      **`acknowledge: true`**
+
+      ![image](../changelog/images/outcome_fullscreen.png)
+
+      When the `acknowledge` option is configured as `true`, a persistent full-screen modal is presented. This modal remains visible until the user interacts by clicking the "Continue" button, acknowledging the outcome.
+
+      **Usage**
+
+      ```jsx
+      await api.jobs.complete(jobId, {
+        outcome: {
+          acknowlege: true,
+          message:
+            "Text here.",
+        },
+      });
+      ```
+
+      This enhancement provides flexibility in how you choose to inform users about job outcomes. [Learn more](http://flatfile.com/docs/guides/actions#usage).
+
+      </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+        **Enhanced Job Outcomes with Next Action Links**
+
+      Job outcomes have been upgraded to support `next` action links. Now, you can display links to external URLs, Flatfile resources, or trigger downloads upon job completion.
+
+      **Usage**
+        <CodeGroup>
+        ```jsx listener
+        await api.jobs.complete(jobId, {
+          outcome: {
+            next: IdNext | WaitNext | UrlNext | DownloadNext,
+            message:
+              "Text here.",
+          },
+        });
+        ```
+        ```jsx Types
+        type IdNext = {
+          type: 'id' //link to a Flatfile resource
+          id: string
+        }
+
+        type WaitNext = {
+          type: 'wait' //only used in embedded Flatfile
+        }
+
+        type UrlNext = {
+          type: 'url' //display a link to an external url
+          url: string
+          label: string
+        }
+
+        type DownloadNext = {
+          type: 'download' // display and trigger a download
+          url: string
+          fileName: string
+          label: string
+        }
+        ```
+        </CodeGroup>
+
+      This improvement adds versatility and flexibility to your job outcomes, enhancing user interaction and experience. [Learn more](http://flatfile.com/docs/guides/actions#usage).
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+        **Enhanced Action Button Behavior**
+
+        ![image](../changelog/images/disabled_actions.png)
+
+       Two key enhancements to Actions have been introduced:
+
+        **Disable Actions When Invalid Records**: Developers can now add an optional `requireAllValid` flag to Actions, preventing users from initiating Actions when Sheets or Workbooks contain invalid records. This helps avoid unnecessary job failures and ensures Actions are performed on valid data.
+
+        **Disable Actions When No Selected Records:** To enhance the user experience, we've introduced the `requireSelection` flag. When set to `true`, this flag disables Actions if no records are selected in the Sheet or Workbook, ensuring Actions are only triggered when relevant data is chosen.
+
+
+      [Learn more](http://flatfile.com/docs/concepts/actions#optional-parameters).
+
+      </div>
+
+  </div>
+
+</div>
+
 ## September 1, 2023
 
 <div style={{ display: "table", width: "auto" }}>

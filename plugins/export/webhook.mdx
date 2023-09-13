@@ -1,0 +1,81 @@
+---
+title: "@flatfile/plugin-webhook-egress"
+description: "A plugin for egressing data from a Flatfile Workbook to a webhook."
+icon: "download"
+---
+
+<CardGroup cols={1}>
+  <Card title="@flatfile/plugin-webhook-egress" icon="download">
+    <br />
+    The `@flatfile/plugin-webhook-egress` plugin egresses Flatfile Workbooks to a
+    webhook.
+    <br />
+    <br />
+    **Event Type:**
+    <br />
+    `listener.on('{jobParam}')` (i.e. `listener.on('workbook:submitActionFg')`)
+  </Card>
+</CardGroup>
+
+## Parameters
+
+<ParamField path="job" type="string" required>
+  The `job` parameter takes the job name.
+</ParamField>
+
+<ParamField path="webhookUrl" type="string">
+  The `webhookUrl` parameter takes the webhook url.
+</ParamField>
+
+## Imported NPM Packages
+
+- [`@flatfile/api@1.5.14+`](https://www.npmjs.com/package/@flatfile/api)
+- [`@flatfile/listener@0.3.15+`](https://www.npmjs.com/package/@flatfile/listener)
+- [`@flatfile/plugin-job-handler@0.1.1+`](https://www.npmjs.com/package/@flatfile/plugin-job-handler)
+- [`@flatfile/util-common@0.1.1+`](https://www.npmjs.com/package/@flatfile/util-common)
+- [`axios@1.4.0+`](https://www.npmjs.com/package/axios)
+
+## Usage
+
+The `webhookEgress` plugin creates an action that will export workbook data via a webhook.
+It requires an operation parameter which specifies the event that will initiate the egress. The
+webhook url can either be passed in as a parameter or set as an environment variable `WEBHOOK_SITE_URL`.
+
+```SSH install
+npm i @flatfile/plugin-webhook-egress
+```
+
+```ts import
+import { webhookEgress } from "@flatfile/plugin-webhook-egress";
+```
+
+![workbook_actions_primary](https://github.com/FlatFilers/Guides/assets/19697744/c747495a-19e9-4333-88f3-e94239cfe47b)
+
+```ts workbook.config.json
+  // ... inside Workbook configuration
+  "actions": [
+    {
+      operation: 'submitActionFg',
+      mode: 'foreground',
+      label: 'Send to...',
+      type: 'string',
+      description: 'Submit this data to a webhook.',
+      primary: true,
+    }
+  ]
+  // ...
+```
+
+```ts listener.js
+listener.use(webhookEgress("workbook:submitActionFg"));
+```
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-webhook-egress"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/webhook-egress"
+    icon="github"
+  ></Card>
+</CardGroup>
