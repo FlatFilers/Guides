@@ -157,6 +157,29 @@ await api.jobs.complete(jobId, {
 <br/>
 <Warning>If a translation key is missing from your `translation.json` file, the system will display the key itself as a fallback. Therefore, it's encouraged to always have a default language translation available to avoid showing raw keys to the users.</Warning>
 
+## Translating Your Documents
+The same logic that applies to Actions also applies to your documents. 
+
+<CodeGroup>
+```jsx .../locales/en/translating.json
+
+{
+  "myDocument": {
+    "title": "Your first Space!"
+    "body": "# Welcome ### Say hello to your first Space in the new Flatfile!"
+  }
+}
+```
+```jsx listener.js
+
+export default function flatfileEventListener(listener: Client) {
+  await api.documents.create(spaceId, {
+    title: "myDocument.title",
+    body: "myDocument.body"
+  });
+}
+```
+</CodeGroup>
 ### Guidelines for Creating JSON Keys
 
 When creating JSON keys, adhere to the following guidelines:
