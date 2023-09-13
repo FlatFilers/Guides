@@ -5,17 +5,33 @@ icon: "language"
 ---
 
 Tailor the language and text in your Flatfile Space with ease! This guide will lead you step-by-step to allow you to both translate and personalize the text in your space in just a couple of simple steps.
+## Adding translations
+### Creating your translation files
 
-## Setting Up Language Paths
+All our translation files are can be found in our [Platform-Translations repository](https://github.com/FlatFilers/Platform-Translations).
+You can fork the repo or simply copy paste the files in the repository to create your own translation files. 
+
+Simply update the values in each file with the text you would like to see.
+
+Once you have created your own translation files, you need to make them available to Flatfile. This is done via the translationsPath property.
+
+<Tip>
+While creating your JSON translation files, you can opt for partial or full JSON objects:
+
+ **Partial JSON Objects:** Just include those values you want to change. Be sure to maintain the same JSON structure to avoid errors.
+
+**Full JSON Objects:** Copy the translation file from our public repository and modify the values as required.
+</Tip>
+
+### Setting your Translations Path
 To provide translations and text overrides you can use the translationsPath parameter. You have the flexibility to set up translationsPaths at two levels:
-- **Space-Level:** Overrides the environment level setting.
-- **Environment-Level:** Used when no space-level path is defined.
-
-### Creating Your TranslationsPath
+- **Space:** Overrides the environment level setting.
+- **Environment:** Used when no space-level path is defined.
 
 Your `translationsPath` must meet a few requirements to work as expected:
-1. It must be a string that directs to a publicly available URL hosting your JSON translation files.
-2. It must follow this folder structure:
+1. It must be a string. 
+2. The string should be a publicly available URL that returns your JSON translation file.
+3. It must follow this folder structure:
     ```
     yourCustomTranslationsDirectory/
         └── locales/
@@ -26,24 +42,26 @@ Your `translationsPath` must meet a few requirements to work as expected:
             ...
     ```
     where `yourCustomTranslationsDirectory` can be swapped out for any path desired.
-  3. Set your translationsPath to the path to your english json translation file. Don't have an english file? Just use any other language.
-
-
-**Want to see how we did it?** 
-
-Check our public [repository here](https://github.com/FlatFilers/Platform-Translations).
-For our repository we would use the following translationsPath: 
-`https://raw.githubusercontent.com/FlatFilers/Platform-Translations/main/locales/en/translation.json`
-
+  
+<Info>
+Set your translationsPath to the path to your **english JSON URL**. Don't have an english file? You can use any other language instead.
+</Info>
 <Tip>
-While creating your JSON translation files, you can opt for partial or full JSON objects:
- **Partial JSON Objects:** Maintain the JSON structure to avoid errors. Update only the values you wish to change.
-**Full JSON Objects:** Copy the translation file from our public repository and modify the values as required.
+For our translations repository we would set our translationsPath to: https://raw.githubusercontent.com/FlatFilers/Platform-Translations/main/locales/en/translation.json
 </Tip>
+### Implementing Translations Path
 
-## Implementing Translations Path
+Set up your translations path using our API or the listener. This can be done at both the space and environment levels.
 
-Set up your translations path using API or the listener, both at the space and environment levels.
+```jsx
+await api.spaces.update(spaceId, {
+  translationsPath: 'https://raw.githubusercontent.com/FlatFilers/Platform-Translations/main/locales/en/translation.json'
+});
+```
+
+<Info>
+Currently we only offer translations and text overrides for the guest experience within your spaces. These means there will be admin only areas that are not currently customizable. 
+</Info>
 
 ## Available Languages
 
@@ -58,10 +76,10 @@ We support translations into these languages for now:
 
 <Tip>Need more languages? Reach out to us at [support@flatfile.io](mailto:support@flatfile.io).</Tip>
 
-## Adding Regional Dialects
+### Adding Regional Dialects
 
 We automatically support regional dialects for every language supported above. 
-To ensure a seamless user experience, always include a base file for each language (e.g., 'en', 'es', 'fr'), which will serve as a fallback for users from regions not specified in your translations list.
+To ensure a seamless user experience, always include a base file for each language (e.g., 'en', 'es', 'fr'), which will serve as a fallback for users from regions not specified in your translations repository.
 
 Extend your customization by setting up directories for different dialects as illustrated below:
 
@@ -73,7 +91,104 @@ yourTranslationsDirectory/
         │   └── translation.json
         ├── en-US/
         │   └── translation.json
+        ├── es/
+        │   └── translation.json
         ...
 ```
 
----
+
+## Translating Your Custom Actions and Jobs
+
+You can translate your own custom text used in your Actions.
+ 
+Simply add the new keys to your translation.json file:
+```json .../locales/en/translation.json
+{
+  "mySubmitAction": {
+    "label": "Submit",
+    "description": "Done editing the data? Hit submit to send your data",
+    "tooltip": "Submit your data",
+    "outcome": {
+      "heading": "Successful import!",
+      "message": "All data has been submitted! You can now click the link below.",
+      "urlLabel": "Return to the homepage" 
+    }
+  }
+}
+```
+Then instead of hardcoding strings directly into your action scripts, use JSON translation keys. Refer to these keys in your script as shown below:
+<CodeGroup>
+```jsx sheet.js
+sheets : [
+  {
+    name: "Sheet Name",
+    actions: [
+      {
+        operation: 'Submit',
+        mode: 'foreground',
+        label: 'mySubmitAction.label',
+        type: 'string',
+        description: 'mySubmitAction.description',
+        primary: true,
+        tooltip: 'mySubmitAction.tooltip'
+      },
+      {...}
+    ]
+  }
+]
+
+```
+
+```jsx listener.js
+await api.jobs.complete(jobId, {
+  outcome: {
+    heading: 'mySubmitAction.outcome.heading',
+    message: 'mySubmitAction.outcome.message',
+    next: {
+      type: 'url',
+      url: 'https://myHomepage.com',
+      label: 'mySubmitAction.outcome.label',
+            },
+  },
+});
+```
+</CodeGroup>
+
+<br/>
+<Warning>If a translation key is missing from your `translation.json` file, the system will display the key itself as a fallback. Therefore, it's encouraged to always have a default language translation available to avoid showing raw keys to the users.</Warning>
+
+### Guidelines for Creating JSON Keys
+
+When creating JSON keys, adhere to the following guidelines:
+
+- **Alphanumeric Keys**: Ensure keys consist of alphanumeric characters to prevent issues with parsing.
+- **Nested Structure**: Utilize at least one level of nesting (e.g., `key1.key2`) to organize translations effectively and maintain readability.
+- **Avoid Whitespace and Control Characters**: Refrain from using spaces, newlines, or tabs in your JSON keys to avoid potential issues.
+
+<Info>
+Always validate your `translation.json` file to ensure it follows the correct JSON format to prevent errors during runtime.
+</Info>
+
+
+## Example Project
+
+Find the Localization example in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="typescript"
+    icon="code-merge"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/theming/index.ts"
+  >
+    Clone the Localization example in Typescript
+  </Card>
+  <Card
+    title="javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/theming/index.js"
+  >
+    Clone the Localization example in Javascript
+  </Card>
+</CardGroup>
+
+
