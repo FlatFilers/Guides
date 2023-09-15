@@ -5,6 +5,11 @@ icon: "language"
 ---
 
 Tailor the language and text in your Flatfile Space with ease! This guide will lead you step-by-step to allow you to both translate and personalize the text in your space in just a couple of simple steps.
+
+<Info>
+Flatfile will auto-detect which language to use from the users browser settings! If the users language is undetectable or we dont currently support it, we will fallback to english.
+</Info>
+
 ## Adding translations
 ### Creating your translation files
 
@@ -99,7 +104,7 @@ yourTranslationsDirectory/
         │   └── translation.json
         ...
 ```
-
+<Info>We automatically determine which language to display based on the users browser settings.</Info>
 
 ## Translating Your Custom Actions and Jobs
 
@@ -202,14 +207,14 @@ Find the Localization example in the Flatfile GitHub repository.
   <Card
     title="typescript"
     icon="code-merge"
-    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/theming/index.ts"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/localization/index.ts"
   >
     Clone the Localization example in Typescript
   </Card>
   <Card
     title="javascript"
     icon="js"
-    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/theming/index.js"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/localization/index.js"
   >
     Clone the Localization example in Javascript
   </Card>
