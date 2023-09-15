@@ -261,6 +261,10 @@
     {
       "group": "Utils",
       "pages": ["plugins/utils/extractor", "plugins/utils/file-buffer"]
+    },
+    {
+      "group": "How to build...",
+      "pages": ["plugins/how-to-build/extractors"]
     }
   ],
   "footerSocials": {
