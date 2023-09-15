@@ -1,0 +1,242 @@
+---
+title: "Reuse an existing Space"
+description: "Reuse a Space when Flatfile is opened."
+icon: "recycle"
+---
+
+Reuse a Space when users might need to wait or can't finish in one go. It's great for keeping work context and letting users continue where they left off until the task is done.
+
+## Before you begin
+
+To reuse an existing Space, we'll update our files to pass in a Space Id instead of a `publishableKey`. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
+
+<Snippet file="shared/sk_needed.mdx" />
+
+<Snippet file="shared/guestauth.mdx" />
+
+<CodeGroup>
+
+```npm npm
+npm install @flatfile/api@latest dotenv express cors parcel
+```
+
+```yarn yarn
+yarn add @flatfile/api@latest dotenv express cors parcel
+```
+
+</CodeGroup>
+
+## Prepare your project
+
+### Review or create your package.json
+
+1. Make sure you have the following packages (`dotenv express cors parcel`) and the new server script at minimum in your package.json.
+2. Once complete, run `npm install` from your terminal.
+
+```json package.json
+{
+  "name": "",
+  "version": "",
+  "description": "",
+  "scripts": {
+    "start": "parcel public/index.html",
+    "server": "node src/server.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "@flatfile/api": "1.5.15",
+    "@flatfile/javascript": "0.1.1",
+    "cors": "^2.8.5",
+    "express": "4.18.2",
+    "parcel": "2.8.3"
+  },
+  "devDependencies": {
+    "@parcel/resolver-default": "^2.9.3",
+    "buffer": "^5.7.1",
+    "crypto-browserify": "^3.12.0",
+    "events": "^3.3.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "url": "^0.11.1"
+  }
+}
+```
+
+### Review or create file structure
+
+Setup your app to look something like this:
+
+```
+- public
+  |__ index.html
+  |__ style.css
+
+- src
+  |__ client.js
+  |__ server.mjs
+
+- package.json
+- package-lock.json
+
+- .env
+```
+
+### Update your .env
+
+Make sure you have your `secretKey` and `spaceId` in your .env file.
+
+```json .env
+SECRET_KEY=sk_1234
+BASE_URL=https://platform.flatfile.com/api
+SPACE_ID=us_sp_123
+```
+
+## Build your importer
+
+### 1. Add a Flatfile button
+
+Add a button to your application to open Flatfile in a modal. Note that nothing needs to be passed into the function.
+
+<CodeGroup>
+```html public/index.html
+<button class="contrast" onclick="openFlatfile()">Open existing Space</button>
+```
+
+```html public/index.html (full page)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, world!</title>
+    <script type="module" src="../src/client.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h2><code>&lt;Flatfile /&gt;</code></h2>
+        <p>Embed Flatfile in just a few lines of code.</p>
+
+        <!-- Button to trigger the modal -->
+        <div>
+          <button class="contrast" onclick="openExistingFlatfileSpace()">
+            Open existing Space
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+```
+
+</CodeGroup>
+
+### 2. Start your client
+
+Start your front end by heading to your terminal running `npm start`. To see that it's running, visit: https://localhost:1234 and you should see your button.
+
+```ssh
+npm start
+```
+
+### 3. initializeFlatfile()
+
+Import `@flatfile/javascript` to initialize Flatfile. Then, retrieve information about your Flatfile space from your server. Last, pass it any [options](../overview#shared-properties).
+
+<Note>Note: Only `space` is required.</Note>
+
+```js src/client.js
+import { initializeFlatfile } from "@flatfile/javascript";
+
+const server_url = "http://localhost:8080";
+
+//open existing space in modal
+window.openExistingFlatfileSpace = () => {
+  fetch(server_url + "/space") // Make a request to the server endpoint
+    .then((response) => response.json())
+    .then((space) => {
+      const flatfileOptions = {
+        space: {
+          id: space && space.data && space.data.id,
+          accessToken: space && space.data && space.data.accessToken,
+        },
+        closeSpace: {
+          operation: "contacts:submit",
+          onClose: () => setShowSpace(false),
+        },
+        //additional options
+      };
+      initializeFlatfile(flatfileOptions);
+    })
+    .catch((error) => {
+      console.error("Error retrieving space in client:", error);
+    });
+};
+```
+
+### 4. Create and start server
+
+1. Create a basic Express.js server that will retrieve your Space data from the Flatfile API.
+2. Now, run the server by heading to your terminal and open a new tab. To see that it's running, visit: https://localhost:8080 and you should see _Hello, World!_
+
+```ssh
+npm run server
+```
+
+```js src/server.mjs
+import dotenv from "dotenv";
+import express from "express";
+import { FlatfileClient } from "@flatfile/api";
+import cors from "cors"; // Import the cors module
+
+dotenv.config();
+
+const app = express();
+const port = 8080;
+
+const flatfile = new FlatfileClient({
+  token: process.env.SECRET_KEY,
+  environment: process.env.BASE_URL + "/v1",
+});
+
+// Enable CORS middleware
+app.use(cors());
+
+app.get("/", (req, res) => {
+  res.send("Hello, world!");
+});
+
+app.get("/space", async (req, res) => {
+  try {
+    const space = await flatfile.spaces.get(process.env.SPACE_ID);
+    res.json(space);
+  } catch (error) {
+    console.error("Error retrieving space:", error);
+    res.status(500).json({ error: "Failed to retrieve space" });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+```
+
+## Example Project
+
+Find the Javascript example project in the Flatfile GitHub repository.
+
+<CardGroup cols={1}>
+  <Card
+    title="create-flatfile-javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-javascript"
+  >
+    Clone the Flatfile Javascript tutorial here.
+  </Card>
+</CardGroup>
