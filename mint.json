@@ -114,7 +114,11 @@
               "pages": [
                 "guides/use-cases/embedding/javascript/guide",
                 "guides/use-cases/embedding/javascript/new_space",
-                "guides/use-cases/embedding/javascript/reuse_space"
+                {
+                  "group": "Advanced",
+                  "icon": "settings",
+                  "pages": ["guides/use-cases/embedding/javascript/reuse_space"]
+                }
               ]
             },
             {
@@ -125,7 +129,14 @@
                 "guides/use-cases/embedding/react/new_space"
               ]
             },
-            "guides/use-cases/embedding/reference"
+            {
+              "group": "Reference",
+              "icon": "asterisk",
+              "pages": [
+                "guides/use-cases/embedding/reference/common",
+                "guides/use-cases/embedding/reference/advanced"
+              ]
+            }
           ]
         },
         "guides/use-cases/headless",

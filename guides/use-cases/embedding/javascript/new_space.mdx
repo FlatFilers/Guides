@@ -18,11 +18,11 @@ For synchronous data import/exchange completed in one session, create a new Spac
 
 Follow prompts from the `init` command, then install packages. (We'll use `parcel` for bundling.) Once complete, run `npm install` from your terminal.
 
-```ssh
+```bash
 mkdir example-flatfile-js-embed
 cd example-flatfile-js-embed
 npm init
-npm i @flatfile/javascript @flatfile/listener @flatfile/plugin-record-hook
+npm i @flatfile/javascript @flatfile/listener @flatfile/plugin-record-hook @flatfile/api flatfile
 npm i parcel --save-dev
 ```
 
@@ -31,24 +31,22 @@ npm i parcel --save-dev
 Setup your app to look something like this:
 
 ```
-- public
-  |__ index.html
-  |__ styles.css
-
-- src
-  |__ client.js
-  |__ workbook.js
-  |__ listener.js
-
-- package.json (already created)
-- package-lock.json (already created)
+├── public/
+   └── index.html
+   └── styles.css
+├── src/
+   └── client.js
+   └── workbook.js
+   └── listener.js
+├── package.json <--- already created
+└── package-lock.json <--- already created
 ```
 
 In this file structure, your app should have two main directories, `public` and `src.`
 
-The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
 
-The `src` directory contains the main components and logic of the application, including the "client.js" file, which initializes Flatfile and passes in available options.
+The `src` directory contains the main components and logic of the application, including the `client.js` file, which initializes Flatfile and passes in available options.
 
 ## Build your importer
 
@@ -99,153 +97,7 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 </html>
 ```
 
-```css public/styles.css
-/* Styles for home page */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background: #090b2b;
-  color: #fff;
-}
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.content {
-  /* Adjust the width and height as needed */
-  width: 800px;
-  height: 200px;
-  padding: 0 20px 0 50px;
-}
-
-.contrast {
-  padding: 10px;
-  margin: 10px 5px 0 0;
-  border-radius: 4px;
-  border: 0;
-  font-weight: 600;
-  cursor: pointer;
-}
-/* End of styles for home page */
-
-:root {
-  --ff-primary-color: red !important;
-  --ff-secondary-color: #616a7d !important;
-  --ff-text-color: #090b2b !important;
-  --ff-dialog-border-radius: 4px !important;
-  --ff-border-radius: 5px !important;
-  --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
-}
-
-/* The default mount element */
-/* #flatfile_iFrameContainer {
-} */
-
-/* A div around the iframe that contains Flatfile */
-/* .flatfile_iframe-wrapper {
-} */
-
-/* The actual iframe that contains Flatfile */
-/* #flatfile_iframe {
-} */
-
-/* Begin style overrides for when Flatfile is displayed as a modal */
-
-/* This class gets appended to the flatfile_iframe-wrapper div */
-.flatfile_displayAsModal {
-  padding: 50px !important;
-  width: calc(100% - 100px) !important;
-  height: calc(100vh - 100px) !important;
-}
-
-.flatfile_iframe-wrapper.flatfile_displayAsModal {
-  background: var(--ff-bg-fade);
-}
-
-/* The close button in top right to close modal */
-/* .flatfile_displayAsModal .flatfile_close-button {
-} */
-
-/* The icon for the close button in top right to close modal */
-.flatfile_displayAsModal .flatfile_close-button svg {
-  fill: var(--ff-secondary-color);
-}
-
-/* The actual iframe that contains Flatfile */
-.flatfile_displayAsModal #flatfile_iframe {
-  border-radius: var(--ff-border-radius);
-}
-
-/* Begin style overrides for when you cancel out of the Flatfile modal */
-
-/* The outer container of the modal that opens when you cancel out of Flatfile */
-.flatfile_outer-shell {
-  background-color: var(--ff-bg-fade);
-  border-radius: var(--ff-border-radius);
-}
-
-/* The inner container of the modal that opens when you cancel out of Flatfile */
-/* .flatfile_inner-shell {
-} */
-
-/* The white box inside the modal that opens when you cancel out of Flatfile */
-.flatfile_modal {
-  border-radius: var(--ff-dialog-border-radius);
-}
-
-/* The container for the buttons you see in the close modal */
-/* .flatfile_button-group {
-} */
-
-/* Style the buttons you see in the close modal */
-/* .flatfile_button {
-} */
-
-/* The "yes, cancel" button you see in the close modal */
-.flatfile_primary {
-  border: 1px solid var(--ff-primary-color);
-  background-color: var(--ff-primary-color);
-  color: #fff;
-}
-
-/* The "no, stay" button you see in the close modal */
-.flatfile_secondary {
-  color: var(--ff-secondary-color);
-}
-
-/* The heading text you see in the close modal */
-.flatfile_modal-heading {
-  color: var(--ff-text-color);
-}
-
-/* The description text you see in the close modal */
-.flatfile_modal-text {
-  color: var(--ff-secondary-color);
-}
-
-/* End style overrides for when you cancel out of the Flatfile modal */
-
-/* End style overrides for when Flatfile is displayed as a modal */
-
-/* The container of the error component */
-/* .ff_error_container {
-}*/
-
-/* The heading text you see in the error component */
-/* .ff_error_heading {
-}*/
-
-/* The description text you see in the error component */
-/* .ff_error_text {
-}*/
-```
+<Snippet file="shared/iframeStyles.mdx" />
 
 </CodeGroup>
 
@@ -280,251 +132,11 @@ window.openFlatfile = ({ publishableKey, environmentId }) => {
 
 Now, start your front end by heading to terminal and running the following command. To see that it’s running, visit: https://localhost:1234 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
 
-```ssh
+```bash
 npx parcel public/index.html
 ```
 
-### 4. Build a Workbook
-
-Now, let's build a Workbook inside the Space for next time.
-
-1. Update your `workbook.js` with this simple Blueprint.
-2. Update `client.js` to import the Workbook.
-
-Next time you open Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. Your Workbook will also have a Submit action. We will configure this action in the next step.
-
-<CodeGroup>
-```js src/workbook.js
-export const workbook = {
-  name: "All Data",
-  labels: ["pinned"],
-  sheets: [
-    {
-      name: "Contacts",
-      slug: "contacts",
-      fields: [
-        {
-          key: "firstName",
-          type: "string",
-          label: "First Name",
-        },
-        {
-          key: "lastName",
-          type: "string",
-          label: "Last Name",
-        },
-        {
-          key: "email",
-          type: "string",
-          label: "Email",
-        },
-      ],
-    },
-  ],
-  actions: [
-    {
-      operation: "submitActionFg",
-      mode: "foreground",
-      label: "Submit foreground",
-      description: "Submit data to webhook.site",
-      primary: true,
-    },
-  ],
-};
-```
-
-```js src/client.js
-import { initializeFlatfile } from "@flatfile/javascript";
-import { workbook } from "./workbook";
-
-//create a new space in modal
-window.openFlatfile = ({ publishableKey, environmentId }) => {
-  if (!publishableKey && !environmentId) {
-    throw new Error(
-      "You must provide a publishable key and an environment ID - pass through in index.html"
-    );
-  }
-
-  const flatfileOptions = {
-    publishableKey,
-    environmentId,
-    workbook,
-    sidebarConfig: {
-      showSidebar: false,
-    },
-    // Additional props...
-  };
-
-  initializeFlatfile(flatfileOptions);
-};
-```
-
-</CodeGroup>
-
-### 5. Transform and Validate Data
-
-Next, we'll listen for data changes and respond using an event listener.
-
-1. Update your `listener.js` with this simple `recordHook`.
-2. Update `client.js` to import the listener.
-
-Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../../guides/handling-data)
-
-<CodeGroup>
-
-```jsx src/listener.js
-import { FlatfileListener } from "@flatfile/listener";
-import { recordHook } from "@flatfile/plugin-record-hook";
-
-export const listener = FlatfileListener.create((listener) => {
-  listener.on("**", (event) => {
-    console.log("Event =>", event);
-  });
-
-  listener.use(
-    recordHook("contacts", (record) => {
-      const firstName = record.get("firstName");
-      console.log({ firstName });
-      record.set("lastName", "Rock");
-      return record;
-    })
-  );
-});
-```
-
-```js src/client.js
-import { initializeFlatfile } from "@flatfile/javascript";
-import { listener } from "./listener";
-import { workbook } from "./workbook";
-
-//create a new space in modal
-window.openFlatfile = ({ publishableKey, environmentId }) => {
-  if (!publishableKey && !environmentId) {
-    throw new Error(
-      "You must provide a publishable key and an environment ID - pass through in index.html"
-    );
-  }
-
-  const flatfileOptions = {
-    publishableKey,
-    environmentId,
-    workbook,
-    listener,
-    sidebarConfig: {
-      showSidebar: false,
-    },
-    // Additional props...
-  };
-
-  initializeFlatfile(flatfileOptions);
-};
-```
-
-</CodeGroup>
-
-### 6. Match your brand colors
-
-By attaching a `themeConfig` to `flatfileOptions` in `src/client.js`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../../guides/theming).
-
-```jsx src/client.js (snippet)
-const flatfileOptions = {
-  publishableKey,
-  environmentId,
-  workbook,
-  listener,
-  sidebarConfig: {
-    showSidebar: false,
-  },
-  themeConfig: {
-    primaryColor: "red",
-    textColor: "white",
-    logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
-  },
-  // Additional props...
-};
-```
-
-### 7. Configure a Submit Action
-
-Finally, let's get the data out.
-
-1. We'll add a new `listener.filter({ job: "workbook:submitActionFg" })` to listen for a button click and egress data to your destination.
-2. Add a `closeSpace` prop to tell the importer when it's complete (when the submit button is clicked).
-
-<CodeGroup>
-
-```jsx src/listener.js
-import api from "@flatfile/api";
-import { FlatfileListener } from "@flatfile/listener";
-import { recordHook } from "@flatfile/plugin-record-hook";
-
-export const listener = FlatfileListener.create((listener) => {
-  listener.on("**", (event) => {
-    console.log("Event =>", event);
-  });
-
-  listener.use(
-    recordHook("contacts", (record) => {
-      const firstName = record.get("firstName");
-      console.log({ firstName });
-      record.set("lastName", "Rock");
-      return record;
-    })
-  );
-
-  listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
-    configure.on("job:ready", async ({ context: { jobId } }) => {
-      try {
-        await api.jobs.ack(jobId, {
-          info: "Getting started.",
-          progress: 10,
-        });
-
-        // Make changes after cells in a Sheet have been updated
-        console.log("Make changes here when an action is clicked");
-
-        await api.jobs.complete(jobId, {
-          outcome: {
-            message: "This job is now complete.",
-          },
-        });
-      } catch (error) {
-        console.error("Error:", error.stack);
-
-        await api.jobs.fail(jobId, {
-          outcome: {
-            message: "This job encountered an error.",
-          },
-        });
-      }
-    });
-  });
-});
-```
-
-```jsx src/client.js
-const flatfileOptions = {
-  publishableKey,
-  environmentId,
-  workbook,
-  listener,
-  sidebarConfig: {
-    showSidebar: false,
-  },
-  themeConfig: {
-    primaryColor: "red",
-    textColor: "white",
-    logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
-  },
-  closeSpace: {
-    operation: "contacts:submit",
-    onClose: () => {},
-  },
-  // Additional props...
-};
-```
-
-</CodeGroup>
+<Snippet file="shared/embedded_listener_basic.mdx" />
 
 ## Example Project
 

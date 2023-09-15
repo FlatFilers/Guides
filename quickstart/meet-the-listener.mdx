@@ -53,21 +53,18 @@ Listeners are the basic building block of Flatfile logic. They span from simple 
 ```terminal
 git clone https://github.com/FlatFilers/getting-started.git
 ```
+
 2. Create a .env and update it with your secret key. This file should look like:
 
 ```terminal
   FLATFILE_API_KEY=sk_1234
 ```
 
-3. To start a local listener, run one of the following from the root folder of the getting-started directory: 
+3. To start a local listener, run one of the following from the root folder of the getting-started directory:
 
 <CodeGroup>
-```terminal
-npx flatfile@latest develop javascript/index.js
-```
-```terminal
-npx flatfile@latest develop typescript/index.ts
-```
+  ```terminal npx flatfile@latest develop javascript/index.js ``` ```terminal
+  npx flatfile@latest develop typescript/index.ts ```
 </CodeGroup>
 
 <Note>
@@ -80,7 +77,7 @@ npx flatfile@latest develop typescript/index.ts
 
 4. Finally, return to your terminal to see how those Events were logged.
 
-```ssh Console
+```bash Console
 > getting-started % npx flatfile@latest develop typescript/index.ts
 ✔ 1 environment(s) found for these credentials
 ✔ Environment "development" selected
@@ -97,6 +94,7 @@ Received event: records:updated
  ↳ on(**, {})
  ↳ on(commit:created, {"sheetSlug":"contacts"})
 ```
+
 ---
 
 ## Recap & Next Steps
