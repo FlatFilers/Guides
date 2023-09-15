@@ -6,203 +6,169 @@ icon: "asterisk"
 
 All wrapper SDKs take the following shared properties. It's recommended to start with the defaults in the Guides, then come back here to make customizations.
 
-## URL Overrides
+## Common
 
-URL Overrides enable you to connect with the Flatfile API from a different location, whether for specialized security measures or integration purposes. These properties enable this functionality.
-
-### apiUrl
-
-<ParamField
-  path="apiUrl"
-  type="string"
-  default="https://platform.flatfile.com/api"
->
-  The endpoint used to interact with the Flatfile API
-</ParamField>
-
-### spaceUrl
-
-<ParamField path="spaceUrl" type="string" default="https://spaces.flatfile.com">
-  The URL for accessing the Flatfile Spaces API.
-</ParamField>
-
-## New Spaces
+### New Spaces
 
 While setting up embedded Flatfile, you have the option to either establish a fresh Space during each initialization or reuse an existing Space. These properties specifically apply when you're in the process of crafting a new Space.
 
-### publishableKey
+#### publishableKey
 
 <ParamField path="publishableKey" type="string" required>
   Publishable key accessed via Flatfile dashboard > Developer settings.
 </ParamField>
 
-### name
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  //additional props
+};
+```
+
+#### name
 
 <ParamField path="name" type="string" required>
   Name of the space
 </ParamField>
 
-### spaceBody
+```typescript src/client.js
+const flatfileOptions = {
+  name,
+  //additional props
+};
+```
+
+#### spaceBody
 
 <ParamField path="spaceBody" type="object">
-  Pass in space options to configure a new Space. [Learn More](#spacebody-2)
+  Pass in space options to configure a new Space.
 </ParamField>
 
-### userInfo
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  //additional props, see Create Space endpoint for all the full list of properties (https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space)
+  spaceBody: {
+    name: "New Space",
+    namespace: "Red",
+  },
+};
+```
+
+#### userInfo
 
 <ParamField
   path="userInfo"
   type="{ userId: string, name: string, companyId: string, companyName: string }"
 >
-  Additional metadata to be passed to the space
+  Additional metadata to be passed to the space as it's created
 </ParamField>
 
-## Reusing Spaces
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  userInfo: {
+    userId: "string",
+    name: "string",
+    companyId: "string",
+    companyName: "string",
+  },
+};
+```
 
-During the configuration of embedded Flatfile, you have the flexibility to either reuse an existing Space or generate a new one. These properties come into play when you're working with an already established Space.
+### Client-Side Setup
 
-### space
+These options are available when configuring your Space client-side.
 
-<ParamField path="space" type="{id: string, accessToken: string}" required>
-  Using your secret key, you'll make a request to a server endpoint to retrieve
-  an `accessToken`. [See the full tutorial](../embedding/javascript/reuse_space)
-</ParamField>
-
-## Configuration
-
-These properties allow you to configure how the importer is mounted, displayed, and closed.
-
-### closeSpace
-
-<ParamField
-  path="closeSpace"
-  type="operation: string, onClose: (data: any) => void"
->
-  Options for when to close the iframe and a callback function when the session
-  is complete. [Learn More](#closespace-2)
-</ParamField>
-
-### displayAsModal
-
-<ParamField path="displayAsModal" type="boolean" default="true">
-  Display Flatfile as a full screen modal or inline on the page. [Learn
-  more](#displayasmodal-2)
-</ParamField>
-
-### mountElement
-
-<ParamField
-  path="mountElement"
-  type="string"
-  default="flatfile_iFrameContainer"
->
-  The element Flatfile will mount to. (Will create if it doesn't already exist.)
-</ParamField>
-
-## Styling
-
-These properties give you control over the styling and verbiage of the SDK wrapper components that exist on top of the Flatfile importer.
-
-### loading
-
-<ParamField path="loading" type="ReactElement">
-  Loading element to override default Loading component [Learn More](#loading-2)
-</ParamField>
-
-### exitTitle
-
-<ParamField path="exitTitle" type="string" default="Close Window">
-  The title on the dialog that appears when exiting out of Flatfile.
-</ParamField>
-
-### exitText
-
-<ParamField path="exitText" type="string" default="See below">
-  The text on the dialog that appears when exiting out of Flatfile.
-
-Default: "Are you sure you would like to close this window? This will end your current data import session."
-
-</ParamField>
-
-### exitPrimaryButtonText
-
-<ParamField path="exitPrimaryButtonText" type="string" default="Yes, exit">
-  The text on the dialog primary button that appears when exiting out of
-  Flatfile.
-</ParamField>
-
-### exitSecondaryButtonText
-
-<ParamField path="exitPrimaryButtonText" type="string" default="No, stay">
-  The text on the dialog secondary button that appears when exiting out of
-  Flatfile.
-</ParamField>
-
-### errorTitle
-
-<ParamField path="errorTitle" type="string" default="Something went wrong">
-  The title on the dialog that appears when an unexpected error occurs when
-  loading Flatfile. Note: the error dialog will also include error details
-  regarding the error that occurred.
-</ParamField>
-
-### iframe styles
-
-Override the styling of the components Flatfile iframe, like the exit dialog and the dialog wrapper. [Learn more](#iframe-styles-2)
-
-<Note>
-  Theming withiin the Flatfile application is done in your listener
-  [here](../../../guides/theming).
-</Note>
-
-## Client-Side Setup
-
-The primary way to configure Flatfile is by setting up a server-side listener that monitors when a Space is opened or created. Alternatively, you can create a browser-based listener. This listener can operate alongside a server-side counterpart or independently. These options are available for configuring the client-side server setup.
-
-### workbook
-
-<ParamField path="workbook" type="object">
-  Config of the workbook to be created [Learn More](#part-1-build-a-workbook)
-</ParamField>
-
-### environmentId
+#### environmentId
 
 <ParamField path="environmentId" type="string" required>
   Identifier for environment. You only need this to create a Workbook
   client-side.
 </ParamField>
 
-### listener
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  environmentId,
+  //additional props
+};
+```
+
+#### workbook
+
+<ParamField path="workbook" type="object">
+  Config of the workbook to be created
+</ParamField>
+
+```typescript src/client.js
+const myWorkbook = {
+  // see Blueprint
+};
+
+const flatfileOptions = {
+  publishableKey,
+  environmentId,
+  workbook: myWorkbook,
+  //additional props
+};
+```
+
+#### listener
 
 <ParamField path="listener" type="Listener">
-  Event listener for responding to Events. [Learn More](#part-2-handle-events)
+  Event listener for responding to Events.
 </ParamField>
 
-### themeConfig
+```typescript src/client.js
+const myListener = {
+  // listener code
+};
+
+const flatfileOptions = {
+  publishableKey,
+  environmentId,
+  listener: myListener,
+  //additional props
+};
+```
+
+#### themeConfig
 
 <ParamField path="themeConfig" type="object">
-  Theme values for space, sidebar and data table [Learn more](#themeconfig-2)
+  Theme values for space, sidebar and data table
 </ParamField>
 
-### sidebarConfig
+Theme your Space to create a custom look and feel to match your brand using the actual CSS variables referenced in the app. See all options in our [Theming Reference](../../../guides/theming).
 
-<ParamField path="sidebarConfig" type="object">
-  Sidebar config values to toggle UI elements [Learn more](#sidebarconfig-2)
+```typescript src/client.js
+const theme = {
+  // see theming reference
+};
+
+const flatfileOptions = {
+  publishableKey,
+  environmentId,
+  themeConfig: theme,
+  //additional props
+};
+```
+
+### Configuration
+
+These properties allow you to configure how the importer is mounted, displayed, and closed.
+
+#### closeSpace
+
+<ParamField
+  path="closeSpace"
+  type="operation: string, onClose: (data: any) => void"
+>
+  Options for when to close the iframe and a callback function when the session
+  is complete.
 </ParamField>
 
-### document
-
-<ParamField path="document" type="object">
-  Document to pass to space [Learn More](#document-2)
-</ParamField>
-
-## Deep Dive
-
-Learn more about shared properties and how to use them.
-
-### closeSpace
-
-```typescript
+```typescript src/client.js
 const flatfileOptions = {
   publishableKey,
   //additional props
@@ -215,9 +181,191 @@ const flatfileOptions = {
 
 This `onClose` callback function is called when the Action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
 
-### loading
+#### displayAsModal
 
-We provide a default loading state when the Space is loading. You can also pass a custom loading component using the `loading` prop.
+<ParamField path="displayAsModal" type="boolean" default="true">
+  Display Flatfile as a full screen modal or inline on the page.
+</ParamField>
+
+Toggling off this property will update the wrapper css to make the iframe fully inline thereby hiding the close button. All of the child divs will no longer include: `.flatfile_displayAsModal` which removes all the dialog styling.
+
+The default width and height of the container can be overriden in `style.css`.
+
+<CodeGroup>
+
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  displayAsModal: false,
+  //additional props
+};
+```
+
+```css public/styles.css
+.flatfile_iframe-wrapper {
+  min-width: 768px;
+  min-height: 600px;
+  width: 992px;
+  height: 600px;
+}
+```
+
+</CodeGroup>
+
+#### mountElement
+
+<ParamField
+  path="mountElement"
+  type="string"
+  default="flatfile_iFrameContainer"
+>
+  The element Flatfile will mount to. (Will create if it doesn't already exist.)
+</ParamField>
+
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  mountElement: "flatfile_hello",
+  //additional props
+};
+```
+
+#### sidebarConfig
+
+<ParamField path="sidebarConfig" type="object">
+  Sidebar config values to toggle UI elements
+</ParamField>
+
+Within the sidebar, you can set the default page, hide or show the sidebar, and hide or show the data checklist.
+
+<Note>
+  If multiple values are provided for defaultPage, it with prioritize in the
+  following order: Sheet, Workbook, Document, Checklist.
+</Note>
+
+```typescript sidebarConfig
+const mySidebarConfig = {
+  showSidebar: false,
+  showDataChecklist: false,
+  defaultPage: {
+    workbook: {
+      workbookId: "123",
+      sheetId: "123",
+    },
+  },
+};
+
+const flatfileOptions = {
+  sidebarConfig: mySidebarConfig,
+  publishableKey,
+  environmentId,
+  workbook,
+};
+```
+
+| Property            | Type                                                                                                 | Description                                                                                                                                                                     |
+| ------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `defaultPage`       | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string }, checklist?: boolean  }` | Landing page upon loading a Space. Defaults to primary Workbook.                                                                                                                |
+| `showDataChecklist` | `boolean`                                                                                            | Toggle data config for Space. Defaults to false.                                                                                                                                |
+| `showSidebar`       | `boolean`                                                                                            | Determines if a guest can see the sidebar. If the sidebar is hidden and there are multiple Workbooks in your Space, please specify the desired Workbook ID as your defaultPage. |
+
+#### document
+
+<ParamField path="document" type="object">
+  Document to pass to space
+</ParamField>
+
+[Documents](../../../guides/documents), written in Markdown, provide extra clarification and instructions to users of
+a Space. Each Document will appear in the sidebar of a Space. Standard syntax is
+supported.
+
+<CodeGroup>
+
+```typescript src/client.js
+const mainDocument = {
+  title: "Getting Started",
+  body:
+    "![Shop](https://coconut.show/logo-big.png)\n" +
+    "\\\n" +
+    "&nbsp;\n" +
+    "\n" +
+    "---\n" +
+    "\n" +
+    "# Welcome to the Surf Shop!\n" +
+    "\n" +
+    "Please upload your contacts to the Surf Shop using the Files menu on the left.\n",
+};
+
+const flatfileOptions = {
+  publishableKey,
+  document: mainDocument,
+  //additional props
+};
+```
+
+</CodeGroup>
+
+## Advanced
+
+### Reusing Spaces
+
+During the configuration of embedded Flatfile, you have the flexibility to either reuse an existing Space or generate a new one. These properties come into play when you're working with an already established Space.
+
+#### space
+
+<ParamField path="space" type="{id: string, accessToken: string}" required>
+  Using your secret key, you'll make a request to a server endpoint to retrieve
+  an `accessToken`. [See the full tutorial](../embedding/javascript/reuse_space)
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  space: { id: string, accessToken: string },
+  //additional props
+};
+```
+
+### Overrides
+
+#### apiUrl
+
+<ParamField
+  path="apiUrl"
+  type="string"
+  default="https://platform.flatfile.com/api"
+>
+  The endpoint used to interact with the Flatfile API
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  apiUrl: "",
+  //additional props
+};
+```
+
+#### spaceUrl
+
+<ParamField path="spaceUrl" type="string" default="https://spaces.flatfile.com">
+  The URL for accessing the Flatfile Spaces API.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  spaceUrl: "",
+  //additional props
+};
+```
+
+#### loading
+
+<ParamField path="loading" type="ReactElement">
+  A default loading state when the Space is loading. Optionally, you can
+  override the default Loading component.
+</ParamField>
 
 ```typescript
 const LoadingComponent = () => <label>Loading data...</label>;
@@ -228,14 +376,90 @@ const flatfileOptions = {
 };
 ```
 
-### iframe Styles
+#### exitTitle
 
-The CSS here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog, the error container, and the dialog wrapper. This css can go in your `style.css` in your `public` folder. Remember to use `!important` to override values.
+<ParamField path="exitTitle" type="string" default="Close Window">
+  The title on the dialog that appears when exiting out of Flatfile.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  exitTitle: "",
+  //additional props
+};
+```
+
+#### exitText
+
+<ParamField path="exitText" type="string" default="See below">
+  The text on the dialog that appears when exiting out of Flatfile.
+
+Default: "Are you sure you would like to close this window? This will end your current data import session."
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  exitText: "",
+  //additional props
+};
+```
+
+</ParamField>
+
+#### exitPrimaryButtonText
+
+<ParamField path="exitPrimaryButtonText" type="string" default="Yes, exit">
+  The text on the dialog primary button that appears when exiting out of
+  Flatfile.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  exitPrimaryButtonText: "",
+  //additional props
+};
+```
+
+#### exitSecondaryButtonText
+
+<ParamField path="exitPrimaryButtonText" type="string" default="No, stay">
+  The text on the dialog secondary button that appears when exiting out of
+  Flatfile.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  exitSecondaryButtonText: "",
+  //additional props
+};
+```
+
+#### errorTitle
+
+<ParamField path="errorTitle" type="string" default="Something went wrong">
+  The title on the dialog that appears when an unexpected error occurs when
+  loading Flatfile. Note: the error dialog will also include error details
+  regarding the error that occurred.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  errorTitle: "",
+  //additional props
+};
+```
+
+#### iframe styles
 
 <Note>
-  Theming the Flatfile application is done in your listener
-  [here](../../../guides/theming).
+  Theming withiin the Flatfile application is done in an event listener.
 </Note>
+
+The CSS here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog, the error container, and the dialog wrapper. This css can go in your `style.css` in your `public` folder. Remember to use `!important` to override values.
 
 ```css public/style.css
 :root {
@@ -349,313 +573,3 @@ The CSS here is for styling how you want things to look outside of the Flatfile 
 /* .ff_error_text {
 }*/
 ```
-
-### displayAsModal
-
-Toggling off this property will update the wrapper css to make the iframe fully inline thereby hiding the close button. All of the child divs will no longer include: `.flatfile_displayAsModal` which removes all the dialog styling.
-
-The default width and height of the container can be overriden in `style.css`.
-
-```css style.css
-.flatfile_iframe-wrapper {
-  min-width: 768px;
-  min-height: 600px;
-  width: 992px;
-  height: 600px;
-}
-```
-
-### spaceBody
-
-Optionally, you can pass in additional properties on the Space as it's created.
-
-```typescript
-const flatfileOptions = {
-  publishableKey,
-  //additional props, see Create Space endpoint for all the full list of properties (https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space)
-  spaceBody: {
-    name: "New Space",
-    namespace: "Red",
-  },
-};
-```
-
-### userInfo
-
-Optionally, you can pass in additional user properties on the Space as it's created.
-
-```typescript
-const flatfileOptions = {
-  publishableKey,
-  userInfo: {
-    userId: "string",
-    name: "string",
-    companyId: "string",
-    companyName: "string",
-  },
-};
-```
-
-### listener
-
-#### Part 1: Build a Workbook
-
-Create a Workbook to configure your Space.
-
-```js src/config.ts
-import { Flatfile } from "@flatfile/api";
-
-export const config: Pick<
-  Flatfile.CreateWorkbookConfig,
-  "name" | "sheets" | "actions"
-> = {
-  name: "Employees workbook",
-  sheets: [
-    {
-      name: "Contacts",
-      slug: "Contacts",
-      fields: [
-        {
-          key: "first_name",
-          type: "string",
-          label: "First name",
-          constraints: [
-            {
-              type: "required",
-            },
-          ],
-        },
-        {
-          key: "last_name",
-          type: "string",
-          label: "last name",
-          constraints: [
-            {
-              type: "unique",
-            },
-          ],
-        },
-        {
-          key: "full_name",
-          type: "string",
-          label: "full name",
-        },
-      ],
-    },
-  ],
-  actions: [
-    {
-      label: "Submit",
-      operation: "contacts:submit",
-      description: "Would you like to submit your workbook?",
-      mode: "foreground",
-      primary: true,
-      confirm: true,
-    },
-  ],
-};
-```
-
-#### Part 2: Handle Events
-
-In the event listener below, we will use Flatfile's record hook plugin to automatically re-format, correct, validate, and enrich data during the data import process.
-
-First, download the `recordHook` plugin from npm.
-
-```
-npm i @flatfile/plugin-record-hook
-```
-
-#### Part 3: Build the listener
-
-Since we have a defined "Submit" action in our Workbook, next we utilize the Event listener to determine the method by which we want to submit records.
-
-<Warning>
-  While a client-side listener will be able to handle a lot of the interaction
-  and updates in the browser, there may be operations it can't perform due to
-  these limitations. For tasks that need to access server resources or
-  capabilities, a server-side listener will also be required. [Learn
-  more](../../../developer-tools/client_server_side)
-</Warning>
-
-```js src/listener.ts
-import { recordHook } from "@flatfile/plugin-record-hook";
-import api from "@flatfile/api";
-import { FlatfileListener } from "@flatfile/listener";
-
-async function submit(jobId: string) {
-  await api.jobs.ack(jobId, {
-    info: "I'm starting the job - inside client",
-    progress: 33,
-  });
-
-  // hit your api here
-  await new Promise((res) => setTimeout(res, 2000));
-
-  await api.jobs.complete(jobId, {
-    info: "Job's work is done",
-    outcome: { next: { type: "wait" } },
-  });
-}
-
-/**
- * Example Listener
- */
-
-export const listener = FlatfileListener.create((client) => {
-  // Lowercases the first_name field
-  client.use(
-    recordHook("Contacts", (record) => {
-      const value = record.get("first_name");
-      if (typeof value === "string") {
-        record.set("first_name", value.toLowerCase());
-      }
-      return record;
-    })
-  );
-  // Waits for the submit button to be clicked
-  client.on(
-    "job:ready",
-    // @ts-ignore
-    { payload: { operation: "contacts:submit" } },
-    async (event: any) => {
-      const { context } = event;
-      return submit(context.jobId);
-    }
-  );
-});
-```
-
-### document
-
-[Documents](../../../guides/documents), written in Markdown, provide extra clarification and instructions to users of
-a Space. Each Document will appear in the sidebar of a Space. Standard syntax is
-supported.
-
-<CodeGroup>
-
-```typescript documentConfig
-const mainDocument = {
-  title: "Getting Started",
-  body:
-    "![Shop](https://coconut.show/logo-big.png)\n" +
-    "\\\n" +
-    "&nbsp;\n" +
-    "\n" +
-    "---\n" +
-    "\n" +
-    "# Welcome to the Surf Shop!\n" +
-    "\n" +
-    "Please upload your contacts to the Surf Shop using the Files menu on the left.\n",
-};
-```
-
-```typescript Example passed to useSpace hook
-const space = useSpace({
-  publishableKey,
-  environmentId,
-  document: mainDocument,
-  workbook,
-});
-```
-
-</CodeGroup>
-
-### sidebarConfig
-
-Within the sidebar, you can set the default page, hide or show the sidebar, and hide or show the data checklist.
-
-<Note>
-  If multiple values are provided for defaultPage, it with prioritize in the
-  following order: Sheet, Workbook, Document, Checklist.
-</Note>
-
-<CodeGroup>
-```typescript sidebarConfig
-const mySidebarConfig = {
-  showSidebar: false,
-  showDataChecklist: false,
-  defaultPage: {
-    workbook: {
-      workbookId: "123",
-      sheetId: "123",
-    },
-  },
-};
-```
-
-```typescript Example passed to useSpace hook
-const space = useSpace({
-  sidebarConfig: mySidebarConfig,
-  publishableKey,
-  environmentId,
-  workbook,
-});
-```
-
-</CodeGroup>
-
-| Property            | Type                                                                                                 | Description                                                                                                                                                                     |
-| ------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `defaultPage`       | `{ documentId?: string, workbook?: { workbookId: string, sheetId?: string }, checklist?: boolean  }` | Landing page upon loading a Space. Defaults to primary Workbook.                                                                                                                |
-| `showDataChecklist` | `boolean`                                                                                            | Toggle data config for Space. Defaults to false.                                                                                                                                |
-| `showSidebar`       | `boolean`                                                                                            | Determines if a guest can see the sidebar. If the sidebar is hidden and there are multiple Workbooks in your Space, please specify the desired Workbook ID as your defaultPage. |
-
-### themeConfig
-
-Theme your Space to create a custom look and feel to match your brand.
-
-There are two ways to define your theme, depending on how much control you want, using `makeTheme` or manual css overrides.
-
-#### Option 1: makeTheme
-
-The `makeTheme` helper function generates a theme based on a primary color, text color, and logo. Different shades of the provided colors are generated and applied programmatically to create a cohesive visual style.
-
-For more fine-grained control of individual shades, use manual CSS overrides.
-
-```typescript
-const theme = makeTheme({
-  primaryColor: "red",
-  textColor: "white",
-  logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
-});
-
-const space = useSpace({
-  themeConfig: theme,
-  publishableKey,
-  environmentId,
-  workbook,
-});
-```
-
-`makeTheme` options
-
-| Prop           | Type     | Description         | Required |
-| -------------- | -------- | ------------------- | -------- |
-| `primaryColor` | `string` | Primary brand color | no       |
-| `textColor`    | `string` | Text color          | no       |
-| `logo`         | `string` | full url to logo    | no       |
-
-<Tip>
-  `makeTheme` accepts valid color values in the following formats: name, rgb,
-  hsv, hex.
-</Tip>
-
-#### Option 2: Manual CSS overrides
-
-If you prefer to set colors manually using the actual CSS variables referenced in the app, you can construct the theme yourself using our [Theming Reference](../../../guides/theming).
-
-```typescript
-const theme = {
-  // see theming reference
-};
-
-const space = useSpace({
-  themeConfig: theme,
-  publishableKey,
-  environmentId,
-  workbook,
-});
-```
-
-##

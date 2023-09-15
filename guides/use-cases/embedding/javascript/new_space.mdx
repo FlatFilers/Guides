@@ -297,7 +297,12 @@ const flatfileOptions = {
 
 ### 7. Configure a Submit Action
 
-Finally, let's get the data out. We'll add a new listener to egress data to your destination.
+Finally, let's get the data out.
+
+1. We'll add a new `listener.filter({ job: "workbook:submitActionFg" })` to listen for a button click and egress data to your destination.
+2. Add a `closeSpace` prop to tell the importer when it's complete (when the submit button is clicked).
+
+<CodeGroup>
 
 ```jsx src/listener.js
 import { FlatfileListener } from "@flatfile/listener";
@@ -347,6 +352,30 @@ export const listener = FlatfileListener.create((listener) => {
   });
 });
 ```
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  environmentId,
+  workbook,
+  listener,
+  sidebarConfig: {
+    showSidebar: false,
+  },
+  themeConfig: {
+    primaryColor: "red",
+    textColor: "white",
+    logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+  },
+  closeSpace: {
+    operation: "contacts:submit",
+    onClose: () => {},
+  },
+  // Additional props...
+};
+```
+
+</CodeGroup>
 
 ## Example Project
 
