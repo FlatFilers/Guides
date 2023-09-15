@@ -31,6 +31,7 @@ This code defines a shared utility used in Flatfile Extractor plugins for data e
 
 - The `Extractor` function is the main entry point of the utility. It takes three parameters:
   - `fileExt`: A string or regular expression representing the file extension(s) to be processed.
+  - `extractorType`: A string representing the type of extractor. This is used to identify the extractor Job.
   - `parseBuffer`: A callback function that processes the file buffer and returns a `WorkbookCapture`.
   - `options`: An optional object containing additional configuration options for data extraction.
     - `options.chunkSize`: Specifies the quantity of Records per chunk. Default value is `3000`.

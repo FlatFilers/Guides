@@ -1,0 +1,98 @@
+## Introduction
+
+An extractor allows you to extract data from a source file into a Flatfile Sheet. This guide will walk you through the process of building an Extractor.
+
+## Prerequisites
+
+- A [Flatfile Platform](https://platform.flatfile.com) account
+- NPM v18+
+
+## Getting Started
+
+1. Create a new directory for your extractor:
+
+```bash
+mkdir my-extractor
+```
+
+2. Change directories:
+
+```bash
+cd my-extractor
+```
+
+3. Create a new Node.js project:
+
+```bash
+npm init -y
+```
+
+4. Install the Flatfile listener package:
+
+```bash
+npm install @flatfile/listener --save
+```
+
+5. Install the Flatfile utility extractor package:
+
+```bash
+npm install @flatfile/util-extractor --save
+```
+
+6. Create a new file called `extractor.js` to contain your extractor code:
+
+```ts extractor.ts
+import { Extractor } from "@flatfile/util-extractor";
+import { parseBuffer } from "./parseBuffer";
+
+export const MyExtractor = (options: {
+  // any other options you need for your parser...
+  chunkSize?: number;
+  parallel?: number;
+  debug?: boolean;
+}) => {
+  return Extractor(".fileExt", "job-identifier", parseBuffer, options);
+};
+```
+
+The `Extractor` function takes the following arguments:
+
+- `fileExtension`: The file extension that your extractor will handle. It can either be a `string` or a `RegExp`.
+- `jobIdentifier`: A unique identifier for your extractor
+- `parseBuffer`: A function that takes a `Buffer` and `options` and returns a `WorkbookCapture`
+- `options`: An object containing any additional options you need for your extractor
+
+7. Create a new file named `parseBuffer.js` and add the following code:
+
+```ts parseBuffer.ts
+export function parseBuffer(buffer: Buffer, options: ): WorkbookCapture {
+  try {
+    const fileContents = buffer.toString("utf8");
+
+    // ...your custom parse logic
+
+    return {
+      [sheetName]: {
+        headers,
+        data,
+      },
+    } as WorkbookCapture;
+  } catch (error) {
+    console.log("An error occurred:", error);
+    throw error;
+  }
+}
+```
+
+8. Create a new file named `index.js` to contain your Flatfile listener's code:
+
+```ts index.ts
+import { FlatfileListener } from "@flatfile/listener";
+import { MyExtractor } from "./extractor";
+
+export default function (listener: FlatfileListener) {
+  listener.use(MyExtractor());
+}
+```
+
+...and you're ready to extract data from your source file!
