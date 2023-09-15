@@ -14,54 +14,30 @@ For synchronous data import/exchange completed in one session, create a new Spac
 
 ## Prepare your project
 
-### Review or create your package.json
+### Install packages
 
-1. Make sure you have the `@flatfile/javascript` packages at minimum in your package.json. You can also copy this exactly and use a Parcel bundler as a starting point if you want to start from a fresh repo.
-2. Once complete, run `npm install` from your terminal.
+Follow prompts from the `init` command, then install packages. (We'll use `parcel` for bundling.) Once complete, run `npm install` from your terminal.
 
-```json package.json
-{
-  "name": "",
-  "version": "",
-  "description": "",
-  "scripts": {
-    "start": "parcel public/index.html"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@flatfile/javascript": "0.1.1",
-    "parcel": "2.8.3"
-  },
-  "devDependencies": {
-    "@parcel/resolver-default": "^2.9.3",
-    "buffer": "^5.7.1",
-    "crypto-browserify": "^3.12.0",
-    "events": "^3.3.0",
-    "os-browserify": "^0.3.0",
-    "path-browserify": "^1.0.1",
-    "process": "^0.11.10",
-    "stream-browserify": "^3.0.0",
-    "url": "^0.11.1"
-  }
-}
+```ssh
+npm init
+npm i @flatfile/javascript @flatfile/listener @flatfile/plugin-record-hook
+npm i parcel-bundler --save-dev
 ```
 
-### Review or create file structure
+### Create your file structure
 
 Setup your app to look something like this:
 
 ```
 - public
   |__ index.html
-  |__ style.css
+  |__ styles.css
 
 - src
   |__ client.js
 
-- package.json
-- package-lock.json
+- package.json (already created)
+- package-lock.json (already created)
 ```
 
 In this file structure, your app should have two main directories, `public` and `src.`
@@ -78,8 +54,11 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
 <CodeGroup>
 ```html public/index.html (snippet)
-<button onclick="openFlatfile('pk_1234')">
-    Create new Space
+<button
+  class="contrast"
+  onclick="initializeNewFlatfileSpace({ publishableKey: 'pk_1234', environmentId: 'us_env_1234' })"
+>
+  Create new Space
 </button>
 ```
 ```html public/index.html (full page)
@@ -92,6 +71,7 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
     <script type="module" src="../src/client.js"></script>
     <link rel="stylesheet" type="text/css" href="./styles.css" />
   </head>
+
   <body>
     <div class="container">
       <div class="content">
@@ -100,14 +80,16 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
         <!-- Button to trigger the modal -->
         <div>
+          <!-- Note: PUT YOUR KEY AND ENVIRONMENT_ID IN HERE -->
           <button
             class="contrast"
-            onclick="openFlatfile('pk_1234')"
+            onclick="initializeNewFlatfileSpace({ publishableKey: 'pk_1234', environmentId: 'us_env_1234' })"
           >
             Create new Space
           </button>
         </div>
       </div>
+      <div id="flatfile_iFrameContainer"></div>
     </div>
 
   </body>
@@ -117,15 +99,15 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
 ### 2. Start your client
 
-Start your front end by heading to terminal and `npm start`. To see that it’s running, visit: https://localhost:1234 and you should see your page and a button.
+Start your front end by heading to terminal and running the following command. To see that it’s running, visit: https://localhost:1234 (or the port it is running on) and you should see your page and a button.
 
 ```ssh
-npm start
+npx parcel public/index.html
 ```
 
 ### 2. initializeFlatfile()
 
-Import `@flatfile/javascript` to initialize Flatfile. Pass it any [options](../overview#shared-properties).
+In your client.js, at minimum you'll need a `publishableKey` and an `environmentId`. You can also pass it any additional [options](../reference).
 
 <Note>Note: Only `publishableKey` is required.</Note>
 
@@ -136,6 +118,7 @@ import { initializeFlatfile } from "@flatfile/javascript";
 window.openFlatfile = (publishableKey) => {
   const flatfileOptions = {
     publishableKey,
+    environmentId,
     closeSpace: {
       operation: "contacts:submit",
       onClose: () => setShowSpace(false),
