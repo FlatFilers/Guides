@@ -1,40 +1,47 @@
 ---
 title: Configure a submit Action
-description: "Learn how to create a simple submit Action in Flatfile."
+description: "Create a simple submit Action to export your data"
 icon: "circle-4"
 ---
 
-Actions refer to buttons added to the user interface that trigger <Tooltip tip="Large asynchronous work...">[Jobs](../concepts/jobs)</Tooltip> within the Flatfile platform when clicked by users. They enable you to run complex operations and streamline workflows. They are declared as part of the Blueprint that defines a Workbook.
+Inside your listener function, you can respond to any Event that occurs in the environment you're listening to.
 
-<Tip>
-  Use your [secret
-  key](../developer-tools/security/authentication#secret-and-publishable-keys)
-  from the `development` environment. Secret key format is "sk_abcd..." and is
-  found in [your Flatfile Dashboard
-  here](https://platform.flatfile.com/developers).
-</Tip>
+Your transformation and validation code is already responding to Record level Events, but a listener can respond to any Event, like the [Action](../concepts/actions) triggered by a button click.
 
-In this example, we're going to add behavior to our Workbook's primary Action (`submitAction`).
+<Note>
+  Actions are defined in your Workbook Blueprint and backed by
+  [Jobs](../concepts/jobs) in your listener.
+</Note>
 
 ### Adding behavior to the action
 
-When the button is clicked by a user, a job is created. We will [listen for that job to be ready](../concepts/events#job-ready), and our code will call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
+In this step of the tutorial, we're going to configure our Workbook's primary Action, defined in our Blueprint as the `submitAction`.
 
-1. To create the receiver, navigate to [webhook.site](https://webhook.site)
-1. Copy the value of the path after webhook.site for `Your unique URL`.
-1. Next, add the following to your default export function.
+The primary Action button is located in the upper right corner of your Workbook.
+
+INSERT SCREENSHOT HERE
+
+When this button is clicked by a user, a Job is created. We're going to listen for that `job:ready` event,
+and call out to a waiting webhook to export our data.
+
+To configure our listener to call to a webhook, let's create a webhook. We reccomend using [Webhook.site](https://webhook.site). Simply navigate to their site and copy `Your unique URL`.
+
+Now, update the value of the `WEBHOOK_SITE_URL` variable in your `.env` file with the webhook url you just copied.
 
 <Snippet file="shared/workbook_submit_pt2.mdx" />
 
-#### Testing your Action
+#### Watch your Action
 
-1. With the `develop` command still running in terminal, head to your Workbook and click the submit Action in the top right corner.
-2. In webhook.site, look at the query log and observe that the webhook received a call; this is the Action running.
+Check your listener is still running. If not, run `npx flatfile@latest develop`.
+
+Now, in your Workbook and click the "Submit" button in the top right corner.
+
+Over on your Webhook.site browser tab look at the query log and observe that the webhook received a call; this is the Action running.
 
 ---
 
 ## Next steps
 
-Congratulations! You now now have an example listener that is responding to record changes in your Workbook, and can perform simple data transformations and validations. Your Workbook also has a submit Action for getting the data out!
+Congratulations! You now now have an example listener that is performing transformations and validations in response to changes in your Workbook, and you've set up an action to export your cleaned data.
 
-To this point, we’ve been running our listener code locally using the develop command. Next, you should deploy your code.
+You've been running this listener locally while in development. Next, let's see how easy it is to [Deploy to Flatfile](../quickstart/deploying).
