@@ -58,7 +58,7 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
 <CodeGroup>
 ```html public/index.html (snippet)
- <button
+<button
   onclick="openFlatfile({ publishableKey: 'pk_1234', environmentId: 'us_env_1234' })"
 >
   Create new Space
@@ -426,7 +426,7 @@ window.openFlatfile = ({ publishableKey, environmentId }) => {
 
 By attaching a `themeConfig` to `flatfileOptions` in `src/client.js`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../../guides/theming).
 
-```jsx src/client.js
+```jsx src/client.js (snippet)
 const flatfileOptions = {
   publishableKey,
   environmentId,
