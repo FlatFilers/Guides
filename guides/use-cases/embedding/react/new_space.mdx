@@ -50,8 +50,10 @@ Setup your app to look something like this:
    └── styles.css
 ├── src/
    └── App.tsx
-   └── workbook.js
-   └── listener.js
+   └── index.tsx
+   └── workbook.ts (wait to add this)
+   └── listener.ts (wait to add this)
+├── tsconfig.json
 ├── package.json <--- already created
 └── package-lock.json <--- already created
 ```
@@ -60,13 +62,13 @@ In this file structure, your app should have two main directories, `public` and 
 
 The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
 
-The `src` directory contains the main components and logic of the application, including the `client.js` file, which initializes Flatfile and passes in available options.
+The `src` directory contains the main components and logic of the application, including the `App.tsx` file, which initializes Flatfile and passes in available options.
 
 ## Build your importer
 
 ### 1. Add a Flatfile button
 
-Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
+Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load. Also, add the content here to your `styles.css`.
 
 <CodeGroup>
 ```html public/index.html (full page)
@@ -276,7 +278,9 @@ body {
 
 ### 2. Initialize Flatfile
 
-In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey` and the `environmentId`.
+In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey` and the `environmentId`. Also, add the content here to your `index.tsx`, `tsconfig.json` and `manifest.json`.
+
+<CodeGroup>
 
 ```tsx src/App.tsx
 import React, { Dispatch, SetStateAction, useState } from "react";
@@ -297,6 +301,10 @@ const Space = ({
     ...spaceProps,
     sidebarConfig: {
       showSidebar: false,
+    },
+    closeSpace: {
+      operation: "contacts:submit",
+      onClose: () => setShowSpace(false),
     },
   });
   return space;
@@ -328,9 +336,67 @@ export default function App() {
 }
 ```
 
+```js src/index.tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+const rootElement = document.getElementById("root")!;
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  rootElement
+);
+```
+
+```json tsconfig.json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "jsx": "react",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
+```
+
+```json public/manifest.json
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+```
+
+</CodeGroup>
+
 ### 3. Start your client
 
-Now, start your front end by heading to terminal and running the following command. To see that it’s running, visit: https://localhost:3000 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
+Now, start your front end by heading to terminal and running the following command.
+
+1. You'll get an alert: We're unable to detect target browsers. Would you like to add the defaults to your package.json? Say yes.
+
+2. To see that it’s running, visit: https://localhost:3000 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
 
 ```bash
 npx react-scripts start
@@ -351,3 +417,4 @@ Find this React example project in the Flatfile GitHub repository.
     Clone the Flatfile React tutorial here.
   </Card>
 </CardGroup>
+````

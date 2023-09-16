@@ -2,7 +2,7 @@
 
 Now, let's build a Workbook inside the Space for next time.
 
-1. Update your `workbook.ts` with this simple Blueprint.
+1. Add a `src/workbook.ts` file with this simple Blueprint.
 2. Update `App.tsx` to import the Workbook.
 
 Next time you open Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. Your Workbook will also have a Submit action. We will configure this action in the next step.
@@ -74,6 +74,10 @@ const Space = ({
     sidebarConfig: {
       showSidebar: false,
     },
+    closeSpace: {
+      operation: "contacts:submit",
+      onClose: () => setShowSpace(false),
+    },
   });
   return space;
 };
@@ -110,7 +114,7 @@ export default function App() {
 
 Next, we'll listen for data changes and respond using an event listener.
 
-1. Update your `listener.ts` with this simple `recordHook`.
+1. Add a `src/listener.ts` file with this simple `recordHook`.
 2. Update `App.tsx` to import the listener.
 
 Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../../guides/handling-data)
@@ -142,31 +146,61 @@ export const listener = FlatfileListener.create((listener) => {
 ```
 
 ```tsx src/App.tsx
-import { initializeFlatfile } from "@flatfile/javascript";
-import { listener } from "./listener";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { ISpace, useSpace } from "@flatfile/react";
 import { workbook } from "./workbook";
+import { listener } from "./listener";
 
-//create a new space in modal
-window.openFlatfile = ({ publishableKey, environmentId }) => {
-  if (!publishableKey && !environmentId) {
-    throw new Error(
-      "You must provide a publishable key and an environment ID - pass through in index.html"
-    );
-  }
+const spaceProps: ISpace = {
+  name: "Embedded Space",
+  publishableKey: "pk_3dd6ee8679994ee5b421f17b91524fee",
+  environmentId: "us_env_QzZ1nMYH",
+};
 
-  const flatfileOptions = {
-    publishableKey,
-    environmentId,
+const Space = ({
+  setShowSpace,
+}: {
+  setShowSpace: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const space = useSpace({
+    ...spaceProps,
     workbook,
     listener,
     sidebarConfig: {
       showSidebar: false,
     },
-    // Additional props...
-  };
-
-  initializeFlatfile(flatfileOptions);
+    closeSpace: {
+      operation: "contacts:submit",
+      onClose: () => setShowSpace(false),
+    },
+  });
+  return space;
 };
+
+export default function App() {
+  const [showSpace, setShowSpace] = useState(false);
+
+  return (
+    <div className="content">
+      <h2>
+        <code>&lt;Flatfile /&gt;</code>
+      </h2>
+      <p>Embed Flatfile in just a few lines of code.</p>
+      {/*Button to trigger the modal */}
+      <div>
+        <button
+          className="contrast"
+          onClick={() => {
+            setShowSpace(!showSpace);
+          }}
+        >
+          {showSpace === true ? "Close" : "Open and create new"} Space
+        </button>
+        {showSpace && <Space setShowSpace={setShowSpace} />}
+      </div>
+    </div>
+  );
+}
 ```
 
 </CodeGroup>
@@ -176,11 +210,6 @@ window.openFlatfile = ({ publishableKey, environmentId }) => {
 By attaching a `themeConfig` to `flatfileOptions` in `src/App.tsx`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../../guides/theming).
 
 ```tsx src/App.tsx (snippet)
-const Space = ({
-  setShowSpace,
-}: {
-  setShowSpace: Dispatch<SetStateAction<boolean>>;
-}) => {
   const space = useSpace({
     ...spaceProps,
     workbook,
@@ -196,6 +225,10 @@ const Space = ({
         logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
       },
     },
+    closeSpace: {
+      operation: "contacts:submit",
+      onClose: () => setShowSpace(false),
+    },
   });
   return space;
 };
@@ -208,8 +241,6 @@ Finally, let's get the data out of our system and to your destination.
 1. Update your `listener.ts` with this simple submit action.
 
 Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](../../../guides/egress)
-
-<CodeGroup>
 
 ```tsx src/listener.ts
 import { FlatfileListener } from "@flatfile/listener";
@@ -262,71 +293,3 @@ export const listener = FlatfileListener.create((listener) => {
   });
 });
 ```
-
-```tsx src/App.tsx
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { ISpace, useSpace } from "@flatfile/react";
-import { workbook } from "./workbook";
-import { listener } from "./listeners/simple";
-
-const spaceProps: ISpace = {
-  name: "Embedded Space",
-  publishableKey: "pk_3dd6ee8679994ee5b421f17b91524fee",
-  environmentId: "us_env_QzZ1nMYH",
-};
-
-const Space = ({
-  setShowSpace,
-}: {
-  setShowSpace: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const space = useSpace({
-    ...spaceProps,
-    workbook,
-    listener,
-    sidebarConfig: {
-      showSidebar: false,
-    },
-    themeConfig: {
-      root: {
-        primaryColor: "red",
-      },
-      sidebar: {
-        logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
-      },
-    },
-    closeSpace: {
-      operation: "contacts:submit",
-      onClose: () => setShowSpace(false),
-    },
-  });
-  return space;
-};
-
-export default function App() {
-  const [showSpace, setShowSpace] = useState(false);
-
-  return (
-    <div className="content">
-      <h2>
-        <code>&lt;Flatfile /&gt;</code>
-      </h2>
-      <p>Embed Flatfile in just a few lines of code.</p>
-      {/*Button to trigger the modal */}
-      <div>
-        <button
-          className="contrast"
-          onClick={() => {
-            setShowSpace(!showSpace);
-          }}
-        >
-          {showSpace === true ? "Close" : "Open and create new"} Space
-        </button>
-        {showSpace && <Space setShowSpace={setShowSpace} />}
-      </div>
-    </div>
-  );
-}
-```
-
-</CodeGroup>
