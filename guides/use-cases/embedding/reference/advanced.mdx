@@ -25,38 +25,6 @@ const flatfileOptions = {
 
 ## Overrides
 
-### apiUrl
-
-<ParamField
-  path="apiUrl"
-  type="string"
-  default="https://platform.flatfile.com/api"
->
-  The endpoint used to interact with the Flatfile API
-</ParamField>
-
-```jsx src/client.js
-const flatfileOptions = {
-  publishableKey,
-  apiUrl: "",
-  //additional props
-};
-```
-
-### spaceUrl
-
-<ParamField path="spaceUrl" type="string" default="https://spaces.flatfile.com">
-  The URL for accessing the Flatfile Spaces API.
-</ParamField>
-
-```jsx src/client.js
-const flatfileOptions = {
-  publishableKey,
-  spaceUrl: "",
-  //additional props
-};
-```
-
 ### mountElement
 
 <ParamField
@@ -177,3 +145,39 @@ const flatfileOptions = {
 The CSS here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog, the error container, and the dialog wrapper. This css can go in your `style.css` in your `public` folder. Remember to use `!important` to override values.
 
 <Snippet file="shared/iframeStyles.mdx" />
+
+## On Premises
+
+For customers hosting on-premises, the following variables apply.
+
+### apiUrl
+
+<ParamField
+  path="apiUrl"
+  type="string"
+  default="https://platform.flatfile.com/api"
+>
+  The endpoint used to interact with the Flatfile API
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  apiUrl: "",
+  //additional props
+};
+```
+
+### spaceUrl
+
+<ParamField path="spaceUrl" type="string" default="https://spaces.flatfile.com">
+  The URL for accessing the Flatfile Spaces API.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  spaceUrl: "",
+  //additional props
+};
+```
