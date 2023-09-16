@@ -82,7 +82,7 @@ Next, we'll listen for data changes and respond using an event listener.
 1. Update your `listener.js` with this simple `recordHook`.
 2. Update `client.js` to import the listener.
 
-Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../../guides/handling-data)
+Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../guides/handling-data)
 
 <CodeGroup>
 
@@ -138,7 +138,7 @@ window.openFlatfile = ({ publishableKey, environmentId }) => {
 
 ### 6. Match your brand
 
-By attaching a `themeConfig` to `flatfileOptions` in `src/client.js`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../../guides/theming).
+By attaching a `themeConfig` to `flatfileOptions` in `src/client.js`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../guides/theming).
 
 ```jsx src/client.js (snippet)
 const flatfileOptions = {
