@@ -16,13 +16,31 @@ For synchronous data import/exchange completed in one session, create a new Spac
 
 ### Install packages
 
-Follow prompts from the `init` command, then install packages. (We'll use `parcel` for bundling.) Once complete, run `npm install` from your terminal.
+Make a new directory.
 
 ```bash
 mkdir example-flatfile-js-embed
+```
+
+Go into that directory.
+
+```bash
 cd example-flatfile-js-embed
+```
+
+Follow prompts from the `init` command.
+
+```bash
 npm init
+```
+
+Install packages. (We'll use `parcel` for bundling.)
+
+```bash
 npm i @flatfile/javascript @flatfile/listener @flatfile/plugin-record-hook @flatfile/api flatfile
+```
+
+```bash
 npm i parcel --save-dev
 ```
 
@@ -116,6 +134,7 @@ window.openFlatfile = ({ publishableKey, environmentId }) => {
     );
   }
   const flatfileOptions = {
+    name: "Embedded Space",
     publishableKey,
     environmentId,
     sidebarConfig: {
@@ -140,7 +159,7 @@ npx parcel public/index.html
 
 ## Example Project
 
-Find the Javascript example project in the Flatfile GitHub repository.
+Find this Javascript example project in the Flatfile GitHub repository.
 
 <CardGroup cols={1}>
   <Card

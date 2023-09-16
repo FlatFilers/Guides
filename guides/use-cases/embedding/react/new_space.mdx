@@ -14,73 +14,53 @@ For synchronous data import/exchange completed in one session, create a new Spac
 
 ## Prepare your project
 
-### Review your package.json
+### Install packages
 
-Make sure you have the `@flatfile/react` packages at minimum in your package.json. You can also copy this exactly and use `create-react-app` as a starting point if you want to start from a fresh repo.
+Make a new directory.
 
-```json package.json
-{
-  "name": "flatfile-react-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@flatfile/api": "^1.5.24",
-    "@flatfile/listener": "0.3.15",
-    "@flatfile/plugin-record-hook": "^1.1.0",
-    "@flatfile/react": "^7.2.19",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": ["react-app", "react-app/jest"]
-  },
-  "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
-}
+```bash
+mkdir example-flatfile-react-embed
 ```
 
-### Review or create file structure
+Go into that directory.
+
+```bash
+cd example-flatfile-react-embed
+```
+
+Follow prompts from the `init` command.
+
+```bash
+npm init
+```
+
+Install packages.
+
+```bash
+npm i @flatfile/react @flatfile/listener @flatfile/plugin-record-hook @flatfile/api flatfile react react-dom react-scripts
+```
+
+### Create your file structure
 
 Setup your app to look something like this:
 
 ```
-- public
-  |__ index.html
-  |__ style.css
-
-- src
-  |__ App.tsx
-  |__ index.tsx
-
-  |__ package.json
-  |__ package-lock.json
-  |__ tsconfig.json
-
-- package.json
+├── public/
+   └── index.html
+   └── styles.css
+├── src/
+   └── App.tsx
+   └── workbook.js
+   └── listener.js
+├── package.json <--- already created
+└── package-lock.json <--- already created
 ```
 
 In this file structure, your app should have two main directories, `public` and `src.`
 
-The `public` directory contains the "index.html" file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
 
-The `src` directory contains the main components and logic of the application, including the "App.tsx" file, which represents the root component, the "index.tsx" file, which is the entry point of your application's code, and optionally, the "config.ts" file for creating your Workbook client-side, and the "listener.ts" file, which handles your specific functionality related to listening to events client-side.
+The `src` directory contains the main components and logic of the application, including the `client.js` file, which initializes Flatfile and passes in available options.
 
 ## Build your importer
 
@@ -89,67 +69,7 @@ The `src` directory contains the main components and logic of the application, i
 Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
 
 <CodeGroup>
-
-```typescript src/App.tsx
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { ISpace, useSpace } from "@flatfile/react";
-
-const spaceProps: ISpace = {
-  name: "Embedded Space",
-  publishableKey: "",
-  environmentId: "",
-};
-
-const Space = ({
-  setShowSpace,
-}: {
-  setShowSpace: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const space = useSpace({
-    ...spaceProps,
-    closeSpace: {
-      operation: "contacts:submit",
-      onClose: () => setShowSpace(false),
-    },
-    //additional options
-  });
-  return space;
-};
-
-export default function App() {
-  const [showSpace, setShowSpace] = useState(false);
-
-  return (
-    <div style={{ padding: "16px" }}>
-      <button
-        onClick={() => {
-          setShowSpace(!showSpace);
-        }}
-      >
-        {showSpace === true ? "Close" : "Open"} space
-      </button>
-      {showSpace && <Space setShowSpace={setShowSpace} />}
-    </div>
-  );
-}
-```
-
-```typescript src/index.tsx
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-
-const rootElement = document.getElementById("root")!;
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  rootElement
-);
-```
-
-```html public/index.html
+```html public/index.html (full page)
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -175,9 +95,10 @@ ReactDOM.render(
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
 
-    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
 
     <title>React App</title>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -192,53 +113,241 @@ ReactDOM.render(
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
   </body>
 </html>
 ```
 
+```css public/styles.css
+/* Styles for home page */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #090b2b;
+  color: #fff;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.content {
+  /* Adjust the width and height as needed */
+  width: 800px;
+  height: 200px;
+  padding: 0 20px 0 50px;
+}
+
+.contrast {
+  padding: 10px;
+  margin: 10px 5px 0 0;
+  border-radius: 4px;
+  border: 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* End of styles for home page */
+
+:root {
+  --ff-primary-color: #4c48ef !important;
+  --ff-secondary-color: #616a7d !important;
+  --ff-text-color: #090b2b !important;
+  --ff-dialog-border-radius: 4px !important;
+  --ff-border-radius: 5px !important;
+  --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* The default mount element */
+/* #flatfile_iFrameContainer {
+} */
+
+/* A div around the iframe that contains Flatfile */
+/* .flatfile_iframe-wrapper {
+} */
+
+/* The actual iframe that contains Flatfile */
+/* #flatfile_iframe {
+} */
+
+.flatfile-close-button {
+  display: none !important;
+}
+
+/* Begin style overrides for when Flatfile is displayed as a modal */
+
+/* This class gets appended to the flatfile_iframe-wrapper div */
+.flatfile_displayAsModal {
+  padding: 50px !important;
+  width: calc(100% - 100px) !important;
+  height: calc(100vh - 100px) !important;
+}
+
+.flatfile_iframe-wrapper.flatfile_displayAsModal {
+  background: var(--ff-bg-fade) !important;
+}
+
+/* The close button in top right to close modal */
+.flatfile_displayAsModal .flatfile-close-button {
+  display: block !important;
+  margin: 20px !important;
+}
+
+/* The icon for the close button in top right to close modal */
+.flatfile_displayAsModal .flatfile-close-button svg {
+  fill: var(--ff-secondary-color) !important;
+}
+
+/* The actual iframe that contains Flatfile */
+.flatfile_displayAsModal #flatfile_iframe {
+  border-radius: var(--ff-border-radius);
+}
+
+/* Begin style overrides for when you cancel out of the Flatfile modal */
+
+/* The outer container of the modal that opens when you cancel out of Flatfile */
+.flatfile_outer-shell {
+  background-color: var(--ff-bg-fade) !important;
+  border-radius: var(--ff-border-radius) !important;
+}
+
+/* The inner container of the modal that opens when you cancel out of Flatfile */
+/* .flatfile_inner-shell {
+} */
+
+/* The white box inside the modal that opens when you cancel out of Flatfile */
+.flatfile_modal {
+  border-radius: var(--ff-dialog-border-radius) !important;
+}
+
+/* The container for the buttons you see in the close modal */
+/* .flatfile_button-group {
+} */
+
+/* Style the buttons you see in the close modal */
+/* .flatfile_button {
+} */
+
+/* The "yes, cancel" button you see in the close modal */
+.flatfile_primary {
+  border: 1px solid var(--ff-primary-color) !important;
+  background-color: var(--ff-primary-color) !important;
+  color: #fff;
+}
+
+/* The "no, stay" button you see in the close modal */
+.flatfile_secondary {
+  color: var(--ff-secondary-color) !important;
+}
+
+/* The heading text you see in the close modal */
+.flatfile_modal-heading {
+  color: var(--ff-text-color) !important;
+}
+
+/* The description text you see in the close modal */
+.flatfile_modal-text {
+  color: var(--ff-secondary-color) !important;
+}
+
+/* End style overrides for when you cancel out of the Flatfile modal */
+
+/* End style overrides for when Flatfile is displayed as a modal */
+
+/* The container of the error component */
+/* .ff_error_container {
+}*/
+
+/* The heading text you see in the error component */
+/* .ff_error_heading {
+}*/
+
+/* The description text you see in the error component */
+/* .ff_error_text {
+}*/
+```
+
 </CodeGroup>
 
-### 2. Start your client
+### 2. Initialize Flatfile
 
-Start your front end by heading to terminal and `npm start`. To see that it’s running, visit: https://localhost:1234 and you should see your page and a button.
+In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey` and the `environmentId`.
 
-```bash
-npm start
+```tsx src/App.tsx
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { ISpace, useSpace } from "@flatfile/react";
+
+const spaceProps: ISpace = {
+  name: "Embedded Space",
+  publishableKey: "pk_3dd6ee8679994ee5b421f17b91524fee",
+  environmentId: "us_env_QzZ1nMYH",
+};
+
+const Space = ({
+  setShowSpace,
+}: {
+  setShowSpace: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const space = useSpace({
+    ...spaceProps,
+    sidebarConfig: {
+      showSidebar: false,
+    },
+  });
+  return space;
+};
+
+export default function App() {
+  const [showSpace, setShowSpace] = useState(false);
+
+  return (
+    <div className="content">
+      <h2>
+        <code>&lt;Flatfile /&gt;</code>
+      </h2>
+      <p>Embed Flatfile in just a few lines of code.</p>
+      {/*Button to trigger the modal */}
+      <div>
+        <button
+          className="contrast"
+          onClick={() => {
+            setShowSpace(!showSpace);
+          }}
+        >
+          {showSpace === true ? "Close" : "Open and create new"} Space
+        </button>
+        {showSpace && <Space setShowSpace={setShowSpace} />}
+      </div>
+    </div>
+  );
+}
 ```
 
-### 3. Start an event listener
+### 3. Start your client
 
-When you click the Flatfile button in your platform, this will initiate a job event that can be observed by an event listener. This listener, in turn, constructs your Space on the Flatfile server. You can start by using a predefined event listener, and modify your schema and actions as necessary in the future.
-
-1. Clone the [getting-started Github repo](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main)
-2. Rename `.env.example` to `.env` and update to your creds
-3. Run these commands:
+Now, start your front end by heading to terminal and running the following command. To see that it’s running, visit: https://localhost:3000 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
 
 ```bash
-npm install
-npm run dev
+npx react-scripts start
 ```
 
-4. Click the Flatfile button in your client. A new Space should have been created.
-5. Now, make adjustments to your Workbook and action to suit your needs, then `npm run deploy` to host your listener code on the Flatfile server.
+<Snippet file="shared/embedded_listener_basicreact.mdx" />
 
 ## Example Project
 
-Find the React example project in the Flatfile GitHub repository.
+Find this React example project in the Flatfile GitHub repository.
 
-<CardGroup cols={2}>
+<CardGroup cols={1}>
   <Card
     title="create-flatfile-react"
-    icon="react"
+    icon="js"
     href="https://github.com/FlatFilers/create-flatfile-react"
   >
-    Clone the Flatfile create-react-app tutorial here.
-  </Card>
-  <Card
-    title="flatfile-nextjs"
-    icon="react"
-    href="https://github.com/FlatFilers/flatfile-nextjs"
-  >
-    Clone the Flatfile Next.js tutorial here.
+    Clone the Flatfile React tutorial here.
   </Card>
 </CardGroup>

@@ -18,13 +18,33 @@ To reuse an existing Space, we'll update our files to pass in a Space Id instead
 
 ### Install packages
 
-Follow prompts from the `init` command, then install packages. (We'll use `parcel` for bundling.) Once complete, run `npm install` from your terminal.
+Make a new directory.
 
 ```bash
 mkdir reuse-example-flatfile-js-embed
+```
+
+Go into that directory.
+
+```bash
 cd reuse-example-flatfile-js-embed
+```
+
+Follow prompts from the `init` command.
+
+```bash
 npm init
+```
+
+Install packages.
+
+```bash
 npm i @flatfile/javascript @flatfile/listener @flatfile/plugin-record-hook @flatfile/api cors dotenv express flatfile
+```
+
+Install dev packages.
+
+```bash
 npm i parcel --save-dev
 ```
 
@@ -204,7 +224,7 @@ npx parcel public/index.html
 
 ## Example Project
 
-Find the Javascript example project in the Flatfile GitHub repository.
+Find this Javascript example project in the Flatfile GitHub repository.
 
 <CardGroup cols={1}>
   <Card
