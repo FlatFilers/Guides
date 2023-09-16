@@ -117,7 +117,7 @@ Next, we'll listen for data changes and respond using an event listener.
 1. Add a `src/listener.ts` file with this simple `recordHook`.
 2. Update `App.tsx` to import the listener.
 
-Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../../guides/handling-data)
+Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../guides/handling-data)
 
 <CodeGroup>
 
@@ -207,7 +207,7 @@ export default function App() {
 
 ### 6. Match your brand
 
-By attaching a `themeConfig` to `flatfileOptions` in `src/App.tsx`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../../guides/theming).
+By attaching a `themeConfig` to `flatfileOptions` in `src/App.tsx`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../guides/theming).
 
 ```tsx src/App.tsx (snippet)
   const space = useSpace({
@@ -240,7 +240,7 @@ Finally, let's get the data out of our system and to your destination.
 
 1. Update your `listener.ts` with this simple submit action.
 
-Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](../../../guides/egress)
+Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](../../guides/egress)
 
 ```tsx src/listener.ts
 import { FlatfileListener } from "@flatfile/listener";
