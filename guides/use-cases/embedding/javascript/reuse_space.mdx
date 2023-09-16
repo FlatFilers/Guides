@@ -14,97 +14,85 @@ To reuse an existing Space, we'll update our files to pass in a Space Id instead
 
 <Snippet file="shared/guestauth.mdx" />
 
-<CodeGroup>
-
-```npm npm
-npm install @flatfile/api@latest dotenv express cors parcel
-```
-
-```yarn yarn
-yarn add @flatfile/api@latest dotenv express cors parcel
-```
-
-</CodeGroup>
-
 ## Prepare your project
 
-### Review or create your package.json
+### Install packages
 
-1. Make sure you have the following packages (`dotenv express cors parcel`) and the new server script at minimum in your package.json.
-2. Once complete, run `npm install` from your terminal.
+Make a new directory.
 
-```json package.json
-{
-  "name": "",
-  "version": "",
-  "description": "",
-  "scripts": {
-    "start": "parcel public/index.html",
-    "server": "node src/server.mjs"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "dotenv": "^16.3.1",
-    "@flatfile/api": "1.5.15",
-    "@flatfile/javascript": "0.1.1",
-    "cors": "^2.8.5",
-    "express": "4.18.2",
-    "parcel": "2.8.3"
-  },
-  "devDependencies": {
-    "@parcel/resolver-default": "^2.9.3",
-    "buffer": "^5.7.1",
-    "crypto-browserify": "^3.12.0",
-    "events": "^3.3.0",
-    "os-browserify": "^0.3.0",
-    "path-browserify": "^1.0.1",
-    "process": "^0.11.10",
-    "stream-browserify": "^3.0.0",
-    "url": "^0.11.1"
-  }
-}
+```bash
+mkdir reuse-example-flatfile-js-embed
 ```
 
-### Review or create file structure
+Go into that directory.
+
+```bash
+cd reuse-example-flatfile-js-embed
+```
+
+Follow prompts from the `init` command.
+
+```bash
+npm init
+```
+
+Install packages.
+
+```bash
+npm i @flatfile/javascript @flatfile/listener @flatfile/plugin-record-hook @flatfile/api cors dotenv express flatfile
+```
+
+Install dev packages.
+
+```bash
+npm i parcel --save-dev
+```
+
+### Create your file structure
 
 Setup your app to look something like this:
 
 ```
-- public
-  |__ index.html
-  |__ style.css
-
-- src
-  |__ client.js
-  |__ server.mjs
-
-- package.json
-- package-lock.json
-
-- .env
+├── public/
+   └── index.html
+   └── styles.css
+├── src/
+   └── client.js
+   └── server.mjs
+├── .env
+├── package.json <--- already created
+└── package-lock.json <--- already created
 ```
+
+In this file structure, your app should have two main directories, `public` and `src.`
+
+The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+
+The `src` directory contains the main components and logic of the application, including the `client.js` file, which initializes Flatfile and passes in available options. And the `server.mjs` file, which sets up a Node.js server using Express that listens for incoming requests and communicates with the Flatfile API to retrieve data about a specified Space.
 
 ### Update your .env
 
-Make sure you have your `secretKey` and `spaceId` in your .env file.
+Update your .env. `FLATFILE_API_KEY` is your Secret Key and `SPACE_ID` is the Space you want to open in the importer. This is can be found on your Dashboard where it lists your Spaces. You shouldn't need to update the `BASE_URL`.
 
-```json .env
-SECRET_KEY=sk_1234
+```
 BASE_URL=https://platform.flatfile.com/api
-SPACE_ID=us_sp_123
+FLATFILE_API_KEY=sk_1234
+SPACE_ID=us_sp_1234
 ```
 
 ## Build your importer
 
 ### 1. Add a Flatfile button
 
-Add a button to your application to open Flatfile in a modal. Note that nothing needs to be passed into the function.
+Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load. Also, add the content here to your `styles.css`.
 
 <CodeGroup>
-```html public/index.html
-<button class="contrast" onclick="openFlatfile()">Open existing Space</button>
+```html public/index.html (snippet)
+<button
+  onclick="openFlatfile()"
+>
+  Open existing Space
+</button>
 ```
 
 ```html public/index.html (full page)
@@ -125,71 +113,27 @@ Add a button to your application to open Flatfile in a modal. Note that nothing 
 
         <!-- Button to trigger the modal -->
         <div>
-          <button class="contrast" onclick="openExistingFlatfileSpace()">
+          <!-- Note: PUT YOUR KEY AND ENVIRONMENT_ID IN HERE -->
+          <button class="contrast" onclick="openFlatfile()">
             Open existing Space
           </button>
         </div>
       </div>
+      <div id="flatfile_iFrameContainer"></div>
     </div>
   </body>
 </html>
 ```
 
+<Snippet file="shared/iframeStyles.mdx" />
+
 </CodeGroup>
 
-### 2. Start your client
+### 2. Create a local server
 
-Start your front end by heading to your terminal running `npm start`. To see that it's running, visit: https://localhost:1234 and you should see your button.
+This code sets up a Node.js server using Express that listens for incoming requests, enables CORS (Cross-Origin Resource Sharing), and communicates with the Flatfile API to retrieve data about a specified Space based on the provided environment variables.
 
-```ssh
-npm start
-```
-
-### 3. initializeFlatfile()
-
-Import `@flatfile/javascript` to initialize Flatfile. Then, retrieve information about your Flatfile space from your server. Last, pass it any [options](../overview#shared-properties).
-
-<Note>Note: Only `space` is required.</Note>
-
-```js src/client.js
-import { initializeFlatfile } from "@flatfile/javascript";
-
-const server_url = "http://localhost:8080";
-
-//open existing space in modal
-window.openExistingFlatfileSpace = () => {
-  fetch(server_url + "/space") // Make a request to the server endpoint
-    .then((response) => response.json())
-    .then((space) => {
-      const flatfileOptions = {
-        space: {
-          id: space && space.data && space.data.id,
-          accessToken: space && space.data && space.data.accessToken,
-        },
-        closeSpace: {
-          operation: "contacts:submit",
-          onClose: () => setShowSpace(false),
-        },
-        //additional options
-      };
-      initializeFlatfile(flatfileOptions);
-    })
-    .catch((error) => {
-      console.error("Error retrieving space in client:", error);
-    });
-};
-```
-
-### 4. Create and start server
-
-1. Create a basic Express.js server that will retrieve your Space data from the Flatfile API.
-2. Now, run the server by heading to your terminal and open a new tab. To see that it's running, visit: https://localhost:8080 and you should see _Hello, World!_
-
-```ssh
-npm run server
-```
-
-```js src/server.mjs
+```jsx src/server.mjs
 import dotenv from "dotenv";
 import express from "express";
 import { FlatfileClient } from "@flatfile/api";
@@ -200,8 +144,11 @@ dotenv.config();
 const app = express();
 const port = 8080;
 
+console.log(process.env.SPACE_ID);
+console.log(process.env.FLATFILE_API_KEY);
+
 const flatfile = new FlatfileClient({
-  token: process.env.SECRET_KEY,
+  token: process.env.FLATFILE_API_KEY,
   environment: process.env.BASE_URL + "/v1",
 });
 
@@ -227,9 +174,56 @@ app.listen(port, () => {
 });
 ```
 
+### 4. Start your server
+
+Now, start your server by heading to terminal and running the following command. To see that it’s running, visit: https://localhost:8080 (or the port it is running on) and you should see a page that says "Hello, World".
+
+```bash
+npx node src/server.mjs
+```
+
+### 3. Initialize Flatfile
+
+In your `client.js`, at minimum, you'll need to get and pass the `space` info. This code opens an existing Space in a modal by making a request to your server endpoint and initializing the Flatfile data import with specified options based on the server's response.
+
+```js src/client.js
+import { initializeFlatfile } from "@flatfile/javascript";
+const server_url = "http://localhost:8080";
+
+//open existing space in modal
+window.openFlatfile = () => {
+  fetch(server_url + "/space") // Make a request to the server endpoint
+    .then((response) => response.json())
+    .then((space) => {
+      const flatfileOptions = {
+        space: {
+          id: space && space.data && space.data.id,
+          accessToken: space && space.data && space.data.accessToken,
+        },
+        sidebarConfig: {
+          showSidebar: false,
+        },
+        // Additional props...
+      };
+      initializeFlatfile(flatfileOptions);
+    })
+    .catch((error) => {
+      console.error("Error retrieving space in client:", error);
+    });
+};
+```
+
+### 4. Start your client
+
+Now, start your front end by heading to terminal, opening a new tab, and running the following command. To see that it’s running, visit: https://localhost:1234 (or the port it is running on) and you should see your page and a button. Click the button and see that your Space loads. **That's it!**
+
+```bash
+npx parcel public/index.html
+```
+
 ## Example Project
 
-Find the Javascript example project in the Flatfile GitHub repository.
+Find this Javascript example project in the Flatfile GitHub repository.
 
 <CardGroup cols={1}>
   <Card

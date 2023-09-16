@@ -4,10 +4,9 @@ description: "Learn how to authenticate above the Environment level."
 icon: "key-skeleton-left-right"
 ---
 
-<Snippet file="shared/dxpbanner.mdx"/>
+<Snippet file="shared/dxpbanner.mdx" />
 
 You can leverage your admin API key (personal access token) to query items outside of specific environments. This opens up possibilities for various use cases, including building audit logs, managing Spaces, and monitoring agents across environments.
-
 
 ## Retrieving a Personal Access Token
 
@@ -19,7 +18,7 @@ Your `publishableKey` and `secretKey` are specific to an environment therefore, 
 
 4. Using the key pair, call the auth endpoint:
 
-```ssh
+```bash
 curl -X POST https://platform.flatfile.com/v1/auth -H 'Content-Type: application/json' -d '{"clientId":"1234-1234", "secret":"1234-1234"}'
 ```
 
