@@ -23,6 +23,25 @@ The purpose of this plugin is to handle cases where some Records were rejected d
   - `partialRejection`: An object containing the rejection data. This object's structure is defined by the `ResponseRejection` interface.
 - The `responseRejectionHandler` function returns a `Promise` that resolves to a number representing the total number of rejected records across all sheets.
 
+```ts
+listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
+  configure.on("job:ready", async ({ context: { jobId } }) => {
+    // ...
+    const response = await axios.post("https://webhook.site/...", data, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const rejections: ResponseRejection = response.data.rejections;
+    if (rejections) {
+      const totalRejectedRecords = await responseRejectionHandler(rejections);
+    }
+    // ...
+  });
+});
+```
+
 ### **ResponseRejection Interface**
 
 The `ResponseRejection` interface defines the structure of the `partialRejection` parameter object that is passed into the `responseRejectionHandler` function. This `ResponseRejection`'s structure is as follows:
