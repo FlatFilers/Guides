@@ -6,9 +6,7 @@ icon: "atom-simple"
 
 All wrapper SDKs take the following shared properties. It's recommended to start with the defaults in the Guides, then come back here to make customizations.
 
-## New Spaces
-
-While setting up embedded Flatfile, you have the option to either establish a fresh Space during each initialization or reuse an existing Space. These properties specifically apply when creating a new Space.
+## Authenticate
 
 ### publishableKey
 
@@ -23,35 +21,9 @@ const flatfileOptions = {
 };
 ```
 
-### name
+## Identify
 
-<ParamField path="name" type="string" required>
-  Name of the space
-</ParamField>
-
-```typescript src/client.js
-const flatfileOptions = {
-  name,
-  //additional props
-};
-```
-
-### spaceBody
-
-<ParamField path="spaceBody" type="object">
-  Pass in space options to configure a new Space.
-</ParamField>
-
-```typescript src/client.js
-const flatfileOptions = {
-  publishableKey,
-  //additional props, see Create Space endpoint for all the full list of properties (https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space)
-  spaceBody: {
-    name: "New Space",
-    namespace: "Red",
-  },
-};
-```
+While setting up embedded Flatfile, you have the option to either establish a fresh Space during each initialization or reuse an existing Space. These properties specifically apply when creating a new Space.
 
 ### userInfo
 
@@ -74,59 +46,17 @@ const flatfileOptions = {
 };
 ```
 
-## Client-Side Server
+## Look & Feel
 
-These options are available when configuring your Space client-side.
+### name
 
-### environmentId
-
-<ParamField path="environmentId" type="string" required>
-  Identifier for environment. You only need this to create a Workbook
-  client-side.
+<ParamField path="name" type="string" required>
+  Name of the space
 </ParamField>
 
 ```typescript src/client.js
 const flatfileOptions = {
-  publishableKey,
-  environmentId,
-  //additional props
-};
-```
-
-### workbook
-
-<ParamField path="workbook" type="object">
-  Config of the workbook to be created
-</ParamField>
-
-```typescript src/client.js
-const myWorkbook = {
-  // see Blueprint
-};
-
-const flatfileOptions = {
-  publishableKey,
-  environmentId,
-  workbook: myWorkbook,
-  //additional props
-};
-```
-
-### listener
-
-<ParamField path="listener" type="Listener">
-  Event listener for responding to Events.
-</ParamField>
-
-```typescript src/client.js
-const myListener = {
-  // listener code
-};
-
-const flatfileOptions = {
-  publishableKey,
-  environmentId,
-  listener: myListener,
+  name: "MySpace",
   //additional props
 };
 ```
@@ -134,13 +64,16 @@ const flatfileOptions = {
 ### themeConfig
 
 <ParamField path="themeConfig" type="object">
-  Theme values for space, sidebar and data table
+  Theme values for the Space, sidebar and data table.
 </ParamField>
 
 Theme your Space to create a custom look and feel to match your brand using the actual CSS variables referenced in the app. See all options in our [Theming Reference](../../../../guides/theming).
 
 ```typescript src/client.js
 const theme = {
+  root: {
+    primaryColor: "red",
+  },
   // see theming reference
 };
 
@@ -152,63 +85,24 @@ const flatfileOptions = {
 };
 ```
 
-## Configuration
+### spaceBody
 
-These properties allow you to configure how the importer is mounted, displayed, and closed.
-
-### closeSpace
-
-<ParamField
-  path="closeSpace"
-  type="operation: string, onClose: (data: any) => void"
->
-  Options for when to close the iframe and a callback function when the session
-  is complete.
+<ParamField path="spaceBody" type="object">
+  Pass in space options to configure a new Space. Find all available parameters
+  for spaceBody in the [API
+  Reference](https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space).
 </ParamField>
 
 ```typescript src/client.js
 const flatfileOptions = {
   publishableKey,
-  //additional props
-  closeSpace: {
-    operation: "contacts:submit",
-    onClose: () => {},
+  //additional props, see Create Space endpoint for all the full list of properties (https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space)
+  spaceBody: {
+    name: "New Space",
+    namespace: "Red",
   },
 };
 ```
-
-This `onClose` callback function is called when the Action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
-
-### displayAsModal
-
-<ParamField path="displayAsModal" type="boolean" default="true">
-  Display Flatfile as a full screen modal or inline on the page.
-</ParamField>
-
-Toggling off this property will update the wrapper css to make the iframe fully inline thereby hiding the close button. All of the child divs will no longer include: `.flatfile_displayAsModal` which removes all the dialog styling.
-
-The default width and height of the container can be overriden in `style.css`.
-
-<CodeGroup>
-
-```typescript src/client.js
-const flatfileOptions = {
-  publishableKey,
-  displayAsModal: false,
-  //additional props
-};
-```
-
-```css public/styles.css
-.flatfile_iframe-wrapper {
-  min-width: 768px;
-  min-height: 600px;
-  width: 992px;
-  height: 600px;
-}
-```
-
-</CodeGroup>
 
 ### sidebarConfig
 
@@ -281,6 +175,121 @@ const flatfileOptions = {
   document: mainDocument,
   //additional props
 };
+```
+
+</CodeGroup>
+
+## Client-Side Server
+
+These options are available when configuring your Space client-side.
+
+### environmentId
+
+<ParamField path="environmentId" type="string" required>
+  Identifier for environment. You only need this to create a Workbook
+  client-side.
+</ParamField>
+
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  environmentId,
+  //additional props
+};
+```
+
+### workbook
+
+<ParamField path="workbook" type="object">
+  Config of the workbook to be created
+</ParamField>
+
+```typescript src/client.js
+const myWorkbook = {
+  // see Blueprint
+};
+
+const flatfileOptions = {
+  publishableKey,
+  environmentId,
+  workbook: myWorkbook,
+  //additional props
+};
+```
+
+### listener
+
+<ParamField path="listener" type="Listener">
+  Event listener for responding to Events.
+</ParamField>
+
+```typescript src/client.js
+const myListener = {
+  // listener code
+};
+
+const flatfileOptions = {
+  publishableKey,
+  environmentId,
+  listener: myListener,
+  //additional props
+};
+```
+
+## Configuration
+
+These properties allow you to configure how the importer is mounted, displayed, and closed.
+
+### closeSpace
+
+<ParamField
+  path="closeSpace"
+  type="operation: string, onClose: (data: any) => void"
+>
+  Options for when to close the iframe and a callback function when the session
+  is complete.
+</ParamField>
+
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  //additional props
+  closeSpace: {
+    operation: "contacts:submit",
+    onClose: () => {},
+  },
+};
+```
+
+This `onClose` callback function is called when the Action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
+
+### displayAsModal
+
+<ParamField path="displayAsModal" type="boolean" default="true">
+  Display Flatfile as a full screen modal or inline on the page.
+</ParamField>
+
+Toggling off this property will update the wrapper css to make the iframe fully inline thereby hiding the close button. All of the child divs will no longer include: `.flatfile_displayAsModal` which removes all the dialog styling.
+
+The default width and height of the container can be overriden in `style.css`.
+
+<CodeGroup>
+
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  displayAsModal: false,
+  //additional props
+};
+```
+
+```css public/styles.css
+.flatfile_iframe-wrapper {
+  min-width: 768px;
+  min-height: 600px;
+  width: 992px;
+  height: 600px;
+}
 ```
 
 </CodeGroup>
