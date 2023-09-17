@@ -4,6 +4,87 @@ description: "Additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## September 13, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+        Introducing support for finding empty fields in ffql using the syntax: `filter: first_name eq ""`. Now, you can easily query and filter records with empty values.
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+        Resolved an issue where attempting to upsert an Environment secret that was already defined within a Space was not functioning as expected. This fix ensures proper handling when upserting a secret into an Environment after specifying a Space ID.
+    </div>
+
+  </div>
+
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/files.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+        Increased mapping concurrency from 2 to 5 due to significant reductions in database load from mapping operations. This adjustment improves processing efficiency.
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/files.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+       Resolved an issue where the import button could prematurely appear before a file was ready to be imported. This was due to an early update of the file's status with a workbook ID, which has now been adjusted to wait until the data is queriable before updating. The import process now aligns better with the file's readiness.
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/turntable.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     Experience improved performance (for instance, when scrolling to the bottom of the data table) with large workbooks as we've optimized query clauses and updated indexes. Plus, we've seamlessly migrated all existing workbooks to benefit from these enhancements.
+    </div>
+
+  </div>
+
+</div>
+
 ## September 11, 2023
 
 <div style={{ display: "table", width: "auto" }}>
