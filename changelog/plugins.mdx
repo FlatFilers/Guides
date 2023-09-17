@@ -9,13 +9,29 @@ icon: "plug"
 <div style={{ display: "table", width: "auto" }}>
 
   <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
+    <Snippet file="chips/core_plugin.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-    `@flatfile/plugin-extractor-___`
 
-    All extractors have been fine-tuned to seamlessly handle extractions within a job, allowing the plugin more time to complete the extraction with less risk of the Agent timing out.
+    🚀  **Introducing `@flatfile/util-response-rejection`**
 
-    Additionally, we've resolved a bug that was causing extractions to falsely indicate completion when running in parallel, ensuring extraction truly finishes before signaling completion.
+    ![image](../changelog/images/outcome_modal.png)
+
+    Meet `@flatfile/util-response-rejection`, a new utility for showcasing rejected Records _from an external API_ to your customers. Managing rejected data during egress is vital for maintaining data accuracy, and this utility simplifies the entire process, ensuring a smoother experience for handling these instances.
+
+    Here's what it does:
+
+    1. Takes a `ResponseRejection` containing rejected Records and a rejection message.
+    2. Locates the corresponding Record and adds the rejection message as an error to the Record cell.
+
+    This utility is integrated into the following plugins for seamless use:
+
+    - [`@flatfile/plugin-webhook-egress`](../plugins/export/webhook)
+    - [`@flatfile/plugin-space-configure`](../plugins/core/space-configure)
+    - [`@flatfile/plugin-job-handler`](../plugins/core/job-handler)
+
+    You can also utilize this utility directly with any listener.
+
+    Learn more in the [docs](../plugins/utils/response-rejection).
 
     </div>
 
