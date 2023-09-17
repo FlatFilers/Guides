@@ -1,0 +1,183 @@
+---
+title: "Advanced"
+description: "See the less commonly used shared properties for embedded Flatfile."
+icon: "starfighter-twin-ion-engine-advanced"
+---
+
+## Reusing Spaces
+
+During the configuration of embedded Flatfile, you have the flexibility to either reuse an existing Space or generate a new one. These properties come into play when you're working with an already established Space.
+
+### space
+
+<ParamField path="space" type="{id: string, accessToken: string}" required>
+  Using your secret key, you'll make a request to a server endpoint to retrieve
+  an `accessToken`.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  space: { id: string, accessToken: string },
+  //additional props
+};
+```
+
+## Overrides
+
+### mountElement
+
+<ParamField
+  path="mountElement"
+  type="string"
+  default="flatfile_iFrameContainer"
+>
+  The element Flatfile will mount to. (Will create if it doesn't already exist.)
+</ParamField>
+
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  mountElement: "flatfile_hello",
+  //additional props
+};
+```
+
+### loading
+
+<ParamField path="loading" type="ReactElement">
+  A default loading state when the Space is loading. Optionally, you can
+  override the default Loading component.
+</ParamField>
+
+```typescript
+const LoadingComponent = () => <label>Loading data...</label>;
+
+const flatfileOptions = {
+  //additional props
+  loading: <LoadingComponent />,
+};
+```
+
+### exitTitle
+
+<ParamField path="exitTitle" type="string" default="Close Window">
+  The title on the dialog that appears when exiting out of Flatfile.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  exitTitle: "",
+  //additional props
+};
+```
+
+### exitText
+
+<ParamField path="exitText" type="string" default="See below">
+  The text on the dialog that appears when exiting out of Flatfile.
+
+Default: "Are you sure you would like to close this window? This will end your current data import session."
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  exitText: "",
+  //additional props
+};
+```
+
+</ParamField>
+
+### exitPrimaryButtonText
+
+<ParamField path="exitPrimaryButtonText" type="string" default="Yes, exit">
+  The text on the dialog primary button that appears when exiting out of
+  Flatfile.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  exitPrimaryButtonText: "",
+  //additional props
+};
+```
+
+### exitSecondaryButtonText
+
+<ParamField path="exitPrimaryButtonText" type="string" default="No, stay">
+  The text on the dialog secondary button that appears when exiting out of
+  Flatfile.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  exitSecondaryButtonText: "",
+  //additional props
+};
+```
+
+### errorTitle
+
+<ParamField path="errorTitle" type="string" default="Something went wrong">
+  The title on the dialog that appears when an unexpected error occurs when
+  loading Flatfile. Note: the error dialog will also include error details
+  regarding the error that occurred.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  errorTitle: "",
+  //additional props
+};
+```
+
+### iframe styles
+
+<Note>
+  Theming withiin the Flatfile application is done in an event listener.
+</Note>
+
+The CSS here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog, the error container, and the dialog wrapper. This css can go in your `style.css` in your `public` folder. Remember to use `!important` to override values.
+
+<Snippet file="shared/iframeStyles.mdx" />
+
+## On Premises
+
+For customers hosting on-premises, the following variables apply.
+
+### apiUrl
+
+<ParamField
+  path="apiUrl"
+  type="string"
+  default="https://platform.flatfile.com/api"
+>
+  The endpoint used to interact with the Flatfile API
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  apiUrl: "",
+  //additional props
+};
+```
+
+### spaceUrl
+
+<ParamField path="spaceUrl" type="string" default="https://spaces.flatfile.com">
+  The URL for accessing the Flatfile Spaces API.
+</ParamField>
+
+```jsx src/client.js
+const flatfileOptions = {
+  publishableKey,
+  spaceUrl: "",
+  //additional props
+};
+```
