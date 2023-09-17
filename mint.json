@@ -272,7 +272,11 @@
     },
     {
       "group": "Utils",
-      "pages": ["plugins/utils/extractor", "plugins/utils/file-buffer"]
+      "pages": [
+        "plugins/utils/extractor",
+        "plugins/utils/file-buffer",
+        "plugins/utils/response-rejection"
+      ]
     }
   ],
   "footerSocials": {
