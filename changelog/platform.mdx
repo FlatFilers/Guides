@@ -25,10 +25,7 @@ icon: "layer-group"
 
       We've introduced the ability to add code blocks to your Documents. You can now use the following syntax to define code blocks and specify the language:
 
-      ```js
-      ```js
-      // Your code goes here
-      ```
+      ![image](../changelog/images/documents_codeblocks_sample.png)
 
     Your code will be formatted accordingly, enhancing the clarity and presentation of your content.
 
@@ -69,7 +66,11 @@ icon: "layer-group"
         width: "calc(80% - 30px)",
       }}
     >
-        Introducing support for finding empty fields in ffql using the syntax: `filter: first_name eq ""`. Now, you can easily query and filter records with empty values.
+        Introducing support for finding empty fields in ffql using the syntax: 
+        
+        ```filter: first_name eq ""```. 
+        
+        Now, you can easily query and filter records with empty values.
     </div>
 
   </div>
@@ -85,21 +86,6 @@ icon: "layer-group"
       }}
     >
         Resolved an issue where attempting to upsert an Environment secret that was already defined within a Space was not functioning as expected. This fix ensures proper handling when upserting a secret into an Environment after specifying a Space ID.
-    </div>
-
-  </div>
-
-<div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div
-      style={{
-        float: "left",
-        display: "table-column",
-        paddingLeft: "30px",
-        width: "calc(80% - 30px)",
-      }}
-    >
-        Increased mapping concurrency from 2 to 5 due to significant reductions in database load from mapping operations. This adjustment improves processing efficiency.
     </div>
 
   </div>
