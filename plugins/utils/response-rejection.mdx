@@ -13,15 +13,30 @@ icon: "download"
   </Card>
 </CardGroup>
 
-## Code Breakdown
+![Response Rejection](../../images/guides/plugins/response_rejection.png)
 
-The purpose of this plugin is to handle cases where some Records were rejected during an egress process. The `responseRejectionHandler` function is designed to consume a set of sheets with rejected records, and then process those records (mark them with an error message indicating why they were rejected). In the end, it returns a total count of all rejected records across all sheets.
+## Usage
+
+The purpose of `@flatfile/util-response-rejection` utility is to handle cases where some Records
+were rejected during an egress process. The `responseRejectionHandler` function is designed to
+consume a set of sheets containing rejected Records, and then process the rejected Records by
+marking the offending Record fields with the returned rejection message indicating why they were
+rejected. In the end, it returns a total count of all rejected Records across all sheets that can
+be used in a Job completion message.
+
+```bash install
+npm i @flatfile/util-response-rejection
+```
+
+```ts import
+import { responseRejectionHandler } from "@flatfile/util-response-rejection";
+```
 
 ### **Response Rejection Handler Function**
 
 - The `responseRejectionHandler` function is the main entry point of the utility. It takes one parameter:
-  - `partialRejection`: An object containing the rejection data. This object's structure is defined by the `ResponseRejection` interface.
-- The `responseRejectionHandler` function returns a `Promise` that resolves to a number representing the total number of rejected records across all sheets.
+  - `responseRejection`: An object containing the rejection data. This object's structure is defined by the `ResponseRejection` interface.
+- The `responseRejectionHandler` function returns a `Promise` that resolves to a `number` representing the total number of rejected Records across all sheets.
 
 ```ts
 listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
@@ -44,7 +59,7 @@ listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
 
 ### **ResponseRejection Interface**
 
-The `ResponseRejection` interface defines the structure of the `partialRejection` parameter object that is passed into the `responseRejectionHandler` function. This `ResponseRejection`'s structure is as follows:
+The `ResponseRejection` interface defines the structure of the `responseRejection` parameter object that is passed into the `responseRejectionHandler` function. This `ResponseRejection`'s structure is as follows:
 
 ```ts
 { // ResponseRejection interface
