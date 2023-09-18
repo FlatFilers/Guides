@@ -1,7 +1,7 @@
 ---
 title: "Overview"
 description: "Blueprint is a powerful DDL (Data Definition Language) created by Flatfile with a focus on validation and data preparation."
-icon: 'hand-wave'
+icon: "hand-wave"
 ---
 
 ## Terms
@@ -10,14 +10,13 @@ icon: 'hand-wave'
 - **Sheet** — A collection of fields that describe a single entity (eg. people, products, companies)
 - **Field** — Describes an attribute of the entity (eg. name, email) and how it should behave
 
-
 <RequestExample>
 ```json Blueprint Example
 {
   "sheets": [
     {
-      "key": "products",
-      "label": "Products",
+      "name": "Products",
+      "slug": "products",
       "description": "A list of products available for sale",
       "fields": [
         {
@@ -40,15 +39,22 @@ icon: 'hand-wave'
 ```
 </RequestExample>
 
-
 <CardGroup cols={2}>
   <Card title="Field Types" icon="input-text" href="/blueprint/field-types">
     Learn about the different field types and how to use them.
   </Card>
-  <Card title="Field Constraints" icon="ruler-combined" href="/blueprint/constraints">
+  <Card
+    title="Field Constraints"
+    icon="ruler-combined"
+    href="/blueprint/constraints"
+  >
     Learn about the available constraints and how they work.
   </Card>
-  <Card title="Field Relationships" icon="diagram-nested" href="/blueprint/relationships">
+  <Card
+    title="Field Relationships"
+    icon="diagram-nested"
+    href="/blueprint/relationships"
+  >
     Establish connections between Sheets and fields.
   </Card>
   <Card title="Access Control" icon="shield-halved" href="/blueprint/access">
