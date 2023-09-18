@@ -18,9 +18,21 @@ Explore this illustrative diagram that lays out the distinctions between the two
 ### Meet the Platform
 ![v2 Portal](../../images/guides/upgrades/platform.png)
 
-## New Concepts
+## Before you beging
 
 ### Core Architecture
+
+#### Meet the Environment
+
+In Portal, setting `devMode: true` flagged imports as “dev” imports, but in Platform, there are true Environments.
+
+You can have many custom Environments, but upon signup, you will have a Development, Production, and Example Environment configured.
+
+All of the other entities (like Spaces, Workbooks, and Sheet) will live in those Environments.
+
+#### Meet the Space
+
+When comparing to Portal, a Space and its UI is what will replace the older importer. The Space is what holds all the Files and Workbooks that are needed to import data. You can learn more about Spaces and all that they do in our [Spaces documentation](/concepts/spaces).
 
 #### Meet the Workbook
 
@@ -30,30 +42,42 @@ Unlike Portal, where all the editing and fixing of data happens right in the bro
 
 Inside these Workbooks, you'll find one or more Sheets, kind of like how Portal has its schemas. Other than some basic names and settings, the sheet has something called a "fields array," which is pretty similar to what you know from Portal.
 
-#### Meet the Space
-
-More info here.
-1. New element in the hierarchy
-2. Sheets are like the old schemas
-3. Workbooks can contain multiple sheets
-4. Space can contain multiple workbooks
-5. Space can be embedded like V2
-6. Can initialize a new space when user initializes it
-7. Can also re-use an existing space (simple database idea)
-
-#### Understanding Environments
-
-In Portal, setting `devMode: true` flagged imports as “dev” imports, but in Platform, there are true Environments.
-
-You can have many custom Environments, but upon signup, you will have a Development, Production and Example Environment configured already.
-
-All of the other entities (like a Workbook and Sheet) will live in those Environments.
+<Note>
+    Keep in mind that if you had multiple importers to handle different data sets from different places, you will be able to consolidate them by having all your schemas now live in one workbook.
+</Note>
 
 ### Configuring your schema
 
 #### Meet the Blueprint
 
 Back in Portal, when you received diverse data from the same users and wished to merge it afterward, you had to establish distinct Portal configurations and display the appropriate one for each file. However, leveraging Blueprints offers a more streamlined approach. You can employ a collection of Sheets (akin to the schemas you constructed in Portal) within a Workbook. This simplifies the process of centralizing all your data structures and collating the information cohesively. The added advantage is that you're no longer burdened with managing multiple uploads from various schemas.
+
+```json Blueprint Example
+{
+    "sheets": [
+        {
+            "key": "products",
+            "label": "Products",
+            "description": "A list of products available for sale",
+            "fields": [
+                {
+                    "key": "code",
+                    "label": "Product Code",
+                    "type": "string"
+                },
+                {
+                    "key": "description",
+                    "type": "string"
+                },
+                {
+                    "key": "price",
+                    "type": "number"
+                }
+            ]
+        }
+    ]
+}
+```
 
 ### Event-driven Architecture
 
