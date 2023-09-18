@@ -115,8 +115,92 @@ Back in Portal, when you received diverse data from the same users and wished to
 ### Full Platform diagram
 ![v2 Portal](../../images/guides/upgrades/platform-expanded.png)
 
+## Upgrade your importer
 
-## Begin the migration
+Now we will do a side-by-side look at how we will go about upgrading your importer. This guide will show some simple snippets that will compare the different parts and how they are converted. You can follow along with the full example in our [Uprgade Repo](https://github.com/FlatFilers/Upgrade-Portal).
+
+### 1. Update your Flatfile button
+
+The skeleton of your application should remain mostly the same. You'll see here that we can use the same updated UI element when integrating Platform.
+
+<CodeGroup>
+
+    ```html Start-Portal-2/public/index.html
+    <input type="button" id="launch" value="Import Contacts" />
+    ```
+
+    ```html Finish-Platform/public/index.html
+    <input
+        type="button"
+        id="launch"
+        value="Import Contacts"
+        onclick="openFlatfile({publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
+    />
+    ```
+
+</CodeGroup>
+
+### 2. Initialize Flatfile
+
+<CodeGroup>
+
+    ```js Start-Portal-2/src/index.js
+    const { contactSchema } = schemas;
+
+    const importer = new FlatfileImporter(
+        "YOUR_LICENSE_KEY",
+        contactSchema
+    );
+
+    $("#launch").click(function () {
+        importer
+            .requestDataFromUser()
+            .then(function (results) {
+                importer.displaySuccess("Thanks for your data.");
+                $("#raw_output").text(JSON.stringify(results.data, " ", 2));
+            })
+            .catch(function (error) {
+                console.info(error || "window close");
+            });
+    });
+    ```
+
+    ```js Finish-Platform/src/index.js
+    import { initializeFlatfile } from "@flatfile/javascript";
+    import { workbook } from "./schemas";
+    import { listener } from "../listeners/listener";
+
+    //create a new space in modal
+    window.openFlatfile = ({publishableKey, environmentId}) => {
+        if (!publishableKey && !environmentId) {
+            throw new Error(
+            "You must provide a publishable key and an environment ID - pass through in index.html"
+            );
+        }
+
+        const flatfileOptions = {
+            publishableKey,
+            environmentId,
+            workbook,
+            listener,
+            sidebarConfig: {
+                showSidebar: false,
+            },
+            // Additional props...
+        };
+
+        initializeFlatfile(flatfileOptions);
+    };
+    ```
+
+</CodeGroup>
+
+### 3. Start your client
+### 4. Build a Workbook
+### 5. Transform Data
+### 6. Match your brand
+### 7. Set the destination
+### 8. Customize
 
 To facilitate your initiation and for testing, we'll leverage the API alongside a straightforward cURL request towards the end. This process will aid in crafting a Workbook that closely mirrors your Portal setup. We'll follow a step-by-step approach resembling a 1-to-1 transition. Do keep in mind, though, that you have the flexibility to consolidate various schema types into a single Blueprint within the Workbook.
 
