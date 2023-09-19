@@ -1,7 +1,6 @@
 <CodeGroup>
 
 ```jsx listener.js
-import { Client, FlatfileListener } from "@flatfile/listener";
 import api from "@flatfile/api";
 
 export default function flatfileEventListener(listener) {
@@ -61,10 +60,10 @@ export default function flatfileEventListener(listener) {
 ```
 
 ```jsx listener.ts
-import { Client, FlatfileListener } from "@flatfile/listener";
+import { FlatfileListener } from "@flatfile/listener";
 import api from "@flatfile/api";
 
-export default function flatfileEventListener(listener: Client) {
+export default function flatfileEventListener(listener: FlatfileListener) {
   listener.namespace(["space:red"], (red: FlatfileListener) => {
     red.on(
       "job:ready",

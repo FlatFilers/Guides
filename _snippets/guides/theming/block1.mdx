@@ -33,10 +33,10 @@ export default function flatfileEventListener(listener) {
 ```
 
 ```js listener.ts
-import { FlatfileListener, FlatfileEvent, Client } from "@flatfile/listener";
+import { FlatfileListener, FlatfileEvent } from "@flatfile/listener";
 import api from "@flatfile/api";
 
-export default function flatfileEventListener(listener: Client) {
+export default function flatfileEventListener(listener: FlatfileListener) {
   //configure space initially
   listener.on(
     "job:ready",
