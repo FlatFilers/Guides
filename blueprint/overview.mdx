@@ -16,9 +16,12 @@ icon: 'hand-wave'
 {
   "sheets": [
     {
-      "key": "products",
-      "label": "Products",
+      "name": "Products",
       "description": "A list of products available for sale",
+      "slug": "products",
+      "readOnly": false,
+      "allowAdditionalFields": false,
+      "access": ["add", "edit"],
       "fields": [
         {
           "key": "code",
@@ -33,7 +36,9 @@ icon: 'hand-wave'
           "key": "price",
           "type": "number"
         }
-      ]
+      ],
+      "actions": [],
+      "metadata": {}
     }
   ]
 }
