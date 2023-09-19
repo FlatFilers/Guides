@@ -6,13 +6,15 @@ import nodemailer from "nodemailer";
 import util from "util";
 
 export default function (listener) {
-  listener.filter({ job: "workbook:map" }, (configure) => {
-    configure.on("job:completed", async (event: FlatfileEvent) => {
+  listener.on(
+    "job:completed",
+    { job: "workbook:map" },
+    async (event: FlatfileEvent) => {
       const { data } = await api.workbooks.get(event.context.workbookId);
       const apiKey = await event.secrets("api_key");
       // Automate an egress for your data, integrating with your existing sytems
-    });
-  });
+    }
+  );
 }
 ```
 

@@ -39,8 +39,10 @@ import { responseRejectionHandler } from "@flatfile/util-response-rejection";
 - The `responseRejectionHandler` function returns a `Promise` that resolves to a `number` representing the total number of rejected Records across all sheets.
 
 ```ts
-listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
-  configure.on("job:ready", async ({ context: { jobId } }) => {
+listener.on(
+  "job:ready",
+  { job: "workbook:submitActionFg" },
+  async ({ context: { jobId } }) => {
     // ...
     const response = await axios.post("https://webhook.site/...", data, {
       headers: {
@@ -53,8 +55,8 @@ listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
       const totalRejectedRecords = await responseRejectionHandler(rejections);
     }
     // ...
-  });
-});
+  }
+);
 ```
 
 ### **ResponseRejection Interface**

@@ -1,152 +1,65 @@
 ---
-title: "Transform & validate data"
-description: "Begin the process of validating and transforming data in Flatfile by implementing a basic Event handler."
+title: "Transform and validate data"
+description: "Add validations and transformations to your listeners"
 icon: "circle-3"
 ---
 
-Flatfile provides a number of [transformation & validation plugins](../plugins/transform) to reshape data before it gets updated. These plugins build on the listener and provide a simpler interface for working with your data.
+## Add your first transformation
 
-<Tip>
-  Plugins are registered with the `listener.use()` function. This is explained
-  further in [Events](../concepts/events) concepts.
-</Tip>
+To make working with event data inside a listener easy, Flatfile provides a suite of Plugins.
 
-## Add data to your workbook
+<Note>
+  Plugins extend the functionality of a listener. They are registered with the
+  `listener.use()` function and fire when the listener receives a corresponding
+  event.
+</Note>
 
-Before we get started transforming data, let's upload a file with sample data.
+The Record Hook Plugin fires whenever a row of data (a Record) is added or modified, allowing us to take action and perform a custom transformation.
 
-<Card
-  title="1. Download test file"
-  icon="download"
-  href="https://assets.ctfassets.net/hjneo4qi4goj/6I48ynsesoL1s1YhPK8Pvx/1d5ed30534c1ef44166d440a08612621/getting-started.csv"
-></Card>
+Here's an example that modifies the first name value of a Record, converting it to lowercase:
 
-2. Upload your [test file](https://assets.ctfassets.net/hjneo4qi4goj/6I48ynsesoL1s1YhPK8Pvx/1d5ed30534c1ef44166d440a08612621/getting-started.csv) in the Files section.
+<Snippet file="quickstart/block1.mdx" />
 
-3. Click the "Import" Action for the file.
+As you can see, the `recordHook` has been configured to run on any Sheet matching the slug "contacts". The second parameter to the recordHook is a callback function where a Record, complete with it's own get and set methods, is the incoming value.
 
-4. Follow the steps to map the example data into the "Contacts" Sheet in the Workbook.
+<Info>Note: Unmodified rows do not trigger a Record Hook.</Info>
 
-## Adding your first data transformation
+## Watch your data transform
 
-Now, let's dive into an example that showcases the power of the `@flatfile/plugin-record-hook` plugin. With this plugin, we can stay in the loop whenever a new row is added or an existing one is modified (via the [commit Event](../concepts/events#commit-created)), allowing us to take action and transform the data to our liking. Note: Existing rows will not receive updates unless modified.
+Is your listener still running? If not, run `npx flatfile@latest develop` again.
 
-In this particular scenario, we'll demonstrate how to grab the first name from the record and convert it
-to lowercase.
+Now, in your Workbook, add a new Record. Enter a capitalized value in the First Name field, then click away so Flatfile knows you've finished your current edit.
 
-<CodeGroup>
-```js javascript
-import { recordHook } from "@flatfile/plugin-record-hook";
+Once your focus leaves the First Name field, an Event will trigger and the `recordHook` will run the lowercase transformation you just configured.
 
-//previous code here
+## Add your first validation
 
-listener.use(
-recordHook("contacts", (record) => {
-const value = record.get("firstName");
-if (typeof value === "string") {
-record.set("firstName", value.toLowerCase());
-}
+You can also use a `recordHook` to help validate data.
 
-      return record;
-    })
+For example, what if the first name in a Record is not a string? The current code would not transform it, so let's add an error message to flag the Record.
 
-);
-
-````
-
-```js typescript
-import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
-
-//previous code here
-
-listener.use(
-  recordHook("contacts", (record: FlatfileRecord) => {
-    const value = record.get("firstName");
-    if (typeof value === "string") {
-      record.set("firstName", value.toLowerCase());
-    }
-
-    return record;
-  })
-);
-````
-
-</CodeGroup>
-
-#### Using your transformation
-
-Once the focus is off of the new First Name field, your transformation will run and convert the characters in your value to lowercase.
-
-1. With the `develop` command still running in terminal, navigate to your Contacts Sheet and insert a new row where the First Name is written entirely in capital letters.
-2. When the focus leaves the First Name field, your transformation will run and convert the characters in your value to lowercase.
-
-## Adding your first validation
-
-Similar to transforming data, we will continue to use the [record-hook plugin](../plugins/transform/record-hook) as the starting point for validating data.
-
-In this particular scenario, we'll demonstrate how to add an error message if the email is invalid.
-
+<Snippet file="quickstart/block2.mdx" />
+<br />
 <Tip>You can use any npm package in a plugin.</Tip>
 
-<CodeGroup>
+The possible customizations are endless. Flatfile has a constantly expanding library of [transformation and validation plugins](../plugins/transform) that help you reshape data. You can add as many as you need to ensure your data is clean and ready to be used.
 
-```js javascript
-import { recordHook } from "@flatfile/plugin-record-hook";
+For example, you could add code to validate a Record's email field:
 
-//previous code here
+<Snippet file="quickstart/block3.mdx" />
 
-listener.use(
-  recordHook("contacts", (record) => {
-    //previous code here
+Remember that the recordHook plugin fires once per modified record, so you should include the code for all transformations and validations you want on that Record in the same `recordHook`.
 
-    const email = record.get("email");
-    const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+## Watch your data validate
 
-    if (email !== null && !validEmailAddress.test(email)) {
-      console.log("Invalid email address");
-      record.addError("email", "Invalid email address");
-    }
+Check your listener is still running. If not, run `npx flatfile@latest develop` again.
 
-    return record;
-  })
-);
-```
+Now, in your Workbook, add or update a Record. Enter a number inside the firstName field, or an invalid email address in the email field, then click away so Flatfile knows you've finished your current edit.
 
-```js typescript
-import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
-
-//previous code here
-
-listener.use(
-  recordHook("contacts", (record: FlatfileRecord) => {
-
-    //previous code here
-
-    const email = record.get("email") as string;
-    const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (email !== null && !validEmailAddress.test(email)) {
-      console.log("Invalid email address");
-      record.addError("email", "Invalid email address");
-    }
-
-    return record;
-  })
-);
-```
-
-</CodeGroup>
-
-#### Using your validation
-
-Once you take focus off of the field, your validation will run and the Sheet user interface will display an error for the changed field.
-
-1. With the `develop` command still running in terminal, go back to your Contacts Sheet.
-2. Modify any value of Email Address to make it an invalid email address.
-3. Take focus off the field you entered (click outside that field).
+See that error message? That's the result of your validation.
 
 ---
 
-## Recap & Next Steps
+## Next steps
 
-Now that you've added transformations and validations, we will [configure the Workbook Action](../quickstart/submit-action) to call out to an external webhook receiver provided by the [webhook.site](https://webhook.site) service.
+Now that you've added some transformations and validations, let's egress the cleaned data: [Configure a submit Action](../quickstart/submit-action).

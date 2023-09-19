@@ -65,8 +65,8 @@
     {
       "group": "Beginner Tutorial",
       "pages": [
+        "quickstart/tutorial-landing",
         "quickstart/meet-the-workbook",
-        "quickstart/create-your-workbook",
         "quickstart/meet-the-listener",
         "quickstart/add-data-transformation",
         "quickstart/submit-action",
