@@ -6,7 +6,7 @@ icon: "square-up"
 
 ## Overview
 
-As you transition from Portal 2.0 to Platform, you'll come across many familiar elements that resemble what you've known. However, there might be instances where certain components are no longer present, have been rearranged, or sport a fresh appearance. To ensure a seamless transition, this guide is designed to teach you the differences and how to convert. It will highlight both the similarities and differences between the two versions, enabling you to switch over effortlessly. Want to see what it might look like to upgrade? Check out our [upgrade repository here](https://github.com/FlatFilers/Upgrade-Portal) to compare the beginning and end of upgrading.
+As you transition from Portal 2.0 to Platform, you'll come across many familiar elements that resemble what you've known. However, there might be instances where certain components are no longer present, have been rearranged, or sport a fresh appearance. To ensure a seamless transition, this guide is designed to teach you the differences and how to convert. It will highlight both the similarities and differences between the two versions, enabling you to switch over with minimal effort. Want to see what it might look like to upgrade? Check out our [upgrade repository here](https://github.com/FlatFilers/Upgrade-Portal) to compare the beginning and end of upgrading.
 
 ## A comparison
 
@@ -26,24 +26,24 @@ Explore this illustrative diagram that lays out the distinctions between the two
 
 In Portal, setting `devMode: true` flagged imports as “dev” imports, but in Platform, there are true Environments.
 
-You can have many custom Environments, but upon signup, you will have a Development, Production, and Example Environment configured.
+You can have many custom Environments, but upon signup, you will have a Development, Production, and Demo Environment configured.
 
 All of the other entities (like Spaces, Workbooks, and Sheets) will live in those Environments.
 
 #### Meet the Space
 
-When comparing to Portal, a Space and its UI is what will replace the older importer. The Space is what holds all the Files and Workbooks that are needed to import data. You can learn more about Spaces and all that they do in our [Spaces documentation](/concepts/spaces).
+A Space and its UI constitute the new data importer that has replaced Portal. The Space is what holds all the Files and Workbooks that are needed to import data. You can learn more about Spaces and all that they do in our [Spaces documentation](/concepts/spaces).
 
 #### Meet the Workbook
 
 For Platform, it's a good idea to get to know the [concept of a Workbook](/quickstart/meet-the-workbook). When you're upgrading, you can think of a Workbook as the place where your import data hangs out.
 
-Unlike Portal, where all the editing and fixing of data happens right in the browser, Platform does these actions on the server side. The data gets saved in one or more Workbooks as you go along.
+Unlike Portal, where all the editing and fixing of data happens right in the browser, Platform also has an option to perform these actions on the server side. The data gets saved in one or more Workbooks as you go along.
 
-Inside these Workbooks, you'll find one or more Sheets, kind of like how Portal has its schemas. Other than some basic names and settings, the sheet has something called a "fields array," which is pretty similar to what you know from Portal.
+Inside these Workbooks, you'll find one or more Sheets, which are similar to schemas in Portal. Other than some basic names and settings, the sheet has something called a "fields array," which is pretty similar to what you know from Portal.
 
 <Note>
-    Keep in mind that if you had multiple importers to handle different data sets from different places, you will be able to consolidate them by having all your schemas now live in one workbook.
+    Keep in mind that if you had multiple importers to handle different data sets from different places, you will be able to consolidate them by having all your schemas now live in one Workbook.
 </Note>
 
 ### Configuring your schema
@@ -56,9 +56,11 @@ Back in Portal, when you received diverse data from the same users and wished to
 {
     "sheets": [
         {
-            "key": "products",
-            "label": "Products",
-            "description": "A list of products available for sale",
+            "name": "products",
+            "slug": "products",
+            "readOnly": false,
+            "allowAdditionalFields": false,
+            "access": ["add", "edit"],
             "fields": [
                 {
                     "key": "code",
@@ -73,7 +75,9 @@ Back in Portal, when you received diverse data from the same users and wished to
                     "key": "price",
                     "type": "number"
                 }
-            ]
+            ],
+            "actions": [],
+            "metadata": {}
         },
         {
             "key": "manufacturers",
@@ -96,22 +100,6 @@ Back in Portal, when you received diverse data from the same users and wished to
 }
 ```
 
-### Event-driven Architecture
-
-#### Understanding Events, listeners and data hooks
-1. describe how whole system generates events.
-2. Events can be user triggered or system triggered
-3. actions are user triggered events
-4. show a list of events
-5. actions and events can be at all levels of the hierarchy
-
-#### Using Listeners
-1. Talk about how listeners are used to act on events
-
-#### Leveraging Hooks
-
-1. Introduce Hooks Guide
-
 ### Full Platform diagram
 ![v2 Portal](../../images/guides/upgrades/platform-expanded.png)
 
@@ -126,7 +114,11 @@ The skeleton of your application should remain mostly the same. You'll see here 
 <CodeGroup>
 
     ```html Start-Portal-2/public/index.html
-    <input type="button" id="launch" value="Import Contacts" />
+    <input
+        type="button"
+        id="launch"
+        value="Import Contacts"
+    />
     ```
 
     ```html Finish-Platform/public/index.html
@@ -172,7 +164,7 @@ The skeleton of your application should remain mostly the same. You'll see here 
 
     //create a new space in modal
     window.openFlatfile = ({publishableKey, environmentId}) => {
-        if (!publishableKey && !environmentId) {
+        if (!publishableKey || !environmentId) {
             throw new Error(
             "You must provide a publishable key and an environment ID - pass through in index.html"
             );
@@ -207,7 +199,7 @@ Sheets will share many properties with those found in the Portal schema. You'll 
 
 When it comes to the `fields` array, you'll find quite a few familiar elements like `key`, `label`, and `description`, which all transition directly from Portal.
 
-#### About field Types
+#### About field types
 
 Let's delve deeper into the Portal and Platform `type` property for fields. When you don't specify this field, both Portal and Platform will assume a default `string` type. In Portal, the `type: "checkbox"` is now `"type": "boolean"`, and the `type: "select"` is now `"type": "enum"` in Platform.
 
@@ -226,7 +218,42 @@ Furthermore, keep in mind that while Portal only had three types, Platform has b
     When providing select/enum options there is still an `options` array that has the same structure as it did in Portal. However, one thing to note is that this options array has been moved into a new property on the field object named `config` for Platform.
 </Note>
 
-#### Setup validations
+<CodeGroup>
+    ```js Start-Portal-2/src/schemas.js
+    {
+        label: "Deal Status",
+        key: "type",
+        type: "select",
+        options: [
+            { label: "New", value: "new" },
+            { label: "Interested", value: "interested" },
+            { label: "Meeting", value: "meeting" },
+            { label: "Opportunity", value: "opportunity" },
+            { label: "Not a fit", value: "unqualified" }
+        ],
+        validators: [{ validate: "required" }]
+    }
+    ```
+    ```js Finish-Platform/src/schemas.js
+    {
+        key: "type",
+        type: "enum",
+        label: "Deal Status",
+        constraints: [{ type: "required" }],
+        config: {
+            options: [
+                { label: "New", value: "new" },
+                { label: "Interested", value: "interested" },
+                { label: "Meeting", value: "meeting" },
+                { label: "Opportunity", value: "opportunity" },
+                { label: "Not a fit", value: "unqualified" }
+            ]
+        }
+    }
+    ```
+</CodeGroup>
+
+#### Set up validations
 
 The final aspect of converting your Portal fields into Platform fields will be to handle the `validators` from Portal. While Portal offered many different kinds of validators, only two have been converted in the fields themselves, and those are `required` and `unique`. All other validations may still be handled, but would be handled in code instead of a setting.
 
@@ -573,7 +600,7 @@ Custom theming in Portal was a crucial part of making the importer like a part o
 
 ### 6. Set the destination
 
-In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR- use the returned data within the Promise to do whatever needed to be done with your data. With Platform, we use the Listners to wait for the submit action to happen and then act on it.
+In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR- use the returned data within the Promise to do whatever needed to be done with your data. With Platform, we use the Listeners to wait for the submit action to happen and then act on it.
 
 <CodeGroup>
     ```js Start-Portal-2/src/index.js
