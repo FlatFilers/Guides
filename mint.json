@@ -86,7 +86,8 @@
         "guides/guest_sidebar",
         "guides/documents",
         "guides/secrets",
-        "guides/automap"
+        "guides/automap",
+        "guides/localization"
       ]
     },
     {

@@ -62,10 +62,18 @@ For our translations repository we would set our translationsPath to: https://ra
 
 Set up your translations path using our API or the listener. This can be done at both the space and environment levels.
 
-```jsx
-await api.spaces.update(spaceId, {
-  translationsPath: 'https://raw.githubusercontent.com/FlatFilers/Platform-Translations/main/locales/en/translation.json'
-});
+```jsx listener.ts
+
+listener.on(
+    "space:created",
+    async ({ context: { spaceId, environmentId } }) => {
+      //set the translation path for the space
+      const updateSpace =  await api.spaces.update(spaceId, {
+            environmentId,
+            translationsPath:
+              "https://raw.githubusercontent.com/FlatFilers/Platform-Translations/kitchen-sink/locales/en/translation.json",
+          })
+        })  
 ```
 
 <Info>
