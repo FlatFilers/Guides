@@ -195,10 +195,42 @@ The skeleton of your application should remain mostly the same. You'll see here 
 
 </CodeGroup>
 
-### 3. Start your client
-### 4. Build a Workbook
+### 3. Build a Workbook
 
 This is where you will covert your Schema(s) into a Workbook. This is the point where you can combine multiple importers into one by having multiple Sheets on the Workbook. Your end users would then be able to select which data model they are uploading into during the import process.
+
+#### Compare and contrast
+
+The workbook consists of three crucial components: the `name`, the `environmentId` (which you can locate in your [login here](https://platform.flatfile.com)), and the `sheets` properties.
+
+Sheets will share many properties with those found in the Portal schema. You'll encounter a `name` property (akin to the `type` property in a Portal schema) and `fields` (which closely resembles your Portal `fields` array).
+
+When it comes to the `fields` array, you'll find quite a few familiar elements like `key`, `label`, and `description`, which all transition directly from Portal.
+
+#### About field Types
+
+Let's delve deeper into the Portal and Platform `type` property for fields. When you don't specify this field, both Portal and Platform will assume a default `string` type. In Portal, the `type: "checkbox"` is now `"type": "boolean"`, and the `type: "select"` is now `"type": "enum"` in Platform.
+
+Furthermore, keep in mind that while Portal only had three types, Platform has broadened its range to include `number`, `date`, and `reference` types. To get more details about these new field types, you can check out our [documentation](/blueprint/field-types). Also, we've prepared a handy reference table below, outlining all the new types and how they were handled in Portal.
+
+| Portal Type | Platform Type |
+| ----------- | ------------- |
+| String      | String        |
+| String      | Date          |
+| String      | Number        |
+| Select      | Enum          |
+| Checkbox    | Boolean       |
+| N/A         | Reference     |
+
+<Note>
+    When providing you select/enum options there is still an `options` array that is shaped the same, however, one thing to note is that this options array has been moved into a new field that is `config` for Platform.
+</Note>
+
+#### Setup validations
+
+The final aspect of converting your Portal fields into Platform fields will be to handle the `validators` from Portal. While Portal offered many different kinds of validators, only two have been converted in the fields themselves, and those are `required` and `unique`. All other validations may still be handled, but would be handled in code instead of a setting.
+
+The `validators` property will now be called `constraints` which is still an array of objects. The object for each validator has traded in the `validates` property for `type` property, but the `unique` and `required` values remain the same.
 
 <CodeGroup>
 
@@ -368,351 +400,247 @@ This is where you will covert your Schema(s) into a Workbook. This is the point 
 
 </CodeGroup>
 
-### 5. Transform Data
-### 6. Match your brand
-### 7. Set the destination
-### 8. Customize
+### 4. Transform Data
 
-To facilitate your initiation and for testing, we'll leverage the API alongside a straightforward cURL request towards the end. This process will aid in crafting a Workbook that closely mirrors your Portal setup. We'll follow a step-by-step approach resembling a 1-to-1 transition. Do keep in mind, though, that you have the flexibility to consolidate various schema types into a single Blueprint within the Workbook.
-
-TODO: How to do migration
-    1. convert schemas to sheets
-        1. validations need to move the data hooks
-        2. wording changes
-    2. convert field hooks and record hooks to data hooks inside a listener
-        1. Syntax differences
-        2. mention that field hooks can be replaced by bulk record hook.
-
-### 1. Create a Workbook
-
-To get started, let's begin by creating a Workbook and then progressively enhancing it. The workbook consists of three crucial components: the `name`, the `environmentId` (which you can locate in your [login here](https://platform.flatfile.com)), and the `sheets` properties.
-
-```json
-{
-  "name": "Portal to Platform upgrade",
-  "environmentId": "YOUR_ENVIRONMENT_ID_HERE",
-  "sheets": []
-}
-```
-
-### 2. Create Sheet(s)
-
-Let's take a closer look at Sheets, as this is where the bulk of your upgrade work will occur. Sheets will share many properties with those found in the Portal schema. You'll encounter a `name` property (akin to the `type` property in a Portal schema) and `fields` (which closely resembles your Portal `fields` array).
-
-```json
-{
-  "name": "Portal to Platform upgrade",
-  "environmentId": "YOUR_ENVIRONMENT_ID_HERE",
-  "sheets": [
-    {
-      "name": "Contacts",
-      "slug": "contacts",
-      "fields": []
-    }
-  ]
-}
-```
-
-### 3. Create Fields
-
-When it comes to the `fields` array, you'll find quite a few familiar elements like `key`, `label`, and `description`, which all transition directly from Portal. In this scenario, we're upgrading from one of our Demos in Portal, and you can track the process in this [Codesandbox](https://codesandbox.io/s/sales-demo-v5-ef7kj?file=/src/schemas.js) if you'd like to follow along.
-
-```json
-{
-  "sheets": [
-    {
-      "name": "Contacts",
-      "slug": "contacts",
-      "fields": [
-        {
-          "key": "firstName",
-          "label": "First Name"
-        },
-        {
-          "key": "lastName",
-          "label": "Last Name"
-        },
-        {
-          "key": "email",
-          "label": "Email Address",
-          "description": "Please please enter your email"
-        },
-        {
-          "key": "phone",
-          "label": "Phone number"
-        },
-        {
-          "key": "date",
-          "label": "Date"
-        },
-        {
-          "key": "country",
-          "label": "Country"
-        },
-        {
-          "key": "zipCode",
-          "label": "Zip Code"
-        },
-        {
-          "key": "subscriber",
-          "label": "Subscriber"
-        },
-        {
-          "key": "type",
-          "label": "Deal Status"
-        }
-      ]
-    }
-  ]
-}
-```
-
-#### About field Types
-
-Let's delve deeper into the Portal and Platform `type` property for fields. When you don't specify this field, both Portal and Platform will assume a default `string` type. In Portal, the `type: "checkbox"` is now `"type": "boolean"`, and the `type: "select"` is now `"type": "enum"` in Platform.
-
-Furthermore, keep in mind that while Portal only had three types, Platform has broadened its range to include `number`, `date`, and `reference` types. To get more details about these new field types, you can check out our [documentation](/blueprint/field-types). Also, we've prepared a handy reference table below, outlining all the new types and how they were handled in Portal.
-
-| Portal Type | Platform Type |
-| ----------- | ------------- |
-| String      | String        |
-| String      | Date          |
-| String      | Number        |
-| Select      | Enum          |
-| Checkbox    | Boolean       |
-| N/A         | Reference     |
-
-Before adding onto the example, note that when providing you select/enum options there is still an `options` array that is shaped exactly the same as before, however, one thing to note is that this options array has been moved into a new field that is `config` for Platform. This `config` property also comes into play if you want to have your checkbox/boolean fields behave the same as in Portal. In Portal, it would only allow truthy/falsy values and convert them into booleans. `null` was handled as a false value in Portal. In Platform, the default is to pass through `null` values and `null`. If you want to handle these as `false` , like in Portal, use the `config` object with the `allow_indeterminate` set to `false`.
-
-```json
-{
-  "fields": [
-    {
-      "key": "date",
-      "type": "date",
-      "label": "Date"
-    },
-    {
-      "key": "subscriber",
-      "type": "boolean",
-      "label": "Subscriber",
-      "config": {
-        "allow_indeterminate": false
-      }
-    },
-    {
-      "key": "type",
-      "type": "enum",
-      "label": "Deal Status",
-      "config": {
-        "options": [
-          { "label": "New", "value": "new" },
-          { "label": "Interested", "value": "interested" },
-          { "label": "Meeting", "value": "meeting" },
-          { "label": "Opportunity", "value": "opportunity" },
-          { "label": "Not a fit", "value": "unqualified" }
-        ]
-      }
-    }
-  ]
-}
-```
-
-#### Setup validations
-
-The final aspect of converting your Portal fields into Platform fields will be to handle the `validators` from Portal. While Portal offered many different kinds of validators, only two have been converted in the fields themselves, and those are `required` and `unique`. All other validations may still be handled, but would be handled in code instead of a setting.
-
-The `validators` property will now be called `constraints` which is still an array of objects. The object for each validator has traded in the `validates` property for `type` property, but the `unique` and `required` values remain the same.
-
-```json
-{
-  "fields": [
-    {
-      "key": "firstName",
-      "type": "string",
-      "label": "First Name",
-      "constraints": [{ "type": "required" }]
-    },
-    {
-      "key": "email",
-      "type": "string",
-      "label": "Email Address",
-      "description": "Please please enter your email",
-      "constraints": [{ "type": "unique" }, { "type": "required" }]
-    }
-  ]
-}
-```
-
-### 4. Send API Request
-
-We have now learned all the aspects of converting your Portal schema to the Platform.
-
-Below, we will take all the aspects of what gets converted above and put it into a full request that works.
-
-<Note>
-  {" "}
-  You'll need your your Secret Key and your Environment Id from your [Dashboard](https://platform.flatfile.com).
-</Note>
-
-```bash
-curl --request POST \
-  --url https://platform.flatfile.com/api/v1/workbooks \
-  --header 'Authorization: Bearer YOUR_SECRET_KEY' \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "name": "Portal to Platform upgrade",
-  "environmentId": "YOUR_ENVIRONMENT_ID",
-  "sheets": [
-    {
-      "name": "Contact",
-      "slug": "contacts",
-      "fields": [
-        {
-          "key": "firstName",
-          "type": "string",
-          "label": "First Name",
-          "constraints": [
-            { "type": "required" }
-          ]
-        },
-        {
-          "key": "lastName",
-          "type": "string",
-          "label": "Last Name"
-        },
-        {
-          "key": "email",
-          "type": "string",
-          "label": "Email Address",
-          "description": "Please please enter your email",
-          "constraints": [
-            { "type": "unique" }
-          ]
-        },
-        {
-          "key": "phone",
-          "type": "string",
-          "label": "Phone number"
-        },
-        {
-          "key": "date",
-          "type": "date",
-          "label": "Date"
-        },
-        {
-          "key": "country",
-          "type": "string",
-          "label": "Country"
-        },
-        {
-          "key": "zipCode",
-          "type": "string",
-          "label": "Zip Code"
-        },
-        {
-          "key": "subscriber",
-          "type": "boolean",
-          "label": "Subscriber",
-          "config": {
-            "allow_indeterminate": false
-          }
-        },
-        {
-          "key": "type",
-          "type": "enum",
-          "label": "Deal Status",
-          "config": {
-            "options":[
-              { "label": "New", "value": "new" },
-              { "label": "Interested", "value": "interested" },
-              { "label": "Meeting", "value": "meeting" },
-              { "label": "Opportunity", "value": "opportunity" },
-              { "label": "Not a fit", "value": "unqualified" }
-            ]
-          }
-        }
-      ]
-    }
-  ]
-}'
-```
-
-## Embed your Space
-
-The final piece to utilizing the newly created Space is embedding it in your application. There is a [full embed guide](/guides/use-cases/embedding/javascript/guide) for this, but we will cover the bare minimum here.
-
-You'll need to install the Flatfile JavaScript package.
-
-<Note>
-    Note: We are using vanilla JavaScript in this example, but we also have a [guide for React](/guides/use-cases/embedding/react/guide).
-</Note>
+Coming from Portal, you are likely familiar with the concept of Data Hooks. The same sort of functionality can be obtained in Platform, but they have moved into Listeners and use plugins like the [record hook plugin](/plugins/transform/record-hook). You can read more about [Listeners here](/quickstart/meet-the-listener) and more about all of our [Plugins here](/plugins/overview).
 
 <CodeGroup>
+    ```js Start-Portal-2/src/index.js
+    importer.registerRecordHook(async (record, index) => {
+        let out = {};
 
-    ```npm npm
-    npm install @flatfile/javascript@latest
+        if (record.email) {
+            if (record.email.includes('flatfile.io')) {
+                out.email = {
+                    info: [
+                        {
+                            message: "Flatfile emails should use flatfile.com ending only",
+                            level: "error"
+                        }
+                    ]
+                }
+            }
+        }
+
+        if (!record.phone && !record.email) {
+            out.phone = out.email = {
+                info: [
+                    {
+                        message: "Please include one of either Phone or Email.",
+                        level: "warning"
+                    }
+                ]
+            };
+        }
+
+        if (record.phone) {
+            let validPhone = formatPhoneNumber(record.phone);
+            if (validPhone !== "Invalid phone number") {
+                out.phone = {
+                    value: validPhone,
+                    info: []
+                };
+            } else {
+                out.phone = {
+                    info: [
+                        {
+                            message: "This does not appear to be a valid phone number",
+                            level: "error"
+                        }
+                    ]
+                };
+            }
+        }
+
+        if (record.date) {
+        //reformat the date to ISO format
+            let thisDate = format(new Date(record.date), "yyyy-MM-dd");
+        //create var that holds the date value of the reformatted date as
+        //thisDate is only a string
+            let realDate = parseISO(thisDate);
+            if (isDate(realDate)) {
+                out.date = {
+                value: thisDate,
+                info: isFuture(realDate) ?
+                    [
+                        {
+                            message: "Date cannot be in the future.",
+                            level: "error"
+                        }
+                    ]
+                    : []
+                };
+            } else {
+                out.date = {
+                    info: [
+                        {
+                            message: "Please check that the date is formatted YYYY-MM-DD.",
+                            level: "error"
+                        }
+                    ]
+                };
+            }
+        }
+
+        //country name lookup, replace with country code
+        if (record.country) {
+            if (!countries.find((c) => c.code === record.country)) {
+                const suggestion = countries.find(
+                    (c) => c.name.toLowerCase().indexOf(record.country.toLowerCase()) !== -1
+                );
+                out.country = {
+                    value: suggestion ? suggestion.code : record.country,
+                    info: !suggestion ?
+                        [
+                            {
+                                message: "Country code is not valid",
+                                level: "error"
+                            }
+                        ]
+                        : []
+                };
+            }
+        }
+        if (
+        record.zipCode &&
+        record.zipCode.length < 5 &&
+        (record.country === "US" || out.country.value === "US")
+        ) {
+            out.zipCode = {
+                value: record.zipCode.padStart(5, "0"),
+                info: [{ message: "Zipcode was padded with zeroes", level: "info" }]
+            };
+        }
+
+        return out;
+    });
     ```
 
-    ```yarn yarn
-    yarn add @flatfile/javascript@latest
+    ```js Finish-Platform/listeners/listener.js
+    listener.use(
+        recordHook("contacts", (record) => {
+            const email = record.get("email");
+            const phone = record.get("phone");
+            const date = record.get("date");
+            const country = record.get("country");
+            const zipCode = record.get("zipCode");
+            if (email.includes('flatfile.io')) {
+                record.addError("email", "Flatfile emails should use flatfile.com ending only")
+            }
+            if (!email && !phone) {
+                record.addWarning(["email", "phone"], "Please include one of either Phone or Email.")
+            }
+            if (phone) {
+                let validPhone = formatPhoneNumber(phone)
+                if (validPhone !== "Invalid phone number") {
+                    record.set("phone", validPhone)
+                } else {
+                    record.addError("phone", "This does not appear to be a valid phone number")
+                }
+            }
+            if (date) {
+                let thisDate = format(new Date(record.date), "yyyy-MM-dd");
+                let realDate = parseISO(thisDate);
+                if (isDate(realDate)) {
+                    record.set("date", thisDate)
+                    isFuture(realDate) && record.addError("date", "Date cannot be in the future.");
+                } else {
+                    record.addError("date", "Please check that the date is formatted YYYY-MM-DD.")
+                }
+            }
+            if (country) {
+                if (!countries.find((c) => c.code === country)) {
+                    const suggestion = countries.find(
+                    (c) => c.name.toLowerCase().indexOf(country.toLowerCase()) !== -1
+                    );
+                    record.set("country", suggestion ? suggestion.code : country);
+                    !suggestion && record.addError("country", "Country code is not valid")
+                }
+            }
+            if (zipCode && zipCode.length < 5 && country === "US") {
+                record.set("zipCode", zipCode.padStart(5, "0"))
+                record.addInfo("zipCode", "Zipcode was padded with zeroes")
+            }
+            return record;
+        })
+    );
     ```
 
 </CodeGroup>
+### 5. Match your brand
 
-You'll then need to attach the `openFlatfile` method to your button. It should look something like this:
+Custom theming in Portal was a crucial part of making the importer like a part of your application.  Platform also has custom theming that you can use to do the same. Check out our [theming guide](/guides/theming) to see what all is configurable in Platform.
 
-```html public/index.html
-<button onclick="openFlatfile('pk_1234')">
-    Create new Space
-</button>
-```
+### 6. Set the destination
 
-Then in your JavaScript file, you'll need to initialize Flatfile. Note that when attaching the instance to the specific workspace, you will need to head back into your Platform dashboard and get the Space Id and
+In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR- use the returned data within the Promise to do whatever needed to be done with your data. With Platform, we use the Listners to wait for the submit action to happen and then act on it.
 
-```js src/client.js
-import { initializeFlatfile } from "@flatfile/javascript";
+<CodeGroup>
+    ```js Start-Portal-2/src/index.js
+    $("#launch").click(function () {
+        importer
+            .requestDataFromUser()
+            .then(function (results) {
+                importer.displaySuccess("Thanks for your data.");
+                $("#raw_output").text(JSON.stringify(results.data, " ", 2));
+            })
+            .catch(function (error) {
+                console.info(error || "window close");
+            });
+    });
+    ```
 
-//create a new space in modal
-window.openFlatfile = (publishableKey) => {
-  const flatfileOptions = {
-    publishableKey,
-    space: {
-        id: 'YOUR_SPACE_ID',
-        accessToken: 'YOUR_PRIVATE_KEY'
-    }
-    // Additional props...
-  };
+    ```js Finish-Platform/listener/listener.js
+    listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
+        configure.on("job:ready", async ({ context: { jobId } }) => {
+            try {
+                await flatfile.jobs.ack(jobId, {
+                    info: "Getting started.",
+                    progress: 10,
+                });
+                console.log("Make changes here when an action is clicked");
+                await flatfile.jobs.complete(jobId, {
+                    outcome: {
+                        message: "This job is now complete.",
+                    },
+                });
+            } catch (error) {
+                console.error("Error:", error.stack);
 
-  initializeFlatfile(flatfileOptions);
-};
-```
+                await flatfile.jobs.fail(jobId, {
+                    outcome: {
+                        message: "This job encountered an error.",
+                    },
+                });
+            }
+        });
+    });
+    ```
+</CodeGroup>
 
-Once this is done, you'll see the space you've created open when clicking the button inside your application. 🎉
+### 7. Customize
 
-## Make it more valuable
-
-While this guide is meant to help you understand how your current v2 implementation will look and feel in the new Platform, there are many more new features and items to make what you were doing in Portal more useful. We recommend you check out these resources to help you expand on what you've just created here.
+While everything above gives you all sort of great information about how your Portal implementation will convert to PLatform, it's just the beginning of all the amazing new things you can do with the Platform. Below we are going to share some links that can help make your already great workflow even better.
 
 <CardGroup cols={4}>
     <Card
-        title="Meet the Workbook"
+        title="Make it more dynamic"
         icon="circle-1"
-        href="../../quickstart/meet-the-workbook"
+        href="/guides/dynamic-configurations"
     ></Card>
     <Card
-        title="Get to know Listeners"
+        title="Make it headless"
         icon="circle-2"
-        href="../../quickstart/meet-the-listener"
+        href="/guides/use-cases/headless"
     ></Card>
     <Card
-        title="Submitting data with Actions"
+        title="Top Secret - Seriously, don't click this"
         icon="circle-3"
-        href="../../quickstart/submit-action"
+        href="/guides/secrets"
     ></Card>
     <Card
-        title="Deploying Flatfile"
+        title="Document things for end users"
         icon="circle-4"
-        href="../../quickstart/deploying"
+        href="/guides/documents"
     ></Card>
 </CardGroup>
