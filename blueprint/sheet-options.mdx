@@ -1,0 +1,82 @@
+---
+title: "Sheet options"
+description: Configure the basic behavior of your Sheet
+icon: "file-spreadsheet"
+---
+
+Sheets have some basic options that determine their behavior.
+
+<RequestExample>
+```json Blueprint Example
+{
+  "sheets": [
+    {
+      "name": "Products",
+      "description": "A list of products available for sale",
+      "slug": "products",
+      "readOnly": false,
+      "allowAdditionalFields": false,
+      "access": ["add", "edit"],
+      "fields": [
+        {
+          "key": "code",
+          "label": "Product Code",
+          "type": "string"
+        },
+        {
+          "key": "description",
+          "type": "string"
+        },
+        {
+          "key": "price",
+          "type": "number"
+        }
+      ],
+      "actions": [],
+      "metadata": {}
+    }
+  ]
+}
+```
+</RequestExample>
+
+<ParamField path="name" type="string" required>
+  The name of your Sheet as it will appear to your end users.
+</ParamField>
+
+<ParamField path="description" type="string">
+  A sentence or two describing the purpose of your Sheet.
+</ParamField>
+
+<ParamField path="slug" type="string">
+  A unique identifier for your Sheet. Used to reference your Sheet in code, for example in a [Record Hook](../guides/handling-data#example).
+</ParamField>
+
+<ParamField path="readonly" type="boolean">
+  A boolean specifying whether or not this sheet is read only. Read only sheets are not editable by end users.
+</ParamField>
+
+<Note>
+  `allowAdditionalFields` is in beta. Please [contact support](mailto:support@flatfile.com) to enable this option on your account.
+</Note>
+<ParamField path="allowAdditionalFields" type="boolean">
+  When this is set to `true`, your Sheet will be able to accept additional fields beyond what you specify in its configuration. These additional fields can be added via API, or by end users during the file import process. 
+</ParamField>
+
+<ParamField path="access" type="array">
+  An array specifying the access controls for this Sheet. [Read more about access controls](./access).
+</ParamField>
+
+<ParamField path="fields" type="array" required>
+  This is where you define your Sheet's data schema. The collection of fields in your Sheet detemines the shape of data you wish to accept. Read more about field [types](./field-types), [constraints](./constraints), and [relationships](./relationships).
+</ParamField>
+
+<ParamField path="actions" type="array">
+  An array of actions that end users can perform on this Sheet. [Read more about actions](../guides/actions).
+</ParamField>
+
+<ParamField path="metadata" type="object">
+  Use `metadata` to store any extra contextual information about your Sheet. Must be valid JSON.
+</ParamField>
+
+

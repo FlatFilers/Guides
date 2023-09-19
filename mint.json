@@ -148,6 +148,7 @@
 
       "pages": [
         "blueprint/overview",
+        "blueprint/sheet-options",
         "blueprint/field-types",
         "blueprint/constraints",
         "blueprint/relationships",
