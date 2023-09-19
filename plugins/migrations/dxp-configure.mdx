@@ -62,7 +62,7 @@ export const MyWorkbook = new Workbook({
     mySheet: new Sheet("Test", {
       name: TextField("Full Name"),
       email: TextField({
-        name: "Email Address",
+        label: "Email Address",
         compute: (val) => {
           return val.toLowerCase();
         },
