@@ -73,9 +73,9 @@ listener.use(
   jobHandler("domain:operation", async (event, tick) => {
     try {
       // your code here...
-      tick(50, "Halfway there!"); // update Job progress
+      await tick(50, "Halfway there!"); // update Job progress
       // ...continue your code...
-      tick(75, "Three quarters there!"); // update Job progress
+      await tick(75, "Three quarters there!"); // update Job progress
       // ...continue your code...
       return {
         outcome: {

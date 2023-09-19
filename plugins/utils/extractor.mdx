@@ -33,7 +33,7 @@ This code defines a shared utility used in Flatfile Extractor plugins for data e
   - `fileExt`: A string or regular expression representing the file extension(s) to be processed.
   - `parseBuffer`: A callback function that processes the file buffer and returns a `WorkbookCapture`.
   - `options`: An optional object containing additional configuration options for data extraction.
-    - `options.chunkSize`: Specifies the quantity of Records per chunk. Default value is `3000`.
+    - `options.chunkSize`: Specifies the quantity of Records per chunk. Default value is `10000`.
     - `options.parallel`: Determines how many chunks are processed simultaneously. Default value is `1`.
 - Inside the `Extractor` function, a FlatfileListener is used to intercept files with the specified extensions and perform the extraction process.
 
