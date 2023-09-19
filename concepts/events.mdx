@@ -38,11 +38,13 @@ export type EventFilter = Record<string, Arrayable<string>>;
 By leveraging the robust capabilities of our @flatfile/listener library, we can seamlessly intercept any Event and execute a callback function based on the values encapsulated within the Event itself.
 
 ```typescript
-listener.filter({ job: "space:configure" }, (configure: FlatfileListener) => {
-  listener.on("job:ready", async (event: FlatfileEvent) => {
+listener.on(
+  "job:ready",
+  { job: "space:configure" },
+  async (event: FlatfileEvent) => {
     //do something here
-  });
-});
+  }
+);
 ```
 
 ## Event Topics
@@ -167,7 +169,8 @@ outcome or plan subsequent actions accordingly.
 #### `commit:created`
 
 <ParamField path="commit:created" type="readonly">
-  Commits are created when a cell in a Record (which is in a Sheet) is created or updated.
+  Commits are created when a cell in a Record (which is in a Sheet) is created
+  or updated.
 </ParamField>
 
 ```json

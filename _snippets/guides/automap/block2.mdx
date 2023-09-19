@@ -1,7 +1,6 @@
 <CodeGroup>
 
 ```jsx javascript
-import { Client, FlatfileEvent } from "@flatfile/listener";
 import { automap } from "@flatfile/plugin-automap";
 
 export default function flatfileEventListener(listener) {
@@ -10,7 +9,7 @@ export default function flatfileEventListener(listener) {
       accuracy: "confident",
       defaultTargetSheet: "Contact",
       matchFilename: /^.*contacts\.csv$/,
-      onFailure: (event: FlatfileEvent) => {
+      onFailure: (event) => {
         console.error(
           `Failed to automap! Please visit https://spaces.flatfile.com/space/${event.context.spaceId}/files?mode=import to manually import file.`
         );
@@ -21,10 +20,10 @@ export default function flatfileEventListener(listener) {
 ```
 
 ```jsx typescript
-import { Client, FlatfileEvent } from "@flatfile/listener";
+import { FlatfileListener, FlatfileEvent } from "@flatfile/listener";
 import { automap } from "@flatfile/plugin-automap";
 
-export default function flatfileEventListener(listener: Client) {
+export default function flatfileEventListener(listener: FlatfileListener) {
   listener.use(
     automap({
       accuracy: "confident",
