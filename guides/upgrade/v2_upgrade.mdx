@@ -28,7 +28,7 @@ In Portal, setting `devMode: true` flagged imports as “dev” imports, but in 
 
 You can have many custom Environments, but upon signup, you will have a Development, Production, and Example Environment configured.
 
-All of the other entities (like Spaces, Workbooks, and Sheet) will live in those Environments.
+All of the other entities (like Spaces, Workbooks, and Sheets) will live in those Environments.
 
 #### Meet the Space
 
@@ -197,7 +197,7 @@ The skeleton of your application should remain mostly the same. You'll see here 
 
 ### 3. Build a Workbook
 
-This is where you will covert your Schema(s) into a Workbook. This is the point where you can combine multiple importers into one by having multiple Sheets on the Workbook. Your end users would then be able to select which data model they are uploading into during the import process.
+This is where you will convert your Schema(s) into a Workbook. This is the point where you can combine multiple importers into one by having multiple Sheets on the Workbook. Your end users would then be able to select which data model they are uploading into during the import process.
 
 #### Compare and contrast
 
@@ -223,14 +223,14 @@ Furthermore, keep in mind that while Portal only had three types, Platform has b
 | N/A         | Reference     |
 
 <Note>
-    When providing you select/enum options there is still an `options` array that is shaped the same, however, one thing to note is that this options array has been moved into a new field that is `config` for Platform.
+    When providing select/enum options there is still an `options` array that has the same structure as it did in Portal. However, one thing to note is that this options array has been moved into a new property on the field object named `config` for Platform.
 </Note>
 
 #### Setup validations
 
 The final aspect of converting your Portal fields into Platform fields will be to handle the `validators` from Portal. While Portal offered many different kinds of validators, only two have been converted in the fields themselves, and those are `required` and `unique`. All other validations may still be handled, but would be handled in code instead of a setting.
 
-The `validators` property will now be called `constraints` which is still an array of objects. The object for each validator has traded in the `validates` property for `type` property, but the `unique` and `required` values remain the same.
+The `validators` property will now be called `constraints` which is still an array of objects. The object for each validator has traded in the `validate` property for a `type` property, but the `unique` and `required` values remain the same.
 
 <CodeGroup>
 
@@ -620,7 +620,7 @@ In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR- u
 
 ### 7. Customize
 
-While everything above gives you all sort of great information about how your Portal implementation will convert to PLatform, it's just the beginning of all the amazing new things you can do with the Platform. Below we are going to share some links that can help make your already great workflow even better.
+While everything above gives you all sort of great information about how your Portal implementation will convert to Platform, it's just the beginning of all the amazing new things you can do with the Platform. Below we are going to share some links that can help make your already great workflow even better.
 
 <CardGroup cols={4}>
     <Card
