@@ -87,7 +87,9 @@
         "guides/documents",
         "guides/secrets",
         "guides/automap",
-        "guides/localization"
+        "guides/localization",
+        "guides/snapshots",
+        "guides/backups"
       ]
     },
     {
