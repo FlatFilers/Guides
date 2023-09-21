@@ -26,7 +26,7 @@ Explore this illustrative diagram that lays out the distinctions between the two
 
 In Portal, setting `devMode: true` flagged imports as “dev” imports, but in Platform, there are true Environments.
 
-You can have many custom Environments, but upon signup, you will have a Development, Production, and Example Environment configured.
+You can have many custom Environments, but upon signup, you will have a Development, Production, and Demo Environment configured.
 
 All of the other entities (like Spaces, Workbooks, and Sheets) will live in those Environments.
 
@@ -117,7 +117,7 @@ Back in Portal, when you received diverse data from the same users and wished to
 
 ## Upgrade your importer
 
-Now we will do a side-by-side look at how we will go about upgrading your importer. This guide will show some simple snippets that will compare the different parts and how they are converted. You can follow along with the full example in our [Uprgade Repo](https://github.com/FlatFilers/Upgrade-Portal).
+Now we will do a side-by-side look at how we will go about upgrading your importer. This guide will show some simple snippets that will compare the different parts and how they are converted. You can follow along with the full example in our [Upgrade Repo](https://github.com/FlatFilers/Upgrade-Portal).
 
 ### 1. Update your Flatfile button
 
@@ -207,7 +207,7 @@ Sheets will share many properties with those found in the Portal schema. You'll 
 
 When it comes to the `fields` array, you'll find quite a few familiar elements like `key`, `label`, and `description`, which all transition directly from Portal.
 
-#### About field Types
+#### About field types
 
 Let's delve deeper into the Portal and Platform `type` property for fields. When you don't specify this field, both Portal and Platform will assume a default `string` type. In Portal, the `type: "checkbox"` is now `"type": "boolean"`, and the `type: "select"` is now `"type": "enum"` in Platform.
 
@@ -569,11 +569,11 @@ Coming from Portal, you are likely familiar with the concept of Data Hooks. The 
 </CodeGroup>
 ### 5. Match your brand
 
-Custom theming in Portal was a crucial part of making the importer like a part of your application.  Platform also has custom theming that you can use to do the same. Check out our [theming guide](/guides/theming) to see what all is configurable in Platform.
+Custom theming in Portal was a crucial part of making the importer like a part of your application. Platform also has custom theming that you can use to do the same. Check out our [theming guide](/guides/theming) to see what all is configurable in Platform.
 
 ### 6. Set the destination
 
-In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR- use the returned data within the Promise to do whatever needed to be done with your data. With Platform, we use the Listners to wait for the submit action to happen and then act on it.
+In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR- use the returned data within the Promise to do whatever needed to be done with your data. With Platform, we use the Listeners to wait for the submit action to happen and then act on it.
 
 <CodeGroup>
     ```js Start-Portal-2/src/index.js
