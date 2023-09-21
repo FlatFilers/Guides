@@ -36,7 +36,7 @@ icon: "download"
   records.
 </ParamField>
 
-<ParamField path="options.chunkSize" default="3000" type="number" optional>
+<ParamField path="options.chunkSize" default="10_000" type="number" optional>
   The `chunkSize` parameter allows you to specify the quantity of records to in
   each chunk.
 </ParamField>
@@ -192,7 +192,7 @@ export default async function (listener: FlatfileListener) {
 
 #### Flexible Options
 
-<ParamField path="chunkSize" type="number" default="3000" optional>
+<ParamField path="chunkSize" type="number" default="10_000" optional>
   Define how many records you want to process in each batch. This allows you to
   balance efficiency and resource utilization based on your specific use case.
 </ParamField>

@@ -33,7 +33,7 @@ icon: "download"
   castable-field (number, boolean & Date).
 </ParamField>
 
-<ParamField path="options.chunkSize" default="3000" type="number" optional>
+<ParamField path="options.chunkSize" default="10_000" type="number" optional>
   The `chunkSize` parameter allows you to specify the quantity of records to in
   each chunk.
 </ParamField>
@@ -104,7 +104,7 @@ listener.use(autocast("sheetSlug", ["numberField", "dateField"]));
 ```js listener.js w/ fieldFilters & options
 listener.use(
   autocast("sheetSlug", ["numberField", "dateField"], {
-    chunkSize: 10000,
+    chunkSize: 10_000,
     parallel: 2,
   })
 );
