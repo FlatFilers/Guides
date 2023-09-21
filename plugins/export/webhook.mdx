@@ -68,7 +68,11 @@ import { webhookEgress } from "@flatfile/plugin-webhook-egress";
 ```
 
 ```ts listener.js
+// Using the WEBHOOK_SITE_URL environment variable
 listener.use(webhookEgress("workbook:submitActionFg"));
+
+// Passing the webhook url as a parameter
+listener.use(webhookEgress("workbook:submitActionFg", "https://webhook.site/...""));
 ```
 
 ## See the code
