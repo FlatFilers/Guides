@@ -1,0 +1,35 @@
+<CodeGroup>
+
+```js javascript
+import { recordHook } from "@flatfile/plugin-record-hook";
+
+listener.use(
+  recordHook("contacts", (record) => {
+    const value = record.get("firstName");
+
+    if (typeof value === "string") {
+      record.set("firstName", value.toLowerCase());
+    }
+
+    return record;
+  })
+);
+```
+
+```js typescript
+import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
+
+listener.use(
+  recordHook("contacts", (record: FlatfileRecord) => {
+    const value = record.get("firstName");
+
+    if (typeof value === "string") {
+      record.set("firstName", value.toLowerCase());
+    }
+
+    return record;
+  })
+);
+```
+
+</CodeGroup>

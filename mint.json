@@ -65,8 +65,8 @@
     {
       "group": "Beginner Tutorial",
       "pages": [
+        "quickstart/tutorial-landing",
         "quickstart/meet-the-workbook",
-        "quickstart/create-your-workbook",
         "quickstart/meet-the-listener",
         "quickstart/add-data-transformation",
         "quickstart/submit-action",
@@ -86,7 +86,8 @@
         "guides/guest_sidebar",
         "guides/documents",
         "guides/secrets",
-        "guides/automap"
+        "guides/automap",
+        "guides/localization"
       ]
     },
     {
@@ -148,6 +149,7 @@
 
       "pages": [
         "blueprint/overview",
+        "blueprint/sheet-options",
         "blueprint/field-types",
         "blueprint/constraints",
         "blueprint/relationships",

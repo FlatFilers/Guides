@@ -1,0 +1,54 @@
+<CodeGroup>
+
+```js javascript
+import { recordHook } from "@flatfile/plugin-record-hook";
+
+listener.use(
+  recordHook("contacts", (record) => {
+    // FirstName field transformation and validation
+    const value = record.get("firstName");
+    if (typeof value === "string") {
+      record.set("firstName", value.toLowerCase());
+    } else {
+      record.addError("firstName", "Invalid first name");
+    }
+
+    // Email field validation
+    const email = record.get("email");
+    const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email !== null && !validEmailAddress.test(email)) {
+      console.log("Invalid email address");
+      record.addError("email", "Invalid email address");
+    }
+    return record;
+  })
+);
+```
+
+```js typescript
+import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
+
+listener.use(
+  recordHook("contacts", (record: FlatfileRecord) => {
+    // FirstName field transformation and validation
+    const value = record.get("firstName");
+    if (typeof value === "string") {
+      record.set("firstName", value.toLowerCase());
+    } else {
+      record.addError("firstName", "Invalid first name");
+    }
+
+    // Email field validation
+    const email = record.get("email") as string;
+    const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (email !== null && !validEmailAddress.test(email)) {
+      console.log("Invalid email address");
+      record.addError("email", "Invalid email address");
+    }
+    return record;
+  })
+);
+```
+
+</CodeGroup>

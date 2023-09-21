@@ -4,30 +4,23 @@ description: "Learn how to listen and respond to events in Flatfile."
 icon: "circle-2"
 ---
 
-In the previous step, you performed a few actions:
+You've just created a Workbook.
 
-- Created a Workbook with a simple schema
-- A Space was also auto-generated
+In Flatfile, an event-based system, that means an [Event](../concepts/events) was published.
 
-These actions create an <Tooltip tip="Anatomy of an Event...">[Event](../concepts/events)</Tooltip>. You can author code to listen and react to these Events by performing tasks such as validating and transforming records, importing and joining data from other sources, and even offloading data processing to your own API.
+A listener is a function that is triggered by an Event. It's a powerful building block because it can be completely customized, enabling you to respond to events precisely the way your business and workflow requires.
+
+In this step of the tutorial, you'll learn how to set up a listener to receive Events.
 
 ## About listeners
 
-<Note>
-  Flatfile provides a powerful Typescript/NodeJS SDK for working with Events and
-  plugins. There are a lot of ways to listen to Events in other ways that we
-  describe in the [Events](../concepts/events) docs.
-</Note>
-
-Using the Flatfile SDK, you can register any javascript function as an Event listener and start working with Events.
-
-Here's an example of a very basic Event listener:
+Let's take a look at a basic listener.
 
 <CodeGroup>
 ```js javascript
 export default function (listener) {
-  listener.on("**", ({ topic }) => {
-    console.log(`Received event: ${topic}`);
+  listener.on("**", (event) => {
+    console.log(`Received event: ${event.topic}`);
   });
 }
 ```
@@ -35,68 +28,105 @@ export default function (listener) {
 import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 
 export default function flatfileEventListener(listener: FlatfileListener) {
-  listener.on("**", ({ topic }: FlatfileEvent) => {
-    console.log(`Received event: ${topic}`);
+  listener.on("**", (event: FlatfileEvent) => {
+    console.log(`Received event: ${event.topic}`);
   });
 }
 ```
 </CodeGroup>
 
-This code exports a single function that accepts an instance of an object (named `listener` in the example). This object can be used to subscribe to different Events within your Flatfile <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip>. The example code subscribes to all Events (using the `**` selector) and writes the Event's topic name to the console.
-
-Listeners are the basic building block of Flatfile logic. They span from simple validations and transformations to complex, multi-sheet workflows.
+As you can see, this function is listening on "\*\*", which is a wildcard that matches all events. All this listener does, is log an incoming Event's topic.
 
 ## Setup your first listener
 
-1. Clone the Getting Started repo
+Let's walk through setting up your first listener. To do this, you'll be using some of the tools Flatfile provides for developers.
+
+<Info>
+  Flatfile is a Typescript/Javascript platform, so you will need to install
+  Node.js to use all the tools Flatfile provides developers. For the best
+  experience, switch to Node.js v18.
+</Info>
+
+First, clone our [Getting Started](https://github.com/FlatFilers/getting-started) repository.
 
 ```terminal
 git clone https://github.com/FlatFilers/getting-started.git
 ```
 
-2. Create a .env and update it with your secret key. This file should look like:
-
-```terminal
-  FLATFILE_API_KEY=sk_1234
-```
-
-3. To start a local listener, run one of the following from the root folder of the getting-started directory:
+Then, install dependencies.
 
 <CodeGroup>
-  ```terminal npx flatfile@latest develop javascript/index.js ``` ```terminal
-  npx flatfile@latest develop typescript/index.ts ```
+```ssh npm
+npm install
+```
+```ssh yarn
+yarn install
+```
+
 </CodeGroup>
+Next, add your credentials.
 
-<Note>
-  {" "}
-  If you are working on Flatfile integration in a brand-new IDE instance, ensure
-  you execute `npm install` before you run the command above.
-</Note>
+Remember the secrets key you used to create your first Workbook? Your listener is going to use that same credential to receive Events.
 
-3. Go to your Flatfile Workbook and make a few changes. For example, try typing text into a cell.
+To do this, create an `.env` file at the root of your cloned repository.
 
-4. Finally, return to your terminal to see how those Events were logged.
+```ssh
+cp .env.example .env
+```
 
-```bash Console
-> getting-started % npx flatfile@latest develop typescript/index.ts
+Now, update the `FLATFILE_API_KEY` value, setting it to your secrets key.
+
+Each secrets key is scoped to an environment, so you will also need to update the `FLATFILE_ENVIRONMENT_ID` value to the one found on the same page as your secrets key.
+
+<img
+  src="../images/quickstart/welcome_banner.png"
+  caption="quickcopy secrets key and environment id"
+/>
+
+## Run your first listener
+
+Now that you have listener code configured with credentials, you're ready to listen for Events.
+
+We'll run this listener locally by using the "develop" command from the Flatfile CLI.
+
+You may chose to run either a Typescript or a Javascript version of this listener by changing into the appropriate directory. Then, run the following command:
+
+```ssh
+npx flatfile@latest develop
+```
+
+Congratulations, you have created your first listener!
+
+You should see console output that looks like this:
+
+```ssh console
+> npx flatfile develop
 ✔ 1 environment(s) found for these credentials
 ✔ Environment "development" selected
 ncc: Version 0.36.1
 ncc: Compiling file index.js into CJS
-ncc: Using typescript@4.9.5 (local user-provided)
-  ✓ Connected to event stream for scope us_env_XkBU0amr
+  ✓ 427ms      GET    200 https://platform.flatfile.com/api/v1/subscription 12345
 
  File change detected. 🚀
- ▶ records:updated  6:09:45.036 PM us_env_1234
- ↳ on(**, {})
-Received event: records:updated
- ▶ commit:created  6:09:45.085 PM us_env_1234
+  ✓ Connected to event stream for scope us_env_1234
+```
+
+## Watch your Events
+
+To watch your listener receive an event, you'll need to trigger one.
+
+Go to your Flatfile Workbook and make a few changes. For example, try typing text into a cell.
+
+Typing in a cell (editing a Record) triggers an Event! And because your listener was running, it logged your activity.
+
+```ssh console
+ ▶ commit:created  10:13:05.159 AM us_evt_1234
  ↳ on(**, {})
  ↳ on(commit:created, {"sheetSlug":"contacts"})
 ```
 
 ---
 
-## Recap & Next Steps
+## Next steps
 
-Now that you've created a listener, let's hop into the UI and review your new Workbook and add data to it. Then, we will learn how that data is transformed from its original state.
+Now that you've created a listener, a powerful building block on the Flatfile platform, let's learn how to leverage your listener to [Transform and validate data](../quickstart/add-data-transformation).

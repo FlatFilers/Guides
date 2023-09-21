@@ -5,11 +5,10 @@ api: "POST https://platform.flatfile.com/api/v1/workbooks"
 ---
 
 <Tip>
-  Use your [secret
-  key](../developer-tools/security/authentication#secret-and-publishable-keys)
-  from the `development` environment. Secret key format is "sk_abcd..." and is
-  found in [your Flatfile Dashboard
-  here](https://platform.flatfile.com/developers).
+  The Bearer token you will need for this call is your unique [secret
+  key](../developer-tools/security/authentication#secret-and-publishable-keys).
+  It can be found in the Developer settings of your Flatfile account [here
+  ](https://platform.flatfile.com/developers).
 </Tip>
 
 ### Body
@@ -167,52 +166,11 @@ api: "POST https://platform.flatfile.com/api/v1/workbooks"
 </ParamField>
 
 <RequestExample>
-```bash
-curl --request POST \
-  --url https://platform.flatfile.com/api/v1/workbooks \
-  --header 'Authorization: Bearer PASTE_SECRET_KEY_HERE' \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "name": "My First Workbook",
-  "labels": ["simple-demo"],
-  "sheets": [
-    {
-      "name": "Contacts",
-      "slug": "contacts",
-      "fields": [
-        {
-          "key": "firstName",
-          "type": "string",
-          "label": "First Name"
-        },
-        {
-          "key": "lastName",
-          "type": "string",
-          "label": "Last Name"
-        },
-        {
-          "key": "email",
-          "type": "string",
-          "label": "Email"
-        }
-      ]
-    }
-  ],
-  "actions": [
-    {
-      "operation": "submitActionFg",
-      "mode": "foreground",
-      "label": "Submit",
-      "description": "Submit data to webhook.site",
-      "primary": true
-    }
-  ]
-}'
-```
+  <Snippet file="shared/workbook_curl.mdx" />
 </RequestExample>
 
 ---
 
-## Recap & Next Steps
+## Next steps
 
 Now that you've created a Workbook, check it out in your [Dashboard](https://platform.flatfile.com). Next, we will author code to listen and react to Events as they occur.
