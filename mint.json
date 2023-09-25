@@ -31,6 +31,12 @@
     "default": "dark"
   },
   "backgroundImage": "/images/background.png",
+  "redirects": [
+    {
+      "source": "/guides/upgrade/v2_upgrade",
+      "destination": "/upgrade/v2_upgrade"
+    }
+  ],
   "topbarLinks": [
     {
       "name": "Create account",
@@ -154,6 +160,13 @@
         "blueprint/constraints",
         "blueprint/relationships",
         "blueprint/access"
+      ]
+    },
+    {
+      "group": "Upgrade",
+      "pages": [
+        "upgrade/overview",
+        "upgrade/v2_upgrade"
       ]
     },
     {
@@ -316,6 +329,10 @@
     {
       "name": "CLI",
       "url": "developer-tools"
+    },
+    {
+      "name": "Upgrade",
+      "url": "upgrade"
     }
   ]
 }
