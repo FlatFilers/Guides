@@ -35,6 +35,10 @@
     {
       "source": "/guides/upgrade/v2_upgrade",
       "destination": "/upgrade/v2_upgrade"
+    },
+    {
+      "source": "/upgrade/v2_repo",
+      "destination": "https://github.com/FlatFilers/Upgrade-Portal"
     }
   ],
   "topbarLinks": [
@@ -164,10 +168,11 @@
     },
     {
       "group": "Upgrade",
-      "pages": [
-        "upgrade/overview",
-        "upgrade/v2_upgrade"
-      ]
+      "pages": ["upgrade/overview"]
+    },
+    {
+      "group": "Portal - version 2",
+      "pages": ["upgrade/v2_upgrade", "upgrade/v2_repo"]
     },
     {
       "group": "Overview",
