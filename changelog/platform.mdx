@@ -4,6 +4,120 @@ description: "Additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## September 22, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/files.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        We've revamped the way partial replaces work, enhancing your data editing experience for maximum smoothness and intuitiveness. In the past, when you attempted to replace specific characters with an empty string (""), it occasionally resulted in the cell value becoming null, which wasn't quite what you had in mind.
+
+        For instance, if you needed to eliminate dashes from UUID fields, you'd naturally want "abc-123" to transform into "abc123" rather than mysteriously turning null.
+
+        We value your feedback. Now, you can confidently perform partial replacements without the hassle of unexpected null values.
+
+      </div>
+
+    </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/files.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        We've made improvements behind the scenes to ensure that your data gets mapped with more precision. Previously, some data could be missed during mapping, but now, we're considering both the option labels and values, making sure nothing is left behind. This means you'll have a smoother and more reliable experience when mapping your data, ensuring that everything is captured correctly.
+
+      </div>
+
+    </div>
+    </div>
+
+## September 20, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Localization is Now Available**
+
+        ![image](../changelog/images/localization.png)
+
+
+        We are excited to introduce localization features in Flatfile! Now, your customers will enjoy automatic translations based on their browser locale, including French, German, and Spanish.
+
+        Key Features:
+
+        - Translations are exclusively applied in Spaces (guest areas).
+        - Our user-friendly guide will assist you in effortlessly translating and personalizing the content within your space, whether it's custom actions, documents, and more.
+        - Require another language? Send us a note, and we'll make it a priority to include it.
+
+        [Follow the guide](https://flatfile.com/docs/guides/localization) or try the [Localization demo Space](https://platform.flatfile.com/getting-started) to get started.
+      </div>
+
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/turntable.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **New: Promote Sheet Actions**
+
+        ![image](../changelog/images/primary_actions.png)
+
+       Previously, the `primary:true` concept on Actions didn't affect Sheet actions, leaving them all in the "more actions" drop-down. But now, setting primary to true will showcase these actions right in the Sheet toolbar, as buttons with clear, user-friendly text.
+      </div>
+
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/turntable.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        You can now effortlessly view up to 500k records at once. When you reach the end of the table, a helpful message will appear, reminding you that there's more data waiting. Simply search or filter to reduce the size of your dataset and access it all. This change was added due to browser limitations that restrict maximum height in the DOM.
+      </div>
+
+    </div>
+
+  </div>
+
 ## September 15, 2023
 
 <div style={{ display: "table", width: "auto" }}>

@@ -4,6 +4,23 @@ description: "Additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## September 20, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-psv-extractor@1.6.0` & `@flatfile/plugin-tsv-extractor@1.5.0`
+
+      We're excited to announce that PSV and TSV file types, previously reliant on plugins, are now natively supported by the Flatfile Platform! 🚀
+
+      As part of this enhancement, we've marked these plugins as deprecated. Developers will receive a friendly console log notification, making it clear that these plugins are no longer needed. Enjoy the streamlined experience!
+
+    </div>
+
+  </div>
+</div>
+
 ## September 17, 2023
 
 <div style={{ display: "table", width: "auto" }}>
@@ -22,12 +39,6 @@ icon: "plug"
 
     1. Takes a `ResponseRejection` containing rejected Records and a rejection message.
     2. Locates the corresponding Record and adds the rejection message as an error to the Record cell.
-
-    This utility is integrated into the following plugins for seamless use:
-
-    - [`@flatfile/plugin-webhook-egress`](../plugins/export/webhook)
-    - [`@flatfile/plugin-space-configure`](../plugins/core/space-configure)
-    - [`@flatfile/plugin-job-handler`](../plugins/core/job-handler)
 
     You can also utilize this utility directly with any listener.
 
