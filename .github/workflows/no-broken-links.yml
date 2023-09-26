@@ -8,10 +8,8 @@ on:
       - main
 
 jobs:
-  runs-on: ubuntu-latest
-  check-links:
-    name: Check to see if any links are broken
-
+  no-broken-links:
+    runs-on: ubuntu-latest
     steps:
       - name: Setup Node.js
         uses: buildjet/setup-node@v3
