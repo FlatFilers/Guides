@@ -8,6 +8,7 @@ on:
       - main
 
 jobs:
+  runs-on: ubuntu-latest
   check-links:
     name: Check to see if any links are broken
 
