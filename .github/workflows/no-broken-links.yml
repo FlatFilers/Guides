@@ -18,5 +18,4 @@ jobs:
           node-version: 18.x
 
       - name: Run mintlify script
-        uses: action-setup@v2
         run: npx mintlify broken-links
