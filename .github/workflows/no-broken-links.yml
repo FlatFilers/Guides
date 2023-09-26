@@ -8,10 +8,12 @@ on:
       - main
 
 jobs:
-  check-links:
-    name: Check to see if any links are broken
-
+  no-broken-links:
+    runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        
       - name: Setup Node.js
         uses: buildjet/setup-node@v3
         with:
