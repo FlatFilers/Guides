@@ -4,21 +4,129 @@ description: "Step up to the Platform"
 icon: "square-up"
 ---
 
-OUTLINE
-
 ## Before you begin
-- sign up for the new platform
-- talk about environments
-- talk about spaces??
+### Signup for the new Platform
+While both this and our version before it live in your current dashboard together, our new Platform has its own space. Before you can get started, you'll need to signup for a new account at [platform.flatfile.com](https://platform.flatfile.com).
+
+### Environments
+When talking about Environments in Portal 3, you had two to work with, dev and prod. While the same concept of Environments exists in Platform, you will now be able to create as many Environments as you need. By default, you will have a Development, Production, and Demo Environment configured upon signup. You can use these Environments and create more as needed.
+
+### Spaces v Portal
+A Space and its UI constitute the new data importer that has replaced Portal. The Space is what holds all the Files and Workbooks that are needed to import data. You can learn more about Spaces and all that they do in our [Spaces documentation](/concepts/spaces).
 
 ## Common things with new faces
-- Workbooks - differences and similarities with workbooks
-- Sheets - differences and similarities
-- Fields and Data types differences and similarities
+### The new Workbook
+The Workbook is still the thing that stores your data as it goes through the import process. A few minor things have changed, but your thinking about it should not. A Workbook will still have Sheets that are the shape of your data. You can find some of the differences by checkout out our [Meet the Workbook docs](/quickstart/meet-the-workbook) for more info.
+
+### Same Sheet, different product
+The Sheet, how it interacts with the Workbook, and what it's for are all the same. We are calling the collections of Sheets that is the shape of your data Blueprints. You can learn about all the options of [Blueprints here](/blueprint/overview), but there is not a whole lot that needs to be said for you to understand it and get rolling.
+
+### Fields, data types and the new way to create them
+Coming from v3 and using the PSDK, you will be familiar with something that looks like `new Sheet('name', { fieldName: TextField() })`. This syntax has changed to go back to an Object-based approach that looks more similar to the shape of the underlying API that powers it. Let's go through the different field types and their new syntax.
+#### Compare fields
+<CodeGroup>
+
+    ```js Portal 3
+    const MySheet = new Sheet('MySheet', {
+        name: TextField({
+            label: 'Name',
+            description: 'A name field',
+            required: true
+        }),
+        subscriber: BooleanField({label: "Subscribed?"}),
+        status: OptionField({
+            label: 'Deal Status',
+            options: {
+                new: { label: 'New' },
+                interested: { label: 'Interested' },
+                meeting: { label: 'Meeting' },
+                opportunity: { label: 'Opportunity' },
+                unqualified: { label: 'Not a fit' },
+            },
+        })
+    }
+    ```
+
+    ```js Platform
+    const Workbook = {
+        name: "Contacts",
+        labels: ["pinned"],
+        sheets: [
+            {
+                name: "MySheet",
+                slug: "my_sheet",
+                fields: [
+                    {
+                        key: "name",
+                        type: "string",
+                        description: "A name field",
+                        label: "Name",
+                        constraints: [{ type: "required" }]
+                    },
+                    {
+                        key: "subscriber",
+                        type: "boolean",
+                        label: "Subscribed?"
+                    },
+                    {
+                        key: "status",
+                        type: "enum",
+                        label: "Deal Status",
+                        constraints: [{ type: "required" }],
+                        config: {
+                            options: [
+                                { label: "New", value: "new" },
+                                { label: "Interested", value: "interested" },
+                                { label: "Meeting", value: "meeting" },
+                                { label: "Opportunity", value: "opportunity" },
+                                { label: "Not a fit", value: "unqualified" }
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    ```
+
+</CodeGroup>
 
 ## Things that moved
-- Data Hooks - talk about listeners and how they work
-- Portal? Not sure if this goes here or above when we talk about spaces 🤔
+Believe it or not, the way you write DataHooks has mostly stayed the same. Where you write your DataHooks is different. The new platform has what we call [Listeners](/quickstart/meet-the-listener). Listeners, as you might expect, wait for specific Events in the Platform to happen and then execute any of the code in the Listeners subscribed to that event. In order for your Data Hook code to run as expected, you also need to use the proper Plugin for it to work. We have created a number of open-source plugins for the new Platform, with our [@plugin-record-hook](/plugins/transform/record-hook) being one of them. Let's take a look at an example of a simple record hook now compared to in Portal 3.
+<CodeGroup>
+
+    ```js Portal 3
+    const MySheet = new Sheet('MySheet', {
+        name: TextField({
+            label: 'Name',
+            description: 'A name field',
+            required: true
+        })
+    },
+    {
+        recordCompute: (record) => {
+            const { name } = record.value
+            if (name === 'David') {
+                record.addWarning('name', 'This is the CEO!!')
+            }
+            return record
+        }
+    })
+    ```
+
+    ```js Platform
+    listener.use(
+        recordHook("contacts", (record) => {
+            const name = record.get('name')
+            if (name === 'David') {
+                record.addWarning('name', 'This is the CEO!!')
+            }
+            return record
+        })
+    )
+    ```
+
+</CodeGroup>
 
 ## Using GraphQL?
-- This likely needs to speak to the customers using the GraphQL API and explain why we no longer offer GraphQL and how it's all REST and point to the API docs (they all hated having to use GraphQL anyway)
+Were you using our GraphQL API in v3? Did you love it? No???? Same here. As developers we might still love GraphQL, but offering it as the best and most polished form of our API felt wrong. For Platform, our main and best kept form of API is our REST API. You can find references to the new API [in our documentation](https://reference.flatfile.com/docs/api/pgrqb7max440y-introduction).
