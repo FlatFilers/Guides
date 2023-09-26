@@ -1,0 +1,22 @@
+name: No Broken Links
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-links:
+    name: Check to see if any links are broken
+
+    steps:
+      - name: Setup Node.js
+        uses: buildjet/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Run mintlify script
+        uses: action-setup@v2
+        run: npx mintlify broken-links
