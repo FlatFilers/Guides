@@ -171,6 +171,10 @@
       "pages": ["upgrade/overview"]
     },
     {
+      "group": "Portal - version 3",
+      "pages": ["upgrade/v3_upgrade", "upgrade/v3_repo"]
+    },
+    {
       "group": "Portal - version 2",
       "pages": ["upgrade/v2_upgrade", "upgrade/v2_repo"]
     },
