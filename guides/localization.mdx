@@ -181,6 +181,7 @@ When creating JSON keys, adhere to the following guidelines:
 - **Alphanumeric Keys**: Ensure keys consist of alphanumeric characters to prevent issues with parsing.
 - **Nested Structure**: Utilize at least one level of nesting (e.g., `key1.key2`) to organize translations effectively and maintain readability.
 - **Avoid Whitespace and Control Characters**: Refrain from using spaces, newlines, or tabs in your JSON keys to avoid potential issues.
+- **Don't End Keys with File Extensions**: Avoid using file extensions (e.g., .csv, .txt) as the terminal segment in a key. For instance, myFileAction.csv is discouraged, but myFileAction.csv.uploaded is acceptable.
 
 <Info>
 Always validate your `translation.json` file to ensure it follows the correct JSON format to prevent errors during runtime.
