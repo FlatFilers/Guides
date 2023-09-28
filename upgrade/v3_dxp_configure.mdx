@@ -1,0 +1,47 @@
+---
+title: "Upgrade from @flatfile/configure"
+description: "Upgrade to Platform using DXP Configure"
+icon: "triangle-exclamation"
+---
+<Warning>
+    While we have no official date for its deprecation, this way of converting to the Platform will not keep long-term support. For this reason, we recommend only utilizing this guide if you are already using the [@flatfile/configure](https://www.npmjs.com/package/@flatfile/configure) package. If you aren't, ignore this guide and [start here](/upgrade/v3_upgrade) instead.
+</Warning>
+
+## Before starting
+Before you get started, there is both some new and redesigned terminology you should learn. Check out our Portal 3 Upgrade Guide's [before you begin section](/upgrade/v3_upgrade#before-you-begin) to learn about these concepts.
+
+## Using the plugin
+If you are using the Portal 3 class-based syntax for creating your Workbooks, Sheets, etc, the `dxpConfigure` method can help you pass in those classes and create your new Platform setup without having to move away from the classes just yet.
+
+In the below example, you'll see we have a Workbook that is being created with the `new Workbook()`, `new Sheet()` and `TextField()` syntax.
+
+```js my-dxp-workbook.js
+import { Sheet, TextField, Workbook } from "@flatfile/configure";
+
+export const MyWorkbook = new Workbook({
+  name: "My Workbook",
+  namespace: "test",
+  sheets: {
+    mySheet: new Sheet("Test", {
+      name: TextField("Full Name"),
+      email: TextField({
+        label: "Email Address",
+        compute: (val) => {
+          return val.toLowerCase();
+        },
+      }),
+    }),
+  },
+});
+```
+
+With the `dxpConfigure` method, we can now plug this into a [Listener](/quickstart/meet-the-listener) to create a new Workbook from the v3 class-based syntax.
+
+```js listener.js
+import { MyWorkbook } from './my-dxp-workbook.js'
+import { dxpConfigure } from '@flatfile/plugin-dxp-configure'
+
+export default (listener) => {
+  listener.use(dxpConfigure(MyWorkbook))
+}
+```
