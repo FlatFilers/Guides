@@ -390,15 +390,26 @@ ReactDOM.render(
 
 ### 3. Start your client
 
-Now, start your front end by heading to terminal and running the following command.
+1. Update your package.json to include this script:
 
-1. You'll get an alert: We're unable to detect target browsers. Would you like to add the defaults to your package.json? Say yes.
+```json
+"scripts": {
+    "start": "react-scripts start",
+}
+```
 
-2. To see that it’s running, visit: https://localhost:3000 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
+2. Now, start your front end by heading to terminal and running the following command.
 
 ```bash
-npx react-scripts start
+npm run start
 ```
+
+<Note>
+  You'll get an alert: We're unable to detect target browsers. Would you like to
+  add the defaults to your package.json? Say yes.
+</Note>
+
+3. To see that it’s running, visit: https://localhost:3000 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
 
 <Snippet file="shared/embedded_listener_basicreact.mdx" />
 
