@@ -10,6 +10,20 @@ Tailor the language and text in your Flatfile Space with ease! This guide will l
 Flatfile will auto-detect which language to display from the users browser settings! If the users language is undetectable or we don't currently support it, we will fallback to english.
 </Info>
 
+## Available Languages
+
+We support translations into these languages:
+
+| Language |  Code  |
+| -------- | ------ |
+| English  | en     |
+| French   | fr     |
+| German   | de     |
+| Spanish  | es     |
+| Brazilian Portuguese  | pt-BR     |
+
+<Tip>Need more languages? Reach out to us at [support@flatfile.io](mailto:support@flatfile.io).</Tip>
+
 ## Adding translations
 ### Creating your translation files
 
@@ -80,18 +94,6 @@ listener.on(
 Currently we only offer translations and text overrides for the guest experience within your spaces. These means there will be admin only areas that are not currently customizable. 
 </Info>
 
-## Available Languages
-
-We support translations into these languages for now:
-
-| Language |  Code  |
-| -------- | ------ |
-| English  | en     |
-| French   | fr     |
-| German   | de     |
-| Spanish  | es     |
-
-<Tip>Need more languages? Reach out to us at [support@flatfile.io](mailto:support@flatfile.io).</Tip>
 
 ## Translating Your Custom Actions and Jobs
 
@@ -173,13 +175,14 @@ The same logic that applies to Actions also applies to your Documents. Just pass
   });
 ```
 </CodeGroup>
-### Guidelines for Creating JSON Keys
+## Guidelines for Creating JSON Keys
 
 When creating JSON keys, adhere to the following guidelines:
 
 - **Alphanumeric Keys**: Ensure keys consist of alphanumeric characters to prevent issues with parsing.
 - **Nested Structure**: Utilize at least one level of nesting (e.g., `key1.key2`) to organize translations effectively and maintain readability.
 - **Avoid Whitespace and Control Characters**: Refrain from using spaces, newlines, or tabs in your JSON keys to avoid potential issues.
+- **Don't End Keys with File Extensions**: Avoid using file extensions (e.g., .csv, .txt) as the terminal segment in a key. For instance, myFileAction.csv is discouraged, but myFileAction.csv.uploaded is acceptable.
 
 <Info>
 Always validate your `translation.json` file to ensure it follows the correct JSON format to prevent errors during runtime.
