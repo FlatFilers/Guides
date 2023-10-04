@@ -13,10 +13,12 @@ As you transition from Portal 2.0 to Platform, you'll come across many familiar 
 Explore this illustrative diagram that lays out the distinctions between the two products. While Platform introduces a range of additional and novel concepts compared to Portal, rest assured, you're not obligated to embrace every new element to transition your existing importer to Platform. Flexibility remains key in making the switch.
 
 ### Review V2 Portal
-![v2 Portal](../../images/guides/upgrades/V2-platform-migrations.png)
+
+![v2 Portal](../images/guides/upgrades/V2-platform-migrations.png)
 
 ### Meet the Platform
-![v2 Portal](../../images/guides/upgrades/platform.png)
+
+![v2 Portal](../images/guides/upgrades/platform.png)
 
 ## Before you begin
 
@@ -43,7 +45,9 @@ Unlike Portal, where all the editing and fixing of data happens right in the bro
 Inside these Workbooks, you'll find one or more Sheets, which are similar to schemas in Portal. Other than some basic names and settings, the sheet has something called a "fields array," which is pretty similar to what you know from Portal.
 
 <Note>
-    Keep in mind that if you had multiple importers to handle different data sets from different places, you will be able to consolidate them by having all your schemas now live in one Workbook.
+  Keep in mind that if you had multiple importers to handle different data sets
+  from different places, you will be able to consolidate them by having all your
+  schemas now live in one Workbook.
 </Note>
 
 ### Configuring your schema
@@ -54,54 +58,55 @@ Back in Portal, when you received diverse data from the same users and wished to
 
 ```json Blueprint Example
 {
-    "sheets": [
+  "sheets": [
+    {
+      "name": "products",
+      "slug": "products",
+      "readOnly": false,
+      "allowAdditionalFields": false,
+      "access": ["add", "edit"],
+      "fields": [
         {
-            "name": "products",
-            "slug": "products",
-            "readOnly": false,
-            "allowAdditionalFields": false,
-            "access": ["add", "edit"],
-            "fields": [
-                {
-                    "key": "code",
-                    "label": "Product Code",
-                    "type": "string"
-                },
-                {
-                    "key": "description",
-                    "type": "string"
-                },
-                {
-                    "key": "price",
-                    "type": "number"
-                }
-            ],
-            "actions": [],
-            "metadata": {}
+          "key": "code",
+          "label": "Product Code",
+          "type": "string"
         },
         {
-            "key": "manufacturers",
-            "label": "Product Manufacturers",
-            "description": "A list of maunfacturers for the products",
-            "fields": [
-                {
-                    "key": "manufacturer_code",
-                    "label": "Manufacturer Code",
-                    "type": "string"
-                },
-                {
-                    "key": "manufacturer_name",
-                    "label": "Manufacturer Name",
-                    "type": "string"
-                }
-            ]
+          "key": "description",
+          "type": "string"
+        },
+        {
+          "key": "price",
+          "type": "number"
         }
-    ]
+      ],
+      "actions": [],
+      "metadata": {}
+    },
+    {
+      "key": "manufacturers",
+      "label": "Product Manufacturers",
+      "description": "A list of maunfacturers for the products",
+      "fields": [
+        {
+          "key": "manufacturer_code",
+          "label": "Manufacturer Code",
+          "type": "string"
+        },
+        {
+          "key": "manufacturer_name",
+          "label": "Manufacturer Name",
+          "type": "string"
+        }
+      ]
+    }
+  ]
 }
 ```
 
 ### Full Platform diagram
-![v2 Portal](../../images/guides/upgrades/platform-expanded.png)
+
+![v2 Portal](../images/guides/upgrades/platform-expanded.png)
 
 ## Upgrade your importer
 
@@ -215,7 +220,10 @@ Furthermore, keep in mind that while Portal only had three types, Platform has b
 | N/A         | Reference     |
 
 <Note>
-    When providing select/enum options there is still an `options` array that has the same structure as it did in Portal. However, one thing to note is that this options array has been moved into a new property on the field object named `config` for Platform.
+  When providing select/enum options there is still an `options` array that has
+  the same structure as it did in Portal. However, one thing to note is that
+  this options array has been moved into a new property on the field object
+  named `config` for Platform.
 </Note>
 
 <CodeGroup>
@@ -643,6 +651,7 @@ In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR- u
         });
     });
     ```
+
 </CodeGroup>
 
 ### 7. Customize
@@ -650,24 +659,24 @@ In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR- u
 While everything above gives you all sort of great information about how your Portal implementation will convert to Platform, it's just the beginning of all the amazing new things you can do with the Platform. Below we are going to share some links that can help make your already great workflow even better.
 
 <CardGroup cols={4}>
-    <Card
-        title="Make it more dynamic"
-        icon="circle-1"
-        href="/guides/dynamic-configurations"
-    ></Card>
-    <Card
-        title="Make it headless"
-        icon="circle-2"
-        href="/guides/use-cases/headless"
-    ></Card>
-    <Card
-        title="Top Secret - Seriously, don't click this"
-        icon="circle-3"
-        href="/guides/secrets"
-    ></Card>
-    <Card
-        title="Document things for end users"
-        icon="circle-4"
-        href="/guides/documents"
-    ></Card>
+  <Card
+    title="Make it more dynamic"
+    icon="circle-1"
+    href="/guides/dynamic-configurations"
+  ></Card>
+  <Card
+    title="Make it headless"
+    icon="circle-2"
+    href="/guides/use-cases/headless"
+  ></Card>
+  <Card
+    title="Top Secret - Seriously, don't click this"
+    icon="circle-3"
+    href="/guides/secrets"
+  ></Card>
+  <Card
+    title="Document things for end users"
+    icon="circle-4"
+    href="/guides/documents"
+  ></Card>
 </CardGroup>

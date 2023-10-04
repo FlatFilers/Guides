@@ -31,6 +31,16 @@
     "default": "dark"
   },
   "backgroundImage": "/images/background.png",
+  "redirects": [
+    {
+      "source": "/guides/upgrade/v2_upgrade",
+      "destination": "/upgrade/v2_upgrade"
+    },
+    {
+      "source": "/upgrade/v2_repo",
+      "destination": "https://github.com/FlatFilers/Upgrade-Portal"
+    }
+  ],
   "topbarLinks": [
     {
       "name": "Create account",
@@ -155,6 +165,18 @@
         "blueprint/relationships",
         "blueprint/access"
       ]
+    },
+    {
+      "group": "Upgrade",
+      "pages": ["upgrade/overview"]
+    },
+    {
+      "group": "Portal - version 2",
+      "pages": ["upgrade/v2_upgrade", "upgrade/v2_repo"]
+    },
+    {
+      "group": "Portal - version 3",
+      "pages": ["upgrade/v3_upgrade", "upgrade/v3_repo", "upgrade/v3_dxp_configure"]
     },
     {
       "group": "Overview",
@@ -316,6 +338,10 @@
     {
       "name": "CLI",
       "url": "developer-tools"
+    },
+    {
+      "name": "Upgrade",
+      "url": "upgrade"
     }
   ]
 }
