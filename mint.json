@@ -176,7 +176,7 @@
     },
     {
       "group": "Portal - version 3",
-      "pages": ["upgrade/v3_upgrade", "upgrade/v3_repo"]
+      "pages": ["upgrade/v3_upgrade", "upgrade/v3_repo", "upgrade/v3_dxp_configure"]
     },
     {
       "group": "Overview",
