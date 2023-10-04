@@ -64,7 +64,17 @@ npm i @flatfile/plugin-space-configure
 import { configureSpace } from "@flatfile/plugin-space-configure";
 ```
 
-```js listener.js
+<CodeGroup>
+
+```js listener.js w/ no workbooks
+listener.use(
+  configureSpace({
+    workbooks: [],
+  })
+);
+```
+
+```js listener.js /w workbooks
 listener.use(
   configureSpace({
     workbooks: [
@@ -103,6 +113,8 @@ listener.use(
   })
 );
 ```
+
+</CodeGroup>
 
 ## Full Example
 
