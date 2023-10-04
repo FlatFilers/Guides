@@ -6,10 +6,11 @@ icon: "square-up"
 
 ## Before you begin
 ### Signup for the new Platform
-While both this and our version before it live in your current dashboard together, our new Platform has its own space. Before you can get started, you'll need to signup for a new account at [platform.flatfile.com](https://platform.flatfile.com).
+While both this and our version before it live in your current dashboard together, our new Platform has its own space. Before you can get started, you'll need to signup for a new account [here](https://flatfile.com/account/sign-up/).
 
 ### Environments
-When talking about Environments in Portal 3, you had two to work with, dev and prod. While the same concept of Environments exists in Platform, you will now be able to create as many Environments as you need. By default, you will have a Development, Production, and Demo Environment configured upon signup. You can use these Environments and create more as needed. You can create additional Environments [using our APIs](https://reference.flatfile.com/docs/api/452fe93b98b19-create-an-environment).
+When talking about Environments in Portal 3.0, you had two to work with, dev and prod. While the same concept of Environments exists in Platform, you will now be able to create as many Environments as you need. By default, you will have a Development, Production, and Demo Environment configured upon signup. You can use these Environments and create more as needed. You can create additional Environments [using our APIs](https://reference.flatfile.com/docs/api/452fe93b98b19-create-an-environment).
+
 
 ### Portal vs Space
 In the current Flatfile versions (V2 and V3), we refer to Portal as an iFrame that opens on a button click to allow your customers to import data. In Platform (the new version), we no longer refer to this as Portal - we refer to this as a Space. A Space is an open-ended component by design. You can have a Space per customer, a Space per project, or something else that fits your workflow. It is up to you. You can either work in a Space inside your Flatfile dashboard or you can embed a Space into your application that opens when your customers click on the Import button. A good way to think of a Space is as a collection of Workbooks (explained below), while a Workbook is a collection of Sheets. You can learn more about the structure and functionality of Spaces [in this guide](/concepts/spaces).
@@ -22,11 +23,11 @@ In Platform (the new version), a Workbook is a collection of Sheets that describ
 The Sheet, how it interacts with the Workbook, and what it's for are all the same. We are calling the collections of Sheets that is the shape of your data Blueprints. You can learn about all the options of [Blueprints here](/blueprint/overview), but there is not a whole lot that needs to be said for you to understand it and get rolling.
 
 ### Fields, data types and the new way to create them
-Coming from v3 and using the PSDK, you will be familiar with something that looks like `new Sheet('name', { fieldName: TextField() })`. This syntax has changed to go back to an Object-based approach that looks more similar to the shape of the underlying API that powers it. Let's go through the different field types and their new syntax.
+If you're coming from Portal 3.0 and using the PSDK, you will be familiar with something that looks like `new Sheet('name', { fieldName: TextField() })`. This syntax has changed to go back to an Object-based approach that looks more similar to the shape of the underlying API that powers it. Let's go through the different field types and their new syntax, shown as part of a workbook in the Platform.
 #### Compare fields
 <CodeGroup>
 
-    ```js Portal 3
+    ```js Portal 3.0
     const MySheet = new Sheet('MySheet', {
         name: TextField({
             label: 'Name',
@@ -50,7 +51,6 @@ Coming from v3 and using the PSDK, you will be familiar with something that look
     ```js Platform
     const Workbook = {
         name: "Contacts",
-        labels: ["pinned"],
         sheets: [
             {
                 name: "MySheet",
@@ -92,10 +92,10 @@ Coming from v3 and using the PSDK, you will be familiar with something that look
 </CodeGroup>
 
 ## Things that moved
-Believe it or not, the way you write DataHooks has mostly stayed the same. Where you write your DataHooks is different. The new platform has what we call [Listeners](/quickstart/meet-the-listener). Listeners, as you might expect, wait for specific Events in the Platform to happen and then execute any of the code in the Listeners subscribed to that event. In order for your Data Hook code to run as expected, you also need to use the proper Plugin for it to work. We have created a number of open-source plugins for the new Platform, with our [@plugin-record-hook](/plugins/transform/record-hook) being one of them. Let's take a look at an example of a simple record hook now compared to in Portal 3.
+Believe it or not, the way you write DataHooks has mostly stayed the same, but where you write your DataHooks is different. The Platform has what we call [Listeners](/quickstart/meet-the-listener). Listeners, as you might expect, wait for specific Events in the Platform to happen and then execute any of the code in the Listeners subscribed to that event. In order for your Data Hook code to run as expected, you also need to use the proper Plugin for it to work. We have created a number of open-source plugins for the Platform, with our [@plugin-record-hook](/plugins/transform/record-hook) being one of them. Let's take a look at an example of a simple record hook now compared to in Portal 3.0.
 <CodeGroup>
 
-    ```js Portal 3
+    ```js Portal 3.0
     const MySheet = new Sheet('MySheet', {
         name: TextField({
             label: 'Name',
