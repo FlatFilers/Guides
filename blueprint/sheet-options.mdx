@@ -33,7 +33,8 @@ Sheets have some basic options that determine their behavior.
         }
       ],
       "actions": [],
-      "metadata": {}
+      "metadata": {},
+      "treatments": {"additional"}
     }
   ]
 }
@@ -49,31 +50,39 @@ Sheets have some basic options that determine their behavior.
 </ParamField>
 
 <ParamField path="slug" type="string">
-  A unique identifier for your Sheet. Used to reference your Sheet in code, for example in a [Record Hook](../guides/handling-data#example).
+  A unique identifier for your Sheet. Used to reference your Sheet in code, for
+  example in a [Record Hook](../guides/handling-data#example).
 </ParamField>
 
 <ParamField path="readonly" type="boolean">
-  A boolean specifying whether or not this sheet is read only. Read only sheets are not editable by end users.
+  A boolean specifying whether or not this sheet is read only. Read only sheets
+  are not editable by end users.
 </ParamField>
-
 <ParamField path="allowAdditionalFields" type="boolean">
-  When this is set to `true`, your Sheet will be able to accept additional fields beyond what you specify in its configuration. These additional fields can be added via API, or by end users during the file import process. 
+  When this is set to `true`, your Sheet will be able to accept additional
+  fields beyond what you specify in its configuration. These additional fields
+  can be added via API, or by end users during the file import process. These
+  fields will have a `treatment` of "additional".
 </ParamField>
 
 <ParamField path="access" type="array">
-  An array specifying the access controls for this Sheet. [Read more about access controls](./access).
+  An array specifying the access controls for this Sheet. [Read more about
+  access controls](./access).
 </ParamField>
 
 <ParamField path="fields" type="array" required>
-  This is where you define your Sheet's data schema. The collection of fields in your Sheet detemines the shape of data you wish to accept. Read more about field [types](./field-types), [constraints](./constraints), and [relationships](./relationships).
+  This is where you define your Sheet's data schema. The collection of fields in
+  your Sheet detemines the shape of data you wish to accept. Read more about
+  field [types](./field-types), [constraints](./constraints), and
+  [relationships](./relationships).
 </ParamField>
 
 <ParamField path="actions" type="array">
-  An array of actions that end users can perform on this Sheet. [Read more about actions](../guides/actions).
+  An array of actions that end users can perform on this Sheet. [Read more about
+  actions](../guides/actions).
 </ParamField>
 
 <ParamField path="metadata" type="object">
-  Use `metadata` to store any extra contextual information about your Sheet. Must be valid JSON.
+  Use `metadata` to store any extra contextual information about your Sheet.
+  Must be valid JSON.
 </ParamField>
-
-

@@ -51,6 +51,28 @@ await api.spaces.update(spaceId, {
 Learn more about [adding metadata in React embedded
 Flatfile](../guides/use-cases/embedding/react/guide#spaceinfo).
 
+## Workbook-level
+
+The `metadata` object at the Workbook level is often used for details such as expirationDate.
+Metadata can be added during Workbook creation or at a later stage.
+
+<Info>
+  Workbook-level metadata, while not visible in the user interface, can be
+  utilized in all listeners.
+</Info>
+
+### Usage
+
+Utilize `@flatfile/api` to create or update a Space with metadata.
+
+```jsx
+await api.workbook.update(spaceId, {
+  metadata: {
+    expirationDate,
+  },
+});
+```
+
 ## Record-level
 
 Customers often require a way to store extra computed or generated
