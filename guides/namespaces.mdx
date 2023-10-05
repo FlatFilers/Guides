@@ -14,7 +14,7 @@ Namespaces enable you to have:
 
 2. **Specific Listeners**: These listeners are restricted to monitor and respond only within a certain subset of your spaces defined by the assigned namespace.
 
-### Usage 
+### Usage
 
 ```jsx
 // Create a global listener
@@ -28,16 +28,15 @@ listener.namespace(['space:green'], (green) => { ... });
 
 Space-level Namespaces are straightforward strings that can be established or modified when you create or update the Space. This adds an additional layer of control and specificity to your Space.
 
-Namespaces are most often set in the UI when the Space is created. 
+Namespaces are most often set at the [Environment level](https://reference.flatfile.com/docs/api/20058726b7884-update-an-environment), then chosen via a dropdown menu in the UI when the Space is created.
 
 ### Usage
 
- This listener is established for the 'red' namespace within a 'space'. When a job titled `space:configure` (clicking create new space button in UI) in the 'red' namespace (type red as namespace in the form) is ready, it triggers the subsequent block of code. 
- 
- This code will color your Space red to see that it workd.
+This listener is established for the 'red' namespace within a 'space'. When a job titled `space:configure` (clicking create new space button in UI) in the 'red' namespace (type red as namespace in the form) is ready, it triggers the subsequent block of code.
 
-<Snippet file="guides/namespaces/block1.mdx"/>
+This code will color your Space red to see that it workd.
 
+<Snippet file="guides/namespaces/block1.mdx" />
 
 ## Workbook/Sheet-level
 
@@ -47,4 +46,4 @@ Workbook & Sheet-level Namespaces are straightforward strings that can be establ
 
 This code dynamically generates a configuration for a 'Contacts' workbook based on the provided namespace parameter. Depending on the input namespace to the ChildWorkbook function, additional fields may be added. If the namespace is 'orange', fields for 'Phone' and 'Meal Choice' are added. If it's 'yellow', fields for 'Shirt Size' and 'Car Choice' are added.
 
-<Snippet file="guides/namespaces/block2.mdx"/>
+<Snippet file="guides/namespaces/block2.mdx" />
