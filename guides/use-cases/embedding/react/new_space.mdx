@@ -276,13 +276,15 @@ body {
 
 ### 2. Initialize Flatfile
 
-In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey` and the `environmentId`. Also, add the content here to your `index.tsx`, `tsconfig.json` and `manifest.json`.
+In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey` and the `environmentId`. Also, add the content here to your `index.tsx`, `tsconfig.json`, `manifest.json`, and `config-overries.js`.
 
 <CodeGroup>
 
 ```tsx src/App.tsx
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { ISpace, useSpace } from "@flatfile/react";
+import { workbook } from "./workbook";
+import { listener } from "./listeners/simple";
 
 const spaceProps: ISpace = {
   name: "Embedded Space",
@@ -363,9 +365,9 @@ ReactDOM.render(
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
@@ -386,19 +388,62 @@ ReactDOM.render(
 }
 ```
 
+```js public/config-overrides.js
+const webpack = require("webpack");
+
+module.exports = function override(config) {
+  const fallback = config.resolve.fallback || {};
+  Object.assign(fallback, {
+    stream: require.resolve("stream-browserify"),
+    assert: require.resolve("assert"),
+    zlib: require.resolve("browserify-zlib"),
+  });
+  config.resolve.fallback = fallback;
+  config.plugins = (config.plugins || []).concat([
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+      Buffer: ["buffer", "Buffer"],
+    }),
+  ]);
+  config.ignoreWarnings = [/Failed to parse source map/];
+  config.module.rules.push({
+    test: /\.(js|mjs|jsx)$/,
+    enforce: "pre",
+    loader: require.resolve("source-map-loader"),
+    resolve: {
+      fullySpecified: false,
+    },
+  });
+  return config;
+};
+```
+
 </CodeGroup>
 
 ### 3. Start your client
 
-Now, start your front end by heading to terminal and running the following command.
+1. Update your package.json to include this script:
 
-1. You'll get an alert: We're unable to detect target browsers. Would you like to add the defaults to your package.json? Say yes.
+```json
+"scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+}
+```
 
-2. To see that it’s running, visit: https://localhost:3000 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
+2. Now, start your front end by heading to terminal and running the following command.
 
 ```bash
-npx react-scripts start
+npm run start
 ```
+
+<Note>
+  You'll get an alert: We're unable to detect target browsers. Would you like to
+  add the defaults to your package.json? Say yes.
+</Note>
+
+3. To see that it’s running, visit: https://localhost:3000 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
 
 <Snippet file="shared/embedded_listener_basicreact.mdx" />
 
