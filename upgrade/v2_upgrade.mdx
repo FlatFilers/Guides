@@ -263,7 +263,7 @@ Furthermore, keep in mind that while Portal only had three types, Platform has b
 
 #### Set up validations
 
-The final aspect of converting your Portal fields into Platform fields will be to handle the `validators` from Portal. While Portal offered many different kinds of validators, only two have been converted in the fields themselves, and those are `required` and `unique`. All other validations may still be handled, but would be handled in code instead of a setting.
+The final aspect of converting your Portal fields into Platform fields will be to handle the `validators` from Portal. While Portal offered many different kinds of validators, only two have been converted in the fields themselves, and those are `required` and `unique`. All other validations can still be handled, but are now handled in code instead of a setting. Check out the [other validators section](#other-validators) for examples.
 
 The `validators` property will now be called `constraints` which is still an array of objects. The object for each validator has traded in the `validate` property for a `type` property, but the `unique` and `required` values remain the same.
 
@@ -602,6 +602,72 @@ Coming from Portal, you are likely familiar with the concept of Data Hooks. The 
     ```
 
 </CodeGroup>
+
+#### Other Validators
+
+In the [set up validations](#set-up-validations) section above, we talked about converting the `required` and `unique` validators, but validators like `regex` or `required_with` are now handled in code in a Listener.
+
+_Regex Validation Example:_
+<CodeGroup>
+    ```js Portal 2
+    fields: [
+        {
+            label: "Company Code",
+            key: "companyCode",
+            validators: [{ validate: 'regex_matches', regex: '^[a-zA-Z0-9]*$' }]
+        },
+    ]
+    ```
+
+    ```js Platform listener.js
+    listener.use(
+        recordHook("contacts", (record) => {
+            const companyCode = record.get('companyCode')
+            const regex = /^[a-zA-Z0-9]*$/;
+            if (!regex.test(companyCode)) {
+                record.addError('companyCode', 'Must be an alpha-numeric value')
+            }
+        })
+    )
+    ```
+
+</CodeGroup>
+
+_`required_with` Validation Example:_
+<CodeGroup>
+    ```js Portal 2
+    fields: [
+        {
+            key: "city",
+            label: "City",
+        },
+        {
+            key: "state",
+            label: "State",
+            validators: [
+                {
+                    validate: "required_with",
+                    fields: ["city"],
+                },
+            ],
+        },
+    ]
+    ```
+
+    ```js Platform listener.js
+    listener.use(
+        recordHook("contacts", (record) => {
+            const city = record.get('city')
+            const state = record.get('state')
+            if (city && !state) {
+                record.addError('state', 'State must be provided if City is present')
+            }
+        })
+    )
+    ```
+
+</CodeGroup>
+
 ### 5. Match your brand
 
 Custom theming in Portal was a crucial part of making the importer like a part of your application. Platform also has custom theming that you can use to do the same. Check out our [theming guide](/guides/theming) to see what all is configurable in Platform.
