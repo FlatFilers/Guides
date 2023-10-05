@@ -1,35 +1,47 @@
 ---
 title: "Authentication"
 description: "Learn how to use API keys to authenticate API requests."
-icon: 'lock'
+icon: "lock"
 ---
 
-<Snippet file="shared/dxpbanner.mdx"/>
+<Snippet file="shared/dxpbanner.mdx" />
 
-<Info>API keys are created automatically. Use the [Developers Page](https://platform.flatfile.com/developers) to reveal your API keys for each Environment.</Info>
+<Info>
+  API keys are created automatically. Use the [Developers
+  Page](https://platform.flatfile.com/developers) to reveal your API keys for
+  each Environment.
+</Info>
 
 Flatfile provides two different kinds of environment-specific API keys you can use to interact with the API. In addition, you can work with a development key or a production environment.
 
 Read on to learn more about how to think about which keys to use and how to test in development mode.
 
-
 ## Testing and development
 
-<Tooltip tip="Learn more about Environments">[Environments](../environment)</Tooltip> are isolated entities and are intended to be a safe place to create and test different configurations. 
-A `development` and `production` environment are created by default.
+{/* prettier-ignore */}
+<Tooltip tip="Learn more about Environments">[Environments](../environment)</Tooltip> are isolated entities and are intended to be a safe place to create and
+test different configurations. A `development` and `production` environment are created
+by default.
 
-| isProd | Name | Description |
-| --- | --- | --- |
-| *false* | `development` | Use this default environment, and its associated test API keys, as you build with Flatfile. |
-| *true* | `production` | When you're ready to launch, create a new environment and swap out your keys. |
+| isProd  | Name          | Description                                                                                 |
+| ------- | ------------- | ------------------------------------------------------------------------------------------- |
+| _false_ | `development` | Use this default environment, and its associated test API keys, as you build with Flatfile. |
+| _true_  | `production`  | When you're ready to launch, create a new environment and swap out your keys.               |
 
-<Note>The development environment does not count towards your paid credits.</Note>
+<Note>
+  The development environment does not count towards your paid credits.
+</Note>
 
 ## Secret and publishable keys
 
 All Accounts have two key types for each environment. Learn when to use each type of key:
 
-| Type | Id | Description |
-| --- | --- | --- |
-| Secret key | `sk_23ghsyuyshs7dcrty` | **On the server-side:** Store this securely in your server-side code. Don’t expose this key in an application. |
+| Type            | Id                     | Description                                                                                                             |
+| --------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Secret key      | `sk_23ghsyuyshs7dcrty` | **On the server-side:** Store this securely in your server-side code. Don’t expose this key in an application.          |
 | Publishable key | `pk_23ghsyuyshs7dcert` | **On the client-side:** Can be publicly-accessible in your application's client-side code. Use when embedding Flatfile. |
+
+<Note>
+  The `accessToken` provided from `publishableKey` will remain valid for a
+  duration of 24 hours.
+</Note>
