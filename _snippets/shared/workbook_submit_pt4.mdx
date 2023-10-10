@@ -1,0 +1,38 @@
+```js workbook.js
+actions: [
+  {
+    operation: "submitActionFg",
+    mode: "foreground",
+    label: "Submit data elsewhere",
+    type: "string",
+    description: "Submit this data to a webhook.",
+    primary: true,
+    inputForm: {
+      type: "simple",
+      fields: [
+        {
+          key: "priority",
+          label: "Priority level",
+          description: "Set the priority level.",
+          type: "enum",
+          config: {
+            options: [
+              {
+                value: "80ce8718a21c",
+                label: "High Priority",
+                description:
+                  "Setting a value to High Priority means it will be prioritized over other values",
+              },
+            ],
+          },
+          constraints: [
+            {
+              type: "required",
+            },
+          ],
+        },
+      ],
+    },
+  },
+];
+```
