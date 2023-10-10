@@ -11,8 +11,9 @@ It's logical, composable, and human-readable.
 
 ## Overview
 
+### Search by value
+
 Here's an example request for searching for rows where the First Name column is "Bender" and the Last Name column is "Rodriguez".
-:
 
 ```sql GET sheets/<sheetId>/records request
 GET sheets/<sheetId>/records?q=first_name eq Bender and last_name eq Rodriguez
@@ -20,6 +21,18 @@ GET sheets/<sheetId>/records?q=first_name eq Bender and last_name eq Rodriguez
 
 ```sql query
 first_name eq Bender and last_name eq Rodriguez
+```
+
+### Search for null
+
+Here's an example request for searching for rows where the First Name column is null.
+
+```sql GET sheets/<sheetId>/records request
+GET sheets/<sheetId>/records?q=first_name eq ""
+```
+
+```sql query
+first_name eq ""
 ```
 
 ---
