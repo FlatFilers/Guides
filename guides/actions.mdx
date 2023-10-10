@@ -30,7 +30,7 @@ Workbook-mounted actions are represented as buttons in the top right of the Work
 
 ### Usage
 
-Listen for a `job:ready` and filter on the `job` you'd like to process. Be sure to complete the job when it's complete.
+First, configure your action on your Blueprint.
 
 <Info>
   If you configure `primary: true` on an Action, it will be represented as the
@@ -38,6 +38,8 @@ Listen for a `job:ready` and filter on the `job` you'd like to process. Be sure 
 </Info>
 
 <Snippet file="shared/workbook_submit_pt1.mdx" />
+
+Next, listen for a `job:ready` and filter on the `job` you'd like to process. Be sure to complete the job when it's complete.
 
 <Snippet file="shared/workbook_submit_pt2.mdx" />
 
@@ -51,9 +53,7 @@ Sheet-mounted actions are represented as a dropdown in the toolbar of the Sheet.
 
 ### Usage
 
-Listen for a `job:ready` and filter on the `domain` (sheet) and the `operation` of where the action was placed. Be sure to complete to job when it's complete.
-
-<CodeGroup>
+First, configure your action on your Blueprint.
 
 ```jsx sheet.js
 sheets : [
@@ -74,7 +74,8 @@ sheets : [
 ]
 ```
 
-</CodeGroup>
+Next, listen for a `job:ready` and filter on the `domain` (sheet) and the `operation` of where the action was placed. Be sure to complete to job when it's complete.
+
 <CodeGroup>
 
 ```jsx listener.js
@@ -254,7 +255,7 @@ File-mounted actions are represented as a dropdown menu for each file in the Fil
 
 ### Usage
 
-Listen for a `file:ready` event and add one or more actions to the file.
+First, listen for a `file:ready` event and add one or more actions to the file.
 
 <CodeGroup>
 
@@ -453,3 +454,38 @@ async function failJob(jobId: string, message: string) {
 </CodeGroup>
 
 Get the example in the [flatfile-docs-kitchen-sink](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/actions/files.js) repo
+
+## Actions with Input Forms
+
+If you configure input fields for your action, a secondary dialog will be presented to the end user, prompting them to provide the necessary information. Once the user has entered the required details, they can proceed with the action.
+
+### Usage
+
+First, configure your action to have an inputForm on your Blueprint. These will appear once the action button is clicked.
+
+<Snippet file="shared/workbook_submit_pt4.mdx" />
+
+Next, listen for a `job:ready` and filter on the `job` you'd like to process. Grab the data entered in the form from the job itself and leverage it as required for your use case.
+
+<Snippet file="shared/workbook_submit_pt5.mdx" />
+
+## Example Project
+
+Find the documents example in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="typescript"
+    icon="code-merge"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/actions/index.ts"
+  >
+    Clone the Actions example in Typescript
+  </Card>
+  <Card
+    title="javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/actions/index.js"
+  >
+    Clone the Actions example in Javascript
+  </Card>
+</CardGroup>
