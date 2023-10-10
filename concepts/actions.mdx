@@ -61,6 +61,11 @@ UI. These include:
   Phrase this as a question.
 </ParamField>
 
+<ParamField path="tooltip" type="string">
+  Setting this will display the text in the UI for both buttons and list items
+  as a tooltip on hover.
+</ParamField>
+
 <ParamField path="requireSelection" type="boolean" default="false">
   Setting this to true will disable a Sheet Action when no records in the Sheet
   are selected.
@@ -76,12 +81,7 @@ UI. These include:
   with the resource until complete.
 </ParamField>
 
-<ParamField path="tooltip" type="string">
-  Setting this will display the text in the UI for both buttons and list items
-  as a tooltip on hover.
-</ParamField>
-
-## Usage
+### Usage
 
 An Action with all of the above properties would look like this:
 
@@ -98,6 +98,97 @@ An Action with all of the above properties would look like this:
   tooltip: 'Click to run action'
 }
 ```
+
+## inputForm
+
+When initiating an action, there may be instances where additional information is required from the end user to successfully complete the intended task. For example, you might want to enable users to specify the name of the file they intend to export.
+
+In such cases, if you configure input fields for your action, a secondary dialog will be presented to the end user, prompting them to provide the necessary information. Once the user has entered the required details, they can proceed with the action seamlessly
+
+<ParamField path="inputForm" type="object">
+  An object representing the input form configuration for the action.
+
+<ResponseField name="type" type="string" required>
+  The type of the input form. Accepts: `simple`
+</ResponseField>
+
+</ParamField>
+
+### fields
+
+  <ResponseField name="fields" type="array[object]">
+    An array of field objects representing the input form fields.
+
+    <ResponseField name="key" type="string" required>
+      The key for the field.
+    </ResponseField>
+
+    <ResponseField name="label" type="string" required>
+      The label for the field.
+    </ResponseField>
+
+    <ResponseField name="description" type="string">
+      A description of the field.
+    </ResponseField>
+
+    <ResponseField name="type" type="string" required>
+      The type of the field. Accepts: `string` | `textarea` | `number` |
+
+`boolean` | `enum`
+
+</ResponseField>
+
+  </ResponseField>
+
+    #### config
+
+    <ResponseField name="config" type="array[object]">
+      An object containing configuration options for the field.
+
+      <ResponseField name="options" type="array" required>
+        An array of options for the field, each represented as an object.
+
+        <ResponseField name="value" type="string" required>
+          The value or ID of the option.
+        </ResponseField>
+
+        <ResponseField name="label" type="string">
+          A visual label for the option.
+        </ResponseField>
+
+        <ResponseField name="description" type="string">
+          A short description of the option.
+        </ResponseField>
+
+        <ResponseField name="color" type="string">
+          An optional color associated with the option.
+        </ResponseField>
+
+        <ResponseField name="icon" type="string">
+          A reference to an icon associated with the option.
+        </ResponseField>
+
+        <ResponseField name="meta" type="object">
+          An arbitrary JSON object associated with the option.
+        </ResponseField>
+      </ResponseField>
+    </ResponseField>
+
+     #### constraints
+
+    <ResponseField name="constraints" type="array[object]">
+      An array of constraints for the field.
+
+      <ResponseField name="type" type="string" required>
+        The type of constraint.  Accepts: `required`
+      </ResponseField>
+    </ResponseField>
+
+### Usage
+
+An Action that requests input from the end user using `inputForm` would look like this. Your listener would then grab this data from the Job and take action on it. Learn more about [Using Actions with Inputs](../guides/actions#actions-with-input-forms).
+
+<Snippet file="shared/workbook_submit_pt4.mdx" />
 
 ## Learn more
 

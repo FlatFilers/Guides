@@ -30,7 +30,7 @@ Workbook-mounted actions are represented as buttons in the top right of the Work
 
 ### Usage
 
-Listen for a `job:ready` and filter on the `job` you'd like to process. Be sure to complete the job when it's complete.
+First, configure your action on your Blueprint.
 
 <Info>
   If you configure `primary: true` on an Action, it will be represented as the
@@ -38,6 +38,8 @@ Listen for a `job:ready` and filter on the `job` you'd like to process. Be sure 
 </Info>
 
 <Snippet file="shared/workbook_submit_pt1.mdx" />
+
+Next, listen for a `job:ready` and filter on the `job` you'd like to process. Be sure to complete the job when it's complete.
 
 <Snippet file="shared/workbook_submit_pt2.mdx" />
 
@@ -51,9 +53,7 @@ Sheet-mounted actions are represented as a dropdown in the toolbar of the Sheet.
 
 ### Usage
 
-Listen for a `job:ready` and filter on the `domain` (sheet) and the `operation` of where the action was placed. Be sure to complete to job when it's complete.
-
-<CodeGroup>
+First, configure your action on your Blueprint.
 
 ```jsx sheet.js
 sheets : [
@@ -74,7 +74,8 @@ sheets : [
 ]
 ```
 
-</CodeGroup>
+Next, listen for a `job:ready` and filter on the `domain` (sheet) and the `operation` of where the action was placed. Be sure to complete to job when it's complete.
+
 <CodeGroup>
 
 ```jsx listener.js
@@ -254,7 +255,7 @@ File-mounted actions are represented as a dropdown menu for each file in the Fil
 
 ### Usage
 
-Listen for a `file:ready` event and add one or more actions to the file.
+First, listen for a `file:ready` event and add one or more actions to the file.
 
 <CodeGroup>
 
@@ -453,3 +454,13 @@ async function failJob(jobId: string, message: string) {
 </CodeGroup>
 
 Get the example in the [flatfile-docs-kitchen-sink](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/actions/files.js) repo
+
+## Actions with Input Forms
+
+First, configure your action to have inputs on your Blueprint. These will appear once the action button is clicked.
+
+<Snippet file="shared/workbook_submit_pt4.mdx" />
+
+Next, listen for a `job:ready` and filter on the `job` you'd like to process. Grab the data from the job itself, then be sure to complete the job when it's complete.
+
+<Snippet file="shared/workbook_submit_pt5.mdx" />
