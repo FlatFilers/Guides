@@ -1,0 +1,133 @@
+---
+title: "Listeners"
+description: "The anatomy of Listeners"
+icon: "computer-classic"
+---
+
+## An Event-Driven System
+
+Flatfile is an event-driven system, meaning interactions with Flatfile (clicking a button, editing a record, uploading a file, etc) trigger the publication of an [Event](../concepts/events).
+
+Each Event contains information about its source and execution context including a domain, topic, context, and optionally, a payload.
+
+| Component          | Description                                       | Example                                                            |
+| ------------------ | ------------------------------------------------- | ------------------------------------------------------------------ |
+| Domain             | the jurisdiction of the event                     | record, sheet, workbook, space, file, job, agent                   |
+| Topic              | a combination of a domain and an action           | `workbook:created` `workbook:updated` `workbook:deleted`           |
+| Context            | detailed information about context of the event   | <pre>`{ spaceId: "us_sp_1234", fileId: "us_fl_1234", ... }`</pre>  |
+| Payload (optional) | detailed information about execution of the event | <pre>`{ status: "complete", workbookId: "us_wb_1234", ... }`</pre> |
+
+# Listners
+
+A Listener is a function designed to receive Events as they occur and take action by executing a callback function. The callback function can be as simple as logging the event or as advanced as integrating with external systems.
+
+Here is an example that logs the topic of any incoming event:
+
+<CodeGroup>
+
+```javascript
+export default function (listener) {
+  listener.on("**", (event) => {
+    console.log(`Received event: ${event.topic}`);
+  });
+}
+```
+
+```typescript
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
+
+export default function flatfileEventListener(listener: FlatfileListener) {
+  listener.on("**", (event: FlatfileEvent) => {
+    console.log(`Received event: ${event.topic}`);
+  });
+}
+```
+
+</CodeGroup>
+
+This function is listening on "\*\*", which is a wildcard that matches all events. For a complete list of events that can be listened to, see [Event Topics](../concepts/events#event-topics).
+
+## Listener Types
+
+Listeners can be hosted everywhere from your local machine to Flatfile's secure cloud. The location of your listener determines the type of listener it is.
+
+| Listener    | Location              | Description                          |
+| ----------- | --------------------- | ------------------------------------ |
+| development | developer machine     | local listener for development       |
+| client-side | user machine          | browser embeded listener             |
+| server-side | your secure server    | self-hosted server side listener     |
+| Agent       | Flatfile secure cloud | Flatfile hosted server side listener |
+
+Flatfile listeners can be either client-side or server-side.
+
+Client-side listeners run in the end user's web browser and respond to user interactions. Client-side listeners are perfect for scenarios that need to tap into values available in the browser, such as the current user's session or the current page URL.
+
+Server-side listeners run where deployed, either on your own servers or on Flatfile's secure cloud, and can perform more complex tasks like running intensive calculations or using secured credentials to integrate with external systems.
+
+Server-side listeners can leverage packages that need the capabilities of a server environment.
+
+## Agent
+
+In Flatfile, an Agent refers to a server-side listener bundled and deployed to Flatfile to be hosted in our secure cloud. An Agent is deployed into an Environment and responds to all Events that occur there.
+
+### Agent Lifecycle
+
+Developing your listener locally is easy with the Flatfile CLI. Simply run `npx flatfile develop` to start a local listener. Make changes to your listener code and the CLI will automatically pick up your changes and respond to Events.
+
+Once you're ready to deploy your listener, simply run `npx flatfile deploy` and your listener will be deployed to the specified environment.
+
+Once an Agent is deployed, it will be listening for events in the environment it was deployed to.
+
+Should you wish to update your listener, simply make your changes and run `npx flatfile deploy` again to upsert your Agent code.
+
+### Agent Conflicts
+
+Any listener configured to respond to a given Environment will attempt to respond to Events emitted in that Environment.
+
+This means that multiple listeners running in the same Environment will both attempt to perform operations based on the same Event. This could result in unexpected behavior and should be avoided.
+
+We recommend using isolated environments to avoid conflicts with a deployed listener.
+
+## Agent Logs
+
+When using Flatfile's secure cloud to host your listener, you can view the executions of your Agent in the "Event Logs" tab of your dashboard.
+
+Event logs are useful in monitoring and troubleshooting your listener. Each execution of your agent is recorded here, including any custom console logs you have configured in your listener code.
+
+### Failures
+
+Failures occur when an Agent fails to execute properly. That means either an uncaught error is thrown, or the execution times out.
+
+If you are catching and handling errors within your code, those executions will not be marked as failures. If you would prefer to see them marked this way, re-throw your error after handling to bubble it up to the execution handler.
+
+```javascript
+export default function (listener) {
+  listener.on("**", (event) => {
+    try {
+      // do something
+    } catch (error) {
+      // handle error
+      throw error; // re-throw error to mark execution as failure
+    }
+  });
+}
+```
+
+## Learn More
+
+Learn more about the Flatfile Platform in our other concept guides:
+
+<CardGroup cols={2}>
+  <Card title="Events" href="/concepts/events" icon="ear-listen">
+    The building blocks that power Flatfile's event-driven system
+  </Card>
+  <Card title="Actions" href="/concepts/actions" icon="bolt">
+    Custom code-based operations prompted by user interactions
+  </Card>
+  <Card title="Jobs" href="/concepts/jobs" icon="truck">
+    Handle complex or long-running processes asynchronously
+  </Card>
+  <Card title="Spaces" href="/concepts/spaces" icon="planet-ringed">
+    Micro-applications with its own database, filestore, and auth
+  </Card>
+</CardGroup>
