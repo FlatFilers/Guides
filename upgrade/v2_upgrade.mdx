@@ -114,3 +114,45 @@ You'll be able to use this configuration object with the V2 Shims package to con
 
 </CodeGroup>
 
+## Converting your Record Hooks
+
+If you're transitioning from a V2 Record Hook to a Platform Record Hook in your code, you can make the conversion by simply extracting and wrapping your existing Record Hook code in the V2 Shim `convertHook` method.
+
+<CodeGroup>
+
+    ```js Portal 2
+    const importer = new FlatfileImporter('LICENSE_KEY', config)
+
+    const recordHooksCallback = async (record) => {
+        let out = {};
+
+        if (record.firstName && !record.lastName) {
+            out.lastName = {
+                value: 'Rock',
+                info: [
+                    {
+                        message: 'No last name provided so welcome to the Rock fam.',
+                        leval: 'warning'
+                    }
+                ]
+            }
+        }
+        return out;
+    }
+
+    importer.registerRecordHook(recordHooksCallback);
+    ```
+
+    ```js Platform
+    import { convertHook } from "@flatfile/v2-shims";
+
+    export default function (listener) {
+        listener.filter({ job: "space:configure" }, (configure) => {
+            // code from above
+        });
+        // new Record Hook code
+        listener.use(recordHook("contacts", convertHook(recordHooks)))
+    }
+    ```
+
+</CodeGroup>
