@@ -139,6 +139,10 @@ window.openFlatfile = ({ publishableKey, environmentId }) => {
     sidebarConfig: {
       showSidebar: false,
     },
+    closeSpace: {
+      operation: "submitActionFg",
+      onClose: () => setShowSpace(false),
+    },
     // Additional props...
   };
 
