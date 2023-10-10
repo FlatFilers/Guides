@@ -172,11 +172,11 @@
     },
     {
       "group": "Portal - version 2",
-      "pages": ["upgrade/v2_upgrade", "upgrade/v2_repo"]
+      "pages": ["upgrade/v2_upgrade", "upgrade/v2_upgrade_concepts", "upgrade/v2_repo"]
     },
     {
       "group": "Portal - version 3",
-      "pages": ["upgrade/v3_upgrade", "upgrade/v3_repo", "upgrade/v3_dxp_configure"]
+      "pages": ["upgrade/v3_upgrade", "upgrade/v3_dxp_configure", "upgrade/v3_repo"]
     },
     {
       "group": "Overview",
