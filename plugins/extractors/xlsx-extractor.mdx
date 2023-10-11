@@ -28,11 +28,18 @@ icon: "download"
 
 ## Parameters
 
+<ParamField path="raw" type="boolean">
+  In Excel, you could have formatting on a text cell (i.e. date formatting). By
+  default, Flatfile will just take the formatted text versus the raw values. Set
+  this value to true to take the raw values and disregard how it's displayed in
+  Excel.
+</ParamField>
+
 <ParamField path="rawNumbers" type="boolean">
   In Excel, you could have rounding or formatting on a number cell to only
   display say 2 decimal places. By default, Flatfile will just take the
   displayed decimal places versus the raw numbers. Set this value to true to
-  take the raw numbers and disregard how it’s displayed in Excel.
+  take the raw numbers and disregard how it's displayed in Excel.
 </ParamField>
 
 <ParamField path="options.chunkSize" default="10_000" type="number" optional>
@@ -86,7 +93,7 @@ listener.use(ExcelExtractor());
 ```
 
 ```js additional options
-listener.use(ExcelExtractor({ rawNumbers: true }));
+listener.use(ExcelExtractor({ raw: true, rawNumbers: true }));
 ```
 
 </CodeGroup>
@@ -99,8 +106,11 @@ In this example, the `ExcelExtractor` is initialized with optional options, and 
 import { ExcelExtractor } from "@flatfile/xlsx-extractor";
 
 export default async function (listener) {
-  // Define optional options for the extractor (e.g., { rawNumbers: true })
-  const options = { rawNumbers: true };
+  // Define optional options for the extractor
+  const options = {
+    raw: true,
+    rawNumbers: true,
+  };
 
   // Initialize the Excel extractor
   const excelExtractor = ExcelExtractor(options);
