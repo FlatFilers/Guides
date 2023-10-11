@@ -55,6 +55,13 @@ Sheet-mounted actions are represented as a dropdown in the toolbar of the Sheet.
 
 First, configure your action on your Blueprint.
 
+<Info>
+  If you configure `requireSelection: true` on an Action, it will disable a
+  Sheet Action when no records in the Sheet are selected. If you configure
+  `requireAllValid: true` on an Action, it will disable a Sheet Action when
+  there are invalid records.
+</Info>
+
 ```jsx sheet.js
 sheets : [
   {
@@ -66,6 +73,8 @@ sheets : [
         label: 'Duplicate selected names',
         type: 'string',
         description: 'Duplicate names for selected rows',
+        requireSelection: false,
+        requireAllValid: true,
         primary: true,
       },
       {...}
