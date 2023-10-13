@@ -89,11 +89,19 @@ Now that you have listener code configured with credentials, you're ready to lis
 
 We'll run this listener locally by using the "develop" command from the Flatfile CLI.
 
-You may chose to run either a Typescript or a Javascript version of this listener by changing into the appropriate directory. Then, run the following command:
+You may chose to run either a Typescript or a Javascript version of this listener:
 
-```ssh
-npx flatfile@latest develop
+<CodeGroup>
+
+```terminal ts listener
+npx flatfile@latest develop typescript/index.ts
 ```
+
+```terminal js listener
+npx flatfile@latest develop javascript/index.js
+```
+
+</CodeGroup>
 
 Congratulations, you have created your first listener!
 
