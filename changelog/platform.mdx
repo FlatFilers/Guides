@@ -4,6 +4,124 @@ description: "Additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## October 13, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Actions are now available on Documents.**
+
+        ![image](../changelog/images/document_actions_primary.png)
+
+       Documents, which are standalone webpages within your Spaces, can now host a variety of actions, just like Workbooks, Sheets, and Files.
+
+        Document-Mounted Actions have their own configuration within a Document object. The executable code within an Action is compiled into a Job entity, offering the flexibility to run asynchronously or immediately. This empowers you to create more interactive and dynamic Documents, enhancing the overall user experience within your Flatfile Spaces.
+
+        ```jsx workbook.js
+        //your document can now have an action that looks like this
+        actions: [
+          {
+            operation: 'sendAction',
+            mode: 'foreground',
+            label: 'Send to...',
+            description: 'Send this page to someone.',
+            primary: true,
+          },
+          {...}
+        ]
+        ```
+
+    </div>
+
+  </div>
+</div>
+
+## October 11, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **The API now supports two new actions: `sheets.lock` and `sheets.unlock`.**
+
+        With the introduction of these API actions, you gain the ability to manage sheet locking within your application. The `sheets.lock` action allows you to lock a sheet, preventing any further modifications to its content. Conversely, the `sheets.unlock` action enables you to release the lock and restore full editing capabilities to the sheet.
+
+        These new API actions provide greater control and flexibility when it comes to managing sheet access and data integrity.
+
+    </div>
+
+  </div>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **New: Full-screen Documents!**
+
+        Documents have gained a new capability, allowing them to seamlessly transition into full-screen takeovers, thus removing their presence from the sidebar.
+
+        **How it works:**
+
+        To enable this functionality, we've introduced a new property on Documents: `treatments`. This property allows users to define specific descriptors for each Document. When a Document is assigned the "ephemeral" treatment, it will transform into a full-screen overlay, visible exclusively within the Spaces dashboard, while being discreetly tucked away from the Spaces sidebar.
+
+        This enhancement enhances user creativity and provides the freedom to tailor document-driven interactions precisely to their needs.
+
+        ```ts
+        await api.documents.create(spaceId, {
+          treatments: ['ephemeral'],
+          title: "Getting Started"
+        });
+        ```
+    </div>
+
+  </div>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **We’ve added Indonesia (ID) translations!**
+
+        Building upon our existing language support (based on your customers’ browser locale), which already included French, German, Portuguese and Spanish translations, we’ve expanded our capabilities to cater to an even broader audience.
+
+        Need another language? Let us know and we’ll prioritize getting it added.
+    </div>
+
+  </div>
+</div>
+
 ## October 9, 2023
 
 <div style={{ display: "table", width: "auto" }}>
@@ -512,10 +630,10 @@ icon: "layer-group"
         width: "calc(80% - 30px)",
       }}
     >
-        Introducing support for finding empty fields in ffql using the syntax: 
-        
-        ```filter: first_name eq ""```. 
-        
+        Introducing support for finding empty fields in ffql using the syntax:
+
+        ```filter: first_name eq ""```.
+
         Now, you can easily query and filter records with empty values.
     </div>
 
@@ -1426,3 +1544,4 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 </div>
 
 </div>
+````
