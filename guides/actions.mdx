@@ -43,6 +43,60 @@ Next, listen for a `job:ready` and filter on the `job` you'd like to process. Be
 
 <Snippet file="shared/workbook_submit_pt2.mdx" />
 
+## Document-mounted
+
+Document-mounted actions are similar to Workbook-mounted actions. They appear in the top right corner of your Document:
+
+![Document actions](../images/actions/document_actions.png)
+
+Read more about Documents [here](./documents).
+
+### Usage
+
+Define Document-mounted Actions using the `actions` parameter when you create a Document.
+
+<Info>
+  If you configure `primary: true` on an Action, it will be represented as the
+  rightmost button in the Document.
+</Info>
+
+<Snippet file="guides/documents/block1.mdx" />
+
+In your listener, listen for the job's event and perform your desired operations.
+
+<CodeGroup>
+
+```js listener.js
+export default function flatfileEventListener(listener) {
+  listener.on(
+    "job:ready",
+    { job: "contacts:submit" },
+    // TODO figure out what's available in the context here
+    async ({ context: { jobId }, payload }) => {
+      // Do your work here
+    }
+  );
+}
+```
+
+```js listener.ts
+import { FlatfileListener, FlatfileEvent } from "@flatfile/listener";
+
+export default function flatfileEventListener(listener: FlatfileListener) {
+  listener.on(
+    "job:ready",
+    { job: "contacts:submit" },
+    // TODO figure out what's available in the context here
+    async ({ context: { jobId }, payload }: FlatfileEvent) => {
+      // Do your work here
+    }
+  );
+}
+```
+
+</CodeGroup>
+
+
 ## Sheet-mounted
 
 <Info>Each Sheet has built-in Actions like download.</Info>

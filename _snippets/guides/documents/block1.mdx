@@ -17,6 +17,17 @@ export default function flatfileEventListener(listener) {
     const updateDoc = await api.documents.update(spaceId, documentId, {
       title: "Getting Started",
       body: bodyText,
+      actions: [
+        {
+          label: 'Submit',
+          operation: 'contacts:submit',
+          description: 'Would you like to submit the contact data?',
+          tooltip: 'Submit the contact data',
+          mode: 'foreground',
+          primary: true,
+          confirm: true,
+        },
+      ]
     });
   });
 }
@@ -43,6 +54,17 @@ export default function flatfileEventListener(listener: FlatfileListener) {
       const updateDoc = await api.documents.update(spaceId, documentId, {
         title: "Getting Started",
         body: bodyText,
+        actions: [
+          {
+            label: 'Submit',
+            operation: 'contacts:submit',
+            description: 'Would you like to submit the contact data?',
+            tooltip: 'Submit the contact data',
+            mode: 'foreground',
+            primary: true,
+            confirm: true,
+          },
+        ]
       });
     }
   );
