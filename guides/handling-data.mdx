@@ -663,14 +663,13 @@ listener.use(
 ```jsx javascript bulkRecordHook()
 listener.use(
   bulkRecordHook("contacts", async (records, event) => {
-    records.map((record) => {
+    const webhookReceiver =
+      process.env.WEBHOOK_SITE_URL ||
+      "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
+    const { payload } = event.payload;
+
+    for (const record of records) {
       try {
-        const { payload } = event.payload;
-
-        const webhookReceiver =
-          process.env.WEBHOOK_SITE_URL ||
-          "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
-
         const postResponse = await axios.post(
           webhookReceiver,
           {
@@ -695,9 +694,7 @@ listener.use(
       } finally {
         // Clean up or perform any necessary actions after the try/catch block
       }
-
-      return record;
-    });
+    }
   })
 );
 ```
@@ -707,14 +704,13 @@ listener.use(
   bulkRecordHook(
     "contacts",
     async (records: FlatfileRecord[], event: FlatfileEvent) => {
-      records.map((record: FlatfileRecord) => {
+      const webhookReceiver =
+        process.env.WEBHOOK_SITE_URL ||
+        "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
+      const { payload } = event.payload;
+
+      for (const record of records) {
         try {
-          const { payload } = event.payload;
-
-          const webhookReceiver =
-            process.env.WEBHOOK_SITE_URL ||
-            "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
-
           const postResponse = await axios.post(
             webhookReceiver,
             {
@@ -739,9 +735,7 @@ listener.use(
         } finally {
           // Clean up or perform any necessary actions after the try/catch block
         }
-
-        return record;
-      });
+      }
     }
   )
 );
