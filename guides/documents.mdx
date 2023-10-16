@@ -21,15 +21,72 @@ Learn how to create a Document and update a Document from an Event listener.
 
 ## Document Actions
 
-TODO
+Actions are optional and allow you to run custom operations in response to a user-triggered event. Actions appear as buttons in the top right corner of your Document:
+
+![Document actions](../images/actions/document_actions.png)
+
+Define Actions on a Document using the `actions` parameter when a document is created:
+
+```ts
+const doc = await api.documents.create(spaceId, {
+  title: 'Getting started',
+  body: '# Welcome ...',
+  actions: [
+    {
+      label: 'Submit',
+      operation: 'contacts:submit',
+      description: 'Would you like to submit the contact data?',
+      tooltip: 'Submit the contact data',
+      mode: 'foreground',
+      primary: true,
+      confirm: true,
+    },
+  ]
+});
+```
+
+Read more about how to handle Actions in your listener [here](./actions#document-mounted).
 
 ## Ephemeral Documents
 
-TODO
+Ephemeral Documents appear as a full-screen takeover, and do not appear in the sidebar of your Space like other Documents. They can be used to create a more focused experience for your end users.
 
-## Embedding blocks in Documents
+To create an ephemeral Document, use the `treatments` array parameter when creating your Document and give it a treatment of `"ephemeral"`:
 
-TODO
+```ts
+const ephemeralDoc = await api.documents.create(spaceId, {
+  title: 'Getting started',
+  body: '# Welcome ...',
+  treatments: [
+    'ephemeral'
+  ]
+});
+```
+
+## Embedding Sheets in Documents
+
+You can embed a Sheet into your Document by adding an `<embed>` HTML entity to your markdown body, and passing a sheet ID, workbook ID, and name. You can also specify whether the embedded Sheet is expanded or collapsed when the document is loaded.
+
+<Info>
+  You can include as many embedded Sheets in your Document as you like, but end users will only be able to expand a maximum of 10 embedded Sheets at once.
+</Info>
+
+```ts
+const doc = await api.documents.create(spaceId, {
+  title: 'Getting started',
+  body: `
+  # Welcome
+  
+  Here is an embedded Sheet:
+  
+  <embed type='embedded-sheet' name='Contacts' defaultExpanded='true' sheetId='your_sheet_id' workbookId='your_workbook_id'>
+
+  Here is another embedded Sheet:
+
+  <embed type='embedded-sheet' name='Countries' sheetId='us_sh_TVW95224' workbookId='us_wb_8e0z52gI'>
+  `,
+});
+```
 
 ---
 
