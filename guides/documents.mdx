@@ -15,9 +15,9 @@ Often used for getting started guides, Documents become extremely powerful with 
 
 ## Create a Document
 
-Learn how to create a Document and update a Document from an Event listener.
+Create Documents via API:
 
-<Snippet file="guides/documents/block1.mdx" />
+<Snippet file="guides/documents/update-document.mdx" />
 
 ## Document Actions
 
@@ -92,148 +92,7 @@ const doc = await api.documents.create(spaceId, {
 
 ## Markdown reference
 
-### Headings
-
-```Markdown
-# Heading level 1
-## Heading level 2
-### Heading level 3
-#### Heading level 4
-##### Heading level 5
-###### Heading level 6
-```
-
-**The rendered output looks like:**
-
-# Heading level 1
-
-## Heading level 2
-
-### Heading level 3
-
-#### Heading level 4
-
-##### Heading level 5
-
-###### Heading level 6
-
----
-
-### Links
-
-```Markdown
-My favorite search engine is [Duck Duck Go](https://duckduckgo.com).
-```
-
-**The rendered output looks like:**
-
-My favorite search engine is [Duck Duck Go](https://duckduckgo.com).
-
----
-
-### Text formatting
-
-```Markdown
-**Love** is bold.
-Italicized text is the *cat's meow*.
-This text is ***bolded and italicized***.
-Superscript <sup>superscript</sup>
-Subscript <sub>subscript</sub>
-> Dorothy followed her through many of the beautiful rooms in her castle.
-Use `code` in your Document.
-```
-
-**The rendered output looks like:**
-
-**Love** is bold.
-
-Italicized text is the _cat's meow_.
-
-This text is **_bolded and italicized_**.
-
-Superscript <sup>superscript</sup>
-
-Subscript <sub>subscript</sub>
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
-
-Use `code` in your Document.
-
----
-
-### Lists
-
-```Markdown
-<!-- ordered lists -->
-1. First item
-2. Second item
-3. Third item
-4. Fourth item
-<!-- unordered lists -->
-- First item
-- Second item
-- Third item
-- Fourth item
-<!-- nested lists -->
-- First parent item
-- Second parent item
-  - Additional item
-  - Additional item
-- Third parent item
-
-```
-
-**The rendered output looks like:**
-
-#### Ordered Lists
-
-1. First item
-2. Second item
-3. Third item
-4. Fourth item
-
-#### Unordered Lists
-
-- First item
-- Second item
-- Third item
-- Fourth item
-
-#### Nested Lists
-
-- First parent item
-- Second parent item
-  - Additional item
-  - Additional item
-- Third parent item
-
----
-
-## Images
-
-```Markdown
-San Juan Mountains are beautiful!](https://i0.wp.com/sjma.org/wp-content/uploads/2018/04/Ice-Lakes-BG.jpg "San Juan Mountains")
-```
-
----
-
-## Tables
-
-```Markdown
-| Property | Description                           |
-| -------- | ------------------------------------- |
-| Name     | Full name of user                     |
-| Age      | Reported age                          |
-| Joined   | Whether the user joined the community |
-```
-
-**The rendered output would look like:**
-
-| Property | Description                           |
-| -------- | ------------------------------------- |
-| Name     | Full name of user                     |
-| Age      | Reported age                          |
-| Joined   | Whether the user joined the community |
+Documents support Github-flavored Markdown. Check out [this guide](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for a full reference on the entities you can use.
 
 ## Example Project
 

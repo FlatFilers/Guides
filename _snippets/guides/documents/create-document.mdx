@@ -1,0 +1,27 @@
+<CodeGroup>
+
+```ts
+const bodyText = `
+  # Welcome
+
+  ### Say hello to your first customer Space in the new Flatfile!
+
+  Let's begin by first getting acquainted with what you're seeing in your Space initially.
+`;
+const doc = await api.documents.create(spaceId, {
+	title: 'Getting Started',
+	body: bodyText,
+	actions: [
+		{
+				label: 'Submit',
+				operation: 'contacts:submit',
+				description: 'Would you like to submit the contact data?',
+				tooltip: 'Submit the contact data',
+				mode: 'foreground',
+				primary: true,
+				confirm: true,
+		},
+	]
+});
+```
+</CodeGroup>
