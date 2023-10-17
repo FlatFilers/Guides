@@ -151,7 +151,12 @@ If you're transitioning from a V2 Record Hook to a Platform Record Hook in your 
             // code from above
         });
         // new Record Hook code
-        listener.use(recordHook("contacts", convertHook(recordHooks)))
+
+        listener.use(
+            recordHook('TestSheet', async (record, event) => {
+                return convertHook(recordHooks)(record)
+            })
+        )
     }
     ```
 

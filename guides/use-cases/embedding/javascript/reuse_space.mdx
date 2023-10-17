@@ -174,7 +174,7 @@ app.listen(port, () => {
 });
 ```
 
-### 4. Start your server
+### 3. Start your server
 
 Now, start your server by heading to terminal and running the following command. To see that it’s running, visit: https://localhost:8080 (or the port it is running on) and you should see a page that says "Hello, World".
 
@@ -182,7 +182,7 @@ Now, start your server by heading to terminal and running the following command.
 npx node src/server.mjs
 ```
 
-### 3. Initialize Flatfile
+### 4. Initialize Flatfile
 
 In your `client.js`, at minimum, you'll need to get and pass the `space` info. This code opens an existing Space in a modal by making a request to your server endpoint and initializing the Flatfile data import with specified options based on the server's response.
 
@@ -213,7 +213,7 @@ window.openFlatfile = () => {
 };
 ```
 
-### 4. Start your client
+### 5. Start your client
 
 Now, start your front end by heading to terminal, opening a new tab, and running the following command. To see that it’s running, visit: https://localhost:1234 (or the port it is running on) and you should see your page and a button. Click the button and see that your Space loads. **That's it!**
 
@@ -221,7 +221,7 @@ Now, start your front end by heading to terminal, opening a new tab, and running
 npx parcel public/index.html
 ```
 
-### 5. Customize
+### 6. Customize
 
 You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
 
