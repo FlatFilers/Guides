@@ -15,22 +15,24 @@ Often used for getting started guides, Documents become extremely powerful with 
 
 ## Create a Document
 
-Create Documents via API:
+You can create Documents using the API:
 
-<Snippet file="guides/documents/update-document.mdx" />
+<Snippet file="guides/documents/create-document.mdx" />
+
+This Document will now appear in the sidebar of your Space.
+
+In this example, we create a Document when a file is uploaded, but you can also create Documents in response to any other Event. [Read more](./concepts/event) about the different Events you can respond to.
 
 ## Document Actions
 
-Actions are optional and allow you to run custom operations in response to a user-triggered event. Actions appear as buttons in the top right corner of your Document:
-
-![Document actions](../images/actions/document_actions.png)
+Actions are optional and allow you to run custom operations in response to a user-triggered event from within a Document.
 
 Define Actions on a Document using the `actions` parameter when a document is created:
 
 ```ts
 const doc = await api.documents.create(spaceId, {
   title: 'Getting started',
-  body: '# Welcome ...',
+  body: `# We're so glad you're here ...`,
   actions: [
     {
       label: 'Submit',
@@ -45,13 +47,21 @@ const doc = await api.documents.create(spaceId, {
 });
 ```
 
-Read more about how to handle Actions in your listener [here](./actions#document-mounted).
+Then set up a listener for this Action to define what should happen in response to this Action. Read more about how to handle Actions in your listener [here](./actions#document-mounted).
 
-## Ephemeral Documents
+Actions appear as buttons in the top right corner of your Document:
 
-Ephemeral Documents appear as a full-screen takeover, and do not appear in the sidebar of your Space like other Documents. They can be used to create a more focused experience for your end users.
+![Document actions](../images/actions/document_actions.png)
 
-To create an ephemeral Document, use the `treatments` array parameter when creating your Document and give it a treatment of `"ephemeral"`:
+
+
+## Document treatments
+
+Documents have an optional `treatments` parameter which takes an array of treatments for your Document. Treatments can be used to categorize your Document. Certain treatments will cause your Document to look or behave differently.
+
+### Ephemeral documents
+
+Giving your Document a treatment of `"ephemeral"` will cause the Document to appear as a full-screen takeover, and it will not appear in the sidebar of your Space like other Documents. You can use ephemeral Documents to create a more focused experience for your end users.
 
 ```ts
 const ephemeralDoc = await api.documents.create(spaceId, {
@@ -62,6 +72,10 @@ const ephemeralDoc = await api.documents.create(spaceId, {
   ]
 });
 ```
+
+<Info>
+  Currently, `"ephemeral"` is the only treatment that will change the behavior of your Document. Other treatments will not affect how your Document behaves, but can be used for your own purposes to categorize and describe your Documents in code.
+</Info>
 
 ## Embedding Sheets in Documents
 
@@ -75,15 +89,15 @@ You can embed a Sheet into your Document by adding an `<embed>` HTML entity to y
 const doc = await api.documents.create(spaceId, {
   title: 'Getting started',
   body: `
-  # Welcome
-  
-  Here is an embedded Sheet:
-  
-  <embed type='embedded-sheet' name='Contacts' defaultExpanded='true' sheetId='your_sheet_id' workbookId='your_workbook_id'>
+    # Welcome
+    
+    Here is an embedded Sheet:
+    
+    <embed type='embedded-sheet' name='Contacts' defaultExpanded='true' sheetId='your_sheet_id' workbookId='your_workbook_id'>
 
-  Here is another embedded Sheet:
+    Here is another embedded Sheet:
 
-  <embed type='embedded-sheet' name='Countries' sheetId='us_sh_TVW95224' workbookId='us_wb_8e0z52gI'>
+    <embed type='embedded-sheet' name='Countries' sheetId='us_sh_TVW95224' workbookId='us_wb_8e0z52gI'>
   `,
 });
 ```

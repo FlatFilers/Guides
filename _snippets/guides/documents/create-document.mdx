@@ -1,27 +1,49 @@
 <CodeGroup>
 
-```ts
-const bodyText = `
-  # Welcome
+```js listener.js
+import api from "@flatfile/api";
 
-  ### Say hello to your first customer Space in the new Flatfile!
+export default function flatfileEventListener(listener) {
+  listener.on("upload:completed", async ({ context: { spaceId, fileId } }) => {
+    const fileName = (await api.files.get(fileId)).data.name;
+    const bodyText = `# Welcome
+    ### Say hello to your first customer Space in the new Flatfile!
+    Let's begin by first getting acquainted with what you're seeing in your Space initially.
+    ---
+    Your uploaded file, ${fileName}, is located in the Files area.`;
 
-  Let's begin by first getting acquainted with what you're seeing in your Space initially.
-`;
-const doc = await api.documents.create(spaceId, {
-	title: 'Getting Started',
-	body: bodyText,
-	actions: [
-		{
-				label: 'Submit',
-				operation: 'contacts:submit',
-				description: 'Would you like to submit the contact data?',
-				tooltip: 'Submit the contact data',
-				mode: 'foreground',
-				primary: true,
-				confirm: true,
-		},
-	]
-});
+    const doc = await api.documents.create(spaceId, {
+      title: 'Getting Started',
+      body: bodyText
+    });
+  });
+}
 ```
+
+```js listener.ts
+import api from "@flatfile/api";
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
+
+export default function flatfileEventListener(listener: FlatfileListener) {
+  listener.on(
+    "upload:completed",
+    async ({ context: { spaceId, fileId } }: FlatfileEvent) => {
+      const fileName = (await api.files.get(fileId)).data.name;
+      const bodyText = `# Welcome
+    ### Say hello to your first customer Space in the new Flatfile!
+    Let's begin by first getting acquainted with what you're seeing in your Space initially.
+    ---
+    Your uploaded file, ${fileName}, is located in the Files area.`;
+
+    const doc = await api.documents.create(spaceId, {
+      title: 'Getting Started',
+      body: bodyText
+    });
+    }
+  );
+}
+```
+
 </CodeGroup>
+
+See full code example in our [flatfile-docs-kitchen-sink Github repo](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main).
