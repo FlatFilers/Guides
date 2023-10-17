@@ -16,26 +16,51 @@ With the new Platform, comes a brand new place to sign up for it. Before getting
 
 Before you can start using all the wonderful tools in this guide to implement Flatfile, you'll need to install a couple of packages, the V2 Shims and Flatfile API packages.
 
-```bash
-npm install @flatfile/v2-shims @flatfile/api
-```
+<Note>
+    If you are using our `@flatfile/react` package, be sure to install version 7.2.24 or higher to get the Platform React component.
+</Note>
+
+<CodeGroup>
+
+    ```bash JavaScript
+    npm install @flatfile/v2-shims @flatfile/api
+    ```
+
+    ```bash React
+    npm install @flatfile/v2-shims @flatfile/api @flatfile/react@7.2.24
+    ```
+
+</CodeGroup>
 
 ## Convert Your Config
 
 The Portal 2 configuration is what contains your settings and fields in your Portal implementation.
 
-```js
-const importer = new FlatfileImporter(
-    "YOUR_LICENSE_KEY",
-    { } // This is your configuration object
-)
-```
+<CodeGroup>
+
+    ```js JavaScript
+    const importer = new FlatfileImporter(
+        "YOUR_LICENSE_KEY",
+        { } // This is your configuration object
+    )
+    ```
+
+    ```jsx React
+    <FlatfileButton
+        licenseKey="YOUR_LICENCE_KEY"
+        customer={{ userId: '1234' }}
+        settings={} // This is your configuration object
+    >
+        Import Contacts
+    </FlatfileButton>
+    ```
+</CodeGroup>
 
 You'll be able to use this configuration object with the V2 Shims package to configure your new implementation. Keep in mind that the below snippets use a couple of new concepts like a [Job](/concepts/jobs) and [Listener](/quickstart/meet-the-listener). While you don't need to learn about these to get started, they are useful for adding new functionality onto your importer at some point in the future.
 
 <CodeGroup>
 
-    ```js Portal 2
+    ```js Portal 2 JavaScript
     import FlatfileImporter from '@flatfile/adapter'
 
     const config = {
@@ -55,7 +80,7 @@ You'll be able to use this configuration object with the V2 Shims package to con
     const importer = new FlatfileImporter('LICENSE_KEY', config)
     ```
 
-    ```js Platform
+    ```js Platform JavaScript
     import api from "@flatfile/api";
     import { configToBlueprint } from "@flatfile/v2-shims";
 
@@ -112,15 +137,98 @@ You'll be able to use this configuration object with the V2 Shims package to con
     }
     ```
 
+    ```jsx Portal 2 React
+    import { FlatfileButton } from "@flatfile/react"
+
+    const config = {
+        type: 'Contacts',
+        fields: [
+            {
+                key: 'name',
+                label: 'Name',
+                description: 'Contact name',
+                validators: [
+                    {validate: 'required'}
+                ]
+            }
+        ]
+    }
+
+    export default function App() {
+        return (
+            <div className="App">
+                <FlatfileButton
+                    licenseKey="YOUR_V2_LICENSE_KEY"
+                    customer={{ userId: '1234'}}
+                    settings={config}
+                >
+                Import Contacts
+                </FlatfileButton>
+            </div>
+        )
+    }
+    ```
+
+    ```js Platform React
+    import api from "@flatfile/api";
+    import { configToBlueprint } from "@flatfile/v2-shims";
+    import { listener } from "./listener";
+
+    const spaceProps = {
+        name: "Embedded Space",
+        publishableKey: "YOUR_PUBLISHABLE_KEY",
+        environmentId: "YOUR_ENVIRONMENT_ID",
+    };
+
+    const Space = ({setShowSpace}) => {
+        const space = useSpace({
+            ...spaceProps,
+            // @ts-ignore
+            workbook: configToBlueprint(flatfileConfig),
+            listener,
+            sidebarConfig: {
+                showSidebar: false,
+            },
+            closeSpace: {
+                operation: "submitAction",
+                onClose: () => setShowSpace(false),
+            },
+        });
+        return space;
+    };
+
+    export default function App() {
+        const [showSpace, setShowSpace] = useState(false);
+
+        return (
+        <div className="App">
+            <button
+                className="contract"
+                onClick={() => {
+                    setShowSpace(!showSpace);
+                }}
+            >
+                {showSpace === true ? "Close" : "Open and create new"} Space
+            </button>
+            {showSpace && <Space setShowSpace={setShowSpace} />}
+        </div>
+        )
+    }
+    ```
+
 </CodeGroup>
 
 ## Converting your Record Hooks
 
 If you're transitioning from a V2 Record Hook to a Platform Record Hook in your code, you can make the conversion by simply extracting and wrapping your existing Record Hook code in the V2 Shim `convertHook` method.
 
+<Note>
+    If you're using V2 Record Hooks `mode` to split hooks on "init" or on "change", Platform does not have this mode functionality. It does, however, have better overall hooks performance and a new [Bulk Record Hook](/plugins/transform/record-hook#additional-options) method that make `mode` unnecessary.
+</Note>
+
 <CodeGroup>
 
-    ```js Portal 2
+    ```js Portal 2 JavaScript
     const importer = new FlatfileImporter('LICENSE_KEY', config)
 
     const recordHooksCallback = async (record) => {
@@ -155,6 +263,127 @@ If you're transitioning from a V2 Record Hook to a Platform Record Hook in your 
         listener.use(
             recordHook('TestSheet', async (record, event) => {
                 return convertHook(recordHooks)(record)
+            })
+        )
+    }
+    ```
+
+
+    ```jsx Portal 2 React
+    import { FlatfileButton } from "@flatfile/react"
+    import flatfileConfig from "./config"
+
+    const recordHooksCallback = async (record) => {
+        let out = {};
+
+        if (record.firstName && !record.lastName) {
+            out.lastName = {
+                value: 'Rock',
+                info: [
+                    {
+                        message: 'No last name provided so welcome to the Rock fam.',
+                        leval: 'warning'
+                    }
+                ]
+            }
+        }
+        return out;
+    }
+
+    export default function App() {
+        return (
+            <div className="App">
+                <FlatfileButton
+                    licenseKey="YOUR_V2_LICENSE_KEY"
+                    customer={{ userId: '1234'}}
+                    settings={flatfileConfig}
+                    onRecordInit={recordHooksCallback}
+                    onRecordChange={recordHooksCallback}
+                >
+                Import Contacts
+                </FlatfileButton>
+            </div>
+        )
+    }
+    ```
+
+    ```jsx Platform React - Embed
+    // Be sure to use @flatfile/react 7.2.24 or later
+    import { ISpace, useSpace } from "@flatfile/react";
+    import { flatfileConfig } from "./config"
+    import { listener } from "./listener"
+
+    const spaceProps = {
+        name: "Embedded Space",
+        publishableKey: "YOUR_PUBLISHABLE_KEY",
+        environmentId: "YOUR_ENVIRONMENT_ID",
+    };
+
+    const Space = ({setShowSpace}) => {
+        const space = useSpace({
+            ...spaceProps,
+            // @ts-ignore
+            workbook: configToBlueprint(flatfileConfig),
+            listener,
+            sidebarConfig: {
+                showSidebar: false,
+            },
+            closeSpace: {
+                operation: "submitAction",
+                onClose: () => setShowSpace(false),
+            },
+        });
+        return space;
+    };
+
+    export default function App() {
+        const [showSpace, setShowSpace] = useState(false);
+
+        return (
+            <div className="App">
+                <button
+                    className="contract"
+                    onClick={() => {
+                        setShowSpace(!showSpace);
+                    }}
+                >
+                    {showSpace === true ? "Close" : "Open and create new"} Space
+                </button>
+                {showSpace && <Space setShowSpace={setShowSpace} />}
+            </div>
+        )
+    }
+    ```
+
+    ```js Platform React - Listener
+    import { convertHook } from "@flatfile/v2-shims";
+
+    const recordHooksCallback = async (record) => {
+        let out = {};
+
+        if (record.firstName && !record.lastName) {
+            out.lastName = {
+                value: 'Rock',
+                info: [
+                    {
+                        message: 'No last name provided so welcome to the Rock fam.',
+                        leval: 'warning'
+                    }
+                ]
+            }
+        }
+        return out;
+    }
+
+    export default function (listener) {
+        listener.filter({ job: "space:configure" }, (configure) => {
+            // code from above
+        });
+        // new Record Hook code
+
+        listener.use(
+            recordHook('Contracts', async (record, event) => {
+                return convertHook(recordHooksCallback)(record)
             })
         )
     }
