@@ -1,7 +1,7 @@
 ---
 title: "Listeners"
 description: "The anatomy of Listeners"
-icon: "computer-classic"
+icon: "ear-listen"
 ---
 
 ## An Event-Driven System
@@ -17,7 +17,7 @@ Each Event contains information about its source and execution context including
 | Context            | detailed information about context of the event   | <pre>`{ spaceId: "us_sp_1234", fileId: "us_fl_1234", ... }`</pre>  |
 | Payload (optional) | detailed information about execution of the event | <pre>`{ status: "complete", workbookId: "us_wb_1234", ... }`</pre> |
 
-# Listners
+# Listeners
 
 A Listener is a function designed to receive Events as they occur and take action by executing a callback function. The callback function can be as simple as logging the event or as advanced as integrating with external systems.
 
@@ -47,7 +47,27 @@ export default function flatfileEventListener(listener: FlatfileListener) {
 
 This function is listening on "\*\*", which is a wildcard that matches all events. For a complete list of events that can be listened to, see [Event Topics](../concepts/events#event-topics).
 
-## Listener Types
+### Filtering & Namespaces
+
+Listeners can be configured to respond to specific events,
+
+A filter is a string that matches the topic of an event. For example, the filter "workbook:created" will match any event with the topic "workbook:created".
+
+<CodeGroup>
+
+```javascript
+export default function flatfileEventListener(listener) {
+  listener.filter({ job: "workbook:created" }, (configure) => {});
+}
+```
+
+```typescript
+// typescript example
+```
+
+</CodeGroup>
+
+### Listener Types
 
 Listeners can be hosted everywhere from your local machine to Flatfile's secure cloud. The location of your listener determines the type of listener it is.
 
@@ -55,8 +75,8 @@ Listeners can be hosted everywhere from your local machine to Flatfile's secure 
 | ----------- | --------------------- | ------------------------------------ |
 | development | developer machine     | local listener for development       |
 | client-side | user machine          | browser embeded listener             |
-| server-side | your secure server    | self-hosted server side listener     |
 | Agent       | Flatfile secure cloud | Flatfile hosted server side listener |
+| server-side | your secure server    | self-hosted server side listener     |
 
 Flatfile listeners can be either client-side or server-side.
 
@@ -118,7 +138,7 @@ export default function (listener) {
 Learn more about the Flatfile Platform in our other concept guides:
 
 <CardGroup cols={2}>
-  <Card title="Events" href="/concepts/events" icon="ear-listen">
+  <Card title="Events" href="/concepts/events" icon="clock">
     The building blocks that power Flatfile's event-driven system
   </Card>
   <Card title="Actions" href="/concepts/actions" icon="bolt">
