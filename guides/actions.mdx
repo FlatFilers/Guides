@@ -60,7 +60,7 @@ Define Document-mounted Actions using the `actions` parameter when you create a 
   rightmost button in the Document.
 </Info>
 
-<Snippet file="guides/documents/create-document.mdx" />
+<Snippet file="guides/documents/document-actions.mdx" />
 
 In your listener, listen for the job's event and perform your desired operations.
 
@@ -70,10 +70,32 @@ In your listener, listen for the job's event and perform your desired operations
 export default function flatfileEventListener(listener) {
   listener.on(
     "job:ready",
-    { job: "contacts:submit" },
-    // TODO figure out what's available in the context here
-    async ({ context: { jobId }, payload }) => {
-      // Do your work here
+    { job: "document:contacts:submit" },
+    async (event) => {
+      const { context, payload } = event;
+      const { jobId, workbookId } = context;
+
+      try {
+        await api.jobs.ack(jobId, {
+          info: "Starting submit job...",
+          progress: 10,
+        });
+
+        // Do your work here
+
+        await api.jobs.complete(jobId, {
+          outcome: {
+            message: `Submit job was completed succesfully.`,
+          },
+        });
+      } catch (error) {
+        console.log(`There was an error: ${JSON.stringify(error)}`);
+        await api.jobs.fail(jobId, {
+          outcome: {
+            message: `This job failed.`,
+          },
+        });
+      }
     }
   );
 }
@@ -85,10 +107,32 @@ import { FlatfileListener, FlatfileEvent } from "@flatfile/listener";
 export default function flatfileEventListener(listener: FlatfileListener) {
   listener.on(
     "job:ready",
-    { job: "contacts:submit" },
-    // TODO figure out what's available in the context here
-    async ({ context: { jobId }, payload }: FlatfileEvent) => {
-      // Do your work here
+    { job: "document:contacts:submit" },
+    async (event: FlatfileEvent) => {
+      const { context, payload } = event;
+      const { jobId, workbookId } = context;
+      
+      try {
+        await api.jobs.ack(jobId, {
+          info: "Starting submit job...",
+          progress: 10,
+        });
+
+        // Do your work here
+
+        await api.jobs.complete(jobId, {
+          outcome: {
+            message: `Submit job was completed succesfully.`,
+          },
+        });
+      } catch (error) {
+        console.log(`There was an error: ${JSON.stringify(error)}`);
+        await api.jobs.fail(jobId, {
+          outcome: {
+            message: `This job failed.`,
+          },
+        });
+      }
     }
   );
 }

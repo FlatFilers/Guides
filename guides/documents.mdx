@@ -29,25 +29,9 @@ Actions are optional and allow you to run custom operations in response to a use
 
 Define Actions on a Document using the `actions` parameter when a document is created:
 
-```ts
-const doc = await api.documents.create(spaceId, {
-  title: 'Getting started',
-  body: `# We're so glad you're here ...`,
-  actions: [
-    {
-      label: 'Submit',
-      operation: 'contacts:submit',
-      description: 'Would you like to submit the contact data?',
-      tooltip: 'Submit the contact data',
-      mode: 'foreground',
-      primary: true,
-      confirm: true,
-    },
-  ]
-});
-```
+<Snippet file="guides/documents/document-actions.mdx" />
 
-Then set up a listener for this Action to define what should happen in response to this Action. Read more about how to handle Actions in your listener [here](./actions#document-mounted).
+Then configure your listener to handle this Action, and define what should happen in response. Read more about Actions and how to handle them [here](./actions#document-mounted).
 
 Actions appear as buttons in the top right corner of your Document:
 
