@@ -41,7 +41,7 @@ icon: "download"
 
 ## Usage
 
-An action with the operation name of "downloadExcelWorkbook" must be configured on a Workbook (not a Sheet) in order to the plugin to be triggered.
+An action with the operation name of "downloadWorkbook" must be configured on a Workbook (not a Sheet) in order to the plugin to be triggered.
 
 ```bash install
 npm i @flatfile/plugin-export-workbook
@@ -55,7 +55,7 @@ import { exportWorkbookPlugin } from "@flatfile/plugin-export-workbook";
   // ... inside Workbook configuration
   "actions": [
     {
-      "operation": "downloadExcelWorkbook",
+      "operation": "downloadWorkbook",
       "mode": "foreground",
       "label": "Download Excel Workbook",
       "description": "Downloads Excel Workbook of Data",
@@ -74,7 +74,7 @@ listener.use(exportWorkbookPlugin());
 <CardGroup cols={2}>
   <Card
     title="@flatfile/plugin-export-workbook"
-    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/export-worbook"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/export-workbook"
     icon="github"
   ></Card>
 </CardGroup>
