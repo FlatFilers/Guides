@@ -81,7 +81,6 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
       <script type="module" src="/src/main.ts"></script>
     </body>
   </html>
-
 ````
 
 ```CSS src/styles.css
@@ -221,8 +220,8 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
   /* The description text you see in the error component */
   /* .ff_error_text {
   }*/
-
-````
+  
+```
 
 </CodeGroup>
 
@@ -233,6 +232,7 @@ In your environment file, you'll need to define your keys. In this example, you 
 You can create your `.env` file via the template below, as well as your `App.vue`, `tsconfig.json`, `tsconfig.node.json`, and `vite.config.ts`, which are the remaining top-level config files. After these are initialized properly we can configure the app files under `src`.
 
 <CodeGroup>
+
 ```bash .env
   # VITE_ is in front of these variables to make them accessible to App.vue
   VITE_ENVIRONMENT_ID = "your_environment_id"
@@ -275,7 +275,7 @@ You can create your `.env` file via the template below, as well as your `App.vue
 
 ```
 
-```typescript vite.config.ts
+```TypeScript vite.config.ts
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
@@ -294,6 +294,7 @@ In your `App.vue` you'll need to pass in a minimum of the `publishableKey` and `
 Also, add the content here to your `main.ts`, and `vite-env.d.ts`. Optionally you can also add `shims-vue.d.ts` if you have the need.
 
 <CodeGroup>
+
 ```HTML src/App.vue
   <template>
     <div class="main">
@@ -364,18 +365,18 @@ Also, add the content here to your `main.ts`, and `vite-env.d.ts`. Optionally yo
 
 ````
 
-```typescript src/main.ts
+```TypeScript src/main.ts
 import { createApp } from "vue";
 import App from "./App.vue";
 
 createApp(App).mount("#app");
 ```
 
-```typescript src/vite-env.d.ts
+```TypeScript src/vite-env.d.ts
 /// <reference types="vite/client" />
 ```
 
-```typescript src/shims-vue.d.ts
+```TypeScript src/shims-vue.d.ts
 declare module "*.vue";
 ```
 
@@ -422,7 +423,8 @@ Now, let’s build a Workbook inside the Space for next time.
 Add your `config.ts` file, and place the following code in it. After you have done so, import the configuration to `App.vue`, and update `spaceProps` to have the value of `config` under `workbook` (this will be around `line 36`). This config file has the configuration settings for your workbook, so feel free to edit however necessary to meet your needs.
 
 <CodeGroup>
-```typescript src/config.ts
+
+```TypeScript src/config.ts
   import { Flatfile } from "@flatfile/api";
 
   export const config: Pick<
@@ -479,76 +481,250 @@ Add your `config.ts` file, and place the following code in it. After you have do
     ],
   };
 
-````
+```
 
-```HTML src/App.vue
-  <template>
-    <div class="main">
-      <div class="description">
-        <h2>
-          <code>&lt;Flatfile /&gt;</code>
-        </h2>
-        <p>Embed Flatfile in just a few lines of code.</p>
-        <button @click="toggleSpace">{{ showSpace ? 'Close' : 'Open' }} space</button>
-      </div>
-      <div v-if="showSpace" class="space-wrapper">
-        <UseSpace v-bind="spaceProps" />
-      </div>
+```JavaScript src/App.vue
+<template>
+  <div class="main">
+    <div class="description">
+      <h2>
+        <code>&lt;Flatfile /&gt;</code>
+      </h2>
+      <p>Embed Flatfile in just a few lines of code.</p>
+      <button @click="toggleSpace">{{ showSpace ? 'Close' : 'Open' }} space</button>
     </div>
-  </template>
+    <div v-if="showSpace" class="space-wrapper">
+      <UseSpace v-bind="spaceProps" />
+    </div>
+  </div>
+</template>
 
-  <script>
-  import { ref } from 'vue';
-  import { UseSpace } from '@flatfile/vue';
-  import { config } from "./config";
-  import './styles.css'
+<script>
+import { ref } from 'vue';
+import { UseSpace } from '@flatfile/vue';
+import { config as workbook } from "./config";
+import './styles.css'
+import { listener } from './listeners/listener';
 
-  const environmentId = import.meta.env.VITE_ENVIRONMENT_ID;
-  const publishableKey = import.meta.env.VITE_PUBLISHABLE_KEY;
+const environmentId = import.meta.env.VITE_ENVIRONMENT_ID;
+const publishableKey = import.meta.env.VITE_PUBLISHABLE_KEY;
 
-  export default {
-    setup() {
-      const showSpace = ref(false);
-      const spaceProps = ref({
-        name: 'Vue Space',
-        environmentId,
-        publishableKey,
-        closeSpace: {
-          operation: 'TestSheet:submit',
-          onClose: () => { showSpace.value = false; },
-        },
-        workbook: config,
-        themeConfig: { primaryColor: "#546a76", textColor: "#fff" },
-        userInfo: {
-          name: 'username'
-        },
-        spaceInfo: {
-          name: 'space info'
-        },
-        displayAsModal: true,
-        spaceBody: {
-          metadata: {
-            random: 'param'
-          }
+export default {
+  setup() {
+    const showSpace = ref(false);
+    const spaceProps = ref({
+      name: 'Vue Space',
+      environmentId,
+      publishableKey,
+      closeSpace: {
+        operation: 'submitActionFg',
+        onClose: () => { showSpace.value = false; },
+      },
+      workbook,
+      autoconfigure:true,
+      themeConfig: { primaryColor: "#546a76", textColor: "#fff" },
+      userInfo: {
+        name: 'username'
+      },
+      spaceInfo: {
+        name: 'space info'
+      },
+      displayAsModal: true,
+      spaceBody: {
+        metadata: {
+          random: 'param'
         }
-      });
+      },
+      
+    });
 
-      const toggleSpace = () => {
-        showSpace.value = !showSpace.value;
-      };
+    const toggleSpace = () => {
+      showSpace.value = !showSpace.value;
+    };
 
-      return {
-        showSpace,
-        toggleSpace,
-        spaceProps,
-      };
-    },
-    components: {
-      UseSpace,
-    },
-  };
-  </script>
-
+    return {
+      showSpace,
+      toggleSpace,
+      spaceProps,
+    };
+  },
+  components: {
+    UseSpace,
+  },
+};
+</script>
 ```
 
 </CodeGroup>
+
+### 6. Transform Data
+
+Next, we'll listen for data changes and respond using an event listener.
+
+1. Add a `src/listener.ts` file with this simple `recordHook`.
+2. Update `App.tsx` to import the listener.
+
+Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../guides/handling-data)
+
+<CodeGroup>
+
+```TypeScript src/listeners/listener.ts
+import api from "@flatfile/api";
+import { FlatfileListener } from "@flatfile/listener";
+import { recordHook } from "@flatfile/plugin-record-hook";
+
+/**
+ * Example Listener
+ */
+export const listener = FlatfileListener.create((listener) => {
+  listener.on("**", (event) => {
+    console.log(`Received event:`, event);
+  });
+
+  listener.use(
+    recordHook("contacts", (record) => {
+      const firstName = record.get("firstName");
+      console.log({ firstName });
+      record.set("lastName", "Rock");
+      return record;
+    })
+  );
+
+  listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
+    configure.on("job:ready", async ({ context: { jobId } }) => {
+      try {
+        await api.jobs.ack(jobId, {
+          info: "Getting started.",
+          progress: 10,
+        });
+
+        // Make changes after cells in a Sheet have been updated
+        console.log("Make changes here when an action is clicked");
+
+        await api.jobs.complete(jobId, {
+          outcome: {
+            acknowledge: true,
+            message: "This is now complete.",
+            next: {
+              type: "wait",
+            },
+          },
+        });
+      } catch (error: any) {
+        console.error("Error:", error.stack);
+
+        await api.jobs.fail(jobId, {
+          outcome: {
+            message: "This job encountered an error.",
+          },
+        });
+      }
+    });
+  });
+});
+```
+
+```JavaScript src/App.vue
+<template>
+  <div class="main">
+    <div class="description">
+      <h2>
+        <code>&lt;Flatfile /&gt;</code>
+      </h2>
+      <p>Embed Flatfile in just a few lines of code.</p>
+      <button @click="toggleSpace">{{ showSpace ? 'Close' : 'Open' }} space</button>
+    </div>
+    <div v-if="showSpace" class="space-wrapper">
+      <UseSpace v-bind="spaceProps" />
+    </div>
+  </div>
+</template>
+
+<script>
+import { ref } from 'vue';
+import { UseSpace } from '@flatfile/vue';
+import { config as workbook } from "./config";
+import './styles.css'
+import { listener } from './listeners/listener';
+
+const environmentId = import.meta.env.VITE_ENVIRONMENT_ID;
+const publishableKey = import.meta.env.VITE_PUBLISHABLE_KEY;
+
+export default {
+  setup() {
+    const showSpace = ref(false);
+    const spaceProps = ref({
+      name: 'Vue Space',
+      environmentId,
+      publishableKey,
+      closeSpace: {
+        operation: 'submitActionFg',
+        onClose: () => { showSpace.value = false; },
+      },
+      workbook,
+      listener,
+      autoconfigure:true,
+      themeConfig: { primaryColor: "#546a76", textColor: "#fff" },
+      userInfo: {
+        name: 'username'
+      },
+      spaceInfo: {
+        name: 'space info'
+      },
+      displayAsModal: true,
+      spaceBody: {
+        metadata: {
+          random: 'param'
+        }
+      },
+      
+    });
+
+    const toggleSpace = () => {
+      showSpace.value = !showSpace.value;
+    };
+
+    return {
+      showSpace,
+      toggleSpace,
+      spaceProps,
+    };
+  },
+  components: {
+    UseSpace,
+  },
+};
+</script>
+```
+
+</CodeGroup>
+
+### 7. Match your brand
+
+By attaching a `themeConfig` to `spaceProps` in `src/App.tsx`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../guides/theming).
+
+```JavaScript
+  themeConfig: {
+    primaryColor: "white",
+    textColor: "green"
+  },
+
+```
+
+### 8. Add customizations
+
+You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+
+## Example Project
+
+Find this React example project in the Flatfile GitHub repository.
+
+<CardGroup cols={1}>
+  <Card
+    title="create-flatfile-vuejs"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-vuejs"
+  >
+    Clone the Flatfile Vue.js tutorial here.
+  </Card>
+</CardGroup>
