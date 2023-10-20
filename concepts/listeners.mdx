@@ -8,11 +8,11 @@ icon: "ear-listen"
 
 Listeners are the core of the Flatfile Platform. All of your configurations, from [data transformations](/plugins/transform), to [custom styling](/guides/theming), to [data export](/guides/egress) are done in a Listener. They hold the logic backing your Flatfile Spaces, defining the functionality of your implementation.
 
-Fundamentally, a Listener is a function that listens for Events and takes action when they occur. This means your configurations are implemented in repsonse to events. To understand how to configure a Listener, it's important to understand the anatomy of an Event.
+Fundamentally, a Listener is a function that listens for [Events](/concepts/events) and takes action when they occur. This means your configurations are implemented in repsonse to events. To understand how to configure a Listener, it's important to understand the anatomy of an Event.
 
 ## An Event-Driven System
 
-Flatfile is an event-driven system, meaning interactions with Flatfile (clicking a button, editing a record, uploading a file, etc) trigger the publication of an [Event](../concepts/events).
+Flatfile is an event-driven system, meaning interactions with Flatfile (clicking a button, editing a record, uploading a file, etc) trigger the publication of an [Event](/concepts/events).
 
 Each Event contains information about its source and execution context including a domain, topic, context, and optionally, a payload.
 
@@ -25,7 +25,7 @@ Each Event contains information about its source and execution context including
 
 # Anatomy of a Listener
 
-A Listener is a function designed to receive Events as they occur and take action by executing a callback function. For example, when a file is uploaded, a listener can [extract](/plugins/extractors) it's data to a target sheet, or when a record is created, a listener can [validate](/guides/handling-data) the data.
+A Listener is a function designed to receive Events as they occur and take action by executing a callback function. For example, when a file is uploaded, a Listener can [extract](/plugins/extractors) it's data to a target sheet, or when a record is created, a Listener can [validate](/guides/handling-data) the data.
 
 The callback function can be as simple as logging the event or as advanced as integrating with external systems. Here is an example that logs the topic of any incoming event:
 
@@ -55,16 +55,19 @@ This function is listening on "\*\*", which is a wildcard that matches all event
 
 ### Filtering
 
-Listeners are scoped at the Enviornment level, but the Events that a Listener responds to are configurable, allowing for targeted responses and configuratons.
+Listeners will hear all events for an Environment, but the Events that a Listener responds to are configurable. You can target which events your code responds to a few ways.
 
-To target specific events in a Listener use a filter. A filter is a string that matches the topic of an event. For example, the filter "commit:created" will match any event of that topic.
+One way is to use a filter. A filter is a string that matches the topic of an event. For example, the filter "commit:created" will match any event of that topic.
 
 A simple way to filter events is to use the shorthand syntax `listener.on`:
 
 <CodeGroup>
 
 ```jsx javascript
-listener.on("commit:created", { sheet: "Contacts" }, async (event) => {
+listener.on(
+  "commit:created", 
+  { sheet: "Contacts" }, 
+  async (event) => {
   // Custom action responding to the commit
 });
 ```
@@ -129,7 +132,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
 
 ### Namespaces
 
-Namespaces are another way to organize and categorize your Listener configurations. If you have two different workflows, you can assign them to different namespaces to keep them separate.
+Namespaces are another way to organize Listener configurations and target specific Events. If you have two different workflows, for example, you can assign them to different namespaces to keep them separate.
 
 To direct a listener to act on events under a given namespace, simply provide use the `listener.namespace` method.
 
@@ -160,7 +163,7 @@ Listeners can be hosted everywhere from your local machine to Flatfile's secure 
 | Agent       | Flatfile secure cloud | Flatfile hosted server side listener |
 | server-side | your secure server    | self-hosted server side listener     |
 
-Flatfile listeners can be either client-side or server-side.
+Flatfile Listeners can be either client-side or server-side.
 
 Client-side listeners run in the end user's web browser and respond to user interactions. Client-side listeners are perfect for scenarios that need to tap into values available in the browser, such as the current user's session or the current page URL.
 
@@ -202,7 +205,8 @@ Failures occur when an Agent fails to execute properly. That means either an unc
 
 If you are catching and handling errors within your code, those executions will not be marked as failures. If you would prefer to see them marked this way, re-throw your error after handling to bubble it up to the execution handler.
 
-```javascript
+<CodeGroup>
+```jsx javascript
 export default function (listener) {
   listener.on("**", (event) => {
     try {
@@ -214,6 +218,21 @@ export default function (listener) {
   });
 }
 ```
+
+```jsx typescript
+export default function (listener) {
+  listener.on("**", (event: FlatfileEvent) => {
+    try {
+      // do something
+    } catch (error) {
+      // handle error
+      throw error; // re-throw error to mark execution as failure
+    }
+  });
+}
+```
+
+</CodeGroup>
 
 ## Learn More
 
