@@ -77,6 +77,8 @@ Setup your app to look something like this:
   imports, however this guide will not be utilizing this feature.
 </Info>
 
+## Build your Importer
+
 ### 1. Set up the Configuration Files
 
 There are a few config files that must be set up before next.js can run. These include the configuration for nextjs, as well as all the associated technologies. Included below is the recommended contents of these files. This guide uses tailwindcss for styles, however if your application uses a different pre/post processor your configuration may vary.
@@ -582,7 +584,7 @@ In order to create a new space, you'll need a workbook to build in it.
 
 Build a workbook at `workbooks/workbook.ts` that looks something like this:
 
-```TypeScript workbooks/workbook.tsbuildinfo
+```TypeScript workbooks/workbook.ts
   import { Flatfile } from "@flatfile/api";
 
   export const workbook: Pick<
@@ -642,7 +644,7 @@ Build a workbook at `workbooks/workbook.ts` that looks something like this:
 
 ### 5. Build your New Space Component
 
-If you want to be able to create new spaces from your app, update your `app/new-space/NewSpaceApp.tsx` and `app/new-space/page.tsx` files to the following, replacing empty key/id strings with your credentials associated with them, as well as making a listener at `listeners/basic.ts`:
+If you want to be able to create new spaces from your app, update your `app/new-space/NewSpaceApp.tsx` and `app/new-space/page.tsx` files to the following, replacing empty key/id strings with your credentials associated with them:
 
 <CodeGroup>
 
@@ -746,28 +748,6 @@ If you want to be able to create new spaces from your app, update your `app/new-
   }
 ```
 
-```TypeScript listeners/basic.ts
-  import { FlatfileListener } from "@flatfile/listener";
-  import { recordHook } from "@flatfile/plugin-record-hook";
-
-  /**
-  * Example Listener
-  */
-  export const listener = FlatfileListener.create((client) => {
-    client.use(
-      recordHook("TestSheet", (record) => {
-        const last_name = record.get("last_name");
-        console.log("passing through record hook", last_name);
-        if (!last_name) {
-          console.log("last_name is required");
-          record.addError("last_name", "Name is required");
-        }
-        return record;
-      })
-    );
-  });
-```
-
 ```JSX app/new-space/page.tsx
   "use client";
   import React from "react";
@@ -812,9 +792,39 @@ If you want to be able to create new spaces from your app, update your `app/new-
 
 </CodeGroup>
 
+### 6. Build your New Space Component
+
+You will also want to create the listener imported into `app/new-space/page.tsx` to handle data when creating the space.
+
+For more information on customizing listeners and handling data, read our documentation about [handling data](https://flatfile.com/docs/guides/handling-data).
+
+You can also use this code as a template for your listener:
+
+```TypeScript listeners/basic.ts
+  import { FlatfileListener } from "@flatfile/listener";
+  import { recordHook } from "@flatfile/plugin-record-hook";
+
+  /**
+  * Example Listener
+  */
+  export const listener = FlatfileListener.create((client) => {
+    client.use(
+      recordHook("TestSheet", (record) => {
+        const last_name = record.get("last_name");
+        console.log("passing through record hook", last_name);
+        if (!last_name) {
+          console.log("last_name is required");
+          record.addError("last_name", "Name is required");
+        }
+        return record;
+      })
+    );
+  });
+```
+
 Now your app should be able to go to the new-space page and create new spaces.
 
-### 6. Add customizations
+### 7. Add customizations
 
 You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
 
