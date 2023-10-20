@@ -239,7 +239,7 @@ There are a few config files that must be set up before next.js can run. These i
 v18
 ```
 
-```typescript next-env.d.ts
+```TypeScript next-env.d.ts
 /// <reference types="next" />
 /// <reference types="next/image-types/global" />
 /// <reference types="next/navigation-types/compat/navigation" />
@@ -320,7 +320,7 @@ It is also recommended you set up your `app/globals/global.css`, `app/globals/pa
 
 <CodeGroup>
 
-```css app/globals/global.css
+```CSS app/globals/global.css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -444,7 +444,7 @@ pre {
   }*/
 ```
 
-```tsx app/globals/Menu.tsx
+```JSX app/globals/Menu.tsx
 "use client";
 import styles from "./page.module.css";
 import Link from "next/link";
@@ -483,7 +483,7 @@ export default function Menu() {
 }
 ```
 
-```tsx app/layout.tsx
+```JSX app/layout.tsx
 import "./globals/global.css";
 import Menu from "./globals/Menu";
 
@@ -508,7 +508,7 @@ export default function RootLayout({
 }
 ```
 
-```css app/globals/page.module.css
+```CSS app/globals/page.module.css
 /* Styles for home page */
 .menu {
   display: flex;
@@ -534,7 +534,7 @@ export default function RootLayout({
 /* Begin style overrides for when Flatfile is displayed as a modal */
 ```
 
-```tsx app/page.tsx
+```JSX app/page.tsx
 "use client";
 import React from "react";
 import styles from "./globals/page.module.css";
@@ -593,7 +593,7 @@ Update your `app/reused-space/ReusedSpaceApp.tsx` and `app/reused-space/page.tsx
 
 <CodeGroup>
 
-```tsx app/reused-space/ReusedSpaceApp.tsx
+```JSX app/reused-space/ReusedSpaceApp.tsx
 "use client";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { ISpace, useSpace } from "@flatfile/react";
@@ -769,7 +769,7 @@ export default App;
   }
 ```
 
-```tsx app/reused-space/page.tsx
+```JSX app/reused-space/page.tsx
 "use client";
 import React from "react";
 import ReusedSpaceApp from "./ReusedSpaceApp";
@@ -801,7 +801,7 @@ If you want to be able to create new spaces from your app, update your `app/new-
 
 <CodeGroup>
 
-```tsx app/new-space/NewSpaceApp.tsx
+```JSX app/new-space/NewSpaceApp.tsx
 "use client";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { ISpace, useSpace } from "@flatfile/react";
@@ -901,7 +901,7 @@ export default function App({ config }: { config: ISpace }) {
 }
 ```
 
-```typescript workbooks/workbook.ts
+```TypeScript workbooks/workbook.ts
 import { Flatfile } from "@flatfile/api";
 
 export const workbook: Pick<
@@ -959,7 +959,7 @@ export const workbook: Pick<
 };
 ```
 
-```typescript listeners/basic.ts
+```TypeScript listeners/basic.ts
 import { FlatfileListener } from "@flatfile/listener";
 import { recordHook } from "@flatfile/plugin-record-hook";
 
@@ -981,7 +981,7 @@ export const listener = FlatfileListener.create((client) => {
 });
 ```
 
-```tsx app/new-space/page.tsx
+```JSX app/new-space/page.tsx
 "use client";
 import React from "react";
 import { ISpace } from "@flatfile/react";
