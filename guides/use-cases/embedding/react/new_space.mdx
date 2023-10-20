@@ -233,13 +233,13 @@ There are a few config files that must be set up before next.js can run. These i
 v18
 ```
 
-```typescript next-env.d.ts
-/// <reference types="next" />
-/// <reference types="next/image-types/global" />
-/// <reference types="next/navigation-types/compat/navigation" />
+```TypeScript next-env.d.ts
+  /// <reference types="next" />
+  /// <reference types="next/image-types/global" />
+  /// <reference types="next/navigation-types/compat/navigation" />
 
-// NOTE: This file should not be edited
-// see https://nextjs.org/docs/basic-features/typescript for more information.
+  // NOTE: This file should not be edited
+  // see https://nextjs.org/docs/basic-features/typescript for more information.
 ```
 
 ```JavaScript next.config.js
@@ -314,247 +314,247 @@ It is also recommended you set up your `app/globals/global.css`, `app/globals/pa
 
 <CodeGroup>
 
-```css app/globals/global.css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+```CSS app/globals/global.css
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
 
-:root {
-  --ff-primary-color: #4c48ef !important;
-  --ff-secondary-color: #616a7d !important;
-  --ff-text-color: #090b2b !important;
-  --ff-dialog-border-radius: 4px !important;
-  --ff-border-radius: 5px !important;
-  --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
-}
+  :root {
+    --ff-primary-color: #4c48ef !important;
+    --ff-secondary-color: #616a7d !important;
+    --ff-text-color: #090b2b !important;
+    --ff-dialog-border-radius: 4px !important;
+    --ff-border-radius: 5px !important;
+    --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
+  }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background: var(--ff-text-color);
-  color: #fff;
-}
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: var(--ff-text-color);
+    color: #fff;
+  }
 
-pre {
-  display: inline;
-}
+  pre {
+    display: inline;
+  }
 
-/* This class gets appended to the flatfile_iframe-wrapper div */
-.flatfile_displayAsModal {
-  padding: 50px !important;
-  width: calc(100%) !important;
-  height: calc(100vh) !important;
-}
+  /* This class gets appended to the flatfile_iframe-wrapper div */
+  .flatfile_displayAsModal {
+    padding: 50px !important;
+    width: calc(100%) !important;
+    height: calc(100vh) !important;
+  }
 
-.flatfile_iframe-wrapper.flatfile_displayAsModal {
-  background: var(--ff-bg-fade);
-}
+  .flatfile_iframe-wrapper.flatfile_displayAsModal {
+    background: var(--ff-bg-fade);
+  }
 
-/* The close button in top right to close modal */
-/* .flatfile_displayAsModal .flatfile_close-button {
-  } */
-.flatfile_displayAsModal .flatfile-close-button {
-  top: 30px;
-  right: 30px;
-}
-/* The icon for the close button in top right to close modal */
-.flatfile_displayAsModal .flatfile_close-button svg {
-  fill: var(--ff-secondary-color);
-}
+  /* The close button in top right to close modal */
+  /* .flatfile_displayAsModal .flatfile_close-button {
+    } */
+  .flatfile_displayAsModal .flatfile-close-button {
+    top: 30px;
+    right: 30px;
+  }
+  /* The icon for the close button in top right to close modal */
+  .flatfile_displayAsModal .flatfile_close-button svg {
+    fill: var(--ff-secondary-color);
+  }
 
-/* The actual iframe that contains Flatfile */
-.flatfile_displayAsModal #flatfile_iframe {
-  border-radius: var(--ff-border-radius);
-}
+  /* The actual iframe that contains Flatfile */
+  .flatfile_displayAsModal #flatfile_iframe {
+    border-radius: var(--ff-border-radius);
+  }
 
-/* Begin style overrides for when you cancel out of the Flatfile modal */
+  /* Begin style overrides for when you cancel out of the Flatfile modal */
 
-/* The outer container of the modal that opens when you cancel out of Flatfile */
-.flatfile_outer-shell {
-  background-color: var(--ff-bg-fade);
-  border-radius: var(--ff-border-radius);
-}
+  /* The outer container of the modal that opens when you cancel out of Flatfile */
+  .flatfile_outer-shell {
+    background-color: var(--ff-bg-fade);
+    border-radius: var(--ff-border-radius);
+  }
 
-/* The inner container of the modal that opens when you cancel out of Flatfile */
-/* .flatfile_inner-shell {
-  } */
+  /* The inner container of the modal that opens when you cancel out of Flatfile */
+  /* .flatfile_inner-shell {
+    } */
 
-/* The white box inside the modal that opens when you cancel out of Flatfile */
-.flatfile_modal {
-  border-radius: var(--ff-dialog-border-radius);
-}
+  /* The white box inside the modal that opens when you cancel out of Flatfile */
+  .flatfile_modal {
+    border-radius: var(--ff-dialog-border-radius);
+  }
 
-/* The container for the buttons you see in the close modal */
-/* .flatfile_button-group {
-  } */
+  /* The container for the buttons you see in the close modal */
+  /* .flatfile_button-group {
+    } */
 
-/* Style the buttons you see in the close modal */
-/* .flatfile_button {
-  } */
+  /* Style the buttons you see in the close modal */
+  /* .flatfile_button {
+    } */
 
-/* The "yes, cancel" button you see in the close modal */
-.flatfile_primary {
-  border: 1px solid var(--ff-primary-color) !important;
-  background-color: var(--ff-primary-color) !important;
-  color: #fff !important;
-}
+  /* The "yes, cancel" button you see in the close modal */
+  .flatfile_primary {
+    border: 1px solid var(--ff-primary-color) !important;
+    background-color: var(--ff-primary-color) !important;
+    color: #fff !important;
+  }
 
-/* The "no, stay" button you see in the close modal */
-.flatfile_secondary {
-  color: var(--ff-secondary-color) !important;
-}
+  /* The "no, stay" button you see in the close modal */
+  .flatfile_secondary {
+    color: var(--ff-secondary-color) !important;
+  }
 
-/* The heading text you see in the close modal */
-.flatfile_modal-heading {
-  color: var(--ff-text-color) !important;
-}
+  /* The heading text you see in the close modal */
+  .flatfile_modal-heading {
+    color: var(--ff-text-color) !important;
+  }
 
-/* The description text you see in the close modal */
-.flatfile_modal-text {
-  color: var(--ff-secondary-color) !important;
-}
+  /* The description text you see in the close modal */
+  .flatfile_modal-text {
+    color: var(--ff-secondary-color) !important;
+  }
 
-.alert a {
-  text-decoration: underline;
-}
+  .alert a {
+    text-decoration: underline;
+  }
 
-/* End style overrides for when you cancel out of the Flatfile modal */
+  /* End style overrides for when you cancel out of the Flatfile modal */
 
-/* End style overrides for when Flatfile is displayed as a modal */
+  /* End style overrides for when Flatfile is displayed as a modal */
 
-/* The container of the error component */
-/* .ff_error_container {
-  }*/
+  /* The container of the error component */
+  /* .ff_error_container {
+    }*/
 
 /* The heading text you see in the error component */
 /* .ff_error_heading {
   }*/
 
-/* The description text you see in the error component */
-/* .ff_error_text {
-  }*/
+  /* The description text you see in the error component */
+  /* .ff_error_text {
+    }*/
 ```
 
-```tsx app/globals/Menu.tsx
-"use client";
-import styles from "./page.module.css";
-import Link from "next/link";
-import "./global.css";
-import { usePathname } from "next/navigation";
+```JSX app/globals/Menu.tsx
+  "use client";
+  import styles from "./page.module.css";
+  import Link from "next/link";
+  import "./global.css";
+  import { usePathname } from "next/navigation";
 
-const routes = [{ path: "/new-space", label: "New Space" }];
+  const routes = [{ path: "/new-space", label: "New Space" }];
 
-export default function Menu() {
-  const currentRoute = usePathname();
-  return (
-    <div className={styles.menu}>
-      <h2>
-        <Link href="/">
-          <code>&lt;Flatfile /&gt;</code>
-        </Link>
-      </h2>
-      <div className="tabs">
-        {routes.map(({ path, label }) => (
-          <Link
-            key={path}
-            href={path}
-            className={`tab tab-bordered ${
-              currentRoute === path ? "tab-active" : ""
-            }`}
-          >
-            {label}
+  export default function Menu() {
+    const currentRoute = usePathname();
+    return (
+      <div className={styles.menu}>
+        <h2>
+          <Link href="/">
+            <code>&lt;Flatfile /&gt;</code>
           </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
-```
-
-```tsx app/layout.tsx
-import "./globals/global.css";
-import Menu from "./globals/Menu";
-
-export const metadata = {
-  title: "Embedded Flatfile in a Next.js App",
-  description: "Generated by Flatfile",
-};
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <body>
-        <Menu />
-        <div className="max-w-6xl mx-auto">{children}</div>
-      </body>
-    </html>
-  );
-}
-```
-
-```css app/globals/page.module.css
-/* Styles for home page */
-.menu {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  padding: 15px;
-  position: absolute;
-  width: 100%;
-}
-
-/* The default mount element */
-/* #flatfile_iFrameContainer {
-  } */
-
-/* A div around the iframe that contains Flatfile */
-/* .flatfile_iframe-wrapper {
-  } */
-
-/* The actual iframe that contains Flatfile */
-/* #flatfile_iframe {
-  } */
-
-/* Begin style overrides for when Flatfile is displayed as a modal */
-```
-
-```tsx app/page.tsx
-"use client";
-import React from "react";
-import styles from "./globals/page.module.css";
-import Link from "next/link";
-
-export default function Home() {
-  return (
-    <div className="hero min-h-screen">
-      <div className="hero-content text-center">
-        <div className="max-w-2xl">
-          <h1 className="text-5xl font-bold">
-            Welcome to Flatfile! <br /> We're glad you're here! 🤩
-          </h1>
-          <p className="py-6">
-            This app will show you a few examples of how to integrate Embedded
-            Flatfile into your React workflow. First, we'll show you how to
-            create a new Space every time Flatfile is opened. Then, we'll show
-            you how to reuse a Space when Flatfile is opened.
-          </p>
-          <Link href="/new-space">
-            <button className="btn btn-primary">
-              Get Started Creating a New Space
-            </button>
-          </Link>
+        </h2>
+        <div className="tabs">
+          {routes.map(({ path, label }) => (
+            <Link
+              key={path}
+              href={path}
+              className={`tab tab-bordered ${
+                currentRoute === path ? "tab-active" : ""
+              }`}
+            >
+              {label}
+            </Link>
+          ))}
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
+```
+
+```JSX app/layout.tsx
+  import "./globals/global.css";
+  import Menu from "./globals/Menu";
+
+  export const metadata = {
+    title: "Embedded Flatfile in a Next.js App",
+    description: "Generated by Flatfile",
+  };
+
+  export default function RootLayout({
+    children,
+  }: {
+    children: React.ReactNode;
+  }) {
+    return (
+      <html lang="en">
+        <body>
+          <Menu />
+          <div className="max-w-6xl mx-auto">{children}</div>
+        </body>
+      </html>
+    );
+  }
+```
+
+```CSS app/globals/page.module.css
+  /* Styles for home page */
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 15px;
+    position: absolute;
+    width: 100%;
+  }
+
+  /* The default mount element */
+  /* #flatfile_iFrameContainer {
+    } */
+
+  /* A div around the iframe that contains Flatfile */
+  /* .flatfile_iframe-wrapper {
+    } */
+
+  /* The actual iframe that contains Flatfile */
+  /* #flatfile_iframe {
+    } */
+
+  /* Begin style overrides for when Flatfile is displayed as a modal */
+```
+
+```JSX app/page.tsx
+  "use client";
+  import React from "react";
+  import styles from "./globals/page.module.css";
+  import Link from "next/link";
+
+  export default function Home() {
+    return (
+      <div className="hero min-h-screen">
+        <div className="hero-content text-center">
+          <div className="max-w-2xl">
+            <h1 className="text-5xl font-bold">
+              Welcome to Flatfile! <br /> We're glad you're here! 🤩
+            </h1>
+            <p className="py-6">
+              This app will show you a few examples of how to integrate Embedded
+              Flatfile into your React workflow. First, we'll show you how to
+              create a new Space every time Flatfile is opened. Then, we'll show
+              you how to reuse a Space when Flatfile is opened.
+            </p>
+            <Link href="/new-space">
+              <button className="btn btn-primary">
+                Get Started Creating a New Space
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 ```
 
 </CodeGroup>
@@ -575,3 +575,259 @@ update your `package.json` to include this script:
 ```
 
 Now you can start your application by running these in the CLI. However, your application still doesn't have the desired functionalities, and your menu links won't lead anywhere.
+
+### 4. Build a workbook
+
+In order to create a new space, you'll need a workbook to build in it.
+
+Build a workbook at `workbooks/workbook.ts` that looks something like this:
+
+```TypeScript workbooks/workbook.tsbuildinfo
+  import { Flatfile } from "@flatfile/api";
+
+  export const workbook: Pick<
+    Flatfile.CreateWorkbookConfig,
+    "name" | "sheets" | "actions"
+  > = {
+    name: "Employees workbook",
+    sheets: [
+      {
+        name: "TestSheet",
+        slug: "TestSheet",
+        fields: [
+          {
+            key: "first_name",
+            type: "string",
+            label: "First name",
+            constraints: [
+              {
+                type: "required",
+              },
+            ],
+          },
+          {
+            key: "last_name",
+            type: "string",
+            label: "last name",
+          },
+          {
+            key: "full_name",
+            type: "string",
+            label: "full name",
+          },
+        ],
+        actions: [
+          {
+            label: "Join fields",
+            operation: "contacts:join-fields",
+            description: "Would you like to join fields?",
+            mode: "foreground",
+            confirm: true,
+          },
+        ],
+      },
+    ],
+    actions: [
+      {
+        label: "Submit",
+        operation: "contacts:submit",
+        description: "Would you like to submit your workbook?",
+        mode: "foreground",
+        primary: true,
+        confirm: true,
+      },
+    ],
+  };
+```
+
+### 5. Build your New Space Component
+
+If you want to be able to create new spaces from your app, update your `app/new-space/NewSpaceApp.tsx` and `app/new-space/page.tsx` files to the following, replacing empty key/id strings with your credentials associated with them, as well as making a listener at `listeners/basic.ts`:
+
+<CodeGroup>
+
+```JSX app/new-space/NewSpaceApp.tsx
+  "use client";
+  import React, { Dispatch, SetStateAction, useState } from "react";
+  import { ISpace, useSpace } from "@flatfile/react";
+  import Link from "next/link";
+
+  const Space = ({
+    callback,
+    config,
+  }: {
+    callback: () => void;
+    config: ISpace;
+  }) => {
+    const space = useSpace({
+      ...config,
+      closeSpace: {
+        operation: "contacts:submit",
+        onClose: () => callback(),
+      },
+    });
+    return space;
+  };
+
+  export default function App({ config }: { config: ISpace }) {
+    const [showSpace, setShowSpace] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const credentials = !!config.publishableKey && !!config.environmentId;
+    return (
+      <div>
+        {credentials ? (
+          <>
+            <div>
+              <button
+                className="btn btn-primary"
+                onClick={() => {
+                  setShowSpace(!showSpace);
+                }}
+              >
+                {showSpace === true ? "Close" : "Open and create new"} space
+              </button>
+            </div>
+            {showSpace && (
+              <div id="flatfile_iFrameContainer">
+                <Space
+                  callback={() => {
+                    setShowSpace(false);
+                    setSuccess(true);
+                  }}
+                  config={config}
+                />
+              </div>
+            )}
+          </>
+        ) : (
+          <div className="alert alert-error">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>
+              Error! Please add your <pre>publishableKey</pre> and{" "}
+              <pre>environmentId</pre>
+            </span>
+          </div>
+        )}
+        {success && (
+          <div className="alert alert-success mt-6">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>
+              Great Success! Now you might want to try out reusing a space,{" "}
+              <Link href="/reused-space">check out the next example here.</Link>
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  }
+```
+
+```TypeScript listeners/basic.ts
+  import { FlatfileListener } from "@flatfile/listener";
+  import { recordHook } from "@flatfile/plugin-record-hook";
+
+  /**
+  * Example Listener
+  */
+  export const listener = FlatfileListener.create((client) => {
+    client.use(
+      recordHook("TestSheet", (record) => {
+        const last_name = record.get("last_name");
+        console.log("passing through record hook", last_name);
+        if (!last_name) {
+          console.log("last_name is required");
+          record.addError("last_name", "Name is required");
+        }
+        return record;
+      })
+    );
+  });
+```
+
+```JSX app/new-space/page.tsx
+  "use client";
+  import React from "react";
+  import { ISpace } from "@flatfile/react";
+  import { listener } from "../../listeners/basic";
+  import { workbook } from "../../workbooks/workbook";
+  import NewSpaceApp from "./NewSpaceApp";
+
+  const spaceProps: ISpace = {
+    name: "Embedded Space",
+    // to test locally add your publishableKey here, for example: pk_12345,
+    publishableKey: "",
+    // to test locally add your environmentId here, for example: us_env_12345,
+    environmentId: "",
+    workbook,
+    listener: listener,
+    // themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
+    // sidebarConfig: {
+    //   showDataChecklist: false,
+    //   showSidebar: false,
+    // },
+  };
+
+  export default function Home() {
+    return (
+      <div className="container px-20 pt-20">
+        <h2 className="text-2xl font-bold mb-4">
+          Embed a new Space every time Flatfile is opened
+        </h2>
+        <p>
+          Reuse a Space when users might need to wait or can’t finish in one go.
+          It’s great for keeping work context and letting users continue where
+          they left off until the task is done.
+        </p>
+        <div className="py-10">
+          <NewSpaceApp config={spaceProps} />
+        </div>
+      </div>
+    );
+  }
+```
+
+</CodeGroup>
+
+Now your app should be able to go to the new-space page and create new spaces.
+
+### 6. Add customizations
+
+You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+
+## Example Project
+
+Find this React example project in the Flatfile GitHub repository.
+
+<CardGroup cols={1}>
+  <Card
+    title="flatfile-nextjs"
+    icon="js"
+    href="https://github.com/FlatFilers/flatfile-nextjs"
+  >
+    Clone the Flatfile Next tutorial here.
+  </Card>
+</CardGroup>
