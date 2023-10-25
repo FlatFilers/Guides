@@ -770,3 +770,56 @@ Using `getLinks` provides access to all related information. It's particularly u
 For instance, you could use `getLinks` to fetch all the fields related to a particular record and enrich your data, or compare the related records for validation.
 
 With `getLinks`, processing related datasets becomes much more manageable in Flatfile. This method provides you with an effective way to navigate, enrich, and validate your data.
+
+## Deleting records
+
+There are primarily two use cases for deleting records:
+
+1. Deleting a subset of records
+2. Deleting all records in a sheet
+
+### Deleting a subset of records
+
+To delete a subset of records first import the `@flatfile/api` package, then use the `api.records.delete()` helper method. This method takes in an array of record IDs and deletes them from the sheet.
+
+Example:
+
+```javascript
+await api.records.delete(sheetId, { ids: [...] });
+```
+
+### Deleting all records in a sheet
+
+For clearing an entire sheet of its records, set up a bulk delete job. This task will comprehensively wipe out every record on the specified sheet. Check out our [jobs documentation](/concepts/jobs).
+
+Example:
+
+```javascript
+await api.jobs.create({
+  type: "workbook",
+  operation: "delete-records",
+  trigger: "immediate",
+  source: workbookId,
+  config: {
+    sheet: sheetId,
+    filter: "all",
+  },
+});
+```
+
+<CardGroup cols={2}>
+  <Card
+    title="typescript"
+    icon="code-merge"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/handling-data/index.ts"
+  >
+    Clone the Handling Data example in Typescript
+  </Card>
+  <Card
+    title="javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/handling-data/index.js"
+  >
+    Clone the Handling Data example in Javascript
+  </Card>
+</CardGroup>
