@@ -13,158 +13,84 @@ Often used for getting started guides, Documents become extremely powerful with 
   This is helpful if you prefer certain HTML tags rather than Markdown syntax.
 </Info>
 
-### Building a Document
+## Create a Document
 
-Learn how to create a Document and update a Document from an Event listener.
+You can create Documents using the API:
 
-<Snippet file="guides/documents/block1.mdx" />
+<Snippet file="guides/documents/create-document.mdx" />
+
+This Document will now appear in the sidebar of your Space.
+
+In this example, we create a Document when a file is uploaded, but you can also create Documents in response to any other Event. [Read more](../concepts/events) about the different Events you can respond to.
+
+## Document Actions
+
+Actions are optional and allow you to run custom operations in response to a user-triggered event from within a Document.
+
+Define Actions on a Document using the `actions` parameter when a document is created:
+
+<Snippet file="guides/documents/document-actions.mdx" />
+
+Then configure your listener to handle this Action, and define what should happen in response. Read more about Actions and how to handle them [here](./actions#document-mounted).
+
+Actions appear as buttons in the top right corner of your Document:
+
+![Document actions](../images/actions/document_actions.png)
+
+
+
+## Document treatments
+
+Documents have an optional `treatments` parameter which takes an array of treatments for your Document. Treatments can be used to categorize your Document. Certain treatments will cause your Document to look or behave differently.
+
+### Ephemeral documents
+
+Giving your Document a treatment of `"ephemeral"` will cause the Document to appear as a full-screen takeover, and it will not appear in the sidebar of your Space like other Documents. You can use ephemeral Documents to create a more focused experience for your end users.
+
+```ts
+const ephemeralDoc = await api.documents.create(spaceId, {
+  title: 'Getting started',
+  body: '# Welcome ...',
+  treatments: [
+    'ephemeral'
+  ]
+});
+```
+
+<Info>
+  Currently, `"ephemeral"` is the only treatment that will change the behavior of your Document. Other treatments will not affect how your Document behaves, but can be used for your own purposes to categorize and describe your Documents in code.
+</Info>
+
+## Embedding Sheets in Documents
+
+You can embed a Sheet into your Document by adding an `<embed>` HTML entity to your markdown body, and passing a sheet ID, workbook ID, and name. You can also specify whether the embedded Sheet is expanded or collapsed when the document is loaded.
+
+<Info>
+  You can include as many embedded Sheets in your Document as you like, but end users will only be able to expand a maximum of 10 embedded Sheets at once.
+</Info>
+
+```ts
+const doc = await api.documents.create(spaceId, {
+  title: 'Getting started',
+  body: `
+    # Welcome
+    
+    Here is an embedded Sheet:
+    
+    <embed type='embedded-sheet' name='Contacts' defaultExpanded='true' sheetId='your_sheet_id' workbookId='your_workbook_id'>
+
+    Here is another embedded Sheet:
+
+    <embed type='embedded-sheet' name='Countries' sheetId='us_sh_TVW95224' workbookId='us_wb_8e0z52gI'>
+  `,
+});
+```
 
 ---
 
 ## Markdown reference
 
-### Headings
-
-```Markdown
-# Heading level 1
-## Heading level 2
-### Heading level 3
-#### Heading level 4
-##### Heading level 5
-###### Heading level 6
-```
-
-**The rendered output looks like:**
-
-# Heading level 1
-
-## Heading level 2
-
-### Heading level 3
-
-#### Heading level 4
-
-##### Heading level 5
-
-###### Heading level 6
-
----
-
-### Links
-
-```Markdown
-My favorite search engine is [Duck Duck Go](https://duckduckgo.com).
-```
-
-**The rendered output looks like:**
-
-My favorite search engine is [Duck Duck Go](https://duckduckgo.com).
-
----
-
-### Text formatting
-
-```Markdown
-**Love** is bold.
-Italicized text is the *cat's meow*.
-This text is ***bolded and italicized***.
-Superscript <sup>superscript</sup>
-Subscript <sub>subscript</sub>
-> Dorothy followed her through many of the beautiful rooms in her castle.
-Use `code` in your Document.
-```
-
-**The rendered output looks like:**
-
-**Love** is bold.
-
-Italicized text is the _cat's meow_.
-
-This text is **_bolded and italicized_**.
-
-Superscript <sup>superscript</sup>
-
-Subscript <sub>subscript</sub>
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
-
-Use `code` in your Document.
-
----
-
-### Lists
-
-```Markdown
-<!-- ordered lists -->
-1. First item
-2. Second item
-3. Third item
-4. Fourth item
-<!-- unordered lists -->
-- First item
-- Second item
-- Third item
-- Fourth item
-<!-- nested lists -->
-- First parent item
-- Second parent item
-  - Additional item
-  - Additional item
-- Third parent item
-
-```
-
-**The rendered output looks like:**
-
-#### Ordered Lists
-
-1. First item
-2. Second item
-3. Third item
-4. Fourth item
-
-#### Unordered Lists
-
-- First item
-- Second item
-- Third item
-- Fourth item
-
-#### Nested Lists
-
-- First parent item
-- Second parent item
-  - Additional item
-  - Additional item
-- Third parent item
-
----
-
-## Images
-
-```Markdown
-San Juan Mountains are beautiful!](https://i0.wp.com/sjma.org/wp-content/uploads/2018/04/Ice-Lakes-BG.jpg "San Juan Mountains")
-```
-
----
-
-## Tables
-
-```Markdown
-| Property | Description                           |
-| -------- | ------------------------------------- |
-| Name     | Full name of user                     |
-| Age      | Reported age                          |
-| Joined   | Whether the user joined the community |
-```
-
-**The rendered output would look like:**
-
-| Property | Description                           |
-| -------- | ------------------------------------- |
-| Name     | Full name of user                     |
-| Age      | Reported age                          |
-| Joined   | Whether the user joined the community |
+Documents support Github-flavored Markdown. Check out [this guide](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for a full reference on the entities you can use.
 
 ## Example Project
 
