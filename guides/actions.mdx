@@ -43,6 +43,103 @@ Next, listen for a `job:ready` and filter on the `job` you'd like to process. Be
 
 <Snippet file="shared/workbook_submit_pt2.mdx" />
 
+## Document-mounted
+
+Document-mounted actions are similar to Workbook-mounted actions. They appear in the top right corner of your Document:
+
+![Document actions](../images/actions/document_actions.png)
+
+Read more about Documents [here](./documents).
+
+### Usage
+
+Define Document-mounted Actions using the `actions` parameter when you create a Document.
+
+<Info>
+  If you configure `primary: true` on an Action, it will be represented as the
+  rightmost button in the Document.
+</Info>
+
+<Snippet file="guides/documents/document-actions.mdx" />
+
+In your listener, listen for the job's event and perform your desired operations.
+
+<CodeGroup>
+
+```js listener.js
+export default function flatfileEventListener(listener) {
+  listener.on(
+    "job:ready",
+    { job: "document:contacts:submit" },
+    async (event) => {
+      const { context, payload } = event;
+      const { jobId, workbookId } = context;
+
+      try {
+        await api.jobs.ack(jobId, {
+          info: "Starting submit job...",
+          progress: 10,
+        });
+
+        // Do your work here
+
+        await api.jobs.complete(jobId, {
+          outcome: {
+            message: `Submit job was completed succesfully.`,
+          },
+        });
+      } catch (error) {
+        console.log(`There was an error: ${JSON.stringify(error)}`);
+        await api.jobs.fail(jobId, {
+          outcome: {
+            message: `This job failed.`,
+          },
+        });
+      }
+    }
+  );
+}
+```
+
+```js listener.ts
+import { FlatfileListener, FlatfileEvent } from "@flatfile/listener";
+
+export default function flatfileEventListener(listener: FlatfileListener) {
+  listener.on(
+    "job:ready",
+    { job: "document:contacts:submit" },
+    async (event: FlatfileEvent) => {
+      const { context, payload } = event;
+      const { jobId, workbookId } = context;
+      
+      try {
+        await api.jobs.ack(jobId, {
+          info: "Starting submit job...",
+          progress: 10,
+        });
+
+        // Do your work here
+
+        await api.jobs.complete(jobId, {
+          outcome: {
+            message: `Submit job was completed succesfully.`,
+          },
+        });
+      } catch (error) {
+        console.log(`There was an error: ${JSON.stringify(error)}`);
+        await api.jobs.fail(jobId, {
+          outcome: {
+            message: `This job failed.`,
+          },
+        });
+      }
+    }
+  );
+}
+```
+
+</CodeGroup>
+
 ## Sheet-mounted
 
 <Info>Each Sheet has built-in Actions like download.</Info>
@@ -55,6 +152,13 @@ Sheet-mounted actions are represented as a dropdown in the toolbar of the Sheet.
 
 First, configure your action on your Blueprint.
 
+<Info>
+  If you configure `requireSelection: true` on an Action, it will disable a
+  Sheet Action when no records in the Sheet are selected. If you configure
+  `requireAllValid: true` on an Action, it will disable a Sheet Action when
+  there are invalid records.
+</Info>
+
 ```jsx sheet.js
 sheets : [
   {
@@ -66,6 +170,8 @@ sheets : [
         label: 'Duplicate selected names',
         type: 'string',
         description: 'Duplicate names for selected rows',
+        requireSelection: false,
+        requireAllValid: true,
         primary: true,
       },
       {...}
