@@ -491,10 +491,9 @@ listener.use(
 
 ```js javascript bulkRecordHook()
 listener.use(
-  bulkRecordHook(
-    "contacts",
-    async (records, event) => {
-      records.map((record) => {
+  bulkRecordHook("contacts", async (records, event) => {
+    await Promise.all(
+      records.map(async (record) => {
         try {
           const { payload } = event.payload;
 
@@ -520,9 +519,9 @@ listener.use(
         }
 
         return record;
-      });
-    }
-  )
+      })
+    );
+  })
 );
 ```
 
@@ -531,33 +530,35 @@ listener.use(
   bulkRecordHook(
     "contacts",
     async (records: FlatfileRecord[], event: FlatfileEvent) => {
-      records.map((record: FlatfileRecord) => {
-        try {
-          const { payload } = event.payload;
+      await Promise.all(
+        records.map(async (record) => {
+          try {
+            const { payload } = event.payload;
 
-          const getResponse = await axios.get(
-            "https://api.sampleapis.com/beers/ale"
-          );
-          record.set(
-            "assignedBeer",
-            getResponse.data[Math.floor(Math.random() * 20)].name
-          );
-          record.addInfo(
-            "assignedBeer",
-            "Got this from " + getResponse.config.url
-          );
-        } catch (error) {
-          record.set("status", "Failed");
-          record.addError(
-            "status",
-            "Couldn't get assigned beer data from the api."
-          );
-        } finally {
-          // Clean up or perform any necessary actions after the try/catch block
-        }
+            const getResponse = await axios.get(
+              "https://api.sampleapis.com/beers/ale"
+            );
+            record.set(
+              "assignedBeer",
+              getResponse.data[Math.floor(Math.random() * 20)].name
+            );
+            record.addInfo(
+              "assignedBeer",
+              "Got this from " + getResponse.config.url
+            );
+          } catch (error) {
+            record.set("status", "Failed");
+            record.addError(
+              "status",
+              "Couldn't get assigned beer data from the api."
+            );
+          } finally {
+            // Clean up or perform any necessary actions after the try/catch block
+          }
 
-        return record;
-      });
+          return record;
+        })
+      );
     }
   )
 );
@@ -663,14 +664,13 @@ listener.use(
 ```jsx javascript bulkRecordHook()
 listener.use(
   bulkRecordHook("contacts", async (records, event) => {
-    records.map((record) => {
+    const webhookReceiver =
+      process.env.WEBHOOK_SITE_URL ||
+      "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
+    const { payload } = event.payload;
+
+    for (const record of records) {
       try {
-        const { payload } = event.payload;
-
-        const webhookReceiver =
-          process.env.WEBHOOK_SITE_URL ||
-          "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
-
         const postResponse = await axios.post(
           webhookReceiver,
           {
@@ -695,9 +695,7 @@ listener.use(
       } finally {
         // Clean up or perform any necessary actions after the try/catch block
       }
-
-      return record;
-    });
+    }
   })
 );
 ```
@@ -707,14 +705,13 @@ listener.use(
   bulkRecordHook(
     "contacts",
     async (records: FlatfileRecord[], event: FlatfileEvent) => {
-      records.map((record: FlatfileRecord) => {
+      const webhookReceiver =
+        process.env.WEBHOOK_SITE_URL ||
+        "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
+      const { payload } = event.payload;
+
+      for (const record of records) {
         try {
-          const { payload } = event.payload;
-
-          const webhookReceiver =
-            process.env.WEBHOOK_SITE_URL ||
-            "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388";
-
           const postResponse = await axios.post(
             webhookReceiver,
             {
@@ -739,9 +736,7 @@ listener.use(
         } finally {
           // Clean up or perform any necessary actions after the try/catch block
         }
-
-        return record;
-      });
+      }
     }
   )
 );
