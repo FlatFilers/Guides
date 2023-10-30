@@ -108,7 +108,8 @@
         "concepts/actions",
         "concepts/jobs",
         "concepts/events",
-        "concepts/spaces"
+        "concepts/spaces",
+        "concepts/listeners"
       ]
     },
     {
