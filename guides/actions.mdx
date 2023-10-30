@@ -79,6 +79,7 @@ export default function flatfileEventListener(listener) {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
           progress: 10,
+          estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
         });
 
         // Do your work here
@@ -116,6 +117,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
           progress: 10,
+          estimatedCompletionAt: estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
         });
 
         // Do your work here
@@ -193,6 +195,7 @@ listener.on(
       await api.jobs.ack(jobId, {
         info: "Getting started.",
         progress: 10,
+        estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
       });
 
       // Do your work here
@@ -220,6 +223,7 @@ listener.on(
       await api.jobs.ack(jobId, {
         info: "Getting started.",
         progress: 10,
+        estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
       });
 
       // Do your work here
