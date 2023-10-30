@@ -172,7 +172,7 @@ listener.use(
   recordHook("contacts", (record) => {
     record.computeIfPresent(
       "email",
-      (email: string) => email.toLowerCase(),
+      (email) => email.toLowerCase(),
       // optional
       "Email was converted to lowercase."
     );
@@ -201,7 +201,7 @@ listener.use(
     records.map((record) => {
       record.computeIfPresent(
         "email",
-        (email: string) => email.toLowerCase(),
+        (email) => email.toLowerCase(),
         // optional
         "Email was converted to lowercase."
       );
