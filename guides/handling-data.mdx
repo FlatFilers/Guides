@@ -262,7 +262,7 @@ listener.use(
   recordHook("contacts", (record) => {
     record.validate(
       "lastName",
-      (value: any) => !/\d/.test(value.toString()),
+      (value) => !/\d/.test(value.toString()),
       "Last name cannot contain numbers"
     );
     return record;
@@ -289,7 +289,7 @@ listener.use(
     records.map((record) => {
       record.validate(
         "lastName",
-        (value: any) => !/\d/.test(value.toString()),
+        (value) => !/\d/.test(value.toString()),
         "Last name cannot contain numbers"
       );
       return record;
