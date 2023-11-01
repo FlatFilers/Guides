@@ -147,7 +147,8 @@
               "icon": "vuejs",
               "pages": [
                 "guides/use-cases/embedding/vue/guide",
-                "guides/use-cases/embedding/vue/new_space"
+                "guides/use-cases/embedding/vue/new_space",
+                "guides/use-cases/embedding/vue/existing_space"
               ]
             },
             {
