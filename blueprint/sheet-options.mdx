@@ -17,6 +17,7 @@ Sheets have some basic options that determine their behavior.
       "readOnly": false,
       "allowAdditionalFields": false,
       "access": ["add", "edit"],
+      "settings": {"trackChanges": true},
       "fields": [
         {
           "key": "code",
@@ -57,6 +58,7 @@ Sheets have some basic options that determine their behavior.
   A boolean specifying whether or not this sheet is read only. Read only sheets
   are not editable by end users.
 </ParamField>
+
 <ParamField path="allowAdditionalFields" type="boolean">
   When this is set to `true`, your Sheet will be able to accept additional
   fields beyond what you specify in its configuration. These additional fields
@@ -67,6 +69,13 @@ Sheets have some basic options that determine their behavior.
 <ParamField path="access" type="array">
   An array specifying the access controls for this Sheet. [Read more about
   access controls](./access).
+</ParamField>
+
+<ParamField path="settings" type="object">
+  <b id="settings">Options:</b>
+  <br />
+  `trackChanges: true`: Disables actions on Sheet and Workbook when there is a
+  commit that has not been completed (often when Hooks are running)
 </ParamField>
 
 <ParamField path="fields" type="array" required>
