@@ -29,6 +29,8 @@ Flatfile will auto-detect the user's language based on their browser settings. I
 ### Overriding the language
 You can manually set the language on a Space using the languageOverride property. This property can be set either directly on the Space or at the environment level if the Space has not yet been created. 
 
+All users who use the Space will only see the language set in the language override property. Browser settings will no longer be respected.
+
 To specify the language, simply assign the appropriate language code (e.g., 'en' for English, 'fr' for French, etc.) to the languageOverride property.
 
 ```jsx listener.ts
