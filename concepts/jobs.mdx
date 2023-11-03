@@ -4,9 +4,6 @@ description: "The anatomy of Jobs"
 icon: "truck"
 ---
 
-Jobs are a powerful resource that allow a developer to tailor the functionality of the Flatfile Platform.
-Using a Job, custom code can be run in response to any Event. While running, status and progress updates can be sent direclty back to the user.
-
 In Flatfile, a Job represents a large unit of work performed asynchronously on a resource
 such as a file, <Tooltip tip="Analogous to a database...">[Workbook](../concepts/workbooks)</Tooltip>,
 or <Tooltip tip="A collection of fields...">[Sheet](../blueprint/overview#terms)</Tooltip>.
@@ -16,7 +13,7 @@ allowing you to monitor and troubleshoot the data processing pipeline.
 ## Types of Jobs
 
 Jobs can be triggered in a number of ways, most commonly in response to user activity. 
-Jobs are then managed via [Listeners](/concepts/listeners), which receive [Events](/concepts/events) published by Flatfile when certain actions occur. 
+Jobs are then managed via [Listeners](/concepts/listeners), which receive [Events](/concepts/events) published by Flatfile in response to activity. 
 
 There are three types of Jobs on the Flatfile Platform: 
 1. [Action](#action-based-jobs)
@@ -25,7 +22,7 @@ There are three types of Jobs on the Flatfile Platform:
 
 ### Action Based Jobs
 
-Actions are developer-defined operations that can be mounted on a number of domains (including Sheets, Workbooks, Spaces, Documents, and Files). 
+Actions are developer-defined operations that can be mounted on a number of domains (including Sheets, Workbooks, Documents, and Files). Mounting an Action means attaching a custom operation to that domain. That operation can then be triggered by a user event in the UI (they can appear as buttons or as menu items) or by a custom event in your code.
 
 When an Action is triggered via a user event in the UI, the `job:ready` Event for a Job named `{domain}:{operation}` is published. Your Listener can then be configured to respond to the action.
 
@@ -159,7 +156,7 @@ Jobs fire the following Events during their lifecycle. In chronological order, t
 | `job:completed` OR `job:failed` | `job:completed` fires when a job is completed successfully, `job:failed` fires if a job is completed but fails. One of these events will fire upon job completion, but never both. |
 | `job:outcome-acknowledged`      | Fires when a user acknowledges the completion of a job through a UI popup.                                                                                                         |
 
-You can listen on any of these events in your [Listener](/concepts/listener).
+You can listen on any of these events in your [Listener](/concepts/listeners).
 
 ### Configuration
 
