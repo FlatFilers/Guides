@@ -4,31 +4,34 @@ description: "The anatomy of Jobs"
 icon: "truck"
 ---
 
+Jobs are a powerful resource that allow a developer to tailor the functionality of the Flatfile Platform.
+Using a Job, custom code can be run in response to any Event. While running, status and progress updates can be sent direclty back to the user.
+
 In Flatfile, a Job represents a large unit of work performed asynchronously on a resource
 such as a file, <Tooltip tip="Analogous to a database...">[Workbook](../concepts/workbooks)</Tooltip>,
 or <Tooltip tip="A collection of fields...">[Sheet](../blueprint/overview#terms)</Tooltip>.
 The Jobs workflow provides visibility into the status and progress of your Jobs,
 allowing you to monitor and troubleshoot the data processing pipeline.
 
-Jobs are a powerful resource that allow a developer to tailor the functionality of the Flatfile Platform.
-Using a Job, custom code can be run in response to any Event. While running, status and progress updates can be sent direclty back to the user.
-
 ## Types of Jobs
 
 Jobs can be triggered in a number of ways, most commonly in response to user activity. 
-Jobs are then managed via [Listeners](), which received [Events]() published by Flatfile when certain actions occur. 
+Jobs are then managed via [Listeners](/concepts/listeners), which receive [Events](/concepts/events) published by Flatfile when certain actions occur. 
 
-There are three types of Jobs on the Flatfile Platform: Action-Based, Custom, and System.
+There are three types of Jobs on the Flatfile Platform: 
+1. [Action](#action-based-jobs)
+2. [Custom](#custom-jobs)
+3. [System](#system-jobs)
 
-### Action-Based Jobs
+### Action Based Jobs
 
-Actions are developer-defined operations that can be mounted on a number of domains (including sheets, workbooks, spaces, documents, and files). 
+Actions are developer-defined operations that can be mounted on a number of domains (including Sheets, Workbooks, Spaces, Documents, and Files). 
 
-When an action is triggered via a user event in the UI, the `job:ready` Event for a Job named `{domain}:{operation}` is published. Your listener can then be configured to respond to the action.
+When an Action is triggered via a user event in the UI, the `job:ready` Event for a Job named `{domain}:{operation}` is published. Your Listener can then be configured to respond to the action.
 
-To run an action based job, two configurations are necessary.
+To run an Action based job, two configurations are necessary.
 
-First, create an action on a domain. Here's an example of a workbook containing an action:
+First, create an [Action](/concepts/actions) on a domain. Here's an example of a Workbook containing an Action:
 
 ```jsx javascript
 api.workbook.create({
@@ -44,7 +47,7 @@ api.workbook.create({
 });
 ```
 
-Then, create a listener to respond to the action:
+Then, create a [Listener](/concepts/listeners) to respond to the Action:
 
 ```jsx javascript
 listener.on(
@@ -78,13 +81,13 @@ listener.on(
 );
 ```
 
-Note that the Listener is listening for the `job:ready` event, for the Job `workbook:export`, which was created in definition of our Workbook as an Action.
+Note that the Listener is listening for the `job:ready` event, for the `workbook:export` Job, which was defined in our Workbook.
 
 ### Custom Jobs
 
-Another trigger option is to create a Custom Job via SDK/API. Custom Jobs are created by calling the `api.jobs.create()` method. 
+Another trigger option is to create a Custom Job via SDK/API. In the SDK, Jobs are created by calling the `api.jobs.create()` method. 
 
-Creating a custom Job in your listener enables any event to trigger a Job. 
+Creating a custom Job in your Listener enables any Event to trigger a Job. 
 
 Here's an example of creating a custom Job in a Listener:
 
@@ -130,40 +133,21 @@ Here are some examples of Jobs that the Flatfile Platform creates and manages on
 
 ## The Anatomy of a Job
 
-### Management
+### Status
 
-Jobs can be managed through the API or SDK. Commonly, Jobs are acknowledged, progressed, and then completed, or failed.
+A Job's status can be used to track and handle a Job. The status of a Job can be one of the following:
 
-```jsx javascript
+| Status      | Description                                                                         |
+|-------------|-------------------------------------------------------------------------------------|
+| Created     | The initial status when a job is created.                                           |
+| Ready       | A job is prepared to execute.                                                       |
+| Executing   | The job has been acknowledged by a Listener and is now executing.                   |
+| Completed   | The job has been completed.                                                        |
+| Failed      | The job encountered an error during execution and can't complete its assigned task. |
+| Canceled    | The job has been cancelled                                                          |
 
-    try {
-        await api.jobs.ack(jobId, {
-          info: "Starting submit job...",
-          progress: 10,
-        });
 
-        // Custom code here
-
-        await api.jobs.complete(jobId, {
-          outcome: {
-            message: "Submit job was completed succesfully.",
-          },
-        });
-
-    } catch (error) {
-        await api.jobs.fail(jobId, {
-          outcome: {
-            message: "This job failed.",
-          },
-        });
-    }
-```
-
-<Note>
-    You can also use the [JobHandler Plugin]() which simplifies the handling of Flatfile Jobs. This plugin works by listening to the `job:ready` event and executing the handler callback. There is an optional tick function which updates the Job's progress.
-</Note>
-
-### Lifecycle
+### Lifecycle Events
 
 Jobs fire the following Events during their lifecycle. In chronological order, the Job Events are:
 
@@ -175,8 +159,7 @@ Jobs fire the following Events during their lifecycle. In chronological order, t
 | `job:completed` OR `job:failed` | `job:completed` fires when a job is completed successfully, `job:failed` fires if a job is completed but fails. One of these events will fire upon job completion, but never both. |
 | `job:outcome-acknowledged`      | Fires when a user acknowledges the completion of a job through a UI popup.                                                                                                         |
 
-You can listen on any of these events in your [Listener]().
-
+You can listen on any of these events in your [Listener](/concepts/listener).
 
 ### Configuration
 
@@ -225,50 +208,55 @@ Please see our [API Reference](https://reference.flatfile.com/docs/api) for deta
 
 ## Working With Jobs
 
-### Plan
+### Management
 
-After a Job's creation, an optional planning phase mayb be used to address any specific needs or complexities for complex operations.
-This optional planning phase is crucial for establishing the conditions under which a Job can proceed to the 'READY' or 'EXECUTING' states, such as conducting validation checks, engaging user interactions, or satisfying other predetermined conditions. 
-The intricacies of the planning and execution phases are unique to each project's requirements, so Job plans will vary accordingly.
+Jobs can be managed via SDK/API. Commonly, Jobs are acknowledged, progressed, and then completed, or failed.
 
-For a Job to transition from 'PLANNING' to 'READY' or 'EXECUTING', it must meet the particular requirements and conditions set during the planning phase. 
-Since the process is heavily tailored to the project's demands, those seeking to understand the nuances of Job Planning are encouraged to reach out to Flatfile Support for assistance.
+```jsx javascript
 
-### Status
+    try {
+        await api.jobs.ack(jobId, {
+          info: "Starting submit job...",
+          progress: 10,
+        });
 
-A Job's status can be used to track and handle a Job. The status of a Job can be one of the following:
+        // Custom code here
 
-| Status      | Description                                                                                                   |
-|-------------|---------------------------------------------------------------------------------------------------------------|
-| Created     | Reflects the initial status when a new job is first created.                                                  |
-| Ready       | This status indicates that a new job is prepared to execute.                                                  |
-| Executing   | It means the job has been acknowledged by a listener and transitions into an executing state.                 |
-| Completed   | When a job has completed its execution, it is marked as "Completed".                                          |
-| Failed      | If a job encounters an error during execution and can't complete its assigned task, it is marked as "Failed". |
-| Canceled    |                                                                                                               |
+        await api.jobs.complete(jobId, {
+          outcome: {
+            message: "Submit job was completed succesfully.",
+          },
+        });
 
-
-### Outcome
-
-Job outcomes in Flatfile refer to the present status or result of a process or operation that has been performed. 
-These outcomes are typically composed of a message that provides more context about the job's status. For example, an outcome could be:
-
+    } catch (error) {
+        await api.jobs.fail(jobId, {
+          outcome: {
+            message: "This job failed.",
+          },
+        });
+    }
 ```
-outcome: {
-    message: "This job failed with a network error. Please try again.",
-}
-```
-In this particular case, the message indicates that the Job has failed because due to a network error.
 
-Or, in the case of a successful operation an outcome message could be:
+<Note>
+    You can also use the [JobHandler Plugin]() which simplifies the handling of Flatfile Jobs. This plugin works by listening to the `job:ready` event and executing the handler callback. There is an optional tick function which updates the Job's progress.
+</Note>
+
+### Outcomes
+
+A Job Outcome is the result of a process or operation that has been performed. 
+These outcomes are typically composed of a message that provides more context about the job's status. 
+
+For example, an outcome could be:
 
 ```
 outcome: {
     message: "Data was successfully submitted.",
 }
 ```
+Or, in the case of a failed operation an outcome message can be tailored to provide futher details.
 
-
-In addition, the outcome can support next action links. This means you can display links to external URLs, Flatfile resources, or trigger downloads upon Job completion.
-
-Please note that the specific outcomes and their implications can vary between different Jobs and their respective tasks.
+```
+outcome: {
+    message: `This job failed with a network error: ${error.message}`,
+}
+```
