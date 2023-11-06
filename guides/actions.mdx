@@ -154,9 +154,13 @@ First, configure your action on your Blueprint.
 
 <Info>
   If you configure `requireSelection: true` on an Action, it will disable a
-  Sheet Action when no records in the Sheet are selected. If you configure
-  `requireAllValid: true` on an Action, it will disable a Sheet Action when
-  there are invalid records.
+  Sheet Action when no records in the Sheet are selected.
+
+  If you configure `requireAllValid: true` on an Action, it will disable a
+  Sheet Action when  there are invalid records.
+
+  If you configure `trackChanges: true`, it will  disable your actions while
+  hooks are running.
 </Info>
 
 ```jsx sheet.js
@@ -173,6 +177,7 @@ sheets : [
         requireSelection: false,
         requireAllValid: true,
         primary: true,
+        trackChanges: true,
       },
       {...}
     ]
@@ -180,7 +185,9 @@ sheets : [
 ]
 ```
 
-Next, listen for a `job:ready` and filter on the `domain` (sheet) and the `operation` of where the action was placed. Be sure to complete to job when it's complete.
+Next, listen for a `job:ready` and filter on the `domain` (sheet) and the
+`operation` of where the action was placed. Be sure to complete to job when
+it's complete.
 
 <CodeGroup>
 
