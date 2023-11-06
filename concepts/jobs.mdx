@@ -12,10 +12,11 @@ allowing you to monitor and troubleshoot the data processing pipeline.
 
 ## Types of Jobs
 
-Jobs can be triggered in a number of ways, most commonly in response to user activity. 
-Jobs are then managed via [Listeners](/concepts/listeners), which receive [Events](/concepts/events) published by Flatfile in response to activity. 
+Jobs can be triggered in a number of ways, most commonly in response to user activity.
+Jobs are then managed via [Listeners](/concepts/listeners), which receive [Events](/concepts/events) published by Flatfile in response to activity.
 
-There are three types of Jobs on the Flatfile Platform: 
+There are three types of Jobs on the Flatfile Platform:
+
 1. [Action](#action-based-jobs)
 2. [Custom](#custom-jobs)
 3. [System](#system-jobs)
@@ -24,7 +25,7 @@ There are three types of Jobs on the Flatfile Platform:
 
 Actions are developer-defined operations that can be mounted on a number of domains (including Sheets, Workbooks, Documents, and Files). Mounting an Action means attaching a custom operation to that domain. That operation can then be triggered by a user event in the UI (they can appear as buttons or as menu items) or by a custom event in your code.
 
-When an Action is triggered via a user event in the UI, the `job:ready` Event for a Job named `{domain}:{operation}` is published. Your Listener can then be configured to respond to the action.
+When an Action is triggered in the UI by a user the `job:ready` Event for a Job named `{domain}:{operation}` is published. Your Listener can then be configured to respond to the action.
 
 To run an Action based job, two configurations are necessary.
 
@@ -82,34 +83,33 @@ Note that the Listener is listening for the `job:ready` event, for the `workbook
 
 ### Custom Jobs
 
-Another trigger option is to create a Custom Job via SDK/API. In the SDK, Jobs are created by calling the `api.jobs.create()` method. 
+Another trigger option is to create a Custom Job via SDK/API. In the SDK, Jobs are created by calling the `api.jobs.create()` method.
 
-Creating a custom Job in your Listener enables any Event to trigger a Job. 
+Creating a custom Job in your Listener enables any Event to trigger a Job.
 
 Here's an example of creating a custom Job in a Listener:
 
 ```jsx javascript
-
-listener.on("commit:created", 
-    { sheet: "Contacts" }, 
-    async ({ context: { workbookId, sheetId } }) => {
-        const { data } = await api.jobs.create({
-            type: "workbook",
-            operation: "delete-records",
-            trigger: "immediate",
-            source: workbookId,
-            config: {
-                sheet: sheetId,
-                filter: "all",
-            },
-        });
+listener.on(
+  "commit:created",
+  { sheet: "Contacts" },
+  async ({ context: { workbookId, sheetId } }) => {
+    const { data } = await api.jobs.create({
+      type: "workbook",
+      operation: "delete-records",
+      trigger: "immediate",
+      source: workbookId,
+      config: {
+        sheet: sheetId,
+        filter: "all",
+      },
+    });
   }
 );
-
 ```
 
 <Warning>
-    Please note that Flatfile does not support job plans for custom actions.
+  Please note that Flatfile does not support job plans for custom actions.
 </Warning>
 
 ### System Jobs
@@ -117,16 +117,16 @@ listener.on("commit:created",
 Internally, Flatfile uses Jobs to power many of the features of the Flatfile Platform, such as extraction, record mutation, and AI Assist.
 Here are some examples of Jobs that the Flatfile Platform creates and manages on your behalf:
 
-| Job Name       | Description                                                   |
-|----------------|---------------------------------------------------------------|
-| Extract        | Extracts data from the specified source.                      |
-| Map            | Maps data from it's ingress format to Blueprint fields.       |
-| DeleteRecords  | Deletes records from a dataset based on specified criteria.   |
-| Export         | Exports data to a specified format or destination.            |
-| MutateRecords  | Alters records in a dataset according to defined rules.       |
-| Configure      | Sets up or modifies the configuration of a Space.             |
-| AiAssist       | Utilizes AI to assist with tasks such as data categorization. |
-| FindReplace    | Searches for specific values and replaces them.               |
+| Job Name      | Description                                                   |
+| ------------- | ------------------------------------------------------------- |
+| Extract       | Extracts data from the specified source.                      |
+| Map           | Maps data from it's ingress format to Blueprint fields.       |
+| DeleteRecords | Deletes records from a dataset based on specified criteria.   |
+| Export        | Exports data to a specified format or destination.            |
+| MutateRecords | Alters records in a dataset according to defined rules.       |
+| Configure     | Sets up or modifies the configuration of a Space.             |
+| AiAssist      | Utilizes AI to assist with tasks such as data categorization. |
+| FindReplace   | Searches for specific values and replaces them.               |
 
 ## The Anatomy of a Job
 
@@ -134,22 +134,21 @@ Here are some examples of Jobs that the Flatfile Platform creates and manages on
 
 A Job's status can be used to track and handle a Job. The status of a Job can be one of the following:
 
-| Status      | Description                                                                         |
-|-------------|-------------------------------------------------------------------------------------|
-| Created     | The initial status when a job is created.                                           |
-| Ready       | A job is prepared to execute.                                                       |
-| Executing   | The job has been acknowledged by a Listener and is now executing.                   |
-| Completed   | The job has been completed.                                                        |
-| Failed      | The job encountered an error during execution and can't complete its assigned task. |
-| Canceled    | The job has been cancelled                                                          |
-
+| Status    | Description                                                                         |
+| --------- | ----------------------------------------------------------------------------------- |
+| Created   | The initial status when a job is created.                                           |
+| Ready     | A job is prepared to execute.                                                       |
+| Executing | The job has been acknowledged by a Listener and is now executing.                   |
+| Completed | The job has been completed.                                                         |
+| Failed    | The job encountered an error during execution and can't complete its assigned task. |
+| Canceled  | The job has been cancelled                                                          |
 
 ### Lifecycle Events
 
 Jobs fire the following Events during their lifecycle. In chronological order, the Job Events are:
 
 | Event                           | Description                                                                                                                                                                        |
-|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `job:created`                   | Fires when a job is created, but before it does anything.                                                                                                                          |
 | `job:ready`                     | Fires when a job is ready to move into the execution stage, but before it does anything.                                                                                           |
 | `job:updated`                   | Fires when there is an update to a job while it is executing.                                                                                                                      |
@@ -162,44 +161,60 @@ You can listen on any of these events in your [Listener](/concepts/listeners).
 
 Flatfile Jobs are versitile and configurable. The potential set of properties for a Job are:
 
-| Property      | Required          | Description                                                       |
-|---------------|-------------------|-------------------------------------------------------------------|
-| type          | Required          | Domain the job is acting within                                   |
-| fromAction    | Deprecated        |                                                                   |
-| slug          | Deprecated        | A string identifier (part of fromAction).                         |
-| label         | Required          | A user-friendly name for the action.                              |     
-| description   | Optional          | A string describing the action.                                   |
-| tooltip       | Optional          | Additional info on hover.                                         |
-| schedule      | Optional          | When the job runs.                                                |
-| operation     | Required          | The operation to perform.                                         |
-| source        | Required          | The id of the data source.                                        |
-| destination   | Optional          | The id of the data target.                                        |
-| input         | Optional          | Input parameters for the job type.                                |
-| subject       | Optional          | Subject parameters for the job type.                              |
-| resource      | Required          | Identifier for the subject resource.                              |
-| type          | Required          | Allowed values: resource, collection.                             |
-| outcome       | Optional          | Outcome summary of the job.                                       |
-| heading       | Optional          | The heading of the outcome.                                       |
-| acknowledge   | Optional          | Needs user acknowledgment.                                        |
-| message       | Optional          | The message of the outcome.                                       |
-| buttonText    | Optional          | Text of the acknowledgment button.                                |
-| next          | Optional          | The next action after job completion.                             |
-| info          | Optional          | Current status of the job in text.                                |
-| managed       | Optional          | Is the job flow managed by Flatfile.                              |
-| config        | Optional          | Configuration object specific to the operation.                   |
-| filter        | Optional          | Options to filter records.                                        |
-| filterField   | Optional          | Field to narrow filter results.                                   |
-| searchValue   | Optional          | Value to search in the sheet.                                     |
-| searchField   | Optional          | Field to narrow search results.                                   |
-| q             | Optional          | FFQL query to filter records.                                     |
-| sheet         | Required          | SheetId                                                           |
-| exceptions    | Optional          | List of record ids to exclude.                                    |
-| trigger       | Optional          | Manual or Immediate                                               |
-| status        | Required          | CREATED, PLANNING, SCHEDULED, READY, EXECUTING, COMPLETED, FAILED |
-| mode          | Optional          | Operation mode of the job.                                        |
-| progress      | Optional          | The progress of the job.                                          |
-| fileId        | Optional          | FileId                                                            |
-| environmentId | Required          | EnvironmentId                                                     | 
+| Property                                              | Required | Description                                                                                                  |
+| ----------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------ |
+| type                                                  | Required | `file`, `workbook`, `sheet`, `space`, `document`                                                             |
+| fromAction:label                                      | Required | A user-friendly name for the action.                                                                         |
+| fromAction:description                                | Optional | A string describing the action.                                                                              |
+| fromAction:tooltip                                    | Optional | Additional info on hover.                                                                                    |
+| fromAction:schedule                                   | Optional | `weekly`, `daily`, `hourly`                                                                                  |
+| fromAction:operation                                  | Optional | The operation to perform.                                                                                    |
+| fromAction:mode                                       | Optional | `foreground`, `background`, `toolbarBlocking`                                                                |
+| fromAction:primary                                    | Optional | Whether this action is considered the primary or default action.                                             |
+| fromAction:confirm                                    | Optional | Whether user confirmation is required before the action is executed.                                         |
+| fromAction:icon                                       | Optional | Icon representative of the action.                                                                           |
+| fromAction:inputForm:type                             | Required | `simple`                                                                                                     |
+| fromAction:inputForm:fields:key                       | Required | The unique identifier for the input field.                                                                   |
+| fromAction:inputForm:fields:label                     | Required | The display label for the input field.                                                                       |
+| fromAction:inputForm:fields:description               | Optional | A brief description or guidance for the input field.                                                         |
+| fromAction:inputForm:fields:type                      | Required | `string`, `textarea`, `number`, `boolean`, `enum`                                                            |
+| fromAction:inputForm:fields:config:options:value      | Required | The value for the configuration option of the input field.                                                   |
+| fromAction:inputForm:fields:config:options:label      | Optional | The label for the configuration option of the input field.                                                   |
+| fromAction:inputForm:fields:config:options:descripion | Optional | A description for the configuration option of the input field.                                               |
+| fromAction:inputForm:fields:config:options:color      | Optional | The color associated with the configuration option, if applicable.                                           |
+| fromAction:inputForm:fields:config:options:icon       | Optional | The icon associated with the configuration option.                                                           |
+| fromAction:inputForm:fields:config:options:meta       | Optional | Additional metadata for the configuration option.                                                            |
+| fromAction:inputForm:fields:constraints:type          | Required | `hasSelection`, `hasAllValid`                                                                                |
+| operaton                                              | Required | The operation to perform on the data. This can be anything as long as a correlating listener is handling it. |
+| source                                                | Required | The id of the data source (FileId, WorkbookId, or SheetId).                                                  |
+| destination                                           | Optional | The id of the data target. (WorkbookId)                                                                      |
+| input                                                 | Optional | Input parameters for the job type.                                                                           |
+| subject:resource                                      | Required | Identifier for the subject resource.                                                                         |
+| subjet:type                                           | Required | `resource`, `collection`                                                                                     |
+| subjet:query                                          | Optional | The query used to locate or identify the subject resource.                                                   |
+| subjet:params                                         | Optional | Parameters that detail or modify the subject query.                                                          |
+| outcome:heading                                       | Optional | The heading text summarizing the outcome of the action.                                                      |
+| outcome:acknowledge                                   | Optional | Indicates if the outcome requires user acknowledgment.                                                       |
+| outcome:message                                       | Optional | Detailed message describing the outcome.                                                                     |
+| outcome:buttonText                                    | Optional | Label for the button to acknowledge the outcome.                                                             |
+| outcome:next:type                                     | Optional | The type of subsequent action to take after the current job completes.                                       |
+| outcome:next:id                                       | Optional | Identifier for the subsequent action to take after the current job completes.                                |
+| outcome:next:label                                    | Optional | Label for the subsequent action to take after the current job completes.                                     |
+| info                                                  | Optional | Additional information regarding the job's current status.                                                   |
+| managed                                               | Optional | Indicates whether the job is managed by the Flatfile platform or not.                                        |
+| config:filter                                         | Optional | Definition of filtering conditions to apply to job records.                                                  |
+| config:filterField                                    | Optional | The specific field upon which the filter should be applied.                                                  |
+| config:searchValue                                    | Optional | The value to be used in search operations within the job's dataset.                                          |
+| config:searchField                                    | Optional | The field to be used as a reference point in search operations within the job's dataset.                     |
+| config:q                                              | Optional | The Flatfile Query Language                                                                                  |
+| config:sheet                                          | Required | The unique identifier for the sheet within the job context.                                                  |
+| config:exceptions                                     | Optional | A list of record identifiers that should be excluded from the job process.                                   |
+| trigger                                               | Optional | `mannual`, `immediate`                                                                                       |
+| status                                                | Optional | `created`, `planning`, `scheduled`, `ready`, `executing`, `complete`, `failed`, `cancelled`                  |
+| mode                                                  | Optional | `foreground`, `background`, `toolbarBlocking`                                                                |
+| progress                                              | Optional | A numerical or percentage value indicating the completion status of the job.                                 |
+| fileId                                                | Optional | The identifier for the file associated with the job, if applicable.                                          |
+| environmentId                                         | Optional | The identifier for the environment in which the job is running.                                              |
 
 Please see our [API Reference](https://reference.flatfile.com/docs/api) for details on all possible values.
 
@@ -210,38 +225,40 @@ Please see our [API Reference](https://reference.flatfile.com/docs/api) for deta
 Jobs can be managed via SDK/API. Commonly, Jobs are acknowledged, progressed, and then completed, or failed.
 
 ```jsx javascript
+try {
+  await api.jobs.ack(jobId, {
+    info: "Starting submit job...",
+    progress: 10,
+  });
 
-    try {
-        await api.jobs.ack(jobId, {
-          info: "Starting submit job...",
-          progress: 10,
-        });
+  // Custom code here
 
-        // Custom code here
-
-        await api.jobs.complete(jobId, {
-          outcome: {
-            message: "Submit job was completed succesfully.",
-          },
-        });
-
-    } catch (error) {
-        await api.jobs.fail(jobId, {
-          outcome: {
-            message: "This job failed.",
-          },
-        });
-    }
+  await api.jobs.complete(jobId, {
+    outcome: {
+      message: "Submit job was completed succesfully.",
+    },
+  });
+} catch (error) {
+  await api.jobs.fail(jobId, {
+    outcome: {
+      message: "This job failed.",
+    },
+  });
+}
 ```
 
 <Note>
-    You can also use the [JobHandler Plugin]() which simplifies the handling of Flatfile Jobs. This plugin works by listening to the `job:ready` event and executing the handler callback. There is an optional tick function which updates the Job's progress.
+  You can also use the [JobHandler
+  Plugin](https://flatfile.com/docs/plugins/core/job-handler) which simplifies
+  the handling of Flatfile Jobs. This plugin works by listening to the
+  `job:ready` event and executing the handler callback. There is an optional
+  tick function which updates the Job's progress.
 </Note>
 
 ### Outcomes
 
-A Job Outcome is the result of a process or operation that has been performed. 
-These outcomes are typically composed of a message that provides more context about the job's status. 
+A Job Outcome is the result of a process or operation that has been performed.
+These outcomes are typically composed of a message that provides more context about the job's status.
 
 For example, an outcome could be:
 
@@ -250,6 +267,7 @@ outcome: {
     message: "Data was successfully submitted.",
 }
 ```
+
 Or, in the case of a failed operation an outcome message can be tailored to provide futher details.
 
 ```
