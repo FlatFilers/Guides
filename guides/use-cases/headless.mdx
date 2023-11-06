@@ -68,7 +68,15 @@ Similarly, validation and transformation operations can run immediately on `reco
 
 Now that we've leveraged the power of the Flatfile platform to extract, map, validate, and transform our data, we can automate the egress of our data to our destination system.
 
-We'll have our listener filter on the `workbook:map` job and configure it to run our egress logic on `job:completed`. Here's an example where we automate emailing the processed data.
+We'll have our listener filter and run our egress logic on `commit:completed`. This is an event specifically designed to signal the end of all processing tasks.
+
+<Note>
+  To enable the `commit:completed` event, add a settings parameter in your Sheet that includes trackChanges: true.
+  This has the effect of disabling actions on both Sheets and Workbooks until any pending commits have been completed.
+  See [Blueprint](/blueprint/sheet-options) sheet settings for more information.
+</Note>
+
+Here's an example where we automate emailing the processed data.
 
 <Snippet file="use-cases/headless/block3.mdx" />
 <br></br>
