@@ -111,7 +111,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
     async (event: FlatfileEvent) => {
       const { context, payload } = event;
       const { jobId, workbookId } = context;
-      
+
       try {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
@@ -153,14 +153,15 @@ Sheet-mounted actions are represented as a dropdown in the toolbar of the Sheet.
 First, configure your action on your Blueprint.
 
 <Info>
-  If you configure `requireSelection: true` on an Action, it will disable a
+  If you configure `constraints: [{ type: 'hasSelection' }]` on an Action, it will disable a
   Sheet Action when no records in the Sheet are selected.
 
-  If you configure `requireAllValid: true` on an Action, it will disable a
-  Sheet Action when  there are invalid records.
+If you configure `constraints: [{ type: 'hasAllValid' }]` on an Action, it will disable a
+Sheet Action when there are invalid records.
 
-  If you configure `trackChanges: true`, it will  disable your actions while
-  hooks are running.
+If you configure `trackChanges: true`, it will disable your actions
+until all commits are complete (usually data hooks).
+
 </Info>
 
 ```jsx sheet.js
@@ -174,10 +175,9 @@ sheets : [
         label: 'Duplicate selected names',
         type: 'string',
         description: 'Duplicate names for selected rows',
-        requireSelection: false,
-        requireAllValid: true,
+        constraints: [{ type: 'hasAllValid' }, { type: 'hasSelection' }],
         primary: true,
-        
+        trackChanges: true,
       },
       {...}
     ]
@@ -587,7 +587,7 @@ Next, listen for a `job:ready` and filter on the `job` you'd like to process. Gr
 
 ## Example Project
 
-Find the documents example in the Flatfile GitHub repository. 
+Find the documents example in the Flatfile GitHub repository.
 
 <CardGroup cols={2}>
   <Card
