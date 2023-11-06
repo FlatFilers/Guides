@@ -251,10 +251,9 @@ try {
 The `estimatedCompletionAt` parameter can be provided to relay that information to a user. In the Foreground Job overlay, real-time progress will be displayed as a percentage, along with an estimate of the remaining time. Additionally, the Jobs Panel will share visibility into the estimated remaining time for acknowledged jobs.
 
 <Note>
-  You can also use the [JobHandler
-  Plugin](https://flatfile.com/docs/plugins/core/job-handler) which simplifies
-  the handling of Flatfile Jobs. This plugin works by listening to the
-  `job:ready` event and executing the handler callback. There is an optional
+  You can also use the [JobHandler Plugin](/plugins/core/job-handler) which
+  simplifies the handling of Flatfile Jobs. This plugin works by listening to
+  the `job:ready` event and executing the handler callback. There is an optional
   tick function which updates the Job's progress.
 </Note>
 
