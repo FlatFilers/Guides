@@ -229,6 +229,7 @@ try {
   await api.jobs.ack(jobId, {
     info: "Starting submit job...",
     progress: 10,
+    estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
   });
 
   // Custom code here
@@ -246,6 +247,8 @@ try {
   });
 }
 ```
+
+The `estimatedCompletionAt` parameter can be provided to relay that information to a user. In the Foreground Job overlay, real-time progress will be displayed as a percentage, along with an estimate of the remaining time. Additionally, the Jobs Panel will share visibility into the estimated remaining time for acknowledged jobs.
 
 <Note>
   You can also use the [JobHandler
