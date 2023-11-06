@@ -1033,9 +1033,9 @@ icon: "layer-group"
 
        Two key enhancements to Actions have been introduced:
 
-        **Disable Actions When Invalid Records**: Developers can now add an optional `requireAllValid` flag to Actions, preventing users from initiating Actions when Sheets or Workbooks contain invalid records. This helps avoid unnecessary job failures and ensures Actions are performed on valid data.
+        **Disable Actions When Invalid Records**: Developers can now add an optional `constraints: [{ type: 'hasAllValid' }],` flag to Actions, preventing users from initiating Actions when Sheets or Workbooks contain invalid records. This helps avoid unnecessary job failures and ensures Actions are performed on valid data.
 
-        **Disable Actions When No Selected Records:** To enhance the user experience, we've introduced the `requireSelection` flag. When set to `true`, this flag disables Actions if no records are selected in the Sheet or Workbook, ensuring Actions are only triggered when relevant data is chosen.
+        **Disable Actions When No Selected Records:** To enhance the user experience, we've introduced the `constraints: [ { type: 'hasSelection' }],` flag. When added as a constraint, this flag disables Actions if no records are selected in the Sheet or Workbook, ensuring Actions are only triggered when relevant data is chosen.
 
 
       [Learn more](http://flatfile.com/docs/concepts/actions#optional-parameters).
