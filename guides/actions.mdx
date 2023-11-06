@@ -177,8 +177,11 @@ sheets : [
         description: 'Duplicate names for selected rows',
         constraints: [{ type: 'hasAllValid' }, { type: 'hasSelection' }],
         primary: true,
-        trackChanges: true,
+        
       },
+      settings: {
+        trackChanges: true,
+      }
       {...}
     ]
     settings: {
