@@ -79,6 +79,7 @@ export default function flatfileEventListener(listener) {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
           progress: 10,
+          estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
         });
 
         // Do your work here
@@ -116,6 +117,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
           progress: 10,
+          estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
         });
 
         // Do your work here
@@ -202,6 +204,7 @@ listener.on(
       await api.jobs.ack(jobId, {
         info: "Getting started.",
         progress: 10,
+        estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
       });
 
       // Do your work here
@@ -229,6 +232,7 @@ listener.on(
       await api.jobs.ack(jobId, {
         info: "Getting started.",
         progress: 10,
+        estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
       });
 
       // Do your work here
@@ -248,6 +252,7 @@ listener.on(
 ```
 
 </CodeGroup>
+
 
 Get the example in the [getting-started](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main/typescript/actions) repo
 
@@ -426,7 +431,7 @@ Next, listen for `job:ready` and filter on the `domain` (file) and the `operatio
 
 <CodeGroup>
 
-```jsx listener.js job:ready
+```JavaScript listener.js job:ready
 //when the button is clicked in the file dropdown
 
 listener.on(
@@ -471,10 +476,11 @@ listener.on(
   }
 );
 
-async function acknowledgeJob(jobId, info, progress) {
+async function acknowledgeJob(jobId, info, progress, estimatedCompletionAt) {
   await api.jobs.ack(jobId, {
     info,
     progress,
+    estimatedCompletionAt
   });
 }
 
@@ -542,10 +548,11 @@ listener.on(
   }
 );
 
-async function acknowledgeJob(jobId: string, info: string, progress: number) {
+async function acknowledgeJob(jobId: string, info: string, progress: number, estimatedCompletionAt: Date | undefined = undefined) {
   await api.jobs.ack(jobId, {
     info,
     progress,
+    estimatedCompletionAt
   });
 }
 
