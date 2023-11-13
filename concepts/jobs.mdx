@@ -164,16 +164,16 @@ listener.on(
 Internally, Flatfile uses Jobs to power many of the features of the Flatfile Platform, such as extraction, record mutation, and AI Assist.
 Here are some examples of Jobs that the Flatfile Platform creates and manages on your behalf:
 
-| Job Name      | Description                                                   |
-| ------------- | ------------------------------------------------------------- |
-| Extract       | Extracts data from the specified source.                      |
-| Map           | Maps data from it's ingress format to Blueprint fields.       |
-| DeleteRecords | Deletes records from a dataset based on specified criteria.   |
-| Export        | Exports data to a specified format or destination.            |
-| MutateRecords | Alters records in a dataset according to defined rules.       |
-| Configure     | Sets up or modifies the configuration of a Space.             |
-| AiAssist      | Utilizes AI to assist with tasks such as data categorization. |
-| FindReplace   | Searches for specific values and replaces them.               |
+| Job Name        | Description                                                   |
+| --------------- | ------------------------------------------------------------- |
+| `Extract`       | Extracts data from the specified source.                      |
+| `Map`           | Maps data from it's ingress format to Blueprint fields.       |
+| `DeleteRecords` | Deletes records from a dataset based on specified criteria.   |
+| `Export`        | Exports data to a specified format or destination.            |
+| `MutateRecords` | Alters records in a dataset according to defined rules.       |
+| `Configure`     | Sets up or modifies the configuration of a Space.             |
+| `AiAssist`      | Utilizes AI to assist with tasks such as data categorization. |
+| `FindReplace`   | Searches for specific values and replaces them.               |
 
 <Note>
   The`space:configure` Job is the only system-level Job published for developer
@@ -184,19 +184,6 @@ Here are some examples of Jobs that the Flatfile Platform creates and manages on
 </Note>
 
 ## The Anatomy of a Job
-
-### Status
-
-A Job's status can be used to track and handle a Job. The status of a Job can be one of the following:
-
-| Status    | Description                                                                         |
-| --------- | ----------------------------------------------------------------------------------- |
-| Created   | The initial status when a Job is created.                                           |
-| Ready     | A Job is prepared to execute.                                                       |
-| Executing | The Job has been acknowledged by a Listener and is now executing.                   |
-| Completed | The Job has been completed.                                                         |
-| Failed    | The Job encountered an error during execution and can't complete its assigned task. |
-| Canceled  | The Job has been cancelled                                                          |
 
 ### Lifecycle Events
 
@@ -211,70 +198,120 @@ Jobs fire the following Events during their lifecycle. In chronological order, t
 | `job:outcome-acknowledged`      | Fires when a user acknowledges the completion of a Job through a UI popup.                                                                                                         |
 
 You can listen on any of these events in your [Listener](/concepts/listeners), but the most common event to listen for is `job:ready`.
-For more on managing your Job see [Working With Jobs](#working-with-jobs).
+For more on managing your Job see [Working with Jobs](#working-with-jobs).
 
-### Configuration
+### Required Parameters
 
-Flatfile Jobs are versitile and configurable. The potential set of properties for a Job are:
+<ParamField path="type" type="string" required>
+  Workbook, File, Sheet, Space
+</ParamField>
 
-| Property                                              | Required | Description                                                                                                  |
-| ----------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------ |
-| type                                                  | Required | `file`, `workbook`, `sheet`, `space`, `document`                                                             |
-| fromAction:label                                      | Required | A user-friendly name for the action.                                                                         |
-| fromAction:description                                | Optional | A string describing the action.                                                                              |
-| fromAction:tooltip                                    | Optional | Additional info on hover.                                                                                    |
-| fromAction:schedule                                   | Optional | `weekly`, `daily`, `hourly`                                                                                  |
-| fromAction:operation                                  | Optional | The operation to perform.                                                                                    |
-| fromAction:mode                                       | Optional | `foreground`, `background`, `toolbarBlocking`                                                                |
-| fromAction:primary                                    | Optional | Whether this action is considered the primary or default action.                                             |
-| fromAction:confirm                                    | Optional | Whether user confirmation is required before the action is executed.                                         |
-| fromAction:icon                                       | Optional | Icon representative of the action.                                                                           |
-| fromAction:inputForm:type                             | Required | `simple`                                                                                                     |
-| fromAction:inputForm:fields:key                       | Required | The unique identifier for the input field.                                                                   |
-| fromAction:inputForm:fields:label                     | Required | The display label for the input field.                                                                       |
-| fromAction:inputForm:fields:description               | Optional | A brief description or guidance for the input field.                                                         |
-| fromAction:inputForm:fields:type                      | Required | `string`, `textarea`, `number`, `boolean`, `enum`                                                            |
-| fromAction:inputForm:fields:config:options:value      | Required | The value for the configuration option of the input field.                                                   |
-| fromAction:inputForm:fields:config:options:label      | Optional | The label for the configuration option of the input field.                                                   |
-| fromAction:inputForm:fields:config:options:descripion | Optional | A description for the configuration option of the input field.                                               |
-| fromAction:inputForm:fields:config:options:color      | Optional | The color associated with the configuration option, if applicable.                                           |
-| fromAction:inputForm:fields:config:options:icon       | Optional | The icon associated with the configuration option.                                                           |
-| fromAction:inputForm:fields:config:options:meta       | Optional | Additional metadata for the configuration option.                                                            |
-| fromAction:inputForm:fields:constraints:type          | Required | `hasSelection`, `hasAllValid`                                                                                |
-| operaton                                              | Required | The operation to perform on the data. This can be anything as long as a correlating listener is handling it. |
-| source                                                | Required | The id of the data source (FileId, WorkbookId, or SheetId).                                                  |
-| destination                                           | Optional | The id of the data target. (WorkbookId)                                                                      |
-| input                                                 | Optional | Input parameters for the Job type.                                                                           |
-| subject:resource                                      | Required | Identifier for the subject resource.                                                                         |
-| subjet:type                                           | Required | `resource`, `collection`                                                                                     |
-| subjet:query                                          | Optional | The query used to locate or identify the subject resource.                                                   |
-| subjet:params                                         | Optional | Parameters that detail or modify the subject query.                                                          |
-| outcome:heading                                       | Optional | The heading text summarizing the outcome of the action.                                                      |
-| outcome:acknowledge                                   | Optional | Indicates if the outcome requires user acknowledgment.                                                       |
-| outcome:message                                       | Optional | Detailed message describing the outcome.                                                                     |
-| outcome:buttonText                                    | Optional | Label for the button to acknowledge the outcome.                                                             |
-| outcome:next:type                                     | Optional | The type of subsequent action to take after the current Job completes.                                       |
-| outcome:next:id                                       | Optional | Identifier for the subsequent action to take after the current Job completes.                                |
-| outcome:next:label                                    | Optional | Label for the subsequent action to take after the current Job completes.                                     |
-| info                                                  | Optional | Additional information regarding the job's current status.                                                   |
-| managed                                               | Optional | Indicates whether the Job is managed by the Flatfile platform or not.                                        |
-| config:filter                                         | Optional | Definition of filtering conditions to apply to Job records.                                                  |
-| config:filterField                                    | Optional | The specific field upon which the filter should be applied.                                                  |
-| config:searchValue                                    | Optional | The value to be used in search operations within the job's dataset.                                          |
-| config:searchField                                    | Optional | The field to be used as a reference point in search operations within the job's dataset.                     |
-| config:q                                              | Optional | The Flatfile Query Language                                                                                  |
-| config:sheet                                          | Required | The unique identifier for the sheet within the Job context.                                                  |
-| config:exceptions                                     | Optional | A list of record identifiers that should be excluded from the Job process.                                   |
-| trigger                                               | Optional | `mannual`, `immediate`                                                                                       |
-| status                                                | Optional | `created`, `planning`, `scheduled`, `ready`, `executing`, `complete`, `failed`, `cancelled`                  |
-| mode                                                  | Optional | `foreground`, `background`, `toolbarBlocking`                                                                |
-| progress                                              | Optional | A numerical or percentage value indicating the completion status of the job.                                 |
-| fileId                                                | Optional | The identifier for the file associated with the Job, if applicable.                                          |
-| environmentId                                         | Optional | The identifier for the environment in which the Job is running.                                              |
+<ParamField path="operation" type="string" required>
+  `export`, `extract`, `map`, `delete`, etc
+</ParamField>
+
+<ParamField path="source" type="string" required>
+  The id of the data source (FileId, WorkbookId, or SheetId)
+</ParamField>
+
+<ParamField path="destination" type="string" required>
+  The id of the data target (if any)
+</ParamField>
+
+<ParamField path="config" type="object" required>
+
+|               |                                                                                          |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| `filter`      | Definition of filtering conditions to apply to Job records.                              |
+| `filterField` | The specific field upon which the filter should be applied.                              |
+| `searchValue` | The value to be used in search operations within the Job’s dataset.                      |
+| `searchField` | The field to be used as a reference point in search operations within the Job’s dataset. |
+| `q`           |                                                                                          |
+| `sheet`       | The unique identifier for the sheet within the Job context.                              |
+| `exceptions`  | A list of record identifiers that should be excluded from the Job process.               |
+
+</ParamField>
+
+<ParamField path="trigger" type="string" required>
+  `manual` or `immediate`
+</ParamField>
+
+### Optional Parameters
+
+<ParamField path="status" type="string" optional>
+  `created`, `planning`, `scheduled`, `ready`, `executing`, `complete`,
+  `failed`, `cancelled`
+</ParamField>
+
+<ParamField path="progress" type="number" optional>
+  A numerical or percentage value indicating the completion status of the Job.
+</ParamField>
+
+<ParamField path="estimatedCompletionAt" type="date" optional>
+  An estimated completion time. The UI will display the estimated processing
+  time in the foreground Job overlay.
+</ParamField>
+
+<ParamField path="formAction" type="object" optional>
+
+|               |                                                                                   |
+| ------------- | --------------------------------------------------------------------------------- |
+| `label`       | A user-friendly name for the action.                                              |
+| `description` | A string describing the action.                                                   |
+| `tooltip`     | Additional info on hover.                                                         |
+| `schedule`    | `weekly`, `daily`, `hourly`                                                       |
+| `operation`   | The operation to perform.                                                         |
+| `mode`        | `foreground, background, toolbarBlocking`                                         |
+| `primary`     | Whether this action is considered the primary or default action.                  |
+| `confirm`     | Whether user confirmation is required before the action is executed.              |
+| `icon`        | Icon representative of the action.                                                |
+| `inputForm`   | `{ type: simple, fields: { key, label, description, type, *config, constraints }` |
+| `*config`     | `{ options: { value, label, description, color, icon, meta } }`                   |
+
+</ParamField>
+
+<ParamField path="input" type="string" optional>
+  Input parameters for the Job type.
+</ParamField>
+
+<ParamField path="subject" type="object" optional>
+
+|          |                                                            |
+| -------- | ---------------------------------------------------------- |
+| resource | Identifier for the subject resource.                       |
+| type     | resource, collection                                       |
+| query    | The query used to locate or identify the subject resource. |
+| params   | Parameters that detail or modify the subject query.        |
+
+</ParamField>
+
+<ParamField path="outcome" type="object" optional>
+
+|             |                                                         |
+| ----------- | ------------------------------------------------------- |
+| heading     | The heading text summarizing the outcome of the action. |
+| acknowledge | Indicates if the outcome requires user acknowledgment.  |
+| message     | Detailed message describing the outcome.                |
+| buttonText  | Label for the button to acknowledge the outcome.        |
+| next        | `{ type, id, label }`                                   |
+
+</ParamField>
+
+<ParamField path="info" type="string" optional>
+  Additional information regarding the Job's current status.
+</ParamField>
+
+<ParamField path="managed" type="string" optional>
+  Indicates whether the Job is managed by the Flatfile platform or not.
+</ParamField>
+
+<ParamField path="mode" type="string" optional>
+  `foreground`, `background`, `toolbarBlocking`
+</ParamField>
 
 Please see our [API Reference](https://reference.flatfile.com/docs/api) for details on all possible values.
 
-## Working With Jobs
+## Working with Jobs
 
 Jobs can be managed via SDK/API. For a complete list of ways to interact with Jobs please see our [API Reference](https://reference.flatfile.com/docs/api) . Commonly, Jobs are acknowledged, progressed, and then completed, or failed. Here's look at those setps.
 
