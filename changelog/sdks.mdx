@@ -4,11 +4,180 @@ description: "Additions and updates to Flatfile SDKs"
 icon: "cube"
 ---
 
-## October 12, 2023
+## November 10, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
 <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       `@flatfile/javascript@0.1.27` & `@flatfile/react@7.2.34`
+
+       When creating a Workbook from SDK, not all params were being passed to the API. All parameters are now seamlessly passed to the API when creating a Workbook client-side.
+
+    </div>
+
+   </div>
+
+</div>
+
+## November 9, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/react@7.2.32` & `@flatfile/react@7.2.33`
+
+       Removed `styled-components` from peer dependencies and resolving an issue with the change.
+
+    </div>
+
+   </div>
+   <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/javascript@0.1.26`
+
+       Removed a `console.log()`.
+
+    </div>
+
+   </div>
+
+</div>
+
+## November 8, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       `@flatfile/listener@0.3.17`
+
+        Resolved an issue where `axios` and its associated HTTP methods were unavailable.
+
+    </div>
+
+   </div>
+
+</div>
+
+## November 6, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       `@flatfile/javascript@0.1.25`
+
+        - Implemented UMD build type for seamless compatibility with Content Delivery Networks (CDNs).
+        - Updated dependencies: `@flatfile/listener@0.3.16`
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       `@flatfile/listener@0.3.16`
+
+        Adds UMD build type for working with CDNs.
+
+    </div>
+
+  </div>
+
+</div>
+
+## November 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       `@flatfile/react@7.2.31` & `@flatfile/javascript@0.1.24`
+
+        - Enhanced performance by updating package versions and removing unused dependencies
+        - Updated dependencies: `@flatfile/embedded-utils@1.0.7`
+
+    </div>
+
+  </div>
+
+</div>
+
+## October 29, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       `@flatfile/react@7.2.29-30` & `@flatfile/javascript@0.1.22-3`
+
+        Implemented the use of `rollup.js` for bundling purposes, enhancing the project's build process.
+
+    </div>
+
+  </div>
+
+</div>
+
+## October 19, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       `@flatfile/react@7.2.28` & `@flatfile/javascript@0.1.21`
+
+         - Updated dependency: `@flatfile/api@1.5.31`
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       `@flatfile/javascript@0.1.20`
+
+        Streamlined the project by removing the unnecessary `dotenv` dependency, resulting in a cleaner and more efficient codebase.
+
+    </div>
+
+  </div>
+
+</div>
+
+## October 16, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       `@flatfile/javascript@0.1.19` & `@flatfile/react@7.2.27`
+
+        When creating a Space, you may like to receive the `spaceId` that was created to tie it back to something in your platform. You can now receive this in the Javascript SDK. This functionality is coming soon for the React SDK.
+
+    </div>
+
+   </div>
+
+</div>
+
+## October 12, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
       <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
        `@flatfile/javascript@0.1.18`
