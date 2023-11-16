@@ -94,3 +94,15 @@ Sheets have some basic options that determine their behavior.
   Use `metadata` to store any extra contextual information about your Sheet.
   Must be valid JSON.
 </ParamField>
+
+<ParamField
+  path="mappingConfidenceThreshold"
+  default=".5"
+  type="number"
+  id="mappingConfidenceThreshold"
+>
+  Use `mappingConfidenceThreshold` to configure the minimum required confidence
+  for mapping jobs targeting that sheet. This can be used to tune the behavior
+  of fuzzy matches, or disable fuzzy matches entirely. **Must be greater than 0
+  and less than or equal to 1 (exact match)**
+</ParamField>
