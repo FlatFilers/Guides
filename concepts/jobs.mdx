@@ -214,29 +214,15 @@ For more on managing your Job see [Working with Jobs](#working-with-jobs).
   The id of the data source (FileId, WorkbookId, or SheetId)
 </ParamField>
 
-<ParamField path="destination" type="string" required>
-  The id of the data target (if any)
-</ParamField>
+### Optional Parameters
 
-<ParamField path="config" type="object" required>
-
-|               |                                                                                          |
-| ------------- | ---------------------------------------------------------------------------------------- |
-| `filter`      | Definition of filtering conditions to apply to Job records.                              |
-| `filterField` | The specific field upon which the filter should be applied.                              |
-| `searchValue` | The value to be used in search operations within the Job’s dataset.                      |
-| `searchField` | The field to be used as a reference point in search operations within the Job’s dataset. |
-| `q`           |                                                                                          |
-| `sheet`       | The unique identifier for the sheet within the Job context.                              |
-| `exceptions`  | A list of record identifiers that should be excluded from the Job process.               |
-
-</ParamField>
-
-<ParamField path="trigger" type="string" required>
+<ParamField path="trigger" type="string" optional>
   `manual` or `immediate`
 </ParamField>
 
-### Optional Parameters
+<ParamField path="destination" type="string" optional>
+  The id of the data target (if any)
+</ParamField>
 
 <ParamField path="status" type="string" optional>
   `created`, `planning`, `scheduled`, `ready`, `executing`, `complete`,
