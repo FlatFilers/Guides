@@ -6,6 +6,136 @@ icon: "layer-group"
 
 ## November
 
+### November 13, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Full Whitelabeling now available in Pro+**
+
+        ![image](../changelog/images/whitelabeling.png)
+
+        There are a few places where the Flatfile logo appears to your end customers.
+
+        1. The **Powered By Flatfile** logo appears in the bottom right of Workbooks.
+        2. When sending invitations to Users or Guests, the Flatfile logo is included at the top of the emails.
+
+        For those seeking a complete white-labeling experience, we offer a fully customizable solution as part of our Pro plans and above. Feel free to get in touch with us at [support@flatfile.com](mailto:support@flatfile.com) to discuss the possibilities of a fully whitelabeled experience tailored to your needs.
+
+    </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Hide the info Tooltip**
+
+        ![image](../changelog/images/infotooltip.png)
+
+        Within each Space, we've implemented an informative tooltip providing essential details about the Space. This tooltip serves as valuable support for addressing customer inquiries and issues. However, we understand that there are scenarios where you may prefer to hide this information from your customers.
+
+        To accommodate your preferences, we've introduced the option to hide this Space tooltip. To make this adjustment, you can utilize the "Update Environment" patch available in our [API Reference](https://reference.flatfile.com/docs/api/20058726b7884-update-an-environment).
+
+        ```jsx
+        metadata: {
+            showSpaceInfo: false
+          }
+        ```
+    </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/core.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        In this update, we've implemented a crucial enhancement by unifying the casing in our API. We've resolved issues where certain properties were inconsistently cased, which had previously hindered their proper setting and retrieval.
+
+        With this unification, you can now seamlessly interact with our API, ensuring a smoother and more reliable experience.
+
+    </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        Previously, if an existing value was present in the enum field, you couldn't select a different value from the dropdown. Additionally, when a dropdown field was empty, you were unable to use the dropdown to select a valid option, and typing out an option wasn't possible either. Both of these limitations have now been resolved.
+
+    </div>
+
+  </div>
+</div>
+
+### November 7, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Control your mapping accuracy**
+
+        We're excited to announce a new parameter within Sheet configuration, aptly named `mappingConfidenceThreshold`. This parameter empowers you to fine-tune your experience when working with automatically suggested fields during mapping jobs.
+
+        With `mappingConfidenceThreshold`, you have the flexibility to configure the minimum required confidence level. Think of it as a precision control, offering you the choice between conservative (exact match) or liberal (fuzzy matching) settings.
+
+        **How it works**
+
+        Set the value greater than 0 and up to a maximum of 1, for a more precise control over the mapping process:
+
+        ```jsx workbook.js
+          sheets: [
+            mappingConfidenceThreshold: .6,
+            {...}
+          ]
+        ```
+
+        [Learn more](https://flatfile.com/docs/blueprint/sheet-options#mappingConfidenceThreshold)
+
+    </div>
+
+  </div>
+</div>
+
 ## October (21)
 
 ##### October 25, 2023
