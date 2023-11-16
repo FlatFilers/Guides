@@ -1,24 +1,162 @@
 ---
-title: "@flatfile/plugin-json-schema"
-description: "A plugin for converting JSON Schema to Flatfile Blueprint."
+title: "@flatfile/plugin-convert-json-schema"
+description: "A plugin for converting JSON Schema to Flatfile Blueprint and configuring a Flatfile Space."
 icon: "clock"
 ---
 
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
+
 <CardGroup cols={1}>
-    <Card title="@flatfile/plugin-convert-json-schema" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/json-schema" icon="github" >
-    *currently in development*<br/>
+  <Card
+    title="@flatfile/plugin-convert-json-schema"
+    icon="download"
+  >
+    The @flatfile/plugin-convert-json-schema plugin will automatically convert JSON Schema to the Flatfile Blueprint, a powerful DDL (Data Definition Language) created by Flatfile with a focus on validation and data preparation, and configure a Flatfile Space using the Blueprint.
+    <br />
+    <br />
+    **Event Type:**
     <br/>
-    check back soon for updates
-    </Card>
+    `listener.on('space:configure')`
+
+  </Card>
 </CardGroup>
 
+## Parameters
 
+<ParamField path="models" type="ModelToSheetConfig[]" required>
+  The `models` parameter holds the JSON Schema `sourceUrl` and take other Sheet
+  configuration options.
+</ParamField>
 
-### Overview
+<ParamField path="options.workbookConfig" type="PartialWorkbookConfig">
+  The `options.workbookConfig` parameter takes other optional Workbook
+  configurations.
+</ParamField>
 
-This plugin will automatically convert JSON Schema to the Flatfile Blueprint, a powerful DDL (Data Definition Language) created by Flatfile with a focus on validation and data preparation.
+<ParamField path="options.debug" type="boolean">
+  The `options.debug` parameter lets you toggle on/off helpful debugging
+  messages for development purposes.
+</ParamField>
 
+<ParamField path="callback" type="function">
+  The `callback` parameter receives three arguments: `event`, `workbookIds`, and
+  a `tick` function. The `tick` function can be used to update the Job's
+  progress. The `callback` function is invoked once the Space and Workbooks are
+  fully configured.
+</ParamField>
 
-    
+## API Calls
 
----
+- `api.spaces.update`
+- `api.workbooks.create`
+
+## Imported NPM Packages
+
+- [`@flatfile/api@1.5.37+`](https://npmjs.com/package/@flatfile/api)
+- [`@flatfile/plugin-space-configure@0.1.6+`](https://npmjs.com/package/@flatfile/plugin-space-configure)
+- [`@hyperjump/json-schema@1.6.4+`](https://npmjs.com/package/@hyperjump/json-schema)
+- [`axios@1.5.1+`](https://npmjs.com/package/axios)
+
+## Usage
+
+The @flatfile/plugin-convert-json-schema plugin simplifies the setup of new Flatfile Spaces by configuring the Space from a provided JSON Schema.
+Designed for server-side listeners, it auto-configures the Space using the supplied settings.
+
+```bash install
+npm i @flatfile/plugin-convert-json-schema
+```
+
+```js import
+import { configureSpaceWithJsonSchema } from "@flatfile/plugin-convert-json-schema";
+```
+
+<CodeGroup>
+
+```js listener.js w/ basic configuration
+listener.use(
+  configureSpaceWithJsonSchema([
+    { sourceUrl: "https://example.com/customer.schema.json" },
+  ])
+);
+```
+
+```js listener.js /w advanced configuration
+const workbookActions: Flatfile.Action[] = [
+  {
+    operation: 'submitAction',
+    mode: 'foreground',
+    label: 'Submit data',
+    type: 'string',
+    description: 'Submit this data to a webhook.',
+    primary: true,
+  },
+]
+
+const sheetActions: Flatfile.Action[] = [
+  {
+    operation: 'duplicateSheet',
+    mode: 'foreground',
+    label: 'Duplicate',
+    description: 'Duplicate this sheet.',
+    primary: true,
+  },
+]
+
+const customerModel: PartialSheetConfig = {
+  sourceUrl: 'https://example.com/customer.schema.json'
+  slug: 'customer',
+  name: 'Customer',
+  actions: sheetActions,
+}
+
+const personModel: PartialSheetConfig = {
+  sourceUrl: 'https://example.com/person.schema.json',
+  slug: 'person',
+  name: 'Person',
+  actions: sheetActions,
+}
+
+const workbookConfig: PartialWorkbookConfig = { actions: workbookActions }
+
+const callback = async (event, workbookIds, tick) => {
+  const { spaceId } = event.context
+  await api.documents.create(spaceId, {
+    title: 'Welcome',
+    body: `<div>
+    <h1>Welcome!</h1>
+    <h2>To get started, follow these steps:</h2>
+    <h2>1. Step One</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    <h3>Remember, if you need any assistance, you can always refer back to this page by clicking "Welcome" in the left-hand sidebar!</h3>
+    </div>`,
+  })
+  await tick(80, 'Document created')
+}
+
+listener.use(
+  configureSpaceWithJsonSchema(
+    [
+      customerModel,
+      personModel,
+    ],
+    { workbookConfig, debug: true },
+    callback
+  )
+)
+```
+
+</CodeGroup>
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-convert-json-schema"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/json-schema"
+    icon="github"
+  ></Card>
+</CardGroup>
