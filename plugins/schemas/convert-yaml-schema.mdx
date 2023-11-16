@@ -29,4 +29,26 @@ listener.use(
 );
 ```
 
----
+## Parameters
+
+<ParamField path="models" type="ModelToSheetConfig[]" required>
+  The `models` parameter holds the YAML Schema `sourceUrl` and take other Sheet
+  configuration options.
+</ParamField>
+
+<ParamField path="options.workbookConfig" type="PartialWorkbookConfig">
+  The `options.workbookConfig` parameter takes other optional Workbook
+  configurations.
+</ParamField>
+
+<ParamField path="options.debug" type="boolean">
+  The `options.debug` parameter lets you toggle on/off helpful debugging
+  messages for development purposes.
+</ParamField>
+
+<ParamField path="callback" type="function">
+  The `callback` parameter receives three arguments: `event`, `workbookIds`, and
+  a `tick` function. The `tick` function can be used to update the Job's
+  progress. The `callback` function is invoked once the Space and Workbooks are
+  fully configured.
+</ParamField>
