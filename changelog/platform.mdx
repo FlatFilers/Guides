@@ -6,12 +6,12 @@ icon: "layer-group"
 
 ## November
 
-## November 13, 2023
+### November 13, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
- <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
       <div
         style={{
           float: "left",
@@ -35,8 +35,8 @@ icon: "layer-group"
     </div>
 
   </div>
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
       <div
         style={{
           float: "left",
@@ -54,7 +54,7 @@ icon: "layer-group"
 
         To accommodate your preferences, we've introduced the option to hide this Space tooltip. To make this adjustment, you can utilize the "Update Environment" patch available in our [API Reference](https://reference.flatfile.com/docs/api/20058726b7884-update-an-environment).
 
-        ```json
+        ```jsx
         metadata: {
             showSpaceInfo: false
           }
@@ -62,9 +62,8 @@ icon: "layer-group"
     </div>
 
   </div>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
+      <Snippet file="chips/core.mdx" />
       <div
         style={{
           float: "left",
@@ -93,6 +92,44 @@ icon: "layer-group"
       >
 
         Previously, if an existing value was present in the enum field, you couldn't select a different value from the dropdown. Additionally, when a dropdown field was empty, you were unable to use the dropdown to select a valid option, and typing out an option wasn't possible either. Both of these limitations have now been resolved.
+
+    </div>
+
+  </div>
+</div>
+
+### November 7, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Control your mapping accuracy**
+
+        We're excited to announce a new parameter within Sheet configuration, aptly named `mappingConfidenceThreshold`. This parameter empowers you to fine-tune your experience when working with automatically suggested fields during mapping jobs.
+
+        With `mappingConfidenceThreshold`, you have the flexibility to configure the minimum required confidence level. Think of it as a precision control, offering you the choice between conservative (exact match) or liberal (fuzzy matching) settings.
+
+        **How it works**
+
+        Set the value greater than 0 and up to a maximum of 1, for a more precise control over the mapping process:
+
+        ```jsx workbook.js
+          sheets: [
+            mappingConfidenceThreshold: .6,
+            {...}
+          ]
+        ```
+
+        [Learn more](https://flatfile.com/docs/blueprint/sheet-options#mappingConfidenceThreshold)
 
     </div>
 
