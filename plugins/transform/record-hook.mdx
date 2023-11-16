@@ -57,53 +57,25 @@ npm i @flatfile/plugin-record-hook @flatfile/hooks
 
 <CodeGroup>
 
-```js recordHook
-import { FlatfileRecord, recordHook } from "@flatfile/plugin-record-hook";
-import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
-```
-
 ```js bulkRecordHook
 import { FlatfileRecord, bulkRecordHook } from "@flatfile/plugin-record-hook";
 import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 ```
 
+```js recordHook
+import { FlatfileRecord, recordHook } from "@flatfile/plugin-record-hook";
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
+```
+
 </CodeGroup>
 
-Pass `recordHook` or `bulkRecordHook` to a Flatfile data listener and provide a function to run when data is added or updated.
+Pass `bulkRecordHook` or `recordHook` to a Flatfile data listener and provide a function to run when data is added or updated.
 
 ### Listen for data changes
 
 Set up a listener to configure Flatfile and respond to data Events. Then use this plugin to set up a hook that responds to data changes.
 
 <CodeGroup>
-
-```js recordHook js
-import { recordHook } from "@flatfile/plugin-record-hook";
-
-export default async function (listener) {
-  listener.use(
-    recordHook("my-sheet", (record) => {
-      //do your work here
-      return record;
-    })
-  );
-}
-```
-
-```js recordHook ts
-import { FlatfileRecord } from "@flatfile/hooks";
-import { recordHook } from "@flatfile/plugin-record-hook";
-import { FlatfileListener } from "@flatfile/listener";
-
-export default async function (listener: FlatfileListener) {
-  listener.use(
-    recordHook("my-sheet", (record: FlatfileRecord) => {
-      //do your work here
-      return record;
-    })
-  );
-}
-```
 
 ```js bulkRecordHook js
 import { bulkRecordHook } from "@flatfile/plugin-record-hook";
@@ -132,6 +104,35 @@ export default async function (listener: FlatfileListener) {
         //do your work here
         return r;
       });
+    })
+  );
+}
+```
+
+
+```js recordHook js
+import { recordHook } from "@flatfile/plugin-record-hook";
+
+export default async function (listener) {
+  listener.use(
+    recordHook("my-sheet", (record) => {
+      //do your work here
+      return record;
+    })
+  );
+}
+```
+
+```js recordHook ts
+import { FlatfileRecord } from "@flatfile/hooks";
+import { recordHook } from "@flatfile/plugin-record-hook";
+import { FlatfileListener } from "@flatfile/listener";
+
+export default async function (listener: FlatfileListener) {
+  listener.use(
+    recordHook("my-sheet", (record: FlatfileRecord) => {
+      //do your work here
+      return record;
     })
   );
 }
@@ -207,60 +208,6 @@ In the `bulkRecordHook` example, it passes a `chunkSize` of 100 and asks the hoo
 
 <CodeGroup>
 
-```js recordHook js
-import { recordHook } from "@flatfile/plugin-record-hook";
-
-export default async function (listener) {
-  listener.use(
-    recordHook(
-      "my-sheet",
-      (record) => {
-        const email = record.get("email") as string;
-        if (!email) {
-          console.log("Email is required");
-          record.addError("email", "Email is required");
-        }
-        const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (email !== null && !validEmailAddress.test(email)) {
-          console.log("Invalid email address");
-          record.addError("email", "Invalid email address");
-        }
-        return record;
-      }
-    )
-  );
-}
-
-```
-
-```js recordHook ts
-import { FlatfileRecord } from "@flatfile/hooks";
-import { recordHook } from "@flatfile/plugin-record-hook";
-import { FlatfileListener } from "@flatfile/listener";
-
-export default async function (listener: FlatfileListener) {
-  listener.use(
-    recordHook(
-      "contacts",
-      (record: FlatfileRecord) => {
-        const email = record.get("email") as string;
-        if (!email) {
-          console.log("Email is required");
-          record.addError("email", "Email is required");
-        }
-        const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (email !== null && !validEmailAddress.test(email)) {
-          console.log("Invalid email address");
-          record.addError("email", "Invalid email address");
-        }
-        return record;
-      }
-    )
-  );
-}
-
-```
-
 ```js bulkRecordHook js
 import { bulkRecordHook } from "@flatfile/plugin-record-hook";
 
@@ -317,6 +264,60 @@ export default async function (listener: FlatfileListener) {
     )
   );
 }
+```
+
+```js recordHook js
+import { recordHook } from "@flatfile/plugin-record-hook";
+
+export default async function (listener) {
+  listener.use(
+    recordHook(
+      "my-sheet",
+      (record) => {
+        const email = record.get("email") as string;
+        if (!email) {
+          console.log("Email is required");
+          record.addError("email", "Email is required");
+        }
+        const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email !== null && !validEmailAddress.test(email)) {
+          console.log("Invalid email address");
+          record.addError("email", "Invalid email address");
+        }
+        return record;
+      }
+    )
+  );
+}
+
+```
+
+```js recordHook ts
+import { FlatfileRecord } from "@flatfile/hooks";
+import { recordHook } from "@flatfile/plugin-record-hook";
+import { FlatfileListener } from "@flatfile/listener";
+
+export default async function (listener: FlatfileListener) {
+  listener.use(
+    recordHook(
+      "contacts",
+      (record: FlatfileRecord) => {
+        const email = record.get("email") as string;
+        if (!email) {
+          console.log("Email is required");
+          record.addError("email", "Email is required");
+        }
+        const validEmailAddress = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email !== null && !validEmailAddress.test(email)) {
+          console.log("Invalid email address");
+          record.addError("email", "Invalid email address");
+        }
+        return record;
+      }
+    )
+  );
+}
+
 ```
 
 </CodeGroup>

@@ -66,19 +66,17 @@ UI. These include:
   as a tooltip on hover.
 </ParamField>
 
-<ParamField path="requireSelection" type="boolean" default="false">
-  Setting this to true will disable a Sheet Action when no records in the Sheet
+<ParamField path="constraints" type="array[{}]">
+  `[{ type: 'hasAllValid' }]`: Adding this constraint will disable a Sheet Action when there are invalid
+  records.
+  
+  `[{ type: 'hasSelection' }]`: Adding this constraint will disable a Sheet Action when no records in the Sheet
   are selected.
 </ParamField>
 
-<ParamField path="requireAllValid" type="boolean" default="false">
-  Setting this to true will disable a Sheet Action when there are invalid
-  records.
-</ParamField>
-
 <ParamField path="mode" type="string" default="background">
-  Can be `foreground` or `background`. Foreground mode will prevent interacting
-  with the resource until complete.
+  Can be `foreground`, `background` or `toolbar-blocking`. Foreground mode will
+  prevent interacting with the entire resource until complete.
 </ParamField>
 
 ### Usage
@@ -92,8 +90,7 @@ An Action with all of the above properties would look like this:
   primary: true,
   confirm: true,
   description: 'Are you sure you want to run this action?',
-  requireSelection: true,
-  requireAllValid: true,
+  constraints: [{ type: 'hasAllValid' }, { type: 'hasSelection' }],
   mode: 'foreground'
   tooltip: 'Click to run action'
 }

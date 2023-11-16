@@ -4,11 +4,9 @@ description: "Translate and customize your Space with text overrides"
 icon: "language"
 ---
 
-Tailor the language and text in your Flatfile Space with ease! This guide will lead you step-by-step to allow you to both translate and personalize the text in your space in just a couple of simple steps.
+Tailor the language and text in your Flatfile Space with ease! This guide will lead you step-by-step to allow you to both translate and personalize the text in your Space in just a couple of simple steps.
 
-<Info>
-Flatfile will auto-detect which language to display from the users browser settings! If the users language is undetectable or we don't currently support it, we will fallback to English.
-</Info>
+
 
 ## Available Languages
 
@@ -19,11 +17,42 @@ We support translations into these languages:
 | English  | en     |
 | French   | fr     |
 | German   | de     |
-| Indonesian | id    |
+| Indonesian | id   |
+| Italian    | it    |
+| Japanese    | jp    |
+| Korean    | kr    |
+| Portuguese    | pt    |
+| Portuguese - Brazilian | pt-BR     |
 | Spanish  | es     |
-| Brazilian Portuguese  | pt-BR     |
+| Turkish  | tr     |
+| Vietnamese  | vi     |
+| Chinese  | zh     |
 
 <Tip>Need more languages? Reach out to us at [support@flatfile.io](mailto:support@flatfile.io).</Tip>
+
+## Setting the language on a Space
+Flatfile will auto-detect the user's language based on their browser settings. If the language is not detectable or is currently unsupported, the system will automatically be set to English.
+
+### Overriding the language
+You can manually set the language on a Space using the languageOverride property. This property can be set either directly on the Space or at the environment level if the Space has not yet been created. 
+
+All users who use the Space will only see the language set in the language override property. Browser settings will no longer be respected.
+
+To specify the language, simply assign the appropriate language code (e.g., 'en' for English, 'fr' for French, etc.) to the languageOverride property.
+
+```jsx listener.ts
+
+listener.on(
+    "space:created",
+    async ({ context: { spaceId, environmentId } }) => {
+      // This space will be in English regardless of the users browser settings
+      const updateSpace =  await api.spaces.update(spaceId, {
+            environmentId,
+            languageOverride: "en",
+          })
+        })  
+```
+
 
 ## Adding translations
 ### Creating your translation files
@@ -46,7 +75,7 @@ While creating your JSON translation files, you can opt for partial or full JSON
 ### Setting your Translations Path
 To provide translations and text overrides you can use the translationsPath parameter. You have the flexibility to set up translationsPaths at two levels:
 - **Space:** Overrides the environment level setting.
-- **Environment:** Used when no space-level path is defined.
+- **Environment:** Used when no Space-level path is defined.
 
 <Info>
 Set your translationsPath to the URL of your **english JSON file**. This should be the URL ending in `/locales/en/translation.json`. 
@@ -75,14 +104,14 @@ For our translations repository we would set our translationsPath to: https://ra
 </Tip>
 ### Implementing Translations Path
 
-Set up your translations path using our API or the listener. This can be done at both the space and environment levels.
+Set up your translations path using our API or the listener. This can be done at both the Space and environment levels.
 
 ```jsx listener.ts
 
 listener.on(
     "space:created",
     async ({ context: { spaceId, environmentId } }) => {
-      //set the translation path for the space
+      //set the translation path for the Space
       const updateSpace =  await api.spaces.update(spaceId, {
             environmentId,
             translationsPath:
@@ -92,7 +121,7 @@ listener.on(
 ```
 
 <Info>
-Currently we only offer translations and text overrides for the guest experience within your spaces. These means there will be admin only areas that are not currently customizable. 
+Currently we only offer translations and text overrides for the guest experience within your Spaces. These means there will be admin only areas that are not currently customizable. 
 </Info>
 
 

@@ -3,7 +3,9 @@
     "allowed_elements": [
       "Snippet",
       "CodeGroup",
-      "CardGroup"
+      "CardGroup",
+      "Info",
+      "Warning"
     ]
   }
 }
