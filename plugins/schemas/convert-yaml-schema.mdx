@@ -13,21 +13,17 @@ icon: "download"
 <CardGroup cols={1}>
     <Card title="@flatfile/plugin-convert-yaml-schema" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/yaml-schema" icon="github" >
         The @flatfile/plugin-convert-yaml-schema plugin converts YAML schema to Flatfile Blueprint.
+        <br />
+        <br />
+        **Event Type:**
+        <br/>
+        `listener.on('space:configure')`
     </Card>
 </CardGroup>
 
 ### Overview
 
 This plugin will automatically convert Yaml Schema to the Flatfile Blueprint, a powerful DDL (Data Definition Language) created by Flatfile with a focus on validation and data preparation.
-
-### Basic Example:
-```js
-listener.use(
-    configureSpaceWithYamlSchema([
-        { sourceUrl: "http://localhost:3000/yaml" }
-    ])
-);
-```
 
 ## Parameters
 
@@ -52,3 +48,22 @@ listener.use(
   progress. The `callback` function is invoked once the Space and Workbooks are
   fully configured.
 </ParamField>
+
+## Imported NPM Packages
+
+- [`@flatfile/api@1.5.37+`](https://npmjs.com/package/@flatfile/api)
+- [`@flatfile/plugin-space-configure@0.1.6+`](https://npmjs.com/package/@flatfile/plugin-space-configure)
+- [`@flatfile/plugin-json-schema@0.0.2+`](https://npmjs.com/package/@flatfile/plugin-json-schema)
+- [`@hyperjump/json-schema@1.6.4+`](https://npmjs.com/package/@hyperjump/json-schema)
+- [`axios@1.5.1+`](https://npmjs.com/package/axios)
+- [`js-yaml@4.1.0+`](https://npmjs.com/package/js-yaml)
+
+### Basic Example:
+
+```js
+listener.use(
+    configureSpaceWithYamlSchema([
+        { sourceUrl: "http://localhost:3000/yaml" }
+    ])
+);
+```
