@@ -1,0 +1,26 @@
+---
+title: "@flatfile/plugin-yaml-schema"
+description: "A plugin for converting YAML Schema to Flatfile Blueprint."
+icon: "download"
+---
+
+<CardGroup cols={1}>
+    <Card title="@flatfile/plugin-convert-yaml-schema" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/yaml-schema" icon="github" >
+        The @flatfile/plugin-convert-yaml-schema plugin converts YAML schema to Flatfile Blueprint.
+    </Card>
+</CardGroup>
+
+### Overview
+
+This plugin will automatically convert Yaml Schema to the Flatfile Blueprint, a powerful DDL (Data Definition Language) created by Flatfile with a focus on validation and data preparation.
+
+### Basic Example:
+```js
+listener.use(
+    configureSpaceWithYamlSchema([
+        { sourceUrl: "http://localhost:3000/yaml" }
+    ])
+);
+```
+
+---
