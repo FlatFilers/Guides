@@ -79,6 +79,12 @@ UI. These include:
   prevent interacting with the entire resource until complete.
 </ParamField>
 
+<ParamField path="requireAllValid" type="boolean" default="false">
+  Determines if a sheet or a workbook level action should be disabled until all rows are valid.
+  If set to `true` on a sheet-level action, that action will be disabled untill all rows are valid on that sheet only.
+  If set to `true` on a workbook-level action. that action will be disabled untill all rows on all sheets of that workbook are valid.
+</ParamField>
+
 ### Usage
 
 An Action with all of the above properties would look like this:
@@ -93,6 +99,7 @@ An Action with all of the above properties would look like this:
   constraints: [{ type: 'hasAllValid' }, { type: 'hasSelection' }],
   mode: 'foreground'
   tooltip: 'Click to run action'
+  requireAllValid: true
 }
 ```
 
