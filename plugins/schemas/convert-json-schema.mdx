@@ -75,8 +75,9 @@ listener.use(
         name: "JSON Schema Workbook",
         sheets: [
           {
-            source: "http://localhost:1234/schema/customer",
-            name: "Custom Sheet Name - Customer",
+            source:
+              "https://raw.githubusercontent.com/FlatFilers/flatfile-docs-kitchen-sink/main/typescript/dynamic-configurations-json-schema/example-schemas/person.json",
+            name: "Custom Sheet Name - Person",
           },
         ],
       },
@@ -92,41 +93,24 @@ listener.use(
     workbooks: [
       {
         source: {
-          $id: "https://localhost:3000/json",
-          description:
-            "A basic set of JSON Schema to test data type conversions simply",
+          $id: "https://raw.githubusercontent.com/FlatFilers/flatfile-docs-kitchen-sink/main/typescript/dynamic-configurations-json-schema/example-schemas/person.json",
+          $schema: "https://json-schema.org/draft/2020-12/schema",
+          title: "Person",
           type: "object",
-          title: "ExampleData",
           properties: {
-            stringColumn: {
-              description: "A column for strings!",
+            firstName: {
               type: "string",
+              description: "The person's first name.",
             },
-            integerColumn: {
-              description: "A column for integers!",
-              type: "integer",
+            lastName: {
+              type: "string",
+              description: "The person's last name.",
             },
-            arrayColumn: {
-              description: "A column for string arrays!",
-              type: "array",
-              items: {
-                type: "string",
-              },
-            },
-            objectColumn: {
+            age: {
               description:
-                "A column for nested columns containing numbers and strings!",
-              type: "object",
-              properties: {
-                nestedUniqueNumberColumn: {
-                  description: "A column for unique numbers!",
-                  type: "number",
-                  uniqueItems: true,
-                },
-                nestedStringColumn: {
-                  type: "string",
-                },
-              },
+                "Age in years which must be equal to or greater than zero.",
+              type: "integer",
+              minimum: 0,
             },
           },
         },
@@ -143,8 +127,10 @@ listener.use(
     workbooks: [
       {
         source: async () =>
-          await fetchExternalReference("http://localhost:1234/schema/product"),
-        name: "Custom Sheet Name - Product",
+          await fetchExternalReference(
+            "https://raw.githubusercontent.com/FlatFilers/flatfile-docs-kitchen-sink/main/typescript/dynamic-configurations-json-schema/example-schemas/person.json"
+          ),
+        name: "Custom Sheet Name - Person",
       },
     ],
   })
@@ -187,27 +173,26 @@ export default async function (listener: FlatfileListener) {
     },
   ];
 
-  const customerModel: PartialSheetConfig = {
-    source: "https://example.com/customer.schema.json",
-    slug: "customer",
-    name: "Customer",
-    actions: sheetActions,
-  };
-
   const personModel: PartialSheetConfig = {
     source: {
-      $id: "https://example.com/person.schema.json",
-      description: "A basic Person JSON Schema model",
-      type: "object",
+      $id: "https://raw.githubusercontent.com/FlatFilers/flatfile-docs-kitchen-sink/main/typescript/dynamic-configurations-json-schema/example-schemas/person.json",
+      $schema: "https://json-schema.org/draft/2020-12/schema",
       title: "Person",
+      type: "object",
       properties: {
-        name: {
-          description: "First & last name",
+        firstName: {
           type: "string",
+          description: "The person's first name.",
+        },
+        lastName: {
+          type: "string",
+          description: "The person's last name.",
         },
         age: {
-          description: "The person's age in years",
+          description:
+            "Age in years which must be equal to or greater than zero.",
           type: "integer",
+          minimum: 0,
         },
       },
     },
@@ -216,17 +201,33 @@ export default async function (listener: FlatfileListener) {
     actions: sheetActions,
   };
 
+  const customerModel: PartialSheetConfig = {
+    source:
+      "https://raw.githubusercontent.com/FlatFilers/flatfile-docs-kitchen-sink/main/typescript/dynamic-configurations-json-schema/example-schemas/customer.json",
+    slug: "customer",
+    name: "Customer",
+    actions: sheetActions,
+  };
+
   const productModel: PartialSheetConfig = {
     source: async () =>
-      await fetchExternalReference("https://example.com/product.schema.json"),
+      await fetchExternalReference(
+        "https://raw.githubusercontent.com/FlatFilers/flatfile-docs-kitchen-sink/main/typescript/dynamic-configurations-json-schema/example-schemas/product.json"
+      ),
     slug: "product",
     name: "Product",
     actions: sheetActions,
   };
 
-  const workbookOneConfig: PartialWorkbookConfig = {
-    name: "JSON Schema Workbook",
-    sheets: [customerModel, personModel, productModel],
+  const workbookOne: PartialWorkbookConfig = {
+    name: "Store Workbook",
+    sheets: [customerModel, productModel],
+    actions: workbookActions,
+  };
+
+  const workbookTwo: PartialWorkbookConfig = {
+    name: "Person Workbook",
+    sheets: [personModel],
     actions: workbookActions,
   };
 
@@ -248,7 +249,7 @@ export default async function (listener: FlatfileListener) {
   listener.use(
     configureSpaceWithJsonSchema(
       {
-        workbooks: [workbookOneConfig],
+        workbooks: [workbookOne, workbookTwo],
       },
       callback
     )
