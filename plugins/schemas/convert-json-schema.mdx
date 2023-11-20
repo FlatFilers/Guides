@@ -27,19 +27,9 @@ icon: "download"
 
 ## Parameters
 
-<ParamField path="models" type="ModelToSheetConfig[]" required>
-  The `models` parameter holds the JSON Schema `sourceUrl` and take other Sheet
-  configuration options.
-</ParamField>
-
-<ParamField path="options.workbookConfig" type="PartialWorkbookConfig">
-  The `options.workbookConfig` parameter takes other optional Workbook
-  configurations.
-</ParamField>
-
-<ParamField path="options.debug" type="boolean">
-  The `options.debug` parameter lets you toggle on/off helpful debugging
-  messages for development purposes.
+<ParamField path="setupFactory" type="JsonSetupFactory" required>
+  The `setupFactory` parameter holds the Workbook and Sheet configuration
+  options and JSON Schema source.
 </ParamField>
 
 <ParamField path="callback" type="function">
@@ -76,80 +66,195 @@ import { configureSpaceWithJsonSchema } from "@flatfile/plugin-convert-json-sche
 
 <CodeGroup>
 
-```js listener.js w/ basic configuration
+```js listener.js - source example 1
+// Pass a URL to `source` to retrieve the schema
 listener.use(
-  configureSpaceWithJsonSchema([
-    { sourceUrl: "https://example.com/customer.schema.json" },
-  ])
+  configureSpaceWithJsonSchema({
+    workbooks: [
+      {
+        name: "JSON Schema Workbook",
+        sheets: [
+          {
+            source: "http://localhost:1234/schema/customer",
+            name: "Custom Sheet Name - Customer",
+          },
+        ],
+      },
+    ],
+  })
 );
 ```
 
-```js listener.js /w advanced configuration
-const workbookActions: Flatfile.Action[] = [
-  {
-    operation: 'submitAction',
-    mode: 'foreground',
-    label: 'Submit data',
-    type: 'string',
-    description: 'Submit this data to a webhook.',
-    primary: true,
-  },
-]
-
-const sheetActions: Flatfile.Action[] = [
-  {
-    operation: 'duplicateSheet',
-    mode: 'foreground',
-    label: 'Duplicate',
-    description: 'Duplicate this sheet.',
-    primary: true,
-  },
-]
-
-const customerModel: PartialSheetConfig = {
-  sourceUrl: 'https://example.com/customer.schema.json'
-  slug: 'customer',
-  name: 'Customer',
-  actions: sheetActions,
-}
-
-const personModel: PartialSheetConfig = {
-  sourceUrl: 'https://example.com/person.schema.json',
-  slug: 'person',
-  name: 'Person',
-  actions: sheetActions,
-}
-
-const workbookConfig: PartialWorkbookConfig = { actions: workbookActions }
-
-const callback = async (event, workbookIds, tick) => {
-  const { spaceId } = event.context
-  await api.documents.create(spaceId, {
-    title: 'Welcome',
-    body: `<div>
-    <h1>Welcome!</h1>
-    <h2>To get started, follow these steps:</h2>
-    <h2>1. Step One</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-    <h3>Remember, if you need any assistance, you can always refer back to this page by clicking "Welcome" in the left-hand sidebar!</h3>
-    </div>`,
-  })
-  await tick(80, 'Document created')
-}
-
+```js listener.js - source example 2
+// Pass a JSON object to `source` to use the schema directly
 listener.use(
-  configureSpaceWithJsonSchema(
-    [
-      customerModel,
-      personModel,
+  configureSpaceWithJsonSchema({
+    workbooks: [
+      {
+        source: {
+          $id: "https://localhost:3000/json",
+          description:
+            "A basic set of JSON Schema to test data type conversions simply",
+          type: "object",
+          title: "ExampleData",
+          properties: {
+            stringColumn: {
+              description: "A column for strings!",
+              type: "string",
+            },
+            integerColumn: {
+              description: "A column for integers!",
+              type: "integer",
+            },
+            arrayColumn: {
+              description: "A column for string arrays!",
+              type: "array",
+              items: {
+                type: "string",
+              },
+            },
+            objectColumn: {
+              description:
+                "A column for nested columns containing numbers and strings!",
+              type: "object",
+              properties: {
+                nestedUniqueNumberColumn: {
+                  description: "A column for unique numbers!",
+                  type: "number",
+                  uniqueItems: true,
+                },
+                nestedStringColumn: {
+                  type: "string",
+                },
+              },
+            },
+          },
+        },
+      },
     ],
-    { workbookConfig, debug: true },
-    callback
-  )
-)
+  })
+);
+```
+
+```js listener.js - source example 3
+// Pass a function to `source` retrieve the schema
+listener.use(
+  configureSpaceWithJsonSchema({
+    workbooks: [
+      {
+        source: async () =>
+          await fetchExternalReference("http://localhost:1234/schema/product"),
+        name: "Custom Sheet Name - Product",
+      },
+    ],
+  })
+);
 ```
 
 </CodeGroup>
+
+## Full Example
+
+```js listener.ts
+import api, { Flatfile } from "@flatfile/api";
+import type { FlatfileListener } from "@flatfile/listener";
+import {
+  PartialSheetConfig,
+  PartialWorkbookConfig,
+  configureSpaceWithJsonSchema,
+  fetchExternalReference,
+} from "@flatfile/plugin-convert-json-schema";
+
+export default async function (listener: FlatfileListener) {
+  const workbookActions: Flatfile.Action[] = [
+    {
+      operation: "submitAction",
+      mode: "foreground",
+      label: "Submit data",
+      type: "string",
+      description: "Submit this data to a webhook.",
+      primary: true,
+    },
+  ];
+
+  const sheetActions: Flatfile.Action[] = [
+    {
+      operation: "duplicateSheet",
+      mode: "foreground",
+      label: "Duplicate",
+      description: "Duplicate this sheet.",
+      primary: true,
+    },
+  ];
+
+  const customerModel: PartialSheetConfig = {
+    source: "https://example.com/customer.schema.json",
+    slug: "customer",
+    name: "Customer",
+    actions: sheetActions,
+  };
+
+  const personModel: PartialSheetConfig = {
+    source: {
+      $id: "https://example.com/person.schema.json",
+      description: "A basic Person JSON Schema model",
+      type: "object",
+      title: "Person",
+      properties: {
+        name: {
+          description: "First & last name",
+          type: "string",
+        },
+        age: {
+          description: "The person's age in years",
+          type: "integer",
+        },
+      },
+    },
+    slug: "person",
+    name: "Person",
+    actions: sheetActions,
+  };
+
+  const productModel: PartialSheetConfig = {
+    source: async () =>
+      await fetchExternalReference("https://example.com/product.schema.json"),
+    slug: "product",
+    name: "Product",
+    actions: sheetActions,
+  };
+
+  const workbookOneConfig: PartialWorkbookConfig = {
+    name: "JSON Schema Workbook",
+    sheets: [customerModel, personModel, productModel],
+    actions: workbookActions,
+  };
+
+  const callback = async (event, workbookIds, tick) => {
+    const { spaceId } = event.context;
+    await api.documents.create(spaceId, {
+      title: "Welcome",
+      body: `<div>
+      <h1>Welcome!</h1>
+      <h2>To get started, follow these steps:</h2>
+      <h2>1. Step One</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      <h3>Remember, if you need any assistance, you can always refer back to this page by clicking "Welcome" in the left-hand sidebar!</h3>
+      </div>`,
+    });
+    await tick(80, "Document created");
+  };
+
+  listener.use(
+    configureSpaceWithJsonSchema(
+      {
+        workbooks: [workbookOneConfig],
+      },
+      callback
+    )
+  );
+}
+```
 
 ## See the code
 
