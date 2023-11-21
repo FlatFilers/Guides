@@ -464,4 +464,60 @@ Find this React example project in the Flatfile GitHub repository.
     Clone the Flatfile React tutorial here.
   </Card>
 </CardGroup>
+
+
+## useSpaceTrigger
+
+You can control the exact moment when you want to create/use a space. For this, you can use useSpaceTrigger hook, as shown in the example below:
+
+<CodeGroup>
+
+```tsx src/App.tsx
+import { Dispatch, SetStateAction, useState } from "react";
+import { ISpace, useSpaceTrigger } from "@flatfile/react";
+
+const spaceProps: ISpace = {
+  name: "Embedded Space",
+  publishableKey: "pk_1234",
+  environmentId: "us_env_1234",
+};
+
+export default function App() {
+  const [showSpace, setShowSpace] = useState(false);
+  
+  const { Space, createOrUseSpace } = useSpaceTrigger({
+    ...spaceProps,
+    sidebarConfig: {
+      showSidebar: false,
+    },
+    closeSpace: {
+      operation: "submitActionFg",
+      onClose: () => setShowSpace(false),
+    },
+  })
+
+  return (
+    <div className="content">
+      <h2>
+        <code>&lt;Flatfile /&gt;</code>
+      </h2>
+      <p>Embed Flatfile in just a few lines of code.</p>
+      {/*Button to trigger the modal */}
+      <div>
+        <button
+          className="contrast"
+          onClick={async () => {
+            setShowSpace(!showSpace)
+            await createOrUseSpace()
+          }}
+        >
+          {showSpace === true ? "Close" : "Open and create new"} Space
+        </button>
+        {showSpace && <Space />}
+      </div>
+    </div>
+  );
+}
+```
+</CodeGroup>
 ````
