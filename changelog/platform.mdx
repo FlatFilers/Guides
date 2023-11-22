@@ -10,8 +10,8 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/files.mdx" />
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
       <div
         style={{
           float: "left",
@@ -20,15 +20,27 @@ icon: "layer-group"
           width: "calc(80% - 30px)",
         }}
       >
+        **You can now disable Actions when there are invalid records**
 
-         **Enhanced Weighting Mechanism for User History in Enum Mapping**
+        ![image](../changelog/images/hasAllValid.gif)
 
-        We assign an 80% value to other users' history compared to the current user's history. Previously, this was only applied to field mapping, Now, this approach has been extended to enum mapping as well.
+        Previously, developers faced challenges in determining when all rows were valid, essential for preventing unintended data egress.
 
-        This update addresses an issue where conflicting histories between two users could result in one user being unable to edit due to the other's history taking precedence.
+        Now, developers can now add an optional flag to Actions, preventing users from initiating Actions when Sheets or Workbooks contain invalid records.
 
-        With this enhancement, the system now more effectively balances historical inputs from different users, ensuring smoother and more equitable enum mapping automation.
 
+        ```jsx
+        actions: [{
+          ...
+          constraints: [{ type: 'hasAllValid' }]
+          ...
+        }]
+        ```
+
+         Add a `constraints` parameter in your Action that includes `type: hasAllValid,` to disable actions when there are invalid records.
+
+
+        [Learn more](https://flatfile.com/docs/guides/actions#usage)
     </div>
 
   </div>
