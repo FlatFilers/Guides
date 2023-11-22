@@ -21,6 +21,28 @@ icon: "layer-group"
         }}
       >
 
+        **New: Column Visibility Control with Local Storage Memory**
+
+         ![image](../changelog/images/column_hiding.gif)
+
+        We've introduced a new feature that allows for selective hiding or showing of columns, enabling users to customize their view for more focused work. Additionally, your column visibility preferences will now be automatically saved to local storage, ensuring that your personalized settings are remembered for future sessions. This update aims to enhance user efficiency by allowing you to tailor the interface to your specific needs and workflow.
+
+
+    </div>
+
+   </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
         **Guests can now be named in Embedded Flatfile**
 
         Previously, accessing Flatfile either directly through a URL or via an iframe in an embedded SDK with an `accessToken` would categorize all user activities under an anonymous guest. Now, if you know the `guestId`, interactions in embedded Flatfile can be tied back to that person.
@@ -50,7 +72,7 @@ icon: "layer-group"
 
         **Speed Optimization for Large Enum Lists**
 
-        When either the source (file) or destination (Blueprint) list contains more than 100 enums, our mapping AI will now utilize a simplified algorithm. This change addresses scenarios where customers have extensive enum lists, such as 5000 different Shopify products, which previously slowed down our assignment algorithm. With this update, the execution speed for such extensive lists will be significantly faster, ensuring a more efficient and responsive experience for clients with large datasets.
+        When either the source (file) or destination (Blueprint) list contains more than 100 enums, our mapping AI will now utilize a simplified algorithm. This change addresses scenarios where customers have extensive enum lists, such as 5,000 different Shopify products, which previously slowed down our assignment algorithm. With this update, the execution speed for such extensive lists will be significantly faster, ensuring a more efficient and responsive experience for clients with large datasets.
 
     </div>
 
