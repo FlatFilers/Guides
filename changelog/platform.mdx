@@ -6,6 +6,58 @@ icon: "layer-group"
 
 ## November
 
+### November 17, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Guests can now be named in Embedded Flatfile**
+
+        Previously, accessing Flatfile either directly through a URL or via an iframe in an embedded SDK with an `accessToken` would categorize all user activities under an anonymous guest. Now, if you know the `guestId`, interactions in embedded Flatfile can be tied back to that person.
+
+        This is made possible with a new endpoint, **/guests/:guestId/token**, which generates an accessToken, and can be used to load the Flatfile space at **http://platform.flatfile.com/space/:spaceId?token=:accessToken**.
+
+        With this method, Guests are now accurately named and identifiable in the Embedded Flatfile environment, enhancing user recognition and auditing.
+
+        Note: If you were using [`userInfo`](https://flatfile.com/docs/guides/use-cases/embedding/reference/common#userinfo) to identify guests for this purpose, we suggest deprecating your usage and switching to this new approach.
+
+        [See the endpoint](https://flatfile.stoplight.io/docs/api/67620eaca4fde-get-a-guest-token).
+
+    </div>
+
+   </div>
+
+     <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/files.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Speed Optimization for Large Enum Lists**
+
+        When either the source (file) or destination (Blueprint) list contains more than 100 enums, our mapping AI will now utilize a simplified algorithm. This change addresses scenarios where customers have extensive enum lists, such as 5000 different Shopify products, which previously slowed down our assignment algorithm. With this update, the execution speed for such extensive lists will be significantly faster, ensuring a more efficient and responsive experience for clients with large datasets.
+
+    </div>
+
+   </div>
+
+</div>
+
 ### November 13, 2023
 
 <div style={{ display: "table", width: "auto" }}>
