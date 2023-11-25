@@ -121,7 +121,7 @@ icon: "layer-group"
         }}
       >
 
-         **It's the little things**
+         *It's the little things*: Bulk delete in Spaces is now available***
 
         ![image](../changelog/images/bulk_delete_sm.gif)
 
@@ -163,15 +163,13 @@ icon: "layer-group"
         }}
       >
 
-        **Guests can now be named in Embedded Flatfile**
+        **Guests can now be named in a Spaces URL**
 
-        Previously, accessing Flatfile either directly through a URL or via an iframe in an embedded SDK with an `accessToken` would categorize all user activities under an anonymous guest. Now, if you know the `guestId`, interactions in embedded Flatfile can be tied back to that person.
+        Previously, accessing Flatfile either directly through a URL or via an iframe with an `accessToken` would categorize all user activities under an anonymous guest. Now, if you know the `guestId`, interactions in Flatfile can be tied back to that person.
 
         This is made possible with a new endpoint, **/guests/:guestId/token**, which generates an accessToken, and can be used to load the Flatfile space at **http://platform.flatfile.com/space/:spaceId?token=:accessToken**.
 
-        With this method, Guests are now accurately named and identifiable in the Embedded Flatfile environment, enhancing user recognition and auditing.
-
-        Note: If you were using [`userInfo`](https://flatfile.com/docs/guides/use-cases/embedding/reference/common#userinfo) to identify guests for this purpose, we suggest deprecating your usage and switching to this new approach.
+        With this method, Guests are now accurately named and identifiable, enhancing user recognition and auditing.
 
         [See the endpoint](https://flatfile.stoplight.io/docs/api/67620eaca4fde-get-a-guest-token).
 
@@ -388,7 +386,115 @@ icon: "layer-group"
   </div>
 </div>
 
-## October (21)
+### November 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Enhanced Cell Copying with Multi-line Preservation**
+
+        We've improved the functionality for copying cells from external spreadsheets into our system. Now, when you copy cells containing more than one line, these new lines are preserved in the cell value upon pasting.
+
+        While these additional lines may not be visually apparent in the table, you can verify their presence by inspecting the data through the API, or by copying and pasting the cell content into another application.
+
+        This update ensures better data integrity and consistency when transferring content with complex formatting.
+
+    </div>
+
+  </div>
+</div>
+
+## October (25)
+
+##### October 30, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Removed Character Limit on Mappings, Jobs, and Enum Mappings**
+
+        We have lifted the previous 255-character limit for mappings, jobs, and enum mappings. This update allows for greater flexibility and more detailed entries in these areas.
+
+    </div>
+
+  </div>
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **New API Feature to Restore Archived Spaces**
+
+        API users now have the capability to restore an archived space. This can be done by setting the `archivedAt` property of the space to null via the `PATCH /spaces/:spaceId` endpoint.
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Improved Cascade Deletion for Spaces, Workbooks, and Sheets**
+
+        We've enhanced the deletion process for Spaces. In the past, deleting a Space did not automatically cascade to its Workbooks and Sheets. Now, with the latest update, soft deleting a Space will also soft delete its associated Workbooks and Sheets.
+
+        Furthermore, we've refined the `GET /workbooks` query. It now filters out workbooks linked to previously deleted Spaces, ensuring that only relevant and active workbooks are displayed. This update is helpful for Spaces deleted before this improvement was implemented.
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced Display of Enum Options in Turntable**
+
+        We've addressed an issue in the table where enum options without a label were incorrectly displaying as 'undefined'. With the latest update, in cases where an enum option lacks a label, the table will now default to showing the option's value instead.
+
+        This ensures a more accurate and user-friendly display of data.
+
+    </div>
+
+  </div>
+
+</div>
 
 ##### October 25, 2023
 
