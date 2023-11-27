@@ -3,8 +3,10 @@
     "allowed_elements": [
       "Snippet",
       "CodeGroup",
+      "Card",
       "CardGroup",
       "Info",
+      "ParamField",
       "Warning"
     ]
   }
