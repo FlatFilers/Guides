@@ -1,0 +1,11 @@
+{
+  "MD033": {
+    "allowed_elements": [
+      "Snippet",
+      "CodeGroup",
+      "CardGroup",
+      "Info",
+      "Warning"
+    ]
+  }
+}

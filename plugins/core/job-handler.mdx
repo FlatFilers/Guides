@@ -30,9 +30,9 @@ icon: "download"
  The `handler` parameter is a callback where you execute your code. It accepts two arguments: `event` and `tick`.
 
 - `event`: Represents the `FlatfileEvent`, giving context to the handler.
-- `tick`: A function that can be used to update Job progress. It accepts two optional parameters:
+- `tick`: A function that can be used to update Job progress. It accepts two parameters:
   - `progress`: A number between 0 and 100 indicating the progress percentage.
-  - `message`: A descriptive string.
+  - `message`: An optional descriptive string.
 
 Invoking the `tick` function returns a promise that resolves to a JobResponse object. However, using the `tick` function is optional.
 

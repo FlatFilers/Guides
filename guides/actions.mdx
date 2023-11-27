@@ -35,6 +35,13 @@ First, configure your action on your Blueprint.
 <Info>
   If you configure `primary: true` on an Action, it will be represented as the
   rightmost button in the Workbook.
+
+If you configure `trackChanges: true`, it will disable your actions
+until all commits are complete (usually data hooks).
+
+If you configure `constraints: [{ type: 'hasAllValid' }]` on an Action, it will
+disable a Workbook Action when there are invalid records.
+
 </Info>
 
 <Snippet file="shared/workbook_submit_pt1.mdx" />
@@ -79,6 +86,7 @@ export default function flatfileEventListener(listener) {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
           progress: 10,
+          estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
         });
 
         // Do your work here
@@ -111,11 +119,12 @@ export default function flatfileEventListener(listener: FlatfileListener) {
     async (event: FlatfileEvent) => {
       const { context, payload } = event;
       const { jobId, workbookId } = context;
-      
+
       try {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
           progress: 10,
+          estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
         });
 
         // Do your work here
@@ -153,10 +162,12 @@ Sheet-mounted actions are represented as a dropdown in the toolbar of the Sheet.
 First, configure your action on your Blueprint.
 
 <Info>
-  If you configure `requireSelection: true` on an Action, it will disable a
-  Sheet Action when no records in the Sheet are selected. If you configure
-  `requireAllValid: true` on an Action, it will disable a Sheet Action when
-  there are invalid records.
+  If you configure `constraints: [{ type: 'hasSelection' }]` on an Action, it
+  will disable a Sheet Action when no records in the Sheet are selected.
+
+If you configure `constraints: [{ type: 'hasAllValid' }]` on an Action, it will
+disable a Sheet Action when there are invalid records.
+
 </Info>
 
 ```jsx sheet.js
@@ -170,8 +181,7 @@ sheets : [
         label: 'Duplicate selected names',
         type: 'string',
         description: 'Duplicate names for selected rows',
-        requireSelection: false,
-        requireAllValid: true,
+        constraints: [{ type: 'hasAllValid' }, { type: 'hasSelection' }],
         primary: true,
       },
       {...}
@@ -180,7 +190,9 @@ sheets : [
 ]
 ```
 
-Next, listen for a `job:ready` and filter on the `domain` (sheet) and the `operation` of where the action was placed. Be sure to complete to job when it's complete.
+Next, listen for a `job:ready` and filter on the `domain` (sheet) and the
+`operation` of where the action was placed. Be sure to complete to job when
+it's complete.
 
 <CodeGroup>
 
@@ -193,6 +205,7 @@ listener.on(
       await api.jobs.ack(jobId, {
         info: "Getting started.",
         progress: 10,
+        estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
       });
 
       // Do your work here
@@ -220,6 +233,7 @@ listener.on(
       await api.jobs.ack(jobId, {
         info: "Getting started.",
         progress: 10,
+        estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
       });
 
       // Do your work here
@@ -240,7 +254,7 @@ listener.on(
 
 </CodeGroup>
 
-Get the example in the [getting-started](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/space-configure.js) repo
+Get the example in the [getting-started](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main/typescript/actions) repo
 
 ### Retrieving data
 
@@ -417,7 +431,7 @@ Next, listen for `job:ready` and filter on the `domain` (file) and the `operatio
 
 <CodeGroup>
 
-```jsx listener.js job:ready
+```JavaScript listener.js job:ready
 //when the button is clicked in the file dropdown
 
 listener.on(
@@ -462,10 +476,11 @@ listener.on(
   }
 );
 
-async function acknowledgeJob(jobId, info, progress) {
+async function acknowledgeJob(jobId, info, progress, estimatedCompletionAt) {
   await api.jobs.ack(jobId, {
     info,
     progress,
+    estimatedCompletionAt
   });
 }
 
@@ -533,10 +548,16 @@ listener.on(
   }
 );
 
-async function acknowledgeJob(jobId: string, info: string, progress: number) {
+async function acknowledgeJob(
+  jobId: string,
+  info: string,
+  progress: number,
+  estimatedCompletionAt: Date | undefined = undefined
+) {
   await api.jobs.ack(jobId, {
     info,
     progress,
+    estimatedCompletionAt,
   });
 }
 
@@ -577,7 +598,7 @@ Next, listen for a `job:ready` and filter on the `job` you'd like to process. Gr
 
 ## Example Project
 
-Find the documents example in the Flatfile GitHub repository. 
+Find the documents example in the Flatfile GitHub repository.
 
 <CardGroup cols={2}>
   <Card
