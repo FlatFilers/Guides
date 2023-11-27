@@ -284,7 +284,8 @@
     {
       "group": "Automation",
       "pages": [
-        "plugins/automations/automap"
+        "plugins/automations/automap",
+        "plugins/automations/webhook-event-forwarding"
       ]
     },
     {
