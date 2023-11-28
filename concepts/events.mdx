@@ -115,6 +115,25 @@ outcome or plan subsequent actions accordingly.
 }
 ```
 
+#### `workbook:expired`
+
+<ParamField path="workbook:expired" type="readonly">
+  Called when a workbook is expired.
+</ParamField>
+
+```json
+{
+  "domain": "workbook",
+  "topic": "workbook:expired",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234"
+  }
+}
+```
+
 ### Sheet
 
 #### `sheet:updated`
@@ -264,6 +283,25 @@ outcome or plan subsequent actions accordingly.
     "spaceId": "us_sp_1234",
     "fileId": "us_fl_1234",
     "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `file:expired`
+
+<ParamField path="file:expired" type="readonly">
+  Called when a file is expired.
+</ParamField>
+
+```json
+{
+  "domain": "file",
+  "topic": "file:expired",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "fileId": "us_fl_1234"
   }
 }
 ```
@@ -559,6 +597,25 @@ outcome or plan subsequent actions accordingly.
     "spaceId": "us_sp_1234",
     "workbookId": "us_wb_1234",
     "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `space:expired`
+
+<ParamField path="space:expired" type="readonly">
+  Called when a space is expired.
+</ParamField>
+
+```json
+{
+  "domain": "space",
+  "topic": "space:expired",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234"
   }
 }
 ```
