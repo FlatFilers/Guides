@@ -42,14 +42,25 @@ icon: "download"
   take the raw numbers and disregard how it's displayed in Excel.
 </ParamField>
 
-<ParamField path="options.chunkSize" default="10_000" type="number" optional>
+<ParamField path="chunkSize" default="10_000" type="number" optional>
   The `chunkSize` parameter allows you to specify the quantity of records to in
   each chunk.
 </ParamField>
 
-<ParamField path="options.parallel" default="1" type="number" optional>
+<ParamField path="parallel" default="1" type="number" optional>
   The `parallel` parameter allows you to specify the number of chunks to process
   in parallel.
+</ParamField>
+
+<ParamField path="headerDetectionOptions" type="Object" optional>
+  The `headerDetectionOptions` parameter allows you to specify the options for
+  detecting headers in the file. By default, the first 10 rows are scanned for
+  the row with the most non-empty cells.
+</ParamField>
+
+<ParamField path="debug" default="false" type="boolean" optional>
+  The `debug` parameter lets you toggle on/off helpful debugging messages for
+  development purposes.
 </ParamField>
 
 ## API Calls
@@ -97,6 +108,59 @@ listener.use(ExcelExtractor({ raw: true, rawNumbers: true }));
 ```
 
 </CodeGroup>
+
+### Header Detection
+
+Three detection options are provided for detecting headers in the file: `default`, `explicitHeaders`, and `specificRows`. By default, the first 10 rows are scanned for the row with the most non-empty cells. This row is then used as the header row.
+
+#### Default
+
+It looks at the first `rowsToSearch` rows and takes the row
+with the most non-empty cells as the header, preferring the earliest
+such row in the case of a tie.
+
+```js
+listener.use(ExcelExtractor());
+// or...
+listener.use(
+  ExcelExtractor({
+    headerDetectionOptions: {
+      algorithm: "default",
+      rowsToSearch: 30, // Default is 10
+    },
+  })
+);
+```
+
+#### Explicit Headers
+
+This implementation simply returns an explicit list of headers it was provided with.
+
+```js
+listener.use(
+  ExcelExtractor({
+    headerDetectionOptions: {
+      algorithm: "explicitHeaders",
+      headers: ["fiRsT NamE", "LaSt nAme", "emAil"],
+    },
+  })
+);
+```
+
+#### Specific Rows
+
+This implementation looks at specific rows and combines them into a single header. For example, if you knew that the header was in the third row, you could pass it { rowNumbers: [2] }.
+
+```js
+listener.use(
+  ExcelExtractor({
+    headerDetectionOptions: {
+      algorithm: "specificRows",
+      rowNumbers: [2], // 0 based
+    },
+  })
+);
+```
 
 ### Full Example
 
