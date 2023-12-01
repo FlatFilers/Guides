@@ -282,7 +282,7 @@ In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey` and t
 
 ```tsx src/App.tsx
 import { Dispatch, SetStateAction, useState } from "react";
-import { ISpace, useSpaceTrigger } from "@flatfile/react";
+import { ISpace, initializeFlatfile } from "@flatfile/react";
 import { workbook } from "./workbook";
 import { listener } from "./listeners/simple";
 
@@ -295,7 +295,7 @@ export default function App() {
 
   const [showSpace, setShowSpace] = useState(false);
   
-  const { Space, createOrUseSpace } = useSpaceTrigger({
+  const { Space, OpenEmbed } = initializeFlatfile({
     ...spaceProps,
     sidebarConfig: {
       showSidebar: false,
@@ -305,6 +305,11 @@ export default function App() {
       onClose: () => setShowSpace(false),
     },
   })
+
+  const onOpenSpace = async () => {
+    setShowSpace(!showSpace)
+    await OpenEmbed()
+  }
 
   return (
     <div className="content">
@@ -316,10 +321,7 @@ export default function App() {
       <div>
         <button
           className="contrast"
-          onClick={async () => {
-            setShowSpace(!showSpace)
-            await createOrUseSpace()
-          }}
+          onClick={onOpenSpace}
         >
           {showSpace === true ? "Close" : "Open and create new"} Space
         </button>
