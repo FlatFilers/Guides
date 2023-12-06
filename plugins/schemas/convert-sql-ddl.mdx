@@ -1,23 +1,105 @@
 ---
-title: "@flatfile/plugin-sql-ddl"
+title: "@flatfile/plugin-convert-sql-ddl"
 description: "A plugin for converting SQL DDL to Flatfile Blueprint."
-icon: "clock"
+icon: "download"
 ---
 
-<CardGroup cols={1}>
-    <Card title="@flatfile/plugin-convert-sql-ddl" href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/sql-ddl" icon="github" >
-    *currently in development*<br/>
-    <br/>
-    check back soon for updates
-    </Card>
-</CardGroup>
+<Warning>
+  When embedding Flatfile, this plugin should be deployed in a server-side
+  listener. [Learn
+  more](../../developer-tools/client_server_side#server-side-listeners)
+</Warning>
 
+<CardGroup cols={1}>
+  <Card title="@flatfile/plugin-convert-sql-ddl" icon="download">
+    The @flatfile/plugin-convert-sql-ddl plugin will automatically convert SQL
+    DDL to the Flatfile Blueprint, a powerful DDL (Data Definition Language)
+    created by Flatfile with a focus on validation and data preparation.
+    <br />
+    <br />
+    **Event Type:**
+    <br />
+    `listener.on('space:configure')`
+  </Card>
+</CardGroup>
 
 ### Overview
 
 This plugin will automatically convert SQL DDL to the Flatfile Blueprint, a powerful DDL (Data Definition Language) created by Flatfile with a focus on validation and data preparation.
 
+## Parameters
 
+<ParamField path="setupFactory" type="SqlSetupFactory" required>
+  The `setupFactory` parameter holds the Workbook and Sheet configuration
+  options and SQL DDL source.
+</ParamField>
 
+<ParamField path="callback" type="function">
+  The `callback` parameter receives three arguments: `event`, `workbookIds`, and
+  a `tick` function. The `tick` function can be used to update the Job's
+  progress. The `callback` function is invoked once the Space and Workbooks are
+  fully configured.
+</ParamField>
 
----
+## API Calls
+
+- `api.spaces.update`
+- `api.workbooks.create`
+
+## Imported NPM Packages
+
+- [`@flatfile/api@1.5.37+`](https://npmjs.com/package/@flatfile/api)
+- [`@flatfile/plugin-convert-json-schema@0.1.0+`](https://npmjs.com/package/@flatfile/plugin-convert-json-schema)
+- [`@flatfile/plugin-space-configure@0.1.6+`](https://npmjs.com/package/@flatfile/plugin-space-configure)
+- [`axios@1.5.1+`](https://npmjs.com/package/axios)
+- [`sql-ddl-to-json-schema@4.1.0+`](https://npmjs.com/package/sql-ddl-to-json-schema)
+
+## Usage
+
+The @flatfile/plugin-convert-sql-ddl plugin simplifies the setup of new Flatfile Spaces by configuring the Space from a provided SQL DDL.
+Designed for server-side listeners, it auto-configures the Space using the supplied settings.
+
+```bash install
+npm i @flatfile/plugin-convert-sql-ddl
+```
+
+```js import
+import { configureSpaceWithSqlDDL } from "@flatfile/plugin-convert-sql-ddl";
+```
+
+```js listener.js
+listener.use(
+  configureSpaceWithSqlDDL({
+    workbooks: [
+      {
+        name: "SQL DDL Generated Workbook",
+        source: "src/data/example.sql",
+        sheets: [
+          {
+            name: "Users",
+            slug: "user",
+          },
+          {
+            name: "Products",
+            slug: "products",
+          },
+          {
+            name: "Locations",
+            slug: "locations",
+          },
+        ],
+      },
+    ],
+  })
+);
+```
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-convert-sql-ddl"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/sql-ddl-converter"
+    icon="github"
+  ></Card>
+</CardGroup>
