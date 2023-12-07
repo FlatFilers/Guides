@@ -66,24 +66,17 @@
     {
       "name": "API Reference",
       "icon": "rectangle-terminal",
-      "url": "https://reference.flatfile.com/docs/api/"
+      "url": "https://flatfile.stoplight.io/docs/api/"
     }
   ],
   "navigation": [
     {
       "group": "Documentation",
-      "pages": [
-        "overview",
-        "starter-projects"
-      ]
+      "pages": ["overview", "starter-projects"]
     },
     {
       "group": "Updates by area",
-      "pages": [
-        "changelog/platform",
-        "changelog/sdks",
-        "changelog/plugins"
-      ]
+      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
     },
     {
       "group": "Beginner Tutorial",
@@ -142,9 +135,7 @@
                 {
                   "group": "Advanced",
                   "icon": "settings",
-                  "pages": [
-                    "guides/use-cases/embedding/javascript/reuse_space"
-                  ]
+                  "pages": ["guides/use-cases/embedding/javascript/reuse_space"]
                 }
               ]
             },
@@ -183,9 +174,7 @@
     },
     {
       "group": "Upgrade",
-      "pages": [
-        "upgrade/overview"
-      ]
+      "pages": ["upgrade/overview"]
     },
     {
       "group": "Portal - version 2",
@@ -251,9 +240,7 @@
     },
     {
       "group": "Plugins",
-      "pages": [
-        "plugins/overview"
-      ]
+      "pages": ["plugins/overview"]
     },
     {
       "group": "Extractors",
@@ -267,9 +254,7 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": [
-            "plugins/extractors/doc-extractor"
-          ]
+          "pages": ["plugins/extractors/doc-extractor"]
         }
       ]
     },
@@ -283,16 +268,11 @@
     },
     {
       "group": "Automation",
-      "pages": [
-        "plugins/automations/automap"
-      ]
+      "pages": ["plugins/automations/automap"]
     },
     {
       "group": "Export",
-      "pages": [
-        "plugins/export/workbook",
-        "plugins/export/webhook"
-      ]
+      "pages": ["plugins/export/workbook", "plugins/export/webhook"]
     },
     {
       "group": "Schemas",
@@ -317,24 +297,17 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": [
-            "plugins/datasets/countries"
-          ]
+          "pages": ["plugins/datasets/countries"]
         }
       ]
     },
     {
       "group": "Migrations",
-      "pages": [
-        "plugins/migrations/dxp-configure"
-      ]
+      "pages": ["plugins/migrations/dxp-configure"]
     },
     {
       "group": "Core",
-      "pages": [
-        "plugins/core/job-handler",
-        "plugins/core/space-configure"
-      ]
+      "pages": ["plugins/core/job-handler", "plugins/core/space-configure"]
     },
     {
       "group": "Utils",
