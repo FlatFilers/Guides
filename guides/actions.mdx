@@ -35,6 +35,13 @@ First, configure your action on your Blueprint.
 <Info>
   If you configure `primary: true` on an Action, it will be represented as the
   rightmost button in the Workbook.
+
+If you configure `trackChanges: true`, it will disable your actions
+until all commits are complete (usually data hooks).
+
+If you configure `constraints: [{ type: 'hasAllValid' }]` on an Action, it will
+disable a Workbook Action when there are invalid records.
+
 </Info>
 
 <Snippet file="shared/workbook_submit_pt1.mdx" />
@@ -79,7 +86,7 @@ export default function flatfileEventListener(listener) {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
           progress: 10,
-          estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
+          estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
         });
 
         // Do your work here
@@ -117,7 +124,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
           progress: 10,
-          estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
+          estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
         });
 
         // Do your work here
@@ -161,9 +168,6 @@ First, configure your action on your Blueprint.
 If you configure `constraints: [{ type: 'hasAllValid' }]` on an Action, it will
 disable a Sheet Action when there are invalid records.
 
-If you configure `trackChanges: true`, it will disable your actions
-until all commits are complete (usually data hooks).
-
 </Info>
 
 ```jsx sheet.js
@@ -182,9 +186,6 @@ sheets : [
       },
       {...}
     ]
-    settings: {
-      trackChanges: true,
-    }
   }
 ]
 ```
@@ -204,7 +205,7 @@ listener.on(
       await api.jobs.ack(jobId, {
         info: "Getting started.",
         progress: 10,
-        estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
+        estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
       });
 
       // Do your work here
@@ -232,7 +233,7 @@ listener.on(
       await api.jobs.ack(jobId, {
         info: "Getting started.",
         progress: 10,
-        estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700")
+        estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
       });
 
       // Do your work here
@@ -252,7 +253,6 @@ listener.on(
 ```
 
 </CodeGroup>
-
 
 Get the example in the [getting-started](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main/typescript/actions) repo
 
@@ -548,11 +548,16 @@ listener.on(
   }
 );
 
-async function acknowledgeJob(jobId: string, info: string, progress: number, estimatedCompletionAt: Date | undefined = undefined) {
+async function acknowledgeJob(
+  jobId: string,
+  info: string,
+  progress: number,
+  estimatedCompletionAt: Date | undefined = undefined
+) {
   await api.jobs.ack(jobId, {
     info,
     progress,
-    estimatedCompletionAt
+    estimatedCompletionAt,
   });
 }
 
