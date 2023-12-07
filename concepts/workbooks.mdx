@@ -1,19 +1,19 @@
 ---
 title: "Workbooks"
 description: "The anatomy of a Workbook."
-icon: 'database'
+icon: "database"
 ---
 
-Workbooks are analogous to a database, and like a database, they are configured with a type-strict schema. 
-A Workbook replaces the spreadsheet template you may share 
-with your users today when requesting data during the data collection phase 
-of customer onboarding or other file-based data exchange processes. Unlike a spreadsheet, 
+Workbooks are analogous to a database, and like a database, they are configured with a type-strict schema.
+A Workbook replaces the spreadsheet template you may share
+with your users today when requesting data during the data collection phase
+of customer onboarding or other file-based data exchange processes. Unlike a spreadsheet,
 it's designed to allow your team and users to validate, correct, and import data with real-time feedback.
 
-
-<img src="../images/quickstart/workbook.png" caption="The Flatfile Workbook"/>
+<img src="../images/quickstart/workbook.png" caption="The Flatfile Workbook" />
 
 With Workbooks, you can:
+
 1. Accept data from many file types beyond CSVs. (And you can write your own file extractors if you can't find a plugin.)
 2. Automatically apply any validation rules a developer has previously defined.
 3. Provide end users the ability to add, remove, review, filter, and correct any data imported into a Workbook.
@@ -25,35 +25,38 @@ With Workbooks, you can:
 
 A Workbook is comprised of one or more <Tooltip tip="A collection of fields...">[Sheets](../blueprint/overview#terms)</Tooltip> plus any actions you want to take on those Sheets.
 
-<img src="../images/concepts/workbook_anatomy.png" caption="The anatomy of a Workbook"/>
+<img
+  src="../images/concepts/workbook_anatomy.png"
+  caption="The anatomy of a Workbook"
+/>
 
 ### Reference
 
-[See API Reference](https://reference.flatfile.com/docs/api/1a7c2b8c1d306-create-a-workbook)
+[See API Reference](https://flatfile.stoplight.io/docs/api/1a7c2b8c1d306-create-a-workbook)
 
-#### `Sheets` *array*
+#### `Sheets` _array_
+
 A schema contains Sheets. Like tables in a database or sheets in a spreadsheet, Sheets isolate different data schemas.
 
 [Learn more about Blueprint](../blueprint)
 
-#### `Fields` *array*
+#### `Fields` _array_
+
 Sheets contain <Tooltip tip="Describes an attribute of the entity...">[Fields](../blueprint/overview#terms)</Tooltip>. Fields are defined properties of your schema (eg a first_name on a contact sheet.)
 
 [Learn more about Blueprint](../blueprint)
 
-#### `Actions` *array*
+#### `Actions` _array_
+
 Workbooks and Sheets can also contain Actions. Actions are developer-defined operations or macros invoked by end users on selected data like Submit to API, Download as PDF.
 
 [Learn more about Actions](../guides/actions)
 
-#### `Settings` *object*
+#### `Settings` _object_
 `trackChanges: true`: Disables actions on Sheet and Workbook when there is a
 commit that has not been completed (often when Hooks are running)
 
 [Learn more about Blueprint](../blueprint)
 
-#### `Labels` *array*
+#### `Labels` _array_
 To have a workbook appear first in the sidebar, give it the label 'pinned' (it will even have a pin icon!). You can also add other custom labels to your workbooks as needed.
-
-
-
