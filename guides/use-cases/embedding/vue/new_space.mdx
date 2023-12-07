@@ -296,72 +296,56 @@ Also, add the content here to your `main.ts`, and `vite-env.d.ts`. Optionally yo
 <CodeGroup>
 
 ```HTML src/App.vue
-  <template>
-    <div class="main">
-      <div class="description">
-        <h2>
-          <code>&lt;Flatfile /&gt;</code>
-        </h2>
-        <p>Embed Flatfile in just a few lines of code.</p>
-        <button @click="toggleSpace">{{ showSpace ? 'Close' : 'Open' }} space</button>
-      </div>
-      <div v-if="showSpace" class="space-wrapper">
-        <UseSpace v-bind="spaceProps" />
-      </div>
-    </div>
-  </template>
+<script lang="jsx">
+import { ref, defineComponent } from 'vue';
+import { initializeFlatfile } from '@flatfile/vue';
 
-  <script>
-  import { ref } from 'vue';
-  import { UseSpace } from '@flatfile/vue';
 
-  import './styles.css'
-
-  const environmentId = import.meta.env.VITE_ENVIRONMENT_ID;
-  const publishableKey = import.meta.env.VITE_PUBLISHABLE_KEY;
-
-  export default {
-    setup() {
-      const showSpace = ref(false);
-      const spaceProps = ref({
-        name: 'Vue Space',
-        environmentId,
-        publishableKey,
-        closeSpace: {
+export default defineComponent({
+  setup() {
+    const showSpace = ref(false);
+    
+    const spaceProps = ref({
+      name: 'Vue Space',
+      environmentId: 'us_env_1234',
+      publishableKey: 'pk_1234',
+      closeSpace: {
           operation: 'TestSheet:submit',
-          onClose: () => { showSpace.value = false; },
-        },
-        workbook: {},
-        themeConfig: { primaryColor: "#546a76", textColor: "#fff" },
-        userInfo: {
-          name: 'username'
-        },
-        spaceInfo: {
-          name: 'space info'
-        },
-        displayAsModal: true,
-        spaceBody: {
-          metadata: {
-            random: 'param'
-          }
-        }
-      });
+        onClose: () => { showSpace.value = false; },
+      },
+      workbook: {},
+    });
 
-      const toggleSpace = () => {
-        showSpace.value = !showSpace.value;
-      };
+    const { Space, OpenEmbed } = initializeFlatfile(spaceProps.value);
 
-      return {
-        showSpace,
-        toggleSpace,
-        spaceProps,
-      };
-    },
-    components: {
-      UseSpace,
-    },
-  };
-  </script>
+    const toggleSpace = () => {
+      showSpace.value = !showSpace.value;
+      OpenEmbed()
+    };
+
+    return {
+      toggleSpace,
+      showSpace,
+      Space
+    }
+  },
+  render(props, ctx) {
+    const Space = props.Space
+
+    return (
+      <div>
+        <div class="description">
+          <button onClick={props.toggleSpace}>{ props.showSpace ? 'Close' : 'Open' } space</button>
+        </div>
+
+        {props.showSpace && <div class="space-wrapper">
+          <Space />
+        </div>}
+      </div>
+    )
+  },
+});
+</script>
 
 ````
 
@@ -483,78 +467,6 @@ Add your `config.ts` file, and place the following code in it. After you have do
 
 ```
 
-```JavaScript src/App.vue
-<template>
-  <div class="main">
-    <div class="description">
-      <h2>
-        <code>&lt;Flatfile /&gt;</code>
-      </h2>
-      <p>Embed Flatfile in just a few lines of code.</p>
-      <button @click="toggleSpace">{{ showSpace ? 'Close' : 'Open' }} space</button>
-    </div>
-    <div v-if="showSpace" class="space-wrapper">
-      <UseSpace v-bind="spaceProps" />
-    </div>
-  </div>
-</template>
-
-<script>
-import { ref } from 'vue';
-import { UseSpace } from '@flatfile/vue';
-import { config as workbook } from "./config";
-import './styles.css'
-import { listener } from './listeners/listener';
-
-const environmentId = import.meta.env.VITE_ENVIRONMENT_ID;
-const publishableKey = import.meta.env.VITE_PUBLISHABLE_KEY;
-
-export default {
-  setup() {
-    const showSpace = ref(false);
-    const spaceProps = ref({
-      name: 'Vue Space',
-      environmentId,
-      publishableKey,
-      closeSpace: {
-        operation: 'submitActionFg',
-        onClose: () => { showSpace.value = false; },
-      },
-      workbook,
-      autoconfigure:true,
-      themeConfig: { primaryColor: "#546a76", textColor: "#fff" },
-      userInfo: {
-        name: 'username'
-      },
-      spaceInfo: {
-        name: 'space info'
-      },
-      displayAsModal: true,
-      spaceBody: {
-        metadata: {
-          random: 'param'
-        }
-      },
-      
-    });
-
-    const toggleSpace = () => {
-      showSpace.value = !showSpace.value;
-    };
-
-    return {
-      showSpace,
-      toggleSpace,
-      spaceProps,
-    };
-  },
-  components: {
-    UseSpace,
-  },
-};
-</script>
-```
-
 </CodeGroup>
 
 ### 6. Transform Data
@@ -625,75 +537,58 @@ export const listener = FlatfileListener.create((listener) => {
 ```
 
 ```JavaScript src/App.vue
-<template>
-  <div class="main">
-    <div class="description">
-      <h2>
-        <code>&lt;Flatfile /&gt;</code>
-      </h2>
-      <p>Embed Flatfile in just a few lines of code.</p>
-      <button @click="toggleSpace">{{ showSpace ? 'Close' : 'Open' }} space</button>
-    </div>
-    <div v-if="showSpace" class="space-wrapper">
-      <UseSpace v-bind="spaceProps" />
-    </div>
-  </div>
-</template>
+<script lang="jsx">
+import { ref, defineComponent } from 'vue';
+import { initializeFlatfile } from '@flatfile/vue';
+import { config as workbook } from "/src/workbooks/config";
+import { listener } from '/src/listeners/listener';
 
-<script>
-import { ref } from 'vue';
-import { UseSpace } from '@flatfile/vue';
-import { config as workbook } from "./config";
-import './styles.css'
-import { listener } from './listeners/listener';
 
-const environmentId = import.meta.env.VITE_ENVIRONMENT_ID;
-const publishableKey = import.meta.env.VITE_PUBLISHABLE_KEY;
-
-export default {
+export default defineComponent({
   setup() {
     const showSpace = ref(false);
+    
     const spaceProps = ref({
       name: 'Vue Space',
-      environmentId,
-      publishableKey,
+      environmentId: 'us_env_1234',
+      publishableKey: 'pk_1234',
       closeSpace: {
         operation: 'submitActionFg',
         onClose: () => { showSpace.value = false; },
       },
       workbook,
-      listener,
-      autoconfigure:true,
-      themeConfig: { primaryColor: "#546a76", textColor: "#fff" },
-      userInfo: {
-        name: 'username'
-      },
-      spaceInfo: {
-        name: 'space info'
-      },
-      displayAsModal: true,
-      spaceBody: {
-        metadata: {
-          random: 'param'
-        }
-      },
-      
+      listener
     });
+
+    const { Space, OpenEmbed } = initializeFlatfile(spaceProps.value);
 
     const toggleSpace = () => {
       showSpace.value = !showSpace.value;
+      OpenEmbed()
     };
 
     return {
-      showSpace,
       toggleSpace,
-      spaceProps,
-    };
+      showSpace,
+      Space
+    }
   },
-  components: {
-    UseSpace,
+  render(props, ctx) {
+    const Space = props.Space
+
+    return (
+      <div>
+        <div class="description">
+          <button onClick={props.toggleSpace}>{ props.showSpace ? 'Close' : 'Open' } space</button>
+        </div>
+
+        {props.showSpace && <div class="space-wrapper">
+          <Space />
+        </div>}
+      </div>
+    )
   },
-};
+});
 </script>
 ```
 
