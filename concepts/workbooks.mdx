@@ -52,6 +52,11 @@ Workbooks and Sheets can also contain Actions. Actions are developer-defined ope
 
 [Learn more about Actions](../guides/actions)
 
-#### `Labels` _array_
+#### `Settings` _object_
+`trackChanges: true`: Disables actions on Sheet and Workbook when there is a
+commit that has not been completed (often when Hooks are running)
 
+[Learn more about Blueprint](../blueprint)
+
+#### `Labels` _array_
 To have a workbook appear first in the sidebar, give it the label 'pinned' (it will even have a pin icon!). You can also add other custom labels to your workbooks as needed.
