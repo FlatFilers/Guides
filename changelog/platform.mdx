@@ -4,7 +4,499 @@ description: "Additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
-## October 25, 2023
+## November
+
+### November 20, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **You can now disable Actions when there are invalid records**
+
+        ![image](../changelog/images/hasAllValid.gif)
+
+        Previously, developers faced challenges in determining when all rows were valid, essential for preventing unintended data egress.
+
+        Now, developers can now add an optional flag to Actions, preventing users from initiating Actions when Sheets or Workbooks contain invalid records.
+
+
+        ```jsx
+        actions: [{
+          ...
+          constraints: [{ type: 'hasAllValid' }]
+          ...
+        }]
+        ```
+
+         Add a `constraints` parameter in your Action that includes `type: hasAllValid,` to disable actions when there are invalid records.
+
+
+        [Learn more](https://flatfile.com/docs/guides/actions#usage)
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        We made an enhancement to bulk cell pasting. Previously, locking the cell occurred prematurely, causing values to flash after pasting. Now, locking is effectively executed later, resulting in a smoother and more stable pasting experience.
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Space ID Search is now available in the Spaces Table**
+
+        ![image](../changelog/images/search_spaces.gif)
+
+        We've added a new feature that allows you to search for spaces using their Space ID in the Spaces table. This enhancement simplifies the process of locating specific spaces quickly and efficiently.
+    </div>
+
+  </div>
+
+</div>
+
+### November 17, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/files.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+         **Enhanced Weighting Mechanism for User History in Enum Mapping**
+
+        We assign an 80% value to other users' history compared to the current user's history. Previously, this was only applied to field mapping, Now, this approach has been extended to enum mapping as well.
+
+        This update addresses an issue where conflicting histories between two users could result in one user being unable to edit due to the other's history taking precedence.
+
+        With this enhancement, the system now more effectively balances historical inputs from different users, ensuring smoother and more equitable enum mapping automation.
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+         *It's the little things*: Bulk delete in Spaces is now available***
+
+        ![image](../changelog/images/bulk_delete_sm.gif)
+
+        We’ve added a new feature that allows for the selection and bulk deletion of Spaces from your list. This enhancement is particularly beneficial for customers managing numerous Spaces, as it eliminates the need to delete each Space individually, significantly streamlining the process and saving time. Enjoy!
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **New: Column Visibility Control with Local Storage Memory**
+
+         ![image](../changelog/images/column_hiding.gif)
+
+        We've introduced a new feature that allows for selective hiding or showing of columns, enabling users to customize their view for more focused work. Additionally, your column visibility preferences will now be automatically saved to local storage, ensuring that your personalized settings are remembered for future sessions. This update aims to enhance user efficiency by allowing you to tailor the interface to your specific needs and workflow.
+
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Guests can now be named in a Spaces URL**
+
+        Previously, accessing Flatfile either directly through a URL or via an iframe with an `accessToken` would categorize all user activities under an anonymous guest. Now, if you know the `guestId`, interactions in Flatfile can be tied back to that person.
+
+        This is made possible with a new endpoint, **/guests/:guestId/token**, which generates an accessToken, and can be used to load the Flatfile space at **http://platform.flatfile.com/space/:spaceId?token=:accessToken**.
+
+        With this method, Guests are now accurately named and identifiable, enhancing user recognition and auditing.
+
+        [See the endpoint](https://flatfile.stoplight.io/docs/api/67620eaca4fde-get-a-guest-token).
+
+    </div>
+
+   </div>
+
+     <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/files.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Speed Optimization for Large Enum Lists**
+
+        When either the source (file) or destination (Blueprint) list contains more than 100 enums, our mapping AI will now utilize a simplified algorithm. This change addresses scenarios where customers have extensive enum lists, such as 5,000 different Shopify products, which previously slowed down our assignment algorithm. With this update, the execution speed for such extensive lists will be significantly faster, ensuring a more efficient and responsive experience for clients with large datasets.
+
+    </div>
+
+   </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/files.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+       **Fixed File Extraction for Workbook-Only Guests**
+
+      We’ve fixed an issue where guests with [workbook-only access](http://flatfile.com/docs/developer-tools/security/roles-and-permissions#workbook-grant) could upload files but couldn’t extract them due to access restrictions. Guests can now upload and extract files smoothly in workbooks they have access to.
+    </div>
+
+  </div>
+
+</div>
+
+### November 13, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Full Whitelabeling now available in Pro+**
+
+        ![image](../changelog/images/whitelabeling.png)
+
+        There are a few places where the Flatfile logo appears to your end customers.
+
+        1. The **Powered By Flatfile** logo appears in the bottom right of Workbooks.
+        2. When sending invitations to Users or Guests, the Flatfile logo is included at the top of the emails.
+
+        For those seeking a complete white-labeling experience, we offer a fully customizable solution as part of our Pro plans and above. Feel free to get in touch with us at [support@flatfile.com](mailto:support@flatfile.com) to discuss the possibilities of a fully whitelabeled experience tailored to your needs.
+
+    </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Hide the info Tooltip**
+
+        ![image](../changelog/images/infotooltip.png)
+
+        Within each Space, we've implemented an informative tooltip providing essential details about the Space. This tooltip serves as valuable support for addressing customer inquiries and issues. However, we understand that there are scenarios where you may prefer to hide this information from your customers.
+
+        To accommodate your preferences, we've introduced the option to hide this Space tooltip. To make this adjustment, you can utilize the "Update Environment" patch available in our [API Reference](https://flatfile.stoplight.io/docs/api/20058726b7884-update-an-environment).
+
+        ```jsx
+        metadata: {
+            showSpaceInfo: false
+          }
+        ```
+    </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/core.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        In this update, we've implemented a crucial enhancement by unifying the casing in our API. We've resolved issues where certain properties were inconsistently cased, which had previously hindered their proper setting and retrieval.
+
+        With this unification, you can now seamlessly interact with our API, ensuring a smoother and more reliable experience.
+
+    </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        Previously, if an existing value was present in the enum field, you couldn't select a different value from the dropdown. Additionally, when a dropdown field was empty, you were unable to use the dropdown to select a valid option, and typing out an option wasn't possible either. Both of these limitations have now been resolved.
+
+    </div>
+
+  </div>
+</div>
+
+### November 7, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Control your mapping accuracy**
+
+        We're excited to announce a new parameter within Sheet configuration, aptly named `mappingConfidenceThreshold`. This parameter empowers you to fine-tune your experience when working with automatically suggested fields during mapping jobs.
+
+        With `mappingConfidenceThreshold`, you have the flexibility to configure the minimum required confidence level. Think of it as a precision control, offering you the choice between conservative (exact match) or liberal (fuzzy matching) settings.
+
+        **How it works**
+
+        Set the value greater than 0 and up to a maximum of 1, for a more precise control over the mapping process:
+
+        ```jsx workbook.js
+          sheets: [
+            mappingConfidenceThreshold: .6,
+            {...}
+          ]
+        ```
+
+        [Learn more](https://flatfile.com/docs/blueprint/sheet-options#mappingConfidenceThreshold)
+
+    </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **More Precise Filtering is now Available**
+
+        Now, FFQL queries made via filter: in the the search bar can be seamlessly combined with other filters. Whether you prefer using tabbed filters like “valid” and “error,” or you rely on the “Filter By Value” menu, you can now harness the power of FFQL alongside these filters.
+
+        With this update, you’ll experience precise narrowing of row results every time you apply FFQL queries in conjunction with other filters. No more guesswork—your filtered results will be spot on, making it easier than ever to find the information you need with pinpoint accuracy.
+
+    </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/theming.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Theming Column Headers**
+
+        ![image](../changelog/images/fontinheader.png)
+
+        You can  now control the font of the headers in a table using the `column.header.fontFamily` property.
+
+        [Learn more](https://flatfile.com/docs/guides/theming#theme-table)
+
+    </div>
+
+  </div>
+</div>
+
+### November 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Enhanced Cell Copying with Multi-line Preservation**
+
+        We've improved the functionality for copying cells from external spreadsheets into our system. Now, when you copy cells containing more than one line, these new lines are preserved in the cell value upon pasting.
+
+        While these additional lines may not be visually apparent in the table, you can verify their presence by inspecting the data through the API, or by copying and pasting the cell content into another application.
+
+        This update ensures better data integrity and consistency when transferring content with complex formatting.
+
+    </div>
+
+  </div>
+</div>
+
+## October (25)
+
+##### October 30, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Removed Character Limit on Mappings, Jobs, and Enum Mappings**
+
+        We have lifted the previous 255-character limit for mappings, jobs, and enum mappings. This update allows for greater flexibility and more detailed entries in these areas.
+
+    </div>
+
+  </div>
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **New API Feature to Restore Archived Spaces**
+
+        API users now have the capability to restore an archived space. This can be done by setting the `archivedAt` property of the space to null via the `PATCH /spaces/:spaceId` endpoint.
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Improved Cascade Deletion for Spaces, Workbooks, and Sheets**
+
+        We've enhanced the deletion process for Spaces. In the past, deleting a Space did not automatically cascade to its Workbooks and Sheets. Now, with the latest update, soft deleting a Space will also soft delete its associated Workbooks and Sheets.
+
+        Furthermore, we've refined the `GET /workbooks` query. It now filters out workbooks linked to previously deleted Spaces, ensuring that only relevant and active workbooks are displayed. This update is helpful for Spaces deleted before this improvement was implemented.
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced Display of Enum Options in Turntable**
+
+        We've addressed an issue in the table where enum options without a label were incorrectly displaying as 'undefined'. With the latest update, in cases where an enum option lacks a label, the table will now default to showing the option's value instead.
+
+        This ensures a more accurate and user-friendly display of data.
+
+    </div>
+
+  </div>
+
+</div>
+
+##### October 25, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -20,13 +512,19 @@ icon: "layer-group"
       >
         **Disable Actions while Hooks are Running**
 
-        ![image](../changelog/images/commit_completed.png)
+        ![image](../changelog/images/trackChanges.gif)
 
         Previously, developers faced challenges in determining when all hooks had finished running, essential for ensuring data transformation completion and preventing unintended data egress. As a workaround, they resorted to creating placeholder fields that defaulted to invalid states. When a hook completed processing for a record, it marked the field as valid, allowing submission only when there were no errors in this field.
 
         Now, we're thrilled to introduce a solution to simplify this process—an all-new event: `commit:completed`. This event signals the end of all processing tasks.
 
-        Add a `settings` parameter in your sheet that includes `trackChanges: true,` to disable actions on both Sheets and Workbooks until any pending commits have been completed.
+
+        ```jsx
+        settings : [{ trackChanges: true }]
+        ```
+
+         Add a `settings` parameter in your sheet that includes `trackChanges: true,` to disable actions on both Sheets and Workbooks until any pending commits have been completed.
+
 
         [Learn more](http://flatfile.com/docs/blueprint/sheet-options#settings)
     </div>
@@ -54,7 +552,7 @@ icon: "layer-group"
 
 </div>
 
-## October 18, 2023
+##### October 18, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -76,7 +574,7 @@ icon: "layer-group"
   </div>
 </div>
 
-## October 16, 2023
+##### October 16, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -127,7 +625,7 @@ icon: "layer-group"
   </div>
 </div>
 
-## October 13, 2023
+##### October 13, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -164,12 +662,14 @@ icon: "layer-group"
         ]
         ```
 
+        [Learn more](https://flatfile.com/docs/guides/actions#document-mounted)
+
     </div>
 
   </div>
 </div>
 
-## October 11, 2023
+##### October 11, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -189,6 +689,8 @@ icon: "layer-group"
         With the introduction of these API actions, you gain the ability to manage sheet locking within your application. The `sheets.lock` action allows you to lock a sheet, preventing any further modifications to its content. Conversely, the `sheets.unlock` action enables you to release the lock and restore full editing capabilities to the sheet.
 
         These new API actions provide greater control and flexibility when it comes to managing sheet access and data integrity.
+
+        [See the endpoint](https://flatfile.stoplight.io/docs/api/4bad342799c26-lock-a-sheet)
 
     </div>
 
@@ -220,6 +722,8 @@ icon: "layer-group"
           title: "Getting Started"
         });
         ```
+
+        [Learn more](https://flatfile.com/docs/guides/documents#ephemeral-documents)
     </div>
 
   </div>
@@ -245,7 +749,7 @@ icon: "layer-group"
   </div>
 </div>
 
-## October 9, 2023
+##### October 9, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -287,7 +791,7 @@ icon: "layer-group"
 
          Previously, when uploading a file, actions could only be added to it after the file was uploaded (by calling a file update via a listener). Now, with our latest update, you can now include actions during file upload allowing actions to be applied to the file immediately upon creation.
 
-         See the [API Reference](https://reference.flatfile.com/docs/api/68a88a9f6783f-upload-a-file).
+         See the [API Reference](https://flatfile.stoplight.io/docs/api/68a88a9f6783f-upload-a-file).
     </div>
 
   </div>
@@ -332,7 +836,7 @@ icon: "layer-group"
 
 </div>
 
-## October 8, 2023
+##### October 8, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -376,7 +880,7 @@ icon: "layer-group"
 
   </div>
 
-## October 5, 2023
+##### October 5, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -409,7 +913,7 @@ icon: "layer-group"
   </div>
 </div>
 
-## October 2, 2023
+##### October 2, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -534,7 +1038,9 @@ icon: "layer-group"
 
 </div>
 
-## September 27, 2023
+## September (27)
+
+##### September 27, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -577,7 +1083,7 @@ icon: "layer-group"
   </div>
 </div>
 
-## September 22, 2023
+##### September 22, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -620,7 +1126,7 @@ icon: "layer-group"
     </div>
     </div>
 
-## September 20, 2023
+##### September 20, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -691,7 +1197,7 @@ icon: "layer-group"
 
   </div>
 
-## September 15, 2023
+##### September 15, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -716,6 +1222,8 @@ icon: "layer-group"
 
     Your code will be formatted accordingly, enhancing the clarity and presentation of your content.
 
+
+
     </div>
 
   </div>
@@ -739,7 +1247,7 @@ icon: "layer-group"
 
 </div>
 
-## September 13, 2023
+##### September 13, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -755,7 +1263,9 @@ icon: "layer-group"
     >
         Introducing support for finding empty fields in ffql using the syntax:
 
-        ```filter: first_name eq ""```.
+        ```jsx
+        filter: first_name eq ""
+        ```
 
         Now, you can easily query and filter records with empty values.
     </div>
@@ -809,7 +1319,7 @@ icon: "layer-group"
 
 </div>
 
-## September 11, 2023
+##### September 11, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -845,7 +1355,7 @@ icon: "layer-group"
 
 </div>
 
-## September 8, 2023
+##### September 8, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -916,7 +1426,7 @@ icon: "layer-group"
 
 </div>
 
-## September 6, 2023
+##### September 6, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -1011,7 +1521,9 @@ icon: "layer-group"
         ```
         </CodeGroup>
 
-      This improvement adds versatility and flexibility to your job outcomes, enhancing user interaction and experience. [Learn more](http://flatfile.com/docs/guides/actions#usage).
+      This improvement adds versatility and flexibility to your job outcomes, enhancing user interaction and experience.
+
+      [Learn more](http://flatfile.com/docs/guides/actions#usage).
 
       </div>
 
@@ -1029,13 +1541,21 @@ icon: "layer-group"
     >
         **Enhanced Action Button Behavior**
 
-        ![image](../changelog/images/disabled_actions.png)
+        ![image](../changelog/images/hasAllValid.gif)
 
        Two key enhancements to Actions have been introduced:
 
-        **Disable Actions When Invalid Records**: Developers can now add an optional `constraints: [{ type: 'hasAllValid' }],` flag to Actions, preventing users from initiating Actions when Sheets or Workbooks contain invalid records. This helps avoid unnecessary job failures and ensures Actions are performed on valid data.
+        **Disable Actions When Invalid Records**: Developers can now add an optional flag to Actions, preventing users from initiating Actions when Sheets or Workbooks contain invalid records. This helps avoid unnecessary job failures and ensures Actions are performed on valid data.
 
-        **Disable Actions When No Selected Records:** To enhance the user experience, we've introduced the `constraints: [ { type: 'hasSelection' }],` flag. When added as a constraint, this flag disables Actions if no records are selected in the Sheet or Workbook, ensuring Actions are only triggered when relevant data is chosen.
+        ```jsx
+        constraints: [{ type: 'hasAllValid' }],
+        ```
+
+        **Disable Actions When No Selected Records:** To enhance the user experience, we've introduced the `hasSelection` flag. When added as a constraint, this flag disables Actions if no records are selected in the Sheet or Workbook, ensuring Actions are only triggered when relevant data is chosen.
+
+         ```jsx
+        constraints: [ { type: 'hasSelection' }],
+        ```
 
 
       [Learn more](http://flatfile.com/docs/concepts/actions#optional-parameters).
@@ -1046,7 +1566,7 @@ icon: "layer-group"
 
 </div>
 
-## September 1, 2023
+##### September 1, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -1146,7 +1666,9 @@ icon: "layer-group"
 
   </div>
 
-## August 30, 2023
+## August (29)
+
+##### August 30, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -1168,7 +1690,7 @@ icon: "layer-group"
       3. Egress
       4. Sidebar Customization
 
-Similar to the rest of the options, we've provided the underlying code for each Space, simplifying the process of breaking down and comprehending the elements on display.
+      Similar to the rest of the options, we've provided the underlying code for each Space, simplifying the process of breaking down and comprehending the elements on display.
 
       </div>
 
@@ -1217,7 +1739,7 @@ Similar to the rest of the options, we've provided the underlying code for each 
         width: "calc(80% - 30px)",
       }}
     >
-      A pagination logic issue concerning **Environments** has been resolved. The correction ensures accurate calculation of the number of pages and consistent delivery of valid responses in accordance with the [Pagination](https://reference.flatfile.com/docs/api/1dcb99aada63f-pagination) type.
+      A pagination logic issue concerning **Environments** has been resolved. The correction ensures accurate calculation of the number of pages and consistent delivery of valid responses in accordance with the [Pagination](https://flatfile.stoplight.io/docs/api/1dcb99aada63f-pagination) type.
 
 Furthermore, the default page size for **Spaces** has been set to 10, aligning it with the specifications outlined in the API documentation.
 
@@ -1261,7 +1783,7 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 
 </div>
 
-## August 25, 2023
+##### August 25, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -1293,7 +1815,7 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 
 </div>
 
-## August 24, 2023
+##### August 24, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -1499,7 +2021,7 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 
 </div>
 
-## August 20, 2023
+##### August 20, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -1667,4 +2189,3 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 </div>
 
 </div>
-````

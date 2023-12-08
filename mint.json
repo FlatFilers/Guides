@@ -53,14 +53,20 @@
   },
   "versions": [
     "latest",
-    { "name": "v3", "url": "https://flatfile.com/versioned-docs/3.0" },
-    { "name": "v2", "url": "https://flatfile.com/versioned-docs/2.0" }
+    {
+      "name": "v3",
+      "url": "https://flatfile.com/versioned-docs/3.0"
+    },
+    {
+      "name": "v2",
+      "url": "https://flatfile.com/versioned-docs/2.0"
+    }
   ],
   "anchors": [
     {
       "name": "API Reference",
       "icon": "rectangle-terminal",
-      "url": "https://reference.flatfile.com/docs/api/"
+      "url": "https://flatfile.stoplight.io/docs/api/"
     }
   ],
   "navigation": [
@@ -114,7 +120,6 @@
     },
     {
       "group": "By use case",
-
       "pages": [
         {
           "group": "Embed in your app",
@@ -158,7 +163,6 @@
     },
     {
       "group": "Blueprint",
-
       "pages": [
         "blueprint/overview",
         "blueprint/sheet-options",
@@ -274,6 +278,7 @@
       "group": "Schemas",
       "pages": [
         "plugins/schemas/convert-json-schema",
+        "plugins/schemas/convert-yaml-schema",
         {
           "group": "More in development",
           "icon": "clock",

@@ -17,7 +17,6 @@ Sheets have some basic options that determine their behavior.
       "readOnly": false,
       "allowAdditionalFields": false,
       "access": ["add", "edit"],
-      "settings": {"trackChanges": true},
       "fields": [
         {
           "key": "code",
@@ -71,13 +70,6 @@ Sheets have some basic options that determine their behavior.
   access controls](./access).
 </ParamField>
 
-<ParamField path="settings" type="object">
-  <b id="settings">Options:</b>
-  <br />
-  `trackChanges: true`: Disables actions on Sheet and Workbook when there is a
-  commit that has not been completed (often when Hooks are running)
-</ParamField>
-
 <ParamField path="fields" type="array" required>
   This is where you define your Sheet's data schema. The collection of fields in
   your Sheet detemines the shape of data you wish to accept. Read more about
@@ -93,4 +85,16 @@ Sheets have some basic options that determine their behavior.
 <ParamField path="metadata" type="object">
   Use `metadata` to store any extra contextual information about your Sheet.
   Must be valid JSON.
+</ParamField>
+
+<ParamField
+  path="mappingConfidenceThreshold"
+  default=".5"
+  type="number"
+  id="mappingConfidenceThreshold"
+>
+  Use `mappingConfidenceThreshold` to configure the minimum required confidence
+  for mapping jobs targeting that sheet. This can be used to tune the behavior
+  of fuzzy matches, or disable fuzzy matches entirely. **Must be greater than 0
+  and less than or equal to 1 (exact match)**
 </ParamField>

@@ -4,7 +4,217 @@ description: "Additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
-## October 11, 2023
+## November
+
+### November 16, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/schema.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      **🚀 Introducing @flatfile/plugin-convert-yaml-schema 🚀**
+
+      `@flatfile/plugin-convert-yaml-schema` automates the process of converting YAML into the Flatfile Blueprint.
+
+      To get started, simply provide a sourceUrl of your schema, and wrap it with the plugin:
+
+      ```jsx
+      listener.use(
+        configureSpaceWithYamlSchema([
+          { sourceUrl: "https://example.com/yaml" },
+        ])
+      );
+      ```
+
+      Additionally, you can enhance the experience with a few optional parameters:
+      - `options.workbookConfig`: The options.workbookConfig parameter allows you to incorporate other optional Workbook configurations seamlessly.
+      - `options.debug`: Toggle the options.debug parameter on/off to access helpful debugging messages for development purposes.
+      - `callback`: The callback parameter, which receives three arguments—event, workbookIds, and a tick function—empowers you with the ability to update the Job’s progress. Note: This callback function is invoked once the Space and Workbooks are fully configured.
+
+      With the `@flatfile/plugin-convert-yaml-schema`, you can simplify the schema conversion process—all in one powerful package.
+
+      Check out the [docs](https://flatfile.com/docs/plugins/schemas/convert-yaml-schema).
+
+    </div>
+
+  </div>
+</div>
+
+### November 15, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/schema.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      **🚀 Introducing @flatfile/plugin-convert-json-schema 🚀**
+
+      `@flatfile/plugin-convert-json-schema` automates the process of converting JSON Schema into the Flatfile Blueprint.
+
+      To get started, simply provide a sourceUrl of your schema, and wrap it with the plugin:
+
+      ```jsx
+      listener.use(
+        configureSpaceWithJsonSchema([
+          { sourceUrl: "https://example.com/customer.schema.json" },
+        ])
+      );
+      ```
+
+      Additionally, you can enhance the experience with a few optional parameters:
+      - `options.workbookConfig`: The options.workbookConfig parameter allows you to incorporate other optional Workbook configurations seamlessly.
+      - `options.debug`: Toggle the options.debug parameter on/off to access helpful debugging messages for development purposes.
+      - `callback`: The callback parameter, which receives three arguments—event, workbookIds, and a tick function—empowers you with the ability to update the Job’s progress. Note: This callback function is invoked once the Space and Workbooks are fully configured.
+
+      With the `@flatfile/plugin-convert-json-schema`, you can simplify the schema conversion process—all in one powerful package.
+
+      Check out the [docs](https://flatfile.com/docs/plugins/schemas/convert-json-schema).
+
+    </div>
+
+  </div>
+</div>
+
+### November 9, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-json-extractor@0.1.1`
+
+      The JSON extractor now intelligently flattens nested objects, combining their field keys into a single, structured format until it reaches a primitive type, making data extraction more comprehensive and user-friendly.
+
+    </div>
+
+  </div>
+</div>
+
+### November 3, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core_plugin.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-record-hook@1.1.11`
+
+      In a recent update, we introduced a comparison mechanism to track changes between original and modified values, ensuring that records were only updated when both value and messages had changed. However, this approach unintentionally excluded updates to metadata when no changes were detected in value or messages.
+
+      In this version, we've refined the process by comparing the entire original record object with the modified record object. This ensures that no updates, including metadata changes, are left unaccounted for, regardless of whether there were changes in the value or message fields. Your records are now more comprehensively managed and updated.
+
+    </div>
+
+  </div>
+</div>
+
+### November 2, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core_plugin.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-record-hook@1.1.10`
+
+      Previously, there was an issue with completing commits while using the `@flatfile/api` client-side, which led to the error message "Cannot read properties of undefined (reading 'get')." To address this problem, we've made a swift and effective transition to using fetch. Soon, we plan a more comprehensive solution.
+
+    </div>
+
+  </div>
+</div>
+
+### November 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core_plugin.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-record-hook@1.1.9`
+
+      - Previously, an issue arose when attempting to complete a commit with the `trackChanges` flag (a Workbook setting to disable actions on Sheet and Workbook when there is a commit that has not been completed) disabled on the Workbook. This issue has been resolved, and commits are now exclusively triggered when the `trackChanges` feature is enabled for the Workbook.
+
+      - Additionally, we've implemented an advanced deep comparison method between the original record and the potentially modified record. This enhancement guarantees that only essential patches for updated records are transmitted, resulting in a notably more efficient and precise data update process.
+
+    </div>
+
+  </div>
+</div>
+
+# October (8)
+
+##### October 19, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/automations.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-export-workbook@0.0.8`
+
+     When exporting a workbook, a job completion message is now available with an added feature. You can now include a "Next" URL within the job completion message, providing a seamless transition to the next step in your workflow.
+
+    </div>
+
+  </div>
+</div>
+
+##### October 18, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/automations.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-export-workbook@0.0.7`
+
+      In this update, we've made several valuable improvements to enhance your experience:
+
+      **Export Record ID Option**: You can now utilize an optional flag to export the Record ID, adding flexibility and precision to your exports.
+
+      **Column Pattern Generator Fix**: We've addressed and fixed issues related to the column pattern generator, ensuring accurate and reliable data generation.
+
+      **Column Count per Sheet**: We're now passing the column count to the generator for each sheet, optimizing data handling for your specific needs.
+
+      **Improved Error Handling**: We've refined error handling to ensure that jobs are properly marked as failed in case of errors, providing better transparency and control.
+
+      **File Cleanup**: To keep your Space clean and efficient, files are now automatically deleted after they have been successfully uploaded, promoting tidy data management.
+
+      These updates collectively contribute to a smoother and more efficient workflow for your tasks.
+
+    </div>
+
+  </div>
+</div>
+
+##### October 17, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-extractor-xlsx@1.8.0`
+
+      In this version, we've added a valuable enhancement to the Excel Extractor by exposing SheetJS's "raw" option. This option empowers users to preserve formatted text by default. When `raw` is set to true, the extractor will return the raw value, offering greater flexibility and control over extracted data.
+
+    </div>
+
+  </div>
+</div>
+
+##### October 13, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/automations.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-automap@0.1.1`
+
+      Previously, initiating the "import" process, whether by dropping a file into a sheet or clicking the "Import" button from a file, created an unintended secondary `workbook:map` job. This secondary job was detected by the automap plugin, leading to duplicate entries in a sheet.
+
+      In this version, we've introduced a solution to address this issue. We've added an "isAutomap" flag to the job's input, which allows the automap plugin to filter jobs accordingly. If the "isAutomap" flag is not provided, the automap plugin will gracefully exit, ensuring a more streamlined and error-free workflow.
+
+    </div>
+
+  </div>
+</div>
+
+##### October 11, 2023
 
 <div style={{ display: "table", width: "auto" }}>
     <div style={{ display: "table-row", width: "auto" }}>
@@ -21,7 +231,7 @@ icon: "plug"
   </div>
 </div>
 
-## October 10, 2023
+##### October 10, 2023
 
 <div style={{ display: "table", width: "auto" }}>
     <div style={{ display: "table-row", width: "auto" }}>
@@ -36,7 +246,7 @@ icon: "plug"
   </div>
 </div>
 
-## October 5, 2023
+##### October 5, 2023
 
 <div style={{ display: "table", width: "auto" }}>
     <div style={{ display: "table-row", width: "auto" }}>
@@ -66,7 +276,9 @@ icon: "plug"
   </div>
 </div>
 
-## September 27, 2023
+## September (6)
+
+##### September 27, 2023
 
 <div style={{ display: "table", width: "auto" }}>
     <div style={{ display: "table-row", width: "auto" }}>
@@ -93,7 +305,7 @@ icon: "plug"
   </div>
 </div>
 
-## September 20, 2023
+##### September 20, 2023
 
 <div style={{ display: "table", width: "auto" }}>
     <div style={{ display: "table-row", width: "auto" }}>
@@ -110,7 +322,7 @@ icon: "plug"
   </div>
 </div>
 
-## September 17, 2023
+##### September 17, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -126,7 +338,7 @@ icon: "plug"
 
     Here's what it does:
 
-    1. Takes a `ResponseRejection` containing rejected Records and a rejection message.
+    1. Takes a `RejectionResponse` containing rejected Records and a rejection message.
     2. Locates the corresponding Record and adds the rejection message as an error to the Record cell.
 
     You can also utilize this utility directly with any listener.
@@ -139,7 +351,7 @@ icon: "plug"
   
 </div>
 
-## September 8, 2023
+##### September 8, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -173,7 +385,7 @@ icon: "plug"
   
 </div>
 
-## September 1, 2023
+##### September 1, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -199,7 +411,9 @@ icon: "plug"
   
 </div>
 
-## August 31, 2023
+## August (14)
+
+##### August 31, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -238,7 +452,7 @@ icon: "plug"
 
 </div>
 
-## August 30, 2023
+##### August 30, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -310,7 +524,7 @@ icon: "plug"
 
 </div>
 
-## August 25, 2023
+##### August 25, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -328,7 +542,7 @@ icon: "plug"
 
 </div>
 
-## August 24, 2023
+##### August 24, 2023
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -382,7 +596,7 @@ icon: "plug"
 
 </div>
 
-## August 20, 2023
+##### August 20, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
