@@ -74,7 +74,7 @@ Example sheet:
 <CodeGroup>
 ```js index.html
 const sheet = {
-	name: 'Contacts',
+  name: 'Contacts',
     slug: 'contacts',
     fields: [
       {
@@ -94,28 +94,28 @@ const sheet = {
           { type: 'unique' },
         ]
       },
-		{
-			key: 'age',
-			type: 'number',
-			label: 'Age',
-		},
-		{
-			key: 'employmentStatus',
-			type: 'boolean',
-			label: 'Currently employed?',
-		},
-		{
-			key: 'birthYear',
-			type: 'enum',
-			label: 'Birth Year',
-			config: {
-				options: [
-					{ value: '1999', label: '1999' },
-					{ value: '2000', label: '2000' },
-					// more here
-				]
-			}
-		}
+    {
+      key: 'age',
+      type: 'number',
+      label: 'Age',
+    },
+    {
+      key: 'employmentStatus',
+      type: 'boolean',
+      label: 'Currently employed?',
+    },
+    {
+      key: 'birthYear',
+      type: 'enum',
+      label: 'Birth Year',
+      config: {
+        options: [
+          { value: '1999', label: '1999' },
+          { value: '2000', label: '2000' },
+          // more here
+        ]
+      }
+    }
   ],
 }
 ```
@@ -136,10 +136,10 @@ Adding on to the Full Example:
     <script src="https://www.unpkg.com/@flatfile/javascript@latest/dist/index.js"></script>
     <script>
       window.openFlatfile = ({ publishableKey, environmentId }) => {
-				const sheet = {
-					name: 'Contacts',
-				    slug: 'contacts',
-				    fields: [
+        const sheet = {
+          name: 'Contacts',
+            slug: 'contacts',
+            fields: [
             {
               key: 'name',
               type: 'string',
@@ -157,30 +157,30 @@ Adding on to the Full Example:
                 { type: 'unique' },
               ]
             },
-						{
-							key: 'age',
-							type: 'number',
-							label: 'Age',
-						},
-						{
-							key: 'employmentStatus',
-							type: 'boolean',
-							label: 'Currently employed?',
-						}
-						{
-							key: 'birthYear',
-							type: 'enum',
-							label: 'Birth Year',
-							config: {
-								options: [
-									{ value: '1999', label: '1999' },
-									{ value: '2000', label: '2000' },
-									// more here
-								]
-							}
-						}
-				  ],
-				}
+            {
+              key: 'age',
+              type: 'number',
+              label: 'Age',
+            },
+            {
+              key: 'employmentStatus',
+              type: 'boolean',
+              label: 'Currently employed?',
+            },
+            {
+              key: 'birthYear',
+              type: 'enum',
+              label: 'Birth Year',
+              config: {
+                options: [
+                  { value: '1999', label: '1999' },
+                  { value: '2000', label: '2000' },
+                  // more here
+                ]
+              }
+            }
+          ],
+        }
         const flatfileOptions = {
           publishableKey,
           environmentId,
@@ -249,7 +249,7 @@ Here’s the above added to the full code snippet:
     <script src="https://www.unpkg.com/@flatfile/javascript@latest/dist/index.js"></script>
     <script>
       window.openFlatfile = ({ publishableKey, environmentId }) => {
-				const sheet = {
+        const sheet = {
           name: 'Contacts',
           slug: 'contacts',
           fields: [
@@ -279,7 +279,7 @@ Here’s the above added to the full code snippet:
               key: 'employmentStatus',
               type: 'boolean',
               label: 'Currently employed?',
-            }
+            },
             {
               key: 'birthYear',
               type: 'enum',
@@ -382,74 +382,72 @@ Now let’s put it all together in the full example:
     <script src="https://www.unpkg.com/@flatfile/javascript@latest/dist/index.js"></script>
     <script>
       window.openFlatfile = ({ publishableKey, environmentId }) => {
-				const sheet = {
-          name: 'Contacts',
-          slug: 'contacts',
+        const sheet = {
+          name: "Contacts",
+          slug: "contacts",
           fields: [
             {
-              key: 'name',
-              type: 'string',
-              label: 'Name',
-              contraints: [
-                { type: 'required' }
-              ]
+              key: "name",
+              type: "string",
+              label: "Name",
+              contraints: [{ type: "required" }],
             },
             {
-              key: 'email',
-              type: 'string',
-              label: 'Email',
-              contraints: [
-                { type: 'required' },
-                { type: 'unique' },
-              ]
+              key: "email",
+              type: "string",
+              label: "Email",
+              contraints: [{ type: "required" }, { type: "unique" }],
             },
             {
-              key: 'age',
-              type: 'number',
-              label: 'Age',
+              key: "age",
+              type: "number",
+              label: "Age",
             },
             {
-              key: 'employmentStatus',
-              type: 'boolean',
-              label: 'Currently employed?',
-            }
+              key: "employmentStatus",
+              type: "boolean",
+              label: "Currently employed?",
+            },
             {
-              key: 'birthYear',
-              type: 'enum',
-              label: 'Birth Year',
+              key: "birthYear",
+              type: "enum",
+              label: "Birth Year",
               config: {
                 options: [
-                  { value: '1999', label: '1999' },
-                  { value: '2000', label: '2000' },
+                  { value: "1999", label: "1999" },
+                  { value: "2000", label: "2000" },
                   // more here
-                ]
-              }
-            }
+                ],
+              },
+            },
           ],
-				}
+        };
         const flatfileOptions = {
           publishableKey,
           environmentId,
           sheet,
           onRecordHook: (record) => {
-            const name = record.get('name')
+            const name = record.get("name");
             if (name) {
-              record.set('name', name.toUpperCase())
-              record.addInfo('name', 'We updated the values to all uppercase')
+              record.set("name", name.toUpperCase());
+              record.addInfo("name", "We updated the values to all uppercase");
             }
-            return record
+            return record;
           },
-          onSubmit: async ({sheet}) => {
-            const data = await sheet.allData()
-            console.log(data)
-          }
-        }
-        window.FlatFileJavaScript.startFlatfile(flatfileOptions)
-      }
+          onSubmit: async ({ sheet }) => {
+            const data = await sheet.allData();
+            console.log(data);
+          },
+        };
+        window.FlatFileJavaScript.startFlatfile(flatfileOptions);
+      };
     </script>
   </head>
   <body>
-    <h3>We are going to import your data now. Click the button below to start your import</h3>
+    <h3>
+      We are going to import your data now. Click the button below to start your
+      import
+    </h3>
     <div class="container">
       <button
         id="flatfileButton"
@@ -458,7 +456,7 @@ Now let’s put it all together in the full example:
         Import Contacts
       </button>
     </div>
-    <br>
+    <br />
   </body>
 </html>
 ```
