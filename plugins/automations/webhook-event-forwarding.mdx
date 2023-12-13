@@ -1,6 +1,6 @@
 ---
-title: "@flatfile/plugin-automation-webhook-event-forwarding"
-description: "A plugin to forward flatfile events to specified http endpoints for headless workflows."
+title: "@flatfile/plugin-webhook-event-forwarder"
+description: "A plugin to forward Flatfile Events to specified http endpoints for headless workflows."
 icon: "download"
 ---
 
@@ -11,11 +11,11 @@ icon: "download"
 </Warning>
 
 <CardGroup cols={1}>
-  <Card title="@flatfile/plugin-automation-webhook-event-forwarding" icon="download">
-    The `@flatfile/plugin-automation-webhook-event-forwarding"` plugin listens for
-    flatfile events and forwards them to a given endpoint via webhook. This
-    allows for language-agnostic processing of flatfile events and allows for
-    receiving data back from the given endpoint for robust processing workflows.
+  <Card title="@flatfile/plugin-webhook-event-forwarder" icon="download">
+    The `@flatfile/plugin-webhook-event-forwarder"` plugin listens for Flatfile
+    Events and forwards them to a given endpoint via webhook. This allows for
+    language-agnostic processing of Flatfile Events and allows for receiving
+    data back from the given endpoint for robust processing workflows.
   </Card>
 </CardGroup>
 
@@ -40,46 +40,48 @@ icon: "download"
 ## Imported NPM Packages
 
 - [`@flatfile/api@1.5.37`](https://www.npmjs.com/package/@flatfile/api) is the
-official Flatfile SDK for JavaScript.
+  official Flatfile SDK for JavaScript.
 
 - [`@flatfile/cross-env-config@0.0.3`](https://www.npmjs.com/package/@flatfile/cross-env-config)
-is a utility for getting environement variables.
+  is a utility for getting environement variables.
 
 - [`@flatfile/listener@0.3.17`](https://www.npmjs.com/package/@flatfile/listener)
-is a library for listening to Flatfile events.
+  is a library for listening to Flatfile Events.
 
 - [`@types/express@4.17.21`](https://www.npmjs.com/package/@types/express) types
-for express.
+  for Express.
 
 - [`axios@1.6.1`](https://www.npmjs.com/package/axios) is a tool for making
-webhook requests.
+  webhook requests.
 
 ## Usage
 
-For workflows which process flatfile events outside of the listener file, use
+For workflows which process Flatfile Events outside of the listener file, use
 the desired endpoint that the webhooks are to be sent to. For testing, use a
 basic `webhook.site` endpoint.
 
 ```bash install
-npm i @flatfile/plugin-automation-webhook-event-forwarding
+npm i @flatfile/plugin-webhook-event-forwarder
 ```
 
 ```ts
-import { forwardWebhook } from "@flatfile/plugin-automation-webhook-event-forwarding"
+import { webhookEventForward } from "@flatfile/plugin-webhook-event-forwarder";
 ```
 
 ```ts listener.ts
-  listener.use(forwardWebhook("https://webhook.site/yourwebhooksitehere", (data) => {
+listener.use(
+  webhookEventForward("https://webhook.site/yourwebhooksitehere", (data) => {
     //do stuff here
-  }))
+  })
+);
 ```
 
 ## See the code
 
 <CardGroup cols={2}>
   <Card
-    title="@flatfile/plugin-automation-webhook-event-forwarding"
-    href="https://github.com/FlatFilers/flatfile-plugins/tree/eaa4546861d0afa0044d9d7f7094224e87ffb79c/plugins/forward-webhook"
+    title="@flatfile/plugin-webhook-event-forwarder"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/webhook-event-forwarder"
     icon="github"
   ></Card>
 </CardGroup>
