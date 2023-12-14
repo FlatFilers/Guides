@@ -113,6 +113,7 @@
         "concepts/workbooks",
         "concepts/actions",
         "concepts/jobs",
+        "concepts/mapping",
         "concepts/events",
         "concepts/spaces",
         "concepts/listeners"
@@ -237,6 +238,10 @@
         "developer-tools/core-libraries/wrappers/vuejs",
         "developer-tools/core-libraries/wrappers/vanilla"
       ]
+    },
+    {
+      "group": "Mapping libraries",
+      "pages": ["developer-tools/mapping-libraries/flatfile-mapping-python"]
     },
     {
       "group": "Plugins",
