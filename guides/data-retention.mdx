@@ -1,0 +1,52 @@
+---
+title: "Data Retention"
+description: "Implementing Data Retention Policies in Flatfile."
+icon: "calendar"
+---
+
+## Introduction
+
+Data retention policies are crucial for managing and controlling the lifecycle of data within your Flatfile account. In this guide, we'll walk you through the process of adding and configuring data retention policies based on our two options `last activity` and `since created` policy types.
+These policies will help you automatically clean up outdated data within your Flatfile environment, ensuring optimal data hygiene.
+
+<Note>
+  Flatfile has a 7 day policy which means that your data may be deleted +/- 7
+  days from your defined period.
+</Note>
+
+## Prerequisites
+
+Before you start implementing data retention policies, make sure you have:
+
+1. A Flatfile account with administrative privileges.
+2. Familiarity with your data and the desired retention periods.
+
+## Accessing the Dashboard
+
+1. Log in to your Flatfile account.
+2. Navigate to the dashboard, where you can manage and configure your spaces.
+
+## Understanding Data Deletion Logic
+
+Let's clarify the logic behind data deletion based on the example you provided:
+
+### Since Created Policy Example:
+
+- Space created on January 1st.
+- Policy set to 2 days.
+- If Flatfile's cron event runs on January 2nd, any space created before January 1st (older than 2 days) will be deleted.
+
+### Last Activity Policy Example:
+
+- Space last modified on January 1st.
+- Policy set to 3 days.
+- If Flatfile's cron event runs on January 4th, any space that hasn't been modified since January 1st (older than 3 days) will be deleted.
+
+## Monitoring and Adjusting Policies
+
+Regularly monitor the results of the data retention policies to ensure they align with your data management goals.
+If needed, adjust the policy time periods based on your evolving data requirements.
+
+## Implementing via api
+
+If you'd like to create, update, delete your policy via API, check out our [API reference](https://reference.flatfile.com/)
