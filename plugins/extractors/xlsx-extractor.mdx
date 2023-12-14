@@ -16,7 +16,7 @@ icon: "download"
     icon="download"
   >
     <br />
-    The `@flatfile/xlsx-extractor` plugin is designed to extract structured data from Excel files. It utilizes various libraries to parse Excel files and retrieve the structured data efficiently.
+    The `@flatfile/plugin-xlsx-extractor` plugin is designed to extract structured data from Excel files. It utilizes various libraries to parse Excel files and retrieve the structured data efficiently.
     <br/>
     <br/>
     **Event Type:**<br/>`listener.on('file:created')`
@@ -167,7 +167,7 @@ listener.use(
 In this example, the `ExcelExtractor` is initialized with optional options, and then registered as middleware with the Flatfile listener. When an Excel file is uploaded, the plugin will extract the structured data and process it using the extractor's parser.
 
 ```js listener.js
-import { ExcelExtractor } from "@flatfile/xlsx-extractor";
+import { ExcelExtractor } from "@flatfile/plugin-xlsx-extractor";
 
 export default async function (listener) {
   // Define optional options for the extractor
