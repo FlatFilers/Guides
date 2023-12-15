@@ -11,10 +11,7 @@ Next time you open Flatfile, you'll see a Workbook called "Contacts" that has on
 ```ts src/workbook.ts
 import { Flatfile } from "@flatfile/api";
 
-export const workbook: Pick<
-  Flatfile.CreateWorkbookConfig,
-  "name" | "labels" | "sheets" | "actions"
-> = {
+export const workbook: Flatfile.CreateWorkbookConfig = {
   name: "All Data",
   labels: ["pinned"],
   sheets: [
