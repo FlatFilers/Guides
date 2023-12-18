@@ -434,67 +434,67 @@ Now you'll need to build the component that will get your space and return it to
 The component should end up looking something like this:
 
 ```TypeScript src/components/ExistingSpace.vue
-<template >
-  <h3>Use an Existing Space</h3>
-  <div class="new-space-button-container" >
-    <button @click="toggleSpace" v-if="space.space.accessToken !== ''">
-      {{ showSpace ? "Close" : "Open" }} space
-    </button>
-  </div>
-  <div v-if="showSpace" class="space-wrapper">
-    <UseSpace v-bind="spaceProps" />
-  </div>
-</template>
 
-<script setup>
-import { ref } from "vue";
-import { UseSpace } from "@flatfile/vue";
+<script lang="jsx">
+import { ref, onMounted, h, defineComponent } from 'vue';
+import { initializeFlatfile } from '@flatfile/vue';
+import { workbook } from "./config";
+import { listener } from './listener'
 
-const environmentId = import.meta.env.VITE_ENVIRONMENT_ID;
-const id = import.meta.env.VITE_SPACE_ID;
+export default defineComponent({
+  setup() {
+    const showSpace = ref(false);
 
-const space = ref({
-  environmentId,
-  space: {
-    id,
-    accessToken: "",
-  }
-});
+    const spaceProps = ref({
+      environmentId: 'us_env_1234',
+      space: {
+        id: 'us_sp_1234',
+        accessToken: 'sk_1234',
+      },
+      closeSpace: {
+        operation: "submitActionFg",
+        onClose: () => {
+          showSpace.value = false;
+        },
+      },
+      themeConfig: {
+        primaryColor: "#546a76",
+        textColor: "#fff",
+      },
+      displayAsModal: true,
+    });
 
-const fetchData = async (spaceId) => {
-  const response = await fetch(`/api/spaces/${spaceId}`);
-  const json = await response.json();
-  if(json.error){
-    return
-  }
-  space.value.space.accessToken = json.space.data.accessToken;
-}
 
-const showSpace = ref(false);
-const spaceProps = ref({
-  ...space.value,
-  closeSpace: {
-    operation: "submitActionFg",
-    onClose: () => {
-      showSpace.value = false;
-    },
-  },
-  themeConfig: {
-    primaryColor: "#546a76",
-    textColor: "#fff",
-  },
-  displayAsModal: true,
-});
+    const { Space, OpenEmbed } = initializeFlatfile(spaceProps.value);
 
-fetchData(id).catch(
-    (err)=>{
-      console.error(err)
+    const toggleSpace = async () => {
+      showSpace.value = !showSpace.value;
+
+      OpenEmbed();
+    };
+
+    return {
+      toggleSpace,
+      showSpace,
+      Space
     }
-  );
-  
-const toggleSpace = () => {
-  showSpace.value = !showSpace.value;
-};
+  },
+  render(props, ctx) {
+    const Space = props.Space
+
+    return (
+      <div>
+        <div class="description">
+          <button onClick={props.toggleSpace}>{ props.showSpace ? 'Close' : 'Open' } space</button>
+        </div>
+
+        {props.showSpace && <div class="space-wrapper">
+          <Space />
+        </div>}
+      </div>
+    )
+  },
+});
 </script>
 
 ```
@@ -719,60 +719,59 @@ If you want to have a page to create new spaces, you can create a component to d
 <CodeGroup>
 
 ```TypeScript src/components/NewSpace.vue
-<template>
-  <h3>Create a New Space</h3>
-  <div class="new-space-button-container">
-    <button @click="toggleSpace">{{ showSpace ? 'Close' : 'Open' }} space</button>
-  </div>
-  <div v-if="showSpace" class="space-wrapper">
-    <UseSpace v-bind="spaceProps" />
-  </div>
-</template>
 
-<script setup>
-import { ref } from 'vue';
-import { UseSpace } from '@flatfile/vue';
+<script lang="jsx">
+import { ref, defineComponent } from 'vue';
+import { initializeFlatfile } from '@flatfile/vue';
 import { config as workbook } from "/src/workbooks/config";
 import { listener } from '/src/listeners/listener';
 
-const environmentId = import.meta.env.VITE_ENVIRONMENT_ID;
-const publishableKey = import.meta.env.VITE_PUBLISHABLE_KEY;
 
+export default defineComponent({
+  setup() {
+    const showSpace = ref(false);
+    
+    const spaceProps = ref({
+      name: 'Vue Space',
+      environmentId: 'us_env_1234',
+      publishableKey: 'pk_1234',
+      closeSpace: {
+        operation: 'submitActionFg',
+        onClose: () => { showSpace.value = false; },
+      },
+      workbook,
+      listener
+    });
 
-const showSpace = ref(false);
-const spaceProps = ref({
-  name: 'Vue Space',
-  environmentId,
-  publishableKey,
-  closeSpace: {
-    operation: 'submitActionFg',
-    onClose: () => { showSpace.value = false; },
-  },
-  workbook,
-  listener,
-  autoconfigure:true,
-  themeConfig: { 
-    primaryColor: "#546a76", 
-    textColor: "#fff" 
-  },
-  userInfo: {
-    name: 'username'
-  },
-  spaceInfo: {
-    name: 'space info'
-  },
-  displayAsModal: true,
-  spaceBody: {
-    metadata: {
-      random: 'param'
+    const { Space, OpenEmbed } = initializeFlatfile(spaceProps.value);
+
+    const toggleSpace = () => {
+      showSpace.value = !showSpace.value;
+      OpenEmbed()
+    };
+
+    return {
+      toggleSpace,
+      showSpace,
+      Space
     }
   },
-  
-});
+  render(props, ctx) {
+    const Space = props.Space
 
-const toggleSpace = () => {
-  showSpace.value = !showSpace.value;
-};
+    return (
+      <div>
+        <div class="description">
+          <button onClick={props.toggleSpace}>{ props.showSpace ? 'Close' : 'Open' } space</button>
+        </div>
+
+        {props.showSpace && <div class="space-wrapper">
+          <Space />
+        </div>}
+      </div>
+    )
+  },
+});
 </script>
 ```
 
