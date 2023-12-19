@@ -39,6 +39,10 @@
     {
       "source": "/upgrade/v2_repo",
       "destination": "https://github.com/FlatFilers/Upgrade-Portal"
+    },
+    {
+      "source": "/guides/use-cases/embedding/portal-and-excel",
+      "destination": "/guides/use-cases/embedding/advanced-concepts/portal-and-excel"
     }
   ],
   "topbarLinks": [
