@@ -316,7 +316,9 @@ img {
   border: 2px solid #000;
 }
 
-#navbar img {
+#navbar img,
+#navbar button.w-8,
+#navbar button.w-5 {
   border: 0;
 }
 
@@ -410,7 +412,7 @@ html:not(.dark) .text-primary-light {
   color: #000;
 }
 
-#navbar :is(.dark .dark\:text-primary-light) {
+#navbar :is(.dark a.dark\:text-primary-light) {
   color: #000;
 }
 
