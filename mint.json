@@ -161,6 +161,13 @@
               ]
             },
             {
+              "group": "Advanced Concepts",
+              "icon": "laptop-code",
+              "pages": [
+                "guides/use-cases/embedding/advanced-concepts/portal-and-excel"
+              ]
+            },
+            {
               "group": "Reference",
               "icon": "asterisk",
               "pages": [
