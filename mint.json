@@ -15,11 +15,11 @@
   },
   "favicon": "/favicon.jpg",
   "colors": {
-    "primary": "#3B2FC9",
-    "light": "#6673FF",
+    "primary": "#000",
+    "light": "#fff",
     "dark": "#3B2FC9",
     "background": {
-      "dark": "#0f1117",
+      "dark": "#000",
       "light": "#fff"
     }
   },
@@ -30,7 +30,6 @@
   "modeToggle": {
     "default": "dark"
   },
-  "backgroundImage": "/images/background.png",
   "redirects": [
     {
       "source": "/guides/upgrade/v2_upgrade",
@@ -66,7 +65,7 @@
     {
       "name": "API Reference",
       "icon": "rectangle-terminal",
-      "url": "https://flatfile.stoplight.io/docs/api/"
+      "url": "https://reference.flatfile.com"
     }
   ],
   "navigation": [
