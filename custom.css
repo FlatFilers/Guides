@@ -301,7 +301,7 @@ h5 {
 }
 
 :is(.dark .dark\:border-gray-800\/50) {
-  border-color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
 .shadow-md,
@@ -309,7 +309,123 @@ h5 {
   --tw-shadow: rgb(0, 0, 0) 8px 8px;
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
     0 2px 4px -2px var(--tw-shadow-color);
-  margin-bottom: 3em;
+  margin-bottom: 1em;
+}
+
+img {
+  border: 2px solid #000;
+}
+
+#navbar img {
+  border: 0;
+}
+
+html:not(.dark) .border-primary-light {
+  border-color: #000;
+}
+
+html:not(.dark) .language-html,
+html:not(.dark) .language-css,
+html:not(.dark) .token.punctuation {
+  color: #000;
+}
+
+html:not(.dark) .token.keyword.control-flow,
+html:not(.dark) .token.keyword.module {
+  color: #884482;
+}
+
+html:not(.dark) .token.attr-name,
+html:not(.dark) .token.builtin,
+html:not(.dark) .token.char,
+html:not(.dark) .token.deleted,
+html:not(.dark) .token.selector,
+html:not(.dark) .token.string {
+  color: #8d4021;
+}
+
+htmlhtml:not(.dark) .token.console,
+:not(.dark) .token.interpolation,
+html:not(.dark) .token.parameter {
+  color: #5da8d0;
+}
+
+html:not(.dark) .token.keyword {
+  color: #246295;
+}
+
+html:not(.dark) .token.function,
+html:not(.dark) .token.function,
+html:not(.dark) .token.maybe-class-name {
+  color: #838348;
+}
+
+html:not(.dark) .token.boolean,
+html:not(.dark) .token.constant,
+html:not(.dark) .token.inserted,
+html:not(.dark) .token.number,
+html:not(.dark) .token.property,
+html:not(.dark) .token.symbol,
+html:not(.dark) .token.tag,
+html:not(.dark) .token.unit {
+  color: #768f68;
+}
+
+html:not(.dark) .token.entity,
+html:not(.dark) .token.operator {
+  color: #909090;
+}
+
+tml:not(.dark) .token.comment,
+tml:not(.dark) .token.prolog {
+  color: #4b7936;
+}
+
+html:not(.dark) .token.exports,
+html:not(.dark) .token.maybe-class-name,
+html:not(.dark) .token.maybe-class-name.token.maybe-class-name,
+html:not(.dark) .token.property,
+html:not(.dark) .token.variable {
+  color: #427691;
+}
+
+html:not(.dark) code[class*="language-javascript"],
+html:not(.dark) code[class*="language-jsx"],
+html:not(.dark) code[class*="language-tsx"],
+html:not(.dark) code[class*="language-typescript"],
+html:not(.dark) pre[class*="language-javascript"],
+html:not(.dark) pre[class*="language-jsx"],
+html:not(.dark) pre[class*="language-tsx"],
+html:not(.dark) pre[class*="language-typescript"] {
+  color: #5d9dc0;
+}
+
+html:not(.dark) .token.console,
+html:not(.dark) .token.interpolation,
+html:not(.dark) .token.parameter {
+  color: #7fb1cc;
+}
+
+html:not(.dark) .text-primary-light {
+  color: #000;
+}
+
+html:not(.dark) .token.doctype .token.name {
+  color: #5088a6;
+}
+
+html:not(.dark) .token.attr-value,
+html:not(.dark) .token.attr-value .token.punctuation {
+  color: #a45f44;
+}
+
+.bg-\[\#0F1117\] {
+  background: #fff;
+  border: 1px solid black;
+}
+
+.bg-\[\#0F1117\] .bg-black\/40 {
+  background: transparent;
 }
 
 :is(.dark .dark\:shadow-none) {
@@ -363,7 +479,14 @@ h5 {
   font-weight: 600;
 }
 
-code {
+p > code {
+  color: #000;
+}
+
+.prose :where(pre):not(:where([class~="not-prose"] *)) {
+  box-shadow: none;
+  border-radius: 0;
+  background-color: #000;
   color: #fff;
 }
 
@@ -402,10 +525,13 @@ button.outline-none {
   --tw-text-opacity: 1;
   color: #000;
 }
-
 :is(.dark .dark\:bg-zinc-500\/10) {
-  border-color: #fff;
+  border-color: rgba(255, 255, 255, 0.8);
   background-color: rgba(255, 255, 255, 0.15);
+}
+
+:is(.dark\:bg-codeblock) {
+  margin-bottom: 3rem;
 }
 
 :is(.dark .dark\:bg-white\/50) {
