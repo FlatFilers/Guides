@@ -148,6 +148,19 @@
               ]
             },
             {
+              "group": "Vue.js",
+              "icon": "vuejs",
+              "pages": [
+                "guides/use-cases/embedding/vue/guide",
+                "guides/use-cases/embedding/vue/new_space",
+                {
+                  "group": "Advanced",
+                  "icon": "settings",
+                  "pages": ["guides/use-cases/embedding/vue/reuse_space"]
+                }
+              ]
+            },
+            {
               "group": "Reference",
               "icon": "asterisk",
               "pages": [
