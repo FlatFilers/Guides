@@ -410,6 +410,10 @@ html:not(.dark) .text-primary-light {
   color: #000;
 }
 
+#navbar :is(.dark .dark\:text-primary-light) {
+  color: #000;
+}
+
 html:not(.dark) .token.doctype .token.name {
   color: #5088a6;
 }
@@ -454,6 +458,10 @@ html:not(.dark) .token.attr-value .token.punctuation {
 
 .bg-gray-200\/60 {
   background: rgb(var(--gray-200));
+}
+
+:is(.dark .dark\:bg-gray-600\/30) {
+  background: rgb(var(--primary-dark));
 }
 
 .bg-gray-50 {
