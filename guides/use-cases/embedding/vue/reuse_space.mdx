@@ -1,7 +1,7 @@
 ---
-title: "Embed an Existing Space"
-description: "Open an Existing Space every time Flatfile is opened."
-icon: "plus"
+title: "Reuse an existing Space"
+description: "Reuse a Space when Flatfile is opened."
+icon: "recycle"
 ---
 
 For applications meant to use the same space consistently, open an existing space each time Flatfile is opened. This suits situations where consistently editing a dataset is preferred.
@@ -148,9 +148,9 @@ export default defineConfig({
     "experimentalSpecifierResolution": "node"
   },
   "include": [
-    "**/*.ts", 
-    "**/*.d.ts", 
-    "**/*.tsx", 
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.tsx",
     "src/**/*.vue"
   ],
 }
@@ -217,6 +217,7 @@ This app has a home page to route the user to create a new space or embed an exi
 This application utilizes ejs, which helps build dynamic html pages. This allows us to dynamically create both development and production environment outputs from one file. Set this up at `/views/index.html.ejs`
 
 This file wil not work before the server is functioning, but is required for the rest of the app to work.
+
 ```EJS views/index.html.ejs
 <!doctype html>
 <html lang="en">
@@ -274,9 +275,11 @@ app.listen(port, () => {
   console.log("Server listening on port", port);
 });
 ```
+
 In addition to the `server/index.ts`, you will need to create two routers - One for the homepage and one for the assets. This is because the frontend runs on a different port than you'll be accessing the app from, so the app will need a bit of help resolving pathing.
 
 Create `server/homepageRouter.ts` and `server/assetsRouter.ts` as follows, then update `server/index.ts`.
+
 <CodeGroup>
 
 ```TypeScript server/homepageRouter.ts
@@ -381,6 +384,7 @@ app.listen(port, () => {
 Before building the components, you'll need to make a couple TypeScript Declaration files. This is so your IDE won't throw unnecessary errors at you during development.
 
 You'll need a `src/vite-env.d.ts` file and a `src/shims-vue.d.ts` file in order to sort your the declarations. Create them as follows:
+
 <CodeGroup>
 
 ```TypeScript src/vite-env.d.ts
@@ -730,7 +734,7 @@ import { listener } from '/src/listeners/listener';
 export default defineComponent({
   setup() {
     const showSpace = ref(false);
-    
+
     const spaceProps = ref({
       name: 'Vue Space',
       environmentId: 'us_env_1234',
@@ -844,13 +848,13 @@ You can stop here or you can [view our full reference](../reference/common) to s
 
 ## Example Project
 
-Find this VueJs example project in the Flatfile GitHub repository.
+Find this Vue.js example project in the Flatfile GitHub repository.
 
 <CardGroup cols={1}>
   <Card
     title="create-flatfile-vuejs"
-    icon="js"
-    href="https://github.com/FlatFilers/create-flatfile-vuejs"
+    icon="vuejs"
+    href="https://github.com/FlatFilers/create-flatfile-vuejs/blob/main/src/components/ExistingSpace.vue"
   >
     Clone the Full Flatfile VueJs tutorial here.
   </Card>

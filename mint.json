@@ -144,20 +144,7 @@
               "icon": "react",
               "pages": [
                 "guides/use-cases/embedding/react/guide",
-                "guides/use-cases/embedding/react/new_space",
-                {
-                  "group": "Advanced",
-                  "icon": "settings",
-                  "pages": ["guides/use-cases/embedding/vue/reuse_space"]
-                }
-              ]
-            },
-            {
-              "group": "Vue",
-              "icon": "vue",
-              "pages": [
-                "guides/use-cases/embedding/vue/guide",
-                "guides/use-cases/embedding/vue/new_space"
+                "guides/use-cases/embedding/react/new_space"
               ]
             },
             {
@@ -166,7 +153,11 @@
               "pages": [
                 "guides/use-cases/embedding/vue/guide",
                 "guides/use-cases/embedding/vue/new_space",
-                "guides/use-cases/embedding/vue/existing_space"
+                {
+                  "group": "Advanced",
+                  "icon": "settings",
+                  "pages": ["guides/use-cases/embedding/vue/reuse_space"]
+                }
               ]
             },
             {
