@@ -65,9 +65,9 @@ The Basic HTML File:
 ```
 </CodeGroup>
 
-## Configure your sheet
+## Configure your sheet(s)
 
-Configuring your sheet for Portal is telling us about the data you’re looking to receive and in what format. You can specify things like fields being required or unique so that some of the built-in validation can help expedite your data import.
+Configuring your sheets for Portal is telling us about the data you’re looking to receive and in what format. You can specify things like fields being required or unique so that some of the built-in validation can help expedite your data import.
 
 A sheet contains 3 elements, a `name`, `slug` and your `fields`. We go over Fields in detail in our Blueprint guide, but in the below example, you will see that each field has a `key`, `type` and `label`. Some keys also use the `contraints` property to specify things like a field needing to be `required` to have a value or be a `unique` value in the field values. You might also notice in the below example that a field type of `enum` also using an additional `config` property where the `options` in the enum list will be defined.
 
@@ -76,7 +76,7 @@ Example sheet:
 <CodeGroup>
 ```js index.html
 const sheet = {
-  name: 'Contacts',
+    name: 'Contacts',
     slug: 'contacts',
     fields: [
       {
@@ -186,7 +186,7 @@ Adding on to the Full Example:
         const flatfileOptions = {
           publishableKey,
           environmentId,
-          sheet,
+          sheets: [sheet],
           // more to come here in the following sections
         }
         window.FlatFileJavaScript.startFlatfile(flatfileOptions)
@@ -211,9 +211,13 @@ Adding on to the Full Example:
 
 ## Your Data Validations
 
-Now that we have configured out Sheet, we will look at the Data Validations piece. Data Validations in the Portal setup can be written inside of the `onRecordHook` callback of the `flatfileOptions` object. This callback will run on each record at initialization and then on any subsequent changes of the data.
+Now that we have configured out Sheets, we will look at the Data Validations piece. Data Validations in the Portal setup can be written inside of the `onRecordHook` callback of the `flatfileOptions` object. This callback will run on each record at initialization and then on any subsequent changes of the data.
 
 The callback you write will get the `record` passed in by default and you can update that record with any updates you’d like to make and return it as the output of the callback and that will update the record in the UI. For the purposes of being super basic in this example, let’s say you like to store the `name` property in your Database as all uppercase values. To ensure that this happens, we can write a simple function using JavaScript’s `toUpperCase` method to make sure all values continually get put to all uppercase values.
+
+<Note>
+    By default, the validations you write will be applied to all of your Sheets. You can use the `slug` to filter your logic to only run on a specific Sheet.
+</Note>
 
 <CodeGroup>
 ```js index.html
@@ -221,14 +225,16 @@ The callback you write will get the `record` passed in by default and you can up
 const flatfileOptions = {
   publishableKey,
   environmentId,
-  sheet,
-  onRecordHook: (record) => {
-    const name = record.get('name')
-    if (name) {
-      record.set('name', name.toUpperCase())
-      record.addInfo('name', 'We updated the values to all uppercase')
+  sheets: [sheet],
+  onRecordHook: (record, slug) => {
+    if (slug === '') {
+        const name = record.get('name')
+        if (name) {
+            record.set('name', name.toUpperCase())
+            record.addInfo('name', 'We updated the values to all uppercase')
+        }
+        return record
     }
-    return record
   },
 }
 ```
@@ -299,7 +305,7 @@ Here’s the above added to the full code snippet:
         const flatfileOptions = {
             publishableKey,
             environmentId,
-            sheet,
+            sheets: [sheet],
             onRecordHook: (record) => {
                 const name = record.get('name')
                 if (name) {
@@ -354,7 +360,7 @@ With all those methods brought to light, let’s simply use the `allData` method
 const flatfileOptions = {
   publishableKey,
   environmentId,
-  sheet,
+  sheets: [sheet],
   onRecordHook: (record) => {
     const name = record.get('name')
     if (name) {
@@ -427,7 +433,7 @@ Now let’s put it all together in the full example:
         const flatfileOptions = {
           publishableKey,
           environmentId,
-          sheet,
+          sheets: [sheet],
           onRecordHook: (record) => {
             const name = record.get("name");
             if (name) {
