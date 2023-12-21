@@ -58,7 +58,7 @@ listener.on(
 
     const rejections: RejectionResponse = response.data.rejections;
     if (rejections) {
-      const totalRejectedRecords = await responseRejectionHandler(rejections);
+      return await responseRejectionHandler(rejections);
     }
     // ...
   }
