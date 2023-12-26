@@ -1,0 +1,227 @@
+---
+title: "Excel extractor with client-side embed"
+description: "Deploy your Excel extractor to go along with your client-side implementation."
+icon: "hand-wave"
+---
+
+## The problem
+If you're in the midst of a client-side only implementation, but you still need to accept Excel files, you've likely noticed the warning on the `@flatfile/plugin-xlsx-extractor` plugin that says it does not work client-side. XLS(X) files tend to have a level of complexity to them that make them hard to handle client-side. For the purposes of getting up and running, though, this is fine, because we can deploy just what we need to handle Excel files in a server-side listener, and that's just what we'll walk through now.
+
+<Note>
+    One thing to note here is that when we talk about "server-side listeners," we are not referring to you having to spin up a web server to run this code. We are talking about writing a listener file and then pushing that file to Flatfile to run on OUR servers on your behalf.
+</Note>
+
+## Before you begin
+There are a couple of extra steps you'll need to take in order to deploy a listener. First, you'll need somewhere to write your listener code. This can be in your current application repository or you could create a new one, but this will need a couple of extra pieces if you have a simple `index.html` file your application runs from, like in this example.
+1) You'll need to have a package.json file where you will install the `@flatfile/listener` and `@flatfile/plugin-xlsx-extractor` packages (if you haven't already installed them).
+2) You'll need a .env file that has a `FLATFILE_API_KEY` (which is labeled as your Secret Key in the dashboard) and `FLATFILE_ENVIRONMENT_ID` (which is the environment ID where you would like to deploy this listener).
+
+So for the example I am showing here, your file structure might look something like this:
+
+```
+├── public/
+   └── index.html
+   └── index.css
+├── src/
+   └── listener.js
+├── .env <--- already created
+├── package.json <--- already created
+└── package-lock.json <--- already created
+```
+
+## The Example Code
+
+Here's a breakdown of what each of these files from above will look like when all is said and done:
+
+<CodeGroup>
+    ```html public/index.html
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Your Page Title</title>
+        <script src="https://unpkg.com/@flatfile/javascript@0.2.2/dist/index.js"></script>
+        <link rel="stylesheet" type="text/css" href="index.css">
+        <script>
+            window.openFlatfile = ({ publishableKey, environmentId }) => {
+                const output = document.getElementById('raw_output')
+                const sheet = {
+                    name: 'Contacts',
+                    slug: 'contacts',
+                    fields: [
+                        {
+                            key: 'firstName',
+                            type: 'string',
+                            label: 'First Name',
+                        },
+                        {
+                            key: 'lastName',
+                            type: 'string',
+                            label: 'Last Name',
+                        },
+                        {
+                            key: 'email',
+                            type: 'string',
+                            label: 'Email',
+                        },
+                    ],
+                }
+                if (!publishableKey) {
+                    throw new Error(
+                    'You must provide a publishable key - pass through in index.html'
+                    )
+                }
+
+                const flatfileOptions = {
+                    publishableKey,
+                    environmentId,
+                    sheet,
+                    onSubmit: async ({job, sheet}) => {
+                        const data = await sheet.allData()
+                        output.value = JSON.stringify(data, " ", 2)
+                        console.log('onSubmit', data)
+                    },
+                    onRecordHook: (record, event) => {
+                        const firstName = record.get('firstName')
+                        const lastName = record.get('lastName')
+                        if (firstName && !lastName) {
+                            record.set('lastName', 'Rock')
+                            record.addInfo('lastName', 'Welcome to the Rock fam')
+                        }
+                        return record
+                    },
+                    onCancel: () => {
+                        console.log('cancel')
+                    },
+                }
+
+                window.FlatFileJavaScript.startFlatfile(flatfileOptions)
+            }
+        </script>
+    </head>
+    <body>
+    <h3>We heard you like Rocks? So do we. Tell us about this 👇</h3>
+    <div class="container">
+        <button
+            id="flatfileButton"
+            onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENVIRONMENT_ID'})"
+        >
+            Import stuff
+        </button>
+    </div>
+    <label for="raw_output"></label>
+    <textarea id="raw_output">Your raw output will appear here.</textarea>
+    <br>
+        <p>*In order for this to work properly, you must have the JavaScript package built locally.</p>
+    </body>
+    </html>
+    ```
+
+    ```css public/index.css
+    h3 {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-top: 48px;
+    }
+
+    #flatfileButton {
+        color: #ffffff;
+        background-color: #3b2fc9;
+        padding: 10px;
+        border: 1px solid #3b2fc9;
+        border-radius: 6px;
+    }
+
+    #flatfileButton:hover {
+        background-color: #090B2F;
+        border: 1px solid #090B2F;
+        cursor: pointer;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #raw_output {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50%;
+        padding: 64px;
+        margin: 32px 0;
+        border: 1px solid #c1c6d1;
+        border-radius: 4px;
+        font-family: "Monaco", monospace;
+        background-color: #31383d;
+        color: #fff;
+        height: 500px;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    ```
+
+    ```js src/listener.js
+    import { ExcelExtractor } from "@flatfile/plugin-xlsx-extractor";
+
+
+    export default async function (listener) {
+        listener.on('file:created', (event) => {
+            // Define optional options for the extractor
+            const options = {
+                raw: true,
+                rawNumbers: true,
+            };
+
+            // Initialize the Excel extractor
+            const excelExtractor = ExcelExtractor(options);
+
+            // Register the extractor as a middleware for the Flatfile listener
+            listener.use(excelExtractor);
+
+            // When an Excel file is uploaded, the data will be extracted and processed using the extractor's parser.
+        })
+    }
+    ```
+
+    ```json package.json
+    {
+        "name": "xlsx-test",
+        "version": "1.0.0",
+        "description": "",
+        "scripts": {
+            "deploy": "npx flatfile deploy src/listener.js",
+            "develop": "npx flatfile develop src/listener.js",
+            "start": "parcel index.html --no-cache"
+        },
+        "author": "",
+        "license": "ISC",
+        "dependencies": {
+            "@flatfile/listener": "^0.3.17",
+            "@flatfile/plugin-xlsx-extractor": "^1.9.1"
+        },
+        "devDependencies": {
+            "parcel": "^2.10.3"
+        }
+    }
+    ```
+
+    ```text .env
+    FLATFILE_API_KEY="YOUR_SECRET_KEY"
+    FLATFILE_ENVIRONMENT_ID="YOUR_ENVIRONMENT_ID"
+    ```
+
+</CodeGroup>
+
+Don't forget to put your Publishable Key and Environment ID in the index.html file and your Private Key and Environment ID into your .env file.
+
+## Deploying to Flatfile
+Once you have created your server-side listener code, like in the `src/listener.js` example above, you can then deploy to Flatfile. In the package.json, we've created a script that lets you run `npm run deploy` to deploy to Flatfile, but you can also deploy directly from your terminal by using this pattern: `npx flatfile deploy path/to/file`.
+
+You'll now be able to spin up your client-side implementation and see that it will accept xls(s) files via that server-side listener we deployed.

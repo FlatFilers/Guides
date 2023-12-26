@@ -6,8 +6,7 @@ icon: "download"
 
 <Warning>
   When embedding Flatfile, this plugin should be deployed in a server-side
-  listener. [Learn
-  more](../../developer-tools/client_server_side#server-side-listeners)
+  listener. [Learn more](/concepts/listeners#listener-types)
 </Warning>
 
 <CardGroup cols={1}>
@@ -16,7 +15,7 @@ icon: "download"
     icon="download"
   >
     <br />
-    The `@flatfile/xlsx-extractor` plugin is designed to extract structured data from Excel files. It utilizes various libraries to parse Excel files and retrieve the structured data efficiently.
+    The `@flatfile/plugin-xlsx-extractor` plugin is designed to extract structured data from Excel files. It utilizes various libraries to parse Excel files and retrieve the structured data efficiently.
     <br/>
     <br/>
     **Event Type:**<br/>`listener.on('file:created')`
@@ -42,14 +41,25 @@ icon: "download"
   take the raw numbers and disregard how it's displayed in Excel.
 </ParamField>
 
-<ParamField path="options.chunkSize" default="10_000" type="number" optional>
+<ParamField path="chunkSize" default="10_000" type="number" optional>
   The `chunkSize` parameter allows you to specify the quantity of records to in
   each chunk.
 </ParamField>
 
-<ParamField path="options.parallel" default="1" type="number" optional>
+<ParamField path="parallel" default="1" type="number" optional>
   The `parallel` parameter allows you to specify the number of chunks to process
   in parallel.
+</ParamField>
+
+<ParamField path="headerDetectionOptions" type="Object" optional>
+  The `headerDetectionOptions` parameter allows you to specify the options for
+  detecting headers in the file. By default, the first 10 rows are scanned for
+  the row with the most non-empty cells.
+</ParamField>
+
+<ParamField path="debug" default="false" type="boolean" optional>
+  The `debug` parameter lets you toggle on/off helpful debugging messages for
+  development purposes.
 </ParamField>
 
 ## API Calls
@@ -70,7 +80,7 @@ icon: "download"
 - [`@flatfile/api@1.4.9+`](https://npmjs.com/package/@flatfile/api)
 - [`@flatfile/hooks@1.3.0+`](https://npmjs.com/package/@flatfile/hooks)
 - [`@flatfile/listener@0.3.15`](https://npmjs.com/package/@flatfile/listener)
-- [`@flatfile/util-extractor@0.3.0`](../utils/extractor) provides utility functions for extracting and parsing data from various file formats and sources, streamlining data import processes.
+- [`@flatfile/util-extractor@0.3.0`](https://npmjs.com/package/@flatfile/util-extractor) provides utility functions for extracting and parsing data from various file formats and sources, streamlining data import processes.
 - [`remeda`](https://remedajs.com/) offers a set of utility functions for functional programming and data manipulation in JavaScript, providing a convenient way to work with arrays and objects.
 - [`xlsx`](https://sheetjs.com/) allows for reading, writing, and manipulating Microsoft Excel files in JavaScript applications.
 
@@ -98,12 +108,65 @@ listener.use(ExcelExtractor({ raw: true, rawNumbers: true }));
 
 </CodeGroup>
 
+### Header Detection
+
+Three detection options are provided for detecting headers in the file: `default`, `explicitHeaders`, and `specificRows`. By default, the first 10 rows are scanned for the row with the most non-empty cells. This row is then used as the header row.
+
+#### Default
+
+It looks at the first `rowsToSearch` rows and takes the row
+with the most non-empty cells as the header, preferring the earliest
+such row in the case of a tie.
+
+```js
+listener.use(ExcelExtractor());
+// or...
+listener.use(
+  ExcelExtractor({
+    headerDetectionOptions: {
+      algorithm: "default",
+      rowsToSearch: 30, // Default is 10
+    },
+  })
+);
+```
+
+#### Explicit Headers
+
+This implementation simply returns an explicit list of headers it was provided with.
+
+```js
+listener.use(
+  ExcelExtractor({
+    headerDetectionOptions: {
+      algorithm: "explicitHeaders",
+      headers: ["fiRsT NamE", "LaSt nAme", "emAil"],
+    },
+  })
+);
+```
+
+#### Specific Rows
+
+This implementation looks at specific rows and combines them into a single header. For example, if you knew that the header was in the third row, you could pass it `{ rowNumbers: [2] }`.
+
+```js
+listener.use(
+  ExcelExtractor({
+    headerDetectionOptions: {
+      algorithm: "specificRows",
+      rowNumbers: [2], // 0 based
+    },
+  })
+);
+```
+
 ### Full Example
 
 In this example, the `ExcelExtractor` is initialized with optional options, and then registered as middleware with the Flatfile listener. When an Excel file is uploaded, the plugin will extract the structured data and process it using the extractor's parser.
 
 ```js listener.js
-import { ExcelExtractor } from "@flatfile/xlsx-extractor";
+import { ExcelExtractor } from "@flatfile/plugin-xlsx-extractor";
 
 export default async function (listener) {
   // Define optional options for the extractor

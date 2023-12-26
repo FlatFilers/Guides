@@ -1,0 +1,575 @@
+/*
+ * Legal Disclaimer for Web licence
+ *
+ * Licence to use self-hosted webfonts for displaying dynamic text on specified website domains. Our package includes WOFF and WOFF2 font formats.
+ *
+ * Should the license page views limit be exceeded the license holder will be required to contact Lineto.com for an upgrade.
+ *
+ * It is strictly prohibited to rename the font and to download or use these fonts in any other media.
+ *
+ * These Web fonts are licensed exclusively for the use on the following domain(s) and their subdomains:
+ *
+ * flatfile.com (monthly pageviews: <50K)
+ *
+ */
+
+/* complete */
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Regular.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Regular.woff")
+      format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Bold.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Bold.woff")
+      format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Italic.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Italic.woff")
+      format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BoldItalic.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BoldItalic.woff")
+      format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Book.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Book.woff")
+      format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BookItalic.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BookItalic.woff")
+      format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Medium.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Medium.woff")
+      format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-MediumItalic.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-MediumItalic.woff")
+      format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Black.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Black.woff")
+      format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BlackItalic.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BlackItalic.woff")
+      format("woff");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Thin.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Thin.woff")
+      format("woff");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ThinItalic.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ThinItalic.woff")
+      format("woff");
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Light.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Light.woff")
+      format("woff");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-LightItalic.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-LightItalic.woff")
+      format("woff");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ExtraBlack.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ExtraBlack.woff")
+      format("woff");
+  font-weight: 950;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CircularXXWeb";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ExtraBlackItalic.woff2")
+      format("woff2"),
+    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ExtraBlackItalic.woff")
+      format("woff");
+  font-weight: 950;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Friends Fonts */
+@font-face {
+  font-family: "Friends";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/Friends-Black.otf")
+    format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Friends";
+  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/Friends-UltraBold.otf")
+    format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+*,
+:after,
+:before {
+  --tw-ring-color: rgba(59, 130, 246, 0.5);
+  --tw-text-opacity: 1;
+}
+
+html {
+  font-family: CircularXXWeb, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.font-extrabold {
+  font-family: Friends, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  line-height: 1.2;
+  letter-spacing: normal;
+}
+
+header .text-sm,
+h5 {
+  font-weight: 400 !important;
+  letter-spacing: 2.1px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.prose :where(h1, h2, h3):not(:where([class~="not-prose"] *)) {
+  letter-spacing: normal;
+}
+
+:root {
+  --gray-50: 0 0 0;
+  --gray-100: 0 0 0;
+  --gray-200: 0 0 0;
+  --gray-300: 0 0 0;
+  --gray-400: 0 0 0;
+  --gray-500: 0 0 0;
+  --gray-600: 0 0 0;
+  --gray-700: 0 0 0;
+  --gray-800: 0 0 0;
+  --gray-900: 0 0 0;
+  --gray-950: 0 0 0;
+}
+
+:root.dark {
+  --gray-50: 255 255 255;
+  --gray-100: 255 255 255;
+  --gray-200: 255 255 255;
+  --gray-300: 255 255 255;
+  --gray-400: 255 255 255;
+  --gray-500: 255 255 255;
+  --gray-600: 255 255 255;
+  --gray-700: 255 255 255;
+  --gray-800: 255 255 255;
+  --gray-900: 255 255 255;
+  --gray-950: 255 255 255;
+}
+
+.border {
+  border-width: 2px;
+}
+
+.\!bg-gray-400\/10 {
+  background-color: transparent !important;
+  border-width: 2px;
+}
+
+.rounded-full,
+.rounded-md,
+.rounded-lg,
+.rounded-sm,
+.rounded-xl {
+  border-radius: 0;
+}
+
+.rounded-t-\[0\.68rem\] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.ring-gray-400\/20 {
+  --tw-ring-color: rgb(var(--gray-400));
+}
+
+.bg-zinc-50\/50 {
+  background-color: #fff;
+}
+
+:is(.dark .dark\:border-gray-800\/50) {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.shadow-md,
+.bg-code-block {
+  --tw-shadow: rgb(0, 0, 0) 8px 8px;
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
+    0 2px 4px -2px var(--tw-shadow-color);
+  margin-bottom: 1em;
+}
+
+img {
+  border: 2px solid #000;
+}
+
+#navbar img,
+#navbar button.w-8,
+#navbar button.w-5 {
+  border: 0;
+}
+
+html:not(.dark) .border-primary-light {
+  border-color: #000;
+}
+
+html:not(.dark) .language-html,
+html:not(.dark) .language-css,
+html:not(.dark) .token.punctuation {
+  color: #000;
+}
+
+html:not(.dark) .token.keyword.control-flow,
+html:not(.dark) .token.keyword.module {
+  color: #884482;
+}
+
+html:not(.dark) .token.attr-name,
+html:not(.dark) .token.builtin,
+html:not(.dark) .token.char,
+html:not(.dark) .token.deleted,
+html:not(.dark) .token.selector,
+html:not(.dark) .token.string {
+  color: #8d4021;
+}
+
+htmlhtml:not(.dark) .token.console,
+:not(.dark) .token.interpolation,
+html:not(.dark) .token.parameter {
+  color: #5da8d0;
+}
+
+html:not(.dark) .token.keyword {
+  color: #246295;
+}
+
+html:not(.dark) .token.function,
+html:not(.dark) .token.function,
+html:not(.dark) .token.maybe-class-name {
+  color: #838348;
+}
+
+html:not(.dark) .token.boolean,
+html:not(.dark) .token.constant,
+html:not(.dark) .token.inserted,
+html:not(.dark) .token.number,
+html:not(.dark) .token.property,
+html:not(.dark) .token.symbol,
+html:not(.dark) .token.tag,
+html:not(.dark) .token.unit {
+  color: #768f68;
+}
+
+html:not(.dark) .token.entity,
+html:not(.dark) .token.operator {
+  color: #909090;
+}
+
+tml:not(.dark) .token.comment,
+tml:not(.dark) .token.prolog {
+  color: #4b7936;
+}
+
+html:not(.dark) .token.exports,
+html:not(.dark) .token.maybe-class-name,
+html:not(.dark) .token.maybe-class-name.token.maybe-class-name,
+html:not(.dark) .token.property,
+html:not(.dark) .token.variable {
+  color: #427691;
+}
+
+html:not(.dark) code[class*="language-javascript"],
+html:not(.dark) code[class*="language-jsx"],
+html:not(.dark) code[class*="language-tsx"],
+html:not(.dark) code[class*="language-typescript"],
+html:not(.dark) pre[class*="language-javascript"],
+html:not(.dark) pre[class*="language-jsx"],
+html:not(.dark) pre[class*="language-tsx"],
+html:not(.dark) pre[class*="language-typescript"] {
+  color: #5d9dc0;
+}
+
+html:not(.dark) .token.console,
+html:not(.dark) .token.interpolation,
+html:not(.dark) .token.parameter {
+  color: #7fb1cc;
+}
+
+html:not(.dark) .text-primary-light {
+  color: #000;
+}
+
+#navbar :is(.dark a.dark\:text-primary-light) {
+  color: #000;
+}
+
+html:not(.dark) .token.doctype .token.name {
+  color: #5088a6;
+}
+
+html:not(.dark) .token.attr-value,
+html:not(.dark) .token.attr-value .token.punctuation {
+  color: #a45f44;
+}
+
+.bg-\[\#0F1117\] {
+  background: #fff;
+  border: 1px solid black;
+}
+
+.bg-\[\#0F1117\] .bg-black\/40 {
+  background: transparent;
+}
+
+.prose :where(hr):not(:where([class~="not-prose"] *)) {
+  border-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.1);
+}
+
+:is(.dark .prose hr) {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.border-t {
+  border-top-width: 2px;
+}
+
+:not(pre) > code {
+  border-radius: 0;
+  background: transparent;
+}
+
+.bg-gray-200\/60 {
+  background: rgb(var(--gray-200));
+}
+
+:is(.dark .dark\:bg-gray-600\/30) {
+  background: rgb(var(--primary-dark));
+}
+
+.bg-gray-50 {
+  background: rgb(var(--primary) / 0.1);
+}
+
+:is(.dark .dark\:bg-white\/10) {
+  background: #fff;
+}
+
+:is(.dark .dark\:border-primary) {
+  border-color: #fff;
+}
+
+.fill-primary {
+  fill: #fff;
+}
+.fill-yellow-500 {
+  fill: #000;
+}
+
+.font-medium {
+  font-weight: 600;
+}
+
+p > code {
+  color: #000;
+}
+
+.prose :where(pre):not(:where([class~="not-prose"] *)) {
+  box-shadow: none;
+  border-radius: 0;
+  background-color: #000;
+  color: #fff;
+}
+
+:is(.dark .dark\:border) {
+  border-width: 2px;
+}
+
+#topbar-cta-button span,
+#topbar-cta-button svg {
+  background: rgb(var(--primary-dark));
+  border: 0;
+  color: #fff;
+}
+
+:is(.dark .dark\:border-background-dark) {
+  border-color: rgb(var(--background-light) / 0.3);
+}
+
+button {
+  border-width: 1px;
+}
+
+button.outline-none {
+  border-width: 0;
+}
+
+:is(.dark .dark\:text-white\/50) {
+  color: hsla(0, 0%, 100%, 1);
+}
+
+:is(.dark .dark\:bg-gray-800) {
+  background-color: #000;
+}
+
+.ring-gray-900\/5 {
+  --tw-ring-color: rgb(var(--primary-dark));
+}
+
+:is(.dark .dark\:fill-gray-300) {
+  color: #000;
+}
+
+.text-zinc-400 {
+  --tw-text-opacity: 1;
+  color: #000;
+}
+:is(.dark .dark\:bg-zinc-500\/10) {
+  border-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+:is(.dark\:bg-codeblock) {
+  margin-bottom: 3rem;
+}
+
+:is(.dark .dark\:bg-white\/50) {
+  background-color: hsla(0, 0%, 100%, 1);
+}
+
+.border-zinc-500\/20 {
+  border-color: #000;
+}
+
+[aria-controls="Children attributes"] {
+  border: 0;
+}
+
+.hover\:bg-gray-50\/50:hover {
+  background-color: rgb(var(--gray-50) / 0.1);
+}
+
+.bg-gray-100\/50 {
+  background-color: rgb(var(--gray-100) / 0.1);
+}
+
+:is(.dark .dark\:bg-white\/5) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+html:not(.dark) .bg-tooltip {
+  background-color: #fff;
+}
