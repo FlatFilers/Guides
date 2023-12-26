@@ -64,7 +64,7 @@
   "anchors": [
     {
       "name": "API Reference",
-      "icon": "rectangle-terminal",
+      "icon": "asterisk",
       "url": "https://reference.flatfile.com"
     },
     {
@@ -83,21 +83,10 @@
       "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
     },
     {
-      "group": "Build a custom app",
-      "pages": [
-        "quickstart/tutorial-landing",
-        "quickstart/meet-the-listener",
-        "quickstart/meet-the-workbook",
-        "quickstart/add-data-transformation",
-        "quickstart/submit-action",
-        "quickstart/deploying"
-      ]
-    },
-    {
-      "group": "By use case",
+      "group": "Platform Apps",
       "pages": [
         {
-          "group": "Embed in your app",
+          "group": "Install a Portal",
           "icon": "person-to-portal",
           "pages": [
             "use-cases/embedding/overview",
@@ -145,8 +134,28 @@
             }
           ]
         },
-        "use-cases/headless",
-        "use-cases/collaborate"
+        {
+          "group": "Start a Project",
+          "icon": "person-to-portal",
+          "pages": ["use-cases/projects/collaborate"]
+        },
+        {
+          "group": "Mapping",
+          "icon": "person-to-portal",
+          "pages": ["use-cases/mapping/overview"]
+        }
+      ]
+    },
+    {
+      "group": "Build an app",
+      "icon": "person-to-portal",
+      "pages": [
+        "quickstart/tutorial-landing",
+        "quickstart/meet-the-listener",
+        "quickstart/meet-the-workbook",
+        "quickstart/add-data-transformation",
+        "quickstart/submit-action",
+        "quickstart/deploying"
       ]
     },
     {
