@@ -31,11 +31,14 @@ Learn how to create a Space with a theme, and update a theme from an Event liste
   root variables!
 </Tip>
 
+#### Font
 <ParamField path="fontFamily" type="string">
   The font family used throughout the application.
 </ParamField>
-<ParamField path="buttonBorderRadius" type="string">
-  The border radius for all buttons.
+
+#### Colors
+<ParamField path="fontFamily" type="string">
+  The font family used throughout the application.
 </ParamField>
 <ParamField path="primaryColor" type="string">
   The primary color used throughout the application.
@@ -52,8 +55,78 @@ Learn how to create a Space with a theme, and update a theme from an Event liste
 <ParamField path="actionColor" type="string">
   The color used for Action buttons and text. This will default to a slightly lighter shade of your primary color. 
 </ParamField>
-
 <Info>For a more cohesive aesthetic, use the same color for your Action and Primary color.</Info>
+<ParamField path="borderColor" type="string">
+  The color used for borders throughout the application.
+</ParamField>
+
+#### Buttons
+<ParamField path="buttonBorderRadius" type="string">
+  The border radius for all standard buttons.
+</ParamField>
+
+#### Badges
+<ParamField path="badgeBorderColor" type="string">
+  The border color for all badges.
+</ParamField>
+<ParamField path="badgeBorderRadius" type="string">
+  The border radius for all badges.
+</ParamField>
+
+#### Checkboxes
+<ParamField path="checkboxBorderColor" type="string">
+  The border color for all checkboxes.
+</ParamField>
+<ParamField path="checkboxBorderRadius" type="string">
+  The border radius for all checkboxes.
+</ParamField>
+
+#### Dropdowns, Text Inputs, and Context Menus
+<ParamField path="interactiveBorderColor" type="string">
+  The border color for all dropdowns, text inputs, and context menus.
+</ParamField>
+<ParamField path="interactiveBorderRadius" type="string">
+  The border radius for all dropdowns, text inputs, and context menus.
+</ParamField>
+
+#### Tabstrip
+<ParamField path="tabstripActiveColor" type="string">
+  The color for active tabs in a tabstrip.
+</ParamField>
+<ParamField path="tabstripInactiveColor" type="string">
+  The color for inactive tabs in a tabstrip.
+</ParamField>
+<ParamField path="tabstripHoverTextColor" type="string">
+  The text color for tabs in a tabstrip on hover.
+</ParamField>
+<ParamField path="tabstripHoverBorderColor" type="string">
+  The border color for tabs in a tabstrip on hover.
+</ParamField>
+
+#### Modals
+<ParamField path="modalBorderRadius" type="string">
+  The border radius for modals.
+</ParamField>
+
+#### Pills
+<ParamField path="pillBorderRadius" type="string">
+  The border radius for all pills.
+</ParamField>
+
+#### Popovers
+<ParamField path="popoverBackgroundColor" type="string">
+  The background color for popovers.
+</ParamField>
+<ParamField path="popoverBorderRadius" type="string">
+  The border radius for popovers.
+</ParamField>
+
+#### Tooltips
+<ParamField path="tooltipBackgroundColor" type="string">
+  The background color for tooltips.
+</ParamField>
+
+
 
 ### `theme.sidebar`
 
@@ -102,14 +175,27 @@ Learn how to create a Space with a theme, and update a theme from an Event liste
 ![theme.table](../images/customize/theme_table.png)
 
 <Info>
-  You can override the default colors of the table below. If these are not set
-  they will inherit from your root colors.
+  You can override the default colors and values for different elements in the table below. If these are not set
+  they will inherit from your root values.
 </Info>
 
+#### Font
 <ParamField path="fontFamily" type="string">
   The font family used throughout the table.
 </ParamField>
 
+#### Active cell
+##### `theme.table.cell`
+<br />
+
+<ParamField path="cell.active.borderWidth" type="string">
+  The width of the border around the active cell.
+</ParamField>
+<ParamField path="cell.active.borderShadow" type="string">
+  The box shadow around the active cell.
+</ParamField>
+
+#### Column header
 ##### `theme.table.column`
 
 ![theme.table.column](../images/customize/theme_table_column.png)
@@ -121,6 +207,8 @@ Learn how to create a Space with a theme, and update a theme from an Event liste
   The text color of the column headers in the table.
 </ParamField>
 
+
+#### Index column
 ##### `theme.table.indexColumn`
 
 ![theme.table.indexColumn](../images/customize/theme_table_indexColumn.png)
@@ -135,12 +223,46 @@ Learn how to create a Space with a theme, and update a theme from an Event liste
   The background color of the first column in the table when selected.
 </ParamField>
 
+#### Checkboxes
 ##### `theme.table.inputs`
 
 ![theme.table.inputs](../images/customize/theme_table_inputs.png)
 
 <ParamField path="inputs.checkbox.color" type="string">
   The color of the checkboxes in the table.
+</ParamField>
+<ParamField path="inputs.checkbox.borderColor" type="string">
+  The color of the border for the checkboxes in the table.
+</ParamField>
+
+#### Filters
+##### `theme.table.filters`
+<br />
+
+<ParamField path="filters.outerBorderRadius" type="string">
+  The border radius of the table filters
+</ParamField>
+<ParamField path="filters.innerBorderRadius" type="string">
+  The border radius for the individual filters
+</ParamField>
+<ParamField path="filters.outerBorder" type="string">
+  The border of the table filters. By default there is no border.
+</ParamField>
+
+<Info>When nested objects share the same border radius, small gaps may appear. To resolve this, adjust the inner and outer border radius on the filters to seamlessly fill any gaps.</Info>
+
+#### Buttons
+##### `theme.table.buttons`
+<br />
+
+<ParamField path="buttons.iconColor" type="string">
+  The color of the icon buttons in the toolbar and table
+</ParamField>
+<ParamField path="buttons.pill.color" type="string">
+  The color of the pill buttons in the toolbar
+</ParamField>
+<ParamField path="filters.pill.backgroundColor" type="string">
+  The background color of the pill buttons in the toolbar
 </ParamField>
 
 ## Example Project

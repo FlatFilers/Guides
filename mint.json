@@ -64,8 +64,13 @@
   "anchors": [
     {
       "name": "API Reference",
-      "icon": "rectangle-terminal",
+      "icon": "asterisk",
       "url": "https://reference.flatfile.com"
+    },
+    {
+      "name": "Join our community",
+      "icon": "slack",
+      "url": "https://join.slack.com/t/flatfile-developers/shared_invite/zt-1zlexssv9-z5XT3MIPh09uuJBz5nBblQ"
     }
   ],
   "navigation": [
@@ -218,7 +223,6 @@
           ]
         },
         "developer-tools/deploying",
-        "developer-tools/client_server_side",
         "developer-tools/flatfile_query_language",
         "developer-tools/versioning"
       ]
@@ -235,13 +239,20 @@
       "group": "Core libraries",
       "pages": [
         "developer-tools/core-libraries/flatfile",
-        "developer-tools/core-libraries/listener",
-        "developer-tools/core-libraries/api",
-        "developer-tools/core-libraries/api-python"
+        "developer-tools/core-libraries/listener"
       ]
     },
     {
-      "group": "Wrappers",
+      "group": "APIs",
+      "pages": [
+        "developer-tools/core-libraries/api",
+        "developer-tools/core-libraries/api-python",
+        "developer-tools/core-libraries/api-go",
+        "developer-tools/core-libraries/api-java"
+      ]
+    },
+    {
+      "group": "Embedded Wrappers",
       "icon": "clock",
       "pages": [
         "developer-tools/core-libraries/wrappers/react",
@@ -249,6 +260,10 @@
         "developer-tools/core-libraries/wrappers/vuejs",
         "developer-tools/core-libraries/wrappers/vanilla"
       ]
+    },
+    {
+      "group": "Mapping",
+      "pages": ["developer-tools/mapping-libraries/flatfile-mapping-python"]
     },
     {
       "group": "Plugins",
