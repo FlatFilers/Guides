@@ -1,6 +1,8 @@
-# Get started with Portal
-
-Getting started with Flatfile has never been easier with our super simple Portal setup.
+---
+title: "Simplified SDK"
+description: "Securely and easily build an embedded Flatfile import experience into your Javascript application."
+icon: "list-check"
+---
 
 ## Who should use Portal?
 
@@ -26,6 +28,7 @@ First, we’ve already included the script tag that is bringing in the Flatfile 
 Second thing to note is that the `publishableKey` and `environmentId` are coded into the button’s onclick as values you’ll need to pass into the flatfileOptions object in order to get this to run properly. You can obtain your publishable key and environment Id by logging into your Flatfile Dashboard [here](https://platform.flatfile.com).
 
 The Basic HTML File:
+
 <CodeGroup>
 ```html index.html
 <!DOCTYPE html>
@@ -50,8 +53,8 @@ The Basic HTML File:
     <h3>We are going to import your data now. Click the button below to start your import</h3>
     <div class="container">
       <button
-          id="flatfileButton"
-          onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
+        id="flatfileButton"
+        onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
       >
         Import Contacts
       </button>
@@ -66,54 +69,55 @@ The Basic HTML File:
 
 Configuring your sheet for Portal is telling us about the data you’re looking to receive and in what format. You can specify things like fields being required or unique so that some of the built-in validation can help expedite your data import.
 
-A sheet contains 3 elements, a `name`, `slug` and your `fields`. We go over Fields in detail in our Blueprint guide, but in the below example, you will see that each field has a `key`, `type` and `label`. Some keys also use the `contraints` property to specify things like a field needing to be `required` to have a value or be a `unique` value in the field values. You might also notice in the below example that a field type of `enum` also using an additional `config` property where the `options` in the enum list will be defined.
+A sheet contains 3 elements, a `name`, `slug` and your `fields`. We go over Fields in detail in our Blueprint guide, but in the below example, you will see that each field has a `key`, `type` and `label`. Some keys also use the `constraints` property to specify things like a field needing to be `required` to have a value or be a `unique` value in the field values. You might also notice in the below example that a field type of `enum` also using an additional `config` property where the `options` in the enum list will be defined.
 
 Example sheet:
+
 <CodeGroup>
 ```js index.html
 const sheet = {
-	name: 'Contacts',
+  name: 'Contacts',
     slug: 'contacts',
     fields: [
-        {
-          key: 'name',
-          type: 'string',
-          label: 'Name',
-                contraints: [
-                    { type: 'required' }
-                ]
-        },
-        {
-          key: 'email',
-          type: 'string',
-          label: 'Email',
-                contraints: [
-                    { type: 'required' },
-                    { type: 'unique' },
-                ]
-        },
-		{
-			key: 'age',
-			type: 'number',
-			label: 'Age',
-		},
-		{
-			key: 'employmentStatus',
-			type: 'boolean',
-			label: 'Currently employed?',
-		},
-		{
-			key: 'birthYear',
-			type: 'enum',
-			label: 'Birth Year',
-			config: {
-				options: [
-					{ value: '1999', label: '1999' },
-					{ value: '2000', label: '2000' },
-					// more here
-				]
-			}
-		}
+      {
+        key: 'name',
+        type: 'string',
+        label: 'Name',
+        constraints: [
+          { type: 'required' }
+        ]
+      },
+      {
+        key: 'email',
+        type: 'string',
+        label: 'Email',
+        constraints: [
+          { type: 'required' },
+          { type: 'unique' },
+        ]
+      },
+    {
+      key: 'age',
+      type: 'number',
+      label: 'Age',
+    },
+    {
+      key: 'employmentStatus',
+      type: 'boolean',
+      label: 'Currently employed?',
+    },
+    {
+      key: 'birthYear',
+      type: 'enum',
+      label: 'Birth Year',
+      config: {
+        options: [
+          { value: '1999', label: '1999' },
+          { value: '2000', label: '2000' },
+          // more here
+        ]
+      }
+    }
   ],
 }
 ```
@@ -122,6 +126,7 @@ const sheet = {
 Now that we’ve built out the sheet above, we can add it to the full example below. Notice that in addition to the above sheet being added into the script tag, we’ve also referenced the `sheet` in the `flatfileOptions`. Quick note: The `flatfileOptions` object does expect to get a `sheet` object with that name. So you can name your `sheet` whatever you like, but if your sheet is `const mySheet = {}` then you will just need your `flatfileOptions` object to look like `sheet: mySheet` instead.
 
 Adding on to the Full Example:
+
 <CodeGroup>
 ```html index.html
 <!DOCTYPE html>
@@ -133,56 +138,56 @@ Adding on to the Full Example:
     <script src="https://www.unpkg.com/@flatfile/javascript@latest/dist/index.js"></script>
     <script>
       window.openFlatfile = ({ publishableKey, environmentId }) => {
-				const sheet = {
-					name: 'Contacts',
-				    slug: 'contacts',
-				    fields: [
-                        {
-                          key: 'name',
-                          type: 'string',
-                          label: 'Name',
-                                contraints: [
-                                    { type: 'required' }
-                                ]
-                        },
-                        {
-                          key: 'email',
-                          type: 'string',
-                          label: 'Email',
-                                contraints: [
-                                    { type: 'required' },
-                                    { type: 'unique' },
-                                ]
-                        },
-						{
-							key: 'age',
-							type: 'number',
-							label: 'Age',
-						},
-						{
-							key: 'employmentStatus',
-							type: 'boolean',
-							label: 'Currently employed?',
-						}
-						{
-							key: 'birthYear',
-							type: 'enum',
-							label: 'Birth Year',
-							config: {
-								options: [
-									{ value: '1999', label: '1999' },
-									{ value: '2000', label: '2000' },
-									// more here
-								]
-							}
-						}
-				  ],
-				}
+        const sheet = {
+          name: 'Contacts',
+            slug: 'contacts',
+            fields: [
+            {
+              key: 'name',
+              type: 'string',
+              label: 'Name',
+              constraints: [
+                { type: 'required' }
+              ]
+            },
+            {
+              key: 'email',
+              type: 'string',
+              label: 'Email',
+              constraints: [
+                { type: 'required' },
+                { type: 'unique' },
+              ]
+            },
+            {
+              key: 'age',
+              type: 'number',
+              label: 'Age',
+            },
+            {
+              key: 'employmentStatus',
+              type: 'boolean',
+              label: 'Currently employed?',
+            },
+            {
+              key: 'birthYear',
+              type: 'enum',
+              label: 'Birth Year',
+              config: {
+                options: [
+                  { value: '1999', label: '1999' },
+                  { value: '2000', label: '2000' },
+                  // more here
+                ]
+              }
+            }
+          ],
+        }
         const flatfileOptions = {
-            publishableKey,
-            environmentId,
-            sheet,
-        // more to come here in the following sections
+          publishableKey,
+          environmentId,
+          sheet,
+          // more to come here in the following sections
         }
         window.FlatFileJavaScript.startFlatfile(flatfileOptions)
       }
@@ -192,8 +197,8 @@ Adding on to the Full Example:
     <h3>We are going to import your data now. Click the button below to start your import</h3>
     <div class="container">
       <button
-          id="flatfileButton"
-          onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
+        id="flatfileButton"
+        onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
       >
         Import Contacts
       </button>
@@ -213,19 +218,19 @@ The callback you write will get the `record` passed in by default and you can up
 <CodeGroup>
 ```js index.html
 // taking just the flatfileOptions object out from the full example
-        const flatfileOptions = {
-            publishableKey,
-            environmentId,
-            sheet,
-            onRecordHook: (record) => {
-                const name = record.get('name')
-                if (name) {
-                    record.set('name', name.toUpperCase())
-                    record.addInfo('name', 'We updated the values to all uppercase')
-                }
-                return record
-            },
-        }
+const flatfileOptions = {
+  publishableKey,
+  environmentId,
+  sheet,
+  onRecordHook: (record) => {
+    const name = record.get('name')
+    if (name) {
+      record.set('name', name.toUpperCase())
+      record.addInfo('name', 'We updated the values to all uppercase')
+    }
+    return record
+  },
+}
 ```
 </CodeGroup>
 
@@ -246,51 +251,51 @@ Here’s the above added to the full code snippet:
     <script src="https://www.unpkg.com/@flatfile/javascript@latest/dist/index.js"></script>
     <script>
       window.openFlatfile = ({ publishableKey, environmentId }) => {
-				const sheet = {
-                    name: 'Contacts',
-                    slug: 'contacts',
-                    fields: [
-                        {
-                          key: 'name',
-                          type: 'string',
-                          label: 'Name',
-                                contraints: [
-                                    { type: 'required' }
-                                ]
-                        },
-                        {
-                          key: 'email',
-                          type: 'string',
-                          label: 'Email',
-                                contraints: [
-                                    { type: 'required' },
-                                    { type: 'unique' },
-                                ]
-                        },
-                            {
-                                key: 'age',
-                                type: 'number',
-                                label: 'Age',
-                            },
-                            {
-                                key: 'employmentStatus',
-                                type: 'boolean',
-                                label: 'Currently employed?',
-                            }
-                            {
-                                key: 'birthYear',
-                                type: 'enum',
-                                label: 'Birth Year',
-                                config: {
-                                    options: [
-                                        { value: '1999', label: '1999' },
-                                        { value: '2000', label: '2000' },
-                                        // more here
-                                    ]
-                                }
-                            }
-                      ],
-                }
+        const sheet = {
+          name: 'Contacts',
+          slug: 'contacts',
+          fields: [
+            {
+              key: 'name',
+              type: 'string',
+              label: 'Name',
+              constraints: [
+                { type: 'required' }
+              ]
+            },
+            {
+              key: 'email',
+              type: 'string',
+              label: 'Email',
+              constraints: [
+                { type: 'required' },
+                { type: 'unique' },
+              ]
+            },
+            {
+              key: 'age',
+              type: 'number',
+              label: 'Age',
+            },
+            {
+              key: 'employmentStatus',
+              type: 'boolean',
+              label: 'Currently employed?',
+            },
+            {
+              key: 'birthYear',
+              type: 'enum',
+              label: 'Birth Year',
+              config: {
+                options: [
+                  { value: '1999', label: '1999' },
+                  { value: '2000', label: '2000' },
+                  // more here
+                ]
+              }
+            }
+          ],
+        }
         const flatfileOptions = {
             publishableKey,
             environmentId,
@@ -331,10 +336,10 @@ Flatfile has many different ways to handle and process data back to you once an 
 
 This `onSubmit` callback passes in an object that has the records for you to send wherever you might need to store them. For example purposes, we are going to simply log the results, but this is where you could send results to your server or pass them back to your application.
 
-When the data is finished and available, the `onSubmit` method will provide you with a `sheet` that you can use the built-in methods like `allData()`, `validData()`, `errorData()`, `inChunks()` and `stream()` to get your data.  Here’s a quick reference table for the available methods and what they do.
+When the data is finished and available, the `onSubmit` method will provide you with a `sheet` that you can use the built-in methods like `allData()`, `validData()`, `errorData()`, `inChunks()` and `stream()` to get your data. Here’s a quick reference table for the available methods and what they do.
 
 | Method                              | Example Usage                                                                   | Return description                                                                                                      | Additional notes                                                                                                                                       |
-|-------------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------------------------------- | ------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `allData()`                         | `sheet.allData()`                                                               | This returns all the data that is being imported.                                                                       | All of the data does come with a way of determining whether the individual record was valid or not, but it returns all records regardless of validity. |
 | `validData()`                       | `sheet.validData() `                                                            | This returns all records that pass are flagged as being valid and leaves off all invalid records.                       |                                                                                                                                                        |
 | `errorData()`                       | `sheet.errorData()`                                                             | This will return only those records that are considered invalid and leaves off any valid records.                       |                                                                                                                                                        |
@@ -344,26 +349,26 @@ When the data is finished and available, the `onSubmit` method will provide you 
 With all those methods brought to light, let’s simply use the `allData` method to get all the records at once and then console log them in the process.
 
 <CodeGroup>
-    ```js index.html
-    // just working within the confines of the flatfileOptions object
-    const flatfileOptions = {
-        publishableKey,
-        environmentId,
-        sheet,
-        onRecordHook: (record) => {
-            const name = record.get('name')
-            if (name) {
-                record.set('name', name.toUpperCase())
-                record.addInfo('name', 'We updated the values to all uppercase')
-            }
-            return record
-        },
-        onSubmit: async ({sheet}) => {
-            const data = await sheet.allData()
-            console.log(data)
-        }
+```js index.html
+// just working within the confines of the flatfileOptions object
+const flatfileOptions = {
+  publishableKey,
+  environmentId,
+  sheet,
+  onRecordHook: (record) => {
+    const name = record.get('name')
+    if (name) {
+      record.set('name', name.toUpperCase())
+      record.addInfo('name', 'We updated the values to all uppercase')
     }
-    ```
+    return record
+  },
+  onSubmit: async ({sheet}) => {
+    const data = await sheet.allData()
+    console.log(data)
+  }
+}
+```
 </CodeGroup>
 
 Now let’s put it all together in the full example:
@@ -379,83 +384,81 @@ Now let’s put it all together in the full example:
     <script src="https://www.unpkg.com/@flatfile/javascript@latest/dist/index.js"></script>
     <script>
       window.openFlatfile = ({ publishableKey, environmentId }) => {
-				const sheet = {
-                    name: 'Contacts',
-				    slug: 'contacts',
-				    fields: [
-                        {
-                          key: 'name',
-                          type: 'string',
-                          label: 'Name',
-                                contraints: [
-                                    { type: 'required' }
-                                ]
-                        },
-                        {
-                          key: 'email',
-                          type: 'string',
-                          label: 'Email',
-                                contraints: [
-                                    { type: 'required' },
-                                    { type: 'unique' },
-                                ]
-                        },
-						{
-							key: 'age',
-							type: 'number',
-							label: 'Age',
-						},
-						{
-							key: 'employmentStatus',
-							type: 'boolean',
-							label: 'Currently employed?',
-						}
-						{
-							key: 'birthYear',
-							type: 'enum',
-							label: 'Birth Year',
-							config: {
-								options: [
-									{ value: '1999', label: '1999' },
-									{ value: '2000', label: '2000' },
-									// more here
-								]
-							}
-						}
-				  ],
-				}
-        const flatfileOptions = {
-            publishableKey,
-            environmentId,
-            sheet,
-            onRecordHook: (record) => {
-                const name = record.get('name')
-                if (name) {
-                  record.set('name', name.toUpperCase())
-                  record.addInfo('name', 'We updated the values to all uppercase')
-                }
-                return record
+        const sheet = {
+          name: "Contacts",
+          slug: "contacts",
+          fields: [
+            {
+              key: "name",
+              type: "string",
+              label: "Name",
+              constraints: [{ type: "required" }],
+            },
+            {
+              key: "email",
+              type: "string",
+              label: "Email",
+              constraints: [{ type: "required" }, { type: "unique" }],
+            },
+            {
+              key: "age",
+              type: "number",
+              label: "Age",
+            },
+            {
+              key: "employmentStatus",
+              type: "boolean",
+              label: "Currently employed?",
+            },
+            {
+              key: "birthYear",
+              type: "enum",
+              label: "Birth Year",
+              config: {
+                options: [
+                  { value: "1999", label: "1999" },
+                  { value: "2000", label: "2000" },
+                  // more here
+                ],
               },
-            onSubmit: async ({sheet}) => {
-                const data = await sheet.allData()
-                console.log(data)
+            },
+          ],
+        };
+        const flatfileOptions = {
+          publishableKey,
+          environmentId,
+          sheet,
+          onRecordHook: (record) => {
+            const name = record.get("name");
+            if (name) {
+              record.set("name", name.toUpperCase());
+              record.addInfo("name", "We updated the values to all uppercase");
             }
-        }
-        window.FlatFileJavaScript.startFlatfile(flatfileOptions)
-      }
+            return record;
+          },
+          onSubmit: async ({ sheet }) => {
+            const data = await sheet.allData();
+            console.log(data);
+          },
+        };
+        window.FlatFileJavaScript.startFlatfile(flatfileOptions);
+      };
     </script>
   </head>
   <body>
-    <h3>We are going to import your data now. Click the button below to start your import</h3>
+    <h3>
+      We are going to import your data now. Click the button below to start your
+      import
+    </h3>
     <div class="container">
       <button
-          id="flatfileButton"
-          onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
+        id="flatfileButton"
+        onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
       >
         Import Contacts
       </button>
     </div>
-    <br>
+    <br />
   </body>
 </html>
 ```
