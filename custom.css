@@ -434,12 +434,6 @@ html:not(.dark) .token.attr-value .token.punctuation {
   background: transparent;
 }
 
-:is(.dark .dark\:shadow-none) {
-  --tw-shadow: rgb(255, 255, 255) 8px 8px;
-  --tw-shadow-colored: 0 4px 6px -1px #fff, 0 2px 4px -2px #fff;
-  margin-bottom: 3em;
-}
-
 .prose :where(hr):not(:where([class~="not-prose"] *)) {
   border-color: rgba(0, 0, 0, 0.1);
   color: rgba(0, 0, 0, 0.1);
@@ -527,7 +521,7 @@ button.outline-none {
   color: hsla(0, 0%, 100%, 1);
 }
 
-:is(.dark .dark\:text-gray-300) {
+:is(.dark .dark\:fill-gray-300) {
   color: #000;
 }
 
