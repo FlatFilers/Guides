@@ -1,6 +1,8 @@
-# Get started with Portal
-
-Getting started with Flatfile has never been easier with our super simple Portal setup.
+---
+title: "Simplified SDK"
+description: "Securely and easily build an embedded Flatfile import experience into your Javascript application."
+icon: "list-check"
+---
 
 ## Who should use Portal?
 
@@ -67,7 +69,7 @@ The Basic HTML File:
 
 Configuring your sheet for Portal is telling us about the data you’re looking to receive and in what format. You can specify things like fields being required or unique so that some of the built-in validation can help expedite your data import.
 
-A sheet contains 3 elements, a `name`, `slug` and your `fields`. We go over Fields in detail in our Blueprint guide, but in the below example, you will see that each field has a `key`, `type` and `label`. Some keys also use the `contraints` property to specify things like a field needing to be `required` to have a value or be a `unique` value in the field values. You might also notice in the below example that a field type of `enum` also using an additional `config` property where the `options` in the enum list will be defined.
+A sheet contains 3 elements, a `name`, `slug` and your `fields`. We go over Fields in detail in our Blueprint guide, but in the below example, you will see that each field has a `key`, `type` and `label`. Some keys also use the `constraints` property to specify things like a field needing to be `required` to have a value or be a `unique` value in the field values. You might also notice in the below example that a field type of `enum` also using an additional `config` property where the `options` in the enum list will be defined.
 
 Example sheet:
 
@@ -81,7 +83,7 @@ const sheet = {
         key: 'name',
         type: 'string',
         label: 'Name',
-        contraints: [
+        constraints: [
           { type: 'required' }
         ]
       },
@@ -89,7 +91,7 @@ const sheet = {
         key: 'email',
         type: 'string',
         label: 'Email',
-        contraints: [
+        constraints: [
           { type: 'required' },
           { type: 'unique' },
         ]
@@ -144,7 +146,7 @@ Adding on to the Full Example:
               key: 'name',
               type: 'string',
               label: 'Name',
-              contraints: [
+              constraints: [
                 { type: 'required' }
               ]
             },
@@ -152,7 +154,7 @@ Adding on to the Full Example:
               key: 'email',
               type: 'string',
               label: 'Email',
-              contraints: [
+              constraints: [
                 { type: 'required' },
                 { type: 'unique' },
               ]
@@ -257,7 +259,7 @@ Here’s the above added to the full code snippet:
               key: 'name',
               type: 'string',
               label: 'Name',
-              contraints: [
+              constraints: [
                 { type: 'required' }
               ]
             },
@@ -265,7 +267,7 @@ Here’s the above added to the full code snippet:
               key: 'email',
               type: 'string',
               label: 'Email',
-              contraints: [
+              constraints: [
                 { type: 'required' },
                 { type: 'unique' },
               ]
@@ -390,13 +392,13 @@ Now let’s put it all together in the full example:
               key: "name",
               type: "string",
               label: "Name",
-              contraints: [{ type: "required" }],
+              constraints: [{ type: "required" }],
             },
             {
               key: "email",
               type: "string",
               label: "Email",
-              contraints: [{ type: "required" }, { type: "unique" }],
+              constraints: [{ type: "required" }, { type: "unique" }],
             },
             {
               key: "age",
