@@ -4,7 +4,7 @@ description: "The anatomy of Events."
 icon: "clock"
 ---
 
-The Flatfile platform encompasses a comprehensive suite of tools. Firstly, it offers a REST API, which can be accessed through the <Tooltip tip="View API reference">REST API</Tooltip>, empowering users to effortlessly manipulate resources. Additionally, an Event bus is available for seamless subscription to resource-related notifications.
+The Flatfile platform encompasses a comprehensive suite of tools. Firstly, it offers a REST API, which can be accessed through the <Tooltip tip="View API reference">[REST API](https://reference.flatfile.com/)</Tooltip>, empowering users to effortlessly manipulate resources. Additionally, an Event bus is available for seamless subscription to resource-related notifications.
 
 To simplify the process of utilizing the Flatfile API, the Flatfile PubSub Client serves as a lightweight wrapper. It enables developers to seamlessly trigger API calls upon receiving Events from any PubSub driver, thus ensuring a smooth and streamlined integration process.
 
@@ -12,7 +12,7 @@ To simplify the process of utilizing the Flatfile API, the Flatfile PubSub Clien
 
 Flatfile Events adhere to a standardized structure, and Event listeners have the flexibility to handle Events within Flatfile using any of the following syntaxes.
 
-[See API Reference](https://reference.flatfile.com/docs/api/c67125494272c-create-an-event)
+[See API Reference](https://reference.flatfile.com/api-reference/events/create-an-event)
 
 ### Using Events
 
@@ -111,6 +111,25 @@ outcome or plan subsequent actions accordingly.
     "spaceId": "us_sp_1234",
     "workbookId": "us_wb_1234",
     "actorId": "us_ag_1234"
+  }
+}
+```
+
+#### `workbook:expired`
+
+<ParamField path="workbook:expired" type="readonly">
+  Called when a workbook is expired.
+</ParamField>
+
+```json
+{
+  "domain": "workbook",
+  "topic": "workbook:expired",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234"
   }
 }
 ```
@@ -264,6 +283,25 @@ outcome or plan subsequent actions accordingly.
     "spaceId": "us_sp_1234",
     "fileId": "us_fl_1234",
     "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `file:expired`
+
+<ParamField path="file:expired" type="readonly">
+  Called when a file is expired.
+</ParamField>
+
+```json
+{
+  "domain": "file",
+  "topic": "file:expired",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "fileId": "us_fl_1234"
   }
 }
 ```
@@ -559,6 +597,25 @@ outcome or plan subsequent actions accordingly.
     "spaceId": "us_sp_1234",
     "workbookId": "us_wb_1234",
     "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `space:expired`
+
+<ParamField path="space:expired" type="readonly">
+  Called when a space is expired.
+</ParamField>
+
+```json
+{
+  "domain": "space",
+  "topic": "space:expired",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234"
   }
 }
 ```

@@ -342,7 +342,9 @@ addInfo(fields, message);
 
 #### Example
 
-```jsx const email = record.get("email"); const validEmailAddress = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+```jsx
+const email = record.get("email");
+const validEmailAddress = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
 if (email !== null && validEmailAddress.test(email)) {
   record.addInfo("email", "This email was verified.");
 }

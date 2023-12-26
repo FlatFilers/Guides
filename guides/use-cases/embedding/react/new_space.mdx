@@ -282,22 +282,20 @@ In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey` and t
 
 ```tsx src/App.tsx
 import { Dispatch, SetStateAction, useState } from "react";
-import { ISpace, useSpace } from "@flatfile/react";
+import { ISpace, initializeFlatfile } from "@flatfile/react";
 import { workbook } from "./workbook";
 import { listener } from "./listeners/simple";
 
-const spaceProps: ISpace = {
-  name: "Embedded Space",
-  publishableKey: "pk_3dd6ee8679994ee5b421f17b91524fee",
-  environmentId: "us_env_QzZ1nMYH",
-};
+export default function App() {
+  const spaceProps: ISpace = {
+    name: "Embedded Space",
+    publishableKey: "pk_1234",
+    environmentId: "us_env_1234",
+  };
 
-const Space = ({
-  setShowSpace,
-}: {
-  setShowSpace: Dispatch<SetStateAction<boolean>>;
-}) => {
-  const space = useSpace({
+  const [showSpace, setShowSpace] = useState(false);
+  
+  const { Space, OpenEmbed } = initializeFlatfile({
     ...spaceProps,
     sidebarConfig: {
       showSidebar: false,
@@ -306,12 +304,12 @@ const Space = ({
       operation: "submitActionFg",
       onClose: () => setShowSpace(false),
     },
-  });
-  return space;
-};
+  })
 
-export default function App() {
-  const [showSpace, setShowSpace] = useState(false);
+  const onOpenSpace = async () => {
+    setShowSpace(!showSpace)
+    await OpenEmbed()
+  }
 
   return (
     <div className="content">
@@ -323,13 +321,11 @@ export default function App() {
       <div>
         <button
           className="contrast"
-          onClick={() => {
-            setShowSpace(!showSpace);
-          }}
+          onClick={onOpenSpace}
         >
           {showSpace === true ? "Close" : "Open and create new"} Space
         </button>
-        {showSpace && <Space setShowSpace={setShowSpace} />}
+        {showSpace && <Space />}
       </div>
     </div>
   );
@@ -464,4 +460,3 @@ Find this React example project in the Flatfile GitHub repository.
     Clone the Flatfile React tutorial here.
   </Card>
 </CardGroup>
-````
