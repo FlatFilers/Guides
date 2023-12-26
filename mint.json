@@ -66,6 +66,11 @@
       "name": "API Reference",
       "icon": "rectangle-terminal",
       "url": "https://reference.flatfile.com"
+    },
+    {
+      "name": "Join our community",
+      "icon": "slack",
+      "url": "https://join.slack.com/t/flatfile-developers/shared_invite/zt-1zlexssv9-z5XT3MIPh09uuJBz5nBblQ"
     }
   ],
   "navigation": [
