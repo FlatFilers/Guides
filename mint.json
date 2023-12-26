@@ -78,14 +78,70 @@
       "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
     },
     {
-      "group": "Beginner Tutorial",
+      "group": "Build a custom app",
       "pages": [
         "quickstart/tutorial-landing",
-        "quickstart/meet-the-workbook",
         "quickstart/meet-the-listener",
+        "quickstart/meet-the-workbook",
         "quickstart/add-data-transformation",
         "quickstart/submit-action",
         "quickstart/deploying"
+      ]
+    },
+    {
+      "group": "By use case",
+      "pages": [
+        {
+          "group": "Embed in your app",
+          "icon": "person-to-portal",
+          "pages": [
+            "use-cases/embedding/overview",
+            {
+              "group": "Javascript",
+              "icon": "js",
+              "pages": [
+                "use-cases/embedding/javascript/guide",
+                "use-cases/embedding/javascript/new_space",
+                {
+                  "group": "Advanced",
+                  "icon": "settings",
+                  "pages": ["use-cases/embedding/javascript/reuse_space"]
+                }
+              ]
+            },
+            {
+              "group": "React",
+              "icon": "react",
+              "pages": [
+                "use-cases/embedding/react/guide",
+                "use-cases/embedding/react/new_space"
+              ]
+            },
+            {
+              "group": "Vue.js",
+              "icon": "vuejs",
+              "pages": [
+                "use-cases/embedding/vue/guide",
+                "use-cases/embedding/vue/new_space",
+                {
+                  "group": "Advanced",
+                  "icon": "settings",
+                  "pages": ["use-cases/embedding/vue/reuse_space"]
+                }
+              ]
+            },
+            {
+              "group": "Reference",
+              "icon": "asterisk",
+              "pages": [
+                "use-cases/embedding/reference/common",
+                "use-cases/embedding/reference/advanced"
+              ]
+            }
+          ]
+        },
+        "use-cases/headless",
+        "use-cases/collaborate"
       ]
     },
     {
@@ -107,70 +163,15 @@
       ]
     },
     {
-      "group": "Concepts",
+      "group": "Learn Concepts",
       "pages": [
+        "concepts/apps",
         "concepts/workbooks",
         "concepts/actions",
         "concepts/jobs",
         "concepts/events",
         "concepts/spaces",
         "concepts/listeners"
-      ]
-    },
-    {
-      "group": "By use case",
-      "pages": [
-        {
-          "group": "Embed in your app",
-          "icon": "person-to-portal",
-          "pages": [
-            "guides/use-cases/embedding/overview",
-            {
-              "group": "Javascript",
-              "icon": "js",
-              "pages": [
-                "guides/use-cases/embedding/javascript/guide",
-                "guides/use-cases/embedding/javascript/new_space",
-                {
-                  "group": "Advanced",
-                  "icon": "settings",
-                  "pages": ["guides/use-cases/embedding/javascript/reuse_space"]
-                }
-              ]
-            },
-            {
-              "group": "React",
-              "icon": "react",
-              "pages": [
-                "guides/use-cases/embedding/react/guide",
-                "guides/use-cases/embedding/react/new_space"
-              ]
-            },
-            {
-              "group": "Vue.js",
-              "icon": "vuejs",
-              "pages": [
-                "guides/use-cases/embedding/vue/guide",
-                "guides/use-cases/embedding/vue/new_space",
-                {
-                  "group": "Advanced",
-                  "icon": "settings",
-                  "pages": ["guides/use-cases/embedding/vue/reuse_space"]
-                }
-              ]
-            },
-            {
-              "group": "Reference",
-              "icon": "asterisk",
-              "pages": [
-                "guides/use-cases/embedding/reference/common",
-                "guides/use-cases/embedding/reference/advanced"
-              ]
-            }
-          ]
-        },
-        "guides/use-cases/headless",
-        "guides/use-cases/collaborate"
       ]
     },
     {
