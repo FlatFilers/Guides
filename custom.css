@@ -521,6 +521,14 @@ button.outline-none {
   color: hsla(0, 0%, 100%, 1);
 }
 
+:is(.dark .dark\:bg-gray-800) {
+  background-color: #000;
+}
+
+.ring-gray-900\/5 {
+  --tw-ring-color: rgb(var(--primary-dark));
+}
+
 :is(.dark .dark\:fill-gray-300) {
   color: #000;
 }
