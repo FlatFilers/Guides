@@ -30,14 +30,139 @@ In the following code, we will:
 
 ```jsx listener.js
 import api from "@flatfile/api";
-import { configureSpace } from "@flatfile/plugin-space-configure";
 
-export default function (listener) {
+export default function flatfileEventListener(listener) {
+  // Part 1: Setup a listener (https://flatfile.com/docs/apps/custom/meet-the-listener)
+  listener.on("**", (event) => {
+    // Log all events
+    console.log(`Received event: ${event.topic}`);
+  });
+
   listener.namespace(["space:red"], (red) => {
-    red.on(
-      "job:ready",
-      { job: "space:configure" },
-      async ({ context: { spaceId, environmentId, jobId } }) => {
+    // Part 2: Configure a Space (https://flatfile.com/docs/apps/custom)
+    red.filter({ job: "space:configure" }, (configure) => {
+      configure.on(
+        "job:ready",
+        async ({ context: { spaceId, environmentId, jobId } }) => {
+          try {
+            await api.jobs.ack(jobId, {
+              info: "Gettin started.",
+              progress: 10,
+            });
+
+            await api.workbooks.create({
+              spaceId,
+              environmentId,
+              name: "All Data",
+              labels: ["pinned"],
+              sheets: [
+                {
+                  name: "Contacts",
+                  slug: "contacts",
+                  fields: [
+                    {
+                      key: "firstName",
+                      type: "string",
+                      label: "First Name",
+                    },
+                    {
+                      key: "lastName",
+                      type: "string",
+                      label: "Last Name",
+                    },
+                    {
+                      key: "email",
+                      type: "string",
+                      label: "Email",
+                    },
+                  ],
+                },
+              ],
+              actions: [
+                {
+                  operation: "submitAction",
+                  mode: "foreground",
+                  label: "Submit foreground",
+                  description: "Submit data to webhook.site",
+                  primary: true,
+                },
+              ],
+            });
+
+            await api.documents.create(spaceId, {
+              title: "Getting Started",
+              body:
+                "# Welcome\n" +
+                "### Say hello to your first customer Space in the new Flatfile!\n" +
+                "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+                "---\n",
+            });
+
+            await api.spaces.update(spaceId, {
+              environmentId,
+              metadata: {
+                theme: {
+                  root: {
+                    primaryColor: "red",
+                  },
+                  sidebar: {
+                    backgroundColor: "red",
+                    textColor: "white",
+                    activeTextColor: "midnightblue",
+                  },
+                  // See reference for all possible variables
+                },
+              },
+            });
+
+            await api.jobs.complete(jobId, {
+              outcome: {
+                message: "Your Space was created.",
+                acknowledge: true,
+              },
+            });
+          } catch (error) {
+            console.error("Error:", error.stack);
+
+            await api.jobs.fail(jobId, {
+              outcome: {
+                message:
+                  "Creating a Space encountered an error. See Event Logs.",
+                acknowledge: true,
+              },
+            });
+          }
+        }
+      );
+    });
+  });
+}
+```
+
+```jsx listener.ts
+/**
+ * This code is used in Flatfile's Beginner Tutorial
+ * https://flatfile.com/docs/quickstart
+ *
+ * To see all of Flatfile's code examples go to: https://github.com/FlatFilers/flatfile-docs-kitchen-sink
+ */
+
+import { FlatfileListener } from "@flatfile/listener";
+import { Client, FlatfileEvent } from "@flatfile/listener";
+import api from "@flatfile/api";
+
+export default function flatfileEventListener(listener: Client) {
+  // Part 1: Setup a listener (https://flatfile.com/docs/quickstart/meet-the-listener)
+  listener.on("**", (event: FlatfileEvent) => {
+    // Log all events
+    console.log(`Received event: ${event.topic}`);
+  });
+
+  listener.namespace(["space:red"], (red: FlatfileListener) => {
+    red
+      .filter({ job: "space:configure" })
+      .on("job:ready", async (event: FlatfileEvent) => {
+        const { spaceId, environmentId, jobId } = event.context;
         try {
           await api.jobs.ack(jobId, {
             info: "Gettin started.",
@@ -46,12 +171,34 @@ export default function (listener) {
 
           await api.workbooks.create({
             spaceId,
-            name: "My First Workbook",
-            labels: ["simple-demo"],
+            environmentId,
+            name: "All Data",
+            labels: ["pinned"],
             sheets: [
               {
                 name: "Contacts",
                 slug: "contacts",
+                fields: [
+                  {
+                    key: "firstName",
+                    type: "string",
+                    label: "First Name",
+                  },
+                  {
+                    key: "lastName",
+                    type: "string",
+                    label: "Last Name",
+                  },
+                  {
+                    key: "email",
+                    type: "string",
+                    label: "Email",
+                  },
+                ],
+              },
+              {
+                name: "Sheet 2",
+                slug: "sheet2",
                 fields: [
                   {
                     key: "firstName",
@@ -75,16 +222,20 @@ export default function (listener) {
               {
                 operation: "submitAction",
                 mode: "foreground",
-                label: "Submit",
+                label: "Submit foreground",
                 description: "Submit data to webhook.site",
                 primary: true,
               },
             ],
           });
 
-          await api.documents.create(spaceId, {
-            title: "Getting Started in the Red Space",
-            body: "# Welcome to your swanky new Red Space\n" + "---\n",
+          const doc = await api.documents.create(spaceId, {
+            title: "Getting Started",
+            body:
+              "# Welcome\n" +
+              "### Say hello to your first customer Space in the new Flatfile!\n" +
+              "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+              "---\n",
           });
 
           await api.spaces.update(spaceId, {
@@ -106,7 +257,8 @@ export default function (listener) {
 
           await api.jobs.complete(jobId, {
             outcome: {
-              message: "This job is now complete.",
+              message: "Your Space was created. Let's get started.",
+              acknowledge: true,
             },
           });
         } catch (error) {
@@ -114,12 +266,12 @@ export default function (listener) {
 
           await api.jobs.fail(jobId, {
             outcome: {
-              message: "This job encountered an error.",
+              message: "Creating a Space encountered an error. See Event Logs.",
+              acknowledge: true,
             },
           });
         }
-      }
-    );
+      });
   });
 }
 ```
