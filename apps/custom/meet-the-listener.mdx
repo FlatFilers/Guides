@@ -4,8 +4,6 @@ description: "Learn how to listen and respond to events in Flatfile."
 icon: "circle-1"
 ---
 
-You've just created a Workbook.
-
 In Flatfile, an event-based system, that means an [Event](../../orchestration/events) was published.
 
 A [Listener](/orchestration/listeners) is a function that is triggered by an Event. It's a powerful building block because it can be completely customized, enabling you to respond to events precisely the way your business and workflow requires.
@@ -35,7 +33,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
 ```
 </CodeGroup>
 
-As you can see, this function is listening on "\*\*", which is a wildcard that matches all events. All this listener does, is log an incoming Event's topic.
+As you can see, this function is listening on "\*\*", which is a wildcard that matches all events on all Apps. All this listener does, is log an incoming Event's topic.
 
 ## Setup your first listener
 
@@ -114,22 +112,8 @@ ncc: Compiling file index.js into CJS
   ✓ Connected to event stream for scope us_env_1234
 ```
 
-## Watch your Events
-
-To watch your listener receive an event, you'll need to trigger one.
-
-Go to your Flatfile Workbook and make a few changes. For example, try typing text into a cell.
-
-Typing in a cell (editing a Record) triggers an Event! And because your listener was running, it logged your activity.
-
-```ssh console
- ▶ commit:created  10:13:05.159 AM us_evt_1234
- ↳ on(**, {})
- ↳ on(commit:created, {"sheetSlug":"contacts"})
-```
-
 ---
 
 ## Next steps
 
-Now that you've created a [Listener](/orchestration/listeners), a powerful building block on the Flatfile platform, let's learn how to leverage your listener to [Transform and validate data](../custom/add-data-transformation).
+To watch your listener receive an event, you'll need to trigger one. Let's learn how to leverage your listener to [Configure a Space](../custom/meet-the-workbook) on the fly.

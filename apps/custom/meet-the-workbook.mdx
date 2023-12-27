@@ -1,40 +1,138 @@
 ---
-title: "Meet the Workbook"
-description: "Configure a destination for your data by creating a Workbook"
+title: "Configure a Space"
+description: "Configure a place for collecting data by creating a Space."
 icon: "circle-2"
 ---
 
-If you don't already have one, sign up for a Flatfile account [here](https://platform.flatfile.com/account/sign-up).
+Flatfile Spaces are micro-applications, each having their own database, filestore, and auth. A Space is comprised of Workbooks, Files and Users. It can also include Documents, Themes and Metadata.
 
-<Note>
-  To go through this tutorial you'll need a Flatfile account. We'll be using the
-  credentials from your free account to assemble your first data import
-  experience.
-</Note>
+In this example, we'll create a simple Space with a Workbook and a Document. We'll also theme the Space to be red.
 
-In your account use the quickcopy button to copy your secrets key from the [API Keys & Secrets](https://platform.flatfile.com/dashboard/keys-and-secrets) page. You're about to use this credential to create a Workbook in your account.
+## Dynamically build your Space
 
-## Create a Workbook
+When the "Create New Space" button is clicked from within your App in the dashboard, it triggers a [job `event`](../orchestration/events) within the **space** `domain` that initiates a **configure** `operation`.
 
-The adjacent curl command creates a Workbook.
+This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://flatfile.stoplight.io/docs/api/25e20c8ab61c5-create-a-space) with the parameter `autoconfigure` set to true.
 
-Copy this command, replace "PASTE_SECRET_KEY_HERE" with the credential you just fetched from your account, and run it in your terminal.
+#### Usage
 
-Congratulations! You've just created your first Workbook.
+In the following code, we will:
 
-<Info>
-  If you are uncertain how to use cURL, you can run the same command from our
-  site
-  [here](https://flatfile.stoplight.io/docs/api/tjt005wdogklo-create-a-sample-workbook).
-</Info>
+1. Filter on the `red` namespace. (Or replace this with your namespace.)
+2. Filter for a job by the `domain` (space) and the `operation` (configure) it was created.
+3. Listen for a [`job:ready`](../orchestration/events#job-ready) event.
+4. Acknowledge the Job and mark the progress.
+5. Add the contents of the Space, including one Workbook and a simple Document.
+6. Update the space theme to be the color `red`.
+7. Complete (or fail) the job.
 
-## Meet your Workbook
+<CodeGroup>
+
+```jsx listener.js
+import api from "@flatfile/api";
+import { configureSpace } from "@flatfile/plugin-space-configure";
+
+export default function (listener) {
+  listener.namespace(["space:red"], (red) => {
+    red.on(
+      "job:ready",
+      { job: "space:configure" },
+      async ({ context: { spaceId, environmentId, jobId } }) => {
+        try {
+          await api.jobs.ack(jobId, {
+            info: "Gettin started.",
+            progress: 10,
+          });
+
+          await api.workbooks.create({
+            spaceId,
+            name: "My First Workbook",
+            labels: ["simple-demo"],
+            sheets: [
+              {
+                name: "Contacts",
+                slug: "contacts",
+                fields: [
+                  {
+                    key: "firstName",
+                    type: "string",
+                    label: "First Name",
+                  },
+                  {
+                    key: "lastName",
+                    type: "string",
+                    label: "Last Name",
+                  },
+                  {
+                    key: "email",
+                    type: "string",
+                    label: "Email",
+                  },
+                ],
+              },
+            ],
+            actions: [
+              {
+                operation: "submitAction",
+                mode: "foreground",
+                label: "Submit",
+                description: "Submit data to webhook.site",
+                primary: true,
+              },
+            ],
+          });
+
+          await api.documents.create(spaceId, {
+            title: "Getting Started in the Red Space",
+            body: "# Welcome to your swanky new Red Space\n" + "---\n",
+          });
+
+          await api.spaces.update(spaceId, {
+            environmentId,
+            metadata: {
+              theme: {
+                root: {
+                  primaryColor: "red",
+                },
+                sidebar: {
+                  backgroundColor: "red",
+                  textColor: "white",
+                  activeTextColor: "midnightblue",
+                },
+                // See reference for all possible variables
+              },
+            },
+          });
+
+          await api.jobs.complete(jobId, {
+            outcome: {
+              message: "This job is now complete.",
+            },
+          });
+        } catch (error) {
+          console.error("Error:", error.stack);
+
+          await api.jobs.fail(jobId, {
+            outcome: {
+              message: "This job encountered an error.",
+            },
+          });
+        }
+      }
+    );
+  });
+}
+```
+
+</CodeGroup>
+
+## Meet your Space
 
 So what did that just do?
 
-In your Flatfile account you should now be able to see your Workbook.
+In your Flatfile account you should now be able to see your Space.
 
-As you can see, this Workbook has a sheet and fields. A <Tooltip tip="Analogous to a database...">[Workbook](https://flatfileinc.mintlify.dev/docs/orchestration/workbooks)</Tooltip> is like a template, it's definition includes a profile of the data it expects to hold. We call that profile a Blueprint.
+As you can see, this Space has a Workbook with a sheet and fields. A <Tooltip tip="Analogous to a database...">[Workbook](https://flatfileinc.mintlify.dev/docs/orchestration/workbooks)</Tooltip> is like a template, it's definition includes a profile of the data it expects to hold. We call that profile a Blueprint.
 
 <Note>
   [Blueprint](../../blueprint/overview) is Flatfile's robust data definition
@@ -42,8 +140,22 @@ As you can see, this Workbook has a sheet and fields. A <Tooltip tip="Analogous 
   leverage Blueprint for their create, update, and read operations.
 </Note>
 
+## Watch your Events
+
+Because your listener was running, it logged your activity as the Space was being built. You should see several events that took place.
+
+Now, to watch your listener receive another event, make a few changes in the Workbook. For example, try typing text into a cell.
+
+Typing in a cell (editing a Record) triggers an Event!
+
+```ssh console
+ ▶ commit:created  10:13:05.159 AM us_evt_1234
+ ↳ on(**, {})
+ ↳ on(commit:created, {"sheetSlug":"contacts"})
+
 ---
 
 ## Next steps
 
-Now that you have a Workbook, which acts both as a schema and destination for your data, you're ready to [Setup a listener](../custom/meet-the-listener).
+Now that you have a Workbook in a Space, which acts both as a schema and destination for your data, you're ready to [Add data transformations](../custom/add-data-transformation.mdx).
+```
