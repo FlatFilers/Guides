@@ -8,11 +8,11 @@ icon: "ear-listen"
 
 Listeners are the core of the Flatfile Platform. All of your configurations, from [data transformations](/plugins/transform), to [custom styling](/guides/theming), to [data export](/guides/egress) are done in a Listener. They hold the logic backing your Flatfile Spaces, defining the functionality of your implementation.
 
-Fundamentally, a Listener is a function that listens for [Events](/concepts/events) and takes action when they occur. This means your configurations are implemented in response to events. To understand how to configure a Listener, it's important to understand the anatomy of an Event.
+Fundamentally, a Listener is a function that listens for [Events](/orchestration/events) and takes action when they occur. This means your configurations are implemented in response to events. To understand how to configure a Listener, it's important to understand the anatomy of an Event.
 
 ## An Event-Driven System
 
-Flatfile is an event-driven system, meaning interactions with Flatfile (clicking a button, editing a record, uploading a file, etc) trigger the publication of an [Event](/concepts/events).
+Flatfile is an event-driven system, meaning interactions with Flatfile (clicking a button, editing a record, uploading a file, etc) trigger the publication of an [Event](/orchestration/events).
 
 Each Event contains information about its source and execution context including a domain, topic, context, and optionally, a payload.
 
@@ -51,7 +51,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
 
 </CodeGroup>
 
-This function is listening on "\*\*", which is a wildcard that matches all events. For a complete list of events that can be listened to, see [Event Topics](../concepts/events#event-topics).
+This function is listening on "\*\*", which is a wildcard that matches all events. For a complete list of events that can be listened to, see [Event Topics](../orchestration/events#event-topics).
 
 ### Filtering
 
@@ -64,10 +64,7 @@ A simple way to filter events is to use the shorthand syntax `listener.on`:
 <CodeGroup>
 
 ```jsx javascript
-listener.on(
-  "commit:created", 
-  { sheet: "Contacts" }, 
-  async (event) => {
+listener.on("commit:created", { sheet: "Contacts" }, async (event) => {
   // Custom action responding to the commit
 });
 ```
@@ -239,16 +236,16 @@ export default function (listener) {
 Learn more about the Flatfile Platform in our other concept guides:
 
 <CardGroup cols={2}>
-  <Card title="Events" href="/concepts/events" icon="clock">
+  <Card title="Events" href="/orchestration/events" icon="clock">
     The building blocks that power Flatfile's event-driven system
   </Card>
-  <Card title="Actions" href="/concepts/actions" icon="bolt">
+  <Card title="Actions" href="/orchestration/actions" icon="bolt">
     Custom code-based operations prompted by user interactions
   </Card>
-  <Card title="Jobs" href="/concepts/jobs" icon="truck">
+  <Card title="Jobs" href="/orchestration/jobs" icon="truck">
     Handle complex or long-running processes asynchronously
   </Card>
-  <Card title="Spaces" href="/concepts/spaces" icon="planet-ringed">
+  <Card title="Spaces" href="/developer-tools/spaces" icon="planet-ringed">
     Micro-applications with its own database, filestore, and auth
   </Card>
 </CardGroup>

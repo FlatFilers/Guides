@@ -4,7 +4,7 @@ description: "Add validations and transformations to your listeners"
 icon: "circle-3"
 ---
 
-## Add your first transformation
+## Before you begin
 
 To make working with event data inside a listener easy, Flatfile provides a suite of Plugins.
 
@@ -15,6 +15,23 @@ To make working with event data inside a listener easy, Flatfile provides a suit
 </Note>
 
 The Record Hook Plugin fires whenever a row of data (a Record) is added or modified, allowing us to take action and perform a custom transformation.
+
+### Import the recordHook plugin
+
+<CodeGroup>
+
+```js javascript
+import { recordHook } from "@flatfile/plugin-record-hook";
+```
+
+```js typescript
+import {(recordHook, FlatfileRecord)} from
+"@flatfile/plugin-record-hook";
+```
+
+</CodeGroup>
+
+## Add your first transformation
 
 Here's an example that modifies the first name value of a Record, converting it to lowercase:
 
@@ -39,10 +56,12 @@ You can also use a `recordHook` to help validate data.
 For example, what if the first name in a Record is not a string? The current code would not transform it, so let's add an error message to flag the Record.
 
 <Snippet file="quickstart/block2.mdx" />
-<br />
+
+### Addl examples
+
 <Tip>You can use any npm package in a plugin.</Tip>
 
-The possible customizations are endless. Flatfile has a constantly expanding library of [transformation and validation plugins](../plugins/transform) that help you reshape data. You can add as many as you need to ensure your data is clean and ready to be used.
+The possible customizations are endless. Flatfile has a constantly expanding library of [transformation and validation plugins](../../plugins/transform) that help you reshape data. You can add as many as you need to ensure your data is clean and ready to be used.
 
 For example, you could add code to validate a Record's email field:
 
@@ -62,4 +81,4 @@ See that error message? That's the result of your validation.
 
 ## Next steps
 
-Now that you've added some transformations and validations, let's egress the cleaned data: [Configure a submit Action](../quickstart/submit-action).
+Now that you've added some transformations and validations, let's egress the cleaned data: [Configure a submit Action](../custom/submit-action).
