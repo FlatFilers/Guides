@@ -64,7 +64,7 @@ The Basic HTML File:
 ```
 </CodeGroup>
 
-## Configure your sheet
+## sheet[]
 
 Configuring your sheet for Portal is telling us about the data you’re looking to receive and in what format. You can specify things like fields being required or unique so that some of the built-in validation can help expedite your data import.
 
@@ -208,7 +208,7 @@ Adding on to the Full Example:
 ```
 </CodeGroup>
 
-## Your Data Validations
+## onRecordHook()
 
 Now that we have configured out Sheet, we will look at the Data Validations piece. Data Validations in the Portal setup can be written inside of the `onRecordHook` callback of the `flatfileOptions` object. This callback will run on each record at initialization and then on any subsequent changes of the data.
 
@@ -329,7 +329,7 @@ Here’s the above added to the full code snippet:
 ```
 </CodeGroup>
 
-## Getting Your Data
+## onSubmit()
 
 Flatfile has many different ways to handle and process data back to you once an import has happened, but the easiest in this context is the built-in `onSubmit` callback where the data is provided to you.
 

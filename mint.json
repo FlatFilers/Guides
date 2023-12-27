@@ -96,6 +96,7 @@
               "pages": [
                 "apps/embedding/javascript/guide",
                 "apps/embedding/javascript/new_space",
+                "apps/embedding/javascript/simplified_sdk",
                 {
                   "group": "Advanced",
                   "icon": "settings",
