@@ -619,3 +619,80 @@ outcome or plan subsequent actions accordingly.
   }
 }
 ```
+
+#### `space:archived`
+
+<ParamField path="space:archived" type="readonly">
+  Called when a space is archived.
+</ParamField>
+
+```json
+{
+  "domain": "space",
+  "topic": "space:archived",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+  }
+}
+```
+
+### Secret
+
+#### `secret:created`
+
+<ParamField path="secret:created" type="readonly">
+  Called when a new secret is created.
+</ParamField>
+
+```json
+{
+  "domain": "secret",
+  "topic": "secret:created",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `secret:updated`
+
+<ParamField path="secret:updated" type="readonly">
+  Called when a secret is updated.
+</ParamField>
+
+```json
+{
+  "domain": "secret",
+  "topic": "secret:updated",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `secret:deleted`
+
+<ParamField path="secret:deleted" type="readonly">
+  Called when a secret is deleted.
+</ParamField>
+
+```json
+{
+  "domain": "secret",
+  "topic": "secret:deleted",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "actorId": "us_usr_1234"
+  }
+}
+```

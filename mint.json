@@ -86,7 +86,7 @@
       "group": "Platform Apps",
       "pages": [
         {
-          "group": "Install a Portal",
+          "group": "Portal",
           "icon": "person-to-portal",
           "pages": [
             "use-cases/embedding/overview",
@@ -134,16 +134,9 @@
             }
           ]
         },
-        {
-          "group": "Start a Project",
-          "icon": "person-to-portal",
-          "pages": ["use-cases/projects/collaborate"]
-        },
-        {
-          "group": "Mapping",
-          "icon": "person-to-portal",
-          "pages": ["use-cases/mapping/overview"]
-        }
+        "use-cases/workbooks/overview",
+        "use-cases/projects/overview",
+        "use-cases/mapping/overview"
       ]
     },
     {
@@ -250,13 +243,20 @@
       "group": "Core libraries",
       "pages": [
         "developer-tools/core-libraries/flatfile",
-        "developer-tools/core-libraries/listener",
-        "developer-tools/core-libraries/api",
-        "developer-tools/core-libraries/api-python"
+        "developer-tools/core-libraries/listener"
       ]
     },
     {
-      "group": "Wrappers",
+      "group": "APIs",
+      "pages": [
+        "developer-tools/core-libraries/api",
+        "developer-tools/core-libraries/api-python",
+        "developer-tools/core-libraries/api-go",
+        "developer-tools/core-libraries/api-java"
+      ]
+    },
+    {
+      "group": "Embedded Wrappers",
       "icon": "clock",
       "pages": [
         "developer-tools/core-libraries/wrappers/react",
@@ -266,7 +266,7 @@
       ]
     },
     {
-      "group": "Mapping libraries",
+      "group": "Mapping",
       "pages": ["developer-tools/mapping-libraries/flatfile-mapping-python"]
     },
     {
