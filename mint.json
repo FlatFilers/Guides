@@ -85,21 +85,22 @@
     {
       "group": "Platform Apps",
       "pages": [
+        "apps/overview",
         {
           "group": "Portal",
           "icon": "person-to-portal",
           "pages": [
-            "use-cases/embedding/overview",
+            "apps/embedding/overview",
             {
               "group": "Javascript",
               "icon": "js",
               "pages": [
-                "use-cases/embedding/javascript/guide",
-                "use-cases/embedding/javascript/new_space",
+                "apps/embedding/javascript/guide",
+                "apps/embedding/javascript/new_space",
                 {
                   "group": "Advanced",
                   "icon": "settings",
-                  "pages": ["use-cases/embedding/javascript/reuse_space"]
+                  "pages": ["apps/embedding/javascript/reuse_space"]
                 }
               ]
             },
@@ -107,20 +108,20 @@
               "group": "React",
               "icon": "react",
               "pages": [
-                "use-cases/embedding/react/guide",
-                "use-cases/embedding/react/new_space"
+                "apps/embedding/react/guide",
+                "apps/embedding/react/new_space"
               ]
             },
             {
               "group": "Vue.js",
               "icon": "vuejs",
               "pages": [
-                "use-cases/embedding/vue/guide",
-                "use-cases/embedding/vue/new_space",
+                "apps/embedding/vue/guide",
+                "apps/embedding/vue/new_space",
                 {
                   "group": "Advanced",
                   "icon": "settings",
-                  "pages": ["use-cases/embedding/vue/reuse_space"]
+                  "pages": ["apps/embedding/vue/reuse_space"]
                 }
               ]
             },
@@ -128,27 +129,27 @@
               "group": "Reference",
               "icon": "asterisk",
               "pages": [
-                "use-cases/embedding/reference/common",
-                "use-cases/embedding/reference/advanced"
+                "apps/embedding/reference/common",
+                "apps/embedding/reference/advanced"
               ]
             }
           ]
         },
-        "use-cases/workbooks/overview",
-        "use-cases/projects/overview",
-        "use-cases/mapping/overview"
-      ]
-    },
-    {
-      "group": "Build an app",
-      "icon": "person-to-portal",
-      "pages": [
-        "quickstart/tutorial-landing",
-        "quickstart/meet-the-listener",
-        "quickstart/meet-the-workbook",
-        "quickstart/add-data-transformation",
-        "quickstart/submit-action",
-        "quickstart/deploying"
+        "apps/projects/overview",
+        "apps/workbooks",
+        "apps/mapping",
+        {
+          "group": "Build an app",
+          "icon": "grid-2",
+          "pages": [
+            "apps/custom/tutorial-landing",
+            "apps/custom/meet-the-listener",
+            "apps/custom/meet-the-workbook",
+            "apps/custom/add-data-transformation",
+            "apps/custom/submit-action",
+            "apps/custom/deploying"
+          ]
+        }
       ]
     },
     {
@@ -166,22 +167,20 @@
         "guides/secrets",
         "guides/automap",
         "guides/localization",
-        "guides/additional-fields"
+        "guides/additional-fields",
+        "guides/flatfile_query_language"
       ]
     },
     {
-      "group": "Learn Concepts",
+      "group": "Orchestration",
       "pages": [
-        "concepts/apps",
-        "concepts/workbooks",
-        "concepts/actions",
-        "concepts/jobs",
-        "concepts/mapping",
-        "concepts/events",
-        "concepts/spaces",
-        "concepts/listeners"
+        "orchestration/listeners",
+        "orchestration/events",
+        "orchestration/actions",
+        "orchestration/jobs"
       ]
     },
+
     {
       "group": "Blueprint",
       "pages": [
@@ -216,20 +215,20 @@
     {
       "group": "Overview",
       "pages": [
-        "developer-tools/environment",
         {
           "group": "Developing with Flatfile",
           "icon": "square-terminal",
           "pages": [
             "developer-tools/developing/running-local",
-            "developer-tools/developing/check-for-agents",
-            "developer-tools/developing/make-environment"
+            "developer-tools/developing/check-for-agents"
           ]
         },
-        "developer-tools/deploying",
-        "developer-tools/flatfile_query_language",
-        "developer-tools/versioning"
+        "developer-tools/deploying"
       ]
+    },
+    {
+      "group": "Core Architecture",
+      "pages": ["developer-tools/environment", "developer-tools/spaces"]
     },
     {
       "group": "Security",
@@ -243,7 +242,8 @@
       "group": "Core libraries",
       "pages": [
         "developer-tools/core-libraries/flatfile",
-        "developer-tools/core-libraries/listener"
+        "developer-tools/core-libraries/listener",
+        "developer-tools/versioning"
       ]
     },
     {

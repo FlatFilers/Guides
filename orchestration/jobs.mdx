@@ -5,7 +5,7 @@ icon: "truck"
 ---
 
 In Flatfile, a Job represents a large unit of work performed asynchronously on a resource
-such as a file, <Tooltip tip="Analogous to a database...">[Workbook](../concepts/workbooks)</Tooltip>,
+such as a file, <Tooltip tip="Analogous to a database...">[Workbook](../apps/workbooks)</Tooltip>,
 or <Tooltip tip="A collection of fields...">[Sheet](../blueprint/overview#terms)</Tooltip>.
 The Jobs workflow provides visibility into the status and progress of your Jobs,
 allowing you to monitor and troubleshoot the data processing pipeline.
@@ -13,18 +13,22 @@ allowing you to monitor and troubleshoot the data processing pipeline.
 ## Types of Jobs
 
 Jobs can be triggered in a number of ways, most commonly in response to user activity.
-Jobs are then managed via [Listeners](/concepts/listeners), which receive [Events](/concepts/events) published by Flatfile in response to activity.
+Jobs are then managed via [Listeners](/orchestration/listeners), which receive [Events](/orchestration/events) published by Flatfile in response to activity.
 
 There are three types of Jobs on the Flatfile Platform:
 
 <CardGroup cols={3}>
-  <Card title="Action Jobs" icon="bolt" href="/concepts/jobs#action-based-jobs">
+  <Card
+    title="Action Jobs"
+    icon="bolt"
+    href="/orchestration/jobs#action-based-jobs"
+  >
     Attached to custom actions
   </Card>
-  <Card title="Custom Jobs" icon="code" href="/concepts/jobs#custom-jobs">
+  <Card title="Custom Jobs" icon="code" href="/orchestration/jobs#custom-jobs">
     Created dynamically in your listener
   </Card>
-  <Card title="System Jobs" icon="gears" href="/concepts/jobs#system-jobs">
+  <Card title="System Jobs" icon="gears" href="/orchestration/jobs#system-jobs">
     Flatfile system jobs
   </Card>
 </CardGroup>
@@ -37,13 +41,13 @@ That operation can then be triggered by a user event (clicking a button or selec
 
 <Note>
   When an Action is triggered a `job:ready` Event for a Job named
-  `[domain]:[operation]` is published. Your [Listener](/concepts/listeners) can
-  then be configured to respond to that Action via it's Event.
+  `[domain]:[operation]` is published. Your [Listener](/orchestration/listeners)
+  can then be configured to respond to that Action via it's Event.
 </Note>
 
 To run an Action based job, two configurations are necessary.
 
-First, create an [Action](/concepts/actions) on a domain. Here's an example of a Workbook containing an Action:
+First, create an [Action](/orchestration/actions) on a domain. Here's an example of a Workbook containing an Action:
 
 ```jsx javascript
 api.workbook.create({
@@ -59,7 +63,7 @@ api.workbook.create({
 });
 ```
 
-Then, create a [Listener](/concepts/listeners) to respond to the Action:
+Then, create a [Listener](/orchestration/listeners) to respond to the Action:
 
 ```jsx javascript
 listener.on(
@@ -197,7 +201,7 @@ Jobs fire the following Events during their lifecycle. In chronological order, t
 | `job:completed` OR `job:failed` | `job:completed` fires when a Job is completed successfully, `job:failed` fires if a Job is completed but fails. One of these events will fire upon Job completion, but never both. |
 | `job:outcome-acknowledged`      | Fires when a user acknowledges the completion of a Job through a UI popup.                                                                                                         |
 
-You can listen on any of these events in your [Listener](/concepts/listeners), but the most common event to listen for is `job:ready`.
+You can listen on any of these events in your [Listener](/orchestration/listeners), but the most common event to listen for is `job:ready`.
 For more on managing your Job see [Working with Jobs](#working-with-jobs).
 
 ### Required Parameters
