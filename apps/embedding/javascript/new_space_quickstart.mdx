@@ -1,0 +1,100 @@
+---
+title: "Quickstart"
+description: "Create a new Space every time Flatfile is opened."
+icon: "rabbit-running"
+---
+
+For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+
+## Before you begin
+
+<Snippet file="shared/pk_needed.mdx" />
+
+## Prepare your project
+
+### Create your file structure
+
+Setup your app to look something like this:
+
+```
+├── public/
+   └── index.html
+   └── styles.css
+├── src/
+   └── blueprint.js
+```
+
+In this file structure, your app should have two main directories, `public` and `src`.
+
+The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+
+The `src` directory contains the main components and logic of the application, including the `blueprint.js` file, which defines your schema.
+
+## Build your importer
+
+### 1. Initialize Flatfile
+
+Initialize Flatfile to open in a modal. Pass in your `publishableKey` and a new Space will be created on each page load. Also, add the content here to your `styles.css`.
+
+<CodeGroup>
+
+```html public/index.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, world!</title>
+    <script src="https://unpkg.com/@flatfile/javascript@^0.3.1/dist/index.cjs"></script>
+    <script type="module" src="../src/blueprint.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+    <script>
+      window.onload = function () {
+        FlatFileJavaScript.startFlatfile({
+          publishableKey: "pk_1234",
+          spaceBody: {
+            namespace: "portal",
+          },
+        });
+      };
+    </script>
+  </head>
+</html>
+```
+
+<Snippet file="shared/iframeStyles.mdx" />
+
+</CodeGroup>
+
+### 2. Run in browser
+
+Now, open `index.html` in a browser. You should see that Flatfile opens on page load and an empty Space gets created.
+
+<Snippet file="shared/embedded_listener_basic.mdx" />
+
+### 8. Customize
+
+You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+
+## Example Projects
+
+Find these Javascript example projects in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="create-flatfile-javascript-simplified"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-javascript-cdn"
+  >
+    Clone the simplified Flatfile Javascript tutorial using a CDN here.
+  </Card>
+  <Card
+    title="create-flatfile-javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-javascript"
+  >
+    Need more control? Clone the Flatfile Javascript tutorial that handles
+    imports via Node and package.json, and uses a custom listener here.
+  </Card>
+</CardGroup>

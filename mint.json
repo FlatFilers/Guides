@@ -95,11 +95,14 @@
               "icon": "js",
               "pages": [
                 "apps/embedding/javascript/guide",
-                "apps/embedding/javascript/new_space",
+                "apps/embedding/javascript/new_space_quickstart",
                 {
                   "group": "Advanced",
                   "icon": "settings",
-                  "pages": ["apps/embedding/javascript/reuse_space"]
+                  "pages": [
+                    "apps/embedding/javascript/new_space",
+                    "apps/embedding/javascript/reuse_space"
+                  ]
                 }
               ]
             },
@@ -128,6 +131,7 @@
               "group": "Reference",
               "icon": "asterisk",
               "pages": [
+                "apps/embedding/reference/simple",
                 "apps/embedding/reference/common",
                 "apps/embedding/reference/advanced"
               ]
