@@ -25,8 +25,7 @@ import { recordHook } from "@flatfile/plugin-record-hook";
 ```
 
 ```js typescript
-import {(recordHook, FlatfileRecord)} from
-"@flatfile/plugin-record-hook";
+import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
 ```
 
 </CodeGroup>
@@ -37,7 +36,8 @@ Here's an example that modifies the first name value of a Record, converting it 
 
 <Snippet file="quickstart/block1.mdx" />
 
-As you can see, the `recordHook` has been configured to run on any Sheet matching the slug "contacts". The second parameter to the recordHook is a callback function where a Record, complete with it's own get and set methods, is the incoming value.
+As you can see, the `recordHook` has been configured to run on any Sheet matching
+the slug "contacts". The second parameter to the recordHook is a callback function where a Record, complete with it's own get and set methods, is the incoming value.
 
 <Info>Note: Unmodified rows do not trigger a Record Hook.</Info>
 

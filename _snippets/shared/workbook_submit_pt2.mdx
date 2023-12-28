@@ -47,7 +47,7 @@ red.on(
       );
 
       if (response.status === 200) {
-        const rejections: RejectionResponse = response.data.rejections;
+        const rejections = response.data.rejections;
         if (rejections) {
           return await responseRejectionHandler(rejections);
         }

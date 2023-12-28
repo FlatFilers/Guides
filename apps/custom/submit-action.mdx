@@ -35,10 +35,7 @@ You'll need a few more packages to accomplish this task. Go ahead and import the
 
 ```js listener.js
 import api from "@flatfile/api";
-import {
-  responseRejectionHandler,
-  RejectionResponse,
-} from "@flatfile/util-response-rejection";
+import { responseRejectionHandler } from "@flatfile/util-response-rejection";
 import axios from "axios";
 ```
 
@@ -74,7 +71,3 @@ Over on your Webhook.site browser tab look at the query log and observe that the
 Congratulations! You now now have an example listener that is performing transformations and validations in response to changes in your Workbook, and you've set up an action to export your cleaned data.
 
 You've been running this listener locally while in development. Next, let's see how easy it is to [Deploy to Flatfile](../custom/deploying).
-
-```
-
-```
