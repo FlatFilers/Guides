@@ -105,5 +105,7 @@ Sheets have some basic options that determine their behavior.
   the newest constraint we've added, which currently only supports composite uniqueness.
   `constraints` includes several parameters - `name` (defines the name of the constraint),
   `fields` (array of field keys to consider), `type` (defines the type of the constraint),
-  and `strategy` (defines how to determine uniqueness). 
+  and `strategy` (defines how to determine uniqueness). `strategy` can either be `concat` 
+  (concatenates values from each field defined inside the `fields` array) or `hash` 
+  (creates a sha1 hash using of the values of each field).
 </ParamField>
