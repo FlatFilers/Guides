@@ -38,6 +38,10 @@
     {
       "source": "/upgrade/v2_repo",
       "destination": "https://github.com/FlatFilers/Upgrade-Portal"
+    },
+    {
+      "source": "/developer-tools/mapping-libraries/flatfile-mapping-python",
+      "destination": "https://pypi.org/project/flatfile-mapping/"
     }
   ],
   "topbarLinks": [
@@ -76,21 +80,91 @@
   "navigation": [
     {
       "group": "Documentation",
-      "pages": ["overview", "starter-projects"]
+      "pages": [
+        "overview",
+        "starter-projects"
+      ]
     },
     {
       "group": "Updates by area",
-      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
+      "pages": [
+        "changelog/platform",
+        "changelog/sdks",
+        "changelog/plugins"
+      ]
     },
     {
-      "group": "Beginner Tutorial",
+      "group": "Platform Apps",
       "pages": [
-        "quickstart/tutorial-landing",
-        "quickstart/meet-the-workbook",
-        "quickstart/meet-the-listener",
-        "quickstart/add-data-transformation",
-        "quickstart/submit-action",
-        "quickstart/deploying"
+        {
+          "group": "Portal",
+          "icon": "person-to-portal",
+          "pages": [
+            "apps/embedding/overview",
+            {
+              "group": "Javascript",
+              "icon": "js",
+              "pages": [
+                "apps/embedding/javascript/guide",
+                "apps/embedding/javascript/new_space_quickstart",
+                {
+                  "group": "Advanced",
+                  "icon": "settings",
+                  "pages": [
+                    "apps/embedding/javascript/new_space",
+                    "apps/embedding/javascript/reuse_space"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "React",
+              "icon": "react",
+              "pages": [
+                "apps/embedding/react/guide",
+                "apps/embedding/react/new_space"
+              ]
+            },
+            {
+              "group": "Vue.js",
+              "icon": "vuejs",
+              "pages": [
+                "apps/embedding/vue/guide",
+                "apps/embedding/vue/new_space",
+                {
+                  "group": "Advanced",
+                  "icon": "settings",
+                  "pages": [
+                    "apps/embedding/vue/reuse_space"
+                  ]
+                }
+              ]
+            },
+            {
+              "group": "Reference",
+              "icon": "asterisk",
+              "pages": [
+                "apps/embedding/reference/simple",
+                "apps/embedding/reference/common",
+                "apps/embedding/reference/advanced"
+              ]
+            }
+          ]
+        },
+        "apps/projects/overview",
+        "apps/workbooks",
+        {
+          "group": "Build an app",
+          "icon": "grid-2",
+          "pages": [
+            "apps/custom/tutorial-landing",
+            "apps/custom/meet-the-listener",
+            "apps/custom/meet-the-workbook",
+            "apps/custom/add-data-transformation",
+            "apps/custom/submit-action",
+            "apps/custom/deploying"
+          ]
+        }
       ]
     },
     {
@@ -108,74 +182,17 @@
         "guides/secrets",
         "guides/automap",
         "guides/localization",
-        "guides/additional-fields"
+        "guides/additional-fields",
+        "guides/flatfile_query_language"
       ]
     },
     {
-      "group": "Concepts",
+      "group": "Orchestration",
       "pages": [
-        "concepts/workbooks",
-        "concepts/actions",
-        "concepts/jobs",
-        "concepts/events",
-        "concepts/spaces",
-        "concepts/listeners"
-      ]
-    },
-    {
-      "group": "By use case",
-      "pages": [
-        {
-          "group": "Embed in your app",
-          "icon": "person-to-portal",
-          "pages": [
-            "guides/use-cases/embedding/overview",
-            {
-              "group": "Javascript",
-              "icon": "js",
-              "pages": [
-                "guides/use-cases/embedding/javascript/guide",
-                "guides/use-cases/embedding/javascript/new_space",
-                {
-                  "group": "Advanced",
-                  "icon": "settings",
-                  "pages": ["guides/use-cases/embedding/javascript/reuse_space"]
-                }
-              ]
-            },
-            {
-              "group": "React",
-              "icon": "react",
-              "pages": [
-                "guides/use-cases/embedding/react/guide",
-                "guides/use-cases/embedding/react/new_space"
-              ]
-            },
-            {
-              "group": "Vue.js",
-              "icon": "vuejs",
-              "pages": [
-                "guides/use-cases/embedding/vue/guide",
-                "guides/use-cases/embedding/vue/new_space",
-                {
-                  "group": "Advanced",
-                  "icon": "settings",
-                  "pages": ["guides/use-cases/embedding/vue/reuse_space"]
-                }
-              ]
-            },
-            {
-              "group": "Reference",
-              "icon": "asterisk",
-              "pages": [
-                "guides/use-cases/embedding/reference/common",
-                "guides/use-cases/embedding/reference/advanced"
-              ]
-            }
-          ]
-        },
-        "guides/use-cases/headless",
-        "guides/use-cases/collaborate"
+        "orchestration/listeners",
+        "orchestration/events",
+        "orchestration/actions",
+        "orchestration/jobs"
       ]
     },
     {
@@ -191,7 +208,9 @@
     },
     {
       "group": "Upgrade",
-      "pages": ["upgrade/overview"]
+      "pages": [
+        "upgrade/overview"
+      ]
     },
     {
       "group": "Portal - version 2",
@@ -212,19 +231,22 @@
     {
       "group": "Overview",
       "pages": [
-        "developer-tools/environment",
         {
           "group": "Developing with Flatfile",
           "icon": "square-terminal",
           "pages": [
             "developer-tools/developing/running-local",
-            "developer-tools/developing/check-for-agents",
-            "developer-tools/developing/make-environment"
+            "developer-tools/developing/check-for-agents"
           ]
         },
-        "developer-tools/deploying",
-        "developer-tools/flatfile_query_language",
-        "developer-tools/versioning"
+        "developer-tools/deploying"
+      ]
+    },
+    {
+      "group": "Core Architecture",
+      "pages": [
+        "developer-tools/environment",
+        "developer-tools/spaces"
       ]
     },
     {
@@ -239,7 +261,8 @@
       "group": "Core libraries",
       "pages": [
         "developer-tools/core-libraries/flatfile",
-        "developer-tools/core-libraries/listener"
+        "developer-tools/core-libraries/listener",
+        "developer-tools/versioning"
       ]
     },
     {
@@ -263,11 +286,15 @@
     },
     {
       "group": "Mapping",
-      "pages": ["developer-tools/mapping-libraries/flatfile-mapping-python"]
+      "pages": [
+        "developer-tools/mapping-libraries/flatfile-mapping-python"
+      ]
     },
     {
       "group": "Plugins",
-      "pages": ["plugins/overview"]
+      "pages": [
+        "plugins/overview"
+      ]
     },
     {
       "group": "Extractors",
@@ -281,7 +308,9 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/extractors/doc-extractor"]
+          "pages": [
+            "plugins/extractors/doc-extractor"
+          ]
         }
       ]
     },
@@ -295,11 +324,16 @@
     },
     {
       "group": "Automation",
-      "pages": ["plugins/automations/automap"]
+      "pages": [
+        "plugins/automations/automap"
+      ]
     },
     {
       "group": "Export",
-      "pages": ["plugins/export/workbook", "plugins/export/webhook"]
+      "pages": [
+        "plugins/export/workbook",
+        "plugins/export/webhook"
+      ]
     },
     {
       "group": "Schemas",
@@ -324,17 +358,24 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/datasets/countries"]
+          "pages": [
+            "plugins/datasets/countries"
+          ]
         }
       ]
     },
     {
       "group": "Migrations",
-      "pages": ["plugins/migrations/dxp-configure"]
+      "pages": [
+        "plugins/migrations/dxp-configure"
+      ]
     },
     {
       "group": "Core",
-      "pages": ["plugins/core/job-handler", "plugins/core/space-configure"]
+      "pages": [
+        "plugins/core/job-handler",
+        "plugins/core/space-configure"
+      ]
     },
     {
       "group": "Utils",

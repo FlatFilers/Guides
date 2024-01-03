@@ -7,7 +7,11 @@ icon: "book-open"
 ## Overview
 
 <Note>
-    This guide is designed to teach you about and use the new Platform syntax. We've also created a [V2 Shim package](https://www.npmjs.com/package/@flatfile/v2-shims) to help expedite your upgrade. You can check out the [quickstart guide](/upgrade/v2_upgrade) that uses the shim to cut down your time to upgrade.
+  This guide is designed to teach you about and use the new Platform syntax.
+  We've also created a [V2 Shim
+  package](https://www.npmjs.com/package/@flatfile/v2-shims) to help expedite
+  your upgrade. You can check out the [quickstart guide](/upgrade/v2_upgrade)
+  that uses the shim to cut down your time to upgrade.
 </Note>
 
 As you transition from Portal 2.0 to Platform, you'll come across many familiar elements that resemble what you've known. However, there might be instances where certain components are no longer present, have been rearranged, or sport a fresh appearance. To ensure a seamless transition, this guide is designed to teach you those differences and how to convert. It will highlight both the similarities and differences between the two versions, enabling you to switch over with minimal effort. Want to see what it might look like to upgrade? Check out our [upgrade repository here](https://github.com/FlatFilers/Upgrade-Portal) to compare the beginning and end of upgrading.
@@ -38,11 +42,11 @@ All of the other entities (like Spaces, Workbooks, and Sheets) will live in thos
 
 #### Meet the Space
 
-A Space and its UI constitute the new data importer that has replaced Portal. The Space is what holds all the Files and Workbooks that are needed to import data. You can learn more about Spaces and all that they do in our [Spaces documentation](/concepts/spaces).
+A Space and its UI constitute the new data importer that has replaced Portal. The Space is what holds all the Files and Workbooks that are needed to import data. You can learn more about Spaces and all that they do in our [Spaces documentation](/developer-tools/spaces).
 
 #### Meet the Workbook
 
-For Platform, it's a good idea to get to know the [concept of a Workbook](/quickstart/meet-the-workbook). When you're upgrading, you can think of a Workbook as the place where your import data hangs out.
+For Platform, it's a good idea to get to know the [concept of a Workbook](/apps/custom/meet-the-workbook). When you're upgrading, you can think of a Workbook as the place where your import data hangs out.
 
 Unlike Portal, where all the editing and fixing of data happens right in the browser, Platform also has an option to perform these actions on the server side. The data gets saved in one or more Workbooks as you go along.
 
@@ -441,7 +445,7 @@ The `validators` property will now be called `constraints` which is still an arr
 
 ### 4. Transform Data
 
-Coming from Portal, you are likely familiar with the concept of Data Hooks. The same sort of functionality can be obtained in Platform, but they have moved into Listeners and use plugins like the [record hook plugin](/plugins/transform/record-hook). You can read more about [Listeners here](/quickstart/meet-the-listener) and more about all of our [Plugins here](/plugins/overview).
+Coming from Portal, you are likely familiar with the concept of Data Hooks. The same sort of functionality can be obtained in Platform, but they have moved into Listeners and use plugins like the [record hook plugin](/plugins/transform/record-hook). You can read more about [Listeners here](/apps/custom/meet-the-listener) and more about all of our [Plugins here](/plugins/overview).
 
 <CodeGroup>
     ```js Start-Portal-2/src/index.js
@@ -612,6 +616,7 @@ Coming from Portal, you are likely familiar with the concept of Data Hooks. The 
 In the [set up validations](#set-up-validations) section above, we talked about converting the `required` and `unique` validators, but validators like `regex` or `required_with` are now handled in code in a Listener.
 
 _Regex Validation Example:_
+
 <CodeGroup>
     ```js Portal 2
     fields: [
@@ -638,6 +643,7 @@ _Regex Validation Example:_
 </CodeGroup>
 
 _`required_with` Validation Example:_
+
 <CodeGroup>
     ```js Portal 2
     fields: [
@@ -734,11 +740,7 @@ While everything above gives you all sort of great information about how your Po
     icon="circle-1"
     href="/guides/dynamic-configurations"
   ></Card>
-  <Card
-    title="Make it headless"
-    icon="circle-2"
-    href="/guides/use-cases/headless"
-  ></Card>
+  <Card title="Make it headless" icon="circle-2" href="/guides/automap"></Card>
   <Card
     title="Top Secret - Seriously, don't click this"
     icon="circle-3"
