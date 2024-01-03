@@ -8,17 +8,7 @@ icon: "rocket-launch"
 
 For a production deployment, listeners can be hosted either in your cloud or directly on the Flatfile platform.
 
-## Hosting in your own cloud
-
-Hosting listener code in your own cloud works similarly to how we run the `develop` command in our Quickstart in that:
-
-1. The listener process is launched
-2. It polls the Flatfile API for updates
-3. It then responds to those Events accordingly
-
-Follow the Quickstart example for a working example on hosting in your own cloud.
-
-## Hosting on the Flatfile platform
+## Hosting on the Flatfile platform (recommended)
 
 While your own cloud provides the maximum level of control over listener code, qualities such as availability and network performance are the responsibility of the hosting provider. Listeners may be securely deployed and run in the Flatfile platform cloud giving you a more consistent, low-latency, high-availability experience.
 
@@ -60,3 +50,13 @@ Once your Workbook has been deployed, you’ll be able to see a new Space in you
 You can deploy any change to your code at any time.
 
 For example, if you need to add a Sheet to an already existing Workbook, simply deploy again with the added Sheet and everything will update.
+
+## Hosting in your own cloud
+
+Hosting listener code in your own cloud works similarly to how we run the `develop` command in that:
+
+1. The listener process is launched
+2. It polls the Flatfile API for updates
+3. It then responds to those Events accordingly
+
+Reach out to support for learning how about hosting in your own cloud.
