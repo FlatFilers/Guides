@@ -38,6 +38,10 @@
     {
       "source": "/upgrade/v2_repo",
       "destination": "https://github.com/FlatFilers/Upgrade-Portal"
+    },
+    {
+      "source": "/developer-tools/mapping-libraries/flatfile-mapping-python",
+      "destination": "https://pypi.org/project/flatfile-mapping/"
     }
   ],
   "topbarLinks": [
@@ -76,11 +80,18 @@
   "navigation": [
     {
       "group": "Documentation",
-      "pages": ["overview", "starter-projects"]
+      "pages": [
+        "overview",
+        "starter-projects"
+      ]
     },
     {
       "group": "Updates by area",
-      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
+      "pages": [
+        "changelog/platform",
+        "changelog/sdks",
+        "changelog/plugins"
+      ]
     },
     {
       "group": "Platform Apps",
@@ -95,11 +106,14 @@
               "icon": "js",
               "pages": [
                 "apps/embedding/javascript/guide",
-                "apps/embedding/javascript/new_space",
+                "apps/embedding/javascript/new_space_quickstart",
                 {
                   "group": "Advanced",
                   "icon": "settings",
-                  "pages": ["apps/embedding/javascript/reuse_space"]
+                  "pages": [
+                    "apps/embedding/javascript/new_space",
+                    "apps/embedding/javascript/reuse_space"
+                  ]
                 }
               ]
             },
@@ -120,7 +134,9 @@
                 {
                   "group": "Advanced",
                   "icon": "settings",
-                  "pages": ["apps/embedding/vue/reuse_space"]
+                  "pages": [
+                    "apps/embedding/vue/reuse_space"
+                  ]
                 }
               ]
             },
@@ -128,6 +144,7 @@
               "group": "Reference",
               "icon": "asterisk",
               "pages": [
+                "apps/embedding/reference/simple",
                 "apps/embedding/reference/common",
                 "apps/embedding/reference/advanced"
               ]
@@ -179,7 +196,6 @@
         "orchestration/jobs"
       ]
     },
-
     {
       "group": "Blueprint",
       "pages": [
@@ -193,7 +209,9 @@
     },
     {
       "group": "Upgrade",
-      "pages": ["upgrade/overview"]
+      "pages": [
+        "upgrade/overview"
+      ]
     },
     {
       "group": "Portal - version 2",
@@ -227,7 +245,10 @@
     },
     {
       "group": "Core Architecture",
-      "pages": ["developer-tools/environment", "developer-tools/spaces"]
+      "pages": [
+        "developer-tools/environment",
+        "developer-tools/spaces"
+      ]
     },
     {
       "group": "Security",
@@ -266,11 +287,15 @@
     },
     {
       "group": "Mapping",
-      "pages": ["developer-tools/mapping-libraries/flatfile-mapping-python"]
+      "pages": [
+        "developer-tools/mapping-libraries/flatfile-mapping-python"
+      ]
     },
     {
       "group": "Plugins",
-      "pages": ["plugins/overview"]
+      "pages": [
+        "plugins/overview"
+      ]
     },
     {
       "group": "Extractors",
@@ -284,7 +309,9 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/extractors/doc-extractor"]
+          "pages": [
+            "plugins/extractors/doc-extractor"
+          ]
         }
       ]
     },
@@ -298,11 +325,16 @@
     },
     {
       "group": "Automation",
-      "pages": ["plugins/automations/automap"]
+      "pages": [
+        "plugins/automations/automap"
+      ]
     },
     {
       "group": "Export",
-      "pages": ["plugins/export/workbook", "plugins/export/webhook"]
+      "pages": [
+        "plugins/export/workbook",
+        "plugins/export/webhook"
+      ]
     },
     {
       "group": "Schemas",
@@ -327,17 +359,24 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/datasets/countries"]
+          "pages": [
+            "plugins/datasets/countries"
+          ]
         }
       ]
     },
     {
       "group": "Migrations",
-      "pages": ["plugins/migrations/dxp-configure"]
+      "pages": [
+        "plugins/migrations/dxp-configure"
+      ]
     },
     {
       "group": "Core",
-      "pages": ["plugins/core/job-handler", "plugins/core/space-configure"]
+      "pages": [
+        "plugins/core/job-handler",
+        "plugins/core/space-configure"
+      ]
     },
     {
       "group": "Utils",

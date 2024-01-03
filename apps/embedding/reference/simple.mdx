@@ -1,70 +1,59 @@
 ---
-title: "Simplified SDK"
-description: "Securely and easily build an embedded Flatfile import experience into your Javascript application."
+title: "Simple"
+description: "See the simple-mode properties across embedded Flatfile."
+icon: "rabbit-running"
 ---
 
-## Who should use Portal?
+### publishableKey
 
-If you have a simple data set (meaning just one sheet or schema), need to run simple validations on the data, think like date formatting, pattern matching, unique and required type of validations, and need a simple data egress, then this is the path forward for you. Does this not sound like what you need? Our Platform is flexible enough for you to build your own workflow. [Get started here.](https://flatfile.com/docs/overview)
+<ParamField path="publishableKey" type="string" required>
+  Publishable key accessed via Flatfile dashboard > Developer settings.
+</ParamField>
 
-## Getting Started
-
-There’s 3 basic components of a Portal implementation.
-
-1. Setup a basic app
-2. Your sheet configuration
-3. Your Data Validations
-4. Your Data Egress
-
-## Setup a Basic Web App
-
-One of the best things about the most simple of Portal setups is that it will work in as simple of an environment as a single HTML file. To test in this sort of setup, you can create an html file and serve the file locally using the command `python3 -m http.server 8000`. This will use your computer’s python library to start a server and serve the html file at [http://localhost:8000](http://localhost:8000). Note: You may be used to using the file browser to double click and open the file in the browser to test your changes to an html file. While this works the majority of the time, the Flatfile iFrame won’t attach to a non-served version, so you will need to have a development server running locally and the easiest way is the above Python command.
-
-There are a few things to note in the below code snippet that are the start of what we will be building onto in the following sections.
-
-First, we’ve already included the script tag that is bringing in the Flatfile JavaScript SDK. The JavaScript SDK has a `startFlatfile` method we will call with the `flatfileOptions` object we’ve started creating below to start the Flatfile Portal import process.
-
-Second thing to note is that the `publishableKey` and `environmentId` are coded into the button’s onclick as values you’ll need to pass into the flatfileOptions object in order to get this to run properly. You can obtain your publishable key and environment Id by logging into your Flatfile Dashboard [here](https://platform.flatfile.com).
-
-The Basic HTML File:
-
-<CodeGroup>
-```html index.html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Page Title</title>
-    <script src="https://www.unpkg.com/@flatfile/javascript@latest/dist/index.js"></script>
-    <script>
-      window.openFlatfile = ({ publishableKey, environmentId }) => {
-        const flatfileOptions = {
-          publishableKey,
-          environmentId,
-        // more to come here in the following sections
-        }
-        window.FlatFileJavaScript.startFlatfile(flatfileOptions)
-      }
-    </script>
-  </head>
-  <body>
-    <h3>We are going to import your data now. Click the button below to start your import</h3>
-    <div class="container">
-      <button
-        id="flatfileButton"
-        onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
-      >
-        Import Contacts
-      </button>
-    </div>
-    <br>
-  </body>
-</html>
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  //additional props
+};
 ```
-</CodeGroup>
 
-## Configure your sheet
+### spaceBody
+
+<ParamField path="spaceBody" type="object">
+  Pass in space options to configure a new Space. Find all available parameters
+  for spaceBody in the [API
+  Reference](https://flatfile.stoplight.io/docs/api/25e20c8ab61c5-create-a-space).
+</ParamField>
+
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  //additional props, see Create Space endpoint for all the full list of properties (https://flatfile.stoplight.io/docs/api/25e20c8ab61c5-create-a-space)
+  spaceBody: {
+    name: "New Space",
+    namespace: "Red",
+  },
+};
+```
+
+### themeConfig
+
+<ParamField path="themeConfig" type="object">
+  Theme values for the Space, sidebar and data table.
+</ParamField>
+
+Theme your Space to create a custom look and feel to match your brand using the actual CSS variables referenced in the app. See all options in our [Theming Reference](../../../guides/theming).
+
+```typescript src/client.js
+const theme = {
+  root: {
+    primaryColor: "red",
+  },
+  // see theming reference
+};
+```
+
+## sheet[]
 
 Configuring your sheet for Portal is telling us about the data you’re looking to receive and in what format. You can specify things like fields being required or unique so that some of the built-in validation can help expedite your data import.
 
@@ -119,7 +108,8 @@ const sheet = {
     }
   ],
 }
-```
+````
+
 </CodeGroup>
 
 Now that we’ve built out the sheet above, we can add it to the full example below. Notice that in addition to the above sheet being added into the script tag, we’ve also referenced the `sheet` in the `flatfileOptions`. Quick note: The `flatfileOptions` object does expect to get a `sheet` object with that name. So you can name your `sheet` whatever you like, but if your sheet is `const mySheet = {}` then you will just need your `flatfileOptions` object to look like `sheet: mySheet` instead.
@@ -208,9 +198,9 @@ Adding on to the Full Example:
 ```
 </CodeGroup>
 
-## Your Data Validations
+## onRecordHook()
 
-Now that we have configured out Sheet, we will look at the Data Validations piece. Data Validations in the Portal setup can be written inside of the `onRecordHook` callback of the `flatfileOptions` object. This callback will run on each record at initialization and then on any subsequent changes of the data.
+Now that we have configured our Sheet, we will look at the Data Validations piece. Data Validations in the Portal setup can be written inside of the `onRecordHook` callback of the `flatfileOptions` object. This callback will run on each record at initialization and then on any subsequent changes of the data.
 
 The callback you write will get the `record` passed in by default and you can update that record with any updates you’d like to make and return it as the output of the callback and that will update the record in the UI. For the purposes of being super basic in this example, let’s say you like to store the `name` property in your Database as all uppercase values. To ensure that this happens, we can write a simple function using JavaScript’s `toUpperCase` method to make sure all values continually get put to all uppercase values.
 
@@ -329,7 +319,7 @@ Here’s the above added to the full code snippet:
 ```
 </CodeGroup>
 
-## Getting Your Data
+## onSubmit()
 
 Flatfile has many different ways to handle and process data back to you once an import has happened, but the easiest in this context is the built-in `onSubmit` callback where the data is provided to you.
 
