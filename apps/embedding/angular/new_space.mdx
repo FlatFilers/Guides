@@ -1,7 +1,6 @@
 ---
 title: "Embed a new Space"
 description: "Create a new Space every time Flatfile is opened."
-icon: "plus"
 ---
 
 For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
@@ -9,9 +8,6 @@ For synchronous data import/exchange completed in one session, create a new Spac
 ## Before you begin
 
 <Snippet file="shared/pk_needed.mdx" />
-
-Make a new directory.
-
 
 Follow prompts from the `new` command.
 
@@ -47,9 +43,10 @@ export class AppComponent {
   title = 'create-flatfile-angular-embed';
   showSpace: boolean = false;
 
-  constructor() {}
+  constructor(private spaceService: SpaceService) {}
 
   toggleSpace() {
+    this.spaceService.OpenEmbed();
     this.showSpace = !this.showSpace;
   }
 

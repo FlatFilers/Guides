@@ -1,7 +1,6 @@
 ---
 title: "Reuse an existing Space"
 description: "Reuse a Space when Flatfile is opened."
-icon: "recycle"
 ---
 
 For applications meant to use the same space consistently, open an existing space each time Flatfile is opened. This suits situations where consistently editing a dataset is preferred.
@@ -104,9 +103,10 @@ export class AppComponent {
   title = 'create-flatfile-angular';
   showSpace: boolean = false;
 
-  constructor() {}
+  constructor(private spaceService: SpaceService) {}
 
   toggleSpace() {
+    this.spaceService.OpenEmbed();
     this.showSpace = !this.showSpace;
   }
 
@@ -143,7 +143,7 @@ export class AppComponent {
   ngOnInit() {
     if(this.spaceProps.space?.id){
       this.fetchData(this.spaceProps.space.id).catch(
-        (err)=>{
+        (err) => {
           console.error(err)
         }
       );
