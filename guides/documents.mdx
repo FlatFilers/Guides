@@ -4,7 +4,7 @@ description: "Learn how to build pages in your sidebar with Documents."
 icon: "file-code"
 ---
 
-Documents are standalone webpages for your Flatfile <Tooltip tip="Are micro-applications...">[Spaces](../concepts/spaces)</Tooltip>. They can be rendered from <Tooltip tip="View syntax">[Markdown syntax](https://www.markdownguide.org/basic-syntax/)</Tooltip>.
+Documents are standalone webpages for your Flatfile <Tooltip tip="Are micro-applications...">[Spaces](../developer-tools/spaces)</Tooltip>. They can be rendered from <Tooltip tip="View syntax">[Markdown syntax](https://www.markdownguide.org/basic-syntax/)</Tooltip>.
 
 Often used for getting started guides, Documents become extremely powerful with dynamically generated content that stays updated as Events occur.
 
@@ -21,7 +21,7 @@ You can create Documents using the API:
 
 This Document will now appear in the sidebar of your Space.
 
-In this example, we create a Document when a file is uploaded, but you can also create Documents in response to any other Event. [Read more](../concepts/events) about the different Events you can respond to.
+In this example, we create a Document when a file is uploaded, but you can also create Documents in response to any other Event. [Read more](../orchestration/events) about the different Events you can respond to.
 
 ## Document Actions
 
@@ -37,8 +37,6 @@ Actions appear as buttons in the top right corner of your Document:
 
 ![Document actions](../images/actions/document_actions.png)
 
-
-
 ## Document treatments
 
 Documents have an optional `treatments` parameter which takes an array of treatments for your Document. Treatments can be used to categorize your Document. Certain treatments will cause your Document to look or behave differently.
@@ -49,16 +47,17 @@ Giving your Document a treatment of `"ephemeral"` will cause the Document to app
 
 ```ts
 const ephemeralDoc = await api.documents.create(spaceId, {
-  title: 'Getting started',
-  body: '# Welcome ...',
-  treatments: [
-    'ephemeral'
-  ]
+  title: "Getting started",
+  body: "# Welcome ...",
+  treatments: ["ephemeral"],
 });
 ```
 
 <Info>
-  Currently, `"ephemeral"` is the only treatment that will change the behavior of your Document. Other treatments will not affect how your Document behaves, but can be used for your own purposes to categorize and describe your Documents in code.
+  Currently, `"ephemeral"` is the only treatment that will change the behavior
+  of your Document. Other treatments will not affect how your Document behaves,
+  but can be used for your own purposes to categorize and describe your
+  Documents in code.
 </Info>
 
 ## Embedding Sheets in Documents
@@ -66,12 +65,13 @@ const ephemeralDoc = await api.documents.create(spaceId, {
 You can embed a Sheet into your Document by adding an `<embed>` HTML entity to your markdown body, and passing a sheet ID, workbook ID, and name. You can also specify whether the embedded Sheet is expanded or collapsed when the document is loaded.
 
 <Info>
-  You can include as many embedded Sheets in your Document as you like, but end users will only be able to expand a maximum of 10 embedded Sheets at once.
+  You can include as many embedded Sheets in your Document as you like, but end
+  users will only be able to expand a maximum of 10 embedded Sheets at once.
 </Info>
 
 ```ts
 const doc = await api.documents.create(spaceId, {
-  title: 'Getting started',
+  title: "Getting started",
   body: `
     # Welcome
     
