@@ -141,6 +141,22 @@
               ]
             },
             {
+              "group": "Angular",
+              "icon": "angular",
+              "pages": [
+                "apps/embedding/angular/guide",
+                "apps/embedding/angular/new_space_quickstart",
+                {
+                  "group": "Advanced",
+                  "icon": "settings",
+                  "pages": [
+                    "apps/embedding/angular/new_space",
+                    "apps/embedding/angular/reuse_space"
+                  ]
+                }
+              ]
+            },
+            {
               "group": "Reference",
               "icon": "asterisk",
               "pages": [
