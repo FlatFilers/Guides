@@ -562,6 +562,11 @@ button.outline-none {
   background-color: rgb(var(--gray-50) / 0.1);
 }
 
+:not(:is(.dark .dark\:bg-white\/\[0\.03\])).hover\:bg-gray-100\/90:hover > div{
+  filter: invert(1);
+  mix-blend-mode: difference;
+}
+
 .bg-gray-100\/50 {
   background-color: rgb(var(--gray-100) / 0.1);
 }
