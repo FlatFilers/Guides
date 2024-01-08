@@ -122,7 +122,15 @@
               "icon": "react",
               "pages": [
                 "apps/embedding/react/guide",
-                "apps/embedding/react/new_space"
+                "apps/embedding/react/new_space_quickstart",
+                {
+                  "group": "Advanced",
+                  "icon": "settings",
+                  "pages": [
+                    "apps/embedding/react/new_space",
+                    "apps/embedding/react/reuse_space"
+                  ]
+                }
               ]
             },
             {
