@@ -38,3 +38,118 @@ Next, configure the plugin. Choose an accuracy level, a default target sheet, an
 Add your configured listener to your project and deploy it to Flatfile.
 
 <Snippet file="guides/automap/block3.mdx" />
+
+---
+
+---
+
+title: "Automate with headless"
+description: "Learn how to configure Flatfile to deliver a completely automated data import experience."
+icon: "bolt-auto"
+
+---
+
+File feeds are one of the most common ways to exchange batches of data on a regular basis.
+One key challenge for a traditional feed, however, is its inflexibility.
+If anything changes about the way source data is extracted, or the destination schema is configured, the feed is all but guaranteed to break.
+
+With Flatfile's powerful headless data import capabilities, you can seamlessly integrate a headless but _adaptable_ data connection into your system.
+
+## How it works
+
+You can achieve a fully automated data exchange between systems in just three steps:
+
+[Automate ingress](#automate-ingress) \
+Implement a flexible data pipeline that seamlessly uploads files to Flatfile without manual intervention, streamlining the process of data intake.
+
+[Flatfile processing](#flatfile-processing) \
+Within the Flatfile Platform, build a comprehensive configuration that enables automated extraction, mapping, validation, and transformation of your data.
+
+[Automate egress](#automate-egress) \
+Finally, leverage Flatfile's [Event](../orchestration/events) driven system to automatically export the processed and transformed data from Flatfile to the designated destination system, eliminating the need for manual exporting and ensuring a continuous flow of data to the intended location.
+
+## Automate ingress
+
+Data comes from many sources, and Flatfile can handle them all. Set up automatic feeds via cron job, cloud function, or any other method that works for your business.
+
+All ingress processes will leverage either our API or our SDKs.
+
+First, configure an ingress destination. Our files will be contained in a Space. You can think of a <Tooltip tip="A micro-application...">[Space](../developer-tools/spaces)</Tooltip> as a micro-application, each has it's own database and configurations.
+
+<Snippet file="guides/automap/block1.mdx" />
+<br></br>
+<Note>
+  Our deployed agent will automatically configure a Space. For more information
+  on how to configure a Space, see our [Dynamic
+  Configurations](../guides/dynamic-configurations).
+</Note>
+
+Next, we'll upload our file to Flatfile.
+
+<Snippet file="guides/automap/block2.mdx" />
+
+## Flatfile Processing
+
+### Extract incoming data
+
+Incoming CSV files are automatically extracted to a <Tooltip tip="A collection of data...">[Workbook](../apps/workbooks)</Tooltip>.
+
+However, if you're sending a different file type, you'll need to configure a listener to handle extraction.
+
+<Note>
+  See our [Extractor Plugins](../plugins/extractors) for plug and play options
+  or build your own.
+</Note>
+
+### Automate mapping
+
+Once our files are extracted, we'll need to automate the mapping of our data according to our schema. Our Automap Plugin will automatically map the data, matching based on configureable options.
+
+### Validate & Transform
+
+Similarly, validation and transformation operations can run immediately on `records:*` events with RecordHooks. See our [Data Handling Guide](../guides/handling-data) for more information.
+
+### Automate egress
+
+Now that we've leveraged the power of the Flatfile platform to extract, map, validate, and transform our data, we can automate the egress of our data to our destination system.
+
+We'll have our listener filter and run our egress logic on `commit:completed`. This is an event specifically designed to signal the end of all processing tasks.
+
+<Note>
+  To enable the `commit:completed` event, add a settings parameter in your Sheet
+  that includes `trackChanges: true`. This has the effect of disabling actions
+  on both Sheets and Workbooks until any pending commits have been completed.
+  See [Blueprint](/blueprint/sheet-options) sheet settings for more information.
+</Note>
+
+Here's an example where we automate emailing the processed data.
+
+<Snippet file="guides/automap/block3.mdx" />
+<br></br>
+<Note>
+  Egress Jobs may need to leverage Flatfile Secrets as credentials for outgoing
+  connections. See our [Secrets Guide](../guides/secrets) for more information.
+</Note>
+
+To pull a working demo of a headless integration, check out our [Example Projects](../starter-projects).
+
+## Additional paths
+
+To find the additional Flatfile integration paths that may work better for your business, explore our other use cases:
+
+<CardGroup cols={2}>
+  <Card
+    title="Embed in your app"
+    icon="person-to-portal"
+    href="../apps/embedding"
+  >
+    Securely and easily add an embedded import experience to any app.
+  </Card>
+  <Card
+    title="Run onboarding projects"
+    icon="arrow-progress"
+    href="../apps/projects"
+  >
+    Collaborate across teams on large data onboarding projects.
+  </Card>
+</CardGroup>

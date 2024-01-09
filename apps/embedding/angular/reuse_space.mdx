@@ -1,0 +1,198 @@
+---
+title: "Reuse an existing Space"
+description: "Reuse a Space when Flatfile is opened."
+icon: "recycle"
+---
+
+For applications meant to use the same space consistently, open an existing space each time Flatfile is opened. This suits situations where consistently editing a dataset is preferred.
+
+## Before you begin
+
+If you have already tried our [Embed a New Space](./new_space) guide you will notice this guide departs heavily, so you will want to create this in a new directory, as translation would be more difficult than creating from scratch.
+
+<Snippet file="shared/sk_needed.mdx" />
+
+Follow prompts from the `new` command.
+
+```bash
+ng new create-flatfile-angular-embed
+```
+
+```bash
+cd example-flatfile-angular-embed
+```
+
+```bash
+npm i
+```
+
+Install Packages
+
+```bash
+npm i @flatfile/api @flatfile/listener @flatfile/plugin-record-hook @flatfile/angular-sdk @flatfile/plugin-record-hook @flatfile/listener express && npm i --save-dev concurrently nodemon ts-node
+```
+
+#### 1. Set up Configuration Files
+
+This app has some configuration files that must be set up before you can get started with development. Set them up as shown below.
+
+<CodeGroup>
+```JSON nodemon.json
+{
+  "watch": ["server"],
+  "ext": "ts,json",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "ts-node --esm ./server/index.ts"
+}
+```
+</CodeGroup>
+
+You will also want to add some scripts to your `package.json` to start the app. Add the following scripts:
+
+```JSON pacakge.json (snippet)
+"scripts": {
+  "dev:frontend": "ng serve",
+  "dev:backend": "nodemon",
+  "dev": "concurrently 'npx tsc --watch' 'npm:dev:frontend' 'npm:dev:backend'",
+},
+```
+
+#### 2. Create the Server
+
+Lets create the server that will act as the backend of the application. This will be necessary to serve the pages as well as get the existing space, as due to security reasons the Secret Key cannot be exposed to the browser at any time.
+
+```TypeScript server/index.ts
+import express from "express";
+
+import { FlatfileClient } from "@flatfile/api";
+
+const port = 3000;
+const app = express();
+
+app.get('/api/spaces/:id', async (_req, res)=>{
+  const {id} = _req.params;
+  const flatfile = new FlatfileClient({
+    token: 'flatfile_api_key',
+    environment: 'https://platform.flatfile.com/api/v1',
+  });
+  try {
+    const space = await flatfile.spaces.get(id);
+    res.json({ space });
+  } catch (error) {
+    console.error("Error retrieving space:", error);
+    res.status(500).json({ error: "Failed to retrieve space" });
+  }
+})
+
+app.listen(port, () => {
+  console.log("Server listening on port", port);
+});
+```
+
+#### 3. Build your existing Space Component
+
+The component should end up looking something like this:
+
+```TypeScript src/app/app.component.ts
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, SpaceModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title = 'create-flatfile-angular';
+  showSpace: boolean = false;
+
+  constructor(private spaceService: SpaceService) {}
+
+  toggleSpace() {
+    this.spaceService.OpenEmbed();
+    this.showSpace = !this.showSpace;
+  }
+
+  closeSpace() {
+    this.showSpace = false;
+  }
+
+  spaceProps: ISpace = {
+    environmentId: 'us_env_1234',
+    space: {
+      id: 'us_sp_1234',
+      accessToken: 'sk_1234'
+    },
+    closeSpace: {
+      operation: 'submitActionFg',
+      onClose: this.closeSpace.bind(this),
+    },
+    displayAsModal: true,
+  }
+
+  fetchData = async (spaceId: string) => {
+    const response = await fetch(`http://localhost:3000/api/spaces/${spaceId}`);
+    const json = await response.json();
+
+    if(json.error){
+      return
+    }
+
+    if(this.spaceProps.space) {
+      this.spaceProps.space.accessToken = json.space.data.accessToken;
+    }
+  }
+
+  ngOnInit() {
+    if(this.spaceProps.space?.id){
+      this.fetchData(this.spaceProps.space.id).catch(
+        (err) => {
+          console.error(err)
+        }
+      );
+    }
+  }
+}
+```
+
+You'll need to update your `app.component.html` to include the existing space component. It should end up looking like the below:
+
+```html src/app/app.component.html
+<main class="main">
+  <div class="description">
+    <button (click)="toggleSpace()">
+      {{ showSpace ? 'Close' : 'Open' }} space
+    </button>
+  </div>
+  <div class="spaceWrapper" *ngIf="showSpace">
+    <flatfile-space [spaceProps]="spaceProps"></flatfile-space>
+  </div>
+</main>
+```
+
+#### 6. Start your client
+
+Now you should be able to start your app. To load it in dev mode and ensure everything works proprly, run:
+
+```bash
+npm run dev
+```
+
+If you have any errors, now is your time to fix them up, else you're ready to deploy!
+
+#### 7. Customize
+
+You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+
+## Example Project
+
+Find this Vue.js example project in the Flatfile GitHub repository.
+
+<CardGroup cols={1}>
+  <Card
+    title="create-flatfile-angular"
+    icon="angular"
+    href="https://github.com/FlatFilers/create-flatfile-angular/blob/main/src/app/reuse.component.ts"
+  >
+    Clone the Full Flatfile Angular tutorial here.
+  </Card>
+</CardGroup>

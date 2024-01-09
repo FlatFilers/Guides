@@ -4,6 +4,8 @@ description: "Learn versioning principles for npm packages at Flatfile."
 icon: "code-merge"
 ---
 
+<Snippet file="shared/dxpbanner.mdx" />
+
 The versioning of our npm packages adheres to Semantic Versioning (SemVer) principles, providing an unambiguous reflection of changes in each new release. Each version number is denoted in the format of: `MAJOR.MINOR.PATCH`
 
 Given this structure:
@@ -20,22 +22,27 @@ In certain cases, namely during the development stage, a package version might s
 - Patch version 0.0.z is incremented for backward-compatible bug fixes.
 
 ### Transitioning to Stability
+
 When a package reaches stability, we start the version at 1.0.0. This is because the caret (^) in the ^1.x.x pattern allows minor and patch updates that are supposed to be backward-compatible. Conversely, if ^1.0.x is used, only patch updates are allowed.
 
 This adheres to SemVer conventions, indicates API stability, sets clear expectations, and allows for safer automatic updates.
 
-
 ## Principles of Semantic Versioning
+
 Following the Semantic Versioning (SemVer) principles allows us to communicate effectively about the changes in our software, particularly in terms of compatibility and stability. Here are the core principles we follow:
 
 ### MAJOR Version
+
 The MAJOR version increment represents incompatible changes in our software. This signals users and system administrators that significant modifications may be required to accommodate the new version.
 
 ### MINOR Version
+
 The MINOR version increment represents the addition of backward-compatible functionalities. These new features should not interfere with the existing system setup, and users can continue using the software without any significant adjustments.
 
 ### PATCH Version
+
 The PATCH version increment signifies backward-compatible bug fixes. This ensures users have access to the most stable and reliable version of the software without changes in functionality or system compatibility.
 
 ## Summary
+
 By adhering to these Semantic Versioning (SemVer) principles, we strive to maintain and communicate the balance between introducing new functionalities, fixing bugs, and ensuring backward compatibility. Our aim is to provide clarity and confidence to our users and stakeholders about the changes they can expect in each new software version.
