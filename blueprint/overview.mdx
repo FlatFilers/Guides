@@ -21,6 +21,7 @@ icon: "hand-wave"
       "readOnly": false,
       "allowAdditionalFields": false,
       "access": ["add", "edit"],
+      "constraints": [{ name: "constraint name", fields: ["field_key_one", "field_key_two"], type: "unique", strategy: "concat"}],
       "fields": [
         {
           "key": "code",
