@@ -1,6 +1,7 @@
 ---
 title: "Reuse an existing Space"
 description: "Reuse a Space when Flatfile is opened."
+icon: "recycle"
 ---
 
 For applications meant to use the same space consistently, open an existing space each time Flatfile is opened. This suits situations where consistently editing a dataset is preferred.
@@ -22,8 +23,9 @@ cd example-flatfile-angular-embed
 ```
 
 ```bash
-npm i 
+npm i
 ```
+
 Install Packages
 
 ```bash
@@ -130,7 +132,7 @@ export class AppComponent {
   fetchData = async (spaceId: string) => {
     const response = await fetch(`http://localhost:3000/api/spaces/${spaceId}`);
     const json = await response.json();
-    
+
     if(json.error){
       return
     }
@@ -165,7 +167,6 @@ You'll need to update your `app.component.html` to include the existing space co
     <flatfile-space [spaceProps]="spaceProps"></flatfile-space>
   </div>
 </main>
-
 ```
 
 #### 6. Start your client
