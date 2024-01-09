@@ -138,11 +138,12 @@
               "icon": "vuejs",
               "pages": [
                 "apps/embedding/vue/guide",
-                "apps/embedding/vue/new_space",
+                "apps/embedding/vue/new_space_quickstart",
                 {
                   "group": "Advanced",
                   "icon": "settings",
                   "pages": [
+                    "apps/embedding/vue/new_space",
                     "apps/embedding/vue/reuse_space"
                   ]
                 }
