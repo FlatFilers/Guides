@@ -4,11 +4,17 @@ description: "Create a new Space every time Flatfile is opened."
 icon: "plus"
 ---
 
-For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+For synchronous data import/exchange completed in one session, create a new
+Space each time Flatfile is opened. This suits situations where a clean slate
+for every interaction is preferred.
 
 ## Before you begin
 
 <Snippet file="shared/pk_needed.mdx" />
+
+## Prepare your project
+
+### Install packages
 
 Make a new directory.
 
@@ -36,7 +42,7 @@ npm i vue @flatfile/vue @flatfile/plugin-record-hook @flatfile/listener && npm i
 
 Setup your app to look something like this:
 
-```
+```plaintext
 ├── src/
    ├── App.vue
    ├── config.ts
@@ -57,15 +63,21 @@ Setup your app to look something like this:
 
 In this file strucutre, your main directory is `src`.
 
-Depending on how you want to handle styling your application, you can have a `styles.css` file in your src directory, create sub-directories to contain style files, or even create directories outside of `src` if you prefer. The only requirement is that the files can be imported into vue files.
+Depending on how you want to handle styling your application, you can have a
+`styles.css` file in your src directory, create sub-directories to contain style
+files, or even create directories outside of `src` if you prefer. The only
+requirement is that the files can be imported into vue files.
 
-The heart of your vue app will be `App.vue`, as this will configure and render your component(s) to the index.html.
+The heart of your vue app will be `App.vue`, as this will configure and render
+your component(s) to the index.html.
 
-### Build your importer
+## Build your importer
 
-#### 1. Add a Flatfile Button
+### 1. Add a Flatfile Button
 
-Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load. Optionally, add the content here to your `styles.css`.
+Add a button to your application to open Flatfile in a modal. Pass in your
+`publishableKey` and a new Space will be created on each page load.
+Optionally, add the content here to your `styles.css`.
 
 <CodeGroup>
 ```HTML index.html (full page)
@@ -160,13 +172,15 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
   /* Begin style overrides for when you cancel out of the Flatfile modal */
 
-  /* The outer container of the modal that opens when you cancel out of Flatfile */
+  /* The outer container of the modal 
+  that opens when you cancel out of Flatfile */
   .flatfile_outer-shell {
     background-color: var(--ff-bg-fade) !important;
     border-radius: var(--ff-border-radius) !important;
   }
 
-  /* The inner container of the modal that opens when you cancel out of Flatfile */
+  /* The inner container of the modal that 
+  opens when you cancel out of Flatfile */
   /* .flatfile_inner-shell {
   } */
 
@@ -227,9 +241,14 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
 ### 2. Configure your project
 
-In your environment file, you'll need to define your keys. In this example, you will need your `environmentId` and `publishableKey`. You can find these under "Developer settings" when logged into [platform.flatfile.com](https://platform.flatfile.com).
+In your environment file, you'll need to define your keys. In this example, you
+will need your `environmentId` and `publishableKey`. You can find these under
+"Developer settings" when logged into [platform.flatfile.com](https://platform.flatfile.com).
 
-You can create your `.env` file via the template below, as well as your `App.vue`, `tsconfig.json`, `tsconfig.node.json`, and `vite.config.ts`, which are the remaining top-level config files. After these are initialized properly we can configure the app files under `src`.
+You can create your `.env` file via the template below, as well as your
+`App.vue`, `tsconfig.json`, `tsconfig.node.json`, and `vite.config.ts`, which
+are the remaining top-level config files. After these are initialized properly
+we can configure the app files under `src`.
 
 <CodeGroup>
 
@@ -289,9 +308,11 @@ export default defineConfig({
 
 ### 3. Initialize Flatfile
 
-In your `App.vue` you'll need to pass in a minimum of the `publishableKey` and `environmentId` from your `.env`.
+In your `App.vue` you'll need to pass in a minimum of the `publishableKey` and
+`environmentId` from your `.env`.
 
-Also, add the content here to your `main.ts`, and `vite-env.d.ts`. Optionally you can also add `shims-vue.d.ts` if you have the need.
+Also, add the content here to your `main.ts`, and `vite-env.d.ts`. Optionally
+you can also add `shims-vue.d.ts` if you have the need.
 
 <CodeGroup>
 
@@ -378,7 +399,8 @@ declare module "*.vue";
   },
 ```
 
-2. Now, start your front end by heading to the terminal and running the following command.
+2. Now, start your front end by heading to the terminal and running the
+following command.
 
 ```bash
   npm run dev
@@ -386,7 +408,7 @@ declare module "*.vue";
 
 Your console should display a message like the following:
 
-```
+```bash
 > vue@0.0.0 dev
 > vite
 
@@ -398,13 +420,18 @@ Your console should display a message like the following:
   ➜  press h to show help
 ```
 
-3. To view your app, copy the url and paste it into your browser. Click the button and see that an Empty Space gets created.
+3. To view your app, copy the url and paste it into your browser. Click the
+button and see that an Empty Space gets created.
 
 ### 5. Build a workbook
 
 Now, let’s build a Workbook inside the Space for next time.
 
-Add your `config.ts` file, and place the following code in it. After you have done so, import the configuration to `App.vue`, and update `spaceProps` to have the value of `config` under `workbook` (this will be around `line 36`). This config file has the configuration settings for your workbook, so feel free to edit however necessary to meet your needs.
+Add your `config.ts` file, and place the following code in it. After you have
+done so, import the configuration to `App.vue`, and update `spaceProps` to have
+the value of `config` under `workbook` (this will be around `line 36`). This
+config file has the configuration settings for your workbook, so feel free to
+edit however necessary to meet your needs.
 
 <CodeGroup>
 
@@ -476,7 +503,9 @@ Next, we'll listen for data changes and respond using an event listener.
 1. Add a `src/listener.ts` file with this simple `recordHook`.
 2. Update `App.tsx` to import the listener.
 
-Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](/guides/handling-data)
+Once you add this code, when a change occurs, we'll log the entered first name
+and update the last name to "Rock." You'll immediately see this begin to work
+when you add or update any records. Learn more about [Handling Data](/guides/handling-data)
 
 <CodeGroup>
 
@@ -596,7 +625,9 @@ export default defineComponent({
 
 ### 7. Match your brand
 
-By attaching a `themeConfig` to `spaceProps` in `src/App.tsx`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming).
+By attaching a `themeConfig` to `spaceProps` in `src/App.tsx`, we will now
+override colors in your Space to match your brand. See all of the options here
+in the [Theming Reference](/guides/theming).
 
 ```JavaScript
   themeConfig: {
