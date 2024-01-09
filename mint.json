@@ -127,7 +127,8 @@
                   "group": "Advanced",
                   "icon": "settings",
                   "pages": [
-                    "apps/embedding/react/new_space"
+                    "apps/embedding/react/new_space",
+                    "apps/embedding/react/reuse_space"
                   ]
                 }
               ]
