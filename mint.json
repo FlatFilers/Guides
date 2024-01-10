@@ -365,14 +365,12 @@
       "pages": [
         "plugins/schemas/convert-json-schema",
         "plugins/schemas/convert-yaml-schema",
+        "plugins/schemas/convert-sql-ddl",
+        "plugins/schemas/convert-openapi",
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": [
-            "plugins/schemas/convert-openapi",
-            "plugins/schemas/convert-graphql",
-            "plugins/schemas/convert-sql-ddl"
-          ]
+          "pages": ["plugins/schemas/convert-graphql"]
         }
       ]
     },
