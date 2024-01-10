@@ -17,10 +17,10 @@ don't need an advanced application, please try the quickstart guide first.
 ## Prepare your project
 
 Please be aware, this uses [Next.Js](https://nextjs.org/), a React Framework.
-This functionality is able to be replecated in react, however is much more
-diffcult to do. This is because reusing spaces requires fetching of sensitive
-data, like your secret key. Next.js comes with tools to quickly and easily
-create apis for your app, which we will be using here.
+This functionality is able to be replecated in react, however it is more
+diffcult to do so. This is because reusing spaces requires fetching of
+potentially sensitive data, and requires your secret key. Next.js comes with
+tools to quickly and easily create apis for your app, which we will be using here.
 
 You can follow this tutorial to get started with flatfile, or piggyback
 starting at step 2 to continue where the [new Space](./new_space.mdx)
@@ -50,7 +50,11 @@ npm init
 Install packages.
 
 ```bash
-npm i @flatfile/react @flatfile/listener @flatfile/api flatfile next react react-dom react-scripts
+npm i @flatfile/api @flatfile/listener @flatfile/react flatfile next react react-dom react-scripts tailwindcss postcss
+```
+
+```bash
+npm i --save-dev @types/react daisyui
 ```
 
 ### Create your file structure
@@ -70,6 +74,9 @@ Setup your app to look something like this:
    ├── workbooks/
      └── workbooks.tsx
 ├── pages/
+   ├── api
+     ├── spaces
+       └── [id].ts
    ├── new-spaces - if you've already done the [new Space](./new_space.mdx) guide
      └── index.tsx
    ├── reuse-spaces
@@ -291,109 +298,165 @@ these updates are `app/Layout.tsx`, `pages/_app.tsx`, `pages/index.tsx`, and `ap
 
 </CodeGroup>
 
-### 2. Add a Flatfile button 
+### 2. Add a Flatfile button
 
 Now that your app has its layout, we can start building the page to create new
-spaces! Start by creating the `NewSpace` component at `app/NewSpace/index.tsx`
+spaces! Start by creating the `ReuseSpace` component at `app/ReuseSpace/index.tsx`
 Note that because the component file is titled `index`, when importing we can
 simply point to the directory, and don't need to specify the file.
 
-<CodeGroup>
-
-  ```ts app/NewSpace/index.tsx
+  ```ts app/ReuseSpace/index.tsx
     "use client";
     import { ISpace, useSpace } from "@flatfile/react";
-    import Link from "next/link";
-    import React, { Dispatch, SetStateAction, useState } from "react";
+    import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
     const Space = ({
-      callback,
+      setShowSpace,
       config,
     }: {
-      callback: () => void;
-      config: ISpace;
+      setShowSpace: Dispatch<SetStateAction<boolean>>;
+      config: {
+        spaceId: string;
+        environmentId: string;
+        accessToken: string;
+      };
     }) => {
+      const spaceProps: ISpace = {
+        environmentId: config.environmentId,
+        space: {
+          id: config.spaceId,
+          accessToken: config.accessToken,
+        },
+      };
       const space = useSpace({
-        ...config,
+        ...spaceProps,
         closeSpace: {
           operation: "contacts:submit",
-          onClose: () => callback(),
+          onClose: () => setShowSpace(false),
         },
       });
       return space;
     };
 
-
-    export default function NewSpace({ config }: { config: ISpace }) {
+    export default function ReuseSpace({
+      spaceId,
+      environmentId,
+    }: {
+      spaceId?: string;
+      environmentId?: string;
+    }) {
       const [showSpace, setShowSpace] = useState(false);
-      const [success, setSuccess] = useState(false);
-      const credentials = !!config.publishableKey && !!config.environmentId;
+      const [loading, setLoading] = useState(true);
+      const [data, setData] = useState<any>();
+      const [error, setError] = useState<any>();
+
+      useEffect(() => {
+        const fetchData = async (spaceId: string) => {
+          const response = await fetch(`/api/spaces/${spaceId}`);
+          const json = await response.json();
+          if (json.error) {
+            setError(json.error);
+            setLoading(false);
+            return;
+          }
+          const spaceInfo = {
+            spaceId,
+            accessToken: json.space.data.accessToken,
+            environmentId,
+          };
+
+          setData(spaceInfo);
+          setLoading(false);
+        };
+
+        if (!spaceId || !environmentId) {
+          setLoading(false);
+          return;
+        }
+
+        fetchData(spaceId).catch((err) => {
+          setLoading(false);
+          setError(err);
+        });
+      }, [spaceId, environmentId]);
+
+      if (loading) {
+        return (
+          <button className="btn">
+            <span className="loading loading-spinner"></span>
+            loading
+          </button>
+        );
+      }
+      if (!spaceId || !environmentId || error) {
+        return (
+          <div className="alert alert-error">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span className="flex-col">
+              {(!spaceId || !environmentId) && (
+                <span>
+                  Please add a <pre>spaceId</pre> and <pre>environmentId</pre>
+                </span>
+              )}
+              {error && (
+                <span>
+                  {error} Make sure to set the <pre>FLATFILE_API_KEY</pre> in your{" "}
+                  <pre>.env</pre> file. <br />
+                  You can find that in your Flatfile Dashboard under Developer
+                  Settings.
+                </span>
+              )}
+            </span>
+          </div>
+        );
+      }
+
       return (
         <div>
-          {credentials ? (
-            <>
-              <div>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => {
-                    setShowSpace(!showSpace);
-                  }}
-                >
-                  {showSpace === true ? "Close" : "Open and create new"} space
-                </button>
-              </div>
-              {showSpace && (
-                <div id="flatfile_iFrameContainer">
-                  <Space
-                    callback={() => {
-                      setShowSpace(false);
-                      setSuccess(true);
-                    }}
-                    config={config}
-                  />
+          <div>
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                setShowSpace(!showSpace);
+              }}
+            >
+              {showSpace === true ? "Close" : "Open existing"} space
+            </button>
+          </div>
+          {showSpace && (
+            <div id="flatfile_iFrameContainer">
+              {data?.accessToken ? (
+                <Space setShowSpace={setShowSpace} config={data} />
+              ) : (
+                <div className="alert alert-error">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="stroke-current shrink-0 h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>No access token available.</span>
                 </div>
               )}
-            </>
-          ) : (
-            <div className="alert alert-error">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="stroke-current shrink-0 h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <span>
-                Error! Please add your <pre>publishableKey</pre> and{" "}
-                <pre>environmentId</pre>
-              </span>
-            </div>
-          )}
-          {success && (
-            <div className="alert alert-success mt-6">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="stroke-current shrink-0 h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              <span>
-                Great Success! Now you might want to try out reusing a space,{" "}
-                <Link href="/reused-space">check out the next example here.</Link>
-              </span>
             </div>
           )}
         </div>
@@ -402,63 +465,73 @@ simply point to the directory, and don't need to specify the file.
 
   ```
 
+Note that the internal api is used in this component. Let's set that up now so
+that it will function. This will require that your secret key be included in your
+environment variables as `FLATFILE_API_KEY`. Please add that now as well to
+ensure your api will function as intended.
+
+<CodeGroup>
+
+  ```ts pages/api/spaces/[id].ts
+      import api from "@flatfile/api";
+    import { NextApiRequest, NextApiResponse } from "next";
+
+    export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+      const { id } = req.query;
+      try {
+        if(!id || typeof id !== 'string') throw new Error("No space ID provided");
+        const space = await api.spaces.get(id);
+        res.json({ space });
+      } catch (error) {
+        console.error("Error retrieving space:", error);
+        res.status(500).json({ error: "Failed to retrieve space" });
+      }
+    }
+  ```
+
+  ```bash .env
+    # your secret key here
+    FLATFILE_API_KEY=sk_123456
+  ```
+
 </CodeGroup>
 
 ### 3. Initialize Flatfile
 
-Next we can create the page that will house this component. Please note that on
-this page we will be using the workbook and listeners, but as we have not
-defined those yet there will be errors. We will define those in a little bit,
-so you can either comment out those lines or keep working through this guide
-until they are defined.
+Next we can create the page that will house this component.
 
-For this section you will need to have your `publishableKey` and `environmentId`,
-you can access these when logged in to [platform.flatfile.com](platform.flatfile.com)
-under "developer settings".
+For this section you will need to have the `spaceId` of the space you want to
+reuse, and the `environmentId`. You can access your `environmentId` when logged
+in to [platform.flatfile.com](platform.flatfile.com) under "developer settings".
+As for the `spaceId`, this should be visible next to any space in "All Spaces"
+when you're logged into [platform.flatfile.com](platform.flatfile.com)
 
-This page for creating new spaces will be housed at `pages/new-space/index.tsx`,
-and Next will automatically route you to this page when you visit `yourappsdomain/new-space`!
+This page for reusing spaces will be housed at `pages/reuse-space/index.tsx`,
+and Next will automatically route you to this page when you visit `yourappsdomain/reuse-space`!
 
 <CodeGroup>
 
-  ```ts pages/new-space/index.tsx
-    import { ISpace } from "@flatfile/react";
+  ```ts pages/reuse-space/index.tsx
+    "use client";
     import React from "react";
-    import NewSpaceApp from "../../app/NewSpace";
-    import { listener } from "../../app/listeners/listeners";
-    import { workbook } from "../../app/workbooks/workbooks";
-    const spaceProps: ISpace = {
-      name: "Embedded Space",
-      // to test locally add your publishableKey here, for example: pk_12345,
-      publishableKey: "pk_12345",
-      // to test locally add your environmentId here, for example: us_env_12345,
-      environmentId: "us_env_12345",
-      workbook,
-      listener,
-      // themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
-      // sidebarConfig: {
-      //   showDataChecklist: false,
-      //   showSidebar: false,
-      // },
-    };
+    import ReuseSpace from "../../app/ReuseSpace";
 
-    export default function newSpace(){
+    export default function reuseSpace() {
       return (
         <div className="container px-20 pt-20">
-          <h2 className="text-2xl font-bold mb-4">
-            Embed a new Space every time Flatfile is opened
-          </h2>
+          <h2 className="text-2xl font-bold mb-4">Reuse an existing Space</h2>
           <p>
             Reuse a Space when users might need to wait or can’t finish in one go.
             It’s great for keeping work context and letting users continue where
             they left off until the task is done.
           </p>
           <div className="py-10">
-            <NewSpaceApp config={spaceProps} />
+            <ReuseSpace spaceId={""} environmentId={""} />
           </div>
         </div>
-      )
+      );
     }
+
   ```
 
 </CodeGroup>
@@ -494,161 +567,7 @@ You should get a message in your terminal that looks something like this:
 If you see this that means you've been successful, and you can visit your app at
 the url provided!
 
-### 5. Build your Workbook and Listeners
-
-Now your app is set up and will work on its own if workbook and listener are
-commented out. A space with no workbook or listeners isn't that useful though,
-so lets add those now.
-
-<CodeGroup>
-
-  ```ts app/workbooks/workbooks.ts
-    import { Flatfile } from "@flatfile/api";
-    export const workbook: Pick<
-      Flatfile.CreateWorkbookConfig,
-      "name" | "sheets" | "actions"
-    > = {
-      name: "Employees workbook",
-      sheets: [
-        {
-          name: "TestSheet",
-          slug: "TestSheet",
-          fields: [
-            {
-              key: "first_name",
-              type: "string",
-              label: "First name",
-              constraints: [
-                {
-                  type: "required",
-                },
-              ],
-            },
-            {
-              key: "last_name",
-              type: "string",
-              label: "last name",
-            },
-            {
-              key: "full_name",
-              type: "string",
-              label: "full name",
-            },
-          ],
-          actions: [
-            {
-              label: "Join fields",
-              operation: "contacts:join-fields",
-              description: "Would you like to join fields?",
-              mode: "foreground",
-              confirm: true,
-            },
-          ],
-        },
-      ],
-      actions: [
-        {
-          label: "Submit",
-          operation: "contacts:submit",
-          description: "Would you like to submit your workbook?",
-          mode: "foreground",
-          primary: true,
-          confirm: true,
-        },
-      ],
-    };
-
-  ```
-
-  ```ts app/listeners/listeners.ts
-    import { FlatfileListener } from '@flatfile/listener'
-    import { recordHook } from '@flatfile/plugin-record-hook'
-
-    /**
-     * Example Listener
-     */
-    export const listener = FlatfileListener.create((client) => {
-      // client.on('**', async (event) => {
-      //   const { spaceId } = event.context
-      //   const secret = await event.secrets('TEST', { spaceId })
-      //   console.log({ secret })
-      // })
-
-      // client.use(
-      //   recordHook('contacts', (record) => {
-      //     const firstName = record.get('firstName')
-      //     console.log({ firstName })
-      //     // Gettign the real types here would be nice but seems tricky
-      //     record.set('lastName', 'Rock')
-      //     return record
-      //   })
-      // )
-      client.use(
-        recordHook('TestSheet', (record) => {
-          const last_name = record.get('last_name')
-          console.log('passing through record hook', last_name)
-          if (!last_name) {
-            console.log('last_name is required')
-            record.addError('last_name', 'Name is required')
-          }
-          return record
-        })
-      )
-    })
-
-  ```
-
-</CodeGroup>
-
-Now if you go and add workbook and listener to your `pages/new-space/index.tsx`
-you can open the space with your desired schema and listeners!
-
-### 6. Match your Brand
-
-By attaching a `themeConfig`, we will now override colors in your Space to match
-your brand. See all of the options here in the [Theming Reference](/guides/theming).
-
-```ts pages/new-space/index.tsx
-  import { ISpace, makeTheme } from "@flatfile/react";
-  import React from "react";
-  import NewSpaceApp from "../../app/NewSpace";
-  import { listener } from "../../app/listeners/listeners";
-  import { workbook } from "../../app/workbooks/workbooks";
-  const spaceProps: ISpace = {
-    name: "Embedded Space",
-    // to test locally add your publishableKey here, for example: pk_12345,
-    publishableKey: "pk_6e0577bd434b4f989c3add5ad4d9feaf",
-    // to test locally add your environmentId here, for example: us_env_12345,
-    environmentId: "us_env_1ejus9hB",
-    workbook,
-    listener,
-    themeConfig: makeTheme({ primaryColor: "#546a76", textColor: "#fff" }),
-    sidebarConfig: {
-      showDataChecklist: false,
-      showSidebar: false,
-    },
-  };
-
-  export default function newSpace(){
-    return (
-      <div className="container px-20 pt-20">
-        <h2 className="text-2xl font-bold mb-4">
-          Embed a new Space every time Flatfile is opened
-        </h2>
-        <p>
-          Reuse a Space when users might need to wait or can’t finish in one go.
-          It’s great for keeping work context and letting users continue where
-          they left off until the task is done.
-        </p>
-        <div className="py-10">
-          <NewSpaceApp config={spaceProps} />
-        </div>
-      </div>
-    )
-  }
-```
-
-### 7. Add customizations
+### 5. Add customizations
 
 You can stop here or you can [view our full reference](../reference/common) to
 see all the ways you can customize your importer.
