@@ -80,11 +80,18 @@
   "navigation": [
     {
       "group": "Documentation",
-      "pages": ["overview", "starter-projects"]
+      "pages": [
+        "overview",
+        "starter-projects"
+      ]
     },
     {
       "group": "Updates by area",
-      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
+      "pages": [
+        "changelog/platform",
+        "changelog/sdks",
+        "changelog/plugins"
+      ]
     },
     {
       "group": "Platform Apps",
@@ -119,7 +126,9 @@
                 {
                   "group": "Advanced",
                   "icon": "settings",
-                  "pages": ["apps/embedding/react/new_space"]
+                  "pages": [
+                    "apps/embedding/react/new_space"
+                  ]
                 }
               ]
             },
@@ -132,7 +141,9 @@
                 {
                   "group": "Advanced",
                   "icon": "settings",
-                  "pages": ["apps/embedding/vue/reuse_space"]
+                  "pages": [
+                    "apps/embedding/vue/reuse_space"
+                  ]
                 }
               ]
             },
@@ -195,7 +206,8 @@
         "guides/automap",
         "guides/localization",
         "guides/additional-fields",
-        "guides/flatfile_query_language"
+        "guides/flatfile_query_language",
+        "guides/api"
       ]
     },
     {
@@ -220,7 +232,9 @@
     },
     {
       "group": "Upgrade",
-      "pages": ["upgrade/overview"]
+      "pages": [
+        "upgrade/overview"
+      ]
     },
     {
       "group": "Portal - version 2",
@@ -254,7 +268,10 @@
     },
     {
       "group": "Core Architecture",
-      "pages": ["developer-tools/environment", "developer-tools/spaces"]
+      "pages": [
+        "developer-tools/environment",
+        "developer-tools/spaces"
+      ]
     },
     {
       "group": "Security",
@@ -293,11 +310,15 @@
     },
     {
       "group": "Mapping",
-      "pages": ["developer-tools/mapping-libraries/flatfile-mapping-python"]
+      "pages": [
+        "developer-tools/mapping-libraries/flatfile-mapping-python"
+      ]
     },
     {
       "group": "Plugins",
-      "pages": ["plugins/overview"]
+      "pages": [
+        "plugins/overview"
+      ]
     },
     {
       "group": "Extractors",
@@ -311,7 +332,9 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/extractors/doc-extractor"]
+          "pages": [
+            "plugins/extractors/doc-extractor"
+          ]
         }
       ]
     },
@@ -325,11 +348,16 @@
     },
     {
       "group": "Automation",
-      "pages": ["plugins/automations/automap"]
+      "pages": [
+        "plugins/automations/automap"
+      ]
     },
     {
       "group": "Export",
-      "pages": ["plugins/export/workbook", "plugins/export/webhook"]
+      "pages": [
+        "plugins/export/workbook",
+        "plugins/export/webhook"
+      ]
     },
     {
       "group": "Schemas",
@@ -341,7 +369,9 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/schemas/convert-graphql"]
+          "pages": [
+            "plugins/schemas/convert-graphql"
+          ]
         }
       ]
     },
@@ -352,17 +382,24 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/datasets/countries"]
+          "pages": [
+            "plugins/datasets/countries"
+          ]
         }
       ]
     },
     {
       "group": "Migrations",
-      "pages": ["plugins/migrations/dxp-configure"]
+      "pages": [
+        "plugins/migrations/dxp-configure"
+      ]
     },
     {
       "group": "Core",
-      "pages": ["plugins/core/job-handler", "plugins/core/space-configure"]
+      "pages": [
+        "plugins/core/job-handler",
+        "plugins/core/space-configure"
+      ]
     },
     {
       "group": "Utils",
