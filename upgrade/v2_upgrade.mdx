@@ -17,7 +17,8 @@ With the new Platform, comes a brand new place to sign up for it. Before getting
 Before you can start using all the wonderful tools in this guide to implement Flatfile, you'll need to install a couple of packages, the V2 Shims and Flatfile API packages.
 
 <Note>
-    If you are using our `@flatfile/react` package, be sure to install version 7.2.24 or higher to get the Platform React component.
+  If you are using our `@flatfile/react` package, be sure to install version
+  7.2.24 or higher to get the Platform React component.
 </Note>
 
 <CodeGroup>
@@ -54,9 +55,10 @@ The Portal 2 configuration is what contains your settings and fields in your Por
         Import Contacts
     </FlatfileButton>
     ```
+
 </CodeGroup>
 
-You'll be able to use this configuration object with the V2 Shims package to configure your new implementation. Keep in mind that the below snippets use a couple of new concepts like a [Job](/concepts/jobs) and [Listener](/quickstart/meet-the-listener). While you don't need to learn about these to get started, they are useful for adding new functionality onto your importer at some point in the future.
+You'll be able to use this configuration object with the V2 Shims package to configure your new implementation. Keep in mind that the below snippets use a couple of new concepts like a [Job](/orchestration/jobs) and [Listener](/apps/custom/meet-the-listener). While you don't need to learn about these to get started, they are useful for adding new functionality onto your importer at some point in the future.
 
 <CodeGroup>
 
@@ -106,7 +108,7 @@ You'll be able to use this configuration object with the V2 Shims package to con
                 "You must provide a publishable key and an environment ID - pass through in index.html"
             );
         }
-    
+
         const flatfileOptions = {
             publishableKey,
             environmentId,
@@ -118,7 +120,7 @@ You'll be able to use this configuration object with the V2 Shims package to con
             },
             // Additional props...
         };
-    
+
         initializeFlatfile(flatfileOptions);
     };
     ```
@@ -209,7 +211,11 @@ You'll be able to use this configuration object with the V2 Shims package to con
 If you're transitioning from a V2 Record Hook to a Platform Record Hook in your code, you can make the conversion by simply extracting and wrapping your existing Record Hook code in the V2 Shim `convertHook` method.
 
 <Note>
-    If you're using V2 Record Hooks `mode` to split hooks on "init" or on "change", Platform does not have this mode functionality. It does, however, have better overall hooks performance and a new [Bulk Record Hook](/plugins/transform/record-hook#additional-options) method that make `mode` unnecessary.
+  If you're using V2 Record Hooks `mode` to split hooks on "init" or on
+  "change", Platform does not have this mode functionality. It does, however,
+  have better overall hooks performance and a new [Bulk Record
+  Hook](/plugins/transform/record-hook#additional-options) method that make
+  `mode` unnecessary.
 </Note>
 
 <CodeGroup>
