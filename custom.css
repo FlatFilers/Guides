@@ -306,10 +306,23 @@ h5 {
 
 .shadow-md,
 .bg-code-block {
-  --tw-shadow: rgb(0, 0, 0) 8px 8px;
+  --tw-shadow: rgb(0, 0, 0) 0px 0px;
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
     0 2px 4px -2px var(--tw-shadow-color);
   margin-bottom: 1em;
+  transition: 0.2s ease 0s;
+}
+
+.shadow-md:hover,
+.bg-code-block:hover {
+  --tw-shadow: rgb(0, 0, 0) 8px 8px;
+}
+
+:is(.dark) .shadow-md {
+  --tw-shadow: rgb(255,255,255) 0px 0px;
+}
+:is(.dark) .shadow-md:hover {
+  --tw-shadow: rgb(255,255,255) 8px 8px;
 }
 
 img {
