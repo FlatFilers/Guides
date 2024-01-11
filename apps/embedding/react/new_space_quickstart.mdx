@@ -1,0 +1,345 @@
+---
+title: "Quickstart"
+description: "Create a new Space every time Flatfile is opened."
+icon: "rabbit-running"
+---
+
+For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+
+## Before you begin
+
+<Snippet file="shared/pk_needed.mdx" />
+
+## Prepare your React project
+
+### Create your file structure
+
+Setup your app to look something like this:
+
+```
+├── public/
+   └── index.html
+├── src/
+   └── blueprint.js
+   └── index.js
+├── package.json
+```
+
+In this file structure, your app should have two main directories, `public` and `src`.
+
+The `public` directory contains the `index.html` file, which is the entry point of the application's front-end.
+
+The `src` directory contains the main components and logic of the application, including the `blueprint.js` file, which defines your schema, and `index.js` from which your application is run.
+
+The `package.json` file contains the dependencies and scripts for your application.
+
+## Build your importer
+
+### 1. Initialize Flatfile
+
+Initialize Flatfile to open in a modal. Pass in your `publishableKey` and `environmentId` and a new Space will be created on each page load.
+
+
+<CodeGroup>
+
+```javascript src/index.js
+  import ReactDOM from "react-dom/client"
+  import { usePortal } from '@flatfile/react'
+  import { blueprint } from './blueprint'
+
+  function App() {
+    const FlatfilePortal = () => {
+      return usePortal({
+        environmentId: "env_1234",
+        publishableKey: "pk_1234",
+        spaceBody: {
+          namespace: "portal",
+        },
+      })
+    }
+
+    return (
+      <FlatfilePortal/>
+    )
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  root.render(<App />)
+```
+
+```html public/index.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <section id="root"></section>
+  </head>
+</html>
+```
+
+```json package.json
+{
+  "name": "flatfile-react-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@flatfile/react": "^7.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+```
+
+</CodeGroup>
+
+### 2. Build and run your React app
+
+Build your React project and start the development server:
+
+```
+  npm install
+  npm start
+```
+
+Your browser should automatically open, displaying the Flatfile importer on page load.
+
+### 3. Build a Workbook
+
+Now, let's build a Workbook inside the Space for next time.
+
+1. Update your `blueprint.js` with this simple Blueprint.
+2. Update `index.html` to import the Workbook.
+
+Next time you open Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. Your Workbook will also have a Submit action. We will configure this action in the next step.
+
+<CodeGroup>
+```js src/blueprint.js
+const blueprint = {
+  "name": "Contacts",
+  "slug": "contacts",
+  "fields": [
+    {
+      "key": "firstName",
+      "type": "string",
+      "label": "First Name"
+    },
+    {
+      "key": "lastName",
+      "type": "string",
+      "label": "Last Name"
+    },
+    {
+      "key": "email",
+      "type": "string",
+      "label": "Email"
+    }
+  ]
+}
+```
+
+```javascript src/index.js
+  import ReactDOM from "react-dom/client"
+  import { usePortal } from '@flatfile/react'
+  import { blueprint } from './blueprint'
+
+  function App() {
+    const FlatfilePortal = () => {
+      return usePortal({
+        environmentId: "env_1234",
+        publishableKey: "pk_1234",
+        spaceBody: {
+          namespace: "portal",
+        },
+        sheet: blueprint,
+      })
+    }
+
+    return (
+      <FlatfilePortal/>
+    )
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  root.render(<App />)
+```
+
+</CodeGroup>
+
+### 4. Set the destination
+
+Finally, let's get the data out of our system and to your destination with `onSubmit`.
+
+Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](/guides/egress).
+
+<CodeGroup>
+
+```js public/index.html
+window.onload = function () {
+  FlatFileJavaScript.startFlatfile({
+    publishableKey: "pk_1234",
+    spaceBody: {
+      namespace: "portal",
+    },
+    sheet: blueprint,
+    onSubmit: async ({ sheet }) => {
+      const data = await sheet.allData()
+      console.log("onSubmit", data)
+    },
+  })
+};
+```
+
+```javascript src/index.js
+  import ReactDOM from "react-dom/client"
+  import { usePortal } from '@flatfile/react'
+  import { blueprint } from './blueprint'
+
+  function App() {
+    const FlatfilePortal = () => {
+      return usePortal({
+        environmentId: "env_1234",
+        publishableKey: "pk_1234",
+        spaceBody: {
+          namespace: "portal",
+        },
+        sheet: blueprint,
+        onSubmit: async ({ sheet }) => {
+          const data = await sheet.allData()
+          console.log("onSubmit", data)
+        }
+      })
+    }
+    return (
+      <FlatfilePortal/>
+    )
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  root.render(<App />)
+```
+
+</CodeGroup>
+
+### 5. Transform Data
+
+Next, we'll listen for data changes and respond `onRecordHook`,
+
+Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](/guides/handling-data)
+
+```javascript src/index.js
+  import ReactDOM from "react-dom/client"
+  import { usePortal } from '@flatfile/react'
+  import { blueprint } from './blueprint'
+
+  function App() {
+    const FlatfilePortal = () => {
+      return usePortal({
+        environmentId: "env_1234",
+        publishableKey: "pk_1234",
+        spaceBody: {
+          namespace: "portal",
+        },
+        sheet: blueprint,
+        onSubmit: async ({ sheet }) => {
+          const data = await sheet.allData()
+          console.log("onSubmit", data)
+        },
+        onRecordHook: (record) => {
+          const firstName = record.get("firstName")
+          console.log({ firstName })
+          record.set("lastName", "Rock")
+          return record
+        }
+      })
+    }
+    return (
+      <FlatfilePortal/>
+    )
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  root.render(<App />)
+```
+
+### 7. Match your brand
+
+By attaching a `themeConfig`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming).
+
+```javascript src/index.js
+  import ReactDOM from "react-dom/client"
+  import { usePortal } from '@flatfile/react'
+  import { blueprint } from './blueprint'
+
+  function App() {
+    const FlatfilePortal = () => {
+      return usePortal({
+        environmentId: "env_1234",
+        publishableKey: "pk_1234",
+        spaceBody: {
+          namespace: "portal",
+        },
+        sheet: blueprint,
+        onSubmit: async ({ sheet }) => {
+          const data = await sheet.allData()
+          console.log("onSubmit", data)
+        },
+        onRecordHook: (record) => {
+          const firstName = record.get("firstName")
+          console.log({ firstName })
+          record.set("lastName", "Rock")
+          return record
+        },
+        themeConfig: {
+          primaryColor: "red",
+          textColor: "white",
+          logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+        },
+      })
+    }
+    return (
+      <FlatfilePortal/>
+    )
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"))
+  root.render(<App />)
+```
+
+
+### 8. Customize
+
+Continue to customize your importer as needed. For more options, [view the full React integration reference](../reference/advanced).
+
+## Example 
+
+Explore our React example project for further guidance.
+
+<CardGroup cols={2}>
+  <Card
+    title="create-flatfile-react-simplified"
+    icon="react"
+    href="https://github.com/FlatFilers/create-flatfile-react"
+  >
+    Clone the simplified Flatfile React tutorial from here.
+  </Card>
+</CardGroup>
