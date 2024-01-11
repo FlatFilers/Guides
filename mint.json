@@ -208,7 +208,8 @@
         "guides/automap",
         "guides/localization",
         "guides/additional-fields",
-        "guides/flatfile_query_language"
+        "guides/flatfile_query_language",
+        "guides/data-retention"
       ]
     },
     {
