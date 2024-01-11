@@ -1,0 +1,462 @@
+---
+title: "Embed a new Space"
+description: "Create a new Space every time Flatfile is opened."
+icon: "plus"
+---
+
+For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+
+## Before you begin
+
+<Snippet file="shared/pk_needed.mdx" />
+
+## Prepare your project
+
+### Install packages
+
+Make a new directory.
+
+```bash
+mkdir example-flatfile-react-embed
+```
+
+Go into that directory.
+
+```bash
+cd example-flatfile-react-embed
+```
+
+Follow prompts from the `init` command.
+
+```bash
+npm init
+```
+
+Install packages.
+
+```bash
+npm i @flatfile/react @flatfile/listener @flatfile/plugin-record-hook @flatfile/api flatfile react react-dom react-scripts
+```
+
+### Create your file structure
+
+Setup your app to look something like this:
+
+```
+├── public/
+   └── index.html
+   └── styles.css
+├── src/
+   └── App.tsx
+   └── index.tsx
+   └── workbook.ts (wait to add this)
+   └── listener.ts (wait to add this)
+├── tsconfig.json
+├── package.json <--- already created
+└── package-lock.json <--- already created
+```
+
+In this file structure, your app should have two main directories, `public` and `src.`
+
+The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+
+The `src` directory contains the main components and logic of the application, including the `App.tsx` file, which initializes Flatfile and passes in available options.
+
+## Build your importer
+
+### 1. Add a Flatfile button
+
+Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load. Also, add the content here to your `styles.css`.
+
+<CodeGroup>
+```html public/index.html (full page)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+    <title>React App</title>
+
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+  </body>
+</html>
+```
+
+```css public/styles.css
+/* Styles for home page */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #090b2b;
+  color: #fff;
+}
+
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.content {
+  /* Adjust the width and height as needed */
+  width: 800px;
+  height: 200px;
+  padding: 0 20px 0 50px;
+}
+
+.contrast {
+  padding: 10px;
+  margin: 10px 5px 0 0;
+  border-radius: 4px;
+  border: 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+/* End of styles for home page */
+
+:root {
+  --ff-primary-color: #4c48ef !important;
+  --ff-secondary-color: #616a7d !important;
+  --ff-text-color: #090b2b !important;
+  --ff-dialog-border-radius: 4px !important;
+  --ff-border-radius: 5px !important;
+  --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* The default mount element */
+/* #flatfile_iFrameContainer {
+} */
+
+/* A div around the iframe that contains Flatfile */
+/* .flatfile_iframe-wrapper {
+} */
+
+/* The actual iframe that contains Flatfile */
+/* #flatfile_iframe {
+} */
+
+.flatfile-close-button {
+  display: none !important;
+}
+
+/* Begin style overrides for when Flatfile is displayed as a modal */
+
+/* This class gets appended to the flatfile_iframe-wrapper div */
+.flatfile_displayAsModal {
+  padding: 50px !important;
+  width: calc(100% - 100px) !important;
+  height: calc(100vh - 100px) !important;
+}
+
+.flatfile_iframe-wrapper.flatfile_displayAsModal {
+  background: var(--ff-bg-fade) !important;
+}
+
+/* The close button in top right to close modal */
+.flatfile_displayAsModal .flatfile-close-button {
+  display: block !important;
+  margin: 20px !important;
+}
+
+/* The icon for the close button in top right to close modal */
+.flatfile_displayAsModal .flatfile-close-button svg {
+  fill: var(--ff-secondary-color) !important;
+}
+
+/* The actual iframe that contains Flatfile */
+.flatfile_displayAsModal #flatfile_iframe {
+  border-radius: var(--ff-border-radius);
+}
+
+/* Begin style overrides for when you cancel out of the Flatfile modal */
+
+/* The outer container of the modal that opens when you cancel out of Flatfile */
+.flatfile_outer-shell {
+  background-color: var(--ff-bg-fade) !important;
+  border-radius: var(--ff-border-radius) !important;
+}
+
+/* The inner container of the modal that opens when you cancel out of Flatfile */
+/* .flatfile_inner-shell {
+} */
+
+/* The white box inside the modal that opens when you cancel out of Flatfile */
+.flatfile_modal {
+  border-radius: var(--ff-dialog-border-radius) !important;
+}
+
+/* The container for the buttons you see in the close modal */
+/* .flatfile_button-group {
+} */
+
+/* Style the buttons you see in the close modal */
+/* .flatfile_button {
+} */
+
+/* The "yes, cancel" button you see in the close modal */
+.flatfile_primary {
+  border: 1px solid var(--ff-primary-color) !important;
+  background-color: var(--ff-primary-color) !important;
+  color: #fff;
+}
+
+/* The "no, stay" button you see in the close modal */
+.flatfile_secondary {
+  color: var(--ff-secondary-color) !important;
+}
+
+/* The heading text you see in the close modal */
+.flatfile_modal-heading {
+  color: var(--ff-text-color) !important;
+}
+
+/* The description text you see in the close modal */
+.flatfile_modal-text {
+  color: var(--ff-secondary-color) !important;
+}
+
+/* End style overrides for when you cancel out of the Flatfile modal */
+
+/* End style overrides for when Flatfile is displayed as a modal */
+
+/* The container of the error component */
+/* .ff_error_container {
+}*/
+
+/* The heading text you see in the error component */
+/* .ff_error_heading {
+}*/
+
+/* The description text you see in the error component */
+/* .ff_error_text {
+}*/
+```
+
+</CodeGroup>
+
+### 2. Initialize Flatfile
+
+In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey` and the `environmentId`. Also, add the content here to your `index.tsx`, `tsconfig.json`, `manifest.json`, and `config-overries.js`.
+
+<CodeGroup>
+
+```tsx src/App.tsx
+import { Dispatch, SetStateAction, useState } from "react";
+import { ISpace, initializeFlatfile } from "@flatfile/react";
+import { workbook } from "./workbook";
+import { listener } from "./listeners/simple";
+
+export default function App() {
+  const spaceProps: ISpace = {
+    name: "Embedded Space",
+    publishableKey: "pk_1234",
+    environmentId: "us_env_1234",
+  };
+
+  const [showSpace, setShowSpace] = useState(false);
+  
+  const { Space, OpenEmbed } = initializeFlatfile({
+    ...spaceProps,
+    sidebarConfig: {
+      showSidebar: false,
+    },
+    closeSpace: {
+      operation: "submitActionFg",
+      onClose: () => setShowSpace(false),
+    },
+  })
+
+  const onOpenSpace = async () => {
+    setShowSpace(!showSpace)
+    await OpenEmbed()
+  }
+
+  return (
+    <div className="content">
+      <h2>
+        <code>&lt;Flatfile /&gt;</code>
+      </h2>
+      <p>Embed Flatfile in just a few lines of code.</p>
+      {/*Button to trigger the modal */}
+      <div>
+        <button
+          className="contrast"
+          onClick={onOpenSpace}
+        >
+          {showSpace === true ? "Close" : "Open and create new"} Space
+        </button>
+        {showSpace && <Space />}
+      </div>
+    </div>
+  );
+}
+```
+
+```js src/index.tsx
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+const rootElement = document.getElementById("root")!;
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  rootElement
+);
+```
+
+```json tsconfig.json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
+```
+
+```json public/manifest.json
+{
+  "short_name": "React App",
+  "name": "Create React App Sample",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+```
+
+```js public/config-overrides.js
+const webpack = require("webpack");
+
+module.exports = function override(config) {
+  const fallback = config.resolve.fallback || {};
+  Object.assign(fallback, {
+    stream: require.resolve("stream-browserify"),
+    assert: require.resolve("assert"),
+    zlib: require.resolve("browserify-zlib"),
+  });
+  config.resolve.fallback = fallback;
+  config.plugins = (config.plugins || []).concat([
+    new webpack.ProvidePlugin({
+      process: "process/browser",
+      Buffer: ["buffer", "Buffer"],
+    }),
+  ]);
+  config.ignoreWarnings = [/Failed to parse source map/];
+  config.module.rules.push({
+    test: /\.(js|mjs|jsx)$/,
+    enforce: "pre",
+    loader: require.resolve("source-map-loader"),
+    resolve: {
+      fullySpecified: false,
+    },
+  });
+  return config;
+};
+```
+
+</CodeGroup>
+
+### 3. Start your client
+
+1. Update your package.json to include this script:
+
+```json
+"scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+}
+```
+
+2. Now, start your front end by heading to terminal and running the following command.
+
+```bash
+npm run start
+```
+
+<Note>
+  You'll get an alert: We're unable to detect target browsers. Would you like to
+  add the defaults to your package.json? Say yes.
+</Note>
+
+3. To see that it’s running, visit: https://localhost:3000 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
+
+<Snippet file="shared/embedded_listener_basicreact.mdx" />
+
+### 8. Add customizations
+
+You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+
+## Example Project
+
+Find this React example project in the Flatfile GitHub repository.
+
+<CardGroup cols={1}>
+  <Card
+    title="create-flatfile-react"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-react"
+  >
+    Clone the Flatfile React tutorial here.
+  </Card>
+</CardGroup>

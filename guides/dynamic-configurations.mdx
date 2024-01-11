@@ -20,10 +20,10 @@ Continue reading to learn how to configure a Space from scratch, and update it a
 
 ### From the dashboard
 
-When the "Create New Space" button is clicked on the platform, it triggers a [job `event`](../concepts/events) within the **space** `domain` that initiates a **configure** `operation`. This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://reference.flatfile.com/docs/api/25e20c8ab61c5-create-a-space) with the parameter `autoconfigure` set to true.
+When the "Create New Space" button is clicked on the platform, it triggers a [job `event`](../orchestration/events) within the **space** `domain` that initiates a **configure** `operation`. This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://flatfile.stoplight.io/docs/api/25e20c8ab61c5-create-a-space) with the parameter `autoconfigure` set to true.
 
 1. Filter on the `domain` (space) and the `operation` (configure).
-2. Listen for a [`job:ready`](../concepts/events#job-ready) event.
+2. Listen for a [`job:ready`](../orchestration/events#job-ready) event.
 3. Build your Space, at minimum including one Workbook.
 4. Complete the job.
 5. Optionally, listen for new events that are spawned from within your `space:configure` job.
@@ -49,13 +49,13 @@ When embedding Flatfile in your application, two things can happen:
 
 Listeners can be set up either server-side (use this Guide) and/or client-side within the embedded wrapper SDK.
 
-Learn more about this [use case](../guides/use-cases/embedding).
+Learn more about this [use case](../apps/embedding).
 
 ### Automatically
 
 New Spaces can be created automatically by setting up headless flows.
 
-Learn more about this [use case](../guides/use-cases/headless).
+Learn more about this [use case](../guides/automap).
 
 ---
 
