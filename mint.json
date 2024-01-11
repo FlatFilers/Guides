@@ -196,7 +196,8 @@
         "guides/localization",
         "guides/additional-fields",
         "guides/flatfile_query_language",
-        "guides/data-retention"
+        "guides/data-retention",
+        "guides/multi-part_jobs"
       ]
     },
     {
