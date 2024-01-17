@@ -200,6 +200,10 @@
       ]
     },
     {
+      "group": "By Integration",
+      "pages": ["guides/bubble-io"]
+    },
+    {
       "group": "Orchestration",
       "pages": [
         "orchestration/listeners",
