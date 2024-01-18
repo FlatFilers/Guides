@@ -17,6 +17,7 @@ Sheets have some basic options that determine their behavior.
       "readOnly": false,
       "allowAdditionalFields": false,
       "access": ["add", "edit"],
+      "constraints": [{ name: "constraint name", fields: ["field_key_one", "field_key_two"], type: "unique", strategy: "concat"}],
       "fields": [
         {
           "key": "code",
@@ -97,4 +98,14 @@ Sheets have some basic options that determine their behavior.
   for mapping jobs targeting that sheet. This can be used to tune the behavior
   of fuzzy matches, or disable fuzzy matches entirely. **Must be greater than 0
   and less than or equal to 1 (exact match)**
+</ParamField>
+
+<ParamField path="constraints" type="array">
+  Use the `constraints` option to define constraints for a specific sheet. This is 
+  the newest constraint we've added, which currently only supports composite uniqueness.
+  `constraints` includes several parameters - `name` (defines the name of the constraint),
+  `fields` (array of field keys to consider), `type` (defines the type of the constraint),
+  and `strategy` (defines how to determine uniqueness). `strategy` can either be `concat` 
+  (concatenates values from each field defined inside the `fields` array) or `hash` 
+  (creates a sha1 hash using of the values of each field).
 </ParamField>
