@@ -82,7 +82,7 @@ red.on(
   "job:ready",
   { job: "workbook:submitAction" },
   async ({ context: { jobId, workbookId }, payload }: FlatfileEvent) => {
-    const { data: workbook } = await api.sheets.list({ workbookId });
+    const { data: workbook } = await api.workbooks.get(workbookId);
     const { data: workbookSheets } = await api.sheets.list({
       workbookId,
     });

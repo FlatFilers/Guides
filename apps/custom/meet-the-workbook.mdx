@@ -46,7 +46,7 @@ export default function flatfileEventListener(listener) {
         async ({ context: { spaceId, environmentId, jobId } }) => {
           try {
             await api.jobs.ack(jobId, {
-              info: "Gettin started.",
+              info: "Getting started.",
               progress: 10,
             });
 
@@ -165,7 +165,7 @@ export default function flatfileEventListener(listener: Client) {
         const { spaceId, environmentId, jobId } = event.context;
         try {
           await api.jobs.ack(jobId, {
-            info: "Gettin started.",
+            info: "Getting started.",
             progress: 10,
           });
 

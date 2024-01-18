@@ -45,8 +45,8 @@ Initialize Flatfile to open in a modal. Pass in your `publishableKey` and a new 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Hello, world!</title>
-    <script src="https://unpkg.com/@flatfile/javascript@^0.3.1/dist/index.cjs"></script>
-    <script type="module" src="../src/blueprint.js"></script>
+    <script src="https://unpkg.com/@flatfile/javascript@^0.3.1/dist/index.js"></script>
+    <script src="../src/blueprint.js"></script>
     <link rel="stylesheet" type="text/css" href="./styles.css" />
 
     <script>
@@ -55,6 +55,23 @@ Initialize Flatfile to open in a modal. Pass in your `publishableKey` and a new 
           publishableKey: "pk_1234",
           spaceBody: {
             namespace: "portal",
+          },
+          onSubmit: async ({ sheet }) => {
+            const data = await sheet.allData();
+            console.log("onSubmit", data);
+          },
+          onRecordHook: (record) => {
+            const firstName = record.get("firstName");
+            console.log({ firstName });
+            record.set("lastName", "Rock");
+            return record;
+          },
+          themeConfig: {
+            root: {
+              primaryColor: "red",
+              textColor: "white",
+              logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+            },
           },
         });
       };
@@ -85,7 +102,7 @@ Find these Javascript example projects in the Flatfile GitHub repository.
   <Card
     title="create-flatfile-javascript-simplified"
     icon="js"
-    href="https://github.com/FlatFilers/create-flatfile-javascript-cdn"
+    href="https://github.com/FlatFilers/create-flatfile-javascript-simplified"
   >
     Clone the simplified Flatfile Javascript tutorial using a CDN here.
   </Card>
@@ -94,7 +111,6 @@ Find these Javascript example projects in the Flatfile GitHub repository.
     icon="js"
     href="https://github.com/FlatFilers/create-flatfile-javascript"
   >
-    Need more control? Clone the Flatfile Javascript tutorial that handles
-    imports via Node and package.json, and uses a custom listener here.
+    Want to get started? Clone the Flatfile JavaScript tutorial here.
   </Card>
 </CardGroup>
