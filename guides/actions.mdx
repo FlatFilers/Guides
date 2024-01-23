@@ -39,12 +39,6 @@ First, configure your action on your Blueprint.
 If you configure `trackChanges: true`, it will disable your actions
 until all commits are complete (usually data hooks).
 
-If you configure `constraints: [{ type: 'hasAllValid' }]` on an Action, it will
-disable a Workbook Action when there are invalid records.
-
-If you configure `constraints: [{ type: 'hasData' }]` on an Action, it will
-disable a Workbook Action when there are no records.
-
 </Info>
 
 <Snippet file="shared/workbook_submit_pt1.mdx" />
@@ -165,18 +159,6 @@ Sheet-mounted actions are represented as a dropdown in the toolbar of the Sheet.
 
 First, configure your action on your Blueprint.
 
-<Info>
-  If you configure `constraints: [{ type: 'hasSelection' }]` on an Action, it
-  will disable a Sheet Action when no records in the Sheet are selected.
-
-If you configure `constraints: [{ type: 'hasAllValid' }]` on an Action, it will
-disable a Sheet Action when there are invalid records.
-
-If you configure `constraints: [{ type: 'hasData' }]` on an Action, it will
-disable a Workbook Action when there are no records.
-
-</Info>
-
 ```jsx sheet.js
 sheets : [
   {
@@ -188,7 +170,6 @@ sheets : [
         label: 'Duplicate selected names',
         type: 'string',
         description: 'Duplicate names for selected rows',
-        constraints: [{ type: 'hasAllValid' }, { type: 'hasSelection' }, { type: 'hasData' }],
         primary: true,
       },
       {...}
@@ -604,6 +585,86 @@ First, configure your action to have an inputForm on your Blueprint. These will 
 Next, listen for a `job:ready` and filter on the `job` you'd like to process. Grab the data entered in the form from the job itself and leverage it as required for your use case.
 
 <Snippet file="shared/workbook_submit_pt5.mdx" />
+
+## Actions with Constraints
+
+### Workbook & Sheet-mounted
+
+1. Adding a `hasAllValid` constraint on an Action will
+   disable a Workbook Action when there are invalid records.
+2. Adding a `hasData` on an Action will
+   disable a Workbook Action when there are no records.
+
+<CodeGroup>
+
+```jsx workbook.js
+//your workbook should have an action that looks like this
+actions: [
+  {
+    operation: 'submitActionFg',
+    mode: 'foreground',
+    label: 'Submit data elsewhere',
+    type: 'string',
+    description: 'Submit this data to a webhook.',
+    primary: true,
+    constraints: [{ type: 'hasAllValid', type: 'hasData' }]
+  },
+  {...}
+],
+settings: {
+  trackChanges: true,
+}
+```
+
+```jsx sheet.js
+sheets : [
+  {
+    name: "Sheet Name",
+    actions: [
+      {
+        operation: 'duplicate',
+        mode: 'background',
+        label: 'Duplicate selected names',
+        type: 'string',
+        description: 'Duplicate names for selected rows',
+        constraints: [{ type: 'hasAllValid' }, { type: 'hasData' }],
+        primary: true,
+      },
+      {...}
+    ]
+  }
+]
+```
+
+</CodeGroup>
+
+### Sheet-Mounted only
+
+Adding a constraint of `hasSelection` on an Action will disable a Sheet Action when no records in the Sheet are selected.
+
+```jsx sheet.js
+sheets : [
+  {
+    name: "Sheet Name",
+    actions: [
+      {
+        operation: 'duplicate',
+        mode: 'background',
+        label: 'Duplicate selected names',
+        type: 'string',
+        description: 'Duplicate names for selected rows',
+        constraints: [{ type: 'hasSelection' }],
+        primary: true,
+      },
+      {...}
+    ]
+  }
+]
+```
+
+## Actions with Messages
+
+### Usage
 
 ## Example Project
 
