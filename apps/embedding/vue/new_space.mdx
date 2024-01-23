@@ -598,12 +598,14 @@ export default defineComponent({
 
 By attaching a `themeConfig` to `spaceProps` in `src/App.tsx`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming).
 
-```JavaScript
-  themeConfig: {
-    primaryColor: "white",
-    textColor: "green"
+```typescript
+themeConfig: {
+  root: {
+    primaryColor: "red",
+    textColor: "white",
+    logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
   },
-
+},
 ```
 
 ### 8. Add customizations
