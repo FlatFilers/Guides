@@ -265,8 +265,35 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
+<div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced Visibility with Status Updates During File Extraction**
+        
+        ![image](../changelog/images/extract-status.gif)
+
+        A Toast now displays intermediate states to keep you informed every step of the way during file extraction.
+
+        When uploading a file directly to the table, you’ll see statuses like “Waiting for Extraction”, “Extracting”, and “Unsupported File”, along with detailed information about the outcome of extraction jobs.
+
+        When uploading on the Files page, the error message is toned down to an info message, as uploading files without an extractor is a legitimate scenario.
+
+        These updates are aimed at enhancing transparency and efficiency, ensuring you’re well-informed throughout the file extraction process.
+
+        [See extractor plugins](../plugins/extractors/)
+
+      </div>
+    </div>
+
    <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
+      <Snippet file="chips/dataxp.mdx" />
       <div
         style={{
           float: "left",
