@@ -141,7 +141,9 @@ window.openFlatfile = ({ publishableKey, environmentId }) => {
     },
     closeSpace: {
       operation: "submitActionFg",
-      onClose: () => setShowSpace(false),
+      onClose: () => {
+        //custom code if needed
+      },
     },
     // Additional props...
   };
