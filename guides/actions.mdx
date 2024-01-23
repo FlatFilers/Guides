@@ -638,7 +638,9 @@ sheets : [
 Add custom messages to actions, tailored according to their state:
 
 - Error
-- Info
+- Info (coming soon)
+- Success (coming soon)
+- Warning (coming soon)
 
 These messages will be displayed as tooltips when users hover over an action, providing context-specific text that corresponds to the action's current state.
 
@@ -655,7 +657,6 @@ Simply add a messages property to your action configuration. This property shoul
       description: 'Duplicate names for selected rows',
       messages: [
         { type: 'error', content: 'This is an error message' },
-        { type: 'info', content: 'This is an info message' }
       ],
       primary: true,
     },
