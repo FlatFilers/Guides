@@ -38,8 +38,8 @@ icon: "layer-group"
       </div>
     </div>
 
-       <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
       <div
         style={{
           float: "left",
@@ -49,19 +49,39 @@ icon: "layer-group"
         }}
       >
 
-**New Feature Added: Disabling Actions for Empty Records in Workbook & Sheet-Mounted Actions**
+        **New Feature Added: Disabling Actions for Empty Records in Workbook & Sheet-Mounted Actions**
 
-Developers can now add an optional flag to Actions, preventing users from initiating Actions when Sheets or Workbooks don’t yet have any records. This helps avoid unnecessary job failures and ensures Actions are performed only once data is present.
+        Developers can now add an optional flag to Actions, preventing users from initiating Actions when Sheets or Workbooks don’t yet have any records. This helps avoid unnecessary job failures and ensures Actions are performed only once data is present.
 
-```json
-actions: [{
-  "constraints": [{ "type": "hasData" }]
-}]
-```
+        ```json
+        actions: [{
+          "constraints": [{ "type": "hasData" }]
+        }]
+        ```
 
-[Learn more](../orchestration/actions) about all the constraints available for Sheet and Workbook Actions. or [See the Guide](../guides/actions#usage) to see it in use.
+        [Learn more](../orchestration/actions) about all the constraints available for Sheet and Workbook Actions. or [See the Guide](../guides/actions#usage) to see it in use.
 
-</div>
+        </div>
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Introducing Composite Uniqueness for Enhanced Data Integrity**
+
+        We’re delighted to introduce a new constraint in Sheets aimed at bolstering data integrity. This constraint guarantees that a designated combination of two or more fields maintains uniqueness throughout the entire Sheet.
+
+        To activate this feature, it’s as simple as adding certain parameters to the constraints property in your Sheet configuration. [See a breakdown](../blueprint/constraints#composite-uniqueness) of the necessary parameters to effectively implement composite uniqueness.
+
+        </div>
     </div>
 
   </div>
