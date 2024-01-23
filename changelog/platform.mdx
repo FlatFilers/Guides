@@ -261,6 +261,33 @@ icon: "layer-group"
 
   </div>
 
+### January 3, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Improved Search Functionality for Null Values in GET Records Endpoint**
+
+        We've refined the search mechanism for empty cells in the GET records endpoint. In the past, users would specify `null` in the `searchValue` parameter to locate empty cells. However, this method posed ambiguity as it didn't clearly distinguish between an exact search for null values and a partial search for the string "null".
+
+        Now, to accurately search for cells with null values, you should use empty double quotes `""` in the `searchValue` parameter.
+
+        [See the endpoint](https://reference.flatfile.com/api-reference/records/get-records)
+
+      </div>
+    </div>
+
+  </div>
+
 ## December
 
 ## November
