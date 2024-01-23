@@ -168,7 +168,6 @@ sheets : [
         operation: 'duplicate',
         mode: 'background',
         label: 'Duplicate selected names',
-        type: 'string',
         description: 'Duplicate names for selected rows',
         primary: true,
       },
@@ -588,57 +587,30 @@ Next, listen for a `job:ready` and filter on the `job` you'd like to process. Gr
 
 ## Actions with Constraints
 
-### Workbook & Sheet-mounted
+### Usage
+
+#### Workbook & Sheet-mounted
 
 1. Adding a `hasAllValid` constraint on an Action will
    disable a Workbook Action when there are invalid records.
 2. Adding a `hasData` on an Action will
    disable a Workbook Action when there are no records.
 
-<CodeGroup>
-
-```jsx workbook.js
-//your workbook should have an action that looks like this
+```jsx
 actions: [
   {
     operation: 'submitActionFg',
     mode: 'foreground',
     label: 'Submit data elsewhere',
-    type: 'string',
     description: 'Submit this data to a webhook.',
     primary: true,
     constraints: [{ type: 'hasAllValid', type: 'hasData' }]
   },
   {...}
 ],
-settings: {
-  trackChanges: true,
-}
 ```
 
-```jsx sheet.js
-sheets : [
-  {
-    name: "Sheet Name",
-    actions: [
-      {
-        operation: 'duplicate',
-        mode: 'background',
-        label: 'Duplicate selected names',
-        type: 'string',
-        description: 'Duplicate names for selected rows',
-        constraints: [{ type: 'hasAllValid' }, { type: 'hasData' }],
-        primary: true,
-      },
-      {...}
-    ]
-  }
-]
-```
-
-</CodeGroup>
-
-### Sheet-Mounted only
+#### Sheet-Mounted only
 
 Adding a constraint of `hasSelection` on an Action will disable a Sheet Action when no records in the Sheet are selected.
 
@@ -651,7 +623,6 @@ sheets : [
         operation: 'duplicate',
         mode: 'background',
         label: 'Duplicate selected names',
-        type: 'string',
         description: 'Duplicate names for selected rows',
         constraints: [{ type: 'hasSelection' }],
         primary: true,
@@ -664,7 +635,35 @@ sheets : [
 
 ## Actions with Messages
 
+Add custom messages to actions, tailored according to their state:
+
+- Success
+- Error
+- Warning
+- Info
+
+These messages will be displayed as tooltips when users hover over an action, providing context-specific text that corresponds to the action's current state.
+
 ### Usage
+
+Simply add a messages property to your action configuration. This property should be an array of objects, each specifying a message type and its content.
+
+```jsx
+  actions: [
+    {
+      operation: 'duplicate',
+      mode: 'background',
+      label: 'Duplicate selected names',
+      description: 'Duplicate names for selected rows',
+      messages: [
+        { type: 'error', content: 'This is an error message' },
+        { type: 'success', content: 'This is a success message' }
+      ],
+      primary: true,
+    },
+    {...}
+  ]
+```
 
 ## Example Project
 
