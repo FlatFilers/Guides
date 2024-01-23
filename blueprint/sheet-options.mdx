@@ -73,9 +73,10 @@ Sheets have some basic options that determine their behavior.
 
 <ParamField path="fields" type="array" required>
   This is where you define your Sheet's data schema. The collection of fields in
-  your Sheet detemines the shape of data you wish to accept. Read more about
-  field [types](./field-types), [constraints](./constraints), and
-  [relationships](./relationships).
+  your Sheet detemines the shape of data you wish to accept.
+  {""}
+  Learn more about [Field types](./field-types), [Constraints](./constraints),
+  and [Relationships](./relationships).
 </ParamField>
 
 <ParamField path="actions" type="array">
@@ -101,11 +102,7 @@ Sheets have some basic options that determine their behavior.
 </ParamField>
 
 <ParamField path="constraints" type="array">
-  Use the `constraints` option to define constraints for a specific sheet. This is 
-  the newest constraint we've added, which currently only supports composite uniqueness.
-  `constraints` includes several parameters - `name` (defines the name of the constraint),
-  `fields` (array of field keys to consider), `type` (defines the type of the constraint),
-  and `strategy` (defines how to determine uniqueness). `strategy` can either be `concat` 
-  (concatenates values from each field defined inside the `fields` array) or `hash` 
-  (creates a sha1 hash using of the values of each field).
+  Use the `constraints` option to define constraints for a specific Sheet.
+  {""}
+  Learn more about [Constraints](./constraints).
 </ParamField>
