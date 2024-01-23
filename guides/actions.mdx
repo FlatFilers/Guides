@@ -604,7 +604,7 @@ actions: [
     label: 'Submit data elsewhere',
     description: 'Submit this data to a webhook.',
     primary: true,
-    constraints: [{ type: 'hasAllValid', type: 'hasData' }]
+    constraints: [{ type: 'hasAllValid'},{ type: 'hasData' }]
   },
   {...}
 ],
@@ -637,9 +637,7 @@ sheets : [
 
 Add custom messages to actions, tailored according to their state:
 
-- Success
 - Error
-- Warning
 - Info
 
 These messages will be displayed as tooltips when users hover over an action, providing context-specific text that corresponds to the action's current state.
@@ -657,7 +655,7 @@ Simply add a messages property to your action configuration. This property shoul
       description: 'Duplicate names for selected rows',
       messages: [
         { type: 'error', content: 'This is an error message' },
-        { type: 'success', content: 'This is a success message' }
+        { type: 'info', content: 'This is an info message' }
       ],
       primary: true,
     },
