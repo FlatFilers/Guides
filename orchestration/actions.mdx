@@ -67,16 +67,20 @@ UI. These include:
 </ParamField>
 
 <ParamField path="constraints" type="array[{}]">
-  `[{ type: 'hasAllValid' }]`: Adding this constraint will disable a Sheet Action when there are invalid
+  `[{ type: 'hasAllValid' }]`: Adding this constraint will disable a Sheet or Workbook Action when there are invalid
   records.
   
-  `[{ type: 'hasSelection' }]`: Adding this constraint will disable a Sheet Action when no records in the Sheet
-  are selected.
+  `[{ type: 'hasSelection' }]`: Adding this constraint will disable a Sheet or Workbook Action when no records are selected.
+
+`[{ type: 'hasData' }]`: Adding this constraint will disable a Sheet or Workbook Action when there are no records.
+
 </ParamField>
 
 <ParamField path="mode" type="string" default="background">
   Can be `foreground`, `background` or `toolbarBlocking`. Foreground mode will
-  prevent interacting with the entire resource until complete. toolbarBlocking disables the sheet-level toolbar and Column Header menus, while still allowing users to enter records manually.
+  prevent interacting with the entire resource until complete. toolbarBlocking
+  disables the sheet-level toolbar and Column Header menus, while still allowing
+  users to enter records manually.
 </ParamField>
 
 ### Usage
