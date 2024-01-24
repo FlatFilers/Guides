@@ -332,6 +332,8 @@ icon: "layer-group"
     >
      **Next Action Links in Job Outcome Dialogs Now Support Linking to internal resources**
 
+     ![image](../changelog/images/next_link.png)
+
       Job outcomes with next action links have been upgraded. Now, you can display links to an internal resource in addition to already being able to link to external URLs and trigger downloads upon job completion.
 
       In this code below, we will create a button that says “See all downloads” with this url: https://spaces.flatfile.com/space/us_sp_1234/files?mode=export
@@ -341,7 +343,7 @@ icon: "layer-group"
       ```jsx listener
       await api.jobs.complete(jobId, {
         outcome: {
-          message: `Operation was completed succesfully. ${myData.length} records were processed.`,
+          message: `The file has been created`,
           //Reference: https://spaces.flatfile.com/space/{$id}/{path}?{$query}
           next: {
             type: "id",
