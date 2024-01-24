@@ -317,6 +317,51 @@ icon: "layer-group"
 
 ## December
 
+#### December 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Next Action Links in Job Outcome Dialogs Now Support Linking to internal resources**
+
+      Job outcomes with next action links have been upgraded. Now, you can display links to an internal resource in addition to already being able to link to external URLs and trigger downloads upon job completion.
+
+      In this code below, we will create a button that says “See all downloads” with this url: https://spaces.flatfile.com/space/us_sp_1234/files?mode=export
+
+      **Usage**
+
+      ```jsx listener
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message: `Operation was completed succesfully. ${myData.length} records were processed.`,
+          //Reference: https://spaces.flatfile.com/space/{$id}/{path}?{$query}
+          next: {
+            type: "id",
+            id: "dev_sp_1234",
+            path: "files",
+            query: "mode=export",
+            label: "See all downloads",
+          },
+        },
+      });
+      ```
+
+      This improvement adds versatility and flexibility to your job outcomes, enhancing user interaction and experience.
+
+      [Learn more](../orchestration/jobs#next-links).
+
+      </div>
+
+  </div>
+</div>
 ## November (20)
 
 ##### November 28, 2023
@@ -948,8 +993,8 @@ icon: "layer-group"
           width: "calc(80% - 30px)",
         }}
       >
-        **Improved copy-paste experience while bulk selecting cells** 
-        
+        **Improved copy-paste experience while bulk selecting cells**
+
         We've enhanced the bulk selection experience by enabling paste functionality. When you paste, we simply transition you out of the selection state, similar to when editing. Note: if you paste without selecting any cells, the operation will automatically apply to the bulk-selected rows.
     </div>
 
@@ -1863,49 +1908,26 @@ icon: "layer-group"
         width: "calc(80% - 30px)",
       }}
     >
-        **Enhanced Job Outcomes with Next Action Links**
+     **Enhanced Job Outcomes with Next Action Links**
 
-      Job outcomes have been upgraded to support `next` action links. Now, you can display links to external URLs, Flatfile resources, or trigger downloads upon job completion.
+      Job outcomes have been upgraded to support `next` action links. Now, you can display links to external URLs, trigger downloads, or retry jobes upon job completion/failure.
 
       **Usage**
         <CodeGroup>
         ```jsx listener
         await api.jobs.complete(jobId, {
           outcome: {
-            next: IdNext | WaitNext | UrlNext | DownloadNext,
+            next: Url | Download | Retry,
             message:
               "Text here.",
           },
         });
         ```
-        ```jsx Types
-        type IdNext = {
-          type: 'id' //link to a Flatfile resource
-          id: string
-        }
-
-        type WaitNext = {
-          type: 'wait' //only used in embedded Flatfile
-        }
-
-        type UrlNext = {
-          type: 'url' //display a link to an external url
-          url: string
-          label: string
-        }
-
-        type DownloadNext = {
-          type: 'download' // display and trigger a download
-          url: string
-          fileName: string
-          label: string
-        }
-        ```
         </CodeGroup>
 
       This improvement adds versatility and flexibility to your job outcomes, enhancing user interaction and experience.
 
-      [Learn more](../guides/actions#usage).
+      [Learn more](../orchestration/jobs#next-links).
 
       </div>
 
@@ -2571,3 +2593,4 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 </div>
 
 </div>
+````
