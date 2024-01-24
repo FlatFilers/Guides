@@ -259,10 +259,10 @@ This method allows you to access and process data from the complete Sheet, regar
 const { jobId, sheetId } = event.context;
 
 //retrieve all records from sheet
-const { records } = await api.records.get(sheetId);
+const response = await api.records.get(sheetId);
 
 //print records
-console.log(records.data.records);
+console.log(response.data.records);
 ```
 
 #### From a filtered view of the Sheet
