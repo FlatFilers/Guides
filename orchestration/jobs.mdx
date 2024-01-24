@@ -351,6 +351,7 @@ Once a job is complete, you can display an alert to the end user using `outcome`
 await api.jobs.complete(jobId, {
   outcome: {
     message: `Operation was completed succesfully. ${myData.length} records were processed.`,
+    acknowledge: true,
   },
 });
 ```
@@ -371,6 +372,7 @@ In this code below, we will create a button that says "See all downloads" with t
 await api.jobs.complete(jobId, {
   outcome: {
     message: `Operation was completed succesfully. ${myData.length} records were processed.`,
+    acknowledge: true,
     //Reference: https://spaces.flatfile.com/space/{$id}/{path}?{$query}
     next: {
       type: "id",
@@ -393,6 +395,7 @@ In this code below, we will create a button that says "Go to Google". It will op
 await api.jobs.complete(jobId, {
   outcome: {
     message: `Operation was completed succesfully. ${myData.length} records were processed.`,
+    acknowledge: true,
     next: {
       type: "url",
       url: "http://www.google.com",
@@ -412,6 +415,7 @@ In this code below, we will create a button that says "Download this file".
 await api.jobs.complete(jobId, {
   outcome: {
     message: `Operation was completed succesfully. ${myData.length} records were processed.`,
+    acknowledge: true,
     next: {
       type: "download",
       fileName: "DownloadedFromFlatfile.csv",
@@ -432,6 +436,7 @@ In this code below, we will create a button that says "Retry".
 await api.jobs.complete(jobId, {
   outcome: {
     message: `Operation was not completed succesfully. No records were processed.`,
+    acknowledge: true,
     next: {
       type: "retry",
       label: "Try again",
