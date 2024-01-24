@@ -363,6 +363,43 @@ icon: "layer-group"
       </div>
 
   </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Next Action Links in Job Outcome Dialogs Now Support Retrying**
+
+       You can now also display links to retry a job upon job completion or failure. This enhancement broadens the scope of actions you can perform, offering more versatility in directing users to relevant resources or actions post-job completion.
+
+      **Usage**
+
+      ```jsx listener
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message: `The file has been created`,
+          next: {
+            type: "retry",
+            label: "Try again",
+          },
+        },
+      });
+      ```
+
+      This improvement adds versatility and flexibility to your job outcomes, enhancing user interaction and experience.
+
+      [Learn more](../orchestration/jobs#next-links).
+
+      </div>
+
+  </div>
+
 </div>
 ## November (20)
 
