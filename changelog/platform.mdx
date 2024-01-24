@@ -330,6 +330,33 @@ icon: "layer-group"
         width: "calc(80% - 30px)",
       }}
     >
+     **Revamped UI for Foreground Jobs**
+
+     ![image](../changelog/images/foreground_facelift.png)
+
+     We've given our foreground jobs a fresh, new look:
+
+      1. Enhanced Job Modal Header: The job modal header now prominently displays job information, making it instantly visible and accessible.
+      2. Refined Display Details: Information that was previously in the header is now elegantly presented as an ultralight subline for improved readability.
+      3. Optimized Layout: We've repositioned the display of the percentage and remaining time for better clarity and focus.
+      4. Improved Time Estimation: For estimated completion time, we've introduced a fallback mechanism based on simple linear extrapolation, ensuring more accurate and reliable predictions.
+
+      These updates are designed to offer a more intuitive and streamlined user experience in tracking and managing foreground jobs.
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
      **Next Action Links in Job Outcome Dialogs Now Support Linking to internal resources**
 
      ![image](../changelog/images/next_link.png)
@@ -344,6 +371,7 @@ icon: "layer-group"
       await api.jobs.complete(jobId, {
         outcome: {
           message: `The file has been created`,
+          acknowledge: true,
           //Reference: https://spaces.flatfile.com/space/{$id}/{path}?{$query}
           next: {
             type: "id",
@@ -384,6 +412,7 @@ icon: "layer-group"
       await api.jobs.complete(jobId, {
         outcome: {
           message: `The file has been created`,
+          acknowledge: true,
           next: {
             type: "retry",
             label: "Try again",
