@@ -346,6 +346,81 @@ icon: "layer-group"
 
 ## December
 
+##### December 15, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/theming.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Enhanced Theming options**
+
+     ![image](../changelog/images/theming_dropdowns.png)
+
+       We're thrilled to introduce the latest updates in our theming capabilities, bringing a fresh look and enhanced customization to various UI elements:
+
+      **Usage**
+
+      ```jsx
+      {
+        "theme": {
+          "root": {
+            "badgeBorderColor": "green",
+            "interactiveBorderColor": "orange",
+            "interactiveBorderRadius": "0px"
+          },
+          "table": {
+            "cell": {
+              "active": {
+                "borderWidth": "2px",
+                "boxShadow": "3px 3px 0px 0px #000000"
+              }
+            },
+            "tooltip": {
+              "borderRadius": "0px"
+            },
+            "lookupEditor": {
+              "option": {
+                "borderRadius": {
+                  "hover": "0px",
+                  "active": "8px"
+                },
+                "backgroundColor": {
+                  "hover": "yellow",
+                  "active": "lavender"
+                }
+              }
+            }
+          }
+        }
+      }
+      ```
+
+      1. Enhanced Dropdown, Text Input, and Context Menu Theming: Users can now apply customized themes to dropdowns, text inputs, and context menus, offering a more cohesive and personalized interface design.
+
+      2. Refined Active Cell Styling in Tables: The active cell in the table now features themable border width and box shadow, adding depth and focus to the selected cell.
+
+      3. Upgraded Tooltips in Tables: Tooltips in the table now support theming for border radius and box shadow, allowing for smoother integration with the overall design aesthetic.
+
+      4. New Optional Border for Badges: An optional border can now be added to badges within the app. This update extends to TT badges in enum columns, providing a consistent and visually appealing element across the platform.
+
+      These theming enhancements are part of our ongoing commitment to provide a versatile and visually engaging user experience, allowing for greater consistency and branding alignment across our platform.
+
+      [Learn more](../guides/theming).
+
+      </div>
+
+  </div>
+
+</div>
+
 ##### December 14, 2023
 
 <div style={{ display: "table", width: "auto" }}>
