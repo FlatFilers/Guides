@@ -47,7 +47,6 @@ Setup your app to look something like this:
    ├── App.vue
    ├── config.ts
    ├── main.ts
-   ├── shims-vue.d.ts (optional if you have errors when importing App.vue)
    ├── vite-env.d.ts
    ├── styles.css (optional)
    ├── workbook.ts (wait to add this)
@@ -81,158 +80,158 @@ Optionally, add the content here to your `styles.css`.
 
 <CodeGroup>
 ```HTML index.html (full page)
-  <!doctype html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Vue</title>
-    </head>
-    <body>
-      <div id="app"></div>
-      <script type="module" src="/src/main.ts"></script>
-    </body>
-  </html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
 ````
 
 ```CSS src/styles.css
-  /* Styles for home page */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background: #090b2b;
-    color: #fff;
-  }
+/* Styles for home page */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #090b2b;
+  color: #fff;
+}
 
-  #app {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
 
-  /* End of styles for home page */
+/* End of styles for home page */
 
-  :root {
-    --ff-primary-color: #4c48ef !important;
-    --ff-secondary-color: #616a7d !important;
-    --ff-text-color: #090b2b !important;
-    --ff-dialog-border-radius: 4px !important;
-    --ff-border-radius: 5px !important;
-    --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
-  }
+:root {
+  --ff-primary-color: #4c48ef !important;
+  --ff-secondary-color: #616a7d !important;
+  --ff-text-color: #090b2b !important;
+  --ff-dialog-border-radius: 4px !important;
+  --ff-border-radius: 5px !important;
+  --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
+}
 
-  /* The default mount element */
-  /* #flatfile_iFrameContainer {
+/* The default mount element */
+/* #flatfile_iFrameContainer {
   } */
 
-  /* A div around the iframe that contains Flatfile */
-  /* .flatfile_iframe-wrapper {
+/* A div around the iframe that contains Flatfile */
+/* .flatfile_iframe-wrapper {
   } */
 
-  /* The actual iframe that contains Flatfile */
-  /* #flatfile_iframe {
+/* The actual iframe that contains Flatfile */
+/* #flatfile_iframe {
   } */
 
-  .flatfile-close-button {
-    display: none !important;
-  }
+.flatfile-close-button {
+  display: none !important;
+}
 
-  /* Begin style overrides for when Flatfile is displayed as a modal */
+/* Begin style overrides for when Flatfile is displayed as a modal */
 
-  /* This class gets appended to the flatfile_iframe-wrapper div */
-  .flatfile_displayAsModal {
-    padding: 50px !important;
-    width: calc(100% - 100px) !important;
-    height: calc(100vh - 100px) !important;
-  }
+/* This class gets appended to the flatfile_iframe-wrapper div */
+.flatfile_displayAsModal {
+  padding: 50px !important;
+  width: calc(100% - 100px) !important;
+  height: calc(100vh - 100px) !important;
+}
 
-  .flatfile_iframe-wrapper.flatfile_displayAsModal {
-    background: var(--ff-bg-fade) !important;
-  }
+.flatfile_iframe-wrapper.flatfile_displayAsModal {
+  background: var(--ff-bg-fade) !important;
+}
 
-  /* The close button in top right to close modal */
-  .flatfile_displayAsModal .flatfile-close-button {
-    display: block !important;
-    margin: 20px !important;
-  }
+/* The close button in top right to close modal */
+.flatfile_displayAsModal .flatfile-close-button {
+  display: block !important;
+  margin: 20px !important;
+}
 
-  /* The icon for the close button in top right to close modal */
-  .flatfile_displayAsModal .flatfile-close-button svg {
-    fill: var(--ff-secondary-color) !important;
-  }
+/* The icon for the close button in top right to close modal */
+.flatfile_displayAsModal .flatfile-close-button svg {
+  fill: var(--ff-secondary-color) !important;
+}
 
-  /* The actual iframe that contains Flatfile */
-  .flatfile_displayAsModal #flatfile_iframe {
-    border-radius: var(--ff-border-radius);
-  }
+/* The actual iframe that contains Flatfile */
+.flatfile_displayAsModal #flatfile_iframe {
+  border-radius: var(--ff-border-radius);
+}
 
-  /* Begin style overrides for when you cancel out of the Flatfile modal */
+/* Begin style overrides for when you cancel out of the Flatfile modal */
 
-  /* The outer container of the modal
+/* The outer container of the modal
   that opens when you cancel out of Flatfile */
-  .flatfile_outer-shell {
-    background-color: var(--ff-bg-fade) !important;
-    border-radius: var(--ff-border-radius) !important;
-  }
+.flatfile_outer-shell {
+  background-color: var(--ff-bg-fade) !important;
+  border-radius: var(--ff-border-radius) !important;
+}
 
-  /* The inner container of the modal that
+/* The inner container of the modal that
   opens when you cancel out of Flatfile */
-  /* .flatfile_inner-shell {
+/* .flatfile_inner-shell {
   } */
 
-  /* The white box inside the modal that opens when you cancel out of Flatfile */
-  .flatfile_modal {
-    border-radius: var(--ff-dialog-border-radius) !important;
-  }
+/* The white box inside the modal that opens when you cancel out of Flatfile */
+.flatfile_modal {
+  border-radius: var(--ff-dialog-border-radius) !important;
+}
 
-  /* The container for the buttons you see in the close modal */
-  /* .flatfile_button-group {
+/* The container for the buttons you see in the close modal */
+/* .flatfile_button-group {
   } */
 
-  /* Style the buttons you see in the close modal */
-  /* .flatfile_button {
+/* Style the buttons you see in the close modal */
+/* .flatfile_button {
   } */
 
-  /* The "yes, cancel" button you see in the close modal */
-  .flatfile_primary {
-    border: 1px solid var(--ff-primary-color) !important;
-    background-color: var(--ff-primary-color) !important;
-    color: #fff;
-  }
+/* The "yes, cancel" button you see in the close modal */
+.flatfile_primary {
+  border: 1px solid var(--ff-primary-color) !important;
+  background-color: var(--ff-primary-color) !important;
+  color: #fff;
+}
 
-  /* The "no, stay" button you see in the close modal */
-  .flatfile_secondary {
-    color: var(--ff-secondary-color) !important;
-  }
+/* The "no, stay" button you see in the close modal */
+.flatfile_secondary {
+  color: var(--ff-secondary-color) !important;
+}
 
-  /* The heading text you see in the close modal */
-  .flatfile_modal-heading {
-    color: var(--ff-text-color) !important;
-  }
+/* The heading text you see in the close modal */
+.flatfile_modal-heading {
+  color: var(--ff-text-color) !important;
+}
 
-  /* The description text you see in the close modal */
-  .flatfile_modal-text {
-    color: var(--ff-secondary-color) !important;
-  }
+/* The description text you see in the close modal */
+.flatfile_modal-text {
+  color: var(--ff-secondary-color) !important;
+}
 
-  /* End style overrides for when you cancel out of the Flatfile modal */
+/* End style overrides for when you cancel out of the Flatfile modal */
 
-  /* End style overrides for when Flatfile is displayed as a modal */
+/* End style overrides for when Flatfile is displayed as a modal */
 
-  /* The container of the error component */
-  /* .ff_error_container {
+/* The container of the error component */
+/* .ff_error_container {
   }*/
 
-  /* The heading text you see in the error component */
-  /* .ff_error_heading {
+/* The heading text you see in the error component */
+/* .ff_error_heading {
   }*/
 
-  /* The description text you see in the error component */
-  /* .ff_error_text {
+/* The description text you see in the error component */
+/* .ff_error_text {
   }*/
 
 ```
@@ -295,8 +294,8 @@ we can configure the app files under `src`.
 ```
 
 ```TypeScript vite.config.mts
-import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -311,8 +310,7 @@ export default defineConfig({
 In your `App.vue` you'll need to pass in a minimum of the `publishableKey` and
 `environmentId` from your `.env`.
 
-Also, add the content here to your `main.ts`, and `vite-env.d.ts`. Optionally
-you can also add `shims-vue.d.ts` if you have the need.
+Also, add the content here to your `main.ts`, and `vite-env.d.ts`.
 
 <CodeGroup>
 
@@ -383,10 +381,6 @@ createApp(App).mount("#app");
 
 ```TypeScript src/vite-env.d.ts
 /// <reference types="vite/client" />
-```
-
-```TypeScript src/shims-vue.d.ts
-declare module "*.vue";
 ```
 
 </CodeGroup>
