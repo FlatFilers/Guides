@@ -429,6 +429,48 @@ icon: "layer-group"
 
   </div>
 
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/theming.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Enhanced Theming options for Filters**
+
+     ![image](../changelog/images/theming_chips.png)
+
+       We've expanded the theming capabilities for filters, providing a more customizable and visually appealing interface:
+
+      **Usage**
+
+      ```jsx
+      "theme": {
+          "table": {
+            "filters": {
+              "outerBorder": "2px red solid",
+              "innerBorderRadius": "0px",
+              "outerBorderRadius": "0px"
+            }
+        }
+      }
+      ```
+
+      1. New Styling Features for Filters: We've introduced the option to customize filters with borders and border radius as part of the table theme.
+
+      2. Flexible Border Radius Design: To accommodate the varying sizes of elements and the potential difference in calculated border radius, we now use both inner and outer border radius settings. This enhancement not only ensures a cohesive look but also adds an extra layer of styling flexibility to the filters.
+
+      These improvements are designed to offer more control over the aesthetics of filters, enabling a seamless and integrated visual experience.
+
+      [Learn more](../guides/theming).
+
+      </div>
+
+  </div>
+
 </div>
 ## November (20)
 
