@@ -55,7 +55,7 @@ Setup your app to look something like this:
 ├── index.html
 ├── tsconfig.json
 ├── tsconfig.node.json
-├── vite.config.ts
+├── vite.config.mts
 ├── .env (for your keys)
 ├── package.json <--- already created
 └── package-lock.json <--- already created
@@ -172,14 +172,14 @@ Optionally, add the content here to your `styles.css`.
 
   /* Begin style overrides for when you cancel out of the Flatfile modal */
 
-  /* The outer container of the modal 
+  /* The outer container of the modal
   that opens when you cancel out of Flatfile */
   .flatfile_outer-shell {
     background-color: var(--ff-bg-fade) !important;
     border-radius: var(--ff-border-radius) !important;
   }
 
-  /* The inner container of the modal that 
+  /* The inner container of the modal that
   opens when you cancel out of Flatfile */
   /* .flatfile_inner-shell {
   } */
@@ -246,7 +246,7 @@ will need your `environmentId` and `publishableKey`. You can find these under
 "Developer settings" when logged into [platform.flatfile.com](https://platform.flatfile.com).
 
 You can create your `.env` file via the template below, as well as your
-`App.vue`, `tsconfig.json`, `tsconfig.node.json`, and `vite.config.ts`, which
+`App.vue`, `tsconfig.json`, `tsconfig.node.json`, and `vite.config.mts`, which
 are the remaining top-level config files. After these are initialized properly
 we can configure the app files under `src`.
 
@@ -285,16 +285,16 @@ we can configure the app files under `src`.
     "compilerOptions": {
       "composite": true,
       "skipLibCheck": true,
-      "module": "es3",
+      "module": "ES2015",
       "moduleResolution": "bundler",
       "allowSyntheticDefaultImports": true
     },
-    "include": ["vite.config.ts"]
+    "include": ["vite.config.mts"]
   }
 
 ```
 
-```TypeScript vite.config.ts
+```TypeScript vite.config.mts
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
@@ -317,22 +317,37 @@ you can also add `shims-vue.d.ts` if you have the need.
 <CodeGroup>
 
 ```HTML src/App.vue
-<script lang="jsx">
-import { ref, defineComponent } from 'vue';
-import { initializeFlatfile } from '@flatfile/vue';
+<template>
+  <div>
+    <div class="description">
+      <button @click="toggleSpace">
+        {{ showSpace ? "Close" : "Open" }} space
+      </button>
+    </div>
 
+    <div v-if="showSpace" class="space-wrapper">
+      <component :is="Space" />
+    </div>
+  </div>
+</template>
+
+<script>
+import { ref, defineComponent } from "vue";
+import { initializeFlatfile } from "@flatfile/vue";
 
 export default defineComponent({
   setup() {
     const showSpace = ref(false);
 
     const spaceProps = ref({
-      name: 'Vue Space',
-      environmentId: 'us_env_1234',
-      publishableKey: 'pk_1234',
+      name: "Vue Space",
+      environmentId: "us_env_1234",
+      publishableKey: "pk_1234",
       closeSpace: {
-          operation: 'TestSheet:submit',
-        onClose: () => { showSpace.value = false; },
+        operation: "TestSheet:submit",
+        onClose: () => {
+          showSpace.value = false;
+        },
       },
       workbook: {},
     });
@@ -341,32 +356,21 @@ export default defineComponent({
 
     const toggleSpace = () => {
       showSpace.value = !showSpace.value;
-      OpenEmbed()
+      OpenEmbed();
     };
 
     return {
       toggleSpace,
       showSpace,
-      Space
-    }
-  },
-  render(props, ctx) {
-    const Space = props.Space
-
-    return (
-      <div>
-        <div class="description">
-          <button onClick={props.toggleSpace}>{ props.showSpace ? 'Close' : 'Open' } space</button>
-        </div>
-
-        {props.showSpace && <div class="space-wrapper">
-          <Space />
-        </div>}
-      </div>
-    )
+      Space,
+    };
   },
 });
 </script>
+
+<style lang="css">
+@import url(./styles.css);
+</style>
 
 ```
 
@@ -400,7 +404,7 @@ declare module "*.vue";
 ```
 
 2. Now, start your front end by heading to the terminal and running the
-following command.
+   following command.
 
 ```bash
   npm run dev
@@ -421,7 +425,7 @@ Your console should display a message like the following:
 ```
 
 3. To view your app, copy the url and paste it into your browser. Click the
-button and see that an Empty Space gets created.
+   button and see that an Empty Space gets created.
 
 ### 5. Build a workbook
 
@@ -566,59 +570,64 @@ export const listener = FlatfileListener.create((listener) => {
 ```
 
 ```JavaScript src/App.vue
-<script lang="jsx">
-import { ref, defineComponent } from 'vue';
-import { initializeFlatfile } from '@flatfile/vue';
-import { config as workbook } from "/src/workbooks/config";
-import { listener } from '/src/listeners/listener';
+<template>
+  <div>
+    <div class="description">
+      <button @click="toggleSpace">
+        {{ showSpace ? "Close" : "Open" }} space
+      </button>
+    </div>
 
+    <div v-if="showSpace" class="space-wrapper">
+      <component :is="Space" />
+    </div>
+  </div>
+</template>
+
+<script>
+import { ref, defineComponent } from "vue";
+import { initializeFlatfile } from "@flatfile/vue";
+import { config as workbook } from "./config";
+import { listener } from "./listener";
 
 export default defineComponent({
   setup() {
     const showSpace = ref(false);
 
     const spaceProps = ref({
-      name: 'Vue Space',
-      environmentId: 'us_env_1234',
-      publishableKey: 'pk_1234',
+      name: "Vue Space",
+      environmentId: "us_env_1234",
+      publishableKey: "pk_1234",
       closeSpace: {
-        operation: 'submitActionFg',
-        onClose: () => { showSpace.value = false; },
+        operation: "TestSheet:submit",
+        onClose: () => {
+          showSpace.value = false;
+        },
       },
       workbook,
-      listener
+      listener,
     });
 
     const { Space, OpenEmbed } = initializeFlatfile(spaceProps.value);
 
     const toggleSpace = () => {
       showSpace.value = !showSpace.value;
-      OpenEmbed()
+      OpenEmbed();
     };
 
     return {
       toggleSpace,
       showSpace,
-      Space
-    }
-  },
-  render(props, ctx) {
-    const Space = props.Space
-
-    return (
-      <div>
-        <div class="description">
-          <button onClick={props.toggleSpace}>{ props.showSpace ? 'Close' : 'Open' } space</button>
-        </div>
-
-        {props.showSpace && <div class="space-wrapper">
-          <Space />
-        </div>}
-      </div>
-    )
+      Space,
+    };
   },
 });
 </script>
+
+<style lang="css">
+@import url(./styles.css);
+</style>
+
 ```
 
 </CodeGroup>
@@ -630,11 +639,16 @@ override colors in your Space to match your brand. See all of the options here
 in the [Theming Reference](/guides/theming).
 
 ```JavaScript
+const spaceProps = ref({
+  //...
   themeConfig: {
-    primaryColor: "white",
-    textColor: "green"
+    root: {
+      primaryColor: "black",
+      textColor: "white",
+    },
   },
-
+  //...
+})
 ```
 
 ### 8. Add customizations
