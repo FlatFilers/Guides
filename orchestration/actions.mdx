@@ -136,16 +136,17 @@ In such cases, if you configure input fields for your action, a secondary dialog
       The label for the field.
     </ResponseField>
 
+    <ResponseField name="type" type="string" required>
+      The type of the field. Accepts: `string` | `textarea` | `number` | `boolean` | `enum`
+    </ResponseField>
+
+    <ResponseField name="defaultValue" type="string">
+      The default value for the field.
+    </ResponseField>
+
     <ResponseField name="description" type="string">
       A description of the field.
     </ResponseField>
-
-    <ResponseField name="type" type="string" required>
-      The type of the field. Accepts: `string` | `textarea` | `number` |
-
-`boolean` | `enum`
-
-</ResponseField>
 
   </ResponseField>
 

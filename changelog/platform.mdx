@@ -451,6 +451,45 @@ icon: "layer-group"
   </div>
 
   <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Default Value Added to `inputForm` fields**
+
+       We've enhanced the `inputForm` feature in Actions by supporting `defaultValue` settings for enums, strings, and textarea field types.
+
+      **Usage**
+
+      ```jsx
+      "inputForm": {
+        "type": 'simple',
+        "fields": [
+          {
+            "key": 'planName',
+            "label": 'Plan Name',
+            "type": 'string',
+            "description": 'The name of the plan',
+            "defaultValue": 'Default plan'
+          },
+        ]
+      }
+      ```
+
+      This update allows for more intuitive and efficient data entry, as default values can be pre-filled in these fields, streamlining the user experience.
+
+      Learn more about [Actions and Input Forms](../orchestration/actions#inputForm).
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/theming.mdx" />
     <div
       style={{
