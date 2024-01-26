@@ -375,17 +375,17 @@
     },
     {
       "group": "Plugins",
-      "pages": ["plugins/overview"]
+      "pages": ["plugins-docs/overview"]
     },
     {
       "group": "Extractors",
       "pages": [
-        "plugins/extractors/xlsx-extractor",
-        "plugins/extractors/json-extractor",
-        "plugins/extractors/xml-extractor",
-        "plugins/extractors/zip-extractor",
-        "plugins/extractors/delimiter-extractor",
-        "plugins/extractors/pdf-extractor",
+        "plugins-docs/extractors/xlsx-extractor",
+        "plugins-docs/extractors/json-extractor",
+        "plugins-docs/extractors/xml-extractor",
+        "plugins-docs/extractors/zip-extractor",
+        "plugins-docs/extractors/delimiter-extractor",
+        "plugins-docs/extractors/pdf-extractor",
         {
           "group": "More in development",
           "icon": "clock",
@@ -396,58 +396,61 @@
     {
       "group": "Transform",
       "pages": [
-        "plugins/transform/record-hook",
-        "plugins/transform/autocast",
-        "plugins/transform/dedupe"
+        "plugins-docs/transform/record-hook",
+        "plugins-docs/transform/autocast",
+        "plugins-docs/transform/dedupe"
       ]
     },
     {
       "group": "Automation",
-      "pages": ["plugins/automations/automap"]
+      "pages": ["plugins-docs/automations/automap"]
     },
     {
       "group": "Export",
-      "pages": ["plugins/export/workbook", "plugins/export/webhook"]
+      "pages": ["plugins-docs/export/workbook", "plugins-docs/export/webhook"]
     },
     {
       "group": "Schemas",
       "pages": [
-        "plugins/schemas/convert-json-schema",
-        "plugins/schemas/convert-yaml-schema",
-        "plugins/schemas/convert-sql-ddl",
-        "plugins/schemas/convert-openapi",
+        "plugins-docs/schemas/convert-json-schema",
+        "plugins-docs/schemas/convert-yaml-schema",
+        "plugins-docs/schemas/convert-sql-ddl",
+        "plugins-docs/schemas/convert-openapi",
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/schemas/convert-graphql"]
+          "pages": ["plugins-docs/schemas/convert-graphql"]
         }
       ]
     },
     {
       "group": "Datasets",
       "pages": [
-        "plugins/datasets/zipcodes",
+        "plugins-docs/datasets/zipcodes",
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/datasets/countries"]
+          "pages": ["plugins-docs/datasets/countries"]
         }
       ]
     },
     {
       "group": "Migrations",
-      "pages": ["plugins/migrations/dxp-configure"]
+      "pages": ["plugins-docs/migrations/dxp-configure"]
     },
     {
       "group": "Core",
-      "pages": ["plugins/core/job-handler", "plugins/core/space-configure"]
+      "pages": [
+        "plugins-docs/core/job-handler",
+        "plugins-docs/core/space-configure"
+      ]
     },
     {
       "group": "Utils",
       "pages": [
-        "plugins/utils/extractor",
-        "plugins/utils/file-buffer",
-        "plugins/utils/response-rejection"
+        "plugins-docs/utils/extractor",
+        "plugins-docs/utils/file-buffer",
+        "plugins-docs/utils/response-rejection"
       ]
     }
   ],
@@ -481,7 +484,7 @@
     },
     {
       "name": "Plugins",
-      "url": "plugins"
+      "url": "plugins-docs"
     },
     {
       "name": "CLI",
