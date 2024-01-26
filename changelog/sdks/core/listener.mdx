@@ -343,7 +343,7 @@ icon: "plug"
 
     You can also utilize this utility directly with any listener.
 
-    Learn more in the [docs](../plugins/utils/response-rejection).
+    Learn more in the [docs](../../../plugins-docs/utils/response-rejection).
 
     </div>
 
@@ -377,7 +377,7 @@ icon: "plug"
 
     Dates that were cast to a UTC string using the autocast plugin were showing as invalid after transformation. A fix for this was added to version 0.2.2.
 
-    [Learn more](../plugins/transform/autocast).
+    [Learn more](../../../plugins-docs/transform/autocast).
 
     </div>
 
@@ -403,7 +403,7 @@ icon: "plug"
     listener.use(autocast({ sheetSlug: 'bar' }, ['numberField', 'dateField']))
     ```
 
-    [Learn more](../plugins/transform/autocast).
+    [Learn more](../../../plugins-docs/transform/autocast).
 
     </div>
 
@@ -444,7 +444,7 @@ icon: "plug"
 
     Note: **@flatfile/plugin-record-hook** listens for the same event type (commit:created). Plugins will fire in the order they are placed in the listener.
 
-    Check out the [docs](../plugins/transform/autocast).
+    Check out the [docs](../../../plugins-docs/transform/autocast).
 
     </div>
 
@@ -469,7 +469,7 @@ icon: "plug"
     - Update Job progress using `await tick(progress, message)`, returning a promise for `JobResponse`.
     - `opts.debug` Enable debug logging for the plugin
 
-    To get started simplifying the management of your Jobs, explore the [README](../plugins/core/job-handler).
+    To get started simplifying the management of your Jobs, explore the [README](../../../plugins-docs/core/job-handler).
 
     </div>
 
@@ -491,7 +491,7 @@ icon: "plug"
       2. `workbookIds`
       3. Using the `@flatfile/plugin-jobs-handler` under the hood, the `tick` function can be used to update the Job’s progress.
 
-      To simplify auto-configuring your Spaces, explore the [README](../plugins/core/space-configure).
+      To simplify auto-configuring your Spaces, explore the [README](../../../plugins-docs/core/space-configure).
 
     </div>
 
@@ -510,7 +510,7 @@ icon: "plug"
 
       *Note: Previously, we were extracting with a chunkSize of 1,000.*
 
-      **Ex: Excel Usage: (See [docs](../plugins/extractors/xlsx-extractor))**
+      **Ex: Excel Usage: (See [docs](../../../plugins-docs/extractors/xlsx-extractor))**
 
       ```ts
       listener.use(ExcelExtractor({ chunkSize: 300, parallel: 2 }))
@@ -562,7 +562,7 @@ icon: "plug"
       * 		Empowered by `remeda` for dynamic functional programming and data handling.
       * 		Seamlessly integrates Pattern Matching with TypeScript through `ts-pattern`.
 
-      [See the docs](../plugins/extractors/pdf-extractor)
+      [See the docs](../../../plugins-docs/extractors/pdf-extractor)
 
     </div>
 
@@ -617,7 +617,7 @@ icon: "plug"
         -     	Leverages the mighty `remeda` for JavaScript’s functional programming and data wizardry.
 
 
-        [See the docs](../plugins/transform/dedupe)
+        [See the docs](../../../plugins-docs/transform/dedupe)
 
     </div>
 
@@ -639,7 +639,7 @@ icon: "plug"
       -     	`options.transform `define a function to be applied to each parsed value before dynamicTyping.
 
 
-      [See the docs](../plugins/extractors/delimiter-extractor)
+      [See the docs](../../../plugins-docs/extractors/delimiter-extractor)
 
     </div>
 
