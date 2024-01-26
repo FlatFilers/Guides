@@ -84,7 +84,80 @@
     },
     {
       "group": "Updates by area",
-      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
+      "pages": ["changelog/platform", "changelog/sdks"]
+    },
+    {
+      "group": "Plugins",
+      "pages": [
+        {
+          "group": "Extractors",
+          "pages": [
+            "changelog/sdks/plugins/extractors/xlsx-extractor",
+            "changelog/sdks/plugins/extractors/json-extractor",
+            "changelog/sdks/plugins/extractors/xml-extractor",
+            "changelog/sdks/plugins/extractors/zip-extractor",
+            "changelog/sdks/plugins/extractors/delimiter-extractor",
+            "changelog/sdks/plugins/extractors/pdf-extractor",
+            {
+              "group": "More in development",
+              "icon": "clock",
+              "pages": ["plugins/extractors/doc-extractor"]
+            }
+          ]
+        },
+        {
+          "group": "Transform",
+          "pages": [
+            "changelog/sdks/plugins/transform/record-hook",
+            "changelog/sdks/plugins/transform/autocast",
+            "changelog/sdks/plugins/transform/dedupe"
+          ]
+        },
+        {
+          "group": "Automation",
+          "pages": ["changelog/sdks/plugins/automations/automap"]
+        },
+        {
+          "group": "Export",
+          "pages": [
+            "changelog/sdks/plugins/export/export-workbook",
+            "changelog/sdks/plugins/export/webhook-egress"
+          ]
+        },
+        {
+          "group": "Schemas",
+          "pages": [
+            "changelog/sdks/plugins/schemas/convert-json-schema",
+            "changelog/sdks/plugins/schemas/convert-yaml-schema",
+            "changelog/sdks/plugins/schemas/convert-sql-ddl",
+            "changelog/sdks/plugins/schemas/convert-openapi",
+            {
+              "group": "More in development",
+              "icon": "clock",
+              "pages": ["changelog/sdks/plugins/schemas/convert-graphql"]
+            }
+          ]
+        },
+        {
+          "group": "Migrations",
+          "pages": ["changelog/sdks/plugins/migrations/dxp-configure"]
+        },
+        {
+          "group": "Core",
+          "pages": [
+            "changelog/sdks/plugins/core/job-handler",
+            "changelog/sdks/plugins/core/space-configure"
+          ]
+        },
+        {
+          "group": "Utils",
+          "pages": [
+            "changelog/sdks/plugins/utils/extractor",
+            "changelog/sdks/plugins/utils/file-buffer",
+            "changelog/sdks/plugins/utils/response-rejection"
+          ]
+        }
+      ]
     },
     {
       "group": "Platform Apps",
