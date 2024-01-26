@@ -6,7 +6,7 @@ icon: "ear-listen"
 
 ## What is a Listener?
 
-Listeners are the core of the Flatfile Platform. All of your configurations, from [data transformations](/plugins/transform), to [custom styling](/guides/theming), to [data export](/guides/egress) are done in a Listener. They hold the logic backing your Flatfile Spaces, defining the functionality of your implementation.
+Listeners are the core of the Flatfile Platform. All of your configurations, from [data transformations](/plugins-docs/transform), to [custom styling](/guides/theming), to [data export](/guides/egress) are done in a Listener. They hold the logic backing your Flatfile Spaces, defining the functionality of your implementation.
 
 Fundamentally, a Listener is a function that listens for [Events](/orchestration/events) and takes action when they occur. This means your configurations are implemented in response to events. To understand how to configure a Listener, it's important to understand the anatomy of an Event.
 
@@ -25,7 +25,7 @@ Each Event contains information about its source and execution context including
 
 # Anatomy of a Listener
 
-A Listener is a function designed to receive Events as they occur and take action by executing a callback function. For example, when a file is uploaded, a Listener can [extract](/plugins/extractors) its data to a target sheet, or when a record is created, a Listener can [validate](/guides/handling-data) the data.
+A Listener is a function designed to receive Events as they occur and take action by executing a callback function. For example, when a file is uploaded, a Listener can [extract](/plugins-docs/extractors) its data to a target sheet, or when a record is created, a Listener can [validate](/guides/handling-data) the data.
 
 The callback function can be as simple as logging the event or as advanced as integrating with external systems. Here is an example that logs the topic of any incoming event:
 

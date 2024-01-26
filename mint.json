@@ -108,9 +108,9 @@
         {
           "group": "Transform",
           "pages": [
-            "changelog/sdks/plugins/transform/record-hook",
-            "changelog/sdks/plugins/transform/autocast",
-            "changelog/sdks/plugins/transform/dedupe"
+            "changelog/sdks/plugins-docs/transform/record-hook",
+            "changelog/sdks/plugins-docs/transform/autocast",
+            "changelog/sdks/plugins-docs/transform/dedupe"
           ]
         },
         {
