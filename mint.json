@@ -91,6 +91,19 @@
       ]
     },
     {
+      "group": "Core Libraries",
+      "pages": ["changelog/sdks/core/cli", "changelog/sdks/core/listener"]
+    },
+    {
+      "group": "Embedded Wrappers",
+      "pages": [
+        "changelog/sdks/wrappers/javascript",
+        "changelog/sdks/wrappers/react",
+        "changelog/sdks/wrappers/angular",
+        "changelog/sdks/wrappers/vue"
+      ]
+    },
+    {
       "group": "Plugins",
       "pages": [
         {
@@ -101,20 +114,15 @@
             "changelog/sdks/plugins/extractors/xml-extractor",
             "changelog/sdks/plugins/extractors/zip-extractor",
             "changelog/sdks/plugins/extractors/delimiter-extractor",
-            "changelog/sdks/plugins/extractors/pdf-extractor",
-            {
-              "group": "More in development",
-              "icon": "clock",
-              "pages": ["plugins/extractors/doc-extractor"]
-            }
+            "changelog/sdks/plugins/extractors/pdf-extractor"
           ]
         },
         {
           "group": "Transform",
           "pages": [
-            "changelog/sdks/plugins-docs/transform/record-hook",
-            "changelog/sdks/plugins-docs/transform/autocast",
-            "changelog/sdks/plugins-docs/transform/dedupe"
+            "changelog/sdks/plugins/transform/record-hook",
+            "changelog/sdks/plugins/transform/autocast",
+            "changelog/sdks/plugins/transform/dedupe"
           ]
         },
         {
@@ -131,15 +139,10 @@
         {
           "group": "Schemas",
           "pages": [
-            "changelog/sdks/plugins/schemas/convert-json-schema",
-            "changelog/sdks/plugins/schemas/convert-yaml-schema",
-            "changelog/sdks/plugins/schemas/convert-sql-ddl",
-            "changelog/sdks/plugins/schemas/convert-openapi",
-            {
-              "group": "More in development",
-              "icon": "clock",
-              "pages": ["changelog/sdks/plugins/schemas/convert-graphql"]
-            }
+            "changelog/sdks/plugins/schemas/json-schema",
+            "changelog/sdks/plugins/schemas/yaml-schema",
+            "changelog/sdks/plugins/schemas/sql-ddl-converter",
+            "changelog/sdks/plugins/schemas/openapi-schema"
           ]
         },
         {
@@ -365,12 +368,11 @@
     },
     {
       "group": "Embedded Wrappers",
-      "icon": "clock",
       "pages": [
+        "developer-tools/core-libraries/wrappers/vanilla",
         "developer-tools/core-libraries/wrappers/react",
         "developer-tools/core-libraries/wrappers/angular",
-        "developer-tools/core-libraries/wrappers/vuejs",
-        "developer-tools/core-libraries/wrappers/vanilla"
+        "developer-tools/core-libraries/wrappers/vuejs"
       ]
     },
     {
@@ -393,7 +395,7 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/extractors/doc-extractor"]
+          "pages": ["plugins-docs/extractors/doc-extractor"]
         }
       ]
     },

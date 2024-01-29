@@ -65,12 +65,19 @@ function handleRouteChange(path) {
   console.log(`Route changed to: ${path}`);
   let segments = path.split("/");
   let lastSegment = segments[segments.length - 1];
-  let secondToLastSegment = segments[segments.length - 2];
 
   if (path.includes("changelog/sdks/")) {
     fetch(
-      "https://raw.githubusercontent.com/FlatFilers/flatfile-plugins/main/" +
-        (path.includes("utils") ? "utils" : "plugins") +
+      "https://raw.githubusercontent.com/FlatFilers/" +
+        (path.includes("plugins")
+          ? "flatfile-plugins"
+          : "flatfile-core-libraries") +
+        "/main/" +
+        (path.includes("utils")
+          ? "utils"
+          : path.includes("plugins")
+          ? "plugins"
+          : "packages") +
         "/" +
         lastSegment +
         "/CHANGELOG.md"
