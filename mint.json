@@ -91,12 +91,16 @@
       ]
     },
     {
-      "group": "CORE LIBRARIES",
+      "group": "Core Libraries",
+      "pages": ["changelog/sdks/core/cli", "changelog/sdks/core/listener"]
+    },
+    {
+      "group": "Embedded Wrappers",
       "pages": [
-        {
-          "group": "Extractors",
-          "pages": ["changelog/sdks/plugins/extractors/xlsx-extractor"]
-        }
+        "changelog/sdks/wrappers/javascript",
+        "changelog/sdks/wrappers/react",
+        "changelog/sdks/wrappers/angular",
+        "changelog/sdks/wrappers/vue"
       ]
     },
     {
@@ -364,12 +368,11 @@
     },
     {
       "group": "Embedded Wrappers",
-      "icon": "clock",
       "pages": [
+        "developer-tools/core-libraries/wrappers/vanilla",
         "developer-tools/core-libraries/wrappers/react",
         "developer-tools/core-libraries/wrappers/angular",
-        "developer-tools/core-libraries/wrappers/vuejs",
-        "developer-tools/core-libraries/wrappers/vanilla"
+        "developer-tools/core-libraries/wrappers/vuejs"
       ]
     },
     {
