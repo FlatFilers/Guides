@@ -91,6 +91,15 @@
       ]
     },
     {
+      "group": "CORE LIBRARIES",
+      "pages": [
+        {
+          "group": "Extractors",
+          "pages": ["changelog/sdks/plugins/extractors/xlsx-extractor"]
+        }
+      ]
+    },
+    {
       "group": "Plugins",
       "pages": [
         {
@@ -101,20 +110,15 @@
             "changelog/sdks/plugins/extractors/xml-extractor",
             "changelog/sdks/plugins/extractors/zip-extractor",
             "changelog/sdks/plugins/extractors/delimiter-extractor",
-            "changelog/sdks/plugins/extractors/pdf-extractor",
-            {
-              "group": "More in development",
-              "icon": "clock",
-              "pages": ["plugins/extractors/doc-extractor"]
-            }
+            "changelog/sdks/plugins/extractors/pdf-extractor"
           ]
         },
         {
           "group": "Transform",
           "pages": [
-            "changelog/sdks/plugins-docs/transform/record-hook",
-            "changelog/sdks/plugins-docs/transform/autocast",
-            "changelog/sdks/plugins-docs/transform/dedupe"
+            "changelog/sdks/plugins/transform/record-hook",
+            "changelog/sdks/plugins/transform/autocast",
+            "changelog/sdks/plugins/transform/dedupe"
           ]
         },
         {
@@ -131,15 +135,10 @@
         {
           "group": "Schemas",
           "pages": [
-            "changelog/sdks/plugins/schemas/convert-json-schema",
-            "changelog/sdks/plugins/schemas/convert-yaml-schema",
-            "changelog/sdks/plugins/schemas/convert-sql-ddl",
-            "changelog/sdks/plugins/schemas/convert-openapi",
-            {
-              "group": "More in development",
-              "icon": "clock",
-              "pages": ["changelog/sdks/plugins/schemas/convert-graphql"]
-            }
+            "changelog/sdks/plugins/schemas/json-schema",
+            "changelog/sdks/plugins/schemas/yaml-schema",
+            "changelog/sdks/plugins/schemas/sql-ddl-converter",
+            "changelog/sdks/plugins/schemas/openapi-schema"
           ]
         },
         {
@@ -393,7 +392,7 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/extractors/doc-extractor"]
+          "pages": ["plugins-docs/extractors/doc-extractor"]
         }
       ]
     },
