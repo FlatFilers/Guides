@@ -433,7 +433,7 @@ icon: "plug"
       - Truthy values: '1', 'yes', 'true', 'on', ' ', 'y', and 1.
       - Falsy values: '- ', '0', 'no', 'false', 'off', ' ', 'n', 0, -1.
 
-    - **Dates:** Date strings and numbers are cast to a UTC string.
+    - **Dates:** Date strings and numbers are cast to a UTC string (note: `YYYY-MM-DD...` is interpreted as an ISO 8601 date and is treated as treated as UTC, while other formats are treated as local time and converted to UTC).
       - '2023-08-16' => 'Wed, 16 Aug 2023 00:00:00 GMT'
       - '08-16-2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
       - '08/16/2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'

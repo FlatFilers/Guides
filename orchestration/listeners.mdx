@@ -64,7 +64,7 @@ A simple way to filter events is to use the shorthand syntax `listener.on`:
 <CodeGroup>
 
 ```jsx javascript
-listener.on("commit:created", { sheet: "Contacts" }, async (event) => {
+listener.on("commit:created", { sheet: "contacts" }, async (event) => {
   // Custom action responding to the commit
 });
 ```
@@ -72,7 +72,7 @@ listener.on("commit:created", { sheet: "Contacts" }, async (event) => {
 ```jsx typescript
 listener.on(
   "commit:created",
-  { sheet: "Contacts" },
+  { sheet: "contacts" },
   async (event: FlatfileEvent) => {
     // Custom action responding to the commit
   }
@@ -86,14 +86,14 @@ This is equivalent to:
 <CodeGroup>
 
 ```jsx javascript
-listener.filter({ sheet: "Contacts" }).on("commit:created", async (event) => {
+listener.filter({ sheet: "contacts" }).on("commit:created", async (event) => {
   // Custom action responding to the commit
 });
 ```
 
 ```jsx typescript
 listener
-  .filter({ sheet: "Contacts" })
+  .filter({ sheet: "contacts" })
   .on("commit:created", async (event: FlatfileEvent) => {
     // Custom action responding to the commit
   });
@@ -107,7 +107,7 @@ For cases when you want to use multiple listeners under one filter, this syntax 
 
 ```jsx javascript
 export default function flatfileEventListener(listener) {
-  listener.filter({ sheet: "Contacts" }, (configure) => {
+  listener.filter({ sheet: "contacts" }, (configure) => {
     configure.on("commit:created", async (event) => {
       // Custom action responding to the commit
     })
@@ -117,7 +117,7 @@ export default function flatfileEventListener(listener) {
 
 ```jsx typescript
 export default function flatfileEventListener(listener: FlatfileListener) {
-  listener.filter({ sheet: "Contacts" }, (configure) => {
+  listener.filter({ sheet: "contacts" }, (configure) => {
     configure.on("commit:created", async (event) => {
       // Custom action responding to the commit
     })
