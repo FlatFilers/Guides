@@ -5,10 +5,11 @@ function simpleMarkdownToHtml(markdown) {
     // Headers, blockquotes, and other formatting
     .replace(
       /^## (.*$)/gim,
-      "<h2 id='version_$1'><a href='#version_$1'>$1</a></h2>"
+      "<h2 id='version_$1'><br/><a href='#version_$1'>$1</a></h2>"
     )
-    .replace(/^### (.*$)/gim, "<h3>$1</h3>")
-    .replace(/^# (.*$)/gim, "<h1>$1</h1>")
+    .replace(/^### (.*$)/gim, "<h3 style='margin-top: 15px'>$1</h3>")
+    .replace(/^#### (.*$)/gim, "<code>$1</code>")
+    .replace(/^# (.*$)/gim, "")
     .replace(/^\> (.*$)/gim, "<blockquote>$1</blockquote>")
     .replace(/\*\*(.*)\*\*/gim, "<strong>$1</strong>")
     .replace(/\*(.*)\*/gim, "<em>$1</em>")
@@ -92,7 +93,7 @@ function handleRouteChange(path) {
         const htmlContent = simpleMarkdownToHtml(markdown);
         // Wrapping the converted HTML content in a div
         document.getElementById(
-          "content-area"
+          "dynamic-content"
         ).innerHTML = `<div class='mt-8 relative prose prose-gray dark:prose-invert'>${htmlContent}</div>`;
       })
       .catch((error) => {
