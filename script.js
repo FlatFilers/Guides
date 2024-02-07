@@ -8,6 +8,7 @@ function simpleMarkdownToHtml(markdown) {
       "<h2 id='version_$1'><a href='#version_$1'>$1</a></h2>"
     )
     .replace(/^### (.*$)/gim, "<h3>$1</h3>")
+    .replace(/^#### (.*$)/gim, "<h5>$1</h5>")
     .replace(/^# (.*$)/gim, "<h1>$1</h1>")
     .replace(/^\> (.*$)/gim, "<blockquote>$1</blockquote>")
     .replace(/\*\*(.*)\*\*/gim, "<strong>$1</strong>")
