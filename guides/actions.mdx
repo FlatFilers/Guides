@@ -84,6 +84,7 @@ export default function flatfileEventListener(listener) {
       try {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
+          // "progress" value must be a whole integer
           progress: 10,
           estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
         });
