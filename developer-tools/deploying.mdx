@@ -17,12 +17,23 @@ While your own cloud provides the maximum level of control over listener code, q
 Once you have configured your Workbook, you can deploy your Workbook to your account at any time
 by opening the terminal in the root directory and entering this command:
 
-`npx flatfile@latest deploy --token=YOUR_SECRET_KEY`
-
 <Warning>
   Add the file name to the command: `npx flatfile deploy path-to-file` if you're
   not running an index file.
 </Warning>
+
+<CodeGroup>
+
+```npm terminal
+npx flatfile@latest deploy --token=YOUR_SECRET_KEY
+```
+
+```npm .env (optional)
+# --token isn't required in deploy command if your secret key is in a .env file
+FLATFILE_API_KEY="sk_****"
+```
+
+</CodeGroup>
 
 The CLI will give you prompts and updates as it's deploying:
 
@@ -41,8 +52,8 @@ Once your Workbook has been deployed, you’ll be able to see a new Space in you
 
 <Note>
   You can also configure your code to build different Workbooks as a Space is
-  created depending on various factors, but this is a more advanced
-  configuration. More on how to do this soon.
+  created depending on various factors. Learn about [Dynamic
+  Configurations](../guides/dynamic-configurations.mdx).
 </Note>
 
 ### Deploying more than once
@@ -50,6 +61,65 @@ Once your Workbook has been deployed, you’ll be able to see a new Space in you
 You can deploy any change to your code at any time.
 
 For example, if you need to add a Sheet to an already existing Workbook, simply deploy again with the added Sheet and everything will update.
+
+## Hosting on Regional Servers
+
+Regional servers are available upon request for those needing to host their applications closer to their user base, ensuring faster access and compliance with local data regulations. To deploy on a regional server, please contact our support team.
+
+### URL References
+
+| Region | URL                               | API URL                              | SPACE URL                         |
+| ------ | --------------------------------- | ------------------------------------ | --------------------------------- |
+| UK     | https://platform.uk.flatfile.com/ | https://platform.uk.flatfile.com/api | https://platform.uk.flatfile.com/ |
+| EU     | https://platform.eu.flatfile.com/ | https://platform.eu.flatfile.com/api | https://platform.eu.flatfile.com/ |
+| AU     | https://platform.au.flatfile.com/ | https://platform.au.flatfile.com/api | https://platform.au.flatfile.com/ |
+| CA     | https://platform.ca.flatfile.com/ | https://platform.ca.flatfile.com/api | https://platform.ca.flatfile.com/ |
+
+### Configuring the API URL for Deployment
+
+When deploying, you can specify the `FLATFILE_API_URL` either in your project's `.env` file or as an environment variable.
+
+<CodeGroup>
+
+```sh Deploy command example
+npx flatfile@latest deploy
+```
+
+```npm .env file example (optional)
+FLATFILE_API_KEY="sk_****"
+FLATFILE_API_URL="Your Regional API URL here"
+```
+
+</CodeGroup>
+
+### Embedding with a Specific API URL
+
+To embed Flatfile in your application, include both apiUrl and spaceUrl in your FlatfileImporter configuration to specify your regional server:
+
+```typescript
+const spaceProps: ISpace = {
+  name: "Embedded Space",
+  publishableKey: "pk_**********",
+  environmentId: "**_env_**********",
+  apiUrl: "Regional API URL here",
+  spaceUrl: "Regional Space URL here", //Optional, only needed if reusing a space
+  workbook,
+  listener,
+  // Additional properties here
+};
+```
+
+### API Interaction with a Specified Environment
+
+For direct API interactions, the FlatfileClient needs the environment parameter set to your selected regional API URL:
+
+```ts
+import { FlatfileClient } from "@flatfile/api";
+
+const api = new FlatfileClient({
+  environment: "Regional API URL here",
+});
+```
 
 ## Hosting in your own cloud
 
