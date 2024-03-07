@@ -42,6 +42,10 @@
     {
       "source": "/developer-tools/mapping-libraries/flatfile-mapping-python",
       "destination": "https://pypi.org/project/flatfile-mapping/"
+    },
+    {
+      "source": "/plugins",
+      "destination": "/plugins/docs"
     }
   ],
   "topbarLinks": [
