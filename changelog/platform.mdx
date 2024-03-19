@@ -20,9 +20,9 @@ icon: "layer-group"
           width: "calc(80% - 30px)",
         }}
       >
-        **Refined AI Mapping Precision**
+        **Major Improvement in Load Speeds for Large Datasets**
 
-        We’ve fine-tuned the interplay between AI-generated mapping suggestions and user-defined mapping history to enhance accuracy and user trust in our system. Previously, AI recommendations marked as “very confident” could override mappings with a user history score greater than 0.99. To address this, we’ve now implemented a cap on AI mapping scores, ensuring they do not exceed 0.99. This change guarantees that high-confidence user history takes precedence, fostering a more reliable and user-centric mapping experience.
+        Previously, data imports automatically performed counts every 100 records. While comprehensive, this could slow down operations, particularly with larger datasets. Recognizing the impact on performance and user experience, record counts will now only occur upon explicit request. This change ensures a more streamlined and faster experience, allowing you to work with substantial volumes of data more effectively.
 
       </div>
 
@@ -152,11 +152,10 @@ icon: "layer-group"
       **Enhanced Metadata Management in `@flatfile/plugin-record-hook`**
 
        We've resolved a critical bug in the RecordHook functionality, where `metadata` wasn't correctly assigned during record updates. By overhaulubg the workflow for setting and clearing metadata across various scenarios, we've can ensure accurate and consistent metadata management.
-
-      </div>
+       </div>
+    </div>
 
   </div>
-</div>
 
 ## February
 
@@ -335,6 +334,22 @@ icon: "layer-group"
           width: "calc(80% - 30px)",
         }}
       >
+
+        **Optimized Space Loading Series: Reduced Requests for Translations**
+
+        We've streamlined the loading process for Spaces by eliminating an unnecessary request for translations that previously triggered an additional getSpaceById call. This refinement reduces the load time, ensuring Spaces are displayed more promptly for a smoother user experience.
+
+</div></div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
         **New: Advanced Column Filtering Feature**
 
         Beyond the existing functionalities of sorting, replacing empty values, and conducting searches within fields, we’ve now integrated a precise value filtering option for columns. This new feature includes a convenient search mechanism to effortlessly pinpoint and filter by the specific value you’re seeking. Streamline your data analysis and management with this robust filtering capability.
@@ -356,6 +371,8 @@ icon: "layer-group"
         **Enhanced Data Mapping Consistency with user created custom fields**
 
         In our continuous efforts to streamline data import processes, we've implemented an improvement targeting the scenario where mapping rules from previous imports include destination fields no longer present in the current schema. This situation can arise if a custom field was added during a past import session and the data being imported is from a completely new sheet, often observed in embedded imports. With this update, we ensure a smoother data mapping experience by automatically filtering out rules that do not match the current destination blueprint, maintaining consistency and accuracy in your data integration efforts.
+
+
 
       </div>
 
