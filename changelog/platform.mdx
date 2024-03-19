@@ -4,9 +4,368 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## March
+
+### March 17, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Refined AI Mapping Precision**
+
+        We’ve fine-tuned the interplay between AI-generated mapping suggestions and user-defined mapping history to enhance accuracy and user trust in our system. Previously, AI recommendations marked as “very confident” could override mappings with a user history score greater than 0.99. To address this, we’ve now implemented a cap on AI mapping scores, ensuring they do not exceed 0.99. This change guarantees that high-confidence user history takes precedence, fostering a more reliable and user-centric mapping experience.
+
+      </div>
+
+  </div>
+</div>
+
+### March 15, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Streamlined User Invitation Process**
+
+        We've enhanced our user invitation system for improved clarity and data integrity. Each user can now hold only one active invitation at any given time. Any new invitation issued to a user will automatically replace the previous one. This measure is designed to maintain data accuracy and eliminate user confusion.
+
+      </div>
+
+  </div>
+</div>
+
+### March 13, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Intuitive Column Management in Real-Time**
+
+        We've refined our column management experience to align with your expectations for immediate, responsive interactions. Key updates include:
+
+        Instant Feedback: Adjustments made within the column management panel now reflect instantly on the table. This immediate update ensures you can dynamically manage your view without waiting for panel closure.
+
+        Enhanced User Experience: This change addresses feedback regarding the previous UX, where updates only occurred post-panel closure, leading to confusion. Now, you can see the impact of your selections or deselections in real-time, making for a more intuitive and satisfying user experience.
+
+        These improvements are designed to make your data management processes more efficient and user-friendly, allowing for seamless adjustments to your viewing preferences on the fly.
+
+      </div>
+
+  </div>
+</div>
+
+### March 8, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Introducing `lastActivityAt` - Your Insight into Space Dynamics**
+
+        We're thrilled to introduce a new attribute, `lastActivityAt`, designed to provide you with comprehensive insights into the activity within your Spaces. Here's what you need to know:
+
+        What is lastActivityAt? An optional datetime attribute that marks the date of the last significant activity within a Space. Activities considered include, but are not limited to, adding records to a sheet, uploading files, or altering the configuration of a workbook.
+
+        Precision and Insight: Tracked with second-by-second-level precision, `lastActivityAt` offers a valuable overview of your Space's engagement and operational dynamics, helping you understand user behavior and space utilization better.
+
+        Reach out with feedback as we continue to enhance the utility of this feature to support your needs better.
+
+        [Learn more](https://reference.flatfile.com/api-reference/spaces/get#response.body.data.lastActivityAt)
+
+      </div>
+
+  </div>
+</div>
+
+### March 7, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+      **Resolved Document Auto-Update Issue**
+
+       We fixed an issue where Documents weren't automatically updating in response to event stream activities (such as document creation, updates, or deletions). This fix ensures that document changes are now promptly reflected in the UI, keeping your Space synchronized with all recent activities.
+
+      </div>
+
+  </div>
+</div>
+
+### March 5, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+      **Enhanced Metadata Management in `@flatfile/plugin-record-hook`**
+
+       We've resolved a critical bug in the RecordHook functionality, where `metadata` wasn't correctly assigned during record updates. By overhaulubg the workflow for setting and clearing metadata across various scenarios, we've can ensure accurate and consistent metadata management.
+
+      </div>
+
+  </div>
+</div>
+
+## February
+
+### February 29, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Introducing Email Theming for Pro Plan Customers**
+
+        Users can now update their space metadata object with a theme configuration to customize the look of their emails. When this feature is flagged on, users can enjoy custom theming in their email communications.
+
+        ```js
+        {"theme":
+          {"email":
+            {"logo":"https://i.imgur.com/xuzxTAU.png",
+            "textColor":"#FDEBF7",
+            "titleColor":"#FFC0CB",
+            "buttonBgColor":"#A7C7E7",
+            "backgroundColor":"#34495E",
+            "buttonTextColor":"#FFFFFF",
+            "footerTextColor":"#F4D1D1"}
+          }
+        }
+        ```
+
+        Learn more about [Theming](../guides/theming.mdx).
+
+      </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced Enum Mapping Logic for Datasets with No Values**
+
+        We’ve addressed a nuanced issue concerning enum mapping and rule application in datasets with no values. Previously, the system saved enum mapping rules with a logic in place to reuse these rules if every value in a new dataset matched the rule. This approach inadvertently included scenarios where datasets had no values, considering them as matching all rules due to the absence of values.
+
+        Now, the system filters and applies enum mapping rules based solely on the values present in the new dataset. This change ensures that rules are applied more accurately, enhancing the system’s logic in handling datasets, especially those without any values. This update aims to provide a more reliable and logical framework for data processing and rule application.
+
+      </div>
+
+  </div>
+
+     <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Dashboard authentication now lasts 24 hours**
+
+        Enjoy longer, uninterrupted sessions when working with your Flatfile Dashboard.
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced File Upload Experience: Multi-Selection and Drag-and-Drop Support**
+
+        We've upgraded the Files View with new capabilities to significantly improve your file management workflow. Now, you can select and upload multiple files simultaneously through the File Uploader, streamlining the process.
+
+        <Note>
+          While the upload progress is displayed for the initial file to maintain clarity, rest assured that all selected files are being uploaded.
+        </Note>
+
+        Additionally, the drag-and-drop feature has been enhanced to support multiple files, making it easier than ever to upload documents directly into the Files View. This update is designed to enhance productivity and simplify your data management tasks.
+
+      </div>
+
+  </div>
+</div>
+
+### February 27, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Optimized Space Loading Series: Reduced Requests for Translations**
+
+        We've streamlined the loading process for Spaces by eliminating an unnecessary request for translations that previously triggered an additional getSpaceById call. This refinement reduces the load time, ensuring Spaces are displayed more promptly for a smoother user experience.
+
+      </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced Filtering on `GET /spaces` Endpoint with Namespace Parameter Support**
+
+        We've upgraded the `GET /spaces` endpoint to support an empty value for the `namespace` query parameter. This update allows for more nuanced filtering, specifically enabling the identification of spaces without a namespace. When the namespace parameter is omitted entirely, the endpoint now returns spaces across all namespaces, providing greater flexibility in data retrieval and management.
+
+      </div>
+
+  </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Optimized Space Loading Performance Series: Deferring Blocking Requests**
+
+        By strategically eliminating or deferring five key blocking requests, we've streamlined the data fetching process. Key improvements include the removal of non-essential data fetches, optimizing the placement of the i18n context for more efficient rendering, and introducing a new utility for pre-processing date formats.
+
+        These updates collectively result in a smoother, faster user experience, reinforcing our commitment to efficiency and performance.
+
+      </div>
+
+  </div>
+</div>
+
+### February 23, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **New: Advanced Column Filtering Feature**
+
+        Beyond the existing functionalities of sorting, replacing empty values, and conducting searches within fields, we’ve now integrated a precise value filtering option for columns. This new feature includes a convenient search mechanism to effortlessly pinpoint and filter by the specific value you’re seeking. Streamline your data analysis and management with this robust filtering capability.
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced Data Mapping Consistency with user created custom fields**
+
+        In our continuous efforts to streamline data import processes, we've implemented an improvement targeting the scenario where mapping rules from previous imports include destination fields no longer present in the current schema. This situation can arise if a custom field was added during a past import session and the data being imported is from a completely new sheet, often observed in embedded imports. With this update, we ensure a smoother data mapping experience by automatically filtering out rules that do not match the current destination blueprint, maintaining consistency and accuracy in your data integration efforts.
+
+      </div>
+
+  </div>
+
+</div>
+
 ## January
 
-### January 24, 2023
+### January 24, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -35,7 +394,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### January 22, 2023
+### January 22, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -115,7 +474,7 @@ icon: "layer-group"
 
   </div>
 
-### January 18, 2023
+### January 18, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -163,7 +522,7 @@ icon: "layer-group"
 
   </div>
 
-### January 17, 2023
+### January 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -203,7 +562,7 @@ icon: "layer-group"
 
   </div>
 
-### January 12, 2023
+### January 12, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -290,7 +649,7 @@ icon: "layer-group"
 
   </div>
 
-### January 3, 2023
+### January 3, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
