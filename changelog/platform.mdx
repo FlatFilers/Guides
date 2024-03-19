@@ -6,7 +6,7 @@ icon: "layer-group"
 
 ## March
 
-### March 17, 2024
+### March 1, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -20,138 +20,9 @@ icon: "layer-group"
           width: "calc(80% - 30px)",
         }}
       >
-        **Refined AI Mapping Precision**
+        **Major Improvement in Load Speeds for Large Datasets**
 
-        We’ve fine-tuned the interplay between AI-generated mapping suggestions and user-defined mapping history to enhance accuracy and user trust in our system. Previously, AI recommendations marked as “very confident” could override mappings with a user history score greater than 0.99. To address this, we’ve now implemented a cap on AI mapping scores, ensuring they do not exceed 0.99. This change guarantees that high-confidence user history takes precedence, fostering a more reliable and user-centric mapping experience.
-
-      </div>
-
-  </div>
-</div>
-
-### March 15, 2024
-
-  <div style={{ display: "table", width: "auto" }}>
-
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-        **Streamlined User Invitation Process**
-
-        We've enhanced our user invitation system for improved clarity and data integrity. Each user can now hold only one active invitation at any given time. Any new invitation issued to a user will automatically replace the previous one. This measure is designed to maintain data accuracy and eliminate user confusion.
-
-      </div>
-
-  </div>
-</div>
-
-### March 13, 2024
-
-  <div style={{ display: "table", width: "auto" }}>
-
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-        **Intuitive Column Management in Real-Time**
-
-        We've refined our column management experience to align with your expectations for immediate, responsive interactions. Key updates include:
-
-        Instant Feedback: Adjustments made within the column management panel now reflect instantly on the table. This immediate update ensures you can dynamically manage your view without waiting for panel closure.
-
-        Enhanced User Experience: This change addresses feedback regarding the previous UX, where updates only occurred post-panel closure, leading to confusion. Now, you can see the impact of your selections or deselections in real-time, making for a more intuitive and satisfying user experience.
-
-        These improvements are designed to make your data management processes more efficient and user-friendly, allowing for seamless adjustments to your viewing preferences on the fly.
-
-      </div>
-
-  </div>
-</div>
-
-### March 8, 2024
-
-  <div style={{ display: "table", width: "auto" }}>
-
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-        **Introducing `lastActivityAt` - Your Insight into Space Dynamics**
-
-        We're thrilled to introduce a new attribute, `lastActivityAt`, designed to provide you with comprehensive insights into the activity within your Spaces. Here's what you need to know:
-
-        What is lastActivityAt? An optional datetime attribute that marks the date of the last significant activity within a Space. Activities considered include, but are not limited to, adding records to a sheet, uploading files, or altering the configuration of a workbook.
-
-        Precision and Insight: Tracked with second-by-second-level precision, `lastActivityAt` offers a valuable overview of your Space's engagement and operational dynamics, helping you understand user behavior and space utilization better.
-
-        Reach out with feedback as we continue to enhance the utility of this feature to support your needs better.
-
-        [Learn more](https://reference.flatfile.com/api-reference/spaces/get#response.body.data.lastActivityAt)
-
-      </div>
-
-  </div>
-</div>
-
-### March 7, 2024
-
-  <div style={{ display: "table", width: "auto" }}>
-
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-      **Resolved Document Auto-Update Issue**
-
-       We fixed an issue where Documents weren't automatically updating in response to event stream activities (such as document creation, updates, or deletions). This fix ensures that document changes are now promptly reflected in the UI, keeping your Space synchronized with all recent activities.
-
-      </div>
-
-  </div>
-</div>
-
-### March 5, 2024
-
-  <div style={{ display: "table", width: "auto" }}>
-
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-      **Enhanced Metadata Management in `@flatfile/plugin-record-hook`**
-
-       We've resolved a critical bug in the RecordHook functionality, where `metadata` wasn't correctly assigned during record updates. By overhaulubg the workflow for setting and clearing metadata across various scenarios, we've can ensure accurate and consistent metadata management.
+        Previously, data imports automatically performed counts every 100 records. While comprehensive, this could slow down operations, particularly with larger datasets. Recognizing the impact on performance and user experience, record counts will now only occur upon explicit request. This change ensures a more streamlined and faster experience, allowing you to work with substantial volumes of data more effectively.
 
       </div>
 
@@ -335,27 +206,9 @@ icon: "layer-group"
           width: "calc(80% - 30px)",
         }}
       >
-        **New: Advanced Column Filtering Feature**
+        **Optimized Space Loading Series: Reduced Requests for Translations**
 
-        Beyond the existing functionalities of sorting, replacing empty values, and conducting searches within fields, we’ve now integrated a precise value filtering option for columns. This new feature includes a convenient search mechanism to effortlessly pinpoint and filter by the specific value you’re seeking. Streamline your data analysis and management with this robust filtering capability.
-
-      </div>
-
-  </div>
-
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-        **Enhanced Data Mapping Consistency with user created custom fields**
-
-        In our continuous efforts to streamline data import processes, we've implemented an improvement targeting the scenario where mapping rules from previous imports include destination fields no longer present in the current schema. This situation can arise if a custom field was added during a past import session and the data being imported is from a completely new sheet, often observed in embedded imports. With this update, we ensure a smoother data mapping experience by automatically filtering out rules that do not match the current destination blueprint, maintaining consistency and accuracy in your data integration efforts.
+        We've streamlined the loading process for Spaces by eliminating an unnecessary request for translations that previously triggered an additional getSpaceById call. This refinement reduces the load time, ensuring Spaces are displayed more promptly for a smoother user experience.
 
       </div>
 
