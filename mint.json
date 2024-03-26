@@ -148,7 +148,7 @@
   ],
   "topbarCtaButton": {
     "name": "Sign in",
-    "url": "https://platform.flatfile.com"
+    "url": "https://platform.flatfile.com/oauth/dashboard"
   },
   "versions": [
     "latest",
