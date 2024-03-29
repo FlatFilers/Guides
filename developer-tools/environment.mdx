@@ -30,7 +30,7 @@ Your `publishableKey` and `secretKey` are specific to an environment therefore t
 3. You can use the key pair in there to create an access token like:
 
 ```bash
-curl -X POST https://api.x.flatfile.com/v1/auth -H 'Content-Type: application/json' -d '{"clientId":"1234-1234", "secret":"1234-1234"}'
+curl -X POST https://platform.flatfile.com/v1/auth -H 'Content-Type: application/json' -d '{"clientId":"1234-1234", "secret":"1234-1234"}'
 ```
 
 4. The response will include an `accessToken`. You can present that as your **Bearer `token`** in place of the `secretKey`.
