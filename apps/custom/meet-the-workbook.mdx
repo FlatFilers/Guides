@@ -280,6 +280,26 @@ export default function flatfileEventListener(listener: Client) {
 
 </CodeGroup>
 
+## Run your listener locally and create a new Space
+
+To allow this listener to run, you'll want to run it locally using the same "develop" command you used when initially setting up the listener.
+
+As a reminder, that command is:
+
+<CodeGroup>
+
+```terminal ts listener
+npx flatfile@latest develop typescript/index.ts
+```
+
+```terminal js listener
+npx flatfile@latest develop javascript/index.js
+```
+
+</CodeGroup>
+
+Once this is running, click the "Create New Space" button in your dashboard.
+
 ## Meet your Space
 
 So what did that just do?
