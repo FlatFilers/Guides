@@ -198,30 +198,6 @@ outcome or plan subsequent actions accordingly.
 
 ### Sheet
 
-#### `sheet:created`
-
-<ParamField path="sheet:created" type="readonly">
-  Called when a sheet is created. When does sheet:created run?
-</ParamField>
-
-```json
-{
-  "domain": "sheet",
-  "topic": "sheet:created",
-  "context": {
-    //Confirm this is all valid
-    "slugs": { "sheet": "contacts" },
-    "accountId": "us_acc_1234",
-    "environmentId": "us_env_1234",
-    "spaceId": "us_sp_1234",
-    "workbookId": "us_wb_1234",
-    "sheetId": "us_sh_1234",
-    "sheetSlug": "contacts",
-    "actorId": "us_ag_XRGmuGfL"
-  }
-}
-```
-
 #### `sheet:updated`
 
 <ParamField path="sheet:updated" type="readonly">
@@ -269,6 +245,32 @@ outcome or plan subsequent actions accordingly.
 }
 ```
 
+### Snapshot
+
+#### `snapshot:created`
+
+<ParamField path="snapshot:created" type="readonly">
+  Called when a snapshot is created of the sheet. This runs in conjunction with
+  AI Assist or the API endpoint is used.
+</ParamField>
+
+```json
+{
+  "domain": "sheet",
+  "topic": "snapshot:created",
+  "context": {
+    "appId": "us_app_1234"
+    "accountId": "us_acc_1234",
+    "snapshotId": "us_ss_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "sheetId": "us_sh_1234",
+    "actorId": "us_ag_XRGmuGfL"
+  }
+}
+```
+
 ### Record
 
 #### `commit:created`
@@ -292,6 +294,31 @@ outcome or plan subsequent actions accordingly.
     "sheetSlug": "MasterWorkbook/Data",
     "versionId": "us_vr_1234",
     "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `commit:completed`
+
+<ParamField path="commit:completed" type="readonly">
+  Commit:completed only runs when trackChanges is enabled on the workbook. This
+  fires when a commit has completed and any record changes have finished.
+</ParamField>
+
+```json
+{
+  "domain": "workbook",
+  "topic": "commit:completed",
+  "context": {
+    "appId": "us_app_1234",
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "sheetId": "us_sh_1234",
+    "versionId": "us_vr_1234",
+    "actorId": "us_usr_1234",
+    "commitId": "us_vr_1234"
   }
 }
 ```
