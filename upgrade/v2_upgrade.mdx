@@ -102,16 +102,15 @@ You'll be able to use this configuration object with the V2 Shims package to con
         ]
     }
 
-    window.openFlatfile = ({publishableKey, environmentId}) => {
-        if (!publishableKey && !environmentId) {
+    window.openFlatfile = ({publishableKey}) => {
+        if (!publishableKey) {
             throw new Error(
-                "You must provide a publishable key and an environment ID - pass through in index.html"
+                "You must provide a publishable key - pass through in index.html"
             );
         }
 
         const flatfileOptions = {
             publishableKey,
-            environmentId,
             name: 'Contact Space',
             workbook: configToBlueprint(config),
             listener,
@@ -166,7 +165,6 @@ You'll be able to use this configuration object with the V2 Shims package to con
     const spaceProps = {
         name: "Embedded Space",
         publishableKey: "YOUR_PUBLISHABLE_KEY",
-        environmentId: "YOUR_ENVIRONMENT_ID",
     };
 
     const Space = ({setShowSpace}) => {
@@ -309,7 +307,6 @@ If you're transitioning from a V2 Record Hook to a Platform Record Hook in your 
     const spaceProps = {
         name: "Embedded Space",
         publishableKey: "YOUR_PUBLISHABLE_KEY",
-        environmentId: "YOUR_ENVIRONMENT_ID",
     };
 
     const Space = ({setShowSpace}) => {

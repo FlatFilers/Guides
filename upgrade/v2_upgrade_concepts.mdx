@@ -139,7 +139,7 @@ The skeleton of your application should remain mostly the same. You'll see here 
         type="button"
         id="launch"
         value="Import Contacts"
-        onclick="openFlatfile({publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
+        onclick="openFlatfile({publishableKey: 'YOUR_PUBLISHABLE_KEY'})"
     />
     ```
 
@@ -176,16 +176,15 @@ The skeleton of your application should remain mostly the same. You'll see here 
     import { listener } from "../listeners/listener";
 
     //create a new space in modal
-    window.openFlatfile = ({publishableKey, environmentId}) => {
-        if (!publishableKey || !environmentId) {
+    window.openFlatfile = ({publishableKey}) => {
+        if (!publishableKey) {
             throw new Error(
-            "You must provide a publishable key and an environment ID - pass through in index.html"
+            "You must provide a publishable key - pass through in index.html"
             );
         }
 
         const flatfileOptions = {
             publishableKey,
-            environmentId,
             workbook,
             listener,
             sidebarConfig: {
@@ -206,7 +205,7 @@ This is where you will convert your Schema(s) into a Workbook. This is the point
 
 #### Compare and contrast
 
-The workbook consists of three crucial components: the `name`, the `environmentId` (which you can locate in your [login here](https://platform.flatfile.com)), and the `sheets` properties.
+The workbook consists of three crucial components: the `name` and the `sheets` properties.
 
 Sheets will share many properties with those found in the Portal schema. You'll encounter a `name` property (akin to the `type` property in a Portal schema) and `fields` (which closely resembles your Portal `fields` array).
 
