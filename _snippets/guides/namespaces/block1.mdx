@@ -8,7 +8,7 @@ export default function flatfileEventListener(listener) {
     red.on(
       "job:ready",
       { job: "space:configure" },
-      async ({ context: { spaceId, environmentId, jobId } }) => {
+      async ({ context: { spaceId, jobId } }) => {
         try {
           await api.jobs.ack(jobId, {
             info: "Gettin started.",
@@ -23,7 +23,6 @@ export default function flatfileEventListener(listener) {
           });
 
           await api.spaces.update(spaceId, {
-            environmentId,
             metadata: {
               theme: {
                 root: {
@@ -68,7 +67,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
     red.on(
       "job:ready",
       { job: "space:configure" },
-      async ({ context: { spaceId, environmentId, jobId } }) => {
+      async ({ context: { spaceId, jobId } }) => {
         try {
           await api.jobs.ack(jobId, {
             info: "Gettin started.",
@@ -83,7 +82,6 @@ export default function flatfileEventListener(listener: FlatfileListener) {
           });
 
           await api.spaces.update(spaceId, {
-            environmentId,
             metadata: {
               theme: {
                 root: {
