@@ -17,10 +17,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Regular.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Regular.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Regular.woff")
-      format("woff");
+    url("https://flatfile.com/fonts/CircularXXWeb-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -28,10 +27,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Bold.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Bold.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Bold.woff")
-      format("woff");
+    url("https://flatfile.com/fonts/CircularXXWeb-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -39,10 +37,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Italic.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Italic.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Italic.woff")
-      format("woff");
+    url("https://flatfile.com/fonts/CircularXXWeb-Italic.woff") format("woff");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -50,9 +47,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BoldItalic.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-BoldItalic.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BoldItalic.woff")
+    url("https://flatfile.com/fonts/CircularXXWeb-BoldItalic.woff")
       format("woff");
   font-weight: 700;
   font-style: italic;
@@ -61,10 +58,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Book.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Book.woff")
-      format("woff");
+    url("https://flatfile.com/fonts/CircularXXWeb-Book.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -72,9 +68,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BookItalic.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2/fonts/CircularXXWeb-BookItalic.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BookItalic.woff")
+    url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2/fonts/CircularXXWeb-BookItalic.woff")
       format("woff");
   font-weight: 300;
   font-style: italic;
@@ -83,9 +79,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Medium.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2/fonts/CircularXXWeb-Medium.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Medium.woff")
+    url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2/fonts/CircularXXWeb-Medium.woff")
       format("woff");
   font-weight: 500;
   font-style: normal;
@@ -94,9 +90,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-MediumItalic.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2/fonts/CircularXXWeb-MediumItalic.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-MediumItalic.woff")
+    url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2/fonts/CircularXXWeb-MediumItalic.woff")
       format("woff");
   font-weight: 500;
   font-style: italic;
@@ -105,9 +101,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Black.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2/fonts/CircularXXWeb-Black.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Black.woff")
+    url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2/fonts/CircularXXWeb-Black.woff")
       format("woff");
   font-weight: 900;
   font-style: normal;
@@ -116,9 +112,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BlackItalic.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2/fonts/CircularXXWeb-BlackItalic.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-BlackItalic.woff")
+    url("https://flatfile.com/fonts/CircularXXWeb-Book.woff2/fonts/CircularXXWeb-BlackItalic.woff")
       format("woff");
   font-weight: 900;
   font-style: italic;
@@ -127,10 +123,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Thin.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Thin.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Thin.woff")
-      format("woff");
+    url("https://flatfile.com/fonts/CircularXXWeb-Thin.woff") format("woff");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -138,9 +133,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ThinItalic.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-ThinItalic.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ThinItalic.woff")
+    url("https://flatfile.com/fonts/CircularXXWeb-ThinItalic.woff")
       format("woff");
   font-weight: 100;
   font-style: italic;
@@ -149,10 +144,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Light.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-Light.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-Light.woff")
-      format("woff");
+    url("https://flatfile.com/fonts/CircularXXWeb-Light.woff") format("woff");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
@@ -160,9 +154,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-LightItalic.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-LightItalic.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-LightItalic.woff")
+    url("https://flatfile.com/fonts/CircularXXWeb-LightItalic.woff")
       format("woff");
   font-weight: 200;
   font-style: italic;
@@ -171,9 +165,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ExtraBlack.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-ExtraBlack.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ExtraBlack.woff")
+    url("https://flatfile.com/fonts/CircularXXWeb-ExtraBlack.woff")
       format("woff");
   font-weight: 950;
   font-style: normal;
@@ -182,9 +176,9 @@
 
 @font-face {
   font-family: "CircularXXWeb";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ExtraBlackItalic.woff2")
+  src: url("https://flatfile.com/fonts/CircularXXWeb-ExtraBlackItalic.woff2")
       format("woff2"),
-    url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/CircularXXWeb-ExtraBlackItalic.woff")
+    url("https://flatfile.com/fonts/CircularXXWeb-ExtraBlackItalic.woff")
       format("woff");
   font-weight: 950;
   font-style: italic;
@@ -194,8 +188,7 @@
 /* Friends Fonts */
 @font-face {
   font-family: "Friends";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/Friends-Black.otf")
-    format("opentype");
+  src: url("https://flatfile.com/fonts/Friends-Black.otf") format("opentype");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -203,7 +196,7 @@
 
 @font-face {
   font-family: "Friends";
-  src: url("https://deploy-preview-1016--flatfile-retail.netlify.app/fonts/Friends-UltraBold.otf")
+  src: url("https://flatfile.com/fonts/Friends-UltraBold.otf")
     format("opentype");
   font-weight: 800;
   font-style: normal;
@@ -562,7 +555,7 @@ button.outline-none {
   background-color: rgb(var(--gray-50) / 0.1);
 }
 
-:not(:is(.dark .dark\:bg-white\/\[0\.03\])).hover\:bg-gray-100\/90:hover > div{
+:not(:is(.dark .dark\:bg-white\/\[0\.03\])).hover\:bg-gray-100\/90:hover > div {
   filter: invert(1);
   mix-blend-mode: difference;
 }
