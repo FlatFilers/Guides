@@ -79,7 +79,6 @@ const theme = {
 
 const flatfileOptions = {
   publishableKey,
-  environmentId,
   themeConfig: theme,
   //additional props
 };
@@ -132,7 +131,6 @@ const mySidebarConfig = {
 const flatfileOptions = {
   sidebarConfig: mySidebarConfig,
   publishableKey,
-  environmentId,
   workbook,
 };
 ```
@@ -186,8 +184,8 @@ These options are available when configuring your Space client-side.
 ### environmentId
 
 <ParamField path="environmentId" type="string" required>
-  Identifier for environment. You only need this to create a Workbook
-  client-side.
+  Identifier for environment. This is optional with creating a Workbook
+  client-side. The key includes environment-specific configurations.
 </ParamField>
 
 ```typescript src/client.js
@@ -211,7 +209,6 @@ const myWorkbook = {
 
 const flatfileOptions = {
   publishableKey,
-  environmentId,
   workbook: myWorkbook,
   //additional props
 };
@@ -230,7 +227,6 @@ const myListener = {
 
 const flatfileOptions = {
   publishableKey,
-  environmentId,
   listener: myListener,
   //additional props
 };
