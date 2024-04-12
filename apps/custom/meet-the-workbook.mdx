@@ -272,13 +272,33 @@ export default function flatfileEventListener(listener: Client) {
 
 </CodeGroup>
 
+## Run your listener locally and create a new Space
+
+To allow this listener to run, you'll want to run it locally using the same "develop" command you used when initially setting up the listener.
+
+As a reminder, that command is:
+
+<CodeGroup>
+
+```terminal ts listener
+npx flatfile@latest develop typescript/index.ts
+```
+
+```terminal js listener
+npx flatfile@latest develop javascript/index.js
+```
+
+</CodeGroup>
+
+Once this is running, click the "Create New Space" button in your dashboard.
+
 ## Meet your Space
 
 So what did that just do?
 
 In your Flatfile account you should now be able to see your Space.
 
-As you can see, this Space has a Workbook with a sheet and fields. A <Tooltip tip="Analogous to a database...">[Workbook](https://flatfileinc.mintlify.dev/docs/orchestration/workbooks)</Tooltip> is like a template, it's definition includes a profile of the data it expects to hold. We call that profile a Blueprint.
+As you can see, this Space has a Workbook with a sheet and fields. A <Tooltip tip="Analogous to a database...">[Workbook](https://flatfileinc.mintlify.dev/docs/orchestration/workbooks)</Tooltip> is like a template, its definition includes a profile of the data it expects to hold. We call that profile a Blueprint.
 
 <Note>
   [Blueprint](../../blueprint/overview) is Flatfile's robust data definition
