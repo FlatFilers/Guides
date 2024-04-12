@@ -4,6 +4,8 @@ description: "Create a new Space every time Flatfile is opened."
 icon: "rabbit-running"
 ---
 
+<Snippet file="shared/dxpbanner.mdx" />
+
 For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
 
 ## Before you begin
@@ -28,10 +30,9 @@ npm i @flatfile/angular-sdk @flatfile/plugin-record-hook @flatfile/listener
 
 ### Build your importer
 
-
 ### 1. Initialize Flatfile
 
-In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey` and `environmentId`.
+In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey`.
 
 <CodeGroup>
 
@@ -60,7 +61,6 @@ export class AppComponent {
 
   spaceProps: ISpace = {
     name: 'My space!',
-    environmentId: 'us_env_1234',
     publishableKey: 'sk_1234',
     closeSpace: {
       operation: 'submitActionFg',
@@ -111,21 +111,21 @@ export const blueprint = {
 ```
 
 ```typescript app/app.component.ts
-  spaceProps = {
-    name: 'My space!',
-    environmentId: 'us_env_1234',
-    publishableKey: 'sk_1234',
-    closeSpace: {
-      operation: 'submitActionFg',
-      onClose: this.closeSpace.bind(this),
-    },
-    displayAsModal: true,
-    spaceBody: {
-      namespace: "portal",
-    },
-    sheet,
-  }
+spaceProps = {
+  name: "My space!",
+  publishableKey: "sk_1234",
+  closeSpace: {
+    operation: "submitActionFg",
+    onClose: this.closeSpace.bind(this),
+  },
+  displayAsModal: true,
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet,
+};
 ```
+
 </CodeGroup>
 
 ### 4. Set the destination
@@ -135,24 +135,23 @@ Finally, let's get the data out of our system and to your destination with `onSu
 Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](../../../guides/egress)
 
 ```typescript app/app.component.ts
-  spaceProps = {
-    name: 'My space!',
-    environmentId: 'us_env_1234',
-    publishableKey: 'sk_1234',
-    closeSpace: {
-      operation: 'submitActionFg',
-      onClose: this.closeSpace.bind(this),
-    },
-    displayAsModal: true,
-    spaceBody: {
-      namespace: "portal",
-    },
-    sheet: blueprint,
-    onSubmit: async ({ sheet }) => {
-      const data = await sheet.allData();
-      console.log("onSubmit", data);
-    },
-  }
+spaceProps = {
+  name: "My space!",
+  publishableKey: "sk_1234",
+  closeSpace: {
+    operation: "submitActionFg",
+    onClose: this.closeSpace.bind(this),
+  },
+  displayAsModal: true,
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet: blueprint,
+  onSubmit: async ({ sheet }) => {
+    const data = await sheet.allData();
+    console.log("onSubmit", data);
+  },
+};
 ```
 
 ### 5. Transform Data
@@ -162,69 +161,69 @@ Next, we'll listen for data changes and respond `onRecordHook`,
 Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../../guides/handling-data)
 
 ```typescript app/app.component.ts
-  spaceProps = {
-    name: 'My space!',
-    environmentId: 'us_env_1234',
-    publishableKey: 'sk_1234',
-    closeSpace: {
-      operation: 'submitActionFg',
-      onClose: this.closeSpace.bind(this),
-    },
-    displayAsModal: true,
-    spaceBody: {
-      namespace: "portal",
-    },
-    sheet: blueprint,
-    onSubmit: async ({ sheet }) => {
-      const data = await sheet.allData();
-      console.log("onSubmit", data);
-    },
-    onRecordHook: (record) => {
-      const firstName = record.get("firstName");
-      console.log({ firstName });
-      record.set("lastName", "Rock");
-      return record;
-    },
-  }
+spaceProps = {
+  name: "My space!",
+  publishableKey: "sk_1234",
+  closeSpace: {
+    operation: "submitActionFg",
+    onClose: this.closeSpace.bind(this),
+  },
+  displayAsModal: true,
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet: blueprint,
+  onSubmit: async ({ sheet }) => {
+    const data = await sheet.allData();
+    console.log("onSubmit", data);
+  },
+  onRecordHook: (record) => {
+    const firstName = record.get("firstName");
+    console.log({ firstName });
+    record.set("lastName", "Rock");
+    return record;
+  },
+};
 ```
 
-### 7. Match your brand
+### 6. Match your brand
 
 By attaching a `themeConfig`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../../guides/theming).
 
 ```typescript app/app.component.ts
-  spaceProps = {
-    name: 'My space!',
-    environmentId: 'us_env_1234',
-    publishableKey: 'sk_1234',
-    closeSpace: {
-      operation: 'submitActionFg',
-      onClose: this.closeSpace.bind(this),
-    },
-    displayAsModal: true,
-    spaceBody: {
-      namespace: "portal",
-    },
-    sheet: blueprint,
-    onSubmit: async ({ sheet }) => {
-      const data = await sheet.allData();
-      console.log("onSubmit", data);
-    },
-    onRecordHook: (record) => {
-      const firstName = record.get("firstName");
-      console.log({ firstName });
-      record.set("lastName", "Rock");
-      return record;
-    },
-    themeConfig: {
+spaceProps = {
+  name: "My space!",
+  publishableKey: "sk_1234",
+  closeSpace: {
+    operation: "submitActionFg",
+    onClose: this.closeSpace.bind(this),
+  },
+  displayAsModal: true,
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet: blueprint,
+  onSubmit: async ({ sheet }) => {
+    const data = await sheet.allData();
+    console.log("onSubmit", data);
+  },
+  onRecordHook: (record) => {
+    const firstName = record.get("firstName");
+    console.log({ firstName });
+    record.set("lastName", "Rock");
+    return record;
+  },
+  themeConfig: {
+    root: {
       primaryColor: "red",
       textColor: "white",
       logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
     },
-  }
+  },
+};
 ```
 
-### 8. Customize
+### 7. Customize
 
 You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
 

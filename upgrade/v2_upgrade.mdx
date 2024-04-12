@@ -102,16 +102,15 @@ You'll be able to use this configuration object with the V2 Shims package to con
         ]
     }
 
-    window.openFlatfile = ({publishableKey, environmentId}) => {
-        if (!publishableKey && !environmentId) {
+    window.openFlatfile = ({publishableKey}) => {
+        if (!publishableKey) {
             throw new Error(
-                "You must provide a publishable key and an environment ID - pass through in index.html"
+                "You must provide a publishable key - pass through in index.html"
             );
         }
 
         const flatfileOptions = {
             publishableKey,
-            environmentId,
             name: 'Contact Space',
             workbook: configToBlueprint(config),
             listener,
@@ -160,12 +159,12 @@ You'll be able to use this configuration object with the V2 Shims package to con
     ```js Platform React
     import api from "@flatfile/api";
     import { configToBlueprint } from "@flatfile/v2-shims";
+    import { useSpace } from "@flatfile/react";
     import { listener } from "./listener";
 
     const spaceProps = {
         name: "Embedded Space",
         publishableKey: "YOUR_PUBLISHABLE_KEY",
-        environmentId: "YOUR_ENVIRONMENT_ID",
     };
 
     const Space = ({setShowSpace}) => {
@@ -214,7 +213,7 @@ If you're transitioning from a V2 Record Hook to a Platform Record Hook in your 
   If you're using V2 Record Hooks `mode` to split hooks on "init" or on
   "change", Platform does not have this mode functionality. It does, however,
   have better overall hooks performance and a new [Bulk Record
-  Hook](/plugins/transform/record-hook#additional-options) method that make
+  Hook](/plugins-docs/transform/record-hook#additional-options) method that make
   `mode` unnecessary.
 </Note>
 
@@ -232,7 +231,7 @@ If you're transitioning from a V2 Record Hook to a Platform Record Hook in your 
                 info: [
                     {
                         message: 'No last name provided so welcome to the Rock fam.',
-                        leval: 'warning'
+                        level: 'warning'
                     }
                 ]
             }
@@ -308,7 +307,6 @@ If you're transitioning from a V2 Record Hook to a Platform Record Hook in your 
     const spaceProps = {
         name: "Embedded Space",
         publishableKey: "YOUR_PUBLISHABLE_KEY",
-        environmentId: "YOUR_ENVIRONMENT_ID",
     };
 
     const Space = ({setShowSpace}) => {
