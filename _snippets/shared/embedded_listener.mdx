@@ -52,16 +52,15 @@ import { initializeFlatfile } from "@flatfile/javascript";
 import { workbook } from "./workbook";
 
 //create a new space in modal
-window.openFlatfile = ({ publishableKey, environmentId }) => {
-  if (!publishableKey && !environmentId) {
+window.openFlatfile = ({ publishableKey }) => {
+  if (!publishableKey) {
     throw new Error(
-      "You must provide a publishable key and an environment ID - pass through in index.html"
+      "You must provide a publishable key - pass through in index.html"
     );
   }
 
   const flatfileOptions = {
     publishableKey,
-    environmentId,
     workbook,
     sidebarConfig: {
       showSidebar: false,
@@ -112,16 +111,15 @@ import { listener } from "./listener";
 import { workbook } from "./workbook";
 
 //create a new space in modal
-window.openFlatfile = ({ publishableKey, environmentId }) => {
-  if (!publishableKey && !environmentId) {
+window.openFlatfile = ({ publishableKey }) => {
+  if (!publishableKey) {
     throw new Error(
-      "You must provide a publishable key and an environment ID - pass through in index.html"
+      "You must provide a publishable key - pass through in index.html"
     );
   }
 
   const flatfileOptions = {
     publishableKey,
-    environmentId,
     workbook,
     listener,
     sidebarConfig: {
@@ -143,7 +141,6 @@ By attaching a `themeConfig` to `flatfileOptions` in `src/client.js`, we will no
 ```jsx src/client.js (snippet)
 const flatfileOptions = {
   publishableKey,
-  environmentId,
   workbook,
   listener,
   sidebarConfig: {
