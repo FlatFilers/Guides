@@ -8,25 +8,21 @@ export default function flatfileEventListener(listener) {
   listener.filter({ job: "space:configure" }, (configure) => {});
 
   //theme during creation or update your space after it is created
-  listener.on(
-    "space:created",
-    async ({ context: { spaceId, environmentId } }) => {
-      const updateSpace = await api.spaces.update(spaceId, {
-        environmentId,
-        metadata: {
-          theme: {
-            root: {
-              primaryColor: "red",
-            },
-            sidebar: {
-              logo: "https://image.png",
-            },
-            // See reference for all possible variables
+  listener.on("space:created", async ({ context: { spaceId } }) => {
+    const updateSpace = await api.spaces.update(spaceId, {
+      metadata: {
+        theme: {
+          root: {
+            primaryColor: "red",
           },
+          sidebar: {
+            logo: "https://image.png",
+          },
+          // See reference for all possible variables
         },
-      });
-    }
-  );
+      },
+    });
+  });
 }
 
 // See full code example (https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/theming/index.js)
@@ -41,7 +37,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
   listener.on(
     "job:ready",
     { job: "space:configure" },
-    async ({ context: { spaceId, environmentId, jobId } }: FlatfileEvent) => {
+    async ({ context: { spaceId, jobId } }: FlatfileEvent) => {
       await api.jobs.ack(jobId, {
         info: "Gettin started.",
         progress: 10,
@@ -49,7 +45,6 @@ export default function flatfileEventListener(listener: FlatfileListener) {
 
       await api.workbooks.create({
         spaceId,
-        environmentId,
         name: "All Data",
         labels: ["pinned"],
         sheets: [
@@ -109,11 +104,10 @@ export default function flatfileEventListener(listener: FlatfileListener) {
   //you can also do this during configuration
   listener.on(
     "space:created",
-    async ({ context: { spaceId, environmentId } }: FlatfileEvent) => {
+    async ({ context: { spaceId } }: FlatfileEvent) => {
       //const updateSpace = await flatfile.spaces.update(spaceId, {});
 
       const updateSpace = await api.spaces.update(spaceId, {
-        environmentId,
         metadata: {
           theme: {
             root: {

@@ -5,7 +5,6 @@ const api = new FlatfileClient({ token: process.env.FLATFILE_API_KEY });
 try {
   api.spaces.create({
     name: "My Space",
-    environmentId: "us_env_123",
   });
 } catch (error) {
   console.error(error);
