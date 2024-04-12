@@ -46,16 +46,12 @@ All users who use the Space will only see the language set in the language overr
 To specify the language, simply assign the appropriate language code (e.g., 'en' for English, 'fr' for French, etc.) to the languageOverride property.
 
 ```jsx listener.ts
-listener.on(
-  "space:created",
-  async ({ context: { spaceId, environmentId } }) => {
-    // This space will be in English regardless of the users browser settings
-    const updateSpace = await api.spaces.update(spaceId, {
-      environmentId,
-      languageOverride: "en",
-    });
-  }
-);
+listener.on("space:created", async ({ context: { spaceId } }) => {
+  // This space will be in English regardless of the users browser settings
+  const updateSpace = await api.spaces.update(spaceId, {
+    languageOverride: "en",
+  });
+});
 ```
 
 ## Adding translations
@@ -117,17 +113,13 @@ Your `translationsPath` must meet a few requirements to work as expected:
 Set up your translations path using our API or the listener. This can be done at both the Space and environment levels.
 
 ```jsx listener.ts
-listener.on(
-  "space:created",
-  async ({ context: { spaceId, environmentId } }) => {
-    //set the translation path for the Space
-    const updateSpace = await api.spaces.update(spaceId, {
-      environmentId,
-      translationsPath:
-        "https://raw.githubusercontent.com/FlatFilers/Platform-Translations/kitchen-sink/locales/en/translation.json",
-    });
-  }
-);
+listener.on("space:created", async ({ context: { spaceId } }) => {
+  //set the translation path for the Space
+  const updateSpace = await api.spaces.update(spaceId, {
+    translationsPath:
+      "https://raw.githubusercontent.com/FlatFilers/Platform-Translations/kitchen-sink/locales/en/translation.json",
+  });
+});
 ```
 
 <Info>

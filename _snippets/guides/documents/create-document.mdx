@@ -4,7 +4,7 @@
 import api from "@flatfile/api";
 
 export default function flatfileEventListener(listener) {
-  listener.on("upload:completed", async ({ context: { spaceId, fileId } }) => {
+  listener.on("file:created", async ({ context: { spaceId, fileId } }) => {
     const fileName = (await api.files.get(fileId)).data.name;
     const bodyText = `# Welcome
     ### Say hello to your first customer Space in the new Flatfile!
@@ -13,8 +13,8 @@ export default function flatfileEventListener(listener) {
     Your uploaded file, ${fileName}, is located in the Files area.`;
 
     const doc = await api.documents.create(spaceId, {
-      title: 'Getting Started',
-      body: bodyText
+      title: "Getting Started",
+      body: bodyText,
     });
   });
 }
@@ -26,7 +26,7 @@ import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 
 export default function flatfileEventListener(listener: FlatfileListener) {
   listener.on(
-    "upload:completed",
+    "file:created",
     async ({ context: { spaceId, fileId } }: FlatfileEvent) => {
       const fileName = (await api.files.get(fileId)).data.name;
       const bodyText = `# Welcome
@@ -35,10 +35,10 @@ export default function flatfileEventListener(listener: FlatfileListener) {
     ---
     Your uploaded file, ${fileName}, is located in the Files area.`;
 
-    const doc = await api.documents.create(spaceId, {
-      title: 'Getting Started',
-      body: bodyText
-    });
+      const doc = await api.documents.create(spaceId, {
+        title: "Getting Started",
+        body: bodyText,
+      });
     }
   );
 }

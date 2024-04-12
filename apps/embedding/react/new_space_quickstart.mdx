@@ -39,7 +39,7 @@ The `package.json` file contains the dependencies and scripts for your applicati
 
 ### 1. Initialize Flatfile
 
-Initialize Flatfile to open in a modal. Pass in your `publishableKey` and `environmentId` and a new Space will be created on each page load.
+Initialize Flatfile to open in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
 
 <CodeGroup>
 
@@ -51,7 +51,6 @@ import { blueprint } from "./blueprint";
 function App() {
   const FlatfilePortal = () => {
     return usePortal({
-      environmentId: "env_1234",
       publishableKey: "pk_1234",
       spaceBody: {
         namespace: "portal",
@@ -160,7 +159,6 @@ import { blueprint } from "./blueprint";
 function App() {
   const FlatfilePortal = () => {
     return usePortal({
-      environmentId: "env_1234",
       publishableKey: "pk_1234",
       spaceBody: {
         namespace: "portal",
@@ -210,7 +208,6 @@ import { blueprint } from "./blueprint";
 function App() {
   const FlatfilePortal = () => {
     return usePortal({
-      environmentId: "env_1234",
       publishableKey: "pk_1234",
       spaceBody: {
         namespace: "portal",
@@ -245,7 +242,6 @@ import { blueprint } from "./blueprint";
 function App() {
   const FlatfilePortal = () => {
     return usePortal({
-      environmentId: "env_1234",
       publishableKey: "pk_1234",
       spaceBody: {
         namespace: "portal",
@@ -282,7 +278,6 @@ import { blueprint } from "./blueprint";
 function App() {
   const FlatfilePortal = () => {
     return usePortal({
-      environmentId: "env_1234",
       publishableKey: "pk_1234",
       spaceBody: {
         namespace: "portal",

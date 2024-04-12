@@ -276,7 +276,7 @@ body {
 
 ### 2. Initialize Flatfile
 
-In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey` and the `environmentId`. Also, add the content here to your `index.tsx`, `tsconfig.json`, `manifest.json`, and `config-overries.js`.
+In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey`. Also, add the content here to your `index.tsx`, `tsconfig.json`, `manifest.json`, and `config-overries.js`.
 
 <CodeGroup>
 
@@ -290,11 +290,10 @@ export default function App() {
   const spaceProps: ISpace = {
     name: "Embedded Space",
     publishableKey: "pk_1234",
-    environmentId: "us_env_1234",
   };
 
   const [showSpace, setShowSpace] = useState(false);
-  
+
   const { Space, OpenEmbed } = initializeFlatfile({
     ...spaceProps,
     sidebarConfig: {
@@ -304,12 +303,12 @@ export default function App() {
       operation: "submitActionFg",
       onClose: () => setShowSpace(false),
     },
-  })
+  });
 
   const onOpenSpace = async () => {
-    setShowSpace(!showSpace)
-    await OpenEmbed()
-  }
+    setShowSpace(!showSpace);
+    await OpenEmbed();
+  };
 
   return (
     <div className="content">
@@ -319,10 +318,7 @@ export default function App() {
       <p>Embed Flatfile in just a few lines of code.</p>
       {/*Button to trigger the modal */}
       <div>
-        <button
-          className="contrast"
-          onClick={onOpenSpace}
-        >
+        <button className="contrast" onClick={onOpenSpace}>
           {showSpace === true ? "Close" : "Open and create new"} Space
         </button>
         {showSpace && <Space />}
