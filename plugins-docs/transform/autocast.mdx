@@ -1,0 +1,127 @@
+---
+title: "@flatfile/plugin-autocast"
+description: "A plugin for automatically casting values in Flatfile."
+icon: "download"
+---
+
+<CardGroup cols={1}>
+  <Card title="@flatfile/plugin-autocast" icon="download">
+    <br />
+    The `@flatfile/plugin-autocast` plugin is an opinionated transformer that will
+    automatically convert the data in the Sheet to match the type defined by the
+    Blueprint.
+    <br />
+    <br />
+    **Event Type:**
+    <br />
+    `listener.on('commit:created')`
+    <br />
+    **Supported field types:**<br />`number`, `boolean`, `date`
+
+  </Card>
+</CardGroup>
+
+## Parameters
+
+<ParamField path="sheetSlug" type="string" required>
+  The `sheetSlug` indicates the slug name of the sheet you want to monitor.
+</ParamField>
+
+<ParamField path="fieldFilters" type="string[]">
+  Use the `fieldFilters` parameter to select specific fields to monitor. Without
+  any specified `fieldFilters`, the plugin will automatically monitor
+  castable-field (number, boolean & Date).
+</ParamField>
+
+<ParamField path="options.chunkSize" default="10_000" type="number" optional>
+  The `chunkSize` parameter allows you to specify the quantity of records to in
+  each chunk.
+</ParamField>
+
+<ParamField path="options.parallel" default="1" type="number" optional>
+  The `parallel` parameter allows you to specify the number of chunks to process
+  in parallel.
+</ParamField>
+
+## API Calls
+
+- `api.sheets.get`
+
+## Imported NPM Packages
+
+- [`@flatfile/api@1.7.4+`](https://www.npmjs.com/package/@flatfile/api)
+- [`@flatfile/listener@1.0.1+`](https://www.npmjs.com/package/@flatfile/listener)
+- [`@flatfile/plugin-record-hook@1.4.4+`](./record-hook)
+- `@flatfile/util-common@1.0.0+`
+
+## Usage
+
+The `autocast` plugin will listen for the `commit:created` event and cast numbers, booleans,
+and dates to the appropriate Blueprint type. Note that the `recordHook` and `bulkRecordHook` plugins
+listen for the same event type. Plugins will fire in the order they are placed in the listener.
+
+### Strings
+
+Numbers and booleans are cast to strings (i.e `'1'` -> `1`, `true` -> `"true"`).
+
+### Numbers
+
+String numbers (i.e `'1'`), string decimals (i.e `'1.1'`), and string numbers with commas (i.e `'1,000'`)
+are interpreted as numbers.
+
+### Booleans
+
+`'1'`, `'yes'`, `'true'`, `'on'`, `'t'`, `'y'`, and `1` are interpreted as truthy values.
+
+`'-1'`, `'0'`, `'no'`, `'false'`, `'off'`, `'f'`, `'n'`, `0`, `-1` are interpreted as falsy values.
+
+### Dates
+
+Date strings and numbers are cast to a UTC string. These are example of dates that will be cast (note: `YYYY-MM-DD...` is interpreted as an ISO 8601 date and is treated as treated as UTC, while other formats are treated as local time and converted to UTC):
+
+- `'2023-08-16'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `'08-16-2023'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `'08/16/2023'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `'Aug 16, 2023'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `'August 16, 2023'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `'2023-08-16T00:00:00.000Z'` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+- `1692144000000` => `'Wed, 16 Aug 2023 00:00:00 GMT'`
+
+```bash install
+npm i @flatfile/plugin-autocast
+```
+
+```js import
+import { autocast } from "@flatfile/plugin-autocast";
+```
+
+<CodeGroup>
+
+```js listener.js
+listener.use(autocast("sheetSlug"));
+```
+
+```js listener.js w/ fieldFilters
+listener.use(autocast("sheetSlug", ["numberField", "dateField"]));
+```
+
+```js listener.js w/ fieldFilters & options
+listener.use(
+  autocast("sheetSlug", ["numberField", "dateField"], {
+    chunkSize: 10_000,
+    parallel: 2,
+  })
+);
+```
+
+</CodeGroup>
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-autocast"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/autocast"
+    icon="github"
+  ></Card>
+</CardGroup>

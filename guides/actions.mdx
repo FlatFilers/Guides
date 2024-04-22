@@ -4,6 +4,8 @@ description: "Trigger operations based on user input."
 icon: "bolt"
 ---
 
+<Snippet file="shared/dxpbanner.mdx" />
+
 An Action is a code-based operation that runs where that Action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile.
 
 ## Overview
@@ -16,7 +18,7 @@ Sheet-mounted actions can be executed on the entire Sheet, for a filtered view o
 
 ## Workbook-mounted
 
-Once a user has extracted and mapped data into a <Tooltip tip="Analogous to a database...">[Workbook](../concepts/workbooks)</Tooltip>, it may be more efficient to run an operation on the entire dataset rather than making atomic transformations at the record- or field-level.
+Once a user has extracted and mapped data into a <Tooltip tip="Analogous to a database...">[Workbook](../apps/workbooks)</Tooltip>, it may be more efficient to run an operation on the entire dataset rather than making atomic transformations at the record- or field-level.
 
 For example:
 
@@ -38,9 +40,6 @@ First, configure your action on your Blueprint.
 
 If you configure `trackChanges: true`, it will disable your actions
 until all commits are complete (usually data hooks).
-
-If you configure `constraints: [{ type: 'hasAllValid' }]` on an Action, it will
-disable a Workbook Action when there are invalid records.
 
 </Info>
 
@@ -85,6 +84,7 @@ export default function flatfileEventListener(listener) {
       try {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
+          // "progress" value must be a whole integer
           progress: 10,
           estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
         });
@@ -123,6 +123,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
       try {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
+          // "progress" value must be a whole integer
           progress: 10,
           estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
         });
@@ -161,15 +162,6 @@ Sheet-mounted actions are represented as a dropdown in the toolbar of the Sheet.
 
 First, configure your action on your Blueprint.
 
-<Info>
-  If you configure `constraints: [{ type: 'hasSelection' }]` on an Action, it
-  will disable a Sheet Action when no records in the Sheet are selected.
-
-If you configure `constraints: [{ type: 'hasAllValid' }]` on an Action, it will
-disable a Sheet Action when there are invalid records.
-
-</Info>
-
 ```jsx sheet.js
 sheets : [
   {
@@ -179,9 +171,7 @@ sheets : [
         operation: 'duplicate',
         mode: 'background',
         label: 'Duplicate selected names',
-        type: 'string',
         description: 'Duplicate names for selected rows',
-        constraints: [{ type: 'hasAllValid' }, { type: 'hasSelection' }],
         primary: true,
       },
       {...}
@@ -204,6 +194,7 @@ listener.on(
     try {
       await api.jobs.ack(jobId, {
         info: "Getting started.",
+        // "progress" value must be a whole integer
         progress: 10,
         estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
       });
@@ -232,6 +223,7 @@ listener.on(
     try {
       await api.jobs.ack(jobId, {
         info: "Getting started.",
+        // "progress" value must be a whole integer
         progress: 10,
         estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
       });
@@ -270,10 +262,10 @@ This method allows you to access and process data from the complete Sheet, regar
 const { jobId, sheetId } = event.context;
 
 //retrieve all records from sheet
-const { records } = await api.records.get(sheetId);
+const response = await api.records.get(sheetId);
 
 //print records
-console.log(records.data.records);
+console.log(response.data.records);
 ```
 
 #### From a filtered view of the Sheet
@@ -595,6 +587,83 @@ First, configure your action to have an inputForm on your Blueprint. These will 
 Next, listen for a `job:ready` and filter on the `job` you'd like to process. Grab the data entered in the form from the job itself and leverage it as required for your use case.
 
 <Snippet file="shared/workbook_submit_pt5.mdx" />
+
+## Actions with Constraints
+
+### Usage
+
+#### Workbook & Sheet-mounted
+
+1. Adding a `hasAllValid` constraint on an Action will
+   disable a Workbook Action when there are invalid records.
+2. Adding a `hasData` on an Action will
+   disable a Workbook Action when there are no records.
+
+```jsx
+actions: [
+  {
+    operation: 'submitActionFg',
+    mode: 'foreground',
+    label: 'Submit data elsewhere',
+    description: 'Submit this data to a webhook.',
+    primary: true,
+    constraints: [{ type: 'hasAllValid'},{ type: 'hasData' }]
+  },
+  {...}
+],
+```
+
+#### Sheet-Mounted only
+
+Adding a constraint of `hasSelection` on an Action will disable a Sheet Action when no records in the Sheet are selected.
+
+```jsx sheet.js
+sheets : [
+  {
+    name: "Sheet Name",
+    actions: [
+      {
+        operation: 'duplicate',
+        mode: 'background',
+        label: 'Duplicate selected names',
+        description: 'Duplicate names for selected rows',
+        constraints: [{ type: 'hasSelection' }],
+        primary: true,
+      },
+      {...}
+    ]
+  }
+]
+```
+
+## Actions with Messages
+
+Add custom messages to actions, tailored according to their state:
+
+- Error
+- Info
+
+These messages will be displayed as tooltips when users hover over an action, providing context-specific text that corresponds to the action's current state. When an error message is present on an action, the action will be disabled.
+
+### Usage
+
+Simply add a messages property to your action configuration. This property should be an array of objects, each specifying a message type and its content.
+
+```jsx
+  actions: [
+    {
+      operation: 'duplicate',
+      mode: 'background',
+      label: 'Duplicate selected names',
+      description: 'Duplicate names for selected rows',
+      messages: [
+        { type: 'error', content: 'This is an error message' },
+      ],
+      primary: true,
+    },
+    {...}
+  ]
+```
 
 ## Example Project
 

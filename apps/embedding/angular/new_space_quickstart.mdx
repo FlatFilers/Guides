@@ -1,0 +1,242 @@
+---
+title: "Quickstart"
+description: "Create a new Space every time Flatfile is opened."
+icon: "rabbit-running"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+
+## Before you begin
+
+<Snippet file="shared/pk_needed.mdx" />
+
+## Prepare your project
+
+Follow prompts from the `new` command.
+
+```bash
+ng new create-flatfile-angular-embed
+```
+
+```bash
+cd example-flatfile-angular-embed
+```
+
+```bash
+npm i @flatfile/angular-sdk @flatfile/plugin-record-hook @flatfile/listener
+```
+
+### Build your importer
+
+### 1. Initialize Flatfile
+
+In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey`.
+
+<CodeGroup>
+
+```TypeScript src/app/app.component.ts
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, SpaceModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title = 'create-flatfile-angular-embed';
+  showSpace: boolean = false;
+
+  constructor(private spaceService: SpaceService) {}
+
+  toggleSpace() {
+    this.spaceService.OpenEmbed();
+    this.showSpace = !this.showSpace;
+  }
+
+  closeSpace() {
+    this.showSpace = false;
+  }
+
+  spaceProps: ISpace = {
+    name: 'My space!',
+    publishableKey: 'sk_1234',
+    closeSpace: {
+      operation: 'submitActionFg',
+      onClose: this.closeSpace.bind(this),
+    },
+    displayAsModal: true,
+    spaceBody: {
+      namespace: "portal",
+    },
+  }
+}
+```
+
+</CodeGroup>
+
+### 2. Build a Workbook
+
+Now, let's build a Workbook inside the Space for next time.
+
+1. Update your `blueprint.js` with this simple Blueprint.
+2. Update `app.component` to import the Workbook.
+
+Next time you open Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. Your Workbook will also have a Submit action. We will configure this action in the next step.
+
+<CodeGroup>
+```typescript app/blueprint.ts
+export const blueprint = {
+  "name": "Contacts",
+  "slug": "contacts",
+  "fields": [
+    {
+      "key": "firstName",
+      "type": "string",
+      "label": "First Name"
+    },
+    {
+      "key": "lastName",
+      "type": "string",
+      "label": "Last Name"
+    },
+    {
+      "key": "email",
+      "type": "string",
+      "label": "Email"
+    }
+  ]
+}
+```
+
+```typescript app/app.component.ts
+spaceProps = {
+  name: "My space!",
+  publishableKey: "sk_1234",
+  closeSpace: {
+    operation: "submitActionFg",
+    onClose: this.closeSpace.bind(this),
+  },
+  displayAsModal: true,
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet,
+};
+```
+
+</CodeGroup>
+
+### 4. Set the destination
+
+Finally, let's get the data out of our system and to your destination with `onSubmit`.
+
+Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](../../../guides/egress)
+
+```typescript app/app.component.ts
+spaceProps = {
+  name: "My space!",
+  publishableKey: "sk_1234",
+  closeSpace: {
+    operation: "submitActionFg",
+    onClose: this.closeSpace.bind(this),
+  },
+  displayAsModal: true,
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet: blueprint,
+  onSubmit: async ({ sheet }) => {
+    const data = await sheet.allData();
+    console.log("onSubmit", data);
+  },
+};
+```
+
+### 5. Transform Data
+
+Next, we'll listen for data changes and respond `onRecordHook`,
+
+Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../../guides/handling-data)
+
+```typescript app/app.component.ts
+spaceProps = {
+  name: "My space!",
+  publishableKey: "sk_1234",
+  closeSpace: {
+    operation: "submitActionFg",
+    onClose: this.closeSpace.bind(this),
+  },
+  displayAsModal: true,
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet: blueprint,
+  onSubmit: async ({ sheet }) => {
+    const data = await sheet.allData();
+    console.log("onSubmit", data);
+  },
+  onRecordHook: (record) => {
+    const firstName = record.get("firstName");
+    console.log({ firstName });
+    record.set("lastName", "Rock");
+    return record;
+  },
+};
+```
+
+### 6. Match your brand
+
+By attaching a `themeConfig`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../../guides/theming).
+
+```typescript app/app.component.ts
+spaceProps = {
+  name: "My space!",
+  publishableKey: "sk_1234",
+  closeSpace: {
+    operation: "submitActionFg",
+    onClose: this.closeSpace.bind(this),
+  },
+  displayAsModal: true,
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet: blueprint,
+  onSubmit: async ({ sheet }) => {
+    const data = await sheet.allData();
+    console.log("onSubmit", data);
+  },
+  onRecordHook: (record) => {
+    const firstName = record.get("firstName");
+    console.log({ firstName });
+    record.set("lastName", "Rock");
+    return record;
+  },
+  themeConfig: {
+    root: {
+      primaryColor: "red",
+      textColor: "white",
+      logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+    },
+  },
+};
+```
+
+### 7. Customize
+
+You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+
+## Example Project
+
+Find this Angular example project in the Flatfile GitHub repository.
+
+<CardGroup cols={1}>
+  <Card
+    title="create-flatfile-angular"
+    icon="angular"
+    href="https://github.com/FlatFilers/create-flatfile-angular"
+  >
+    Clone the Flatfile Angular tutorial here.
+  </Card>
+</CardGroup>

@@ -17,7 +17,7 @@ Sheets have some basic options that determine their behavior.
       "readOnly": false,
       "allowAdditionalFields": false,
       "access": ["add", "edit"],
-      "settings": {"trackChanges": true},
+      "constraints": [{ name: "constraint name", fields: ["field_key_one", "field_key_two"], type: "unique", strategy: "concat"}],
       "fields": [
         {
           "key": "code",
@@ -71,18 +71,12 @@ Sheets have some basic options that determine their behavior.
   access controls](./access).
 </ParamField>
 
-<ParamField path="settings" type="object">
-  <b id="settings">Options:</b>
-  <br />
-  `trackChanges: true`: Disables actions on Sheet and Workbook when there is a
-  commit that has not been completed (often when Hooks are running)
-</ParamField>
-
 <ParamField path="fields" type="array" required>
   This is where you define your Sheet's data schema. The collection of fields in
-  your Sheet detemines the shape of data you wish to accept. Read more about
-  field [types](./field-types), [constraints](./constraints), and
-  [relationships](./relationships).
+  your Sheet detemines the shape of data you wish to accept.
+  {""}
+  Learn more about [Field types](./field-types), [Constraints](./constraints),
+  and [Relationships](./relationships).
 </ParamField>
 
 <ParamField path="actions" type="array">
@@ -105,4 +99,10 @@ Sheets have some basic options that determine their behavior.
   for mapping jobs targeting that sheet. This can be used to tune the behavior
   of fuzzy matches, or disable fuzzy matches entirely. **Must be greater than 0
   and less than or equal to 1 (exact match)**
+</ParamField>
+
+<ParamField path="constraints" type="array">
+  Use the `constraints` option to define constraints for a specific Sheet.
+  {""}
+  Learn more about [Constraints](./constraints).
 </ParamField>

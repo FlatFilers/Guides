@@ -1,0 +1,180 @@
+---
+title: "Embed a new Space"
+description: "Create a new Space every time Flatfile is opened."
+icon: "plus"
+---
+
+For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+
+## Before you begin
+
+<Snippet file="shared/pk_needed.mdx" />
+
+## Prepare your project
+
+### Install packages
+
+Make a new directory.
+
+```bash
+mkdir example-flatfile-js-embed
+```
+
+Go into that directory.
+
+```bash
+cd example-flatfile-js-embed
+```
+
+Follow prompts from the `init` command.
+
+```bash
+npm init
+```
+
+Install packages. (We'll use `parcel` for bundling.)
+
+```bash
+npm i @flatfile/javascript @flatfile/listener @flatfile/plugin-record-hook @flatfile/api flatfile
+```
+
+Install dev packages.
+
+```bash
+npm i parcel --save-dev
+```
+
+### Create your file structure
+
+Setup your app to look something like this:
+
+```
+├── public/
+   └── index.html
+   └── styles.css
+├── src/
+   └── client.js
+   └── workbook.js
+   └── listener.js
+├── package.json <--- already created
+└── package-lock.json <--- already created
+```
+
+In this file structure, your app should have two main directories, `public` and `src.`
+
+The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+
+The `src` directory contains the main components and logic of the application, including the `client.js` file, which initializes Flatfile and passes in available options.
+
+## Build your importer
+
+### 1. Add a Flatfile button
+
+Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load. Also, add the content here to your `styles.css`.
+
+<CodeGroup>
+```html public/index.html (snippet)
+<button
+  onclick="openFlatfile({ publishableKey: 'pk_1234'})"
+>
+  Create new Space
+</button>
+```
+
+```html public/index.html (full page)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, world!</title>
+    <script type="module" src="../src/client.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <h2><code>&lt;Flatfile /&gt;</code></h2>
+        <p>Embed Flatfile in just a few lines of code.</p>
+
+        <!-- Button to trigger the modal -->
+        <div>
+          <!-- Note: PUT YOUR KEY AND ENVIRONMENT_ID IN HERE -->
+          <button
+            class="contrast"
+            onclick="openFlatfile({ publishableKey: 'pk_1234' })"
+          >
+            Create new Space
+          </button>
+        </div>
+      </div>
+      <div id="flatfile_iFrameContainer"></div>
+    </div>
+  </body>
+</html>
+```
+
+<Snippet file="shared/iframeStyles.mdx" />
+
+</CodeGroup>
+
+### 2. Initialize Flatfile
+
+In your `client.js`, at minimum, you'll need to receive the `publishableKey` set from when you called `openFlatfile`.
+
+```js src/client.js
+import { initializeFlatfile } from "@flatfile/javascript";
+
+//create a new space in modal
+window.openFlatfile = ({ publishableKey }) => {
+  if (!publishableKey) {
+    throw new Error(
+      "You must provide a publishable key - pass through in index.html"
+    );
+  }
+  const flatfileOptions = {
+    name: "Embedded Space",
+    publishableKey,
+    sidebarConfig: {
+      showSidebar: false,
+    },
+    closeSpace: {
+      operation: "submitActionFg",
+      onClose: () => {
+        //custom code if needed
+      },
+    },
+    // Additional props...
+  };
+
+  initializeFlatfile(flatfileOptions);
+};
+```
+
+### 3. Start your client
+
+Now, start your front end by heading to terminal and running the following command. To see that it’s running, visit: https://localhost:1234 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
+
+```bash
+npx parcel public/index.html
+```
+
+<Snippet file="shared/embedded_listener.mdx" />
+
+### 8. Customize
+
+You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+
+## Example Project
+
+Find this Javascript example project in the Flatfile GitHub repository.
+
+<CardGroup cols={1}>
+  <Card
+    title="create-flatfile-javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-javascript"
+  >
+    Clone the Flatfile Javascript tutorial here.
+  </Card>
+</CardGroup>

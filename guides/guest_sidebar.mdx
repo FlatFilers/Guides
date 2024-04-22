@@ -4,12 +4,14 @@ description: "Learn how to limit what Guests see in their sidebar."
 icon: "sidebar"
 ---
 
+<Snippet file="shared/dxpbanner.mdx" />
+
 <Info>
   This configuration only impacts Guests and not Admins. [Learn more about user
   access](../developer-tools/security/roles-and-permissions).
 </Info>
 
-Flatfile allows you to update your sidebar to hide/show certain elements via the <Tooltip tip="A micro-application...">[Space](../concepts/spaces)</Tooltip> endpoint.
+Flatfile allows you to update your sidebar to hide/show certain elements via the <Tooltip tip="A micro-application...">[Space](../developer-tools/spaces)</Tooltip> endpoint.
 
 Simply update `metadata.sidebarConfig` when calling `spaces.update()`.
 
