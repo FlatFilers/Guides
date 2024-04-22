@@ -1,0 +1,150 @@
+---
+title: "@flatfile/plugin-constraints"
+description: "A plugin for providing a way to register external constraints for Blueprint."
+icon: "download"
+---
+
+<CardGroup cols={1}>
+  <Card title="@flatfile/plugin-constraints" icon="download">
+    <br />
+    The `@flatfile/plugin-constraints` plugin provides a way to register external
+    constraints for Blueprint. By setting up an event listener for the `commit:created`
+    event, this plugin seamlessly integrates with the data processing flow.
+    <br />
+    <br />
+    **Event Type:**
+    <br />
+    `listener.on('commit:created')`
+  </Card>
+</CardGroup>
+
+## Parameters
+
+<ParamField path="validator" type="string">
+  The `validator` parameter is ...
+</ParamField>
+
+<ParamField path="callback" type="function">
+  The `callback` parameter takes a function that will be run on ...
+</ParamField>
+
+## Imported NPM Packages
+
+- [`@flatfile/api@1.7.4+`](https://www.npmjs.com/package/@flatfile/api) Provides the API calls.
+- [`@flatfile/plugin-record-hook@1.4.5+`](https://www.npmjs.com/package/@flatfile/hooks) Provides the record type.
+- [`@flatfile/listener@1.0.1+`](https://www.npmjs.com/package/@flatfile/listener) Provides the listener and event types.
+
+## Usage
+
+### Install
+
+<CodeGroup>
+
+```bash install for javascript
+npm i @flatfile/plugin-constraints
+```
+
+```bash install for typescript
+npm i @flatfile/plugin-constraints
+npm i -D @flatfile/listener @flatfile/plugin-record-hook
+```
+
+</CodeGroup>
+
+### Setup Fields
+
+```js
+// blueprint field
+{
+  key: 'email',
+  type: 'string',
+  label: 'Email',
+  constraints: [
+    {
+      type: 'external',
+      validator: 'email',
+      config: { emailRegex: '^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$' },
+    },
+  ],
+}
+```
+
+### Import
+
+<CodeGroup>
+
+```js listener.js
+import { externalConstraint } from "@flatfile/plugin-constraints";
+
+//...
+```
+
+```ts listener.ts
+import type { FlatfileListener } from "@flatfile/listener";
+import { externalConstraint } from "@flatfile/plugin-constraints";
+import type { FlatfileRecord } from "@flatfile/plugin-record-hook";
+
+//...
+```
+
+</CodeGroup>
+
+Pass `externalConstraint` to a Flatfile data listener and provide a function to run when data is added or updated.
+
+### Listen for data changes
+
+Set up a listener to configure Flatfile and respond to data Events. Then use this plugin to set up a hook that
+responds to data changes.
+
+<CodeGroup>
+
+```js listener.js
+import { externalConstraint } from "@flatfile/plugin-constraints";
+
+export default function (listener) {
+  listener.use(
+    externalConstraint("email", (value, key, { config, record }) => {
+      const validEmailAddress = new RegExp(config.emailRegex);
+      if (value && !validEmailAddress.test(value)) {
+        record.addError(key, "Email address is not valid");
+      }
+    })
+  );
+}
+```
+
+```ts listener.ts
+import type { FlatfileListener } from "@flatfile/listener";
+import { externalConstraint } from "@flatfile/plugin-constraints";
+import type { FlatfileRecord } from "@flatfile/plugin-record-hook";
+
+export default function (listener: FlatfileListener) {
+  listener.use(
+    externalConstraint(
+      "email",
+      (
+        value: any,
+        key: string,
+        { config, record }: { config: any; record: FlatfileRecord }
+      ) => {
+        const validEmailAddress = new RegExp(config.emailRegex);
+        if (value && !validEmailAddress.test(value)) {
+          record.addError(key, "Email address is not valid");
+        }
+      }
+    )
+  );
+}
+```
+
+</CodeGroup>
+
+## See the code
+
+<CardGroup cols={2}>
+  <Card
+    title="@flatfile/plugin-constraints"
+    href="https://github.com/FlatFilers/flatfile-plugins/tree/main/plugins/constraints"
+    icon="github"
+  ></Card>
+</CardGroup>

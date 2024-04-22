@@ -7,7 +7,6 @@ const readStream = fs.createReadStream("/path/to/file");
 try {
   api.files.upload(stream, {
     spaceId: "us_spa_123",
-    environmentId: "us_env_123",
   });
 } catch (error) {
   console.error(error);

@@ -28,7 +28,7 @@ npm i @flatfile/angular-sdk @flatfile/plugin-record-hook @flatfile/listener
 
 ### 1. Initialize Flatfile
 
-In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey` and `environmentId`.
+In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey`.
 
 <CodeGroup>
 
@@ -57,7 +57,6 @@ export class AppComponent {
 
   spaceProps: ISpace = {
     name: 'my space!',
-    environmentId: 'us_env_1234',
     publishableKey: 'sk_1234',
     closeSpace: {
       operation: 'submitActionFg',
@@ -251,7 +250,6 @@ export class AppComponent {
 
   spaceProps: ISpace = {
     name: 'my space!',
-    environmentId: 'us_env_1234',
     publishableKey: 'sk_1234',
     closeSpace: {
       operation: 'submitActionFg',
