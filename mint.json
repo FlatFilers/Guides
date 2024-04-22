@@ -506,7 +506,10 @@
     },
     {
       "group": "Automation",
-      "pages": ["plugins-docs/automations/automap"]
+      "pages": [
+        "plugins/automations/automap",
+        "plugins/automations/webhook-event-forwarding"
+      ]
     },
     {
       "group": "Export",
