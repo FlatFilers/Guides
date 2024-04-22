@@ -229,7 +229,7 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
 ### 2. Configure your project
 
-In your environment file, you'll need to define your keys. In this example, you will need your `environmentId` and `publishableKey`. You can find these under "Developer settings" when logged into [platform.flatfile.com](https://platform.flatfile.com).
+In your environment file, you'll need to define your keys. In this example, you will need your `publishableKey`. You can find these under "Developer settings" when logged into [platform.flatfile.com](https://platform.flatfile.com).
 
 You can create your `.env` file via the template below, as well as your `App.vue`, `tsconfig.json`, `tsconfig.node.json`, and `vite.config.ts`, which are the remaining top-level config files. After these are initialized properly we can configure the app files under `src`.
 
@@ -291,7 +291,7 @@ export default defineConfig({
 
 ### 3. Initialize Flatfile
 
-In your `App.vue` you'll need to pass in a minimum of the `publishableKey` and `environmentId` from your `.env`.
+In your `App.vue` you'll need to pass in a minimum of the `publishableKey` from your `.env`.
 
 Also, add the content here to your `main.ts`, and `vite-env.d.ts`. Optionally you can also add `shims-vue.d.ts` if you have the need.
 
@@ -309,7 +309,6 @@ export default defineComponent({
 
     const spaceProps = ref({
       name: 'Vue Space',
-      environmentId: 'us_env_1234',
       publishableKey: 'pk_1234',
       closeSpace: {
           operation: 'TestSheet:submit',
@@ -552,7 +551,6 @@ export default defineComponent({
 
     const spaceProps = ref({
       name: 'Vue Space',
-      environmentId: 'us_env_1234',
       publishableKey: 'pk_1234',
       closeSpace: {
         operation: 'submitActionFg',
