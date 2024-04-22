@@ -1,0 +1,122 @@
+### 3. Build a Workbook (via Flatfile Blueprint)
+
+Now, let's build a Workbook inside the Space for next time.
+
+1. Add the blueprint `const` right below the `<script>` tag.
+2. Update your `startFlatfile` function to import the Blueprint.
+
+Next time you open Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. Your Workbook will also have a Submit action. We will configure this action in the next step.
+
+<CodeGroup>
+```js blueprint
+const blueprint = {
+  "name": "Contacts",
+  "slug": "contacts",
+  "fields": [
+    {
+      "key": "firstName",
+      "type": "string",
+      "label": "First Name"
+    },
+    {
+      "key": "lastName",
+      "type": "string",
+      "label": "Last Name"
+    },
+    {
+      "key": "email",
+      "type": "string",
+      "label": "Email"
+    }
+  ]
+}
+```
+
+```js startFlatfile()
+FlatFileJavaScript.startFlatfile({
+  publishableKey: "pk_1234",
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet: blueprint,
+});
+```
+
+</CodeGroup>
+
+### 4. Set the destination
+
+Finally, let's get the data out of our system and to your destination with `onSubmit`.
+
+Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](https://flatfile.com/docs/guides/egress)
+
+```js public/index.html
+FlatFileJavaScript.startFlatfile({
+  publishableKey: "pk_1234",
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet: blueprint,
+  onSubmit: async ({ sheet }) => {
+    const data = await sheet.allData();
+    console.log("onSubmit", data);
+  },
+});
+```
+
+### 5. Transform Data
+
+Next, we'll listen for data changes and respond `onRecordHook`,
+
+Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../guides/handling-data)
+
+```js public/index.html
+FlatFileJavaScript.startFlatfile({
+  publishableKey: "pk_1234",
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet: blueprint,
+  onSubmit: async ({ sheet }) => {
+    const data = await sheet.allData();
+    console.log("onSubmit", data);
+  },
+  onRecordHook: (record) => {
+    const firstName = record.get("firstName");
+    console.log({ firstName });
+    record.set("lastName", "Rock");
+    return record;
+  },
+});
+```
+
+### 6. Match your brand
+
+By attaching a `themeConfig`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](https://flatfile.com/docs/guides/theming).
+
+```js public/index.html
+FlatFileJavaScript.startFlatfile({
+  publishableKey: "pk_1234",
+  spaceBody: {
+    namespace: "portal",
+  },
+  sheet: blueprint,
+  onSubmit: async ({ sheet }) => {
+    const data = await sheet.allData();
+    console.log("onSubmit", data);
+  },
+  onRecordHook: (record) => {
+    const firstName = record.get("firstName");
+    console.log({ firstName });
+    record.set("lastName", "Rock");
+    return record;
+  },
+  themeConfig: {
+    root: {
+      primaryColor: "red",
+      textColor: "white",
+      logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+    },
+  },
+});
+```

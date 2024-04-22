@@ -4,6 +4,8 @@ description: "Store descriptive information or data that provides additional con
 icon: "file-circle-info"
 ---
 
+<Snippet file="shared/dxpbanner.mdx" />
+
 ## Overview
 
 Metadata allows you to store and retrieve additional data about an Environment, Space, Record, or Field without
@@ -11,7 +13,7 @@ exposing it to end users.
 
 ## Environment-level
 
-On the environment level `metadata` can be configured to record details about your current enivornment state. This can be useful for developers to store information about their deployments and even aggregate information about spaces, users, and data therin.
+On the environment level `metadata` can be configured to record details about your current enivornment state. This can be useful for developers to store information about their deployments and even aggregate information about spaces, users, and data therein.
 
 ### Usage
 
@@ -49,7 +51,7 @@ await api.spaces.update(spaceId, {
 ```
 
 Learn more about [adding metadata in React embedded
-Flatfile](../guides/use-cases/embedding/react/guide#spaceinfo).
+[Flatfile](../apps/embedding/react/guide#spaceinfo).
 
 ## Workbook-level
 
@@ -63,7 +65,7 @@ Metadata can be added during Workbook creation or at a later stage.
 
 ### Usage
 
-Utilize `@flatfile/api` to create or update a Space with metadata.
+Utilize `@flatfile/api` to create or update a Workbook with metadata.
 
 ```jsx
 await api.workbook.update(spaceId, {
@@ -131,7 +133,6 @@ Utilize `@flatfile/api` to create or update a Workbook's fields with metadata.
 ```jsx
 await api.workbooks.create({
   spaceId,
-  environmentId,
   name: "All Data",
   sheets: [
     {

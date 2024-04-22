@@ -1,9 +1,7 @@
 <CodeGroup>
 
 ```js javascript
-import { recordHook } from "@flatfile/plugin-record-hook";
-
-listener.use(
+red.use(
   recordHook("contacts", (record) => {
     // FirstName field transformation and validation
     const value = record.get("firstName");
@@ -26,9 +24,7 @@ listener.use(
 ```
 
 ```js typescript
-import { recordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
-
-listener.use(
+red.use(
   recordHook("contacts", (record: FlatfileRecord) => {
     // FirstName field transformation and validation
     const value = record.get("firstName");
