@@ -32,7 +32,7 @@ npm i @flatfile/angular-sdk @flatfile/plugin-record-hook @flatfile/listener
 
 ### 1. Initialize Flatfile
 
-In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey` and `environmentId`.
+In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey`.
 
 <CodeGroup>
 
@@ -61,7 +61,6 @@ export class AppComponent {
 
   spaceProps: ISpace = {
     name: 'My space!',
-    environmentId: 'us_env_1234',
     publishableKey: 'sk_1234',
     closeSpace: {
       operation: 'submitActionFg',
@@ -114,7 +113,6 @@ export const blueprint = {
 ```typescript app/app.component.ts
 spaceProps = {
   name: "My space!",
-  environmentId: "us_env_1234",
   publishableKey: "sk_1234",
   closeSpace: {
     operation: "submitActionFg",
@@ -139,7 +137,6 @@ Once you add this code, when the submit button is clicked, this will be the plac
 ```typescript app/app.component.ts
 spaceProps = {
   name: "My space!",
-  environmentId: "us_env_1234",
   publishableKey: "sk_1234",
   closeSpace: {
     operation: "submitActionFg",
@@ -166,7 +163,6 @@ Once you add this code, when a change occurs, we'll log the entered first name a
 ```typescript app/app.component.ts
 spaceProps = {
   name: "My space!",
-  environmentId: "us_env_1234",
   publishableKey: "sk_1234",
   closeSpace: {
     operation: "submitActionFg",
@@ -190,14 +186,13 @@ spaceProps = {
 };
 ```
 
-### 7. Match your brand
+### 6. Match your brand
 
 By attaching a `themeConfig`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../../guides/theming).
 
 ```typescript app/app.component.ts
 spaceProps = {
   name: "My space!",
-  environmentId: "us_env_1234",
   publishableKey: "sk_1234",
   closeSpace: {
     operation: "submitActionFg",
@@ -228,7 +223,7 @@ spaceProps = {
 };
 ```
 
-### 8. Customize
+### 7. Customize
 
 You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
 

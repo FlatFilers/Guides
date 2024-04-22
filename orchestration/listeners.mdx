@@ -158,9 +158,9 @@ Listeners can be hosted everywhere from your local machine to Flatfile's secure 
 | Listener    | Location              | Description                          |
 | ----------- | --------------------- | ------------------------------------ |
 | development | developer machine     | local listener for development       |
-| client-side | user machine          | browser embeded listener             |
-| Agent       | Flatfile secure cloud | Flatfile hosted server side listener |
-| server-side | your secure server    | self-hosted server side listener     |
+| client-side | user machine          | browser embedded listener            |
+| Agent       | Flatfile secure cloud | Flatfile hosted server-side listener |
+| server-side | your secure server    | self-hosted server-side listener     |
 
 Flatfile Listeners can be either client-side or server-side.
 
@@ -194,7 +194,7 @@ We recommend using isolated environments to avoid conflicts with a deployed list
 
 ## Agent Logs
 
-When using Flatfile's secure cloud to host your listener, you can view the executions of your Agent in the "Event Logs" tab of your dashboard.
+When using Flatfile's secure cloud to host your listener, you can view the executions of your Agent in the "Event Logs" tab of your dashboard. **Note:** If you are running your Agent locally using the `develop` command to test, these logs will not be recorded in your dashboard.
 
 Event logs are useful in monitoring and troubleshooting your listener. Each execution of your agent is recorded here, including any custom console logs you have configured in your listener code.
 
