@@ -84,6 +84,7 @@ export default function flatfileEventListener(listener) {
       try {
         await api.jobs.ack(jobId, {
           info: "Starting submit job...",
+          // "progress" value must be a whole integer
           progress: 10,
           estimatedCompletionAt: new Date("Tue Aug 23 2023 16:19:42 GMT-0700"),
         });
@@ -640,11 +641,9 @@ sheets : [
 Add custom messages to actions, tailored according to their state:
 
 - Error
-- Info (coming soon)
-- Success (coming soon)
-- Warning (coming soon)
+- Info
 
-These messages will be displayed as tooltips when users hover over an action, providing context-specific text that corresponds to the action's current state.
+These messages will be displayed as tooltips when users hover over an action, providing context-specific text that corresponds to the action's current state. When an error message is present on an action, the action will be disabled.
 
 ### Usage
 

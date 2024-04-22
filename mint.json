@@ -372,7 +372,8 @@
         "guides/localization",
         "guides/additional-fields",
         "guides/flatfile_query_language",
-        "guides/data-retention"
+        "guides/data-retention",
+        "guides/api"
       ]
     },
     {
@@ -505,7 +506,10 @@
     },
     {
       "group": "Automation",
-      "pages": ["plugins-docs/automations/automap"]
+      "pages": [
+        "plugins/automations/automap",
+        "plugins/automations/webhook-event-forwarding"
+      ]
     },
     {
       "group": "Export",
