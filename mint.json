@@ -42,6 +42,102 @@
     {
       "source": "/developer-tools/mapping-libraries/flatfile-mapping-python",
       "destination": "https://pypi.org/project/flatfile-mapping/"
+    },
+    {
+      "source": "/plugins",
+      "destination": "/plugins-docs"
+    },
+    {
+      "source": "/plugins/extractors/xlsx-extractor",
+      "destination": "/plugins-docs/extractors/xlsx-extractor"
+    },
+    {
+      "source": "/plugins/extractors/json-extractor",
+      "destination": "/plugins-docs/extractors/json-extractor"
+    },
+    {
+      "source": "/plugins/extractors/xml-extractor",
+      "destination": "/plugins-docs/extractors/xml-extractor"
+    },
+    {
+      "source": "/plugins/extractors/zip-extractor",
+      "destination": "/plugins-docs/extractors/zip-extractor"
+    },
+    {
+      "source": "/plugins/extractors/delimiter-extractor",
+      "destination": "/plugins-docs/extractors/delimiter-extractor"
+    },
+    {
+      "source": "/plugins/extractors/pdf-extractor",
+      "destination": "/plugins-docs/extractors/pdf-extractor"
+    },
+    {
+      "source": "/plugins/transform/record-hook",
+      "destination": "/plugins-docs/transform/record-hook"
+    },
+    {
+      "source": "/plugins/transform/autocast",
+      "destination": "/plugins-docs/transform/autocast"
+    },
+    {
+      "source": "/plugins/transform/dedupe",
+      "destination": "/plugins-docs/transform/dedupe"
+    },
+    {
+      "source": "/plugins/automations/automap",
+      "destination": "/plugins-docs/automations/automap"
+    },
+    {
+      "source": "/plugins/export/workbook",
+      "destination": "/plugins-docs/export/workbook"
+    },
+    {
+      "source": "/plugins/export/webhook",
+      "destination": "/plugins-docs/export/webhook"
+    },
+    {
+      "source": "/plugins/schemas/convert-json-schema",
+      "destination": "/plugins-docs/schemas/convert-json-schema"
+    },
+    {
+      "source": "/plugins/schemas/convert-yaml-schema",
+      "destination": "/plugins-docs/schemas/convert-yaml-schema"
+    },
+    {
+      "source": "/plugins/schemas/convert-sql-ddl",
+      "destination": "/plugins-docs/schemas/convert-sql-ddl"
+    },
+    {
+      "source": "/plugins/schemas/convert-openapi",
+      "destination": "/plugins-docs/schemas/convert-openapi"
+    },
+    {
+      "source": "/plugins/datasets/zipcodes",
+      "destination": "/plugins-docs/datasets/zipcodes"
+    },
+    {
+      "source": "/plugins/migrations/dxp-configure",
+      "destination": "/plugins-docs/migrations/dxp-configure"
+    },
+    {
+      "source": "/plugins/core/job-handler",
+      "destination": "/plugins-docs/core/job-handler"
+    },
+    {
+      "source": "/plugins/core/space-configure",
+      "destination": "/plugins-docs/core/space-configure"
+    },
+    {
+      "source": "/plugins/utils/extractor",
+      "destination": "/plugins-docs/utils/extractor"
+    },
+    {
+      "source": "/plugins/utils/file-buffer",
+      "destination": "/plugins-docs/utils/file-buffer"
+    },
+    {
+      "source": "/plugins/utils/response-rejection",
+      "destination": "/plugins-docs/utils/response-rejection"
     }
   ],
   "topbarLinks": [
@@ -52,7 +148,7 @@
   ],
   "topbarCtaButton": {
     "name": "Sign in",
-    "url": "https://platform.flatfile.com"
+    "url": "https://platform.flatfile.com/oauth/dashboard"
   },
   "versions": [
     "latest",
@@ -83,8 +179,88 @@
       "pages": ["overview", "starter-projects"]
     },
     {
-      "group": "Updates by area",
-      "pages": ["changelog/platform", "changelog/sdks", "changelog/plugins"]
+      "group": "Highlights",
+      "pages": [
+        "changelog/platform",
+        "changelog/sdks",
+        "changelog/sdks/plugins/highlights"
+      ]
+    },
+    {
+      "group": "Core Libraries",
+      "pages": ["changelog/sdks/core/cli", "changelog/sdks/core/listener"]
+    },
+    {
+      "group": "Embedded Wrappers",
+      "pages": [
+        "changelog/sdks/wrappers/javascript",
+        "changelog/sdks/wrappers/react",
+        "changelog/sdks/wrappers/angular",
+        "changelog/sdks/wrappers/vue"
+      ]
+    },
+    {
+      "group": "Plugins",
+      "pages": [
+        {
+          "group": "Extractors",
+          "pages": [
+            "changelog/sdks/plugins/extractors/xlsx-extractor",
+            "changelog/sdks/plugins/extractors/json-extractor",
+            "changelog/sdks/plugins/extractors/xml-extractor",
+            "changelog/sdks/plugins/extractors/zip-extractor",
+            "changelog/sdks/plugins/extractors/delimiter-extractor",
+            "changelog/sdks/plugins/extractors/pdf-extractor"
+          ]
+        },
+        {
+          "group": "Transform",
+          "pages": [
+            "changelog/sdks/plugins/transform/record-hook",
+            "changelog/sdks/plugins/transform/autocast",
+            "changelog/sdks/plugins/transform/dedupe"
+          ]
+        },
+        {
+          "group": "Automation",
+          "pages": ["changelog/sdks/plugins/automations/automap"]
+        },
+        {
+          "group": "Export",
+          "pages": [
+            "changelog/sdks/plugins/export/export-workbook",
+            "changelog/sdks/plugins/export/webhook-egress"
+          ]
+        },
+        {
+          "group": "Schemas",
+          "pages": [
+            "changelog/sdks/plugins/schemas/json-schema",
+            "changelog/sdks/plugins/schemas/yaml-schema",
+            "changelog/sdks/plugins/schemas/sql-ddl-converter",
+            "changelog/sdks/plugins/schemas/openapi-schema"
+          ]
+        },
+        {
+          "group": "Migrations",
+          "pages": ["changelog/sdks/plugins/migrations/dxp-configure"]
+        },
+        {
+          "group": "Core",
+          "pages": [
+            "changelog/sdks/plugins/core/job-handler",
+            "changelog/sdks/plugins/core/space-configure"
+          ]
+        },
+        {
+          "group": "Utils",
+          "pages": [
+            "changelog/sdks/plugins/utils/extractor",
+            "changelog/sdks/plugins/utils/file-buffer",
+            "changelog/sdks/plugins/utils/response-rejection"
+          ]
+        }
+      ]
     },
     {
       "group": "Platform Apps",
@@ -200,6 +376,10 @@
       ]
     },
     {
+      "group": "By Integration",
+      "pages": ["guides/bubble-io"]
+    },
+    {
       "group": "Orchestration",
       "pages": [
         "orchestration/listeners",
@@ -284,12 +464,11 @@
     },
     {
       "group": "Embedded Wrappers",
-      "icon": "clock",
       "pages": [
+        "developer-tools/core-libraries/wrappers/vanilla",
         "developer-tools/core-libraries/wrappers/react",
         "developer-tools/core-libraries/wrappers/angular",
-        "developer-tools/core-libraries/wrappers/vuejs",
-        "developer-tools/core-libraries/wrappers/vanilla"
+        "developer-tools/core-libraries/wrappers/vuejs"
       ]
     },
     {
@@ -298,79 +477,82 @@
     },
     {
       "group": "Plugins",
-      "pages": ["plugins/overview"]
+      "pages": ["plugins-docs/overview"]
     },
     {
       "group": "Extractors",
       "pages": [
-        "plugins/extractors/xlsx-extractor",
-        "plugins/extractors/json-extractor",
-        "plugins/extractors/xml-extractor",
-        "plugins/extractors/zip-extractor",
-        "plugins/extractors/delimiter-extractor",
-        "plugins/extractors/pdf-extractor",
+        "plugins-docs/extractors/xlsx-extractor",
+        "plugins-docs/extractors/json-extractor",
+        "plugins-docs/extractors/xml-extractor",
+        "plugins-docs/extractors/zip-extractor",
+        "plugins-docs/extractors/delimiter-extractor",
+        "plugins-docs/extractors/pdf-extractor",
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/extractors/doc-extractor"]
+          "pages": ["plugins-docs/extractors/doc-extractor"]
         }
       ]
     },
     {
       "group": "Transform",
       "pages": [
-        "plugins/transform/record-hook",
-        "plugins/transform/autocast",
-        "plugins/transform/dedupe"
+        "plugins-docs/transform/record-hook",
+        "plugins-docs/transform/autocast",
+        "plugins-docs/transform/dedupe"
       ]
     },
     {
       "group": "Automation",
-      "pages": ["plugins/automations/automap"]
+      "pages": ["plugins-docs/automations/automap"]
     },
     {
       "group": "Export",
-      "pages": ["plugins/export/workbook", "plugins/export/webhook"]
+      "pages": ["plugins-docs/export/workbook", "plugins-docs/export/webhook"]
     },
     {
       "group": "Schemas",
       "pages": [
-        "plugins/schemas/convert-json-schema",
-        "plugins/schemas/convert-yaml-schema",
-        "plugins/schemas/convert-sql-ddl",
-        "plugins/schemas/convert-openapi",
+        "plugins-docs/schemas/convert-json-schema",
+        "plugins-docs/schemas/convert-yaml-schema",
+        "plugins-docs/schemas/convert-sql-ddl",
+        "plugins-docs/schemas/convert-openapi",
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/schemas/convert-graphql"]
+          "pages": ["plugins-docs/schemas/convert-graphql"]
         }
       ]
     },
     {
       "group": "Datasets",
       "pages": [
-        "plugins/datasets/zipcodes",
+        "plugins-docs/datasets/zipcodes",
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": ["plugins/datasets/countries"]
+          "pages": ["plugins-docs/datasets/countries"]
         }
       ]
     },
     {
       "group": "Migrations",
-      "pages": ["plugins/migrations/dxp-configure"]
+      "pages": ["plugins-docs/migrations/dxp-configure"]
     },
     {
       "group": "Core",
-      "pages": ["plugins/core/job-handler", "plugins/core/space-configure"]
+      "pages": [
+        "plugins-docs/core/job-handler",
+        "plugins-docs/core/space-configure"
+      ]
     },
     {
       "group": "Utils",
       "pages": [
-        "plugins/utils/extractor",
-        "plugins/utils/file-buffer",
-        "plugins/utils/response-rejection"
+        "plugins-docs/utils/extractor",
+        "plugins-docs/utils/file-buffer",
+        "plugins-docs/utils/response-rejection"
       ]
     }
   ],
@@ -404,7 +586,7 @@
     },
     {
       "name": "Plugins",
-      "url": "plugins"
+      "url": "plugins-docs"
     },
     {
       "name": "CLI",

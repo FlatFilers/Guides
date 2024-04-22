@@ -1,0 +1,217 @@
+---
+title: "Bubble.io"
+description: "Open Flatfile from a Bubble.io webpage."
+icon: "soap"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+Integrating Flatfile into a Bubble.io app involves embedding the provided Flatfile JavaScript code into an HTML element within Bubble.
+
+## Before you begin
+
+<Snippet file="shared/pk_needed.mdx" />
+
+## Prepare your project
+
+### 1. Add the HTML Structure
+
+Since Bubble doesn't allow direct script tags in its HTML elements for security reasons, you'll need to use Bubble's "HTML" element to embed the HTML structure. In your Bubble editor, drag and drop an HTML element onto the page where you want the Flatfile integration.
+
+### 2. Create a button
+
+1. From the design toolbox (usually on the left side of the screen), drag and drop a Button element onto your page.
+2. Once you've placed the button on the page, click on it to open its properties.
+3. Go to Settings > General > Check “Expose the option to set an ID attribute to HTML element”
+4. Set the ID of the button in the Properties for that button to: `startFlatfileButton`
+
+## Build your importer
+
+### 1. Initialize Flatfile
+
+Initialize Flatfile to open in a modal from your Bubble.io webpage. Pass in your `publishableKey` and a new Space will be created on each page load. Optionally, you can add styles inline above your `<script>` tag.
+
+<CodeGroup>
+
+```html <html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, world!</title>
+    <script src="https://unpkg.com/@flatfile/javascript@^0.3.1/dist/index.js"></script>
+
+    <script>
+      function initializeFlatfile() {
+        const startFlatfileButton = document.getElementById(
+          "startFlatfileButton"
+        );
+
+        startFlatfileButton.addEventListener("click", function () {
+          FlatFileJavaScript.startFlatfile({
+            publishableKey: "pk_d694c973c59348ab8261251907bcfb29",
+            spaceBody: {
+              namespace: "portal",
+            },
+          });
+        });
+      }
+      window.onload = initializeFlatfile;
+    </script>
+  </head>
+</html>
+```
+
+```css <style>
+    <style type="text/css">
+      :root {
+        --ff-primary-color: #4c48ef !important;
+        --ff-secondary-color: #616a7d !important;
+        --ff-text-color: #090b2b !important;
+        --ff-dialog-border-radius: 4px !important;
+        --ff-border-radius: 5px !important;
+        --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+      /* The default mount element */
+      /* #flatfile_iFrameContainer {
+  } */
+
+      /* A div around the iframe that contains Flatfile */
+      /* .flatfile_iframe-wrapper {
+  } */
+
+      /* The actual iframe that contains Flatfile */
+      /* #flatfile_iframe {
+  } */
+
+      /* Begin style overrides for when Flatfile is displayed as a modal */
+
+      /* This class gets appended to the flatfile_iframe-wrapper div */
+      .flatfile_displayAsModal {
+        padding: 50px !important;
+        width: calc(100% - 100px) !important;
+        height: calc(100vh - 100px) !important;
+      }
+
+      .flatfile_iframe-wrapper.flatfile_displayAsModal {
+        background: var(--ff-bg-fade);
+      }
+
+      /* The close button in top right to close modal */
+      /* .flatfile_displayAsModal .flatfile-close-button {
+  } */
+
+      /* The icon for the close button in top right to close modal */
+      .flatfile_displayAsModal .flatfile-close-button svg {
+        fill: var(--ff-secondary-color);
+      }
+
+      /* The actual iframe that contains Flatfile */
+      .flatfile_displayAsModal #flatfile_iframe {
+        border-radius: var(--ff-border-radius);
+      }
+
+      /* Begin style overrides for when you cancel out of the Flatfile modal */
+
+      /* The outer container of the modal that opens when you cancel out of Flatfile */
+      .flatfile_outer-shell {
+        background-color: var(--ff-bg-fade);
+        border-radius: var(--ff-border-radius);
+      }
+
+      /* The inner container of the modal that opens when you cancel out of Flatfile */
+      /* .flatfile_inner-shell {
+  } */
+
+      /* The white box inside the modal that opens when you cancel out of Flatfile */
+      .flatfile_modal {
+        border-radius: var(--ff-dialog-border-radius);
+      }
+
+      /* The container for the buttons you see in the close modal */
+      /* .flatfile_button-group {
+  } */
+
+      /* Style the buttons you see in the close modal */
+      /* .flatfile_button {
+  } */
+
+      /* The "yes, cancel" button you see in the close modal */
+      .flatfile_primary {
+        border: 1px solid var(--ff-primary-color);
+        background-color: var(--ff-primary-color);
+        color: #fff;
+      }
+
+      /* The "no, stay" button you see in the close modal */
+      .flatfile_secondary {
+        color: var(--ff-secondary-color);
+      }
+
+      /* The heading text you see in the close modal */
+      .flatfile_modal-heading {
+        color: var(--ff-text-color);
+      }
+
+      /* The description text you see in the close modal */
+      .flatfile_modal-text {
+        color: var(--ff-secondary-color);
+      }
+
+      /* End style overrides for when you cancel out of the Flatfile modal */
+
+      /* End style overrides for when Flatfile is displayed as a modal */
+
+      /* The container of the error component */
+      /* .ff_error_container {
+  }*/
+
+      /* The heading text you see in the error component */
+      /* .ff_error_heading {
+  }*/
+
+      /* The description text you see in the error component */
+      /* .ff_error_text {
+  }*/
+    </style>
+```
+
+</CodeGroup>
+
+### 2. Test the integration
+
+1. Look for the "Preview" button in the Bubble.io editor. This is usually located at the top right of the page, near the "Deploy" button.
+2. Click the "Preview" button. This will open a new tab or window in your browser showing how your page will look and function in a live environment.
+3. Click the button to Open Flatfile. You should see that Flatfile opens and an empty Space gets created.
+
+<Snippet file="shared/embedded_listener_quickstart_bubble.mdx" />
+
+### 8. Customize
+
+You can stop here or you can [view our full reference](../apps/embedding/reference/common) to see all the ways you can customize your importer.
+
+## Example Projects
+
+Find these Javascript example projects in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="create-flatfile-javascript-simplified"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-javascript-simplified"
+  >
+    Clone the simplified Flatfile Javascript tutorial using a CDN here.
+  </Card>
+  <Card
+    title="create-flatfile-javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-javascript"
+  >
+    Want to get started? Clone the Flatfile JavaScript tutorial here.
+  </Card>
+</CardGroup>

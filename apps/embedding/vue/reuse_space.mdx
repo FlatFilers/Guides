@@ -260,7 +260,7 @@ app.get('/api/spaces/:id', async (_req, res)=>{
   const {id} = _req.params;
   const flatfile = new FlatfileClient({
     token: process.env.FLATFILE_API_KEY,
-    environment: 'https://api.x.flatfile.com/v1/',
+    environment: 'https://platform.flatfile.com/v1/',
   });
   try {
     const space = await flatfile.spaces.get(id);
@@ -352,7 +352,7 @@ app.get('/api/spaces/:id', async (_req, res)=>{
   const {id} = _req.params;
   const flatfile = new FlatfileClient({
     token: process.env.FLATFILE_API_KEY,
-    environment: 'https://api.x.flatfile.com/v1/',
+    environment: 'https://platform.flatfile.com/v1/',
   });
   try {
     const space = await flatfile.spaces.get(id);
@@ -450,7 +450,6 @@ export default defineComponent({
     const showSpace = ref(false);
 
     const spaceProps = ref({
-      environmentId: 'us_env_1234',
       space: {
         id: 'us_sp_1234',
         accessToken: 'sk_1234',
@@ -462,8 +461,11 @@ export default defineComponent({
         },
       },
       themeConfig: {
-        primaryColor: "#546a76",
-        textColor: "#fff",
+        root: {
+          primaryColor: "red",
+          textColor: "white",
+          logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+        },
       },
       displayAsModal: true,
     });
@@ -737,7 +739,6 @@ export default defineComponent({
 
     const spaceProps = ref({
       name: 'Vue Space',
-      environmentId: 'us_env_1234',
       publishableKey: 'pk_1234',
       closeSpace: {
         operation: 'submitActionFg',

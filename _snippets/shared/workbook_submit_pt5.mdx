@@ -2,23 +2,16 @@
 
 ```js listener.js
 import api from "@flatfile/api";
-import {
-  responseRejectionHandler,
-  RejectionResponse,
-} from "@flatfile/util-response-rejection";
-import axios from "axios";
+import { responseRejectionHandler } from "@flatfile/util-response-rejection";
 
 export default function flatfileEventListener(listener) {
   listener.on(
     "job:ready",
     { job: "workbook:submitActionFg" },
-    async ({ context: { jobId, workbookId }, payload }) => {
+    async (event: FlatfileEvent) => {
+      const { jobId, workbookId } = event.context;
       const { data: workbook } = await api.workbooks.get(workbookId);
       const { data: workbookSheets } = await api.sheets.list({ workbookId });
-
-      //get the input data by querying the job
-      const job = await api.jobs.get(jobId);
-      const priority = job.data.input["priority"];
 
       const sheets = [];
       for (const [_, element] of workbookSheets.entries()) {
@@ -35,55 +28,48 @@ export default function flatfileEventListener(listener) {
           progress: 10,
         });
 
-        console.log(JSON.stringify(sheets, null, 2));
+        // TODO: place your webhook url here
+        const webhookReceiver = "https://webhook.site/...";
 
-        const webhookReceiver =
-          process.env.WEBHOOK_SITE_URL ||
-          "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388"; //update this
-
-        const response = await axios.post(
-          webhookReceiver,
-          {
-            ...payload,
-            method: "axios",
+        const response = await fetch(webhookReceiver, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
             workbook: {
               ...workbook,
               sheets,
-              priority,
             },
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+          }),
+        });
 
         if (response.status === 200) {
-          const rejections: RejectionResponse = response.data.rejections;
+          const responseData = await response.json();
+          const rejections = responseData.rejections;
+
           if (rejections) {
-            return await responseRejectionHandler(rejections);
+            const outcome = await responseRejectionHandler(rejections);
+            await api.jobs.complete(jobId, outcome);
           }
-          return await api.jobs.complete(jobId, {
+          await api.jobs.complete(jobId, {
             outcome: {
-              message:
-                "Data was successfully submitted to webhook.site. Go check it out at " +
-                webhookReceiver +
-                ".",
+              message: `Data was successfully submitted to webhook.site. Go check it out at ${webhookReceiver}.`,
             },
           });
         } else {
           throw new Error("Failed to submit data to webhook.site");
         }
+        return;
       } catch (error) {
-        console.log(`webhook.site[error]: ${JSON.stringify(error, null, 2)}`);
-
+        console.error(error);
         await api.jobs.fail(jobId, {
           outcome: {
             message:
               "This job failed probably because it couldn't find the webhook.site URL.",
           },
         });
+        return;
       }
     }
   );
@@ -101,11 +87,10 @@ export default function flatfileEventListener(listener: FlatfileListener) {
   listener.on(
     "job:ready",
     { job: "workbook:submitActionFg" },
-    async ({ context: { jobId, workbookId }, payload }: FlatfileEvent) => {
-      const { data: workbook } = await api.sheets.list({ workbookId });
-      const { data: workbookSheets } = await api.sheets.list({
-        workbookId,
-      });
+    async (event: FlatfileEvent) => {
+      const { jobId, workbookId } = event.context;
+      const { data: workbook } = await api.workbooks.get(workbookId);
+      const { data: workbookSheets } = await api.sheets.list({ workbookId });
 
       const sheets = [];
       for (const [_, element] of workbookSheets.entries()) {
@@ -122,66 +107,48 @@ export default function flatfileEventListener(listener: FlatfileListener) {
           progress: 10,
         });
 
-        console.log(JSON.stringify(sheets, null, 2));
+        // TODO: place your webhook url here
+        const webhookReceiver = "https://webhook.site/...";
 
-        const webhookReceiver =
-          process.env.WEBHOOK_SITE_URL ||
-          "https://webhook.site/c83648d4-bf0c-4bb1-acb7-9c170dad4388"; //update this
-
-        const response = await axios.post(
-          webhookReceiver,
-          {
-            ...payload,
-            method: "axios",
+        const response = await fetch(webhookReceiver, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
             workbook: {
               ...workbook,
               sheets,
             },
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+          }),
+        });
 
         if (response.status === 200) {
-          const rejections = response.data.rejections;
+          const responseData = await response.json();
+          const rejections: RejectionResponse = responseData.rejections;
+
           if (rejections) {
-            const totalRejectedRecords = await responseRejectionHandler(
-              rejections
-            );
-            return await api.jobs.complete(jobId, {
-              outcome: {
-                next: {
-                  type: "id",
-                  id: rejections.id,
-                  label: "See rejections...",
-                },
-                message: `Data was submission was partially successful. ${totalRejectedRecords} record(s) were rejected.`,
-              },
-            });
+            const outcome = await responseRejectionHandler(rejections);
+            await api.jobs.complete(jobId, outcome);
           }
-          return await api.jobs.complete(jobId, {
+          await api.jobs.complete(jobId, {
             outcome: {
-              message:
-                "Data was successfully submitted to webhook.site. Go check it out at " +
-                webhookReceiver +
-                ".",
+              message: `Data was successfully submitted to webhook.site. Go check it out at ${webhookReceiver}.`,
             },
           });
         } else {
           throw new Error("Failed to submit data to webhook.site");
         }
+        return;
       } catch (error) {
-        console.log(`webhook.site[error]: ${JSON.stringify(error, null, 2)}`);
-
+        console.error(error);
         await api.jobs.fail(jobId, {
           outcome: {
             message:
               "This job failed probably because it couldn't find the webhook.site URL.",
           },
         });
+        return;
       }
     }
   );

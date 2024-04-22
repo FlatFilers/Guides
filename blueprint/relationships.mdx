@@ -4,60 +4,63 @@ description: Referencing data in other Sheets
 icon: "link"
 ---
 
-<Warning>
-  This is not comparable to a foreign key. There should be no specification of
-  which column to reference as it is multi-variate. A user may establish a
-  relationship in mapping with a soft reference like a company name. Once stored
-  in our system, we will reference by our internal IDs, and on egress we provide
-  the known system_id if available.
-</Warning>
-
-The relationship defines a reference to another Sheet. Links should be established automatically by the mapping engine (the logic that creates a mapping plan automatically when a user maps their data into a workbook) or similar upon an evaluation of unique or similar columns between datasets.
+The relationship defines a reference to another Sheet, similar to a Foreign Key.
+Links should be established automatically by the mapping engine (the logic that
+creates a mapping plan automatically when a user maps their data into a workbook)
+or similar upon an evaluation of unique or similar columns between datasets.
 
 ## Configuration Options
 
-- **ref** - Full path reference to another Sheet/table configuration. Must be in the same Workbook
-- **relationship** - The type of relationship this defines. Currently, only `has-one` is supported
+- **ref** - Full path reference to another Sheet/table configuration. Must be in
+the same Workbook
+- **relationship** - The type of relationship this defines. Currently, only
+`has-one` is supported
 
 ## Usage
 
 ### Inheritance
 
-This example introduces two fields linked by a relationship, inheriting the respective email addresses of the father and mother from another Sheet.
+This example introduces two fields linked by a relationship, inheriting the
+respective email addresses of the father and mother from another Sheet.
 
 ```json workbooks.create
 // in the context of create Workbook API call
-{
-  "fields": [
-    {
-      "key": "father",
-      "type": "reference",
-      "config": {
-        "ref": "parents",
-        "key": "email",
-        "relationship": "has-one"
+  {
+    "fields": [
+      {
+        "key": "father",
+        "type": "reference",
+        "config": {
+          "ref": "parents",
+          "key": "email",
+          "relationship": "has-one"
+        }
+      },
+      {
+        "key": "mother",
+        "type": "reference",
+        "config": {
+          "ref": "parents",
+          "key": "email",
+          "relationship": "has-one"
+        }
       }
-    },
-    {
-      "key": "mother",
-      "type": "reference",
-      "config": {
-        "ref": "parents",
-        "key": "email",
-        "relationship": "has-one"
-      }
-    }
-  ]
-}
+    ]
+  }
 ```
+
 
 ### Lookups
 
-This example mimics a vlookup operation by fetching a value from a linked record and applying it to a designated field in the original record.
+This example mimics a vlookup operation by fetching a value from a linked record
+and applying it to a designated field in the original record.
 
-The linked record is designated by a reference field in the original record, and the sought-after value is defined by a lookup field in the linked record.
+The linked record is designated by a reference field in the original record, and
+the sought-after value is defined by a lookup field in the linked record.
 
-When a lookup value is located, it's placed into the original record's target field. Furthermore, a message is added to the record, detailing the origin of the retrieved value.
+When a lookup value is located, it's placed into the original record's target
+field. Furthermore, a message is added to the record, detailing the origin of
+the retrieved value.
 
 <ParamField path="record" type="Object">
   The record to perform the vlookup on.
@@ -80,31 +83,30 @@ When a lookup value is located, it's placed into the original record's target fi
 
 ```jsx
 // in the context of listener.use(recordHook){}
-
-export const vlookup = (
-  record,
-  referenceFieldKey,
-  lookupFieldKey,
-  targetFieldKey
-) => {
-  console.log("Initial Record: " + JSON.stringify(record));
-  const links = record.getLinks(referenceFieldKey);
-  console.log("Linked Record: " + JSON.stringify(links));
-  const lookupValue = links?.[0]?.[lookupFieldKey];
-  console.log(
-    "Reference Fields Key: " +
-      referenceFieldKey +
-      " : " +
-      "LookUpValue: " +
-      lookupValue
-  );
-
-  if (isNotNil(lookupValue)) {
-    record.set(targetFieldKey, lookupValue);
-    record.addInfo(
-      targetFieldKey,
-      `${targetFieldKey} set based on ${referenceFieldKey}.`
+  export const vlookup = (
+    record,
+    referenceFieldKey,
+    lookupFieldKey,
+    targetFieldKey
+  ) => {
+    console.log("Initial Record: " + JSON.stringify(record));
+    const links = record.getLinks(referenceFieldKey);
+    console.log("Linked Record: " + JSON.stringify(links));
+    const lookupValue = links?.[0]?.[lookupFieldKey];
+    console.log(
+      "Reference Fields Key: " +
+        referenceFieldKey +
+        " : " +
+        "LookUpValue: " +
+        lookupValue
     );
-  }
-};
+
+    if (isNotNil(lookupValue)) {
+      record.set(targetFieldKey, lookupValue);
+      record.addInfo(
+        targetFieldKey,
+        `${targetFieldKey} set based on ${referenceFieldKey}.`
+      );
+    }
+  };
 ```
