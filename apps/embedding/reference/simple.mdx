@@ -22,7 +22,7 @@ const flatfileOptions = {
 <ParamField path="spaceBody" type="object">
   Pass in space options to configure a new Space. Find all available parameters
   for spaceBody in the [API
-  Reference](https://flatfile.stoplight.io/docs/api/25e20c8ab61c5-create-a-space).
+  Reference](https://reference.flatfile.com/api-reference/spaces/create-a-space).
 </ParamField>
 
 ```typescript src/client.js
@@ -126,7 +126,7 @@ Adding on to the Full Example:
     <title>Your Page Title</title>
     <script src="https://www.unpkg.com/@flatfile/javascript@latest/dist/index.js"></script>
     <script>
-      window.openFlatfile = ({ publishableKey, environmentId }) => {
+      window.openFlatfile = ({ publishableKey }) => {
         const sheet = {
           name: 'Contacts',
             slug: 'contacts',
@@ -174,7 +174,6 @@ Adding on to the Full Example:
         }
         const flatfileOptions = {
           publishableKey,
-          environmentId,
           sheet,
           // more to come here in the following sections
         }
@@ -187,7 +186,7 @@ Adding on to the Full Example:
     <div class="container">
       <button
         id="flatfileButton"
-        onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
+        onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY'})"
       >
         Import Contacts
       </button>
@@ -209,7 +208,6 @@ The callback you write will get the `record` passed in by default and you can up
 // taking just the flatfileOptions object out from the full example
 const flatfileOptions = {
   publishableKey,
-  environmentId,
   sheet,
   onRecordHook: (record) => {
     const name = record.get('name')
@@ -239,7 +237,7 @@ Here’s the above added to the full code snippet:
     <title>Your Page Title</title>
     <script src="https://www.unpkg.com/@flatfile/javascript@latest/dist/index.js"></script>
     <script>
-      window.openFlatfile = ({ publishableKey, environmentId }) => {
+      window.openFlatfile = ({ publishableKey }) => {
         const sheet = {
           name: 'Contacts',
           slug: 'contacts',
@@ -287,7 +285,6 @@ Here’s the above added to the full code snippet:
         }
         const flatfileOptions = {
             publishableKey,
-            environmentId,
             sheet,
             onRecordHook: (record) => {
                 const name = record.get('name')
@@ -308,7 +305,7 @@ Here’s the above added to the full code snippet:
     <div class="container">
       <button
           id="flatfileButton"
-          onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
+          onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY'})"
       >
         Import Contacts
       </button>
@@ -342,7 +339,6 @@ With all those methods brought to light, let’s simply use the `allData` method
 // just working within the confines of the flatfileOptions object
 const flatfileOptions = {
   publishableKey,
-  environmentId,
   sheet,
   onRecordHook: (record) => {
     const name = record.get('name')
@@ -372,7 +368,7 @@ Now let’s put it all together in the full example:
     <title>Your Page Title</title>
     <script src="https://www.unpkg.com/@flatfile/javascript@latest/dist/index.js"></script>
     <script>
-      window.openFlatfile = ({ publishableKey, environmentId }) => {
+      window.openFlatfile = ({ publishableKey }) => {
         const sheet = {
           name: "Contacts",
           slug: "contacts",
@@ -415,7 +411,6 @@ Now let’s put it all together in the full example:
         };
         const flatfileOptions = {
           publishableKey,
-          environmentId,
           sheet,
           onRecordHook: (record) => {
             const name = record.get("name");
@@ -442,7 +437,7 @@ Now let’s put it all together in the full example:
     <div class="container">
       <button
         id="flatfileButton"
-        onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY', environmentId: 'YOUR_ENV_ID'})"
+        onclick="openFlatfile({ publishableKey: 'YOUR_PUBLISHABLE_KEY'})"
       >
         Import Contacts
       </button>
@@ -453,6 +448,6 @@ Now let’s put it all together in the full example:
 ```
 </CodeGroup>
 
-The above example is a fully working example that only needs to have your publishable key and environment id changed out for it to work as expected.
+The above example is a fully working example that only needs to have your publishable key changed out for it to work as expected.
 
 As a quick reminder, this is just the baseline of what Flatfile is capable of doing. You can check out more resources in our [documentation here.](https://flatfile.com/docs/overview)

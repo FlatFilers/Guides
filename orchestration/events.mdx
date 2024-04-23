@@ -134,6 +134,68 @@ outcome or plan subsequent actions accordingly.
 }
 ```
 
+### Document
+
+#### `document:created`
+
+<ParamField path="document:created" type="readonly">
+  Called when a document is created on a workbook.
+</ParamField>
+
+```json
+{
+  "domain": "document",
+  "topic": "document:created",
+  "context": {
+    "actorId": "us_key_1234",
+    "spaceId": "us_sp_1234",
+    "accountId": "us_acc_1234",
+    "documentId": "us_dc_1234",
+    "environmentId": "us_env_1234"
+  }
+}
+```
+
+#### `document:updated`
+
+<ParamField path="document:updated" type="readonly">
+  Called when a document is updated on a workbook.
+</ParamField>
+
+```json
+{
+  "domain": "document",
+  "topic": "document:updated",
+  "context": {
+    "actorId": "us_key_1234",
+    "spaceId": "us_sp_1234",
+    "accountId": "us_acc_1234",
+    "documentId": "us_dc_1234",
+    "environmentId": "us_env_1234"
+  }
+}
+```
+
+#### `document:deleted`
+
+<ParamField path="document:deleted" type="readonly">
+  Called when a document is deleted on a workbook.
+</ParamField>
+
+```json
+{
+  "domain": "document",
+  "topic": "document:deleted",
+  "context": {
+    "actorId": "us_key_1234",
+    "spaceId": "us_sp_1234",
+    "accountId": "us_acc_1234",
+    "documentId": "us_dc_1234",
+    "environmentId": "us_env_1234"
+  }
+}
+```
+
 ### Sheet
 
 #### `sheet:updated`
@@ -183,6 +245,31 @@ outcome or plan subsequent actions accordingly.
 }
 ```
 
+### Snapshot
+
+#### `snapshot:created`
+
+<ParamField path="snapshot:created" type="readonly">
+  Called when a snapshot is created of the sheet. This can be triggered by the
+  API endpoint or when AI Assist is used to modify a sheet.
+</ParamField>
+
+```json
+{
+  "domain": "sheet",
+  "topic": "snapshot:created",
+  "context": {
+    "appId": "us_app_1234",
+    "accountId": "us_acc_1234",
+    "snapshotId": "us_ss_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "sheetId": "us_sh_1234",
+    "actorId": "us_ag_XRGmuGfL"
+  }
+}
+
 ### Record
 
 #### `commit:created`
@@ -204,8 +291,33 @@ outcome or plan subsequent actions accordingly.
     "workbookId": "us_wb_1234",
     "sheetId": "us_sh_1234",
     "sheetSlug": "MasterWorkbook/Data",
-    "versionId": "us_vr_1234,
+    "versionId": "us_vr_1234",
     "actorId": "us_usr_1234"
+  }
+}
+```
+
+#### `commit:completed`
+
+<ParamField path="commit:completed" type="readonly">
+  This only runs when trackChanges is enabled on the workbook. This event fires
+  when a commit has completed and any record changes have finished.
+</ParamField>
+
+```json
+{
+  "domain": "workbook",
+  "topic": "commit:completed",
+  "context": {
+    "appId": "us_app_1234",
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "sheetId": "us_sh_1234",
+    "versionId": "us_vr_1234",
+    "actorId": "us_usr_1234",
+    "commitId": "us_vr_1234"
   }
 }
 ```
@@ -522,6 +634,24 @@ outcome or plan subsequent actions accordingly.
 }
 ```
 
+#### `agent:updated`
+
+<ParamField path="agent:updated" type="readonly">
+  Called when an agent is updated.
+</ParamField>
+
+```json
+{
+  "domain": "space",
+  "topic": "agent:updated",
+  "context": {
+    "actorId": "us_ag_1234",
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "agentId": "us_ag_1234"
+  }
+}
+
 #### `agent:deleted`
 
 <ParamField path="agent:deleted" type="readonly">
@@ -633,7 +763,45 @@ outcome or plan subsequent actions accordingly.
   "context": {
     "accountId": "us_acc_1234",
     "environmentId": "us_env_1234",
-    "spaceId": "us_sp_1234",
+    "spaceId": "us_sp_1234"
+  }
+}
+```
+
+#### `space:guestAdded`
+
+<ParamField path="space:guestAdded" type="readonly">
+  Called when a guest is added.
+</ParamField>
+
+```json
+{
+  "domain": "space",
+  "topic": "space:guestAdded",
+  "context": {
+    "actorId": "us_usr_1234",
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234"
+  }
+}
+```
+
+#### `space:guestRemoved`
+
+<ParamField path="space:guestRemoved" type="readonly">
+  Called when a guest's access is revoked from a space.
+</ParamField>
+
+```json
+{
+  "domain": "space",
+  "topic": "space:guestRemoved",
+  "context": {
+    "actorId": "us_usr_1234",
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234"
   }
 }
 ```

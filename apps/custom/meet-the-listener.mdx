@@ -4,7 +4,9 @@ description: "Learn how to listen and respond to events in Flatfile."
 icon: "circle-1"
 ---
 
-Flatfile is an event-based system. This means that an [Event](../../orchestration/events) is published on almost any interaction a user has within the Flatfile platform. 
+<Snippet file="shared/dxpbanner.mdx" />
+
+Flatfile is an event-based system. This means that an [Event](../../orchestration/events) is published on almost any interaction a user has within the Flatfile platform.
 
 A [Listener](/orchestration/listeners) is a function that is triggered by an Event. It's a powerful building block because it can be completely customized, enabling you to respond to events precisely the way your business and workflow require.
 
@@ -69,8 +71,6 @@ cp .env.example .env
 ```
 
 Now, update the `FLATFILE_API_KEY` value, setting it to your Secret Key.
-
-Each Secret Key is scoped to an environment, so you will also need to update the `FLATFILE_ENVIRONMENT_ID` value to the one found on the same page as your Secret Key.
 
 ## Run your first listener
 

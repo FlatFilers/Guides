@@ -4,6 +4,8 @@ description: "Dynamically build your Space configuration as it's created."
 icon: "object-group"
 ---
 
+<Snippet file="shared/dxpbanner.mdx" />
+
 Flatfile can support the simplest of workflows to the most nuanced & complex with Dynamic Spaces.
 
 ## Use cases
@@ -20,7 +22,7 @@ Continue reading to learn how to configure a Space from scratch, and update it a
 
 ### From the dashboard
 
-When the "Create New Space" button is clicked on the platform, it triggers a [job `event`](../orchestration/events) within the **space** `domain` that initiates a **configure** `operation`. This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://flatfile.stoplight.io/docs/api/25e20c8ab61c5-create-a-space) with the parameter `autoconfigure` set to true.
+When the "Create New Space" button is clicked on the platform, it triggers a [job `event`](../orchestration/events) within the **space** `domain` that initiates a **configure** `operation`. This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://reference.flatfile.com/api-reference/spaces/create-a-space) with the parameter `autoconfigure` set to true.
 
 1. Filter on the `domain` (space) and the `operation` (configure).
 2. Listen for a [`job:ready`](../orchestration/events#job-ready) event.

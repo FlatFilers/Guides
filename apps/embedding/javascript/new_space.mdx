@@ -75,7 +75,7 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 <CodeGroup>
 ```html public/index.html (snippet)
 <button
-  onclick="openFlatfile({ publishableKey: 'pk_1234', environmentId: 'us_env_1234' })"
+  onclick="openFlatfile({ publishableKey: 'pk_1234'})"
 >
   Create new Space
 </button>
@@ -102,7 +102,7 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
           <!-- Note: PUT YOUR KEY AND ENVIRONMENT_ID IN HERE -->
           <button
             class="contrast"
-            onclick="openFlatfile({ publishableKey: 'pk_1234', environmentId: 'us_env_1234' })"
+            onclick="openFlatfile({ publishableKey: 'pk_1234' })"
           >
             Create new Space
           </button>
@@ -120,28 +120,29 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
 ### 2. Initialize Flatfile
 
-In your `client.js`, at minimum, you'll need to receive the `publishableKey` and the `environmentId` set from when you called `openFlatfile`.
+In your `client.js`, at minimum, you'll need to receive the `publishableKey` set from when you called `openFlatfile`.
 
 ```js src/client.js
 import { initializeFlatfile } from "@flatfile/javascript";
 
 //create a new space in modal
-window.openFlatfile = ({ publishableKey, environmentId }) => {
-  if (!publishableKey && !environmentId) {
+window.openFlatfile = ({ publishableKey }) => {
+  if (!publishableKey) {
     throw new Error(
-      "You must provide a publishable key and an environment ID - pass through in index.html"
+      "You must provide a publishable key - pass through in index.html"
     );
   }
   const flatfileOptions = {
     name: "Embedded Space",
     publishableKey,
-    environmentId,
     sidebarConfig: {
       showSidebar: false,
     },
     closeSpace: {
       operation: "submitActionFg",
-      onClose: () => setShowSpace(false),
+      onClose: () => {
+        //custom code if needed
+      },
     },
     // Additional props...
   };

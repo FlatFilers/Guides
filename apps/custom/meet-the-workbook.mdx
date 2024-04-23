@@ -4,6 +4,8 @@ description: "Configure a place for collecting data by creating a Space."
 icon: "circle-2"
 ---
 
+<Snippet file="shared/dxpbanner.mdx" />
+
 Flatfile Spaces are micro-applications, each having their own database, filestore, and auth. A Space is comprised of Workbooks, Files and Users. It can also include Documents, Themes and Metadata.
 
 In this example, we'll create a simple Space with a Workbook and a Document. We'll also theme the Space to be red.
@@ -12,7 +14,7 @@ In this example, we'll create a simple Space with a Workbook and a Document. We'
 
 When the "Create New Space" button is clicked from within your App in the dashboard, it triggers a [job `event`](../../orchestration/events) within the **space** `domain` that initiates a **configure** `operation`.
 
-This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://flatfile.stoplight.io/docs/api/25e20c8ab61c5-create-a-space) with the parameter `autoconfigure` set to true.
+This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://reference.flatfile.com/api-reference/spaces/create-a-space) with the parameter `autoconfigure` set to true.
 
 #### Usage
 
@@ -41,99 +43,93 @@ export default function flatfileEventListener(listener) {
   listener.namespace(["space:red"], (red) => {
     // Part 2: Configure a Space (https://flatfile.com/docs/apps/custom)
     red.filter({ job: "space:configure" }, (configure) => {
-      configure.on(
-        "job:ready",
-        async ({ context: { spaceId, environmentId, jobId } }) => {
-          try {
-            await api.jobs.ack(jobId, {
-              info: "Getting started.",
-              progress: 10,
-            });
+      configure.on("job:ready", async ({ context: { spaceId, jobId } }) => {
+        try {
+          await api.jobs.ack(jobId, {
+            info: "Getting started.",
+            progress: 10,
+          });
 
-            await api.workbooks.create({
-              spaceId,
-              environmentId,
-              name: "All Data",
-              labels: ["pinned"],
-              sheets: [
-                {
-                  name: "Contacts",
-                  slug: "contacts",
-                  fields: [
-                    {
-                      key: "firstName",
-                      type: "string",
-                      label: "First Name",
-                    },
-                    {
-                      key: "lastName",
-                      type: "string",
-                      label: "Last Name",
-                    },
-                    {
-                      key: "email",
-                      type: "string",
-                      label: "Email",
-                    },
-                  ],
-                },
-              ],
-              actions: [
-                {
-                  operation: "submitAction",
-                  mode: "foreground",
-                  label: "Submit foreground",
-                  description: "Submit data to webhook.site",
-                  primary: true,
-                },
-              ],
-            });
-
-            await api.documents.create(spaceId, {
-              title: "Getting Started",
-              body:
-                "# Welcome\n" +
-                "### Say hello to your first customer Space in the new Flatfile!\n" +
-                "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
-                "---\n",
-            });
-
-            await api.spaces.update(spaceId, {
-              environmentId,
-              metadata: {
-                theme: {
-                  root: {
-                    primaryColor: "red",
+          await api.workbooks.create({
+            spaceId,
+            name: "All Data",
+            labels: ["pinned"],
+            sheets: [
+              {
+                name: "Contacts",
+                slug: "contacts",
+                fields: [
+                  {
+                    key: "firstName",
+                    type: "string",
+                    label: "First Name",
                   },
-                  sidebar: {
-                    backgroundColor: "red",
-                    textColor: "white",
-                    activeTextColor: "midnightblue",
+                  {
+                    key: "lastName",
+                    type: "string",
+                    label: "Last Name",
                   },
-                  // See reference for all possible variables
+                  {
+                    key: "email",
+                    type: "string",
+                    label: "Email",
+                  },
+                ],
+              },
+            ],
+            actions: [
+              {
+                operation: "submitAction",
+                mode: "foreground",
+                label: "Submit foreground",
+                description: "Submit data to webhook.site",
+                primary: true,
+              },
+            ],
+          });
+
+          await api.documents.create(spaceId, {
+            title: "Getting Started",
+            body:
+              "# Welcome\n" +
+              "### Say hello to your first customer Space in the new Flatfile!\n" +
+              "Let's begin by first getting acquainted with what you're seeing in your Space initially.\n" +
+              "---\n",
+          });
+
+          await api.spaces.update(spaceId, {
+            metadata: {
+              theme: {
+                root: {
+                  primaryColor: "red",
                 },
+                sidebar: {
+                  backgroundColor: "red",
+                  textColor: "white",
+                  activeTextColor: "midnightblue",
+                },
+                // See reference for all possible variables
               },
-            });
+            },
+          });
 
-            await api.jobs.complete(jobId, {
-              outcome: {
-                message: "Your Space was created.",
-                acknowledge: true,
-              },
-            });
-          } catch (error) {
-            console.error("Error:", error.stack);
+          await api.jobs.complete(jobId, {
+            outcome: {
+              message: "Your Space was created.",
+              acknowledge: true,
+            },
+          });
+        } catch (error) {
+          console.error("Error:", error.stack);
 
-            await api.jobs.fail(jobId, {
-              outcome: {
-                message:
-                  "Creating a Space encountered an error. See Event Logs.",
-                acknowledge: true,
-              },
-            });
-          }
+          await api.jobs.fail(jobId, {
+            outcome: {
+              message: "Creating a Space encountered an error. See Event Logs.",
+              acknowledge: true,
+            },
+          });
         }
-      );
+      });
     });
   });
 }
@@ -162,7 +158,7 @@ export default function flatfileEventListener(listener: Client) {
     red
       .filter({ job: "space:configure" })
       .on("job:ready", async (event: FlatfileEvent) => {
-        const { spaceId, environmentId, jobId } = event.context;
+        const { spaceId, jobId } = event.context;
         try {
           await api.jobs.ack(jobId, {
             info: "Getting started.",
@@ -171,7 +167,6 @@ export default function flatfileEventListener(listener: Client) {
 
           await api.workbooks.create({
             spaceId,
-            environmentId,
             name: "All Data",
             labels: ["pinned"],
             sheets: [
@@ -239,7 +234,6 @@ export default function flatfileEventListener(listener: Client) {
           });
 
           await api.spaces.update(spaceId, {
-            environmentId,
             metadata: {
               theme: {
                 root: {
@@ -278,13 +272,33 @@ export default function flatfileEventListener(listener: Client) {
 
 </CodeGroup>
 
+## Run your listener locally and create a new Space
+
+To allow this listener to run, you'll want to run it locally using the same "develop" command you used when initially setting up the listener.
+
+As a reminder, that command is:
+
+<CodeGroup>
+
+```terminal ts listener
+npx flatfile@latest develop typescript/index.ts
+```
+
+```terminal js listener
+npx flatfile@latest develop javascript/index.js
+```
+
+</CodeGroup>
+
+Once this is running, click the "Create New Space" button in your dashboard.
+
 ## Meet your Space
 
 So what did that just do?
 
 In your Flatfile account you should now be able to see your Space.
 
-As you can see, this Space has a Workbook with a sheet and fields. A <Tooltip tip="Analogous to a database...">[Workbook](https://flatfileinc.mintlify.dev/docs/orchestration/workbooks)</Tooltip> is like a template, it's definition includes a profile of the data it expects to hold. We call that profile a Blueprint.
+As you can see, this Space has a Workbook with a sheet and fields. A <Tooltip tip="Analogous to a database...">[Workbook](https://flatfileinc.mintlify.dev/docs/orchestration/workbooks)</Tooltip> is like a template, its definition includes a profile of the data it expects to hold. We call that profile a Blueprint.
 
 <Note>
   [Blueprint](../../blueprint/overview) is Flatfile's robust data definition

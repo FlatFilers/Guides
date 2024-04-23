@@ -41,6 +41,11 @@ icon: "download"
   take the raw numbers and disregard how it's displayed in Excel.
 </ParamField>
 
+<ParamField path="dateNF" type="string" optional>
+  The `dateNF` parameter allows you to specify the date format for parsing
+  dates. (i.e. `yyyy-mm-dd`)
+</ParamField>
+
 <ParamField path="chunkSize" default="10_000" type="number" optional>
   The `chunkSize` parameter allows you to specify the quantity of records to in
   each chunk.
@@ -156,6 +161,27 @@ listener.use(
     headerDetectionOptions: {
       algorithm: "specificRows",
       rowNumbers: [2], // 0 based
+    },
+  })
+);
+```
+
+#### Data Row & Sub Header Detection
+
+This implementation attempts to detect the first data row and select the previous
+row as the header. If the data row cannot be detected due to all the sample
+rows being full and not castable to a number or boolean type, it also will attempt
+to detect a sub header row by checking following rows after a header is detected
+for significant fuzzy matching. If over half of the fields in a possible sub header
+row fuzzy match with the originally detected header row, the sub header row becomes
+the new header.
+
+```js
+listener.use(
+  ExcelExtractor({
+    headerDetectionOptions: {
+      algorithm: "dataRowAndSubHeaderDetection",
+      rowsToSearch: 30, // Default is 10
     },
   })
 );

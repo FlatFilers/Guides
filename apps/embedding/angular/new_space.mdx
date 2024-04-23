@@ -28,7 +28,7 @@ npm i @flatfile/angular-sdk @flatfile/plugin-record-hook @flatfile/listener
 
 ### 1. Initialize Flatfile
 
-In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey` and `environmentId`.
+In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey`.
 
 <CodeGroup>
 
@@ -57,7 +57,6 @@ export class AppComponent {
 
   spaceProps: ISpace = {
     name: 'my space!',
-    environmentId: 'us_env_1234',
     publishableKey: 'sk_1234',
     closeSpace: {
       operation: 'submitActionFg',
@@ -251,7 +250,6 @@ export class AppComponent {
 
   spaceProps: ISpace = {
     name: 'my space!',
-    environmentId: 'us_env_1234',
     publishableKey: 'sk_1234',
     closeSpace: {
       operation: 'submitActionFg',
@@ -270,12 +268,14 @@ export class AppComponent {
 
 By attaching a `themeConfig` to `spaceProps`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming).
 
-```TypeScript
+```typescript
   themeConfig: {
-    primaryColor: "white",
-    textColor: "green"
+    root: {
+      primaryColor: "red",
+      textColor: "white",
+      logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+    },
   },
-
 ```
 
 ### 6. Add customizations

@@ -1,0 +1,173 @@
+---
+title: "Using our API"
+description: "Learn how to implement our API in your listeners and scripts"
+icon: "computer"
+---
+
+Flatfile maintains an NPM Package (@flatfile/api) for use in record-hooks, jobs,
+and more.
+
+### Overview
+
+The Flatfile API can be imported into your scripts and used to make any REST calls
+related to Flatfile Resources. The package can be found at
+[npmjs.com](https://www.npmjs.com/package/@flatfile/api), and the specific calls
+available can be found at [API Reference](https://reference.flatfile.com).
+
+### Usage
+
+First, install the package in your project, and import it at the top of your script
+
+```bash
+  npm i --save @flatfile/api@latest
+```
+
+```js
+  import api from '@flatfile/api'
+```
+
+Also, make sure your secret key is included in your environment variables as
+`FLATFILE_API_KEY`. If you aren't using environment variables via .env, you can
+instantiate a new `FlatfileClient` by passing in your secret key as the token.
+
+<Warning>
+  Make sure to keep your secret key safe, as it can be used to access
+  potentially sensitive information.
+</Warning>
+
+```ts
+const flatfileClient = new FlatfileClient({ token: "sk_your_secret_key" });
+```
+
+Now if you want to make a call, use the api object to create your call. The api
+calls are async, so ensure that your code is compatible. For example, if you
+wanted to get a specific sheet, you can do as follows:
+
+<CodeGroup>
+
+```ts async/await
+const sheet = await api.sheets.get("us_sh_your_sheet_id");
+```
+
+```ts using then()
+api.sheets.get("us_sh_your_sheet_id").then((res) => console.log(res.data));
+```
+
+</CodeGroup>
+
+A more complete example would look something like this workbook submission:
+
+```ts
+listener.on("job:ready", { job: "workbook:submitActionFg" }, async (event) => {
+  const { jobId, workbookId } = event.context;
+  const { payload } = event;
+  const { data: workbook } = await api.workbooks.get(workbookId);
+  const { data: workbookSheets } = await api.sheets.list({ workbookId });
+  const sheets = [];
+  for (const [_, element] of workbookSheets.entries()) {
+    const { data: records } = await api.records.get(element.id);
+    sheets.push({
+      ...element,
+      ...records,
+    });
+  }
+
+  try {
+    await api.jobs.ack(jobId, {
+      info: "Starting job to submit action to webhook.site",
+      progress: 10,
+    });
+
+    if (!sheets[0].records || sheets[0].records.length <= 0) {
+      throw {
+        message:
+          "No records in Customers found, click the link to go to the sheet and add some data:",
+        sheet: sheets[0],
+        data: {
+          WEBHOOK_SITE_URL: process.env.WEBHOOK_SITE_URL,
+        },
+      };
+    }
+    if (!sheets[1].records || sheets[1].records.length <= 0) {
+      throw {
+        message:
+          "No records in Repairs found, click the link to go to the sheet and add some data: ",
+        sheet: sheets[1],
+        data: {
+          WEBHOOK_SITE_URL: process.env.WEBHOOK_SITE_URL,
+        },
+      };
+    }
+
+    const webhookReceiver =
+      process.env.WEBHOOK_SITE_URL ||
+      "https://webhook.site/d61eade4-baa0-49f1-b995-ca138514b1e4";
+
+    const response = await axios.post(
+      webhookReceiver,
+      {
+        ...payload,
+        method: "axios",
+        workbook: {
+          ...workbook,
+          sheets,
+        },
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      const rejections = response.data.rejections;
+      if (rejections) {
+        const totalRejectedRecords = await responseRejectionHandler(rejections);
+        await api.jobs.complete(jobId, {
+          outcome: {
+            next: {
+              type: "id",
+              id: rejections.id,
+              label: "See rejections...",
+            },
+            message: `Data was submission was partially successful. ${totalRejectedRecords} record(s) were rejected.`,
+          },
+        });
+      }
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message:
+            "Data was successfully submitted to webhook.site. Go check it out at " +
+            webhookReceiver +
+            ".",
+        },
+      });
+    } else {
+      throw {
+        message: "Data was not submitted to webhook.site",
+        data: {
+          WEBHOOK_SITE_URL: process.env.WEBHOOK_SITE_URL,
+        },
+      };
+    }
+  } catch (error) {
+    console.log(`webhook.site[error]:`, JSON.parse(JSON.stringify(error)));
+
+    const spaceId = error?.sheet?.id ? error.sheet.id : undefined;
+    const jobBody: Flatfile.JobCompleteDetails = {
+      outcome: {
+        message: error.message,
+        acknowledge: true,
+      },
+    };
+    if (spaceId) {
+      jobBody.outcome.next = {
+        type: "id",
+        id: spaceId,
+      };
+    }
+    await api.jobs.fail(jobId, jobBody);
+  }
+});
+```

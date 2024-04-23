@@ -1,8 +1,10 @@
 ---
-title: "Build Documents"
-description: "Learn how to build pages in your sidebar with Documents."
-icon: "file-code"
+title: 'Build Documents'
+description: 'Learn how to build pages in your sidebar with Documents.'
+icon: 'file-code'
 ---
+
+<Snippet file='shared/dxpbanner.mdx' />
 
 Documents are standalone webpages for your Flatfile <Tooltip tip="Are micro-applications...">[Spaces](../developer-tools/spaces)</Tooltip>. They can be rendered from <Tooltip tip="View syntax">[Markdown syntax](https://www.markdownguide.org/basic-syntax/)</Tooltip>.
 
@@ -17,7 +19,7 @@ Often used for getting started guides, Documents become extremely powerful with 
 
 You can create Documents using the API:
 
-<Snippet file="guides/documents/create-document.mdx" />
+<Snippet file='guides/documents/create-document.mdx' />
 
 This Document will now appear in the sidebar of your Space.
 
@@ -29,7 +31,7 @@ Actions are optional and allow you to run custom operations in response to a use
 
 Define Actions on a Document using the `actions` parameter when a document is created:
 
-<Snippet file="guides/documents/document-actions.mdx" />
+<Snippet file='guides/documents/document-actions.mdx' />
 
 Then configure your listener to handle this Action, and define what should happen in response. Read more about Actions and how to handle them [here](./actions#document-mounted).
 
@@ -47,10 +49,10 @@ Giving your Document a treatment of `"ephemeral"` will cause the Document to app
 
 ```ts
 const ephemeralDoc = await api.documents.create(spaceId, {
-  title: "Getting started",
-  body: "# Welcome ...",
-  treatments: ["ephemeral"],
-});
+  title: 'Getting started',
+  body: '# Welcome ...',
+  treatments: ['ephemeral'],
+})
 ```
 
 <Info>
@@ -60,9 +62,13 @@ const ephemeralDoc = await api.documents.create(spaceId, {
   Documents in code.
 </Info>
 
-## Embedding Sheets in Documents
+## Adding Blocks to Documents
 
-You can embed a Sheet into your Document by adding an `<embed>` HTML entity to your markdown body, and passing a sheet ID, workbook ID, and name. You can also specify whether the embedded Sheet is expanded or collapsed when the document is loaded.
+Blocks are dynamic, embedded entities that you can use to display data inside a Document. You can add a Block to a Document using the `<embed>` HTML entity in your markdown and specifying which Block type you want to show using the `type` attribute on the entity. Two Block types are currently supported: Embedded Sheet and Embedded Diff.
+
+### Embedded Sheet
+
+Use this Block to render a Sheet along with all its data inside of a Document. You can embed a Sheet into your Document by passing a sheet ID, workbook ID, and name. You can also specify whether the embedded Sheet is expanded or collapsed when the document is loaded.
 
 <Info>
   You can include as many embedded Sheets in your Document as you like, but end
@@ -71,7 +77,7 @@ You can embed a Sheet into your Document by adding an `<embed>` HTML entity to y
 
 ```ts
 const doc = await api.documents.create(spaceId, {
-  title: "Getting started",
+  title: 'Getting started',
   body: `
     # Welcome
     
@@ -83,7 +89,32 @@ const doc = await api.documents.create(spaceId, {
 
     <embed type='embedded-sheet' name='Countries' sheetId='us_sh_TVW95224' workbookId='us_wb_8e0z52gI'>
   `,
-});
+})
+```
+
+### Embedded Diff
+
+Use this Block to show a side-by-side comparison of the data in a Sheet now versus at a previous point in time as captured by a Snapshot. Pass a Sheet ID, Workbook ID, and Snapshot ID. You can optionally pass a `direction` attribute which specified whether the changes are displayed with the Snapshot as the end state (`sheet_to_snapshot`) or the Sheet as the end state (`snapshot_to_sheet`). The default value for direction is `sheet_to_snapshot`.
+
+<Info>
+  Use `direction="sheet_to_snapshot"` if you want to show changes that have been
+  made since the time the Snapshot was taken, i.e. to review past changes. Use
+  `direction="snapshot_to_sheet"` if to preview the changes that would occur if
+  you were to revert your Sheet back to the state it was in when the Snapshot
+  was taken.
+</Info>
+
+```ts
+const doc = await api.documents.create(spaceId, {
+  title: 'Getting started',
+  body: `
+    # Welcome
+    
+    Here is an embedded Diff:
+    
+    <embed type='embedded-diff' sheetId='your_sheet_id' workbookId='your_workbook_id' snapshot_id='your_snapshot_id" direction="snapshot_to_sheet">
+  `,
+})
 ```
 
 ---
@@ -98,16 +129,16 @@ Find the documents example in the Flatfile GitHub repository.
 
 <CardGroup cols={2}>
   <Card
-    title="typescript"
-    icon="code-merge"
-    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/documents/index.ts"
+    title='typescript'
+    icon='code-merge'
+    href='https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/documents/index.ts'
   >
     Clone the documents example in Typescript
   </Card>
   <Card
-    title="javascript"
-    icon="js"
-    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/documents/index.js"
+    title='javascript'
+    icon='js'
+    href='https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/documents/index.js'
   >
     Clone the documents example in Javascript
   </Card>

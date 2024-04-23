@@ -30,9 +30,12 @@ icon: "download"
   development purposes.
 </ParamField>
 
-<ParamField path="defaultTargetSheet" type="string">
-  The `defaultTargetSheet` parameter takes the exact sheet slug to import data
-  to.
+<ParamField
+  path="defaultTargetSheet"
+  type="'string' | '(fileName: string) => string | Promise<string>'"
+>
+  The `defaultTargetSheet` parameter takes the exact sheet slug or a callback
+  function that resolves to the exact sheet slug to import data to.
 </ParamField>
 
 <ParamField path="matchFilename" type="RegExp">
