@@ -24,18 +24,10 @@ marking the offending Record fields with the returned rejection message indicati
 rejected. If the response value of `deleteSubmitted` is `true`, the successfully submitted values
 will be deleted from the Sheet. If `deleteSubmitted` is false or not provided, a `Submission Status`
 field is added to the Sheet and each Record is set to either "Submitted" or "Rejected". In the end,
-it returns a total count of all rejected Records across all sheets that can be used in a Job
-completion message.
+it returns a `JobCompleteDetails` object which can be used to complete the the Flatfile Job.
 
 ```bash install
-npm i @flatfile/util-response-rejection
-```
-
-```ts import
-import {
-  responseRejectionHandler,
-  RejectionResponse,
-} from "@flatfile/util-response-rejection";
+npm i @flatfile/util-response-rejection @flatfile/api @flatfile/listener
 ```
 
 ### **Response Rejection Handler Function**
@@ -45,24 +37,76 @@ import {
 - The `responseRejectionHandler` function returns a `Promise` that resolves to a `number` representing the total number of rejected Records across all sheets.
 
 ```ts
-listener.on(
-  "job:ready",
-  { job: "workbook:submitActionFg" },
-  async ({ context: { jobId } }) => {
-    // ...
-    const response = await axios.post("https://webhook.site/...", data, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+import type { Flatfile } from "@flatfile/api";
+import api from "@flatfile/api";
+import type { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
+import type { RejectionResponse } from "@flatfile/util-response-rejection";
+import { responseRejectionHandler } from "@flatfile/util-response-rejection";
 
-    const rejections: RejectionResponse = response.data.rejections;
-    if (rejections) {
-      return await responseRejectionHandler(rejections);
+export default function (listener: FlatfileListener) {
+  listener.on(
+    "job:ready",
+    { job: "workbook:submitActionFg" },
+    async (event: FlatfileEvent) => {
+      const { jobId } = event.context;
+
+      await api.jobs.ack(jobId, {
+        info: "Accepted",
+        progress: 1,
+      });
+
+      // Default outcome for successful submission
+      let outcome: Flatfile.JobCompleteDetails = {
+        outcome: {
+          message: `Data was successfully submitted with no rejections.`,
+        },
+      };
+
+      try {
+        const data = []; // TODO: implement your own logic here for retrieving the records and formatting them for the webhook
+        const response = await fetch("https://webhook.site/...", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const responseData = await response.json();
+
+        const rejections: RejectionResponse = responseData.rejections;
+        if (rejections) {
+          // Update outcome for rejections
+          outcome = await responseRejectionHandler(rejections);
+        }
+
+        await api.jobs.complete(
+          jobId,
+          outcome ?? {
+            outcome: {
+              message: "Job complete",
+            },
+          }
+        );
+      } catch (error) {
+        await api.jobs.fail(
+          jobId,
+          outcome ?? {
+            info: String(error.message),
+            outcome: {
+              acknowledge: true,
+              message: String(error.message),
+            },
+          }
+        );
+      }
     }
-    // ...
-  }
-);
+  );
+}
 ```
 
 ### **RejectionResponse Interface**
@@ -73,7 +117,7 @@ The `RejectionResponse` interface defines the structure of the `responseRejectio
 { // RejectionResponse interface
   id: string; // The Workbook ID
   message: "Success! All records are valid.", // Optional
-  deleteSubmitted: true, // Optional
+  deleteSubmitted: true, // Optional, default `false`
   sheets: [
     { // SheetRejections interface
       sheetId: string; // The Sheet ID
@@ -83,7 +127,7 @@ The `RejectionResponse` interface defines the structure of the `responseRejectio
           values: [
             {
               field: string; // The field key
-              message: string;
+              message: string; // The rejection reason
             }
           ];
         }

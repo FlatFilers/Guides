@@ -23,18 +23,18 @@ icon: "download"
   The `job` parameter takes the job name.
 </ParamField>
 
-<ParamField path="webhookUrl" type="string">
-  The `webhookUrl` parameter takes the webhook url.
+<ParamField path="url" type="string" required>
+  The `url` parameter takes the webhook url.
 </ParamField>
 
 ## Imported NPM Packages
 
-- [`@flatfile/api@1.5.14+`](https://www.npmjs.com/package/@flatfile/api)
-- [`@flatfile/listener@0.3.15+`](https://www.npmjs.com/package/@flatfile/listener)
-- [`@flatfile/plugin-job-handler@0.1.1+`](https://www.npmjs.com/package/@flatfile/plugin-job-handler)
-- [`@flatfile/util-common@0.1.1+`](https://www.npmjs.com/package/@flatfile/util-common)
-- [`@flatfile/util-response-rejection@0.1.0+`](https://www.npmjs.com/package/@flatfile/util-response-rejection)
-- [`axios@1.4.0+`](https://www.npmjs.com/package/axios)
+- [`@flatfile/api@1.7.4+`](https://www.npmjs.com/package/@flatfile/api)
+- [`@flatfile/listener@1.0.1+`](https://www.npmjs.com/package/@flatfile/listener)
+- [`@flatfile/plugin-job-handler@0.4.1+`](https://www.npmjs.com/package/@flatfile/plugin-job-handler)
+- [`@flatfile/util-common@1.0.3+`](https://www.npmjs.com/package/@flatfile/util-common)
+- [`@flatfile/util-response-rejection@1.2.4+`](https://www.npmjs.com/package/@flatfile/util-response-rejection)
+- [`node-fetch@3.3.2+`](https://www.npmjs.com/package/node-fetch)
 
 ## Usage
 
@@ -43,11 +43,7 @@ It requires an operation parameter which specifies the event that will initiate 
 webhook url can either be passed in as a parameter or set as an environment variable `WEBHOOK_SITE_URL`.
 
 ```bash install
-npm i @flatfile/plugin-webhook-egress
-```
-
-```ts import
-import { webhookEgress } from "@flatfile/plugin-webhook-egress";
+npm i @flatfile/plugin-webhook-egress @flatfile/listener
 ```
 
 ![workbook_actions_primary](https://github.com/FlatFilers/Guides/assets/19697744/c747495a-19e9-4333-88f3-e94239cfe47b)
@@ -68,11 +64,14 @@ import { webhookEgress } from "@flatfile/plugin-webhook-egress";
 ```
 
 ```ts listener.js
-// Using the WEBHOOK_SITE_URL environment variable
-listener.use(webhookEgress("workbook:submitActionFg"));
+import type { FlatfileListener } from "@flatfile/listener";
+import { webhookEgress } from "@flatfile/plugin-webhook-egress";
 
-// Passing the webhook url as a parameter
-listener.use(webhookEgress("workbook:submitActionFg", "https://webhook.site/...""));
+export default function (listener: FlatfileListener) {
+  listener.use(
+    webhookEgress("workbook:submitActionFg", "https://webhook.site/...")
+  );
+}
 ```
 
 ## See the code
