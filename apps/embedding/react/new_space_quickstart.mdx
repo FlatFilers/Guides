@@ -39,7 +39,7 @@ The `package.json` file contains the dependencies and scripts for your applicati
 
 ### 1. Initialize Flatfile
 
-Initialize Flatfile to open in a modal. Pass in your `publishableKey` and a new Space will be created on each page load.
+Initialize Flatfile to open in a modal. Pass in your `publishableKey` to the FlatfileProvider and a new Space will be created on each page load.
 
 <CodeGroup>
 
@@ -49,7 +49,7 @@ import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
 const FlatfilePortal = () => {
-  const { openPortal, closePortal } = useFlatfile();
+  const { openPortal } = useFlatfile();
   return <Sheet config={} />
 };
 
@@ -157,8 +157,13 @@ import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
 const FlatfilePortal = () => {
-  const { openPortal, closePortal } = useFlatfile();
-  return <Sheet config={blueprint} />;
+  const { openPortal } = useFlatfile();
+  return (
+    <>
+      <button onClick={openPortal}>Open Portal!</button>
+      <Sheet config={blueprint} />
+    </>
+  );
 };
 
 function App() {
@@ -188,17 +193,20 @@ import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
 const FlatfilePortal = () => {
-  const { openPortal, closePortal } = useFlatfile();
+  const { openPortal } = useFlatfile();
   return (
-    <Sheet
-        config={bluprint}
-        onSubmit={
-          async ({ sheet }) => {
-            const data = await sheet.allData();
-            console.log("onSubmit", data);
+    <>
+      <button onClick={openPortal}>Open Portal!</button>
+      <Sheet
+          config={blueprint}
+          onSubmit={
+            async ({ sheet }) => {
+              const data = await sheet.allData();
+              console.log("onSubmit", data);
+            }
           }
-        }
-    />
+      />
+    </>
   )
 };
 
@@ -229,25 +237,28 @@ import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
 const FlatfilePortal = () => {
-  const { openPortal, closePortal } = useFlatfile();
+  const { openPortal } = useFlatfile();
   return (
-    <Sheet
-        config={bluprint}
-        onSubmit={
-          async ({ sheet }) => {
-            const data = await sheet.allData();
-            console.log("onSubmit", data);
+    <>
+      <button onClick={openPortal}>Open Portal!</button>
+      <Sheet
+          config={blueprint}
+          onSubmit={
+            async ({ sheet }) => {
+              const data = await sheet.allData();
+              console.log("onSubmit", data);
+            }
           }
-        }
-        onRecordHook={
-          (record) => {
-            const firstName = record.get("firstName");
-            console.log({ firstName });
-            record.set("lastName", "Rock");
-            return record;
-          }
-        },
-    />
+          onRecordHook={
+            (record) => {
+              const firstName = record.get("firstName");
+              console.log({ firstName });
+              record.set("lastName", "Rock");
+              return record;
+            }
+          },
+      />
+    </>
   )
 };
 
@@ -274,25 +285,28 @@ import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
 const FlatfilePortal = () => {
-  const { openPortal, closePortal } = useFlatfile();
+  const { openPortal } = useFlatfile();
   return (
-    <Sheet
-        config={bluprint}
-        onSubmit={
-          async ({ sheet }) => {
-            const data = await sheet.allData();
-            console.log("onSubmit", data);
+    <>
+      <button onClick={openPortal}>Open Portal!</button>
+      <Sheet
+          config={blueprint}
+          onSubmit={
+            async ({ sheet }) => {
+              const data = await sheet.allData();
+              console.log("onSubmit", data);
+            }
           }
-        }
-        onRecordHook={
-          (record) => {
-            const firstName = record.get("firstName");
-            console.log({ firstName });
-            record.set("lastName", "Rock");
-            return record;
-          }
-        },
-    />
+          onRecordHook={
+            (record) => {
+              const firstName = record.get("firstName");
+              console.log({ firstName });
+              record.set("lastName", "Rock");
+              return record;
+            }
+          },
+      />
+    </>
   )
 };
 
