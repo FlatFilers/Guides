@@ -6,7 +6,32 @@ icon: "computer-classic"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
+
+The Flatfile CLI provides a suite of tools to help you develop and deploy [Listeners](/orchestration/listeners) to Flatfile.
+
+Listeners are at the core of the Flatifle ecosystem, they are responsible for picking up on [Events](/orchestration/events) and responding to them accordingly.
+
+
+<Note>
+  Agents are listeners deployed server-side on Flatfile's secure cloud.
+</Note>
+
+
+
 When developing with Flatfile, listeners can [deployed](../deploying) to Flatfile on every change or they can run directly on your machine.
+
+### Commands
+
+The Flatfile CLI provides the following commands:
+
+
+| Command | Description                             | 
+| ------- | --------------------------------------- |
+| develop | Run your project as a local listener    |
+| deploy  | Deploy your project as a Flatfile Agent |
+| list    | List deployed Agents in an environment  |
+| delete  | Delete an Agent                         |
+
 
 ### Before you begin
 
