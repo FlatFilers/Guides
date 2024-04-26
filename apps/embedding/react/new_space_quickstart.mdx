@@ -23,7 +23,7 @@ Setup your app to look something like this:
    └── index.html
 ├── src/
    └── blueprint.js
-   └── index.js
+   └── index.jsx
 ├── package.json
 ```
 
@@ -43,22 +43,22 @@ Initialize Flatfile to open in a modal. Pass in your `publishableKey` and a new 
 
 <CodeGroup>
 
-```javascript src/index.js
+```jsx src/index.jsx
 import ReactDOM from "react-dom/client";
-import { usePortal } from "@flatfile/react";
+import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
-function App() {
-  const FlatfilePortal = () => {
-    return usePortal({
-      publishableKey: "pk_1234",
-      spaceBody: {
-        namespace: "portal",
-      },
-    });
-  };
+const FlatfilePortal = () => {
+  const { openPortal, closePortal } = useFlatfile();
+  return <Sheet config={} />
+};
 
-  return <FlatfilePortal />;
+function App() {
+  return (
+    <FlatfileProvider publishableKey="pk_1234" config={{ namespace: "portal" }}>
+      <FlatfilePortal />
+    </FlatfileProvider>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -151,23 +151,22 @@ const blueprint = {
 }
 ```
 
-```javascript src/index.js
+```jsx src/index.jsx
 import ReactDOM from "react-dom/client";
-import { usePortal } from "@flatfile/react";
+import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
-function App() {
-  const FlatfilePortal = () => {
-    return usePortal({
-      publishableKey: "pk_1234",
-      spaceBody: {
-        namespace: "portal",
-      },
-      sheet: blueprint,
-    });
-  };
+const FlatfilePortal = () => {
+  const { openPortal, closePortal } = useFlatfile();
+  return <Sheet config={blueprint} />;
+};
 
-  return <FlatfilePortal />;
+function App() {
+  return (
+    <FlatfileProvider publishableKey="pk_1234" config={{ namespace: "portal" }}>
+      <FlatfilePortal />
+    </FlatfileProvider>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -183,47 +182,37 @@ Finally, let's get the data out of our system and to your destination with `onSu
 Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](/guides/egress).
 
 <CodeGroup>
-
-```js public/index.html
-window.onload = function () {
-  FlatFileJavaScript.startFlatfile({
-    publishableKey: "pk_1234",
-    spaceBody: {
-      namespace: "portal",
-    },
-    sheet: blueprint,
-    onSubmit: async ({ sheet }) => {
-      const data = await sheet.allData();
-      console.log("onSubmit", data);
-    },
-  });
-};
-```
-
-```javascript src/index.js
+```jsx src/index.jsx
 import ReactDOM from "react-dom/client";
-import { usePortal } from "@flatfile/react";
+import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
+const FlatfilePortal = () => {
+  const { openPortal, closePortal } = useFlatfile();
+  return (
+    <Sheet
+        config={bluprint}
+        onSubmit={
+          async ({ sheet }) => {
+            const data = await sheet.allData();
+            console.log("onSubmit", data);
+          }
+        }
+    />
+  )
+};
+
 function App() {
-  const FlatfilePortal = () => {
-    return usePortal({
-      publishableKey: "pk_1234",
-      spaceBody: {
-        namespace: "portal",
-      },
-      sheet: blueprint,
-      onSubmit: async ({ sheet }) => {
-        const data = await sheet.allData();
-        console.log("onSubmit", data);
-      },
-    });
-  };
-  return <FlatfilePortal />;
+  return (
+    <FlatfileProvider publishableKey="pk_1234" config={{ namespace: "portal" }}>
+      <FlatfilePortal />
+    </FlatfileProvider>
+  ); 
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
+
 ```
 
 </CodeGroup>
@@ -234,82 +223,103 @@ Next, we'll listen for data changes and respond `onRecordHook`,
 
 Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](/guides/handling-data)
 
-```javascript src/index.js
+```jsx src/index.jsx
 import ReactDOM from "react-dom/client";
-import { usePortal } from "@flatfile/react";
+import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
+const FlatfilePortal = () => {
+  const { openPortal, closePortal } = useFlatfile();
+  return (
+    <Sheet
+        config={bluprint}
+        onSubmit={
+          async ({ sheet }) => {
+            const data = await sheet.allData();
+            console.log("onSubmit", data);
+          }
+        }
+        onRecordHook={
+          (record) => {
+            const firstName = record.get("firstName");
+            console.log({ firstName });
+            record.set("lastName", "Rock");
+            return record;
+          }
+        },
+    />
+  )
+};
+
 function App() {
-  const FlatfilePortal = () => {
-    return usePortal({
-      publishableKey: "pk_1234",
-      spaceBody: {
-        namespace: "portal",
-      },
-      sheet: blueprint,
-      onSubmit: async ({ sheet }) => {
-        const data = await sheet.allData();
-        console.log("onSubmit", data);
-      },
-      onRecordHook: (record) => {
-        const firstName = record.get("firstName");
-        console.log({ firstName });
-        record.set("lastName", "Rock");
-        return record;
-      },
-    });
-  };
-  return <FlatfilePortal />;
+  return (
+    <FlatfileProvider publishableKey="pk_1234" config={{ namespace: "portal" }}>
+      <FlatfilePortal />
+    </FlatfileProvider>
+  ); 
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
+
 ```
 
 ### 6. Match your brand
 
-By attaching a `themeConfig`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming).
+By attaching a `theme`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming).
 
-```javascript src/index.js
+```jsx src/index.jsx
 import ReactDOM from "react-dom/client";
-import { usePortal } from "@flatfile/react";
+import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
-function App() {
-  const FlatfilePortal = () => {
-    return usePortal({
-      publishableKey: "pk_1234",
-      spaceBody: {
-        namespace: "portal",
-      },
-      sheet: blueprint,
-      onSubmit: async ({ sheet }) => {
-        const data = await sheet.allData();
-        console.log("onSubmit", data);
-      },
-      onRecordHook: (record) => {
-        const firstName = record.get("firstName");
-        console.log({ firstName });
-        record.set("lastName", "Rock");
-        return record;
-      },
-      themeConfig: {
-        root: {
-          primaryColor: "red",
-          textColor: "white",
-          logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+const FlatfilePortal = () => {
+  const { openPortal, closePortal } = useFlatfile();
+  return (
+    <Sheet
+        config={bluprint}
+        onSubmit={
+          async ({ sheet }) => {
+            const data = await sheet.allData();
+            console.log("onSubmit", data);
+          }
+        }
+        onRecordHook={
+          (record) => {
+            const firstName = record.get("firstName");
+            console.log({ firstName });
+            record.set("lastName", "Rock");
+            return record;
+          }
         },
-      },
-    });
-  };
-  return <FlatfilePortal />;
+    />
+  )
+};
+
+function App() {
+  return (
+    <FlatfileProvider publishableKey="pk_1234" 
+      config={{ 
+        namespace: "portal", 
+        metadata: {
+          theme: {
+            primaryColor: "red",
+            textColor: "white",
+            logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+          }
+        }
+      }}>
+      <FlatfilePortal />
+    </FlatfileProvider>
+  ); 
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
+
 ```
 
-### 7. Customize
+### 8. Customize
 
 Continue to customize your importer as needed. For more options, [view the full React integration reference](../reference/advanced).
 
