@@ -38,14 +38,12 @@ You'll need a few more packages to accomplish this task. Go ahead and import the
 ```js listener.js
 import api from "@flatfile/api";
 import { responseRejectionHandler } from "@flatfile/util-response-rejection";
-import axios from "axios";
 ```
 
 ```js listener.ts
 import api from "@flatfile/api";
-import { FlatfileListener, FlatfileEvent } from "@flatfile/listener";
+import type { FlatfileListener, FlatfileEvent } from "@flatfile/listener";
 import { responseRejectionHandler } from "@flatfile/util-response-rejection";
-import axios from "axios";
 ```
 
 </CodeGroup>
