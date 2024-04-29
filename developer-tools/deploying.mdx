@@ -56,11 +56,25 @@ Once your Workbook has been deployed, you’ll be able to see a new Space in you
   Configurations](../guides/dynamic-configurations.mdx).
 </Note>
 
-### Deploying more than once
+### Redeploying
 
 You can deploy any change to your code at any time.
 
 For example, if you need to add a Sheet to an already existing Workbook, simply deploy again with the added Sheet and everything will update.
+
+### Deploying multiple agents
+
+To deploy a second Agent without overwriting the first, you can specify a slug for the Agent:
+
+```terminal
+npx flatfile@latest deploy -s my-second-agent
+```
+
+When you deploy with a slug, the CLI will create a new Agent with the specified slug. This allows you to deploy multiple Agents to the same environment.
+
+To update an existing Agent, you can specify the slug of the Agent you want to update by running the same command, including the slug.
+
+If you do not specify a slug and have only one or no deployed Agents the CLI will update your existing Agent, or create your first Agent. The slug for this agent will be `default`.
 
 ## Hosting on Regional Servers
 
