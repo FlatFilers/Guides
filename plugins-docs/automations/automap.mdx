@@ -91,7 +91,7 @@ listener.use(
     onFailure: (event: FlatfileEvent) => {
       // send an SMS, an email, post to an endpoint, etc.
       console.error(
-        `Please visit https://spaces.flatfile.com/space/${event.context.spaceId}/files?mode=import to manually import file.`
+        `Please visit https://platform.flatfile.com/s/space/${event.context.spaceId}/files?mode=import to manually import file.`
       );
     },
   })
