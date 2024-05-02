@@ -373,7 +373,7 @@ await api.jobs.complete(jobId, {
   outcome: {
     message: `Operation was completed succesfully. ${myData.length} records were processed.`,
     acknowledge: true,
-    //Reference: https://spaces.flatfile.com/space/{$id}/{path}?{$query}
+    //Reference: https://platform.flatfile.com/space/{$id}/{path}?{$query}
     next: {
       type: "id",
       id: "dev_sp_1234",
