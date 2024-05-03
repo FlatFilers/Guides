@@ -19,8 +19,8 @@ icon: "plug"
 - Dual Functionality: The newly released GraphQL to Flatfile Blueprint plugin offers versatile integration options for your Flatfile workspace. Use it to either generate a Flatfile Blueprint directly from GraphQL or configure a Flatfile Space using GraphQL, streamlining your data integration processes.
 
 - Flexible Input Sources: The plugin supports multiple methods for supplying GraphQL data:
-  API Endpoint: Connect directly to a GraphQL API to fetch data.
 
+  - API Endpoint: Connect directly to a GraphQL API to fetch data.
   - Schema File: Upload a GraphQL schema file.
   - Custom Callback: Implement a custom callback function for advanced data handling and customization.
 
@@ -39,29 +39,7 @@ See the [docs](https://www.npmjs.com/package/@flatfile/plugin-graphql-schema).
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       `@flatfile/util-common@1.1.1`
 
-     The common utils now include a new `deleteRecords` utility and a `chunkify` utility. This release also fixed a typing bug in `processRecords` when updating the records by removing the `updatedAt` field.
-
-</div>
-
-  </div>
-  </div>
-
-### April 3, 2024
-
-<div style={{ display: "table", width: "auto" }}>
-<div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/transform.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      `@flatfile/plugin-autocast@0.7.8`
-
-      - Automatic Data Type Conversion: Leveraging Blueprints, this release introduces automatic conversion of data types in Sheets. This ensures that data is consistently formatted and managed according to predefined standards, enhancing data accuracy and usability.
-
-      - Advanced Monitoring and Processing Features:
-        - Field Monitoring: We now support monitoring specific fields within Sheets, allowing for targeted data analysis and real-time error detection.
-        - Chunk Processing: To improve handling of large datasets, chunk processing has been implemented, optimizing memory usage and efficiency.
-        - Parallel Processing Capabilities: Enhance processing speed and efficiency with new parallel processing capabilities, which allow simultaneous data operations, reducing overall processing time.
-
-      These updates significantly improve data handling flexibility and system performance, ensuring a smoother and more efficient user experience.
+     The common utils now include a new `deleteRecords` utility. This streamlines the creation of the delete records job, which is a common use case and more appropriate for bulk deletion of records.
 
 </div>
 
