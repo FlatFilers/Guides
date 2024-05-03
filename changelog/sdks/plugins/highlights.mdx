@@ -4,11 +4,131 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## April
+
+### April 12, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      **🚀 GraphQL to Flatfile Blueprint is now available with @flatfile/plugin-graphql-schema@1.0.0 🚀**
+
+      `@flatfile/plugin-graphql-schema` provides a robust solution for leveraging GraphQL data structures within Flatfile, enhancing data management capabilities and adaptability.
+
+- Dual Functionality: The newly released GraphQL to Flatfile Blueprint plugin offers versatile integration options for your Flatfile workspace. Use it to either generate a Flatfile Blueprint directly from GraphQL or configure a Flatfile Space using GraphQL, streamlining your data integration processes.
+
+- Flexible Input Sources: The plugin supports multiple methods for supplying GraphQL data:
+  API Endpoint: Connect directly to a GraphQL API to fetch data.
+
+  - Schema File: Upload a GraphQL schema file.
+  - Custom Callback: Implement a custom callback function for advanced data handling and customization.
+
+See the [docs](https://www.npmjs.com/package/@flatfile/plugin-graphql-schema).
+
+</div>
+
+  </div>
+  </div>
+
+    ### April 5, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/util-common@1.1.1`
+
+     The common utils now include a new `deleteRecords` utility and a `chunkify` utility. This release also fixed a typing bug in `processRecords` when updating the records by removing the `updatedAt` field.
+
+</div>
+
+  </div>
+  </div>
+
+### April 3, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-autocast@0.7.8`
+
+      - Automatic Data Type Conversion: Leveraging Blueprints, this release introduces automatic conversion of data types in Sheets. This ensures that data is consistently formatted and managed according to predefined standards, enhancing data accuracy and usability.
+
+      - Advanced Monitoring and Processing Features:
+        - Field Monitoring: We now support monitoring specific fields within Sheets, allowing for targeted data analysis and real-time error detection.
+        - Chunk Processing: To improve handling of large datasets, chunk processing has been implemented, optimizing memory usage and efficiency.
+        - Parallel Processing Capabilities: Enhance processing speed and efficiency with new parallel processing capabilities, which allow simultaneous data operations, reducing overall processing time.
+
+      These updates significantly improve data handling flexibility and system performance, ensuring a smoother and more efficient user experience.
+
+</div>
+
+  </div>
+  </div>
+
 ## March
+
+### March 25, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-dedupe@1.0.0`
+
+       The deduplication capability of @flatfile/plugin-dedupe has been expanded beyond the initial 10,000 records limit. Now, it effectively dedupes the entire sheet, ensuring comprehensive data integrity across larger datasets. Additionally, with the latest update, @flatfile/plugin-dedupe can create bulk record deletion jobs, streamlining the process of removing duplicates and optimizing performance.
+
+</div>
+
+  </div>
+  </div>
+
+### March 15, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/util-common@1.0.1`
+
+      This release replaces the `api.records.get` on @flatfile/api with a fetch to the GET records endpoint. This significantly improves large response times.
+
+</div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/xlsx-extractor@1.11.2`
+
+    This PR fixes column selection when there is a blank header column by removing the column with a blank header rather than the last column.
+
+</div>
+
+  </div>
+  </div>
+
+### March 14, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-foreign-db-extractor@0.0.2`
+
+      This PR improves the error handling in the @flatfile/plugin-foreign-db-extractor plugin, correctly set the file status on job completion, and polls for a DB user since it may take time for the restored DB to become available.
+
+</div>
+
+  </div>
+  </div>
 
 ### March 5, 2024
 
 <div style={{ display: "table", width: "auto" }}>
+
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/transform.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
