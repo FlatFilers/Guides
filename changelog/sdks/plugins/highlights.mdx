@@ -103,7 +103,7 @@ See the [docs](https://www.npmjs.com/package/@flatfile/plugin-graphql-schema).
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       `@flatfile/xlsx-extractor@1.11.2`
 
-    This PR fixes column selection when there is a blank header column by removing the column with a blank header rather than the last column.
+    This update addresses an issue with how columns were managed when encountering blank header columns. Previously, the last column was incorrectly removed in such cases. Now, the column with the blank header is precisely identified and removed, ensuring more accurate data representation and integrity in your workflows.
 
 </div>
 
@@ -118,7 +118,11 @@ See the [docs](https://www.npmjs.com/package/@flatfile/plugin-graphql-schema).
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       `@flatfile/plugin-foreign-db-extractor@0.0.2`
 
-      This PR improves the error handling in the @flatfile/plugin-foreign-db-extractor plugin, correctly set the file status on job completion, and polls for a DB user since it may take time for the restored DB to become available.
+      - Improved Error Handling: This release enhances the error management capabilities of the plugin, ensuring more robust and informative error responses during data extraction processes.
+
+      - Accurate File Status Updates: Upon successful job completion, the file status is now correctly updated, providing clear visibility and tracking of job outcomes.
+
+      - Enhanced Database Availability Checks: Recognizing the potential delays in database readiness, the plugin now includes polling mechanisms for database users. This ensures that operations proceed only when the restored database is fully available, enhancing the reliability of data interactions.
 
 </div>
 
