@@ -53,12 +53,13 @@ import { blueprint } from "./blueprint";
 
 // We need to get this from the Flatfile dashboard https://platform.flatfile.com
 const PUBLISHABLE_KEY = undefined;
+
 const FlatfilePortal = () => {
   const { openPortal } = useFlatfile();
 
   return (
     <>
-      <button onClick={openPortal}>Open Portal</button>
+      <button onClick={openPortal}>Open Portal!</button>
       <Sheet config={blueprint} />
     </>
   );
@@ -105,7 +106,7 @@ export const blueprint = {
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="./styles.css" />
-    <!--  -->
+    <!-- react-scripts is going to package your .jsx file and drop it in here as a .js file -->
   </head>
   <body>
     <section id="root"></section>
@@ -115,8 +116,8 @@ export const blueprint = {
 
 ```json package.json
 {
-  "name": "flatfile-react-app",
-  "version": "0.1.0",
+  "name": "example-flatfile-react-app",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@flatfile/react": "^7.9.2",
@@ -189,7 +190,7 @@ export const blueprint = {
       "key": "favorite-color",
       "type": "string",
       "label": "Favorite Color"
-    },
+    }
   ]
 }
 ```
@@ -200,8 +201,8 @@ export const blueprint = {
 
 Finally, let's get the data out of our system and to your destination with `onSubmit`.
 
-Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](/guides/egress). Once you have your data, you can do whatever you want with it - from this step you can make another API call to send it where you want. 
-Keep in mind, this is just a simple example. You can do much more with your data and Flatfile! 
+Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](/guides/egress). Once you have your data, you can do whatever you want with it - from this step you can make another API call to send it where you want.
+Keep in mind, this is just a simple example. You can do much more with your data and Flatfile!
 We paginate the data in this call so if you have more than 10,000 records worth of data you'll need to handle that. We have lot's of ideas on how to handle that if you'd like to learn more.
 
 <CodeGroup>
@@ -209,6 +210,7 @@ We paginate the data in this call so if you have more than 10,000 records worth 
 import ReactDOM from "react-dom/client";
 import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
+
 const PUBLISHABLE_KEY = undefined;
 
 const FlatfilePortal = () => {
@@ -238,11 +240,11 @@ return (
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
 
-```
+````
 
 </CodeGroup>
 
-### 5. Transform Data with an `onRecordHook` 
+### 5. Transform Data with an `onRecordHook`
 
 Next, we'll listen for data changes and respond `onRecordHook`,
 
@@ -264,7 +266,7 @@ const FlatfilePortal = () => {
         onSubmit={async ({ sheet }) => {
           const data = await sheet.allData();
           console.log("onSubmit", data);
-          
+
         }}
         onRecordHook={(record) => {
           record.set("lastName", "Rock");
@@ -289,11 +291,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
 
 
-```
+````
 
 ### 6. Match your brand
 
-By attaching a `theme`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming). 
+By attaching a `theme`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming).
 The `Space` component can take a number of options to configure and style the component in the Portal instance. In this case we're adding `theme` to the `metadata` object and giving the Space a `namespace` of `portal`.
 
 ```jsx src/index.jsx
@@ -310,9 +312,13 @@ const FlatfilePortal = () => {
         namespace: "portal",
         metadata: {
           theme: {
-            primaryColor: "red",
-            textColor: "white",
-            logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+            root: {
+              primaryColor: "red",
+              textColor: "white",
+            },
+            sidebar: {
+              logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+            },
           },
         },
       }}
