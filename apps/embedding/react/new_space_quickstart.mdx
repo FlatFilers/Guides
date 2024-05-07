@@ -37,9 +37,10 @@ The `package.json` file contains the dependencies and scripts for your applicati
 
 ## Build your importer
 
-### 1. Initialize Flatfile
+### 1. Set up Flatfile 
 
 Initialize Flatfile to open in a modal. Pass in your `publishableKey` to the FlatfileProvider and a new Space will be created on each page load.
+Here are all the files you need to get started, we'll make edits to these in the next steps.
 
 <CodeGroup>
 
@@ -48,15 +49,22 @@ import ReactDOM from "react-dom/client";
 import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
+// We need to get this from the Flatfile dashboard https://platform.flatfile.com
+const PUBLISHABLE_KEY = "pk_123456";
 const FlatfilePortal = () => {
   const { openPortal } = useFlatfile();
 
-  return <Sheet config={blueprint} />;
+  return (
+    <>
+      <button onClick={openPortal}>Open Portal</button>
+      <Sheet config={blueprint} />
+    </>
+  );
 };
 
 function App() {
   return (
-    <FlatfileProvider publishableKey={PUBLiSHABLE_KEY}>
+    <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
       <FlatfilePortal />
     </FlatfileProvider>
   );
@@ -64,15 +72,45 @@ function App() {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
+
 ```
+
+```js src/blueprint.js
+export const blueprint = {
+  "name": "Contacts",
+  "slug": "contacts",
+  "fields": [
+    {
+      "key": "firstName",
+      "type": "string",
+      "label": "First Name"
+    },
+    {
+      "key": "lastName",
+      "type": "string",
+      "label": "Last Name"
+    },
+    {
+      "key": "email",
+      "type": "string",
+      "label": "Email"
+    }
+  ]
+}
+```
+
+
 
 ```html public/index.html
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="./styles.css" />
-    <section id="root"></section>
+    <script src="https://cdn.jsdelivr.net/npm/@flatfile/react@7.9.2/dist/flatfile-react.min.js"></script>
   </head>
+  <body>  
+    <section id="root"></section>
+  </body>
 </html>
 ```
 
@@ -118,7 +156,7 @@ Build your React project and start the development server:
 
 Your browser should automatically open, displaying the Flatfile importer on page load.
 
-### 3. Build a Workbook
+### 3. Build on the Workbook Blueprint
 
 Now, let's build a Workbook inside the Space for next time.
 
@@ -152,38 +190,9 @@ const blueprint = {
 }
 ```
 
-```jsx src/index.jsx
-import ReactDOM from "react-dom/client";
-import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
-import { blueprint } from "./blueprint";
-// Fill in with your real Publishable Key from the Flatfile Dashboard
-const PUBLiSHABLE_KEY = undefined
-
-const FlatfilePortal = () => {
-  const { openPortal } = useFlatfile();
-  return (
-    <>
-      <button onClick={openPortal}>Open Portal!</button>
-      <Sheet config={blueprint} />
-    </>
-  );
-};
-
-function App() {
-  return (
-    <FlatfileProvider publishableKey={PUBLiSHABLE_KEY}>
-      <FlatfilePortal />
-    </FlatfileProvider>
-  );
-}
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
-```
-
 </CodeGroup>
 
-### 4. Set the destination
+### 4. Add a Destination `onSubmit()`
 
 Finally, let's get the data out of our system and to your destination with `onSubmit`.
 
@@ -194,29 +203,27 @@ Once you add this code, when the submit button is clicked, this will be the plac
 import ReactDOM from "react-dom/client";
 import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
-// Fill in with your real Publishable Key from the Flatfile Dashboard
-const PUBLiSHABLE_KEY = undefined
+const PUBLISHABLE_KEY = undefined;
 
 const FlatfilePortal = () => {
-const { openPortal } = useFlatfile();
+  const { openPortal } = useFlatfile();
   return (
-
-  <>
-    <button onClick={openPortal}>Open Portal!</button>
-    <Sheet
-      config={blueprint}
-      // This helper function will make a Workbook action that can be triggered from the UI 
-      onSubmit={async ({ sheet }) => {
-        const data = await sheet.allData();
-        console.log("onSubmit", data);
-      }}
-    />
-  </>) 
+    <>
+      <button onClick={openPortal}>Open Portal!</button>
+      <Sheet
+        config={blueprint}
+        onSubmit={async ({ sheet }) => {
+          const data = await sheet.allData();
+          console.log("onSubmit", data);
+        }}
+      />
+    </>
+  );
 };
 
 function App() {
   return (
-    <FlatfileProvider publishableKey={PUBLiSHABLE_KEY}>
+    <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
       <FlatfilePortal />
     </FlatfileProvider>
   );
@@ -225,11 +232,12 @@ function App() {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
 
+
 ```
 
 </CodeGroup>
 
-### 5. Transform Data
+### 5. Transform Data with an `onRecordHook`
 
 Next, we'll listen for data changes and respond `onRecordHook`,
 
@@ -239,8 +247,7 @@ Once you add this code, when a change occurs, we'll log the entered first name a
 import ReactDOM from "react-dom/client";
 import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
-// Fill in with your real Publishable Key from the Flatfile Dashboard
-const PUBLiSHABLE_KEY = undefined
+const PUBLISHABLE_KEY = undefined;
 
 const FlatfilePortal = () => {
   const { openPortal } = useFlatfile();
@@ -248,27 +255,23 @@ const FlatfilePortal = () => {
     <>
       <button onClick={openPortal}>Open Portal!</button>
       <Sheet
-          config={blueprint}
-          onSubmit={
-            async ({ sheet }) => {
-              const data = await sheet.allData();
-              console.log("onSubmit", data);
-            }
-          }
-          onRecordHook={
-            (record) => {
-              record.set("lastName", "Rock");
-              return record;
-            }
-          },
+        config={blueprint}
+        onSubmit={async ({ sheet }) => {
+          const data = await sheet.allData();
+          console.log("onSubmit", data);
+        }}
+        onRecordHook={(record) => {
+          record.set("lastName", "Rock");
+          return record;
+        }}
       />
     </>
-  )
+  );
 };
 
 function App() {
   return (
-    <FlatfileProvider publishableKey={PUBLiSHABLE_KEY}>
+    <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
       <FlatfilePortal />
     </FlatfileProvider>
   );
@@ -276,6 +279,7 @@ function App() {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
+
 
 ```
 
@@ -287,46 +291,40 @@ By attaching a `theme`, we will now override colors in your Space to match your 
 import ReactDOM from "react-dom/client";
 import { useFlatfile, FlatfileProvider, Sheet, Space } from "@flatfile/react";
 import { blueprint } from "./blueprint";
-// Fill in with your real Publishable Key from the Flatfile Dashboard
-const PUBLiSHABLE_KEY = undefined
+const PUBLISHABLE_KEY = undefined;
+
 const FlatfilePortal = () => {
   const { openPortal } = useFlatfile();
   return (
-    <>
-      <button onClick={openPortal}>Open Portal!</button>
-      <Space config={{
-        namespace: "portal",
-        metadata: {
-          theme: {
-            primaryColor: "red",
-            textColor: "white",
-            logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
-          }
+    <Space config={{
+      namespace: "portal",
+      metadata: {
+        theme: {
+          primaryColor: "red",
+          textColor: "white",
+          logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
         }
-      }}>
-        <Sheet
-            config={blueprint}
-            onSubmit={
-              async ({ sheet }) => {
-                const data = await sheet.allData();
-                console.log("onSubmit", data);
-              }
-            }
-            onRecordHook={
-              (record) => {
-                record.set("lastName", "Rock");
-                return record;
-              }
-            },
-        />
-      </Space>
-    </>
-  )
+      }
+    }}>
+      <button onClick={openPortal}>Open Portal!</button>
+      <Sheet
+        config={blueprint}
+        onSubmit={async ({ sheet }) => {
+          const data = await sheet.allData();
+          console.log("onSubmit", data);
+        }}
+        onRecordHook={(record) => {
+          record.set("lastName", "Rock");
+          return record;
+        }}
+      />
+    </Space>
+  );
 };
 
 function App() {
   return (
-    <FlatfileProvider publishableKey={PUBLiSHABLE_KEY} >
+    <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
       <FlatfilePortal />
     </FlatfileProvider>
   );
@@ -334,6 +332,7 @@ function App() {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
+
 
 ```
 
