@@ -65,13 +65,11 @@ const FlatfilePortal = () => {
   );
 };
 
-function App() {
-  return (
-    <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
-      <FlatfilePortal />
-    </FlatfileProvider>
-  );
-}
+const App = () => (
+  <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
+    <FlatfilePortal />
+  </FlatfileProvider>
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
