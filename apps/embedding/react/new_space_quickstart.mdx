@@ -214,28 +214,26 @@ import { blueprint } from "./blueprint";
 const PUBLISHABLE_KEY = undefined;
 
 const FlatfilePortal = () => {
-const { openPortal } = useFlatfile();
-return (
+  const { openPortal } = useFlatfile();
+  return (
+    <>
+      <button onClick={openPortal}>Open Portal!</button>
+      <Sheet
+        config={blueprint}
+        onSubmit={async ({ sheet }) => {
+          const data = await sheet.allData();
+          console.log("onSubmit", data);
+        }}
+      />
+    </>
+  ); 
+};
 
-<>
-  <button onClick={openPortal}>Open Portal!</button>
-  <Sheet
-    config={blueprint}
-    onSubmit={async ({ sheet }) => {
-      const data = await sheet.allData();
-      console.log("onSubmit", data);
-    }}
-  />
-</>
-); };
-
-function App() {
-return (
-
-<FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
-  <FlatfilePortal />
-</FlatfileProvider>
-); }
+const App = () => (
+  <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
+    <FlatfilePortal />
+  </FlatfileProvider>
+); 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
@@ -279,13 +277,11 @@ const FlatfilePortal = () => {
   );
 };
 
-function App() {
-  return (
-    <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
-      <FlatfilePortal />
-    </FlatfileProvider>
-  );
-}
+const App = () => (
+  <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
+    <FlatfilePortal />
+  </FlatfileProvider>
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
@@ -339,13 +335,11 @@ const FlatfilePortal = () => {
   );
 };
 
-function App() {
-  return (
-    <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
-      <FlatfilePortal />
-    </FlatfileProvider>
-  );
-}
+const App = () => (
+  <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
+    <FlatfilePortal />
+  </FlatfileProvider>
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
