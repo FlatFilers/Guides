@@ -16,6 +16,7 @@ For synchronous data import/exchange completed in one session, create a new Spac
 
 ### Create your file structure
 
+We're going to set up a simple web app that serves up the `@flatfile/react` with `react-scripts`, similar to how `create-react-app` does it.
 Setup your app to look something like this:
 
 ```
@@ -31,15 +32,16 @@ In this file structure, your app should have two main directories, `public` and 
 
 The `public` directory contains the `index.html` file, which is the entry point of the application's front-end.
 
-The `src` directory contains the main components and logic of the application, including the `blueprint.js` file, which defines your schema, and `index.js` from which your application is run.
+The `src` directory contains the main components and logic of the application, including the `blueprint.js` file, which defines the shape of your data, and `index.jsx` from which your application is run.
 
 The `package.json` file contains the dependencies and scripts for your application.
 
 ## Build your importer
 
-### 1. Set up Flatfile 
+### 1. Set up Flatfile
 
-Initialize Flatfile to open in a modal. Pass in your `publishableKey` to the FlatfileProvider and a new Space will be created on each page load.
+Initialize Flatfile to open in a modal. Pass in your `publishableKey` from the Flatfile dashboard ([here's a link to the exact spot](https://platform.flatfile.com/dashboard/keys-and-secrets)) to the `FlatfileProvider` and a new Space will be created on each page load.
+Paste your key (it should look like `pk_123456`) where `undefined` is in the `index.jsx` file for the `const PUBLISHABLE_KEY` and you'll be in good shape.
 Here are all the files you need to get started, we'll make edits to these in the next steps.
 
 <CodeGroup>
@@ -50,7 +52,7 @@ import { useFlatfile, FlatfileProvider, Sheet } from "@flatfile/react";
 import { blueprint } from "./blueprint";
 
 // We need to get this from the Flatfile dashboard https://platform.flatfile.com
-const PUBLISHABLE_KEY = "pk_123456";
+const PUBLISHABLE_KEY = undefined;
 const FlatfilePortal = () => {
   const { openPortal } = useFlatfile();
 
@@ -72,43 +74,40 @@ function App() {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
-
 ```
 
 ```js src/blueprint.js
 export const blueprint = {
-  "name": "Contacts",
-  "slug": "contacts",
-  "fields": [
+  name: "Contacts",
+  slug: "contacts",
+  fields: [
     {
-      "key": "firstName",
-      "type": "string",
-      "label": "First Name"
+      key: "firstName",
+      type: "string",
+      label: "First Name",
     },
     {
-      "key": "lastName",
-      "type": "string",
-      "label": "Last Name"
+      key: "lastName",
+      type: "string",
+      label: "Last Name",
     },
     {
-      "key": "email",
-      "type": "string",
-      "label": "Email"
-    }
-  ]
-}
+      key: "email",
+      type: "string",
+      label: "Email",
+    },
+  ],
+};
 ```
-
-
 
 ```html public/index.html
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="./styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@flatfile/react@7.9.2/dist/flatfile-react.min.js"></script>
+    <!--  -->
   </head>
-  <body>  
+  <body>
     <section id="root"></section>
   </body>
 </html>
@@ -163,11 +162,11 @@ Now, let's build a Workbook inside the Space for next time.
 1. Update your `blueprint.js` with this simple Blueprint.
 2. Update `index.html` to import the Workbook.
 
-Next time you open Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. Your Workbook will also have a Submit action. We will configure this action in the next step.
+When you opened Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. You can modify that however you like according to our [Blueprint outlined here](/blueprint/overview), but as a simple example we added one more field here for the Contacts Favorite Color.
 
 <CodeGroup>
 ```js src/blueprint.js
-const blueprint = {
+export const blueprint = {
   "name": "Contacts",
   "slug": "contacts",
   "fields": [
@@ -185,18 +184,25 @@ const blueprint = {
       "key": "email",
       "type": "string",
       "label": "Email"
-    }
+    },
+    {
+      "key": "favorite-color",
+      "type": "string",
+      "label": "Favorite Color"
+    },
   ]
 }
 ```
 
 </CodeGroup>
 
-### 4. Add a Destination `onSubmit()`
+### 4. Export your data with an `onSubmit()` action.
 
 Finally, let's get the data out of our system and to your destination with `onSubmit`.
 
-Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](/guides/egress).
+Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](/guides/egress). Once you have your data, you can do whatever you want with it - from this step you can make another API call to send it where you want. 
+Keep in mind, this is just a simple example. You can do much more with your data and Flatfile! 
+We paginate the data in this call so if you have more than 10,000 records worth of data you'll need to handle that. We have lot's of ideas on how to handle that if you'd like to learn more.
 
 <CodeGroup>
 ```jsx src/index.jsx
@@ -206,38 +212,37 @@ import { blueprint } from "./blueprint";
 const PUBLISHABLE_KEY = undefined;
 
 const FlatfilePortal = () => {
-  const { openPortal } = useFlatfile();
-  return (
-    <>
-      <button onClick={openPortal}>Open Portal!</button>
-      <Sheet
-        config={blueprint}
-        onSubmit={async ({ sheet }) => {
-          const data = await sheet.allData();
-          console.log("onSubmit", data);
-        }}
-      />
-    </>
-  );
-};
+const { openPortal } = useFlatfile();
+return (
+
+<>
+  <button onClick={openPortal}>Open Portal!</button>
+  <Sheet
+    config={blueprint}
+    onSubmit={async ({ sheet }) => {
+      const data = await sheet.allData();
+      console.log("onSubmit", data);
+    }}
+  />
+</>
+); };
 
 function App() {
-  return (
-    <FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
-      <FlatfilePortal />
-    </FlatfileProvider>
-  );
-}
+return (
+
+<FlatfileProvider publishableKey={PUBLISHABLE_KEY}>
+  <FlatfilePortal />
+</FlatfileProvider>
+); }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
-
 
 ```
 
 </CodeGroup>
 
-### 5. Transform Data with an `onRecordHook`
+### 5. Transform Data with an `onRecordHook` 
 
 Next, we'll listen for data changes and respond `onRecordHook`,
 
@@ -259,9 +264,12 @@ const FlatfilePortal = () => {
         onSubmit={async ({ sheet }) => {
           const data = await sheet.allData();
           console.log("onSubmit", data);
+          
         }}
         onRecordHook={(record) => {
           record.set("lastName", "Rock");
+          // If you added a favorite-color field, you can use it here.
+          // record.set("favorite-color", "blue");
           return record;
         }}
       />
@@ -285,7 +293,8 @@ root.render(<App />);
 
 ### 6. Match your brand
 
-By attaching a `theme`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming). The `Space` component, can take a number of options to configure and style the component in the Portal instance. In this case we're adding `theme` to the `metadata` object and giving the Space a `namespace` of `portal`.
+By attaching a `theme`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming). 
+The `Space` component can take a number of options to configure and style the component in the Portal instance. In this case we're adding `theme` to the `metadata` object and giving the Space a `namespace` of `portal`.
 
 ```jsx src/index.jsx
 import ReactDOM from "react-dom/client";
@@ -296,16 +305,18 @@ const PUBLISHABLE_KEY = undefined;
 const FlatfilePortal = () => {
   const { openPortal } = useFlatfile();
   return (
-    <Space config={{
-      namespace: "portal",
-      metadata: {
-        theme: {
-          primaryColor: "red",
-          textColor: "white",
-          logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
-        }
-      }
-    }}>
+    <Space
+      config={{
+        namespace: "portal",
+        metadata: {
+          theme: {
+            primaryColor: "red",
+            textColor: "white",
+            logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+          },
+        },
+      }}
+    >
       <button onClick={openPortal}>Open Portal!</button>
       <Sheet
         config={blueprint}
@@ -332,8 +343,6 @@ function App() {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
-
-
 ```
 
 ### 7. Customize
