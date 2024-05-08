@@ -11,7 +11,7 @@ export default function flatfileEventListener(listener) {
       matchFilename: /^.*contacts\.csv$/,
       onFailure: (event) => {
         console.error(
-          `Failed to automap! Please visit https://spaces.flatfile.com/space/${event.context.spaceId}/files?mode=import to manually import file.`
+          `Failed to automap! Please visit https://platform.flatfile.com/s/space/${event.context.spaceId}/files?mode=import to manually import file.`
         );
       },
     })
@@ -31,7 +31,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
       matchFilename: /^.*-contacts\.csv$/,
       onFailure: (event: FlatfileEvent) => {
         console.error(
-          `Failed to automap! Please visit https://spaces.flatfile.com/space/${event.context.spaceId}/files?mode=import to manually import file.`
+          `Failed to automap! Please visit https://platform.flatfile.com/s/space/${event.context.spaceId}/files?mode=import to manually import file.`
         );
       },
     })

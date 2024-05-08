@@ -30,7 +30,7 @@ In the following code, we will:
 
 <CodeGroup>
 
-```jsx listener.js
+```js listener.js
 import api from "@flatfile/api";
 
 export default function flatfileEventListener(listener) {
@@ -42,16 +42,19 @@ export default function flatfileEventListener(listener) {
 
   listener.namespace(["space:red"], (red) => {
     // Part 2: Configure a Space (https://flatfile.com/docs/apps/custom)
-    red.filter({ job: "space:configure" }, (configure) => {
-      configure.on("job:ready", async ({ context: { spaceId, jobId } }) => {
+    red.on(
+      "job:ready",
+      { job: "space:configure" },
+      async ({ context: { spaceId, environmentId, jobId } }) => {
         try {
           await api.jobs.ack(jobId, {
-            info: "Getting started.",
+            info: "Gettin started.",
             progress: 10,
           });
 
           await api.workbooks.create({
             spaceId,
+            environmentId,
             name: "All Data",
             labels: ["pinned"],
             sheets: [
@@ -98,6 +101,7 @@ export default function flatfileEventListener(listener) {
           });
 
           await api.spaces.update(spaceId, {
+            environmentId,
             metadata: {
               theme: {
                 root: {
@@ -129,13 +133,13 @@ export default function flatfileEventListener(listener) {
             },
           });
         }
-      });
-    });
+      }
+    );
   });
 }
 ```
 
-```jsx listener.ts
+```js listener.ts
 /**
  * This code is used in Flatfile's Beginner Tutorial
  * https://flatfile.com/docs/quickstart
@@ -143,11 +147,12 @@ export default function flatfileEventListener(listener) {
  * To see all of Flatfile's code examples go to: https://github.com/FlatFilers/flatfile-docs-kitchen-sink
  */
 
+import type { Client, FlatfileEvent } from "@flatfile/listener";
+
 import { FlatfileListener } from "@flatfile/listener";
-import { Client, FlatfileEvent } from "@flatfile/listener";
 import api from "@flatfile/api";
 
-export default function flatfileEventListener(listener: Client) {
+export default function flatfileEventListener(listener: FlatfileListener) {
   // Part 1: Setup a listener (https://flatfile.com/docs/quickstart/meet-the-listener)
   listener.on("**", (event: FlatfileEvent) => {
     // Log all events
@@ -155,45 +160,27 @@ export default function flatfileEventListener(listener: Client) {
   });
 
   listener.namespace(["space:red"], (red: FlatfileListener) => {
-    red
-      .filter({ job: "space:configure" })
-      .on("job:ready", async (event: FlatfileEvent) => {
-        const { spaceId, jobId } = event.context;
+    // Part 2: Configure a Space (https://flatfile.com/docs/apps/custom)
+    red.on(
+      "job:ready",
+      { job: "space:configure" },
+      async (event: FlatfileEvent) => {
+        const { spaceId, environmentId, jobId } = event.context;
         try {
           await api.jobs.ack(jobId, {
-            info: "Getting started.",
+            info: "Gettin started.",
             progress: 10,
           });
 
           await api.workbooks.create({
             spaceId,
+            environmentId,
             name: "All Data",
             labels: ["pinned"],
             sheets: [
               {
                 name: "Contacts",
                 slug: "contacts",
-                fields: [
-                  {
-                    key: "firstName",
-                    type: "string",
-                    label: "First Name",
-                  },
-                  {
-                    key: "lastName",
-                    type: "string",
-                    label: "Last Name",
-                  },
-                  {
-                    key: "email",
-                    type: "string",
-                    label: "Email",
-                  },
-                ],
-              },
-              {
-                name: "Sheet 2",
-                slug: "sheet2",
                 fields: [
                   {
                     key: "firstName",
@@ -234,6 +221,7 @@ export default function flatfileEventListener(listener: Client) {
           });
 
           await api.spaces.update(spaceId, {
+            environmentId,
             metadata: {
               theme: {
                 root: {
@@ -265,7 +253,8 @@ export default function flatfileEventListener(listener: Client) {
             },
           });
         }
-      });
+      }
+    );
   });
 }
 ```

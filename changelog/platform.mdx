@@ -4,9 +4,328 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
-## March
+## May
 
-### March 17, 2024
+### May 1, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Improved event emission logic for workbook creation and update**
+
+       Previously, the `workbook:created` event was emitted even when the workbook was only being updated. Now, the logic emits a `workbook:updated` event when necessary. Additionally, the `POST /:workbookId/rebuild` endpoint now handles eventing properly.
+
+
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Date Parsing Capabilities**
+
+       **Expanded Support for Date Formats**: We've broadened our parsing algorithms to accurately recognize and sort a wider variety of date formats. This update ensures that when users upload files containing date fields, the system robustly handles various international date formats and styles.
+
+        **Improved Sorting Accuracy**: Dates are now correctly sorted based on their actual chronological order, regardless of the format input. This enhancement reduces errors and inconsistencies previously encountered with date sorting, ensuring data integrity and reliability during file uploads.
+
+        **User Experience Improvement**: Users no longer need to modify or standardize date formats in their files before uploading. Flatfile automatically interprets and processes diverse date inputs, simplifying workflows and reducing manual data preprocessing.
+
+    </div>
+
+</div>
+</div>
+
+## April
+
+### April 25, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Sorted Workbooks in Mapping**
+
+        Selecting a Sheet in the mapping flow has been updated to apply the same sort order consideration as the sidebar. This enhancement ensures consistency in workbook sorting for improved user navigation.
+      </div>
+
+  </div>
+</div>
+
+### April 23, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Origin info now exists in Files table**
+
+        Now, origin tracking is available for file uploads, supporting sources like Google Drive, File System, Box, and OneDrive.
+      </div>
+
+  </div>
+</div>
+
+### April 22, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+       **Improved Duplicate Field Key Validation in Workbook Sheets**
+
+      **Case-Insensitive Checking**: Our latest update enhances the validation process by identifying duplicate field keys in workbook sheets, including case-insensitive comparisons. This ensures that field keys are unique regardless of character casing, maintaining data integrity and consistency across your datasets.
+
+      **Data Integrity Assurance**: By preventing the entry of duplicate keys, even when differences are only in letter casing, we enhance the accuracy and reliability of data processing within our application.
+
+      </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        When uploading a file, you'll now see upload speeds in a user-friendly format (KB/s, MB/s, GB/s).
+      </div>
+
+  </div>
+</div>
+
+### April 19, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Delete Apps**
+
+        Apps can now be deleted via API. Soon, Apps will be deletable via the UI as well.
+      </div>
+
+  </div>
+</div>
+
+### April 18, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Introducing customizable column sizes in the Flatfile Blueprint**
+
+       A new new sizing options has been added for string fields to enhance visual customization and user interface consistency.
+
+        See the new [property](https://reference.flatfile.com/api-reference/workbooks/create#request.body.sheets.fields.string.appearance).
+      </div>
+
+  </div>
+  
+  </div>
+
+### April 17, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Workbook Build Process and Diagnostic Logging**
+
+       **Extended Wait Time for Workbook Readiness**: To accommodate more complex data processing needs, we have extended the maximum wait time for workbook readiness from 30 to 120 seconds. This adjustment ensures that larger or more complex workbooks have sufficient time to complete their build process without interruption.
+
+        **Added Timeout Functionality**: We've introduced a new timeout feature that automatically stops the workbook building process if it exceeds the allotted time. This prevents prolonged waits and potential system overloads, improving overall system reliability.
+
+        **Improved Logging Capabilities**: To aid in troubleshooting and optimize workbook build performance, we have enhanced our logging system. Logs now include additional context information, offering deeper insights into the workbook building process and helping identify and resolve issues more efficiently.
+
+
+      </div>
+
+  </div>
+</div>
+
+### April 12, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Cell-Level Control in Records**
+
+       We've introduced a new configuration property that allows users to set individual cells within a record to read-only. This enhancement extends our previous functionality where only entire columns or sheets could be designated as read-only. Now, you can apply more granular control over data manipulation by restricting editing at the cell level, improving data integrity and compliance.
+
+      See the [reference](https://reference.flatfile.com/api-reference/records/update#request.body.config.readonly).
+
+      </div>
+
+  </div>
+</div>
+
+### April 9, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Support continuing to the next row on enter key press**
+
+       Users can now seamlessly move to the next row in the cell by hitting the enter key. This enhancement improves the user experience and streamlines data entry in the Flatfile platform.
+
+      </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Multiline cell editing**
+
+       Users can now edit text in multi-line mode, enhancing the editing experience within the platform.
+
+      </div>
+
+  </div>
+</div>
+
+## March (8)
+
+##### March 26, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Introducing: Box Integration**
+
+        You can now upload a file from Box. Once you've connected your Box account, you can select a file to upload directly into Flatfile.
+      </div>
+
+  </div>
+</div>
+
+##### March 21, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Introducing: Default Apps**
+
+        You can now set the default App for your Account. This App will be your default landing page. Additionally, any unlinked Spaces will appear here.
+      </div>
+
+  </div>
+</div>
+
+##### March 17, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -28,7 +347,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### March 15, 2024
+##### March 15, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -51,7 +370,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### March 13, 2024
+##### March 13, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -80,7 +399,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### March 8, 2024
+##### March 8, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -111,7 +430,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### March 7, 2024
+##### March 7, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -134,7 +453,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### March 5, 2024
+##### March 5, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -158,7 +477,7 @@ icon: "layer-group"
 
 ## February (11)
 
-### February 29, 2024
+##### February 29, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -259,7 +578,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### February 27, 2024
+##### February 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -317,7 +636,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### February 23, 2024
+##### February 23, 2024
 
   <div style={{ display: "table", width: "auto" }}>
 
@@ -1277,7 +1596,7 @@ icon: "layer-group"
         outcome: {
           message: `The file has been created`,
           acknowledge: true,
-          //Reference: https://spaces.flatfile.com/space/{$id}/{path}?{$query}
+          //Reference: https://platform.flatfile.com/s/space/{$id}/{path}?{$query}
           next: {
             type: "id",
             id: "dev_sp_1234",

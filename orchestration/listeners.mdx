@@ -55,7 +55,7 @@ This function is listening on "\*\*", which is a wildcard that matches all event
 
 ### Filtering
 
-Listeners will hear all events for an Environment, but the Events that a Listener responds to are configurable. You can target which events your code responds to in a few ways.
+Listeners may be notified of every event on your Environment, but the Events that a Listener responds to are configurable. You can target which events your code responds to in a few ways.
 
 One way is to use a filter. A filter is a string that matches the topic of an event. For example, the filter "commit:created" will match any event of that topic.
 
@@ -131,7 +131,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
 
 Namespaces are another way to organize Listener configurations and target specific Events. If you have two different workflows, for example, you can assign them to different namespaces to keep them separate.
 
-To direct a listener to act on events under a given namespace, simply use the `listener.namespace` method.
+To configure a listener to only act on events for a given namespace, simply use the `listener.namespace` method.
 
 <CodeGroup>
 
@@ -172,25 +172,44 @@ Server-side listeners can leverage packages that need the capabilities of a serv
 
 ## Agent
 
-In Flatfile, an Agent refers to a server-side listener bundled and deployed to Flatfile to be hosted in our secure cloud. An Agent is deployed into an Environment and responds to all Events that occur there.
+In Flatfile, an Agent refers to a server-side listener bundled and deployed to Flatfile to be hosted in our secure cloud. 
+You may deploy multiple Agents to a single Environment, each with its own configurations and codebase. 
+But be careful, as multiple Agents can interfere with each other if not properly managed.
 
-### Agent Lifecycle
+### Managing Multiple Agents
 
-Developing your listener locally is easy with the Flatfile CLI. Simply run `npx flatfile develop` to start a local listener. Make changes to your listener code and the CLI will automatically pick up your changes and respond to Events.
+With the capability to deploy multiple Agents within the same Environment, it is crucial to manage them carefully to avoid race conditions and conflicts. When multiple Agents are listening to the same event topics, they can interfere with each other, leading to unpredictable outcomes.
 
-Once you're ready to deploy your listener, simply run `npx flatfile deploy` and your listener will be deployed to the specified environment.
+### Strategies for Conflict Avoidance
 
-Once an Agent is deployed, it will be listening for events in the environment it was deployed to.
+1. **Event Filtering:** Ensure each Agent is configured to listen for specific events or topics. Properly defining the scope of events an Agent should handle can prevent overlap and reduce the chance of race conditions.
 
-Should you wish to update your listener, simply make your changes and run `npx flatfile deploy` again to upsert your Agent code.
+2. **Use of Namespaces:** Utilize namespaces to segment the operational scope of each Agent. This method ensures that Agents only respond to Events within their designated namespaces, effectively isolating their operations and minimizing conflict.
 
-### Agent Conflicts
+3. **Unique Topic Handling:** Design Agents so that no two Agents act on the same event topic without coordination. Establish protocols for event handling that specify which Agent should handle particular events or topics.
 
-Any listener configured to respond to a given Environment will attempt to respond to Events emitted in that Environment.
+### Agent Configuration
 
-This means that multiple listeners running in the same Environment will both attempt to perform operations based on the same Event. This could result in unexpected behavior and should be avoided.
+When deploying an Agent, the CLI will automatically reduce the topic scope your Agent listens to by examining your listener code and registering itself to listen to only the topics your listener is configured to act on.
 
-We recommend using isolated environments to avoid conflicts with a deployed listener.
+For example if your listener code only listens to `commit:created` events, the CLI will automatically configure the Agent to only listen to `commit:created` events. If your listener has a wildcard listener `**`, the CLI will configure the Agent to listen to all events.
+
+### Agent Deployment
+
+To deploy an Agent, run the following command in your terminal from the root directory containing your entry file:
+
+```bash
+npx flatfile@latest deploy
+```
+
+Please note that the -s flag can be used to give your Agent a unique slug. This slug is useful when managing multiple Agents in the same Environment.
+
+If no slug is provided and you already have a single Agent deployed, your Agent will be updated and given a slug of `default`.
+
+If more than one Agent is deployed to the same environment and no slug is provided the CLI will prompt you to select which Agent you would like to update.
+
+Please see [Deploying to Flatfile](/developer-tools/deploying) for more information on deploying an Agent.
+
 
 ## Agent Logs
 
