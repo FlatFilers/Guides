@@ -1,0 +1,45 @@
+---
+title: FlatfileProvider Component
+---
+
+`FlatfileProvider` is a React component that serves as a context provider for Flatfile integration.
+It encapsulates all the necessary state and methods required to manage and interact with Flatfile's services.
+This provider component makes use of the Flatfile API and listener to handle data import processes within your application.
+
+## Props
+
+- **`children`**: `ReactNode` - The child components that will have access to the Flatfile context.
+- **`publishableKey`**: `string` - The publishable key provided by Flatfile for authentication.
+- **`accessToken`**: `string` - Access token for secure interaction with the Flatfile API.
+- **`environmentId`**: `string` - Identifier for the environment within Flatfile.
+- **`apiUrl`**: `string` - (Optional) URL of the Flatfile API. Defaults to 'https://platform.flatfile.com/api'.
+- **`config`**: `object` - Configuration options for the Flatfile import.
+
+## State
+
+- **`internalAccessToken`**: `string | undefined` - Manages the internal state of the access token.
+- **`listener`**: `FlatfileListener` - An instance of FlatfileListener to handle browser-based events.
+- **`open`**: `boolean` - State to manage the visibility of the Flatfile import modal.
+- **`sessionSpace`**: `any` - Represents the current session's workspace.
+- **`createSpace`**: `object` - Configuration for creating a new workspace, document, or workbook.
+
+## Methods
+
+- **`addSheet`**: `(newSheet: Flatfile.SheetConfig) => void` - Adds a new sheet to the workbook if it doesn't already exist.
+- **`updateSheet`**: `(sheetSlug: string, sheetUpdates: Partial<Flatfile.SheetConfig>) => void` - Updates properties of an existing sheet.
+- **`updateWorkbook`, `updateDocument`, `updateSpace`**: Functions to update respective configurations.
+
+## Usage
+
+Wrap your component tree with `FlatfileProvider` to provide all child components access to Flatfile functionalities through context.
+
+```jsx
+<FlatfileProvider
+  publishableKey="your-publishable-key"
+  accessToken="your-access-token"
+>
+  <YourComponent />
+</FlatfileProvider>
+```
+
+This setup allows you to manage and interact with Flatfile imports seamlessly across your application.
