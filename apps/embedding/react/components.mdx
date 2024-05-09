@@ -33,8 +33,16 @@ Learn more about the [FlatfileProvider](/apps/embedding/react/components/Flatfil
 ```
 
 ### Space
+The `Space` component from the `@flatfile/react` package is utilized to define a collaborative environment or workspace within Flatfile's import system. It can be configured to create a new space or to reuse an existing one by providing a space ID.
 
-Configures all Space Creation request data and the `id` for reusing a space
+#### Main Props
+
+- `config`: Sets up the configuration for a new space, including theming and metadata.
+- `id`: An optional prop that, when provided, indicates the specific existing space to be reused instead of creating a new one.
+
+Learn more about the [Space](/apps/embedding/react/components/Space)
+
+Example usage for creating a new space:
 
 ```tsx
 <Space
@@ -68,6 +76,8 @@ Configures all Workbook Creation request data and an new onRecordHooks helper fu
 `onSubmit` and a new `onRecordHooks` helper can be added to the Workbook. A Workbook object containing the sheets can be passed along in the `config`.
 `onRecordHooks` takes an array of record hooks. Each one can take a slug for manually setting each per sheet. Otherwise, if no slug is added, it will apply the record hook to the corresponding sheet in the Workbook index.
 
+Learn more about the [Workbook](/apps/embedding/react/components/Workbook)
+
 ```tsx
 <Workbook
   config={workbook}
@@ -87,13 +97,20 @@ Configures all Workbook Creation request data and an new onRecordHooks helper fu
 ```
 
 ### Sheet
+The `Sheet` component from the `@flatfile/react` package integrates Flatfile's data import functionality into React applications. It simplifies configuring the data import process and managing the lifecycle of data submission and record handling.
+
+#### Main Props
+
+- `config`: Defines the structure and settings of the data to be imported.
+- `onSubmit`: A callback function that is triggered upon successful data submission.
+- `onRecordHook`: A function that allows for custom record manipulation during the import process.
+- `submitSettings`: Customizes the behavior of the data submission process.
+
 
 The Sheet option is similar to the [Simplified SDK Approach](apps/embedding/reference/simple)..
+Learn more about the [Sheet](/apps/embedding/react/components/Sheet)
 
-Configures a Sheet config, with an `onRecordHook` helper
-
-Note: an `onSubmit` can be added to the Workbook Component for ease of use
-
+Example usage:
 ```tsx
 <Sheet
   config={sheet}

@@ -1,43 +1,21 @@
 ---
-title: FlatfileProvider Component
+title: FlatfileProvider Component Overview
 ---
 
-`FlatfileProvider` is a React component that serves as a context provider for Flatfile integration.
-It encapsulates all the necessary state and methods required to manage and interact with Flatfile's services.
-This provider component makes use of the Flatfile API and listener to handle data import processes within your application.
+# FlatfileProvider Component Overview
 
-## Props
+`FlatfileProvider` is a context provider for the `@flatfile/react` package that wraps your application's components where Flatfile's import functionality will be used. It initializes and provides the Flatfile import system to its child components.
 
-- **`children`**: `ReactNode` - The child components that will have access to the Flatfile context.
-- **`publishableKey`**: `string` - The publishable key provided by Flatfile for authentication.
-- **`accessToken`**: `string` - Access token for secure interaction with the Flatfile API.
-- **`environmentId`**: `string` - Identifier for the environment within Flatfile.
-- **`apiUrl`**: `string` - (Optional) URL of the Flatfile API. Defaults to 'https://platform.flatfile.com/api'.
-- **`config`**: `object` - Configuration options for the Flatfile import.
+## Main Props
 
-## State
+- `publishableKey`: The key provided by Flatfile to authenticate your application.
+- `accessToken`: An alternative to `publishableKey` for authentication, typically used for server-side operations.
+- `children`: React nodes for nested components, which can include `Space`, `Workbook`, or `Sheet` components.
 
-- **`internalAccessToken`**: `string | undefined` - Manages the internal state of the access token.
-- **`listener`**: `FlatfileListener` - An instance of FlatfileListener to handle browser-based events.
-- **`open`**: `boolean` - State to manage the visibility of the Flatfile import modal.
-- **`sessionSpace`**: `any` - Represents the current session's workspace.
-- **`createSpace`**: `object` - Configuration for creating a new workspace, document, or workbook.
-
-## Methods
-
-- **`addSheet`**: `(newSheet: Flatfile.SheetConfig) => void` - Adds a new sheet to the workbook if it doesn't already exist.
-- **`updateSheet`**: `(sheetSlug: string, sheetUpdates: Partial<Flatfile.SheetConfig>) => void` - Updates properties of an existing sheet.
-- **`updateWorkbook`, `updateDocument`, `updateSpace`**: Functions to update respective configurations.
-
-## Usage
-
-Wrap your component tree with `FlatfileProvider` to provide all child components access to Flatfile functionalities through context.
+Example usage:
 
 ```jsx
-<FlatfileProvider
-  publishableKey="your-publishable-key"
-  accessToken="your-access-token"
->
+<FlatfileProvider publishableKey="your-publishable-key">
   <YourComponent />
 </FlatfileProvider>
 ```
