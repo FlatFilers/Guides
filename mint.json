@@ -302,7 +302,7 @@
               "pages": [
                 "apps/embedding/react/guide",
                 "apps/embedding/react/new_space_quickstart",
-                "creact/components",
+                "apps/embedding/react/components",
                 {
                   "group": "Legacy",
                   "icon": "settings",

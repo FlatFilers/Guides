@@ -65,7 +65,7 @@ const App = () => {
 
 Configures all Workbook Creation request data and an new onRecordHooks helper function
 
-Sheets can be passed along in the `config`, `onSubmit` can be added, along with a new `onRecordHooks` helper.
+`onSubmit` and a new `onRecordHooks` helper can be added to the Workbook. A Workbook object containing the sheets can be passed along in the `config`.
 `onRecordHooks` takes an array of record hooks. Each one can take a slug for manually setting each per sheet. Otherwise, if no slug is added, it will apply the record hook to the corresponding sheet in the Workbook index.
 
 ```tsx
@@ -88,9 +88,9 @@ Sheets can be passed along in the `config`, `onSubmit` can be added, along with 
 
 ### Sheet
 
-Similar to the Simplified SDK Approach
+The Sheet option is similar to the [Simplified SDK Approach](apps/embedding/reference/simple)..
 
-Configures a Sheet config, with an onRecordHook helper
+Configures a Sheet config, with an `onRecordHook` helper
 
 Note: an `onSubmit` can be added to the Workbook Component for ease of use
 
