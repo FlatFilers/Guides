@@ -321,7 +321,8 @@ html:not(.dark) .border-primary-light {
 
 html:not(.dark) .language-html,
 html:not(.dark) .language-css,
-html:not(.dark) .token.punctuation {
+html:not(.dark) .token.punctuation,
+html:not(.dark) .token.plain-text {
   color: #000;
 }
 
