@@ -59,7 +59,7 @@ Example usage for creating a new space:
 When you want to re-use a space, you'll need to pass an `accessToken` to the `FlatfileProvider`, then this is where you'll add the `id` of the Space you want to re-use.
 
 ```tsx
-const FFApp = () => <Space config={{ id: "us_sp_123456" }} />;
+const FFApp = () => <Space id={"us_sp_123456" } />;
 const App = () => {
   return (
     <FlatfileProvider accessToken={ACCESS_TOKEN}>
