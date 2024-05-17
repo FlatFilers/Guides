@@ -1,0 +1,55 @@
+---
+title: "Sheet Component Overview"
+---
+
+# Sheet Component Overview
+
+The `Sheet` component is a fundamental part of the `@flatfile/react` package, designed to handle the configuration and management of a single data sheet within a Flatfile import process. It provides a declarative way to define the structure, validation, and manipulation of data records.
+
+## Main Props
+
+- `config`: An object that defines the sheet's configuration, including its name, slug, and fields.
+
+  - `name`: The human-readable name of the sheet.
+  - `slug`: A unique identifier for the sheet, used for referencing in the import process.
+  - `fields`: An array of objects defining the structure and constraints of each field in the sheet.
+
+- `onSubmit`: A callback function that is invoked when the sheet's data is successfully submitted. It receives the submitted data as an argument.
+
+- `onRecordHook`: A function that allows for custom manipulation of each record during the import process. It is called for each record and can modify, validate, or enrich the record data.
+
+- `submitSettings`: An object for customizing the behavior of the sheet's submission process, such as handling errors or setting a completion message.
+
+Example usage:
+
+```tsx
+const App = () => {
+  const sheetConfig: Flatfile.SheetConfig = {
+    name: "Users",
+    slug: "users",
+    fields: [
+      { key: "name", label: "Name", type: "string" },
+      { key: "email", label: "Email", type: "string" },
+    ],
+  };
+  const handleSubmit = (data) => {
+    console.log("Submitted data:", data);
+  };
+  const handleRecord = (record) => {
+    record.set("name", record.get("name").toUpperCase());
+  };
+  return (
+    <Sheet
+      config={sheetConfig}
+      onSubmit={handleSubmit}
+      onRecordHook={handleRecord}
+    />
+  );
+};
+```
+
+In this example, the `Sheet` component is configured with a `config` object that defines the structure of the "Users" sheet. The `onSubmit` callback logs the submitted data, while the `onRecordHook` function modifies each record by converting the "name" field to uppercase.
+
+The `Sheet` component simplifies the process of defining and managing data sheets within a Flatfile import workflow, making it easier to create custom import experiences in your React application.
+
+For more details, refer to the code in the `Sheet.tsx` file in the [Flatfile SDK](https://github.com/FlatFilers/flatfile-core-libraries/blob/main/packages/react/src/components/Sheet.tsx)
