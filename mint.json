@@ -76,6 +76,10 @@
       "destination": "/plugins-docs/transform/record-hook"
     },
     {
+      "source": "/plugins/transform/external-constraint",
+      "destination": "/plugins-docs/transform/external-constraint"
+    },
+    {
       "source": "/plugins/transform/autocast",
       "destination": "/plugins-docs/transform/autocast"
     },
