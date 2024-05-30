@@ -15,16 +15,8 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/javascript@1.3.7`
 
-        This release adds the ability to set the default page when preloading the Flatfile Portal embed. Developers can now specify which workbook, sheet, or document page should be displayed initially when the embed loads. This is a useful enhancement that provides more control over the initial user experience. To set the default page, use the updateDefaultPageInSpace function along with the new findDefaultPage utility. For example:
+        This release adds the ability to set the default page when preloading the Flatfile Portal embed. Use `updateDefaultPageInSpace` and `findDefaultPage` to specify which workbook, sheet, or document page should display initially.
 
-        ```js
-        import { findDefaultPage, updateDefaultPageInSpace } from '@flatfile/embedded-utils';
-
-        const defaultPage = findDefaultPage(workbook, document);
-        await updateDefaultPageInSpace(createdSpace, defaultPage);
-        ```
-
-        The release also includes some internal refactoring and code cleanup, but no other major user-facing changes. Upgrade to take advantage of this new default page setting functionality!
         </div>
   </div>
 
@@ -39,7 +31,7 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/listener@1.0.5`
 
-        The @flatfile/listener package receives exciting new updates! An unmount() method has been added, allowing developers to cleanly disconnect the event listener from the event driver. This provides more control over the listener's lifecycle. Additionally, the EventDriver class now includes an unmountEventHandler() method to support removing attached event handlers. Developers can now effortlessly manage their event listeners, providing a smoother integration experience with Flatfile. These improvements showcase our commitment to delivering a robust and user-friendly event handling solution tailored to your needs. Upgrade to the latest version and unlock seamless event management capabilities!
+        The `unmount()` method has been added, allowing developers to cleanly disconnect the event listener from the event driver. The `EventDriver` class now includes `unmountEventHandler()` to remove attached event handlers, providing more control over event listeners.
         </div>
   </div>
 
@@ -53,46 +45,11 @@ icon: "cube"
       <Snippet file="chips/wrappers.mdx" />
       <Snippet file="chips/listener.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/javascript@1.3.4`&`@flatfile/javascript@1.3.6`&`@flatfile/listener@1.0.4`&`@flatfile/react@7.9.3`
+        `@flatfile/javascript@1.3.4`, `@flatfile/javascript@1.3.6`, `@flatfile/listener@1.0.4`, `@flatfile/react@7.9.3`
 
-        The latest version 1.3.4 of the `@flatfile/javascript` package makes some improvements. The closeSpace.operation and closeSpace.onClose properties are now optional, allowing more flexibility when closing the Flatfile space. Additionally, it updates the @flatfile/embedded-utils dependency to version 1.2.1. This release streamlines the handling of post messages from the Flatfile iframe, simplifying the event listener setup. Developers can now more easily integrate Flatfile's data import functionality while maintaining control over the closing behavior. These changes further enhance the seamless integration of Flatfile into applications, making it even more developer-friendly.
+        The `closeSpace.operation` and `closeSpace.onClose` properties are now optional, offering more flexibility. The `@flatfile/embedded-utils` dependency is updated to version 1.2.1, simplifying event listener setup with `handlePostMessage`.
 
-        For example, instead of manually handling post messages, developers can now use the provided handlePostMessage utility:
-
-        ```typescript
-        window.addEventListener(
-          'message', 
-          handlePostMessage(closeSpace, listener),
-          false
-        )
-        ```
-
-        This level of refinement demonstrates Flatfile's commitment to providing a top-notch developer experience for integrating their powerful data import capabilities.
-        
-        This release includes several improvements and updates to the `@flatfile/javascript` package. The closeSpace.operation and closeSpace.onClose options are now optional when initializing the iFrame confirmation modal, providing more flexibility. Internal dependencies have been updated, including @flatfile/embedded-utils, @flatfile/listener, and @flatfile/plugin-record-hook. Build tooling has been optimized for faster performance. Additionally, the handlePostMessage function has been refactored, simplifying the event handling logic. The package now targets ES2015 instead of ES6, ensuring broader compatibility. Overall, these changes bring performance enhancements, dependency updates, and improved developer experience when using the Flatfile JavaScript integration.
-
-        Example usage:
-
-        ```javascript
-        initializeIFrameConfirmationModal(
-          targetEl,
-          spacesUrl,
-          accessToken,
-          apiUrl,
-          exitPrimaryButtonText,
-          exitSecondaryButtonText,
-          {
-            operation: 'my-close-operation', 
-            onClose: () => {
-              // Handle close operation
-            }
-          }
-        )
-        ```
-
-        The `@flatfile/listener` package has received a few updates in the latest release. The build tooling has been optimized for faster builds. Additionally, the package dependencies have been updated to their latest versions. One notable change is the peer dependency on @flatfile/api has been bumped to version 1.8.5, which developers using this package should be aware of and update accordingly. The rollup build configuration has also been streamlined by removing the need for the TypeScript plugin and replacing it with the newer @rollup/plugin-sucrase which handles TypeScript transformations more efficiently. These improvements will provide a better developer experience when working with the @flatfile/listener package by speeding up builds and ensuring compatibility with the latest dependencies. Overall, these changes demonstrate a commitment to optimizing the package for performance and keeping it up-to-date with the latest tooling and dependencies.
-        
-        This release updates the `@flatfile/react` package, making some properties of the closeSpace configuration optional. The closeSpace.operation and closeSpace.onClose properties are now optional, allowing more flexibility when configuring the closing behavior of the Flatfile import experience. Additionally, it updates the @flatfile/embedded-utils dependency to version 1.2.1. The changes also include improvements to event handling and cleanup, ensuring a smoother integration with the Flatfile import experience. Exciting new features that make it even easier for developers to integrate Flatfile's powerful data import capabilities into their applications!
+        `@flatfile/listener` now has optimized build tooling and updated dependencies, improving compatibility and performance.
         </div>
   </div>
 
@@ -107,21 +64,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/javascript@1.3.3`&`@flatfile/react@7.9.2`
+        `@flatfile/javascript@1.3.3`, `@flatfile/react@7.9.2`
 
-        This release includes an important fix to enable clipboard read and write functionality within the embedded Flatfile iframe component. Developers can now seamlessly integrate copy and paste capabilities into their application's data import experience powered by Flatfile. Additionally, the @flatfile/embedded-utils dependency has been updated to version 1.2.0, which likely includes performance enhancements and bug fixes. Upgrade to this latest version to take advantage of these improvements and unlock a more seamless data import workflow for your users!
-
-        Example usage:
-
-        ```js
-        import { createIframe } from '@flatfile/javascript';
-
-        const iframe = createIframe({
-          // ...config
-        });
-        ```
-
-        This release of the `@flatfile/react` package includes several improvements and bug fixes. It fixes a bug with re-using spaces and resolves an issue that prevented clipboard access for embedded iframe components. Additionally, it updates the @flatfile/embedded-utils dependency to the latest version 1.2.0. For developers using this package, the ability to read and write to the clipboard within embedded iframe components is now enabled by adding the "allow" attribute with "clipboard-read" and "clipboard-write" permissions. The Space component now accepts an optional "id" prop alongside the existing "config" prop to allow better control over updating individual spaces. Overall, these changes enhance the functionality and address key issues, providing an improved experience for integrating Flatfile's data import capabilities into applications.
+        This release enables clipboard read and write functionality within the embedded Flatfile iframe component. Also, `@flatfile/embedded-utils` is updated to version 1.2.0.
         </div>
   </div>
 
@@ -136,9 +81,7 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/react@7.9.1`
 
-        This release updates the `@flatfile/react` package to improve the submission process. After successfully uploading data, the onSubmit action handlers now automatically acknowledge the job and set acknowledge: true. This provides better feedback to users that their data has been successfully submitted. Additionally, the job completion message has been updated to a more user-friendly "Submitting data is now complete!". These changes enhance the user experience when integrating Flatfile's data import capabilities into applications.
-
-        For example, when a user submits data through the Flatfile interface, they will now see a confirmation message stating "Submitting data is now complete!" to indicate their upload was successful. Developers utilizing this package do not need to make any code changes to take advantage of these improvements.
+        This release improves the submission process. After data upload, the `onSubmit` action handlers now acknowledge the job automatically, enhancing user feedback.
         </div>
   </div>
 
@@ -151,34 +94,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/core.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/listener@1.0.2`&`@flatfile/react@7.9.0`
+        `@flatfile/listener@1.0.2`, `@flatfile/react@7.9.0`
 
-        This release includes an enhancement to the @flatfile/listener package that adds the ability to remove event listeners. A new off() method has been introduced in the EventHandler class, allowing developers to detach event callbacks based on the query, filter, or callback function. This provides more control over managing event subscriptions. Additionally, a detach() method has been added to the EventHandler class, enabling the removal of all registered listeners and optionally detaching child nodes. A utility function isEqual() has also been included to facilitate comparisons between queries and filters. For the FlatfileListener class, a new fork() method has been implemented, allowing the creation of a new independent instance. Overall, these changes provide more flexibility and management capabilities for event handling in Flatfile applications, enhancing the developer experience.
-        
-                This package enables developers to integrate Flatfile's data import experience into their React application.
-
-        The changes include:
-
-        - Adding new components for configuring Flatfile's Space, Workbook, Sheet, and Document within a React context.
-        - Adding hooks for handling events and record data from Flatfile.
-        - Adding utility functions for creating and configuring a Flatfile Space.
-        - Refactoring the existing components and hooks to use the new React context.
-
-        Some key changes to note:
-
-        1. The `FlatfileProvider` component sets up a FlatfileContext with configurations for the Space, Workbook, Document, and event handlers. This allows child components to access and update these configurations.
-
-        2. The `Space` component handles initializing a Flatfile Space and renders its children within the context of that Space.
-
-        3. The `Sheet` component allows configuring a Flatfile Sheet, handling onSubmit events, and manipulating records using hooks.
-
-        4. The `Workbook` component updates the Workbook configuration and handles onSubmit events.
-
-        5. The `Document` component updates the Document configuration within the FlatfileContext.
-
-        6. New hooks like `useEvent`, `usePlugin`, and `useListener` allow handling Flatfile events and record data within React components.
-
-        This update enables developers to configure and integrate Flatfile's data import functionality more seamlessly within their React applications, with improved control over the Flatfile context and event handling.
+        `@flatfile/listener` now supports removing event listeners with `off()` and `detach()` methods. The `FlatfileProvider` component sets up a `FlatfileContext` with configurations for `Space`, `Workbook`, `Document`, and event handlers.
         </div>
   </div>
 
@@ -191,11 +109,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/javascript@1.3.2`&`@flatfile/react@7.8.12`
+        `@flatfile/javascript@1.3.2`, `@flatfile/react@7.8.12`
 
-        This release updates the `@flatfile/javascript` package to version 1.3.2. The primary change is an update to one of its dependencies, `@flatfile/embedded-utils`, which has been upgraded to version 1.1.14. Developers using this package can expect improved functionality and potential bug fixes thanks to the updated dependency. This release demonstrates Flatfile's commitment to maintaining a robust and up-to-date data import experience for their users.
-        
-        The latest update to the `@flatfile/react` package includes an update to a dependency, `@flatfile/embedded-utils`, which has been bumped from version 1.1.13 to 1.1.14. This ensures that the React components leverage the latest utilities and functionality provided by the embedded-utils package. Upgrading your `@flatfile/react` dependencies will give you access to any improvements or bug fixes made in the embedded-utils package, enhancing the overall experience and reliability of integrating Flatfile's data import capabilities into your React application. Stay up-to-date with the latest Flatfile offerings by keeping your dependencies current!        
+        Updates to dependencies and improvements in performance for both packages. `@flatfile/embedded-utils` dependency updated to 1.1.14.
         </div>
   </div>
 
@@ -208,11 +124,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-          `@flatfile/javascript@1.3.1`&`@flatfile/react@7.8.11`
+          `@flatfile/javascript@1.3.1`, `@flatfile/react@7.8.11`
 
-          This release updates the `@flatfile/javascript` package to version 1.3.1 with a patch to upgrade the @flatfile/embedded-utils dependency to version 1.1.13. The change simplifies the logic for setting the sidebarConfig option when initializing a new Flatfile import space, using a more concise syntax. Upgrading to this version ensures you have the latest performance enhancements and bug fixes from the embedded-utils package. Incorporating the newest Flatfile components keeps your application's data import experience smooth and reliable for your users.
-          
-          This release updates the `@flatfile/react` package to version 7.8.11. The primary change is an update to the embedded-utils dependency, which is now at version 1.1.13. Developers using this package can expect improved stability and bug fixes from the updated dependency. Upgrading to this new version ensures your application stays up-to-date with the latest Flatfile improvements for a seamless data import experience.
+          Updated `@flatfile/embedded-utils` to version 1.1.13. Simplified logic for setting `sidebarConfig` when initializing a new Flatfile import space.
         </div>
   </div>
 
@@ -229,7 +143,7 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/react@7.8.10`
 
-        In this release, a bug has been fixed in the `usePortal` hook related to the `onSubmit` function. The bug caused issues when the `onSubmit` function was called from within the React portal. To resolve this issue, the import of the `api` object from the `@flatfile/api` package has been updated. Instead of using the default export, a new instance of the `FlatfileClient` class is now created, providing a more robust solution compatible with different build tooling. This change ensures that the `onSubmit` function in the `usePortal` hook works correctly, improving the reliability of the data import experience for developers using the `@flatfile/react` package. Exciting improvements to enhance the developer experience!
+        Fixed a bug in the `usePortal` hook related to the `onSubmit` function, ensuring reliable unmounting of the iframe.
         </div>
   </div>
 
@@ -242,29 +156,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-       `@flatfile/javascript@1.3.0`&`@flatfile/react@7.8.9`
+       `@flatfile/javascript@1.3.0`, `@flatfile/react@7.8.9`
 
-        This release includes several updates to the `@flatfile/javascript` package that streamline the data import experience for developers:
-
-        The package now offers a new initNewSpace utility that enables developers to create a new space, workbook, and document in a single API request, simplifying the integration process. This utility returns the initial resources needed to render the embedded UI experience. A new InitialResourceData type has been introduced to represent the data returned from this API call.
-
-        The environmentId parameter has been made optional when creating a new workbook, providing more flexibility for developers. 
-
-        Overall, these changes make it easier for developers to integrate Flatfile's data import capabilities into their applications by reducing the number of API calls required and providing a more streamlined initialization process. Developers can now obtain all the necessary resources to render the embedded UI with a single request using the new initNewSpace utility.
-        
-        In this new release of the `@flatfile/react` package, the environmentId parameter is now optional when initializing a new Flatfile space. This change provides more flexibility for developers who may not need to specify an environmentId. Additionally, there was an update to a dependency, @flatfile/embedded-utils, which was bumped to version 1.1.12. 
-
-        To utilize the optional environmentId, developers can now create a Flatfile space without providing the environmentId parameter, like so:
-
-        ```js
-        const space = await limitedAccessApi.spaces.create({
-          name: 'your-space-name',
-          autoConfigure: true,
-          // No need to provide environmentId
-        });
-        ```
-
-        This exciting update streamlines the integration process, making it even easier for developers to incorporate Flatfile's powerful data import capabilities into their applications. Don't miss out on this convenient enhancement!
+        Added `initNewSpace` utility to create a new space, workbook, and document in a single API request. The `environmentId` parameter is now optional.
         </div>
   </div>
 
@@ -279,13 +173,13 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/react@7.8.8`
 
-        This release fixes an issue where the embedded Flatfile iframe would not be removed properly if there was an error during initialization. Now, whenever the user closes the modal, the iframe will be unmounted reliably to ensure a clean state, regardless of any previous errors. This improvement enhances the integration's stability and provides a smoother experience for developers using the `@flatfile/react` package in their applications. With this bug fix, developers can confidently leverage Flatfile's data import functionality without worrying about lingering iframe instances or inconsistent UI states after encountering errors.
+        Fixed an issue where the embedded Flatfile iframe would not be removed properly if there was an error during initialization.
         </div>
   </div>
 
 </div>
 
-## February (7)
+## February
 
 ##### February 29, 2024
 
@@ -294,23 +188,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/javascript@1.2.6`&`@flatfile/react@7.8.7`
+        `@flatfile/javascript@1.2.6`, `@flatfile/react@7.8.7`
 
-        This release includes a fix to ensure that only defined parameters are included in the space creation request. When initializing the Flatfile experience with `startFlatfile()`, the `namespace`, `translationsPath`, and `languageOverride` options are now only included in the request if they are provided. This change helps prevent sending unnecessary parameters and streamlines the integration process. Developers using this package can expect a more efficient and reliable data import experience powered by Flatfile's robust capabilities. Upgrade to take advantage of this improvement today!
-        
-        This release includes a fix to ensure that only defined parameters are included in the space creation request. When creating a new space using the initializeSpace utility, optional parameters like namespace, translationsPath, and languageOverride will only be included in the request if they are provided. This change helps prevent potential issues caused by including undefined values in the request. For example:
-
-        ```jsx
-        const space = await initializeSpace({
-          licenseKey: 'your_license_key',
-          name: 'My Space',
-          namespace: 'my-namespace', // This will be included
-          // translationsPath and languageOverride are omitted, so they won't be included
-        });
-        ```
-
-        This improvement enhances the robustness and reliability of the space creation process, ensuring that your application only sends the necessary data to Flatfile's API. Upgrade to take advantage of this bug fix and enjoy a smoother data import experience powered by Flatfile!
-                
+        Updated the space creation request to only include defined parameters. Improved reliability and efficiency of data import experience.
         </div>
   </div>
 
@@ -323,12 +203,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/javascript@1.2.5`&`@flatfile/react@7.8.6`
+        `@flatfile/javascript@1.2.5`, `@flatfile/react@7.8.6`
 
-        This release brings some exciting new features to the `@flatfile/javascript` package! The startFlatfile function now accepts several new optional parameters, giving you greater control over the Flatfile experience within your application. You can now specify a namespace, metadata object, array of labels, translation path, and language override. These options allow you to better customize the embedded Flatfile to match your application's branding and localization needs. Additionally, the workbook configuration object passed to startFlatfile has been updated to accept the full CreateWorkbookConfig type, providing more flexibility in defining your workbook setup. For example, you can now pass in custom actions for each sheet. Finally, a bug related to updating the space configuration has been fixed, ensuring a smoother integration process. Upgrade to take advantage of these powerful new capabilities and improvements!
-        
-        In this release, the `@flatfile/react` package introduces updates to the initialization parameters for the embedded wrapper. The changes allow developers to provide additional configurations when creating a new space, such as namespace, labels, translation paths, language overrides, and metadata. This enhanced flexibility enables a more customized experience tailored to the application's needs. Additionally, the update includes optimizations to the space creation process, streamlining the workflow for cases where a pre-existing workbook is not provided. Developers can now seamlessly create spaces with or without workbooks, ensuring a smooth onboarding experience. These improvements empower developers to integrate Flatfile's data import capabilities more effectively, aligning with their specific requirements and delivering an optimized user experience.
-        
+        `startFlatfile` function now accepts new optional parameters, including namespace, metadata, labels, translation path, and language override, providing more customization.
         </div>
   </div>
 
@@ -341,44 +218,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/javascript@1.2.3`&`@flatfile/javascript@1.2.4`&`@flatfile/react@7.8.4`&`@flatfile/react@7.8.5`
+        `@flatfile/javascript@1.2.3`, `@flatfile/javascript@1.2.4`, `@flatfile/react@7.8.4`, `@flatfile/react@7.8.5`
 
-        The latest release of the `@flatfile/javascript` package includes several improvements and bug fixes to enhance the developer experience when integrating Flatfile's data import capabilities into an application. Notably, the default spaces URL has been updated to https://platform.flatfile.com/s to avoid unnecessary preflight requests, streamlining the integration process. Additionally, the package now includes better support for nested entrypoints in package.json, ensuring a more seamless integration with modern project structures.
-
-        Furthermore, the release addresses a potential issue where the submit action could be improperly created, fixing a crucial aspect of the data import workflow. The package also now includes peer dependencies in the JavaScript UMD build, simplifying the installation process for developers.
-
-        Other notable changes include the removal of global style overrides from the SDK, allowing for easier customization of the embedded experience, and the addition of a new utility to preload the Flatfile embed in the background, improving perceived performance.
-
-        Overall, this release enhances the developer experience, improves compatibility with modern project structures, and addresses several critical bug fixes, making it easier than ever to integrate Flatfile's powerful data import capabilities into your application.
-        
-        The `@flatfile/javascript` package has been updated with a few improvements. The Workbook types have been updated to include all parameters, allowing developers to utilize the full functionality of the Workbook configuration. Additionally, the dependency on @flatfile/embedded-utils has been updated to the latest version 1.1.10. This update brings the latest bug fixes and enhancements to the package, ensuring a more robust and reliable experience for developers integrating Flatfile's data import experience into their applications. Excitingly, these improvements provide developers with even greater control and flexibility when working with Flatfile's powerful data import capabilities, enabling them to create truly tailored and seamless experiences for their users.
-        
-        This release updates the default space URL used by the `@flatfile/react` package to https://platform.flatfile.com/s. Previously, it was using https://spaces.flatfile.com. This change helps avoid unnecessary preflight requests.
-
-        For developers using this package, the implication is that data import experiences provided by Flatfile will now be loaded from the new platform.flatfile.com/s domain by default, instead of spaces.flatfile.com. This should improve the performance and reliability of the integration, as preflight requests that were previously required will no longer be necessary.
-
-        To take advantage of this update, no code changes are required for most use cases. However, if you were explicitly setting the spaceUrl prop in your application, you may want to update it to use the new default value of https://platform.flatfile.com/s. For example:
-
-        ```jsx
-        <FlatfileImporter spaceUrl="https://platform.flatfile.com/s" {...otherProps} />
-        ```
-
-        This exciting update demonstrates Flatfile's commitment to providing a smooth and optimized data import experience for your application's users. Embrace the future of seamless data ingestion with the latest improvements from Flatfile!
-        
-        In this release, the types for the Workbook have been updated to include all available parameters. This change provides a more comprehensive and accurate type definition for developers working with the Workbook component, allowing for better type safety and improved developer experience. Additionally, the @flatfile/embedded-utils dependency has been updated to the latest version, bringing any bug fixes or improvements from that package. Upgrade to this version to take advantage of the enhanced type definitions and ensure you are using the latest dependencies.
-
-        For example, when working with the Workbook component, you can now access and provide values for all available properties using type-safe code completion and documentation:
-
-        ```tsx
-        <Workbook
-          licenseKey="YOUR_LICENSE_KEY"
-          customer={customer}
-          onWorkbookLoad={handleWorkbookLoad}
-          onStatusChange={handleStatusChange}
-          onRowUpdate={handleRowUpdate}
-          // And any other available properties
-        />
-        ```
+        Updated default spaces URL to avoid unnecessary preflight requests. Improved support for nested entrypoints in `package.json`.
         </div>
   </div>
 
@@ -393,7 +235,7 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/react@7.8.3`
 
-        The latest release (7.8.3) includes an important bug fix related to updating the authentication token for the @flatfile/listener package. This patch release ensures that the listener authentication token is updated correctly when the accessToken or apiUrl props change, resolving an issue where the token was not being refreshed properly. This fix is crucial for maintaining secure and authorized communication between the Flatfile API and the embedded data import experience. Developers using the `@flatfile/react` package will benefit from this improved token handling, ensuring a seamless and secure data import flow within their applications.
+        Fixed bug related to updating the authentication token for the `@flatfile/listener` package, ensuring secure and authorized communication.
         </div>
   </div>
 
@@ -407,45 +249,9 @@ icon: "cube"
       <Snippet file="chips/wrappers.mdx" />
       <Snippet file="chips/listener.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-          `@flatfile/javascript@1.2.2`&`@flatfile/listener@1.0.1`&`@flatfile/react@7.8.2`
+          `@flatfile/javascript@1.2.2`, `@flatfile/listener@1.0.1`, `@flatfile/react@7.8.2`
 
-          This release updates the `@flatfile/javascript` package with several improvements. The package.json file has been updated with exports and browser fields to support different module systems. A typo in the package.json file has also been fixed. Additionally, the @flatfile/listener dependency has been updated to version 1.0.1. These changes make it easier for developers to integrate Flatfile's data import experience into their applications using the preferred module system and ensure compatibility with the latest versions of dependencies. Developers can now seamlessly utilize the updated package with improved module resolution and compatibility.
-
-          For example, the updated exports field in package.json allows developers to import the package using the appropriate module syntax:
-
-          ```javascript
-          import FlatfileImporter from '@flatfile/javascript'
-          ```
-
-          Overall, this release enhances the developer experience and maintainability of applications using the `@flatfile/javascript` package.
-          
-                  The @flatfile/listener package has received an update to improve its distribution and browser compatibility. The package.json file has been updated to include exports and browser fields, allowing the package to be consumed more easily in both Node.js and browser environments. Additionally, the Rollup configuration has been modified to generate UMD builds, further enhancing cross-environment compatibility. These changes make it easier for developers to integrate the @flatfile/listener package into their applications, regardless of the target runtime environment.
-
-          For example, in a browser environment, the package can now be imported like:
-
-          ```javascript
-          import { Listener } from '@flatfile/listener/dist/index.browser.mjs';
-          ```
-
-          Or in a Node.js environment:
-
-          ```javascript
-          const { Listener } = require('@flatfile/listener');
-          ```
-
-          This update streamlines the distribution process and improves the overall developer experience when working with the @flatfile/listener package, making it a more versatile and user-friendly addition to any project.
-          
-          The latest version 7.8.2 of the `@flatfile/react` package brings exciting updates that make it even easier for developers to seamlessly integrate Flatfile's powerful data import experience into their applications!
-
-          The main change is the addition of exports and browser fields in the package.json file, allowing for more flexible and optimized module resolution. The exports field specifies how to import the package in different environments, while the browser field enables seamless usage in browser environments.
-
-          Additionally, the package now supports both CommonJS (require) and ES Module (import) formats, making it compatible with a wide range of bundlers and build tools.
-
-          To enhance the developer experience further, the package structure has been streamlined. The main entry point has been moved to src/index.ts, and the unnecessary index.ts file in the package root has been removed.
-
-          Finally, this release includes dependency updates, ensuring compatibility with the latest versions of other Flatfile packages.
-
-          Overall, these improvements make the `@flatfile/react` package more robust, efficient, and developer-friendly, further simplifying the process of integrating Flatfile's exceptional data import capabilities into your application.
+          Added exports and browser fields in `package.json` for better module resolution and compatibility. Updated dependencies for improved stability.
         </div>
   </div>
 
@@ -458,23 +264,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-          `@flatfile/javascript@1.1.7`&`@flatfile/javascript@1.2.0`&` @flatfile/javascript@1.2.1`&`@flatfile/react@7.8.0`&` @flatfile/react@7.8.1`
+          `@flatfile/javascript@1.1.7`, `@flatfile/javascript@1.2.0`, `@flatfile/javascript@1.2.1`, `@flatfile/react@7.8.0`, `@flatfile/react@7.8.1`
 
-          This release introduces a minor patch update to the `@flatfile/javascript` package. The change removes global style overrides from the SDKs, specifically updating the class name used for the loading spinner from "spinner" to "ff_spinner". This ensures that the Flatfile styles do not conflict with existing styles in the application where the SDK is integrated. For developers using this package, they may need to update any references to the "spinner" class in their application to use the new "ff_spinner" class name. Overall, this change enhances the compatibility and integration experience when embedding Flatfile into applications.
-
-           The new version 1.2.0 of the `@flatfile/javascript` package includes exciting updates that enhance its functionality and improve the developer experience. The package now utilizes nested entrypoints in the package.json file, allowing for more efficient module importing. Additionally, peer dependencies are now included in the JavaScript UMD build, ensuring better compatibility and reducing potential conflicts. 
-
-           Furthermore, the package has updated its dependencies, with @flatfile/listener upgraded to version 1.0.0 and @flatfile/embedded-utils to version 1.1.9. These updates bring improved stability and bug fixes to the package.
-
-           One notable change is the inclusion of a temporary workaround for an issue in the @flatfile/plugin-record-hook package, which will be addressed in a future release. This change ensures smoother integration and functionality for developers using the `@flatfile/javascript` package.
-
-           Developers can now enjoy a streamlined and optimized experience when working with this package, thanks to the improved module structure, dependency management, and compatibility enhancements. Upgrade to version 1.2.0 today and take advantage of these exciting new features!
-            
-           In this release of the `@flatfile/javascript` package, version 1.2.1, there is an update to the types for better compatibility with the @flatfile/plugin-record-hook plugin. Developers using this package will no longer need to suppress TypeScript type errors when using the recordHook function. This improvement enhances the developer experience by providing more accurate type information and reducing the need for type workarounds. Additionally, the @flatfile/plugin-record-hook dependency has been updated to version 1.4.0, which likely includes the type fixes mentioned. This release demonstrates Flatfile's commitment to providing a seamless integration experience for developers, with robust type support and compatibility across their ecosystem of packages.
-
-           This is a major new release for the `@flatfile/react` package! Developers can now effortlessly customize the look and feel of the Flatfile import experience with new theming capabilities. The `<PDFViewer/>` component has been enhanced to support additional customizations, including the ability to adjust the toolbar color and add a custom logo. Additionally, a new `onChangeRequest` prop has been introduced to the `<ImportManager/>` component, allowing developers to handle change requests from users more effectively. For example, `<ImportManager onChangeRequest={(request) => handleChangeRequest(request)} />` grants access to the change request object, enabling better control over the import process. This release empowers developers to tailor the data import experience to their application's unique branding and functionality requirements.
-       
-           In this release, the `@flatfile/react` package has been updated to improve the integration experience for developers. The types for the package have been updated to better align with the @flatfile/plugin-record-hook dependency, which has also been upgraded to version 1.4.0. Additionally, the usePortal hook has been enhanced to handle the onRecordHook configuration option more reliably, ensuring that the provided callback function is invoked only when it is defined. This change allows developers to seamlessly integrate Flatfile's data import functionality into their applications while benefiting from improved type safety and robustness. With these updates, the Flatfile React package delivers a more polished and developer-friendly experience, empowering users to leverage its powerful data import capabilities with greater confidence and ease.
+          Removed global style overrides from SDKs, improving compatibility. Updated dependencies and improved type support for better integration experience.
         </div>
   </div>
 
@@ -489,19 +281,13 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
           `@flatfile/javascript@1.1.6`
 
-          This release adds functionality to remove the event listener after the submit and close actions are completed. Previously, the event listener remained active, which could lead to potential issues if the application continued running after the import process was finished. Developers using this package will benefit from improved memory management and preventing potential conflicts or unintended behavior caused by lingering event listeners. The change is a small but important improvement to the package's lifecycle management. For example:
-
-          ```js
-          removeEventListener('message', handlePostMessage)
-          ```
-
-          This enthusiastic update demonstrates the maintainers' commitment to delivering a high-quality, robust data import experience within your application.
+          Added functionality to remove the event listener after submit and close actions, improving memory management.
         </div>
   </div>
 
-</div> 
+</div>
 
-## January (10)
+## January
 
 ##### January 31, 2024
 
@@ -510,19 +296,10 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-          `@flatfile/javascript@1.1.5`&` @flatfile/listener@0.4.2`
+          `@flatfile/javascript@1.1.5`, `@flatfile/listener@0.4.2`
 
-          This release introduces some key improvements to the `@flatfile/javascript` package, making it easier for developers to integrate Flatfile's powerful data import functionality into their applications. The package.json structure has been updated for better organization. Additionally, a fix has been implemented to separate types from conflicting peer dependencies, ensuring a smoother development experience. Developers can now enjoy a more streamlined integration process, thanks to these enhancements. Upgrade to the latest version and unlock the full potential of Flatfile's seamless data import capabilities within your application!
+          The `@flatfile/javascript` package update includes a better-organized package.json and fixes for type conflicts with peer dependencies. These changes ensure a smoother development experience and easier integration. The `@flatfile/listener` package resolves type conflicts with peer dependencies and improves type compatibility.
 
-          For example, the peer dependency issue can now be resolved by importing types like this:
-
-          ```typescript
-          import type { FlatfileImporter } from '@flatfile/javascript';
-          ```
-
-          The updated package.json structure provides a cleaner separation of different build targets, making it easier to consume the package in various environments.
-        
-                  This release of the @flatfile/listener package includes a patch change that fixes a type conflict with peer dependencies. The change helps separate the types from conflicting peer dependencies, resolving potential issues when using the package alongside other dependencies. Additionally, the rollup-plugin-peer-deps-external package has been added as a development dependency to facilitate this fix. Developers using this package can now upgrade to version 0.4.2 to benefit from improved type compatibility and avoid potential conflicts with peer dependencies. This change enhances the overall usability and reliability of the @flatfile/listener package, ensuring a smoother integration experience for developers.
         </div>
   </div>
 
@@ -537,7 +314,7 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
           `@flatfile/javascript@1.1.4`
 
-          The latest release of the `@flatfile/javascript` package includes an update that makes the close action of the confirmation modal independent of user parameters. This change improves the user experience by ensuring that the modal is consistently removed from the DOM when closed, regardless of how the user interacts with it. Developers can now seamlessly integrate Flatfile's import experience without worrying about edge cases related to modal dismissal. This enhancement showcases Flatfile's commitment to delivering a polished and reliable data import solution for modern applications.
+          The confirmation modal's close action is now independent of user parameters, ensuring the modal is consistently removed from the DOM when closed.
         </div>
   </div>
 
@@ -550,28 +327,10 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-          `@flatfile/javascript@1.1.3`&`@flatfile/listener@0.4.1`
+          `@flatfile/javascript@1.1.3`, `@flatfile/listener@0.4.1`
 
-          Here are the release notes for the changes in the `@flatfile/javascript` package:
+          The `@flatfile/javascript` package consolidates source code, generates type declarations, and re-exports modules for convenience. The `@flatfile/listener` package update enhances exports and adds dotenv dependency for better environment variable management.
 
-          This release updates the exports and dependencies for the `@flatfile/javascript` package. The @flatfile/listener dependency has been upgraded to version 0.4.1. The main changes are:
-
-          - The source code has been consolidated into a single FlatfileJavascript.ts file for better maintainability.
-          - Type declarations (.d.ts files) are now generated during the build process for improved type safety.
-          - The package now re-exports the FlatfileListener, api, and RecordHookPlugin modules for convenience.
-          - Dependencies have been updated to their latest versions.
-
-          For developers using this package, the public interface remains largely the same. However, importing from the main entry point will now expose the FlatfileJavascript module as the default export, along with the FlatfileListener, api, and RecordHookPlugin exports. This provides a cleaner way to access the package's functionality.
-
-          Example usage:
-
-          ```js
-          import FlatfileJavascript, { FlatfileListener, api, RecordHookPlugin } from '@flatfile/javascript';
-          ```
-
-          The build process has also been optimized, with the generated type declarations allowing for better tooling support and catch type errors during development.
-          
-          The @flatfile/listener package has received a minor update to version 0.4.1. This update enhances the package's functionality by updating its exports. Developers can now take advantage of an improved way to import and utilize the various components provided by the package. Additionally, the dotenv dependency has been added to the package, enabling developers to easily manage environment variables during development and deployment. These changes simplify the integration process and provide a more streamlined experience for developers working with the @flatfile/listener package. Overall, this update brings improved usability and convenience, making it easier to leverage Flatfile's event handling capabilities in your applications.        
         </div>
   </div>
 
@@ -586,20 +345,8 @@ icon: "cube"
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       `@flatfile/javascript@1.1.2`
 
-      This release introduces a fix for an issue when reusing an existing Flatfile space. It also adds support for passing an existing space object to the startFlatfile function, allowing developers to reuse a previously created space instead of always creating a new one. The changes include type updates, conditional logic to handle reusing a space, and the addition of a new guestLink property when reusing a space. Developers can now seamlessly integrate Flatfile into their applications while reusing existing spaces, providing a smoother experience for users.
+      This release fixes an issue when reusing an existing Flatfile space and adds support for passing an existing space object to `startFlatfile`.
 
-      For example, to reuse an existing space:
-
-      ```typescript
-      const existingSpace: ISpace = {
-      id: 'your-space-id',
-      accessToken: 'your-access-token'
-      }
-
-      startFlatfile(existingSpace)
-      ```
-
-      This exciting update empowers developers to leverage the power of Flatfile's data import experience more efficiently, streamlining the integration process and enhancing user satisfaction.
     </div>
   </div>
 
@@ -614,21 +361,9 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
           `@flatfile/javascript@1.1.0`
 
-          The new `@flatfile/javascript` v1.1.0 release includes exciting updates that streamline the data import experience for developers!
+          The new release introduces preloading the Flatfile embed iFrame, initializing without a space ID, and adding additional metadata when creating a space. The pubnub dependency has been removed.
 
-          1. A new utility function enables preloading the Flatfile embed iFrame in the background, improving load times and providing a smoother user experience.
-
-          2. The package now supports initializing the Flatfile embed without a pre-existing space ID, allowing more flexibility in the integration workflow.
-
-          3. Developers can now pass additional metadata like theme configurations and sidebar settings when creating a new space, customizing the Flatfile experience within their application.
-
-          4. Pubnub dependency has been removed, simplifying the package dependencies and reducing bundle size.
-
-          5. Minor bug fixes include improved alignment of close buttons and addition of the submit context event, enhancing the overall embed usability.
-
-          With these updates, integrating Flatfile's powerful data import capabilities into your application becomes even more efficient and seamless. Upgrade to v1.1.0 today and provide your users with a delightful data onboarding experience!
-        
-          The package has been updated to version 1.1.1. This release includes a bug fix and some dependency updates. A potential issue was fixed where the iframe mounting logic incorrectly assumed a preload based on the existing mount element instead of checking the mount element for an iframe. The package dependencies @flatfile/embedded-utils, @flatfile/listener, and @flatfile/plugin-record-hook were updated to their latest versions. Developers using this package can expect improved reliability when mounting the Flatfile iframe and up-to-date dependencies. The createIframe function now also checks if the mount element already exists before creating a new div, providing more robust iframe creation. Overall, this release delivers a key bug fix and keeps dependencies current, enhancing the experience for developers embedding Flatfile's intuitive data import capabilities into their applications.
+          Updated to version 1.1.1 with a bug fix and dependency updates for improved reliability.
         </div>
   </div>
 
@@ -641,31 +376,10 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-          `@flatfile/react@7.5.4`&`@flatfile/react@7.6.0`
+          `@flatfile/react@7.5.4`, `@flatfile/react@7.6.0`
 
-          Flatfile has released an update to the `@flatfile/react` package, version 7.5.4. This update bundles the @flatfile/api package into the `@flatfile/react` package, enabling developers to seamlessly integrate Flatfile's data import experience into their React applications. Additionally, the update includes a dependency upgrade for the @flatfile/embedded-utils package to version 1.1.3. Developers using the `@flatfile/react` package will benefit from improved functionality and a streamlined integration process, making it even easier to enhance their applications with Flatfile's powerful data import capabilities. Upgrade to the latest version to unlock these exciting improvements and provide your users with a seamless data import experience.
-          The latest version 7.6.0 of the `@flatfile/react` package includes the following changes:
+          The `@flatfile/react` update bundles `@flatfile/api` and removes the pubnub dependency. The package now listens for window message events directly.
 
-          The pubnub dependency has been removed from the package. This will affect how real-time events are handled between the Flatfile service and the embedded experience. Instead of using the pubnub library, the package now listens for window message events directly. For example:
-
-          ```jsx
-          const handlePostMessage = (event) => {
-            const { flatfileEvent } = event.data
-            if (flatfileEvent) {
-              // Handle Flatfile events
-              dispatchEvent(flatfileEvent)
-            }
-          }
-
-          useEffect(() => {
-            window.addEventListener('message', handlePostMessage)
-            return () => window.removeEventListener('message', handlePostMessage)
-          }, [])
-          ```
-
-          This change streamlines the package dependencies and provides a more standard approach to handling cross-window communication events.
-
-          Additionally, the @flatfile/embedded-utils package has been upgraded to version 1.1.4, which likely includes bug fixes and performance improvements.
         </div>
   </div>
 
@@ -678,23 +392,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-            `@flatfile/javascript@0.3.2`&`@flatfile/listener@0.4.0`&`@flatfile/react@7.5.3`
+            `@flatfile/javascript@0.3.2`, `@flatfile/listener@0.4.0`, `@flatfile/react@7.5.3`
 
-            In this release, the `@flatfile/javascript` package has been updated to version 0.3.2. This update includes new versions of two dependencies: @flatfile/listener has been updated to version 0.4.0, and @flatfile/embedded-utils has been updated to version 1.1.2. These dependency updates bring exciting improvements and enhancements to the Flatfile data import experience, making it even more seamless and user-friendly for developers to integrate into their applications. With these updates, you can expect a more robust and efficient data import process, ensuring a smooth experience for your end-users.
-        
-            The @flatfile/listener package has been updated with the following changes:
-
-            The package now uses the cross-fetch library instead of axios for making HTTP requests. This change provides better browser compatibility and reduces the package size. Developers using this package will need to update any code that relied on the axios library. 
-
-            The package now supports compression of request bodies by gzipping the data before sending it to the server. This will improve performance by reducing the size of the request payload. Developers do not need to make any code changes to take advantage of this feature.
-
-            The build process has been updated to use Rollup for bundling the package. This introduces support for generating browser-compatible bundles in addition to the existing Node.js bundles. The package now includes ES module builds for better tree-shaking in modern bundlers. Developers can import the package directly or use the provided UMD bundle.
-
-            The TypeScript configuration has been updated to generate declaration files separately, improving the development experience when working with TypeScript.
-
-            Overall, these changes modernize the package, improve performance, and provide better compatibility across different environments. Existing users of the package may need to update their import statements and remove any direct references to the axios library.
-        
-            This release updates dependencies for the `@flatfile/react` package. The @flatfile/listener dependency is upgraded to version 0.4.0, and the @flatfile/embedded-utils dependency is upgraded to version 1.1.2. These dependency updates bring new features and improvements to the Flatfile data import experience integrated into your application. Upgrading to this version ensures you have the latest enhancements and bug fixes from the underlying Flatfile libraries powering the data import functionality. Excitingly, keeping your dependencies up-to-date allows your users to benefit from an ever-improving seamless data ingestion experience!
+            Updates include better browser compatibility, gzipping request bodies, and using Rollup for bundling. Dependencies for `@flatfile/react` are also updated for better performance and reliability.
         </div>
   </div>
 
@@ -709,21 +409,7 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/react@7.5.2`
 
-        This release updates the `@flatfile/react` package to remove the styled-components dependency. Styles have been migrated to a SCSS file for improved performance and maintainability. Developers no longer need to import the styled-components library when using Flatfile's React components.
-
-        A few key changes:
-
-        1. The ConfirmCloseModal, Error, Space, and Spinner components now import styles from a new style.scss file instead of using styled-components.
-
-        2. CSS variables have been added to style.scss for consistent styling across components.
-
-        3. Some internal utility components like CloseIframeButton and SpinnerStyles have been removed in favor of styling with CSS.
-
-        4. The FontStyles component has been removed, with font imports now handled directly in style.scss.
-
-        5. Dependencies on @types/styled-components and styled-components have been removed from package.json. New dependencies like rollup-plugin-peer-deps-external and rollup-plugin-postcss have been added for build optimizations.
-
-        Overall, this allows Flatfile's React components to have a smaller bundle size and avoids potential conflicts with styled-components in the parent application. Styling is now more flexible and easier to maintain going forward.
+        The `@flatfile/react` package removes the styled-components dependency, migrating styles to SCSS for improved performance and maintainability.
         </div>
   </div>
 
@@ -738,17 +424,8 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
           `@flatfile/listener@0.3.19`
 
-          The latest version 0.3.19 of the @flatfile/listener package introduces a new feature that compresses the request body using pako compression when calling the update() method. This compression is enabled by default, providing more efficient data transfer. The update() method now accepts an optional compressRequestBody parameter which allows disabling the compression if needed. When compression is enabled, the appropriate Content-Encoding and Content-Length headers are automatically set. This handy optimization will help reduce network bandwidth usage and transfer times when sending data updates, enhancing the overall performance of your application. As a consumer of this package, you can take advantage of this compression out-of-the-box or optionally turn it off by passing false to the compressRequestBody parameter if desired.
+          The `@flatfile/listener` package now compresses the request body using pako compression by default when calling the `update()` method. This reduces network bandwidth usage and transfer times.
 
-          Example usage:
-
-          ```js
-          // Compress request body (default behavior)
-          await event.update(records); 
-
-          // Disable compression
-          await event.update(records, false);
-          ```
         </div>
   </div>
 
@@ -763,13 +440,13 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
           `@flatfile/listener@0.3.18`
 
-          This update to the @flatfile/listener package resolves an issue with the EventCallback type, which now expects a Promise to be returned. This change allows developers to use async/await when handling Flatfile events, providing greater flexibility and control over asynchronous operations. Developers can now write more efficient and streamlined code when working with the Flatfile event system, enhancing the overall developer experience. This improvement demonstrates Flatfile's commitment to delivering a robust and user-friendly event handling solution.
+          The `EventCallback` type now expects a Promise to be returned, allowing developers to use async/await for greater flexibility and control over asynchronous operations.
         </div>
   </div>
 
 </div>
 
-## December (4)
+## December
 
 ##### December 21, 2023
 
@@ -778,10 +455,9 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-          `@flatfile/javascript@0.3.1`&@`flatfile/react@7.5.1`
+          `@flatfile/javascript@0.3.1`, `@flatfile/react@7.5.1`
 
-          This release includes an update to the UMD build file for the `@flatfile/javascript` package. The file dist/index.umd.js has been renamed to dist/index.js. This change makes it easier for developers to include the Flatfile JavaScript library in their projects by simplifying the import path. Developers using this package can now import the UMD build with a cleaner require('path/to/@flatfile/javascript') instead of the previous longer path. An exciting improvement that streamlines integration!
-          This release includes an update to the UMD file name for the `@flatfile/react` package. Developers using this package in browser environments will now import the library from 'dist/index.js' instead of the previous 'dist/index.browser.umd.js' file path. This simple change streamlines the import process and improves the overall developer experience when integrating Flatfile's powerful data import capabilities into React applications. Upgrade to the latest version to benefit from this enhancement!
+          The UMD build file for the `@flatfile/javascript` package is renamed to `dist/index.js`. The `@flatfile/react` package update simplifies the import process by using `dist/index.js` for browser environments.
         </div>
   </div>
 
@@ -794,21 +470,10 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-          `@flatfile/javascript@0.3.0`&`@flatfile/react@7.5.0`
+          `@flatfile/javascript@0.3.0`, `@flatfile/react@7.5.0`
 
-          The latest release of the `@flatfile/javascript` package includes several exciting improvements and new features. The bundle has been optimized for better performance. A new option has been added to keep the space after submitting data, giving developers more control over the submission flow. Simply pass in the submitSettings option to the createSimpleListener method, like this: `createSimpleListener({ submitSettings: { deleteSpaceAfterSubmit: false } })`. Additionally, the package now takes advantage of @flatfile/embedded-utils@1.1.0 which contains its own updates. These enhancements provide a more streamlined and customizable experience when integrating Flatfile's powerful data import capabilities into your application.
-        
-          This release optimizes the bundles for better performance and introduces a couple of new features. The close button on the Flatfile experience now has a type="button" attribute for improved accessibility. Additionally, developers now have the option to keep the Flatfile space active after submission by setting the deleteSpaceAfterSubmit option to false in the submitSettings prop. A few dependency updates have also been included. Overall, this release brings performance optimizations and more flexibility for integrating the Flatfile data import experience into your application.
+          The `@flatfile/javascript` package includes bundle optimizations and a new option to keep the space after submitting data. The `@flatfile/react` package improves accessibility with the close button's `type="button"` attribute and adds the option to keep the space active after submission.
 
-          Example usage:
-
-          ```jsx
-          <FlatfilePortal 
-            submitSettings={{
-              deleteSpaceAfterSubmit: false // Keep space active after submission
-            }}
-          />
-          ```
         </div>
   </div>
 
@@ -821,42 +486,10 @@ icon: "cube"
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-          `@flatfile/javascript@0.2.2`&`@flatfile/react@7.4.0`
+          `@flatfile/javascript@0.2.2`, `@flatfile/react@7.4.0`
 
-          The `@flatfile/javascript` package has received several updates to enhance its capabilities and improve the developer experience. The dependencies have been updated, including upgrading to the latest version of @flatfile/embedded-utils. A new Simplified React Flow has been introduced, providing developers with a streamlined way to integrate Flatfile's data import experience into their React applications. The default submit label has been changed to "Submit" for a more concise and user-friendly experience. Additionally, the package now includes functionality to handle the onClose event when closing a space, allowing for better control and management of the import process. With these enhancements, developers can expect a more robust and intuitive integration with Flatfile's data import solutions, enabling seamless and efficient data handling within their applications.
+          The `@flatfile/javascript` package introduces a new Simplified React Flow and updates dependencies. The `@flatfile/react` package adds a `usePortal` hook for a smoother integration experience.
 
-          To utilize the new Simplified React Flow, developers can leverage the updated createWorkbookFromSheet function, which now accepts a Flatfile.SheetConfig object as its first parameter. For example:
-
-          ```typescript
-          import { createWorkbookFromSheet } from '@flatfile/javascript';
-
-          const sheet: Flatfile.SheetConfig = {
-            // Sheet configuration properties
-          };
-
-          const workbook = createWorkbookFromSheet(sheet, true);
-          ```
-
-          This function creates a workbook instance from the provided sheet configuration, with the optional second parameter determining whether to trigger the onSubmit event upon successful data submission.
-          
-          This release enhances the `@flatfile/react` package with a new Simplified React Flow and removes an unneeded dependency. It adds a new `usePortal` hook that simplifies the integration flow for developers using the package. The new `IReactSimpleOnboarding` type enables defining error and loading components for the simplified flow. Additionally, the release includes improvements to the build process, testing setup, and dependency updates. Developers can now import the `usePortal` hook and utilize the simplified onboarding flow, providing a smoother integration experience. For example:
-
-        ```jsx
-        import { usePortal } from '@flatfile/react'
-
-        const MyComponent = () => {
-          return (
-            <div>
-              {usePortal({
-                workbook: myWorkbook,
-                onSubmit: handleSubmit
-              })}
-            </div>
-          )
-        }
-        ```
-
-        The package now supports bundling for browser environments, ensuring better compatibility across different platforms. Overall, this release streamlines the developer experience when working with the `@flatfile/react` package, offering a more straightforward integration path while maintaining existing functionality.        
         </div>
   </div>
 
@@ -871,13 +504,14 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/react@7.3.1`
 
-        In this release, the `@flatfile/react` package includes improved nomenclature for better clarity. The useSpaceTrigger hook has been renamed to initializeFlatfile, providing a more intuitive name for initializing the Flatfile embed. Additionally, the createOrUseSpace function has been renamed to OpenEmbed, making it easier for developers to understand its purpose of opening the Flatfile embed. These naming improvements enhance the developer experience when working with the Flatfile React integration, allowing for more straightforward code comprehension and usage. Developers can now initializeFlatfile and call OpenEmbed to seamlessly integrate Flatfile's powerful data import capabilities into their React applications with greater clarity.
+        The `useSpaceTrigger` hook has been renamed to `initializeFlatfile`, and `createOrUseSpace` has been renamed to `OpenEmbed` for better clarity.
+
         </div>
   </div>
 
 </div>
 
-## November (8)
+## November
 
 ##### November 28, 2023
 
@@ -888,17 +522,8 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
           `@flatfile/javascript@0.2.1`
 
-          This release includes a few important changes to improve the `@flatfile/javascript` package. Re-introduces the initializeFlatfile method for continued use, allowing developers to easily integrate Flatfile's data import experience. Fixes an issue with the submit action not creating properly, ensuring a smooth data submission process. Additionally, updates the simple app to be a hidden app, providing a more streamlined user experience. Developers can now leverage these improvements to seamlessly incorporate Flatfile's powerful data import capabilities into their applications.
+          Re-introduces the `initializeFlatfile` method, fixing issues with the submit action and simplifying the user experience.
 
-          Example usage:
-
-          ```js
-          import { initializeFlatfile } from '@flatfile/javascript';
-
-          initializeFlatfile({
-            // Options...
-          });
-          ```
         </div>
   </div>
 
@@ -913,30 +538,8 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
           `@flatfile/javascript@0.2.0`
 
-          In this release, the `@flatfile/javascript` package has been updated with several improvements to simplify the integration flow for developers. The implementation has been streamlined, allowing for easier setup and configuration of the Flatfile data import experience within applications. Notably, developers can now provide a sheet configuration directly, without the need for a pre-defined workbook. This enables a more flexible approach to creating and customizing the data import workflow. Additionally, new utilities have been introduced to handle record-level hooks and job submissions, giving developers greater control over the data processing pipeline. With these enhancements, integrating Flatfile's powerful data import capabilities into applications becomes even more straightforward and adaptable to diverse use cases. Upgrade to take advantage of this streamlined and extensible integration experience!
+          Simplifies the integration flow by allowing developers to provide sheet configurations directly and introducing new utilities for record-level hooks and job submissions.
 
-          Example usage:
-
-          ```typescript
-          import { startFlatfile } from '@flatfile/javascript';
-
-          const sheetConfig = {
-            // ... sheet configuration
-          };
-
-          startFlatfile({
-            sheet: sheetConfig,
-            onRecordHook: (record, event) => {
-              // Handle record-level hooks
-            },
-            onSubmit: async ({ job, sheet }) => {
-              // Process submitted data
-              await job.ack({ info: 'Processing data...', progress: 20 });
-              // ...
-              await job.complete({ outcome: { message: 'Data processed successfully' }});
-            }
-          });
-          ```
         </div>
   </div>
 
@@ -951,19 +554,8 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/react@7.3.0`
 
-        The latest release of the `@flatfile/react` package includes an exciting new feature - the useSpaceTrigger hook. This hook allows developers to control when the Flatfile import experience is triggered within their application. By calling the createOrUseSpace function provided by the hook, developers can initialize the space and launch the Flatfile interface at the desired time, giving them greater control over the user experience. For example:
+        The new `useSpaceTrigger` hook allows developers to control when the Flatfile import experience is triggered.
 
-        ```jsx
-        const { createOrUseSpace, Space } = useSpaceTrigger(props);
-
-        // Call createOrUseSpace when you want to launch Flatfile
-        createOrUseSpace();
-
-        // Render the Space component to display the Flatfile interface
-        return <Space />;
-        ```
-
-        This powerful new addition to the `@flatfile/react` package empowers developers to seamlessly integrate the Flatfile data import experience into their applications, enhancing the overall user journey and providing a smooth, intuitive experience for uploading and managing data.
         </div>
   </div>
 
@@ -976,14 +568,11 @@ icon: "cube"
 <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
       <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-       `@flatfile/javascript@0.1.27` & `@flatfile/react@7.2.34`
+       `@flatfile/javascript@0.1.27`, `@flatfile/react@7.2.34`
 
-       When creating a Workbook from SDK, not all params were being passed to the API. All parameters are now seamlessly passed to the API when creating a Workbook client-side.
-
+       All parameters are now seamlessly passed to the API when creating a Workbook client-side.
     </div>
-
    </div>
-
 </div>
 
 ##### November 9, 2023
