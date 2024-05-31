@@ -6,6 +6,214 @@ icon: "layer-group"
 
 ## May
 
+### May 30, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Bulk Deletion of Mapping Rules**
+
+       We added a method to delete multiple mapping rules from a program. This new `deleteMultipleRules` method simplifies the management of mapping rules by allowing bulk deletions. The `DeleteMultipleRulesRequest` type represents the request payload, detailing the array of rule IDs to be deleted.
+
+
+
+    </div>
+
+  </div>
+
+     <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **New Method to Delete Apps**
+
+       We have introduced a new `delete` method that allows you to delete an app. 
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Validation Messages for Records**
+
+       The `ValidationMessage` type has been enhanced with two new optional properties: `field` and `path`. The `field` property specifies which field the validation message pertains to, while the `path` property, of type `JsonPathString`, specifies the JSONPath for the validation message. These enhancements provide more context and precision in validation feedback.
+
+    </div>
+
+  </div>
+
+     <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Job Outcomes with Custom Views**
+
+       The `JobOutcomeNext` type now includes a new `view` option, allowing jobs to specify a custom view that should be displayed upon completion. To support this, we introduced the `JobOutcomeNextView` type, which provides details for the custom view, including the sheet ID, hidden columns, and an optional label.
+
+    </div>
+
+  </div>
+
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **New Method to Update Sheets**
+
+       We introduced a new `updateSheet` method that allows you to update a sheet's name, slug, and metadata. The `SheetUpdateRequest` type represents the update request payload, including the name, slug, and metadata of the sheet. Additionally, an optional `metadata` property has been added to the `Sheet` and `SheetUpdate` types, allowing for the storage of contextual metadata related to the sheet.
+
+    </div>
+
+  </div>
+
+</div>
+
+
+### May 14, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **New Environment Lifecycle Events**
+
+       We've added new domain `Environment` events expanding the scope of domains our system recognizes. To leverage these events, you can listen on to the following topics:
+       The corresponding event topics are `environment:created`, `environment:updated`, and `environment:deleted`.
+
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Job Configuration Descriptions**
+
+      We have added descriptions for the DeleteRecordsJobConfig properties to provide better clarity:
+      An optional `filter` param allows allows you to provide options to filter records, with the default set to none while the `filterField` param enables narrowing the valid/error filter results to a specific field, but it requires the filter to be set.
+
+      We corrected a typo in the `JobOutcomeNextFiles` type by renaming the file property to files to accurately represent an array of file objects.
+
+    </div>
+  </div>
+</div>
+
+### May 3, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Updated `ListDocumentsResponse`**
+
+       The `data` property now returns an array of `Document` objects instead of the previous `DocumentResponse`. This change standardizes the format and improves consistency in how document data is handled.
+
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Job Configuration**
+
+        We added a new `predecessorIds` property to `JobConfig`. This property allows you to specify job dependencies, meaning you can list the IDs of jobs that must be completed before the current job can start. This helps in managing and sequencing job execution more effectively.
+
+        We added a new feature to handle job outcomes more effectively with a new type called `JobOutcomeNext` and its variant files. This includes:
+
+        - `JobOutcomeNextFileObject` Stores individual file information with an ID and optional label.
+        - `JobOutcomeNextFiles` Handles multiple files, including an array of JobOutcomeNextFileObject instances and an optional label.
+        
+        We also added a waiting value to the JobStatus enum to indicate when a job is paused or pending, improving job processing workflows.
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Views Request and Response**
+
+        We updated `ListViewsRequest` to include optional `pageSize` and `pageNumber` properties, allowing for pagination when retrieving views.
+        We've also added a `createdBy` property to `View` and `ViewResponse` to track the creator of each view.
+    </div>
+
+  </div>
+</div>
+
 ### May 1, 2024
 
   <div style={{ display: "table", width: "auto" }}>
