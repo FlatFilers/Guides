@@ -506,25 +506,4 @@ await api.jobs.complete(jobId, {
 ```
 
 
-##### Download
-
-Add a button to the dialog that will redirect the user to an external link using `next > Url`.
-
-In this code below, we will create a button that says "Download this file".
-
-```jsx javascript
-await api.jobs.complete(jobId, {
-  outcome: {
-    message: `Operation was completed succesfully. ${myData.length} records were processed.`,
-    acknowledge: true,
-    next: {
-      type: "download",
-      fileName: "DownloadedFromFlatfile.csv",
-      url: "source_of_file.csv",
-      label: "Download this file",
-    },
-  },
-});
-```
-
 
