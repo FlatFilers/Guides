@@ -356,7 +356,7 @@ await api.jobs.complete(jobId, {
 });
 ```
 
-#### Next Links
+#### Outcome.Next
 
 Optionally, you can add a button to the outcome dialog to control the next step in the workflow once job has finished.
 
@@ -426,6 +426,66 @@ await api.jobs.complete(jobId, {
 });
 ```
 
+##### Snapshot
+
+Add a button to the dialog that will redirect the user a particular snapshot using `next > snapshot`.
+
+In this code below, we will create a button that says "Go to Snapshot".
+
+```jsx javascript
+await api.jobs.complete(jobId, {
+  outcome: {
+    message: `Operation was completed succesfully.`,
+    acknowledge: true,
+    next: {
+      type: "snapshot",
+      label: "Go to Snapshot",
+      snapshotId: ${snapshot.id},
+      sheetId: ${sheet.id}
+    },
+  },
+});
+```
+
+##### Files
+
+Download files hosted on Flatfile by using `next > files`.
+
+In this code below, we will create a button that says "Download files".
+```jsx javascript
+await api.jobs.complete(jobId, {
+  outcome: {
+    message: `The files should download automatically`,
+    next: {
+      type: "files",
+      label: "Download files",
+      files: [{fileId: "us_fl_123"}],
+    },
+  },
+});
+```
+
+##### View
+
+Dynamically update the columns visible in a sheet by using `next > view`.
+
+In this code below, we will create a button that says "Hide columns".
+
+```jsx javascript
+await api.jobs.complete(jobId, {
+  outcome: {
+    message: `Operation was completed on sheet ${sheet.name}`,
+    acknowledge: true,
+    next: {
+      type: "view",
+      label: "Hide columns",
+      sheetId: ${sheet.id},
+      hiddenColumns: ['age', 'phone', 'middleName'] //a list of field keys on the sheet
+    },
+  },
+});
+```
+
 ##### Retry
 
 Often in the event of a failure, you may want to add a button to the dialog that will retry the Job using `next > Retry`.
@@ -444,3 +504,6 @@ await api.jobs.complete(jobId, {
   },
 });
 ```
+
+
+
