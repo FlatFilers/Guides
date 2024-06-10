@@ -4,7 +4,7 @@ import api from "@flatfile/api";
 
 export default function flatfileEventListener(listener) {
   listener.on(
-    "upload:completed",
+    "file:created",
     async ({ context: { spaceId } }) => {
       try {
         const updateSpace = await api.spaces.update(spaceId, {
@@ -31,7 +31,7 @@ import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 
 export default function flatfileEventListener(listener: FlatfileListener) {
   listener.on(
-    "upload:completed",
+    "file:created",
     async ({ context: { spaceId } }: FlatfileEvent) => {
       try {
         const updateSpace = await api.spaces.update(spaceId, {
