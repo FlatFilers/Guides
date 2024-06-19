@@ -393,7 +393,9 @@
         "guides/additional-fields",
         "guides/flatfile_query_language",
         "guides/data-retention",
-        "guides/api"
+        "guides/api",
+        "guides/ai"
+
       ]
     },
     {
