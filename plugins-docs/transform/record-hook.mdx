@@ -187,9 +187,9 @@ export default async function (listener: FlatfileListener) {
 
 #### Flexible Options
 
-<ParamField path="chunkSize" type="number" default="10_000" optional>
+<ParamField path="chunkSize" type="number" default="5000" optional>
   Define how many records you want to process in each batch. This allows you to
-  balance efficiency and resource utilization based on your specific use case.
+  balance efficiency and resource utilization based on your specific use case. The maximum batch size is 5000 and is the default setting.
 </ParamField>
 
 <ParamField path="parallel" type="number" default="1" optional>
