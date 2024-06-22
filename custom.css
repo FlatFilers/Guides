@@ -572,3 +572,7 @@ button.outline-none {
 html:not(.dark) .bg-tooltip {
   background-color: #fff;
 }
+
+.text-gray-600.dark\:text-white\/70 {
+  color: white;
+}
