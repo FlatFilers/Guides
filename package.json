@@ -3,6 +3,6 @@
         "update-platform": "node changelog/bin/update.js platform ./changelog/src/platform ./changelog/platform.mdx ",
         "update-libraries": "node changelog/bin/update.js libraries ./changelog/src/libraries ./changelog/libraries.mdx ",
         "update-plugins": "node changelog/bin/update.js plugins ./changelog/src/plugins ./changelog/plugins.mdx ",
-        "update-changelog": "npm run update-platform && npm run update-plugins && npm run update-libraries"
+        "changelog": "npm run update-platform && npm run update-plugins && npm run update-libraries"
     }
 }
