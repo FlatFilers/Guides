@@ -8,168 +8,152 @@ icon: "plug"
 
 ### June 06, 2024
 
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/extractors.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-xml-extractor@0.5.17`
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-xml-extractor@0.5.17`
 
-        The @flatfile/plugin-xml-extractor package has been updated to version 0.5.17. This version includes an update to one of its dependencies, @flatfile/util-extractor, which has been upgraded to version 1.0.0. This dependency update brings potential improvements and bug fixes to the XML parsing functionality. Additionally, there is a minor change to the parser.spec.ts test file, where the parseBuffer, findRoot, headersFromObjectList, and xmlToJson imports have been reordered, and a metadata property with an undefined value has been added to a test case object. These changes enhance the reliability and maintainability of the XML extraction plugin, providing a more robust experience for developers working with XML data in their applications.
-        </div>
+    The @flatfile/plugin-xml-extractor package has been updated to version 0.5.17. This version includes an update to one of its dependencies, @flatfile/util-extractor, which has been upgraded to version 1.0.0. This dependency update brings potential improvements and bug fixes to the XML parsing functionality. Additionally, there is a minor change to the parser.spec.ts test file, where the parseBuffer, findRoot, headersFromObjectList, and xmlToJson imports have been reordered, and a metadata property with an undefined value has been added to a test case object. These changes enhance the reliability and maintainability of the XML extraction plugin, providing a more robust experience for developers working with XML data in their applications.
   </div>
-
 </div>
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/extractors.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-delimiter-extractor@1.0.0`
-        `@flatfile/plugin-xml-extractor@0.5.17`
-        `@flatfile/plugin-xlsx-extractor@2.0.0`
-        `@flatfile/plugin-json-extractor@0.7.6`      
-   
-        The latest version 1.0.0 of the @flatfile/plugin-delimiter-extractor package introduces new features to support header selection. 
-        Developers can now enable header selection, allowing the plugin to automatically detect and return letter headers (e.g. A, B, C) representing column indexes instead of using the row data as headers. 
-        The release also includes dependency updates and adds a new metadata property to the parser output containing information about detected row headers when header selection is enabled. 
-        For example:
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-delimiter-extractor@1.0.0`
+      `@flatfile/plugin-xml-extractor@0.5.17`
+      `@flatfile/plugin-xlsx-extractor@2.0.0`
+      `@flatfile/plugin-json-extractor@0.7.6`      
 
-        ```js
-        const result = await parseBuffer(buffer, { headerSelectionEnabled: true }) 
-        // result.sheets['Sheet1'].metadata = { rowHeaders: [5] }
-        ```
+      The latest version 1.0.0 of the @flatfile/plugin-delimiter-extractor package introduces new features to support header selection. 
+      Developers can now enable header selection, allowing the plugin to automatically detect and return letter headers (e.g. A, B, C) representing column indexes instead of using the row data as headers. 
+      The release also includes dependency updates and adds a new metadata property to the parser output containing information about detected row headers when header selection is enabled. 
+      
+      For example:
 
-        This powerful new header selection capability streamlines working with delimiter-separated data files lacking explicit column headers. Upgrade to take advantage of this handy feature today!
-        </div>
+      ```js
+      const result = await parseBuffer(buffer, { headerSelectionEnabled: true }) 
+      // result.sheets['Sheet1'].metadata = { rowHeaders: [5] }
+      ```
+
+      This powerful new header selection capability streamlines working with delimiter-separated data files lacking explicit column headers. Upgrade to take advantage of this handy feature today!
+    </div>
   </div>
-
 </div>
-
-
 
 ## May
 
 ### May 29, 2024
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/core.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-job-handler@0.5.4`
+    <Snippet file="chips/core.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-job-handler@0.5.4`
 
-        In this release, the @flatfile/plugin-job-handler package introduces improved error handling when the callback function returns an invalid job outcome. The package now gracefully handles errors thrown by the callback function, providing better resilience and reliability for developers using the package. Specifically, if the callback function throws an Error, the job is now automatically marked as failed, with the error message included in the job outcome. This enhancement ensures that developers receive clear feedback when issues arise during job processing, making it easier to debug and address any problems. With this improvement, the @flatfile/plugin-job-handler package offers a more robust and user-friendly experience for handling jobs and processing job outcomes.
+      In this release, the @flatfile/plugin-job-handler package introduces improved error handling when the callback function returns an invalid job outcome. The package now gracefully handles errors thrown by the callback function, providing better resilience and reliability for developers using the package. Specifically, if the callback function throws an Error, the job is now automatically marked as failed, with the error message included in the job outcome. This enhancement ensures that developers receive clear feedback when issues arise during job processing, making it easier to debug and address any problems. With this improvement, the @flatfile/plugin-job-handler package offers a more robust and user-friendly experience for handling jobs and processing job outcomes.
 
-        For example, if the callback function encounters an error like:
+      For example, if the callback function encounters an error like:
 
-        ```typescript
-        throw new Error('Failed to process job data');
-        ```
+      ```typescript
+      throw new Error('Failed to process job data');
+      ```
 
-        The package will automatically mark the job as failed with the provided error message:
+      The package will automatically mark the job as failed with the provided error message:
 
-        ```json
-        {
-          "info": "Failed to process job data",
-          "outcome": {
-            "acknowledge": true,
-            "message": "Failed to process job data"
-          }
+      ```json
+      {
+        "info": "Failed to process job data",
+        "outcome": {
+          "acknowledge": true,
+          "message": "Failed to process job data"
         }
-        ```
+      }
+      ```
 
-        This release streamlines error handling, providing developers with a more seamless and reliable experience when working with the @flatfile/plugin-job-handler package.
-        </div>
+      This release streamlines error handling, providing developers with a more seamless and reliable experience when working with the @flatfile/plugin-job-handler package.
+    </div>
   </div>
-
 </div>
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/transform.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-dedupe@1.1.4`
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-dedupe@1.1.4`
 
-        The latest release of the @flatfile/plugin-dedupe package introduces an improved error message when the dedupe plugin is incorrectly called from a workbook-level action instead of a sheet-level action.
-        This helpful error message provides a clearer indication to developers using the package, guiding them to correctly configure the dedupe plugin as a sheet-level action. 
-        The release also includes an updated example demonstrating how to set up the dedupe action within a sheet configuration. 
-        By providing clearer guidance and better error handling, this release enhances the developer experience when working with the dedupe plugin.
-        </div>
+      The latest release of the @flatfile/plugin-dedupe package introduces an improved error message when the dedupe plugin is incorrectly called from a workbook-level action instead of a sheet-level action.
+      This helpful error message provides a clearer indication to developers using the package, guiding them to correctly configure the dedupe plugin as a sheet-level action. 
+      The release also includes an updated example demonstrating how to set up the dedupe action within a sheet configuration. 
+      By providing clearer guidance and better error handling, this release enhances the developer experience when working with the dedupe plugin.
+    </div>
   </div>
-
 </div>
-
-
 
 ### May 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/transform.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-constraints@2.0.0`
-        `@flatfile/plugin-record-hook@1.6.0`
-        `@flatfile/plugin-autocast@1.0.0`
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-constraints@2.0.0`
+      `@flatfile/plugin-record-hook@1.6.0`
+      `@flatfile/plugin-autocast@1.0.0`
 
-        The latest release of the @flatfile/plugin-constraints package introduces exciting new features and improvements.
-        This update adds support for the new string-list and enum-list field types, allowing developers to work with these data types seamlessly within their applications.
-        With this release, developers can expect enhanced functionality and a more robust experience when working with constraints in their projects.
+      The latest release of the @flatfile/plugin-constraints package introduces new features and improvements.
+      This update adds support for the new string-list and enum-list field types, allowing developers to work with these data types seamlessly within their applications.
+      With this release, developers can expect enhanced functionality and a more robust experience when working with constraints in their projects.
 
-        For example, developers can now define constraints that validate string-list and enum-list field types, providing greater flexibility and control over data validation processes.
-        This new capability streamlines the development workflow and ensures data integrity across various use cases.
-        </div>
+      For example, developers can now define constraints that validate string-list and enum-list field types, providing greater flexibility and control over data validation processes.
+      This new capability streamlines the development workflow and ensures data integrity across various use cases.
+    </div>
   </div>
-
 </div>
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/core.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-job-handler@0.5.3`
+    <Snippet file="chips/core.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-job-handler@0.5.3`
 
-        In this release of the @flatfile/plugin-job-handler package, the starting progress of the jobHandler function has been changed from 10% to 1%. 
-        This adjustment provides a more accurate representation of the initial progress state when using the jobHandler function. 
-        Developers can now expect the progress to start at 1% instead of 10%, allowing for a smoother and more intuitive user experience when handling jobs with this package.
-        </div>
+      In this release of the @flatfile/plugin-job-handler package, the starting progress of the jobHandler function has been changed from 10% to 1%. 
+      This adjustment provides a more accurate representation of the initial progress state when using the jobHandler function. 
+      Developers can now expect the progress to start at 1% instead of 10%, allowing for a smoother and more intuitive user experience when handling jobs with this package.
+    </div>
   </div>
-
 </div>
-
 
 ### May 20, 2024
 
+<div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/automations.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-automap@0.3.2`
+    <Snippet file="chips/automations.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-automap@0.3.2`
 
-        The latest release of the @flatfile/plugin-automap package (version 0.3.2) brings an update to its dependency on the @flatfile/api package. Developers using this plugin can look forward to benefiting from the latest improvements and bug fixes in the @flatfile/api package. Additionally, this release ensures compatibility with the latest versions of other Flatfile packages by updating the development dependencies. Upgrade to this latest version to take advantage of the most recent enhancements and maintain seamless integration with the Flatfile ecosystem.
-        </div>
+      The latest release of the @flatfile/plugin-automap package (version 0.3.2) brings an update to its dependency on the @flatfile/api package. Developers using this plugin can look forward to benefiting from the latest improvements and bug fixes in the @flatfile/api package. Additionally, this release ensures compatibility with the latest versions of other Flatfile packages by updating the development dependencies. Upgrade to this latest version to take advantage of the most recent enhancements and maintain seamless integration with the Flatfile ecosystem.
+    </div>
   </div>
-
 </div>
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/export.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-export-workbook@0.3.0`
+    <Snippet file="chips/export.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-export-workbook@0.3.0`
 
-        This release adds a new optional parameter `autoDownload` to the `@flatfile/plugin-export-workbook` package. When set to true, this parameter will automatically download the exported Excel file after it has been uploaded to Flatfile. For example:
+      This release adds a new optional parameter `autoDownload` to the `@flatfile/plugin-export-workbook` package. When set to true, this parameter will automatically download the exported Excel file after it has been uploaded to Flatfile. 
 
-        ```js
-        listener.use(exportWorkbookPlugin({ autoDownload: true }));
-        ```
+      For example:
 
-        This gives developers more flexibility in how they handle the exported file. Additionally, this release updates some dependencies, improves error handling, and streamlines the build process using Rollup. Developers can now more easily integrate Excel export functionality with automatic file downloading in their applications.
-        </div>
+      ```js
+      listener.use(exportWorkbookPlugin({ autoDownload: true }));
+      ```
+
+      This gives developers more flexibility in how they handle the exported file. Additionally, this release updates some dependencies, improves error handling, and streamlines the build process using Rollup. Developers can now more easily integrate Excel export functionality with automatic file downloading in their applications.
+    </div>
   </div>
-
 </div>
 
 ## April
@@ -177,157 +161,180 @@ icon: "plug"
 ### April 30, 2024
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/extractors.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-zip-extractor@0.5.2`
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-zip-extractor@0.5.2`
 
-        This release enhances the @flatfile/plugin-zip-extractor package with an exciting new feature - better handling of async operations! 
-        The zip extractor now utilizes the modern-async library to seamlessly extract zip files without any async issues, ensuring a smooth deployment experience. 
-        Additionally, it introduces a new plugin job handler for improved job management and progress tracking during the extraction process.
-        Developers can now expect reliable zip file extraction with detailed progress updates, making it easier to integrate this powerful functionality into their applications. 
-        Upgrade today and unlock the full potential of efficient and reliable zip file extraction!
-        </div>
+      This release enhances the @flatfile/plugin-zip-extractor package with better handling of async operations. 
+      The zip extractor now utilizes the modern-async library to seamlessly extract zip files without any async issues, ensuring a smooth deployment experience. 
+      Additionally, it introduces a new plugin job handler for improved job management and progress tracking during the extraction process.
+      Developers can now expect reliable zip file extraction with detailed progress updates, making it easier to integrate this powerful functionality into their applications. 
+      Upgrade today and unlock the full potential of efficient and reliable zip file extraction!
+    </div>
   </div>
-
 </div>
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/transform.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-constraints@1.2.1`
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-constraints@1.2.1`
 
-        In this release, the @flatfile/plugin-constraints package has been updated to version 1.2.1. This exciting update brings improved bundling for plugins and ensures compatibility with the latest dependencies. Developers can now enjoy a more seamless integration experience when using this powerful constraints plugin with their Flatfile applications. Additionally, the release addresses a crucial fix related to bundling plugins, ensuring smooth operation and enhancing the overall developer experience. With these improvements, the @flatfile/plugin-constraints package becomes even more robust and reliable, empowering developers to effortlessly extend their blueprints with external constraints.
+      In this release, the @flatfile/plugin-constraints package has been updated to version 1.2.1. This update brings improved bundling for plugins and ensures compatibility with the latest dependencies. Developers can now enjoy a more seamless integration experience when using this powerful constraints plugin with their Flatfile applications. Additionally, the release addresses a crucial fix related to bundling plugins, ensuring smooth operation and enhancing the overall developer experience. With these improvements, the @flatfile/plugin-constraints package becomes even more robust and reliable, empowering developers to effortlessly extend their blueprints with external constraints.
 
-        Some key changes include:
+      Some key changes include:
 
-        - The bundling process for plugins has been optimized, resolving any previous issues and ensuring a smooth integration experience.
-        - Dependencies have been updated, including the @flatfile/plugin-record-hook package, which is now at version 1.5.2, ensuring compatibility with the latest releases.
+      - The bundling process for plugins has been optimized, resolving any previous issues and ensuring a smooth integration experience.
+      - Dependencies have been updated, including the @flatfile/plugin-record-hook package, which is now at version 1.5.2, ensuring compatibility with the latest releases.
 
-        To take advantage of these enhancements, developers simply need to update to the latest version of the @flatfile/plugin-constraints package. For example:
+      To take advantage of these enhancements, developers simply need to update to the latest version of the @flatfile/plugin-constraints package. For example:
 
-        ```
-        npm install @flatfile/plugin-constraints@1.2.1
-        ```
+      ```
+      npm install @flatfile/plugin-constraints@1.2.1
+      ```
 
-        Unlock the full potential of your Flatfile applications with this improved and streamlined constraints plugin!
-        </div>
+      Unlock the full potential of your Flatfile applications with this improved and streamlined constraints plugin!
+    </div>
   </div>
-
 </div>
-
 
 ### April 26, 2024
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/core.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-space-configure@0.5.0`
+    <Snippet file="chips/core.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-space-configure@0.5.0`
 
-        In this release of the @flatfile/plugin-space-configure package, we've added an exciting new feature that allows you to maintain the order of workbooks in the Space UI sidebar. 
-        This means you can now control the order in which your workbooks appear, providing a more intuitive and customized experience for your users. 
-        To enable this functionality, simply include the `maintainWorkbookOrder` option set to `true` when configuring your space. 
-        The workbook order will then be preserved based on the order in which the workbooks are created. 
-        This enhancement gives you greater control over the Space UI, allowing you to tailor it to your specific needs and provide a seamless user experience.
-
-        </div>
+      In this release of the @flatfile/plugin-space-configure package, we've added a feature that allows you to maintain the order of workbooks in the Space UI sidebar. 
+      This means you can now control the order in which your workbooks appear, providing a more intuitive and customized experience for your users. 
+      To enable this functionality, simply include the `maintainWorkbookOrder` option set to `true` when configuring your space. 
+      The workbook order will then be preserved based on the order in which the workbooks are created. 
+      This enhancement gives you greater control over the Space UI, allowing you to tailor it to your specific needs and provide a seamless user experience.
+    </div>
   </div>
-
 </div>
-
-
 
 ### April 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/schemas.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-graphql-schema@1.1.1`
+    <Snippet file="chips/schemas.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-graphql-schema@1.1.1`
 
-        This release enhances the @flatfile/plugin-graphql-schema package with an exciting new feature! 
-        The generateSheets function now allows filtering of GraphQL objects by providing Sheet slugs. 
-        This improvement enables developers to have more granular control over the mapping between GraphQL objects and Flatfile sheets, improving flexibility and customization capabilities. 
-        For example, developers can now specify which GraphQL objects should be included or excluded from the sheet generation process based on their slugs:
+      This release enhances the @flatfile/plugin-graphql-schema package with a new feature. 
+      The generateSheets function now allows filtering of GraphQL objects by providing Sheet slugs. 
+      This improvement enables developers to have more granular control over the mapping between GraphQL objects and Flatfile sheets, improving flexibility and customization capabilities. 
+      For example, developers can now specify which GraphQL objects should be included or excluded from the sheet generation process based on their slugs:
 
-        ```typescript
-        const sheetConfig = sheetConfigArray?.find(
-          (config) => config.slug === object.name
-        )
+      ```typescript
+      const sheetConfig = sheetConfigArray?.find(
+        (config) => config.slug === object.name
+      )
 
-        if (sheetConfigArray?.length > 0 && !sheetConfig) return
-        ```
+      if (sheetConfigArray?.length > 0 && !sheetConfig) return
+      ```
 
-        With this update, the @flatfile/plugin-graphql-schema package becomes even more powerful, offering developers a streamlined experience when working with GraphQL schemas and Flatfile blueprints.
-        </div>
+      With this update, the @flatfile/plugin-graphql-schema package becomes even more powerful, offering developers a streamlined experience when working with GraphQL schemas and Flatfile blueprints.
+    </div>
   </div>
-
 </div>
-
-
-
-
 
 ### April 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/schemas.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-convert-yaml-schema@0.1.4`
+
+      The @flatfile/plugin-convert-yaml-schema package has been updated to convert YAML schemas to the Flatfile Blueprint format, enhancing validation and data preparation. The readme now includes detailed documentation and examples, and the package keywords have been updated for better discoverability. The plugin now relies on the latest version of @flatfile/plugin-convert-json-schema (0.2.4), making it easier to use YAML schemas in Flatfile integrations.
+
+      Here's an example of using the plugin:
+
+      ```js
+      import api, { Flatfile } from "@flatfile/api";
+      import type { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
+      import { configureSpaceWithYamlSchema } from "@flatfile/plugin-convert-yaml-schema";
+
+      listener.use(
+        configureSpaceWithYamlSchema(
+          [
+            { sourceUrl: "http://example.com/person.yml", name: "Person Sheet" },
+            { sourceUrl: "http://example.com/product.yml" },
+          ],
+          {
+            workbookConfig: { name: "YAML Schema Workbook" },
+            debug: true,
+          },
+          async (event, workbookIds, tick) => {
+            // Custom callback logic
+          }
+        )
+      );
+      ```
+
+      This example shows how to configure a Flatfile Space with multiple YAML schema sources, customize names, add actions, and provide a callback for additional processing.
+    </div>
+  </div>
+
+</div>
+
 ### April 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/transform.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-record-hook@1.5.0`
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-record-hook@1.5.0`
 
-        The @flatfile/plugin-record-hook package has been updated to include readonly configurations for entire records or specific fields within a record. 
-        This powerful new feature gives you more control over how data is presented and modified in your application. 
-        Setting a record as readonly prevents any changes from being made, while marking individual fields as readonly allows editing for the remaining fields. To utilize this functionality, simply call the new setReadOnly() method on a record instance, optionally passing in field keys to specify which fields should be readonly. For example: record.setReadOnly('age', 'name') would make the 'age' and 'name' fields readonly for that record. This release enhances flexibility and strengthens data integrity, enabling you to build even more robust applications with Flatfile's powerful data management tools.
-        </div>
+      The @flatfile/plugin-record-hook package has been updated to include readonly configurations for entire records or specific fields within a record. 
+      This new feature gives you more control over how data is presented and modified in your application. 
+      Setting a record as readonly prevents any changes from being made, while marking individual fields as readonly allows editing for the remaining fields. To utilize this functionality, simply call the new setReadOnly() method on a record instance, optionally passing in field keys to specify which fields should be readonly. 
+
+      For example: 
+      ```js
+      record.setReadOnly('age', 'name')
+      ``` 
+      This would make the 'age' and 'name' fields readonly for that record. This release enhances flexibility and strengthens data integrity, enabling you to build even more robust applications with Flatfile's powerful data management tools.
+    </div>
   </div>
-
 </div>
 
 ### April 12, 2024
 
 <div style={{ display: "table", width: "auto" }}>
-
   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/extractors.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/plugin-xlsx-extractor@1.11.6`
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-xlsx-extractor@1.11.6`
 
-        This release enhances the xlsx extractor plugin with improved debug messaging and a new option for configuring header detection. 
-        When running in debug mode, developers will now see helpful log messages indicating which sheet is being processed and what headers were detected. 
-        Additionally, a new `headerDetectionOptions` option has been added to the `ExcelExtractorOptions` interface, allowing consumers to customize the algorithm used for detecting headers in their Excel files. 
-        This gives users more control over how headers are identified, improving compatibility with different spreadsheet formats. 
-        Overall, these changes provide better visibility into the extraction process and more flexibility for handling diverse Excel data sources.
+      This release enhances the xlsx extractor plugin with improved debug messaging and a new option for configuring header detection. 
+      When running in debug mode, developers will now see helpful log messages indicating which sheet is being processed and what headers were detected. 
+      Additionally, a new `headerDetectionOptions` option has been added to the `ExcelExtractorOptions` interface, allowing consumers to customize the algorithm used for detecting headers in their Excel files. 
+      This gives users more control over how headers are identified, improving compatibility with different spreadsheet formats. 
+      Overall, these changes provide better visibility into the extraction process and more flexibility for handling diverse Excel data sources.
 
-        For example, to enable debug logging and use a custom header detection algorithm:
+      For example, to enable debug logging and use a custom header detection algorithm:
 
-        ```typescript
-        import { parseBuffer } from '@flatfile/plugin-xlsx-extractor';
+      ```typescript
+      import { parseBuffer } from '@flatfile/plugin-xlsx-extractor';
 
-        const options = {
-          debug: true,
-          headerDetectionOptions: {
-            algorithm: 'specificRows',
-            rowNumbers: [1, 5]
-          }
-        };
+      const options = {
+        debug: true,
+        headerDetectionOptions: {
+          algorithm: 'specificRows',
+          rowNumbers: [1, 5]
+        }
+      };
 
-        const workbook = await parseBuffer(excelBuffer, options);
-        ```
-        </div>
+      const workbook = await parseBuffer(excelBuffer, options);
+      ```
+    </div>
   </div>
-
 </div>
 
 <div style={{ display: "table", width: "auto" }}>
