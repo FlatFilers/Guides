@@ -1,14 +1,13 @@
 name: Open PR on changelog branch creation
 
 on:
-  create:
+  push:
     branches:
       - changelog/**
 
 jobs:
   open-pull-request:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
