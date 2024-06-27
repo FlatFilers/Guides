@@ -47,6 +47,12 @@ const getHeader = (type) => {
         description: "Notable additions and updates to Flatfile plugins",
         icon: "plug"
       };
+      case 'test':
+        return {
+          title: "Test",
+          description: "For testing purposes.",
+          icon: "check-circle"
+        };
     default:
       throw new Error("Invalid type");
   }
