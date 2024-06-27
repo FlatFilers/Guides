@@ -7,7 +7,7 @@ const path = require('path');
  * This script combines multiple MDX files from a specified input directory into a single output file.
  * It also inserts monthly headers based on the filenames and includes a provided header file at the top.
  * 
- * Usage: node combineMdxFiles.js <inputDir> <outputFile> <type>
+ * Usage: node update.js <inputDir> <outputFile> <type>
  * 
  * Parameters:
  *   <type> - The type of header to use ('platform', 'libraries', or 'plugins').
@@ -15,13 +15,13 @@ const path = require('path');
  *   <outputFile> - The path to the output .mdx file where the combined content will be written.
  * 
  * Example:
- *   node combineMdxFiles.js ./input ./output/combined.mdx libraries
+ *   node update.js ./input ./output/combined.mdx libraries
  * 
  */
 
 const args = process.argv.slice(2);
 if (args.length < 3) {
-  console.error('Usage: node combineMdxFiles.js <inputDir> <outputFile> <type>');
+  console.error('Usage: node update.js <type> <inputDir> <outputFile> ');
   process.exit(1);
 }
 

@@ -1,8 +1,8 @@
 {
     "scripts": {
-        "update-platform": "node changelog/bin/update.js platform ./changelog/src/platform ./changelog/platform.mdx ",
-        "update-libraries": "node changelog/bin/update.js libraries ./changelog/src/libraries ./changelog/libraries.mdx ",
-        "update-plugins": "node changelog/bin/update.js plugins ./changelog/src/plugins ./changelog/plugins.mdx ",
+        "update-platform": "node changelog/bin/update.js platform ./changelog/src/platform ./changelog/auto-platform.mdx ",
+        "update-libraries": "node changelog/bin/update.js libraries ./changelog/src/libraries ./changelog/auto-libraries.mdx ",
+        "update-plugins": "node changelog/bin/update.js plugins ./changelog/src/plugins ./changelog/auto-plugins.mdx ",
         "changelog": "npm run update-platform && npm run update-plugins && npm run update-libraries"
     }
 }
