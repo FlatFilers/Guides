@@ -1,0 +1,38 @@
+### April 12, 2024
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-xlsx-extractor@1.11.6`
+
+      This release enhances the xlsx extractor plugin with improved debug messaging and a new option for configuring header detection. 
+      When running in debug mode, developers will now see helpful log messages indicating which sheet is being processed and what headers were detected. 
+      Additionally, a new `headerDetectionOptions` option has been added to the `ExcelExtractorOptions` interface, allowing consumers to customize the algorithm used for detecting headers in their Excel files. 
+      This gives users more control over how headers are identified, improving compatibility with different spreadsheet formats. 
+      Overall, these changes provide better visibility into the extraction process and more flexibility for handling diverse Excel data sources.
+    </div>
+  </div>
+</div>
+
+<div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      **🚀 GraphQL to Flatfile Blueprint is now available with @flatfile/plugin-graphql-schema@1.0.0 🚀**
+
+      `@flatfile/plugin-graphql-schema` provides a robust solution for leveraging GraphQL data structures within Flatfile, enhancing data management capabilities and adaptability.
+
+- Dual Functionality: The newly released GraphQL to Flatfile Blueprint plugin offers versatile integration options for your Flatfile workspace. Use it to either generate a Flatfile Blueprint directly from GraphQL or configure a Flatfile Space using GraphQL, streamlining your data integration processes.
+
+- Flexible Input Sources: The plugin supports multiple methods for supplying GraphQL data:
+
+  - API Endpoint: Connect directly to a GraphQL API to fetch data.
+  - Schema File: Upload a GraphQL schema file.
+  - Custom Callback: Implement a custom callback function for advanced data handling and customization.
+
+See the [docs](https://www.npmjs.com/package/@flatfile/plugin-graphql-schema).
+
+</div>
+
+  </div>
+  </div>

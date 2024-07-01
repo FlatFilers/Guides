@@ -1,0 +1,80 @@
+### October 11, 2023
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **The API now supports two new actions: `sheets.lock` and `sheets.unlock`.**
+
+        With the introduction of these API actions, you gain the ability to manage sheet locking within your application. The `sheets.lock` action allows you to lock a sheet, preventing any further modifications to its content. Conversely, the `sheets.unlock` action enables you to release the lock and restore full editing capabilities to the sheet.
+
+        These new API actions provide greater control and flexibility when it comes to managing sheet access and data integrity.
+
+        [See the endpoint](https://reference.flatfile.com/api-reference/sheets/lock-a-sheet)
+
+    </div>
+
+  </div>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **New: Full-screen Documents!**
+
+        Documents have gained a new capability, allowing them to seamlessly transition into full-screen takeovers, thus removing their presence from the sidebar.
+
+        **How it works:**
+
+        To enable this functionality, we've introduced a new property on Documents: `treatments`. This property allows users to define specific descriptors for each Document. When a Document is assigned the "ephemeral" treatment, it will transform into a full-screen overlay, visible exclusively within the Spaces dashboard, while being discreetly tucked away from the Spaces sidebar.
+
+        This enhancement enhances user creativity and provides the freedom to tailor document-driven interactions precisely to their needs.
+
+        ```ts
+        await api.documents.create(spaceId, {
+          treatments: ['ephemeral'],
+          title: "Getting Started"
+        });
+        ```
+
+        [Learn more](../guides/documents#ephemeral-documents)
+    </div>
+
+  </div>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **We’ve added Indonesia (ID) translations!**
+
+        Building upon our existing language support (based on your customers’ browser locale), which already included French, German, Portuguese and Spanish translations, we’ve expanded our capabilities to cater to an even broader audience.
+
+        Need another language? Let us know and we’ll prioritize getting it added.
+    </div>
+
+  </div>
+</div>
+
+##

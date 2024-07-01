@@ -1,0 +1,44 @@
+### October 8, 2023
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+         **Now Available: Accept Dynamic Inputs on Actions**
+
+        ![image](../changelog/images/action_inputs.png)
+
+        Now, when initiating an action, you have the option to gather additional information from end users to facilitate the successful completion of the intended task.
+
+        **Here’s how it works:**
+
+        Suppose you want to allow users to specify the name of the file they intend to export. In such cases, you can configure input fields for your action. When an end user triggers this action, a secondary dialog will appear, prompting them to provide the necessary information.
+
+        **The available input types include:**
+
+        - `string`: For capturing text-based information.
+        - `textarea`: Ideal for longer text entries or descriptions.
+        - `number`: To collect numeric data.
+        - `boolean`: For simple yes/no or true/false responses.
+        - `enum`: Enables users to select from a predefined list of options.
+
+        **Two easy ways to get started:**
+
+        - Learn about all the parameters available on `inputForm` for Actions [here](../orchestration/actions#inputform).
+        - Or follow this copy/paste [Guide](../guides/actions#actions-with-input-forms) to quickly see it in action in your code.
+
+    </div>
+
+  </div>
+
+  </div>
+
+##

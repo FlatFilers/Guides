@@ -1,0 +1,77 @@
+### November 20, 2023
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **You can now disable Actions when there are invalid records**
+
+        ![image](../changelog/images/hasAllValid.gif)
+
+        Previously, developers faced challenges in determining when all rows were valid, essential for preventing unintended data egress.
+
+        Now, developers can now add an optional flag to Actions, preventing users from initiating Actions when Sheets or Workbooks contain invalid records.
+
+
+        ```jsx
+        actions: [{
+          ...
+          constraints: [{ type: 'hasAllValid' }]
+          ...
+        }]
+        ```
+
+         Add a `constraints` parameter in your Action that includes `type: hasAllValid,` to disable actions when there are invalid records.
+
+
+        [Learn more](../guides/actions#usage)
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        We made an enhancement to bulk cell pasting. Previously, locking the cell occurred prematurely, causing values to flash after pasting. Now, locking is effectively executed later, resulting in a smoother and more stable pasting experience.
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Space ID Search is now available in the Spaces Table**
+
+        ![image](../changelog/images/search_spaces.gif)
+
+        We've added a new feature that allows you to search for spaces using their Space ID in the Spaces table. This enhancement simplifies the process of locating specific spaces quickly and efficiently.
+    </div>
+
+  </div>
+
+</div>
+
+##
