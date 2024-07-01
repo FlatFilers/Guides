@@ -47,10 +47,10 @@ const getHeader = (type) => {
         description: "Notable additions and updates to Flatfile plugins",
         icon: "plug"
       };
-      case 'test':
+      case 'misc':
         return {
-          title: "Test",
-          description: "For testing purposes.",
+          title: "General Updates",
+          description: "All other updates and changes",
           icon: "check-circle"
         };
     default:
