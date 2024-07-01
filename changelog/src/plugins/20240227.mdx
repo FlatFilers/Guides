@@ -1,0 +1,42 @@
+### February 27, 2024
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/automations.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+      `@flatfile/plugin-webhook-egress@1.2.3`
+
+      The latest version introduces key improvements for enhanced functionality and user experience:
+
+      **Switch to Fetch:** In this version, we’ve transitioned from using axios to fetch for HTTP requests, streamlining the library’s usage across different environments.
+      Browser Compatibility: The plugin is now fully compatible with browser environments, extending its utility beyond server-side applications.
+
+      **Enhanced Response Rejection Handling:** The integration of our response rejection utility allows for sophisticated post-webhook action decisions. Following a webhook egress, the utility analyzes the response to determine whether to delete records that were successfully submitted or to mark them with a status column reflecting their outcome. It also allows specifying custom error messages for fields within records that encountered rejections.
+
+      This update aims to offer more flexibility, reliability, and broader applicability of the webhook egress plugin, ensuring seamless integration into your data workflow.
+
+      [Learn more in the docs](../../../plugins-docs/export/webhook)
+
+    </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+      `@flatfile/plugin-autocast@0.7.6`
+
+      0.7.6 introduces string casting capabilities to the autocast plugin. With this new feature, numbers and booleans can now be automatically converted to strings, making it easier to manage data types across your applications.
+
+      This enhancement is particularly useful in conjunction with the rawNumbers property found in `@flatfile/plugin-xlsx-extractor`, where numeric values extracted from documents can be seamlessly transformed into string fields for consistency and ease of use.
+
+      [Learn more](../../../plugins-docs/transform/autocast)
+    </div>
+
+  </div>
+
+</div>
+
+## January (2)
+
+##

@@ -1,0 +1,15 @@
+### May 24, 2024
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.9.9`
+
+        This release includes a fix to address instances where the iframe wasn't ready when the `portal:initialize` call was posted. The fix ensures that the `portal:initialize` message is sent to the iframe only after it has finished loading. This resolves an issue where the initialization process could sometimes fail due to the iframe not being ready. Developers using the `@flatfile/react` package will benefit from a more reliable initialization process for the embedded Flatfile experience.
+        
+        The new `useIsIFrameLoaded` hook listens for the `load` event on the iframe and updates a state variable accordingly. The `portal:initialize` message is then sent only when the iframe has finished loading, ensuring a reliable initialization process.
+        </div>
+  </div>
+
+</div>

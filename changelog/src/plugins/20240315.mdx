@@ -1,0 +1,25 @@
+### March 15, 2024
+<div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/util-common@1.0.1`
+
+      This release replaces the `api.records.get` on @flatfile/api with a fetch to the GET records endpoint. This significantly improves large response times.
+
+</div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/xlsx-extractor@1.11.2`
+
+    This update addresses an issue with how columns were managed when encountering blank header columns. Previously, the last column was incorrectly removed in such cases. Now, the column with the blank header is precisely identified and removed, ensuring more accurate data representation and integrity in your workflows.
+
+</div>
+
+  </div>
+  </div>
+
+##

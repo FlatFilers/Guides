@@ -1,0 +1,72 @@
+### August 30, 2023
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+    🚀  **Introducing `@flatfile/plugin-jobs-handler`**
+
+    Our latest plugin, `@flatfile/plugin-jobs-handler`, streamlines handling Flatfile Jobs, which are a large unit of work performed asynchronously on a resource such as a file, Workbook, or Sheet.
+
+    **Options at your fingertips:**
+
+    - Update Job progress using `await tick(progress, message)`, returning a promise for `JobResponse`.
+    - `opts.debug` Enable debug logging for the plugin
+
+    To get started simplifying the management of your Jobs, explore the [README](../../../plugins-docs/core/job-handler).
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+      🚀 **Introducing `@flatfile/plugin-space-configure`**
+
+      Streamline the dynamic setup of new Flatfile Spaces with `@flatfile/plugin-space-configure`.
+
+      **How it works:**
+
+      - The `setup` parameter holds the Blueprint for the new Space.
+      - And the `callback` parameter (invoked once the Space and Workbooks are fully configured) receives three arguments:
+      1. `event`
+      2. `workbookIds`
+      3. Using the `@flatfile/plugin-jobs-handler` under the hood, the `tick` function can be used to update the Job’s progress.
+
+      To simplify auto-configuring your Spaces, explore the [README](../../../plugins-docs/core/space-configure).
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+      **All extractors now support `chunkSize` and `parallel`**
+
+      A new version of an underlying utility (`@flatfile/util-extractor`) introduces 2 new options for extracting records in all extractor plugins:
+
+      - `chunkSize`: (Default: 3,000) Define how many records you want to process in each batch. This allows you to balance efficiency and resource utilization based on your specific use case.
+      - `parallel`: (Default: 1) Choose whether the records should be processed in parallel. This enables you to optimize the execution time when dealing with large datasets.
+
+      *Note: Previously, we were extracting with a chunkSize of 1,000.*
+
+      **Ex: Excel Usage: (See [docs](../../../plugins-docs/extractors/xlsx-extractor))**
+
+      ```ts
+      listener.use(ExcelExtractor({ chunkSize: 300, parallel: 2 }))
+      ```
+
+      If you update your extractor plugin to the latest, you will receive these new options.
+
+    </div>
+
+  </div>
+
+</div>
+
+##

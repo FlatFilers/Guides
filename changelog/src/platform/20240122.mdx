@@ -1,0 +1,80 @@
+### January 22, 2024
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Expanding Global Reach with Additional Languages**
+
+        We've added an expansion of our language support to include a variety of new translations. This update builds upon our existing capabilities, which previously covered French, German, Indonesian, Portuguese, and Spanish.
+
+        **What's New?**
+
+        - Italian (it)
+        - Japanese (jp)
+        - Korean (kr)
+        - Brazilian Portuguese (pt-BR)
+        - Turkish (tr)
+        - Vietnamese (vi)
+        - Chinese (zh)
+
+        Our goal is to continuously add languages that resonate with our diverse user base. If there's a language you need that we haven't yet included, let us know!
+      </div>
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **New Feature Added: Disabling Actions for Empty Records in Workbook & Sheet-Mounted Actions**
+
+        Developers can now add an optional flag to Actions, preventing users from initiating Actions when Sheets or Workbooks don’t yet have any records. This helps avoid unnecessary job failures and ensures Actions are performed only once data is present.
+
+        ```json
+        actions: [{
+          "constraints": [{ "type": "hasData" }]
+        }]
+        ```
+
+        [Learn more](../orchestration/actions) about all the constraints available for Sheet and Workbook Actions. or [See the Guide](../guides/actions#workbook-and-sheet-mounted) to see it in use.
+
+        </div>
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Introducing Composite Uniqueness for Enhanced Data Integrity**
+
+        We’re delighted to introduce a new constraint in Sheets aimed at bolstering data integrity. This constraint guarantees that a designated combination of two or more fields maintains uniqueness throughout the entire Sheet.
+
+        To activate this feature, it’s as simple as adding certain parameters to the constraints property in your Sheet configuration. [See a breakdown](../blueprint/constraints#composite-uniqueness) of the necessary parameters to effectively implement composite uniqueness.
+
+        </div>
+    </div>
+
+  </div>
+
+##
