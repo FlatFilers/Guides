@@ -1,0 +1,43 @@
+### July 01, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/art@0.0.1`
+
+        A new ASCII art function `printFlowerArt` has been added to the `art` package. This function prints a flower ASCII art to the console. The `art` array in `index.ts` now includes both `printDinoArt` and `printFlowerArt` functions. When the `callRandomArtFunction` is executed, it will now randomly print either the dinosaur or flower ASCII art to the console. The package version has been incremented to 0.0.1.
+
+To use the new `printFlowerArt` function, you can import it like this:
+
+```typescript
+import { printFlowerArt } from '@flatfile/art';
+
+printFlowerArt();
+```
+
+This will print the following ASCII art flower to the console:
+
+```
+                                  .'   '.
+                                 /       \  ___
+                _..       _.--. |     /  |.'   `'.
+       ;-._   .'   `\   .'     `\   \|   /        \
+     .'    `\/       ; /     _   \.=..=./  _.'    /
+     |       `\.---._| '.   .-'-.}`.<>.`{-'-.    /
+  .--;   . ( .'      '.  \ .---{ <>()<> }.--.-'
+ / _  \_  './ _.       `-./     _},'<>`.{_    `\
+( = \  )`""`\;--.         /  .-'/ )=..=;\`-    \
+{= (|  )     /`.         /       /  /| \         )
+( =_/  )__..-\         .'-..___.'    :  '.___..-'
+ \    }/    / ;.____.-;/\      |      `   |
+  '--' |  .'   |       \ \     /'.      _.'
+       \  '    /       |\.\   ;  /`--.-'
+        )    .' -.    /  \ \  | |
+       /__.-'     \_.'     \ \ |-|
+```
+        </div>
+  </div>
+
+</div>
