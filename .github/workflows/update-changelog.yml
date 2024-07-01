@@ -3,9 +3,6 @@ name: Update changelog page files
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    branches:
-      - changelog/**
-      - changelog/**/**
   workflow_dispatch:
     inputs:
       branch:
@@ -13,7 +10,8 @@ on:
         required: true
         default: 'main'
 jobs:
-  update-changelog:
+  run_if:
+    if:  startsWith(github.head_ref, 'changelog/')
     runs-on: ubuntu-latest
 
     steps:
