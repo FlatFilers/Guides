@@ -1,10 +1,17 @@
-name: Update Changelog
+name: Update changelog page files
 
 on:
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
       - changelog/**
+      - changelog/**/**
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the workflow on'
+        required: true
+        default: 'main'
 jobs:
   update-changelog:
     runs-on: ubuntu-latest
