@@ -1,13 +1,13 @@
 {
-    "devDependencies" : {
-      "prettier" : "^3.3.2"
-    },
-    "scripts" : {
-      "changelog" : "npm run update-platform && npm run update-plugins && npm run update-libraries && npm run update-misc",
-      "format-changelog" : "prettier --write 'changelog/src/*/*.mdx'",
-      "update-libraries" : "node changelog/bin/update.js libraries ./changelog/src/libraries ./changelog/auto-sdks.mdx ",
-      "update-misc" : "node changelog/bin/update.js misc ./changelog/src/misc ./changelog/auto-misc.mdx ",
-      "update-platform" : "node changelog/bin/update.js platform ./changelog/src/platform ./changelog/auto-platform.mdx ",
-      "update-plugins" : "node changelog/bin/update.js plugins ./changelog/src/plugins ./changelog/sdks/plugins/auto-highlights.mdx "
-    }
+  "devDependencies" : {
+    "prettier" : "^3.3.2"
+  },
+  "scripts" : {
+    "changelog" : "npm run update-platform && npm run update-plugins && npm run update-libraries && npm run update-misc",
+    "format-changelog" : "prettier --write 'changelog/src/*/*.mdx'",
+    "update-libraries" : "node changelog/bin/update.js libraries ./changelog/src/libraries ./changelog/auto-sdks.mdx ",
+    "update-misc" : "node changelog/bin/update.js misc ./changelog/src/misc ./changelog/auto-misc.mdx ",
+    "update-platform" : "node changelog/bin/update.js platform ./changelog/src/platform ./changelog/auto-platform.mdx ",
+    "update-plugins" : "node changelog/bin/update.js plugins ./changelog/src/plugins ./changelog/sdks/plugins/auto-highlights.mdx "
   }
+}
