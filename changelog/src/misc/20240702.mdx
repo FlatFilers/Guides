@@ -1,0 +1,25 @@
+### July 02, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/art@0.0.1`
+
+        The release notes for this update are as follows:
+
+Two new ASCII art pieces have been added, a flower and a music note. The `printFlowerArt` and `printMusicArt` functions have been introduced to display these new art pieces. The `art` array now includes these two new functions along with the existing `printDinoArt` function. When calling `callRandomArtFunction`, one of these three art pieces will be randomly printed to the console. The package version has been incremented to 0.0.1. The package's bin field has been updated to point to the correct entry point `./dist/index.mjs`.
+
+Example usage:
+
+```
+import { callRandomArtFunction } from '@flatfile/art';
+
+callRandomArtFunction();
+// Outputs a random ASCII art piece to the console
+```
+        </div>
+  </div>
+
+</div>
