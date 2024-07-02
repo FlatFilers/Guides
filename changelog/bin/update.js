@@ -11,7 +11,7 @@ const path = require('path');
  * 
  * Parameters:
  *   <type> - The type of header to use ('platform', 'libraries', or 'plugins').
- *   <inputDir>  - The directory containing the input .mdx files. Files should be named in MMDDYYYY.mdx format.
+ *   <inputDir>  - The directory containing the input .mdx files. Files should be named in YYYYMMDD.mdx format.
  *   <outputFile> - The path to the output .mdx file where the combined content will be written.
  * 
  * Example:
@@ -19,15 +19,17 @@ const path = require('path');
  * 
  */
 
-const args = process.argv.slice(2);
-if (args.length < 3) {
-  console.error('Usage: node update.js <type> <inputDir> <outputFile> ');
-  process.exit(1);
+function getMonthName(month) {
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  const monthIndex = parseInt(month, 10) - 1;
+  return monthNames[monthIndex];
 }
 
-const [type, inputDir, outputFile] = args;
-
-const getHeader = (type) => {
+function getHeader(type) {
   switch (type) {
     case 'libraries':
       return {
@@ -47,76 +49,100 @@ const getHeader = (type) => {
         description: "Notable additions and updates to Flatfile plugins",
         icon: "plug"
       };
-      case 'misc':
-        return {
-          title: "General Updates",
-          description: "All other updates and changes",
-          icon: "check-circle"
-        };
+    case 'misc':
+      return {
+        title: "General Updates",
+        description: "All other updates and changes",
+        icon: "check-circle"
+      };
     default:
       throw new Error("Invalid type");
   }
-};
+}
 
-const header = getHeader(type);
-const headerContent = `---
+function readMdxFiles(dir) {
+  return fs.readdirSync(dir).filter(file => file.endsWith('.mdx'));
+}
+
+function aggregateFilesByMonthAndYear(dir, files) {
+  const aggregatedData = {};
+
+  files.forEach(file => {
+    const filePath = path.join(dir, file);
+    const content = fs.readFileSync(filePath, 'utf8');
+
+    const year = file.substring(0, 4);
+    const month = file.substring(4, 6);
+    const day = file.substring(6, 8);
+    const monthYear = `${getMonthName(month)} ${year}`;
+
+    if (!aggregatedData[monthYear]) {
+      aggregatedData[monthYear] = [];
+    }
+
+    aggregatedData[monthYear].push({ day, content });
+  });
+
+  return aggregatedData;
+}
+
+function adjustHeaderLevels(content, additionalHashes) {
+  return content.replace(/(### )/g, `${additionalHashes}$1`);
+}
+
+function writeAggregatedFile(type, aggregatedData, outputFile) {
+  let outputContent = '';
+
+  // Sort the keys in reverse chronological order
+  const sortedKeys = Object.keys(aggregatedData).sort((a, b) => {
+    const [monthA, yearA] = a.split(' ');
+    const [monthB, yearB] = b.split(' ');
+    const dateA = new Date(`${yearA}-${monthA}-01`);
+    const dateB = new Date(`${yearB}-${monthB}-01`);
+    return dateB - dateA;
+  });
+
+  sortedKeys.forEach((monthYear, index) => {
+    const entryCount = aggregatedData[monthYear].length;
+    const header = index < 3 ? monthYear : `${monthYear} (${entryCount})`;
+
+    outputContent += `## ${header}\n\n`;
+
+    // Sort entries within the month in reverse chronological order
+    const sortedEntries = aggregatedData[monthYear].sort((a, b) => b.day - a.day);
+
+    if (index >= 3) {
+      sortedEntries.forEach(entry => {
+        entry.content = adjustHeaderLevels(entry.content, '##');
+      });
+    }
+
+    outputContent += sortedEntries.map(entry => entry.content).join('\n\n');
+    outputContent += '\n\n';
+  });
+
+  const header = getHeader(type);
+  const headerContent = `---
 title: ${header.title}
 description: "${header.description}"
 icon: "${header.icon}"
 ---`;
 
-const getMonthName = (month) => {
-  const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-  return monthNames[parseInt(month, 10) - 1];
-};
-
-const readFileContent = (filePath) => {
-  return fs.readFileSync(filePath, 'utf8');
-};
-
-const writeOutputFile = (content) => {
-  fs.writeFileSync(outputFile, content, 'utf8');
-};
-
-const processFiles = () => {
-  const files = fs.readdirSync(inputDir);
-
-  const mdxFiles = files
-    .filter((file) => path.extname(file) === '.mdx')
-    .sort((a, b) => {
-      const dateA = new Date(a.slice(4, 8), a.slice(0, 2) - 1, a.slice(2, 4));
-      const dateB = new Date(b.slice(4, 8), b.slice(0, 2) - 1, b.slice(2, 4));
-      return dateB - dateA;
-    });
-
-  let combinedContent = headerContent + '\n';
-  let currentMonth = '';
-
-  mdxFiles.forEach((file) => {
-    const filePath = path.join(inputDir, file);
-    const content = readFileContent(filePath);
-
-    const month = file.slice(0, 2);
-    const year = file.slice(4, 8);
-    const monthYear = `${getMonthName(month)} ${year}`;
-
-    if (monthYear !== currentMonth) {
-      combinedContent += `\n## ${monthYear}\n\n`;
-      currentMonth = monthYear;
-    }
-
-    combinedContent += content + '\n';
-  });
-
-  writeOutputFile(combinedContent);
-};
-
-const outputDir = path.dirname(outputFile);
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
+  fs.writeFileSync(outputFile, `${headerContent}\n\n${outputContent}`, 'utf8');
 }
 
-processFiles();
+function main() {
+  const args = process.argv.slice(2);
+  if (args.length < 3) {
+    console.error('Usage: node update.js <type> <inputDir> <outputFile>');
+    process.exit(1);
+  }
+
+  const [type, sourceDir, outputFile] = args;
+
+  const files = readMdxFiles(sourceDir);
+  const data = aggregateFilesByMonthAndYear(sourceDir, files);
+  writeAggregatedFile(type, data, outputFile);
+}
+
+main();
