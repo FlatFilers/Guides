@@ -20,5 +20,9 @@ jobs:
           branch: ${{ github.ref }}
           base: main
           title: "Changelog update from ${{ github.ref_name }}"
-          body: "This pull request has been automatically created to update the changelog."
+          body:  |
+            This pull request has been automatically created to update the changelog.
+
+            Edit the YYMMDD.mdx file with any updates.
+            Committing your changes will trigger the update changelog workflow, which will pull your updates into the main changelog files.
           reviewers: ${{ secrets.REVIEWERS }}
