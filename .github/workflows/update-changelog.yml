@@ -41,6 +41,9 @@ jobs:
     - name: Run changelog script
       run: npm run changelog
 
+    - name: Clean up the mdx files
+      run: npm run format-changelog
+
     - name: Commit changes
       run: |
         git config --global user.name 'github-actions[bot]'
