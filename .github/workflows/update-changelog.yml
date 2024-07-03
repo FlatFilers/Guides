@@ -1,4 +1,4 @@
-name: Update changelog page files
+name: Update changelog files
 
 on:
   pull_request:
