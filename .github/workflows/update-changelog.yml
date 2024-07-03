@@ -12,11 +12,8 @@ on:
 
 jobs:
   run_if:
+    if: startsWith(github.event.pull_request.head.ref, 'changelog/')
     runs-on: ubuntu-latest
     steps:
       - name: Print ref
-        run: echo "${{ startsWith(github.event.pull_request.head.ref, 'changelog/') }}"
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Print message
-        run: echo "this ran"
+        run: echo "THIS RAN ${{ startsWith(github.event.pull_request.head.ref, 'changelog/') }}"
