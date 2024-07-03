@@ -9,47 +9,14 @@ on:
         description: 'Branch to run the workflow on'
         required: true
         default: 'main'
+
 jobs:
   run_if:
-    if: startsWith(github.event.pull_request.head.ref, 'changelog/')
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        ref: ${{ github.head_ref }}
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-
-    - name: Check for changes in changelog/src
-      id: check_changes
-      run: |
-        git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1
-        git diff --quiet HEAD origin/${{ github.event.pull_request.base.ref }} -- changelog/src || echo "changes detected"
-
-    - name: Stop if no changes in changelog/src
-      if: steps.check_changes.outputs.changes != 'changes detected'
-      run: exit 0
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run changelog script
-      run: npm run changelog
-
-    - name: Clean up the mdx files
-      run: npm run format-changelog
-
-    - name: Commit changes
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add .
-        git commit -m "Update changelog"
-        git push origin HEAD:${{ github.head_ref }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print ref
+        run: echo "${{ github.head_ref }}"
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Print message
+        run: echo "this ran"
