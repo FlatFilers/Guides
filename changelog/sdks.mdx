@@ -1,10 +1,10 @@
 ---
 title: SDKs
-description: "Notable additions and updates to Flatfile core libraries"
-icon: "cube"
+description: 'Notable additions and updates to Flatfile core libraries'
+icon: 'cube'
 ---
 
-## June
+## June 2024
 
 ### June 16, 2024
 
@@ -15,16 +15,17 @@ icon: "cube"
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `flatfile@3.7.0`
 
-        The latest release of the flatfile package includes improvements for handling file uploads and inferring event topics from arrays. Listeners using an array syntax `listener.on(['commit:created', 'layer:created'], (event) => {}` will now correctly infer the event topics. 
-        
-        This release also includes a fix for handling file uploads with updated event `flatfile.upload` 
+        The latest release of the flatfile package includes improvements for handling file uploads and inferring event topics from arrays. Listeners using an array syntax `listener.on(['commit:created', 'layer:created'], (event) => {}` will now correctly infer the event topics.
+
+        This release also includes a fix for handling file uploads with updated event `flatfile.upload`
 
         </div>
+
   </div>
 
 </div>
 
-## May
+## May 2024
 
 ### May 24, 2024
 
@@ -36,13 +37,13 @@ icon: "cube"
         `@flatfile/react@7.9.9`
 
         This release includes a fix to address instances where the iframe wasn't ready when the `portal:initialize` call was posted. The fix ensures that the `portal:initialize` message is sent to the iframe only after it has finished loading. This resolves an issue where the initialization process could sometimes fail due to the iframe not being ready. Developers using the `@flatfile/react` package will benefit from a more reliable initialization process for the embedded Flatfile experience.
-        
+
         The new `useIsIFrameLoaded` hook listens for the `load` event on the iframe and updates a state variable accordingly. The `portal:initialize` message is then sent only when the iframe has finished loading, ensuring a reliable initialization process.
         </div>
+
   </div>
 
 </div>
-
 
 ### May 22, 2024
 
@@ -56,6 +57,7 @@ icon: "cube"
         This release adds the ability to set the default page when preloading the Flatfile Portal embed. Use `updateDefaultPageInSpace` and `findDefaultPage` to specify which workbook, sheet, or document page should display initially.
 
         </div>
+
   </div>
 
 </div>
@@ -71,6 +73,7 @@ icon: "cube"
 
         The `unmount()` method has been added, allowing developers to cleanly disconnect the event listener from the event driver. The `EventDriver` class now includes `unmountEventHandler()` to remove attached event handlers, providing more control over event listeners.
         </div>
+
   </div>
 
 </div>
@@ -89,13 +92,14 @@ icon: "cube"
 
         `@flatfile/listener` now has optimized build tooling and updated dependencies, improving compatibility and performance.
         </div>
+
   </div>
 
 </div>
 
-## April 
+## April 2024
 
-#### April 27, 2024
+### April 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -106,11 +110,12 @@ icon: "cube"
 
         This release enables clipboard read and write functionality within the embedded Flatfile iframe component. Also, `@flatfile/embedded-utils` is updated to version 1.2.0.
         </div>
+
   </div>
 
 </div>
 
-#### April 17, 2024
+### April 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -121,11 +126,12 @@ icon: "cube"
 
         This release improves the submission process. After data upload, the `onSubmit` action handlers now acknowledge the job automatically, enhancing user feedback.
         </div>
+
   </div>
 
 </div>
 
-#### April 10, 2024
+### April 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -136,11 +142,12 @@ icon: "cube"
 
         `@flatfile/listener` now supports removing event listeners with `off()` and `detach()` methods. The `FlatfileProvider` component sets up a `FlatfileContext` with configurations for `Space`, `Workbook`, `Document`, and event handlers.
         </div>
+
   </div>
 
 </div>
 
-#### April 05, 2024
+### April 05, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -151,11 +158,12 @@ icon: "cube"
 
         Updates to dependencies and improvements in performance for both packages. `@flatfile/embedded-utils` dependency updated to 1.1.14.
         </div>
+
   </div>
 
 </div>
 
-#### April 03, 2024
+### April 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -166,13 +174,14 @@ icon: "cube"
 
           Updated `@flatfile/embedded-utils` to version 1.1.13. Simplified logic for setting `sidebarConfig` when initializing a new Flatfile import space.
         </div>
+
   </div>
 
 </div>
 
-## March 
+## March 2024 (3)
 
-#### March 22, 2024
+##### March 22, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -183,11 +192,12 @@ icon: "cube"
 
         Fixed a bug in the `usePortal` hook related to the `onSubmit` function, ensuring reliable unmounting of the iframe.
         </div>
+
   </div>
 
 </div>
 
-#### March 15, 2024
+##### March 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -198,11 +208,12 @@ icon: "cube"
 
         Added `initNewSpace` utility to create a new space, workbook, and document in a single API request. The `environmentId` parameter is now optional.
         </div>
+
   </div>
 
 </div>
 
-#### March 08, 2024
+##### March 08, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -213,11 +224,12 @@ icon: "cube"
 
         Fixed an issue where the embedded Flatfile iframe would not be removed properly if there was an error during initialization.
         </div>
+
   </div>
 
 </div>
 
-## February
+## February 2024 (7)
 
 ##### February 29, 2024
 
@@ -230,6 +242,7 @@ icon: "cube"
 
         Updated the space creation request to only include defined parameters. Improved reliability and efficiency of data import experience.
         </div>
+
   </div>
 
 </div>
@@ -245,6 +258,7 @@ icon: "cube"
 
         `startFlatfile` function now accepts new optional parameters, including namespace, metadata, labels, translation path, and language override, providing more customization.
         </div>
+
   </div>
 
 </div>
@@ -260,6 +274,7 @@ icon: "cube"
 
         Updated default spaces URL to avoid unnecessary preflight requests. Improved support for nested entrypoints in `package.json`.
         </div>
+
   </div>
 
 </div>
@@ -275,6 +290,7 @@ icon: "cube"
 
         Fixed bug related to updating the authentication token for the `@flatfile/listener` package, ensuring secure and authorized communication.
         </div>
+
   </div>
 
 </div>
@@ -291,6 +307,7 @@ icon: "cube"
 
           Added exports and browser fields in `package.json` for better module resolution and compatibility. Updated dependencies for improved stability.
         </div>
+
   </div>
 
 </div>
@@ -306,6 +323,7 @@ icon: "cube"
 
           Removed global style overrides from SDKs, improving compatibility. Updated dependencies and improved type support for better integration experience.
         </div>
+
   </div>
 
 </div>
@@ -321,11 +339,12 @@ icon: "cube"
 
           Added functionality to remove the event listener after submit and close actions, improving memory management.
         </div>
+
   </div>
 
 </div>
 
-## January
+## January 2024 (10)
 
 ##### January 31, 2024
 
@@ -339,6 +358,7 @@ icon: "cube"
           The `@flatfile/javascript` package update includes a better-organized package.json and fixes for type conflicts with peer dependencies. These changes ensure a smoother development experience and easier integration. The `@flatfile/listener` package resolves type conflicts with peer dependencies and improves type compatibility.
 
         </div>
+
   </div>
 
 </div>
@@ -354,6 +374,7 @@ icon: "cube"
 
           The confirmation modal's close action is now independent of user parameters, ensuring the modal is consistently removed from the DOM when closed.
         </div>
+
   </div>
 
 </div>
@@ -370,6 +391,7 @@ icon: "cube"
           The `@flatfile/javascript` package consolidates source code, generates type declarations, and re-exports modules for convenience. The `@flatfile/listener` package update enhances exports and adds dotenv dependency for better environment variable management.
 
         </div>
+
   </div>
 
 </div>
@@ -386,6 +408,7 @@ icon: "cube"
       This release fixes an issue when reusing an existing Flatfile space and adds support for passing an existing space object to `startFlatfile`.
 
     </div>
+
   </div>
 
 </div>
@@ -403,6 +426,7 @@ icon: "cube"
 
           Updated to version 1.1.1 with a bug fix and dependency updates for improved reliability.
         </div>
+
   </div>
 
 </div>
@@ -419,6 +443,7 @@ icon: "cube"
           The `@flatfile/react` update bundles `@flatfile/api` and removes the pubnub dependency. The package now listens for window message events directly.
 
         </div>
+
   </div>
 
 </div>
@@ -434,6 +459,7 @@ icon: "cube"
 
             Updates include better browser compatibility, gzipping request bodies, and using Rollup for bundling. Dependencies for `@flatfile/react` are also updated for better performance and reliability.
         </div>
+
   </div>
 
 </div>
@@ -449,6 +475,7 @@ icon: "cube"
 
         The `@flatfile/react` package removes the styled-components dependency, migrating styles to SCSS for improved performance and maintainability.
         </div>
+
   </div>
 
 </div>
@@ -465,6 +492,7 @@ icon: "cube"
           The `@flatfile/listener` package now compresses the request body using pako compression by default when calling the `update()` method. This reduces network bandwidth usage and transfer times.
 
         </div>
+
   </div>
 
 </div>
@@ -480,11 +508,12 @@ icon: "cube"
 
           The `EventCallback` type now expects a Promise to be returned, allowing developers to use async/await for greater flexibility and control over asynchronous operations.
         </div>
+
   </div>
 
 </div>
 
-## December
+## December 2023 (4)
 
 ##### December 21, 2023
 
@@ -497,6 +526,7 @@ icon: "cube"
 
           The UMD build file for the `@flatfile/javascript` package is renamed to `dist/index.js`. The `@flatfile/react` package update simplifies the import process by using `dist/index.js` for browser environments.
         </div>
+
   </div>
 
 </div>
@@ -513,6 +543,7 @@ icon: "cube"
           The `@flatfile/javascript` package includes bundle optimizations and a new option to keep the space after submitting data. The `@flatfile/react` package improves accessibility with the close button's `type="button"` attribute and adds the option to keep the space active after submission.
 
         </div>
+
   </div>
 
 </div>
@@ -529,6 +560,7 @@ icon: "cube"
           The `@flatfile/javascript` package introduces a new Simplified React Flow and updates dependencies. The `@flatfile/react` package adds a `usePortal` hook for a smoother integration experience.
 
         </div>
+
   </div>
 
 </div>
@@ -545,11 +577,12 @@ icon: "cube"
         The `useSpaceTrigger` hook has been renamed to `initializeFlatfile`, and `createOrUseSpace` has been renamed to `OpenEmbed` for better clarity.
 
         </div>
+
   </div>
 
 </div>
 
-## November
+## November 2023 (8)
 
 ##### November 28, 2023
 
@@ -563,6 +596,7 @@ icon: "cube"
           Re-introduces the `initializeFlatfile` method, fixing issues with the submit action and simplifying the user experience.
 
         </div>
+
   </div>
 
 </div>
@@ -579,6 +613,7 @@ icon: "cube"
           Simplifies the integration flow by allowing developers to provide sheet configurations directly and introducing new utilities for record-level hooks and job submissions.
 
         </div>
+
   </div>
 
 </div>
@@ -595,6 +630,7 @@ icon: "cube"
         The new `useSpaceTrigger` hook allows developers to control when the Flatfile import experience is triggered.
 
         </div>
+
   </div>
 
 </div>
@@ -610,6 +646,7 @@ icon: "cube"
 
        All parameters are now seamlessly passed to the API when creating a Workbook client-side.
     </div>
+
    </div>
 </div>
 
@@ -693,7 +730,7 @@ icon: "cube"
 
 </div>
 
-## October (5)
+## October 2023 (4)
 
 ##### October 29, 2023
 
@@ -774,7 +811,7 @@ icon: "cube"
 
 </div>
 
-## September (5)
+## September 2023 (3)
 
 ##### September 29, 2023
 
@@ -855,13 +892,13 @@ icon: "cube"
 
       See all classes that can be overridden in CSS in the [Reference](/apps/embedding/reference/advanced#iframe-styles).
 
-</div>
+    </div>
 
   </div>
 
 </div>
 
-## August (7)
+## August 2023 (3)
 
 ##### August 30, 2023
 
@@ -934,14 +971,14 @@ icon: "cube"
 
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/core.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     `@flatfile/listener@0.3.14` `event.secrets` now defaults to `spaceId`. It
@@ -949,14 +986,14 @@ icon: "cube"
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/wrappers.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     `@flatfile/react@7.2.15` You can now pass in a spacebody. This will allow
@@ -965,14 +1002,14 @@ icon: "cube"
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/wrappers.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     `@flatfile/react@7.2.14` The close button and iframe now have a proper class
