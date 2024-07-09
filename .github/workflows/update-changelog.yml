@@ -11,10 +11,8 @@ on:
       - changelog/**
 
 jobs:
-  run_if:
-    if:  startsWith(github.head_ref, 'changelog/')
+  update-changelog:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
