@@ -15,7 +15,7 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           commit-message: "Open PR for changelog update"
           branch: ${{ github.ref }}
           base: main
