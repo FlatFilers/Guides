@@ -9,11 +9,23 @@ on:
     types: [synchronize]
     branches:
       - changelog/**
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the workflow on'
+        required: true
+        default: 'main'
 
 jobs:
   update-changelog:
     runs-on: ubuntu-latest
     steps:
+
+    - name: Print vars
+      run: |
+        echo ${{ github.head_ref }}
+        echo ${{ github.event.pull_request.base.ref }}
+
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
