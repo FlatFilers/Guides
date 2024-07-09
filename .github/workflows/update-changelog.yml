@@ -27,6 +27,7 @@ jobs:
         echo "github.event.pull_request.base.ref: ${{ github.event.pull_request.base.ref }}"
         echo "github.ref: ${{ github.ref }}"
         echo "github.sha: ${{ github.sha }}"
+        echo "github.ref_name ${{ github.ref_name }}"
 
     - name: Checkout repository
       uses: actions/checkout@v3
