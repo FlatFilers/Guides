@@ -9,12 +9,7 @@ on:
     types: [synchronize]
     branches:
       - changelog/**
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to run the workflow on'
-        required: true
-        default: 'main'
+
 jobs:
   run_if:
     if:  startsWith(github.head_ref, 'changelog/')
