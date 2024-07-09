@@ -1,8 +1,14 @@
-name: Update changelog files
+name: Update Changelog
 
 on:
+  workflow_run:
+    workflows: ["Open Changelog PR"]
+    types:
+      - completed
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [synchronize]
+    branches:
+      - changelog/**
   workflow_dispatch:
     inputs:
       branch:

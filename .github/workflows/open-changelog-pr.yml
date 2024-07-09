@@ -1,4 +1,4 @@
-name: Open PR on changelog branch creation
+name: Open Changelog PR
 
 on:
   push:
