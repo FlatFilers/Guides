@@ -11,7 +11,7 @@ on:
         default: 'main'
 jobs:
   run_if:
-    if: startsWith(github.event.pull_request.head.ref, 'changelog/')
+    if:  startsWith(github.head_ref, 'changelog/')
     runs-on: ubuntu-latest
 
     steps:
