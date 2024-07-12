@@ -4,6 +4,43 @@ description: 'Notable additions and updates to Flatfile core libraries'
 icon: 'cube'
 ---
 
+## July 2024
+
+### July 11, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `art@c4ca366`
+
+        The release includes the following changes:
+
+A new ASCII art function `printDinoArt` has been added, which prints a dinosaur ASCII art along with the text "All my friends are dead.". The order of the console output for the `printDinoArt` function has been updated to print the ASCII art before the text. The `printDinoArt` function has been imported and added to the `art` array in the main package entry point. This allows the `callRandomArtFunction` to randomly print the new dinosaur ASCII art along with the existing flower and music ASCII arts.
+
+To use the new `printDinoArt` function, developers can import it from the package and call it directly:
+
+```typescript
+import { printDinoArt } from 'package-name/art';
+
+printDinoArt();
+```
+
+Alternatively, developers can use the `callRandomArtFunction` to randomly print one of the available ASCII arts, including the new dinosaur art:
+
+```typescript
+import { callRandomArtFunction } from 'package-name/art';
+
+callRandomArtFunction();
+```
+
+        </div>
+
+  </div>
+
+</div>
+
 ## June 2024
 
 ### June 16, 2024
@@ -97,9 +134,9 @@ icon: 'cube'
 
 </div>
 
-## April 2024
+## April 2024 (5)
 
-### April 27, 2024
+##### April 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -115,7 +152,7 @@ icon: 'cube'
 
 </div>
 
-### April 17, 2024
+##### April 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -131,7 +168,7 @@ icon: 'cube'
 
 </div>
 
-### April 10, 2024
+##### April 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -147,7 +184,7 @@ icon: 'cube'
 
 </div>
 
-### April 05, 2024
+##### April 05, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -163,7 +200,7 @@ icon: 'cube'
 
 </div>
 
-### April 03, 2024
+##### April 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
