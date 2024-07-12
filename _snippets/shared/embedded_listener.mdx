@@ -196,6 +196,7 @@ export const listener = FlatfileListener.create((listener) => {
       try {
         await flatfile.jobs.ack(jobId, {
           info: "Getting started.",
+          // "progress" value must be a whole integer
           progress: 10,
         });
 
