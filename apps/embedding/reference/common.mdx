@@ -251,13 +251,13 @@ const flatfileOptions = {
   publishableKey,
   //additional props
   closeSpace: {
-    operation: "contacts:submit",
+    operation: "submit",
     onClose: () => {},
   },
 };
 ```
 
-This `onClose` callback function is called when the Action defined in `operation` is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
+This `onClose` callback function is called when the 'operation' defined in the Action is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
 
 ### displayAsModal
 
