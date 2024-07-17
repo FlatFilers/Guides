@@ -1,0 +1,116 @@
+### September 6, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      **New Job Outcome Acknowledgements**
+
+      **`acknowledge: false`**
+
+      ![image](../changelog/images/outcome_modal.png)
+
+      By default, job outcomes are reported through a toast notification in the top-right corner. To utilize this, simply set `outcome => message`. This approach ensures that your job completion status is promptly communicated to the end user.
+
+      **`acknowledge: true`**
+
+      ![image](../changelog/images/outcome_fullscreen.png)
+
+      When the `acknowledge` option is configured as `true`, a persistent full-screen modal is presented. This modal remains visible until the user interacts by clicking the "Continue" button, acknowledging the outcome.
+
+      **Usage**
+
+      ```jsx
+      await api.jobs.complete(jobId, {
+        outcome: {
+          acknowlege: true,
+          message:
+            "Text here.",
+        },
+      });
+      ```
+
+      This enhancement provides flexibility in how you choose to inform users about job outcomes. [Learn more](../guides/actions#usage).
+
+      </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Enhanced Job Outcomes with Next Action Links**
+
+      Job outcomes have been upgraded to support `next` action links. Now, you can display links to external URLs, trigger downloads, or retry jobes upon job completion/failure.
+
+      **Usage**
+        <CodeGroup>
+        ```jsx listener
+        await api.jobs.complete(jobId, {
+          outcome: {
+            next: Url | Download | Retry,
+            message:
+              "Text here.",
+          },
+        });
+        ```
+        </CodeGroup>
+
+      This improvement adds versatility and flexibility to your job outcomes, enhancing user interaction and experience.
+
+      [Learn more](../orchestration/jobs#next-links).
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+        **Enhanced Action Button Behavior**
+
+        ![image](../changelog/images/hasAllValid.gif)
+
+       Two key enhancements to Actions have been introduced:
+
+        **Disable Actions When Invalid Records**: Developers can now add an optional flag to Actions, preventing users from initiating Actions when Sheets or Workbooks contain invalid records. This helps avoid unnecessary job failures and ensures Actions are performed on valid data.
+
+        ```jsx
+        constraints: [{ type: 'hasAllValid' }],
+        ```
+
+        **Disable Actions When No Selected Records:** To enhance the user experience, we've introduced the `hasSelection` flag. When added as a constraint, this flag disables Actions if no records are selected in the Sheet or Workbook, ensuring Actions are only triggered when relevant data is chosen.
+
+         ```jsx
+        constraints: [ { type: 'hasSelection' }],
+        ```
+
+
+      [Learn more](../orchestration/actions#optional-parameters).
+
+      </div>
+
+  </div>
+
+</div>

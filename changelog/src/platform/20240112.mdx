@@ -1,0 +1,86 @@
+### January 12, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Toolbar blocking jobs Extended to Workbook-Mounted Actions**
+
+          We've extended the functionality of the `toolbarBlocking` job mode beyond individual Sheets. Now, when it's applied to Workbook-mounted actions, this mode also disables workbook actions (including all of the Sheets actions/toolbars) during a job's progress. By its nature, it also still allows interaction with the actual data tables.
+
+          This enhancement provides more consistent control throughout your entire Workbook, ensuring tasks are completed efficiently and without accidental interference or unintended navigation.
+
+          [Learn more](../orchestration/actions#optional-parameters)
+
+      </div>
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **State-Based Messaging on Actions via Tooltips**
+
+        We've introduced an exciting new capability to enhance user interaction and feedback in our application. You can now add custom messages to actions, tailored according to their state:
+
+        - Error
+        - Info
+
+        These messages will be displayed as tooltips when users hover over an action, providing context-specific text that corresponds to the action's current state.
+
+        [Follow the guide](../guides/actions#usage-7)
+
+      </div>
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Decoupling Actions Updates from the Workbook's Schema**
+
+        Previously, using workbook update endpoint necessitated submitting all the fields, even for minor adjustments to an action. Now, with our improved `PATCH` endpoint, you can update actions without needing to include the `fields` property in your payload.
+
+        This refinement simplifies the update process, focusing solely on the changes you intend to make.
+
+        [See the endpoint](https://reference.flatfile.com/api-reference/workbooks/update-a-workbook)
+
+      </div>
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        Previously, users experienced difficulties in adjusting column sizes correctly when other columns were either hidden or pinned. This fix ensures seamless and accurate resizing of columns, regardless of the visibility or status of adjacent columns, enhancing the overall usability and functionality of the data table.
+
+      </div>
+    </div>
+
+</div>

@@ -1,0 +1,43 @@
+### October 13, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Actions are now available on Documents.**
+
+        ![image](../changelog/images/document_actions_primary.png)
+
+       Documents, which are standalone webpages within your Spaces, can now host a variety of actions, just like Workbooks, Sheets, and Files.
+
+        Document-Mounted Actions have their own configuration within a Document object. The executable code within an Action is compiled into a Job entity, offering the flexibility to run asynchronously or immediately. This empowers you to create more interactive and dynamic Documents, enhancing the overall user experience within your Flatfile Spaces.
+
+        ```jsx workbook.js
+        //your document can now have an action that looks like this
+        actions: [
+          {
+            operation: 'sendAction',
+            mode: 'foreground',
+            label: 'Send to...',
+            description: 'Send this page to someone.',
+            primary: true,
+          },
+          {...}
+        ]
+        ```
+
+        [Learn more](../guides/actions#document-mounted)
+
+    </div>
+
+  </div>
+</div>

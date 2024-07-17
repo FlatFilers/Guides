@@ -1,0 +1,16 @@
+### October 13, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/automations.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-automap@0.1.1`
+
+      Previously, initiating the "import" process, whether by dropping a file into a sheet or clicking the "Import" button from a file, created an unintended secondary `workbook:map` job. This secondary job was detected by the automap plugin, leading to duplicate entries in a sheet.
+
+      In this version, we've introduced a solution to address this issue. We've added an "isAutomap" flag to the job's input, which allows the automap plugin to filter jobs accordingly. If the "isAutomap" flag is not provided, the automap plugin will gracefully exit, ensuring a more streamlined and error-free workflow.
+
+    </div>
+
+  </div>
+</div>

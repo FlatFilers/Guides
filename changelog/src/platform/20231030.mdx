@@ -1,0 +1,80 @@
+### October 30, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Removed Character Limit on Mappings, Jobs, and Enum Mappings**
+
+        We have lifted the previous 255-character limit for mappings, jobs, and enum mappings. This update allows for greater flexibility and more detailed entries in these areas.
+
+    </div>
+
+  </div>
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **New API Feature to Restore Archived Spaces**
+
+        API users now have the capability to restore an archived space. This can be done by setting the `archivedAt` property of the space to null via the `PATCH /spaces/:spaceId` endpoint.
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Improved Cascade Deletion for Spaces, Workbooks, and Sheets**
+
+        We've enhanced the deletion process for Spaces. In the past, deleting a Space did not automatically cascade to its Workbooks and Sheets. Now, with the latest update, soft deleting a Space will also soft delete its associated Workbooks and Sheets.
+
+        Furthermore, we've refined the `GET /workbooks` query. It now filters out workbooks linked to previously deleted Spaces, ensuring that only relevant and active workbooks are displayed. This update is helpful for Spaces deleted before this improvement was implemented.
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced Display of Enum Options in Turntable**
+
+        We've addressed an issue in the table where enum options without a label were incorrectly displaying as 'undefined'. With the latest update, in cases where an enum option lacks a label, the table will now default to showing the option's value instead.
+
+        This ensures a more accurate and user-friendly display of data.
+
+    </div>
+
+  </div>
+
+</div>

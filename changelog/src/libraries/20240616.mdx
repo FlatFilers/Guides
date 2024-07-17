@@ -1,0 +1,18 @@
+### June 16, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/core.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `flatfile@3.7.0`
+
+        The latest release of the flatfile package includes improvements for handling file uploads and inferring event topics from arrays. Listeners using an array syntax `listener.on(['commit:created', 'layer:created'], (event) => {}` will now correctly infer the event topics.
+
+        This release also includes a fix for handling file uploads with updated event `flatfile.upload`
+
+        </div>
+
+  </div>
+
+</div>

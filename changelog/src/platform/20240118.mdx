@@ -1,0 +1,47 @@
+### January 18, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/theming.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Powered by Flatfile looks a little different now**
+
+        ![image](../changelog/images/powered_by.png)
+
+        Based on user feedback, we've updated the visual design of the "Powered by Flatfile" chip to distinguish it from actionable buttons, enhancing the user interface for clarity.
+
+        <Note>For those interested in a fully branded experience, we offer the option to remove this chip entirely through our [Professional package](https://flatfile.com/pricing/).</Note>
+      </div>
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Improvements for `trackChanges` functionality**
+
+        For users utilizing the `trackChanges` on their Workbooks (disables your actions until all commits are complete), we’ve addressed a critical workflow concern.
+
+        Changes in a Reference field result in the creation of a new commit event, which was leaving the original commit incomplete. Furthermore, this new commit wasn’t triggering an event emission, leading to a chain of incomplete commits.
+
+        We’ve refined the commit completion process: now, commits will be marked as complete whenever the user explicitly references a commit in an update request.
+
+        This adjustment is handled out of the box with `@flatfile/plugin-record-hook` and ensures a more streamlined and reliable change tracking experience.
+      </div>
+    </div>
+
+  </div>
