@@ -1,0 +1,50 @@
+### October 16, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        In the past, when your Space took more than 10 seconds to build, an "empty space created" message would appear. With our latest update, as long as you acknowledge the space:configure job, you can rest assured this dialog will no longer appear.
+    </div>
+
+  </div>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **New: Embed Sheets inside Documents**
+
+        Now, by simply incorporating the `embed` HTML entity into your markdown body and providing the sheet ID, workbook ID, and name, you can effortlessly embed Sheets into Documents. Additionally, you have the flexibility to choose whether the embedded Sheet starts in an expanded or collapsed state when the document is loaded.
+
+        ```html
+        <embed
+          type="embedded-sheet"
+          name="Contacts"
+          defaultExpanded="true"
+          sheetId="your_sheet_id"
+          workbookId="your_workbook_id"
+        />
+        ```
+
+        This enhancement provides further freedom to tailor document-driven interactions precisely to your needs.
+
+        [Learn more](../guides/documents#embedding-sheets-in-documents)
+    </div>
+
+  </div>
+</div>

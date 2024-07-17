@@ -17,7 +17,7 @@ icon: "calendar"
 Data retention policies are crucial for managing and controlling the lifecycle of data within your Flatfile account. In this guide, we'll walk you through the process of adding and configuring data retention policies based on our two options `last activity` and `since created` policy types.
 These policies will help you automatically clean up outdated data within your Flatfile environment, ensuring optimal data hygiene.
 
-Flatfile will expire Spaces (the Space will no longer be accessible but will still appear in the Spaces response) and delete any data that was uploaded or added to the respective Space.
+Flatfile will expire Spaces (the Space will no longer be accessible but will still appear in the Spaces' response) and delete any data that was uploaded or added to the respective Space.
 
 <Note>
   Flatfile has a 7 day policy which means that your data may be deleted +/- 7
@@ -34,7 +34,7 @@ Before you start implementing data retention policies, make sure you have:
 ## Accessing the Dashboard
 
 1. Log in to your Flatfile account.
-2. Navigate to the dashboard, where you can manage and configure your spaces.
+2. Navigate to the dashboard, where you can manage and configure your Spaces.
 
 ## Understanding Data Deletion Logic
 
@@ -44,13 +44,13 @@ Let's clarify the logic behind data deletion based on the example you provided:
 
 - Space created on January 1st.
 - Policy set to 2 days.
-- If Flatfile's cron event runs on January 2nd, any space created before January 1st (older than 2 days) will be expired. Any data that was uploaded to the space will be deleted.
+- If Flatfile's cron event runs on January 2nd, any Space created before January 1st (older than 2 days) will be expired. Any data that was uploaded to the Spaces will be deleted.
 
 ### Last Activity Policy Example:
 
 - Space last modified on January 1st.
 - Policy set to 3 days.
-- If Flatfile's cron event runs on January 4th, any space that hasn't been modified since January 1st (older than 3 days) will be expired. Any data that was uploaded to the space will be deleted.
+- If Flatfile's cron event runs on January 4th, any Space that hasn't been modified since January 1st (older than 3 days) will be expired. Any data that was uploaded to the Spaces will be deleted.
 
 ## Monitoring and Adjusting Policies
 

@@ -180,10 +180,7 @@
   "navigation": [
     {
       "group": "Documentation",
-      "pages": [
-        "overview",
-        "starter-projects"
-      ]
+      "pages": ["overview", "starter-projects"]
     },
     {
       "group": "Highlights",
@@ -195,10 +192,7 @@
     },
     {
       "group": "Core Libraries",
-      "pages": [
-        "changelog/sdks/core/cli",
-        "changelog/sdks/core/listener"
-      ]
+      "pages": ["changelog/sdks/core/cli", "changelog/sdks/core/listener"]
     },
     {
       "group": "Embedded Wrappers",
@@ -233,9 +227,7 @@
         },
         {
           "group": "Automation",
-          "pages": [
-            "changelog/sdks/plugins/automations/automap"
-          ]
+          "pages": ["changelog/sdks/plugins/automations/automap"]
         },
         {
           "group": "Export",
@@ -255,9 +247,7 @@
         },
         {
           "group": "Migrations",
-          "pages": [
-            "changelog/sdks/plugins/migrations/dxp-configure"
-          ]
+          "pages": ["changelog/sdks/plugins/migrations/dxp-configure"]
         },
         {
           "group": "Core",
@@ -310,11 +300,8 @@
                 {
                   "group": "Legacy",
                   "icon": "settings",
-                  "pages": [
-                    "apps/embedding/react/legacy"
-                  ]
+                  "pages": ["apps/embedding/react/legacy"]
                 }
-                
               ]
             },
             {
@@ -326,9 +313,7 @@
                 {
                   "group": "Advanced",
                   "icon": "settings",
-                  "pages": [
-                    "apps/embedding/vue/reuse_space"
-                  ]
+                  "pages": ["apps/embedding/vue/reuse_space"]
                 }
               ]
             },
@@ -393,14 +378,13 @@
         "guides/additional-fields",
         "guides/flatfile_query_language",
         "guides/data-retention",
-        "guides/api"
+        "guides/api",
+        "guides/ai"
       ]
     },
     {
       "group": "By Integration",
-      "pages": [
-        "guides/bubble-io"
-      ]
+      "pages": ["guides/bubble-io"]
     },
     {
       "group": "Orchestration",
@@ -424,9 +408,11 @@
     },
     {
       "group": "Upgrade",
-      "pages": [
-        "upgrade/overview"
-      ]
+      "pages": ["upgrade/overview"]
+    },
+    {
+      "group": "Reference",
+      "pages": ["reference/icons"]
     },
     {
       "group": "Portal - version 2",
@@ -460,10 +446,7 @@
     },
     {
       "group": "Core Architecture",
-      "pages": [
-        "developer-tools/environment",
-        "developer-tools/spaces"
-      ]
+      "pages": ["developer-tools/environment", "developer-tools/spaces"]
     },
     {
       "group": "Security",
@@ -501,15 +484,11 @@
     },
     {
       "group": "Mapping",
-      "pages": [
-        "developer-tools/mapping-libraries/flatfile-mapping-python"
-      ]
+      "pages": ["developer-tools/mapping-libraries/flatfile-mapping-python"]
     },
     {
       "group": "Plugins",
-      "pages": [
-        "plugins-docs/overview"
-      ]
+      "pages": ["plugins-docs/overview"]
     },
     {
       "group": "Extractors",
@@ -523,9 +502,7 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": [
-            "plugins-docs/extractors/doc-extractor"
-          ]
+          "pages": ["plugins-docs/extractors/doc-extractor"]
         }
       ]
     },
@@ -546,10 +523,7 @@
     },
     {
       "group": "Export",
-      "pages": [
-        "plugins-docs/export/workbook",
-        "plugins-docs/export/webhook"
-      ]
+      "pages": ["plugins-docs/export/workbook", "plugins-docs/export/webhook"]
     },
     {
       "group": "Schemas",
@@ -561,9 +535,7 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": [
-            "plugins-docs/schemas/convert-graphql"
-          ]
+          "pages": ["plugins-docs/schemas/convert-graphql"]
         }
       ]
     },
@@ -574,17 +546,13 @@
         {
           "group": "More in development",
           "icon": "clock",
-          "pages": [
-            "plugins-docs/datasets/countries"
-          ]
+          "pages": ["plugins-docs/datasets/countries"]
         }
       ]
     },
     {
       "group": "Migrations",
-      "pages": [
-        "plugins-docs/migrations/dxp-configure"
-      ]
+      "pages": ["plugins-docs/migrations/dxp-configure"]
     },
     {
       "group": "Core",

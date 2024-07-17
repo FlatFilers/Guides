@@ -1,0 +1,50 @@
+### May 29, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-job-handler@0.5.4`
+
+      In this release, the @flatfile/plugin-job-handler package introduces improved error handling when the callback function returns an invalid job outcome.
+      The package now gracefully handles errors thrown by the callback function, providing better resilience and reliability for developers using the package.
+      Specifically, if the callback function throws an Error, the job is now automatically marked as failed, with the error message included in the job outcome.
+      This enhancement ensures that developers receive clear feedback when issues arise during job processing, making it easier to debug and address any problems.
+      With this improvement, the @flatfile/plugin-job-handler package offers a more robust and user-friendly experience for handling jobs and processing job outcomes.
+
+      For example, if the callback function encounters an error like:
+
+      ```typescript
+      throw new Error('Failed to process job data');
+      ```
+
+      The package will automatically mark the job as failed with the provided error message:
+
+      ```json
+      {
+        "info": "Failed to process job data",
+        "outcome": {
+          "acknowledge": true,
+          "message": "Failed to process job data"
+        }
+      }
+      ```
+
+      This release streamlines error handling, providing developers with a more seamless and reliable experience when working with the @flatfile/plugin-job-handler package.
+    </div>
+
+  </div>
+</div>
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-dedupe@1.1.4`
+
+      The latest release of the @flatfile/plugin-dedupe package introduces an improved error message when the dedupe plugin is incorrectly called from a workbook-level action instead of a sheet-level action.
+      This helpful error message provides a clearer indication to developers using the package, guiding them to correctly configure the dedupe plugin as a sheet-level action.
+    </div>
+
+  </div>
+</div>

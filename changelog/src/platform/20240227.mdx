@@ -1,0 +1,57 @@
+### February 27, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Optimized Space Loading Series: Reduced Requests for Translations**
+
+        We've streamlined the loading process for Spaces by eliminating an unnecessary request for translations that previously triggered an additional getSpaceById call. This refinement reduces the load time, ensuring Spaces are displayed more promptly for a smoother user experience.
+
+      </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced Filtering on `GET /spaces` Endpoint with Namespace Parameter Support**
+
+        We've upgraded the `GET /spaces` endpoint to support an empty value for the `namespace` query parameter. This update allows for more nuanced filtering, specifically enabling the identification of spaces without a namespace. When the namespace parameter is omitted entirely, the endpoint now returns spaces across all namespaces, providing greater flexibility in data retrieval and management.
+
+      </div>
+
+  </div>
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Optimized Space Loading Performance Series: Deferring Blocking Requests**
+
+        By strategically eliminating or deferring five key blocking requests, we've streamlined the data fetching process. Key improvements include the removal of non-essential data fetches, optimizing the placement of the i18n context for more efficient rendering, and introducing a new utility for pre-processing date formats.
+
+        These updates collectively result in a smoother, faster user experience, reinforcing our commitment to efficiency and performance.
+
+      </div>
+
+  </div>
+</div>

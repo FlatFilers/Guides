@@ -1,0 +1,55 @@
+### December 14, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/theming.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Enhanced Theming options for Checkboxes**
+
+     ![image](../changelog/images/theming_checkboxes.png)
+
+       We're pleased to announce the expansion of our theming capabilities with new customization options for checkboxes:
+
+      **Usage**
+
+      ```jsx
+      {
+        "theme": {
+          "root": {
+            "checkboxBorderRadius": "0px",
+            "checkboxBorderColor": "red"
+          },
+          "table": {
+            "inputs": {
+              "checkbox": {
+                "borderColor": "magenta"
+              }
+            }
+          }
+        }
+      }
+      ```
+
+      1. Customizable Checkbox Border Radius: Users now have the flexibility to theme the border radius of checkboxes, allowing for a more personalized and visually cohesive interface.
+
+      2. Theming for Checkbox Border Color: Alongside border radius customization, users can also theme the border color of checkboxes, adding another layer of visual customization to match your application's aesthetic.
+
+      3. Override Options in Table View: In table contexts, users have the added ability to override the default checkbox border color, offering even more control over the table's appearance and consistency with your overall design theme.
+
+      These enhancements aim to provide greater flexibility and control over the UI, enabling users to tailor the look and feel of checkboxes to better align with their unique branding and design preferences.
+
+      [Learn more](../guides/theming).
+
+      </div>
+
+  </div>
+
+</div>

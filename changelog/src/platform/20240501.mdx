@@ -1,0 +1,45 @@
+### May 1, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Improved event emission logic for workbook creation and update**
+
+       Previously, the `workbook:created` event was emitted even when the workbook was only being updated. Now, the logic emits a `workbook:updated` event when necessary. Additionally, the `POST /:workbookId/rebuild` endpoint now handles eventing properly.
+
+
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Date Parsing Capabilities**
+
+       **Expanded Support for Date Formats**: We've broadened our parsing algorithms to accurately recognize and sort a wider variety of date formats. This update ensures that when users upload files containing date fields, the system robustly handles various international date formats and styles.
+
+        **Improved Sorting Accuracy**: Dates are now correctly sorted based on their actual chronological order, regardless of the format input. This enhancement reduces errors and inconsistencies previously encountered with date sorting, ensuring data integrity and reliability during file uploads.
+
+        **User Experience Improvement**: Users no longer need to modify or standardize date formats in their files before uploading. Flatfile automatically interprets and processes diverse date inputs, simplifying workflows and reducing manual data preprocessing.
+
+    </div>
+
+</div>
+</div>

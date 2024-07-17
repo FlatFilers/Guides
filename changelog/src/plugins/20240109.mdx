@@ -1,0 +1,25 @@
+### January 9, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+
+      `@flatfile/plugin-xlsx-extractor@1.11.3`
+
+      This release brings essential updates and improvements to enhance your experience with Excel file extractions:
+
+      **File Size Detection:** The plugin now actively detects when a file is too large for extraction, guiding users to opt for CSV uploads for better handling.
+
+      **Date Format Specification:** Introducing the dateNF parameter, enabling users to define specific date formats for Excel file parsing (e.g., yyyy-mm-dd), ensuring that dates are correctly recognized and formatted.
+
+      **Handling Empty Sheets:** Previously, empty sheets within Excel files would result in errors. With this update, the plugin gracefully handles such cases by appropriately failing the job without causing unexpected errors.
+
+      These improvements are aimed at providing a more robust, user-friendly experience for working with Excel files, ensuring data integrity and easing the extraction process.
+
+      [Learn more about the improvements](../../../plugins-docs/extractors/xlsx-extractor)
+
+    </div>
+
+  </div>
+</div>
