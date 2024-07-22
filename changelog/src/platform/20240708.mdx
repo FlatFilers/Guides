@@ -1,0 +1,27 @@
+### July 08, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/api@1.9.2`
+
+        The release notes for these changes are:
+
+        More control over the jobs has been included via a new 'excludeChildJobs' option in the ListJobsRequest. When set to true, only top-level jobs will be returned unless a parentId is specified. 
+
+        A new property 'detectedHeaderRow' has been added to the FileJobConfig type. This property indicates the row number of the header row detected during file extraction.
+
+        The BaseProperty type now includes an 'actions' property, which is an array of actions that end users can perform on a Column.
+
+        For composite unique constraints in sheet schemas, a new 'requiredFields' property has been added. This property specifies fields that, when empty, will cause the unique constraint to be ignored.
+
+        A new ListUsersSortField enum has been added, which defines the fields that users can be sorted by when listing them.
+
+        A new resendInvite method has been added to the Users client, allowing resending an invitation to a user for the account.
+
+        </div>
+  </div>
+
+</div>
