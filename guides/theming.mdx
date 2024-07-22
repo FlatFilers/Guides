@@ -325,6 +325,33 @@ The text color of the footer text
 <ParamField path="backgroundColor" type="string">
 The background color of the email
 </ParamField>
+
+#### `theme.email.dark`
+If your default email theme (as set above) is light, we suggest adding an additional dark mode email theme. Different email providers handle dark and light mode differently. While Apple Mail and some other clients will respect dark mode variables, some email providers do not support dark mode and will display your default theme. We suggest you test your themes across various email clients before going to production to ensure consistent appearance.
+
+<ParamField path="logo" type="string">
+The URL of the image displayed at the top of the email in dark mode
+</ParamField>
+<ParamField path="textColor" type="string">
+The color of the text in the email in dark mode
+</ParamField>
+<ParamField path="titleColor" type="string">
+The color of the title in the email in dark mode
+</ParamField>
+<ParamField path="buttonBgColor" type="string">
+The background color of the button in dark mode
+</ParamField>
+<ParamField path="buttonTextColor" type="string">
+The text color of the button in dark mode
+</ParamField>
+<ParamField path="footerTextColor" type="string">
+The text color of the footer text in dark mode
+</ParamField>
+<ParamField path="backgroundColor" type="string">
+The background color of the email in dark mode
+</ParamField>
+
+
 ## Example Project
 
 Find the theming example in the Flatfile GitHub repository.
