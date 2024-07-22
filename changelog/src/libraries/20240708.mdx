@@ -1,0 +1,22 @@
+### July 08, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.10.0`
+
+          The FlatfileProvider component now accepts a new styleSheetOptions prop which allows setting the nonce value and position of the injected stylesheet. This gives more control over how the styles are applied.
+
+          The package now contains utility functions attachStyleSheet and styleInject to dynamically inject the stylesheet into the DOM at runtime. This replaces the previous import of the stylesheet directly.
+
+          The build process has been updated to no longer extract the CSS into a separate file, instead keeping it inlined in the JavaScript bundle.
+
+          Several components that were previously importing the stylesheet have had those imports removed, relying on the new dynamic injection instead.
+
+          Types have been added for importing SCSS files directly into TypeScript.
+        </div>
+  </div>
+
+</div>
