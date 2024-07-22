@@ -15,7 +15,7 @@ icon: 'cube'
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/react@7.11.0`
 
-        The CSS variable --ff-color-text has been renamed to --ff-text-color to be consistent with other variable names. This change affects the text color used throughout the Flatfile React components. Developers using these components will see the text color change according to the new variable name.
+        The CSS variable --ff-color-text has been renamed to --ff-text-color to be consistent with other variable names. This change affects the text color used throughout the Flatfile React components.
         </div>
 
   </div>
@@ -33,26 +33,11 @@ icon: 'cube'
 
         This exciting release adds internationalization support to the Flatfile JavaScript SDK. The SDK now detects the user's browser language or allows specifying an override language. Translation strings are provided for the confirmation modal, error modal, and other UI elements. To support internationalization, the SDK now has dependencies on the i18next library and the i18next-browser-languagedetector library. The SDK also includes functionality to handle missing translation keys and log them to the console.
 
-        Additionally, this release updates the modal logic to use functional components and make the text strings dynamic based on the provided translations or defaults. The close button for the modal is now rendered dynamically with SVG markup.
+        Additionally, this release updates the modal logic to use functional components and make the text strings dynamic based on the provided translations or defaults.
 
-        A new util function initializeIFrameConfirmationModal is introduced to handle mounting the confirmation modal and its associated behaviors onto the iFrame wrapper element. This function takes callbacks for the modal's button click actions (exit or stay) and text string providers for the modal's title, message, and button labels.
+        A new util function initializeIFrameConfirmationModal is introduced to handle mounting the confirmation modal and its associated behaviors onto the iFrame wrapper element.
+        This function takes callbacks for the modal's button click actions (exit or stay) and text string providers for the modal's title, message, and button labels.
 
-        </div>
-
-  </div>
-
-</div>
-
-### July 15, 2024
-
-<div style={{ display: "table", width: "auto" }}>
-
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/wrappers.mdx" />
-        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        `@flatfile/javascript@1.3.10`
-
-        In this release, the Rollup configuration for building the @flatfile/javascript package has been updated to produce a UMD build. This change ensures that the package can be used in a broader range of environments, including browser-based applications and Node.js projects. The UMD (Universal Module Definition) format allows the package to be loaded as a module or as a global variable, providing flexibility for developers. Additionally, the configuration has been updated to handle CommonJS modules, resolve dependencies, and include support for built-in modules. The version number has been incremented to 1.3.10 to reflect this update.
         </div>
 
   </div>
@@ -72,11 +57,6 @@ icon: 'cube'
 
           The package now contains utility functions attachStyleSheet and styleInject to dynamically inject the stylesheet into the DOM at runtime. This replaces the previous import of the stylesheet directly.
 
-          The build process has been updated to no longer extract the CSS into a separate file, instead keeping it inlined in the JavaScript bundle.
-
-          Several components that were previously importing the stylesheet have had those imports removed, relying on the new dynamic injection instead.
-
-          Types have been added for importing SCSS files directly into TypeScript.
         </div>
 
   </div>
@@ -112,10 +92,6 @@ icon: 'cube'
         `@flatfile/javascript@1.3.8`
 
         A bug fix for issues with the `closeSpace.onClose()` function. This function is called when the Flatfile space is closed, and the bug fix ensures that it works correctly.
-
-        The removal of the `findDefaultPage` import from the `@flatfile/embedded-utils` package, which is no longer used.
-
-        A bug fix for an issue where the message event listener was not being properly removed when the Flatfile space was closed. The `removeEventListener` function was not being called correctly, and this fix ensures that the event listener is removed to avoid potential memory leaks.
 
         An improvement to the closing behavior of the Flatfile space. Instead of removing the iframe element immediately, a new `closeSpaceNow` function is introduced, which handles removing the necessary elements and event listeners in a more organized manner.
 
