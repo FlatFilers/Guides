@@ -4,6 +4,101 @@ description: 'Notable additions and updates to the Flatfile platform'
 icon: 'layer-group'
 ---
 
+## July 2024
+
+### July 17, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/api@1.9.6`
+
+        The AgentConfig type now includes a new optional sourceMap property of type string to store the source map of an agent. No other changes to external interfaces were made.
+        </div>
+
+  </div>
+
+</div>
+
+### July 16, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/api@1.9.5`
+
+        A new property `treatments` of type `Flatfile.WorkbookTreatments[]` has been added to the `Workbook` and `CreateWorkbookConfig` types.
+        This array allows specifying treatments for a workbook, with the currently available treatment being `ExtractedFromSource`.
+        This change introduces a new external interface that developers using the package should be aware of when creating or updating workbooks.
+
+        Example usage:
+
+        ```typescript
+        import { Flatfile } from '@flatfile/api';
+
+        const workbookConfig: Flatfile.CreateWorkbookConfig = {
+          // ...other properties
+          treatments: [Flatfile.WorkbookTreatments.ExtractedFromSource]
+        }
+        ```
+        </div>
+
+  </div>
+
+</div>
+
+### July 13, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/api@1.9.3`
+
+        In the Agents resource, the get method has been updated to make the environmentId parameter optional when retrieving an agent.
+
+        A new JobOutcomeTrigger type has been introduced to specify whether a job outcome's effect should be triggered automatically or manually. The JobOutcome type has been updated to include this new trigger property.
+
+        </div>
+
+  </div>
+
+</div>
+
+### July 08, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/api@1.9.2`
+
+        The release notes for these changes are:
+
+        More control over the jobs has been included via a new 'excludeChildJobs' option in the ListJobsRequest. When set to true, only top-level jobs will be returned unless a parentId is specified.
+
+        A new property 'detectedHeaderRow' has been added to the FileJobConfig type. This property indicates the row number of the header row detected during file extraction.
+
+        The BaseProperty type now includes an 'actions' property, which is an array of actions that end users can perform on a Column.
+
+        For composite unique constraints in sheet schemas, a new 'requiredFields' property has been added. This property specifies fields that, when empty, will cause the unique constraint to be ignored.
+
+        A new ListUsersSortField enum has been added, which defines the fields that users can be sorted by when listing them.
+
+        A new resendInvite method has been added to the Users client, allowing resending an invitation to a user for the account.
+
+        </div>
+
+  </div>
+
+</div>
+
 ## June 2024
 
 ### June 18, 2024
@@ -357,9 +452,9 @@ icon: 'layer-group'
 </div>
 </div>
 
-## April 2024
+## April 2024 (7)
 
-### April 25, 2024
+##### April 25, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -381,7 +476,7 @@ icon: 'layer-group'
   </div>
 </div>
 
-### April 23, 2024
+##### April 23, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -403,7 +498,7 @@ icon: 'layer-group'
   </div>
 </div>
 
-### April 22, 2024
+##### April 22, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -444,7 +539,7 @@ icon: 'layer-group'
   </div>
 </div>
 
-### April 18, 2024
+##### April 18, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -469,7 +564,7 @@ icon: 'layer-group'
   
   </div>
 
-### April 17, 2024
+##### April 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -497,7 +592,7 @@ icon: 'layer-group'
   </div>
 </div>
 
-### April 12, 2024
+##### April 12, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -522,7 +617,7 @@ icon: 'layer-group'
   </div>
 </div>
 
-### April 9, 2024
+##### April 9, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
