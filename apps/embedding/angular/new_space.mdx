@@ -17,7 +17,7 @@ ng new create-flatfile-angular-embed
 ```
 
 ```bash
-cd example-flatfile-angular-embed
+cd create-flatfile-angular-embed
 ```
 
 ```bash
@@ -33,12 +33,17 @@ In your `app.component.ts` you'll need to pass in a minimum of the `publishableK
 <CodeGroup>
 
 ```TypeScript src/app/app.component.ts
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { SpaceModule, SpaceService, ISpace } from '@flatfile/angular-sdk';
+
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, SpaceModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'create-flatfile-angular-embed';
@@ -57,7 +62,7 @@ export class AppComponent {
 
   spaceProps: ISpace = {
     name: 'my space!',
-    publishableKey: 'sk_1234',
+    publishableKey: 'pk_1234',
     closeSpace: {
       operation: 'submitActionFg',
       onClose: this.closeSpace.bind(this),
@@ -157,6 +162,20 @@ Add your `config.ts` file, and place the following code in it. After you have do
 
 ```
 
+```TypeScript src/app/app.component.ts
+spaceProps: ISpace = {
+    name: 'my space!',
+    publishableKey: 'pk_1234',
+    closeSpace: {
+      operation: 'submitActionFg',
+      onClose: this.closeSpace.bind(this),
+    },
+    displayAsModal: true,
+    workbook: config,
+  };
+  ```
+
+
 </CodeGroup>
 
 ### 4. Transform Data
@@ -250,13 +269,13 @@ export class AppComponent {
 
   spaceProps: ISpace = {
     name: 'my space!',
-    publishableKey: 'sk_1234',
+    publishableKey: 'pk_1234',
     closeSpace: {
       operation: 'submitActionFg',
       onClose: this.closeSpace.bind(this),
     },
     displayAsModal: true,
-    workbook,
+    workbook: config,
     listener
   }
 }
