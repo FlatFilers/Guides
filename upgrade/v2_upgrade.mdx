@@ -18,7 +18,7 @@ Before you can start using all the wonderful tools in this guide to implement Fl
 
 <Note>
   If you are using our `@flatfile/react` package, be sure to install version
-  7.2.24 or higher to get the Platform React component.
+  7.9.1 or higher to get the latest Platform React component.
 </Note>
 
 <CodeGroup>
@@ -28,7 +28,7 @@ Before you can start using all the wonderful tools in this guide to implement Fl
     ```
 
     ```bash React
-    npm install @flatfile/v2-shims @flatfile/api @flatfile/react@7.2.24
+    npm install @flatfile/v2-shims @flatfile/api @flatfile/react@7.9.1
     ```
 
 </CodeGroup>
@@ -48,7 +48,7 @@ The Portal 2 configuration is what contains your settings and fields in your Por
 
     ```jsx React
     <FlatfileButton
-        licenseKey="YOUR_LICENCE_KEY"
+        licenseKey="YOUR_LICENSE_KEY"
         customer={{ userId: '1234' }}
         settings={} // This is your configuration object
     >
@@ -157,50 +157,66 @@ You'll be able to use this configuration object with the V2 Shims package to con
     ```
 
     ```js Platform React
-    import api from "@flatfile/api";
+    import { listener } from "./listeners/simple";
     import { configToBlueprint } from "@flatfile/v2-shims";
-    import { useSpace } from "@flatfile/react";
-    import { listener } from "./listener";
+    import { FlatfileProvider, Space, Workbook } from "@flatfile/react";
+    import { useFlatfile, useListener } from "@flatfile/react";
+    import { Flatfile } from "@flatfile/api";
 
-    const spaceProps = {
-        name: "Embedded Space",
-        publishableKey: "YOUR_PUBLISHABLE_KEY",
-    };
+    const FFApp = () => {
+        const { open, openPortal, closePortal } = useFlatfile();
 
-    const Space = ({setShowSpace}) => {
-        const space = useSpace({
-            ...spaceProps,
-            // @ts-ignore
-            workbook: configToBlueprint(flatfileConfig),
-            listener,
-            sidebarConfig: {
-                showSidebar: false,
-            },
-            closeSpace: {
-                operation: "submitAction",
-                onClose: () => setShowSpace(false),
-            },
-        });
-        return space;
-    };
-
-    export default function App() {
-        const [showSpace, setShowSpace] = useState(false);
+        // import file directly
+        useListener(listener, []);
 
         return (
-        <div className="App">
-            <button
-                className="contract"
-                onClick={() => {
-                    setShowSpace(!showSpace);
+            <div className={"App"}>
+            <div className={"contract"}>
+                <button
+                    onClick={() => {
+                        open ? closePortal() : openPortal();
+                    }}
+                >
+                {open ? "OPEN" : "CLOSE"} PORTAL
+                </button>
+            </div>
+
+            <Space
+                config={{
+                    metadata: {
+                        sidebarConfig: {
+                            showSidebar: true,
+                        },
+                    },
                 }}
             >
-                {showSpace === true ? "Close" : "Open and create new"} Space
-            </button>
-            {showSpace && <Space setShowSpace={setShowSpace} />}
-        </div>
-        )
-    }
+                <Workbook
+                config={
+                    configToBlueprint(config as any) as Flatfile.CreateWorkbookConfig
+                }
+                onSubmit={(sheet) => {
+                    console.log("onSubmit", { sheet });
+                }}
+                ></Workbook>
+            </Space>
+            </div>
+        );
+    };
+
+    const App = () => {
+        return (
+            <FlatfileProvider
+                publishableKey={"pk_1234"}
+                config={{
+                    displayAsModal: true,
+                }}
+            >
+            <FFApp />
+            </FlatfileProvider>
+        );
+    };
+
+    export default App;
     ```
 
 </CodeGroup>
@@ -299,50 +315,67 @@ If you're transitioning from a V2 Record Hook to a Platform Record Hook in your 
     ```
 
     ```jsx Platform React - Embed
-    // Be sure to use @flatfile/react 7.2.24 or later
-    import { ISpace, useSpace } from "@flatfile/react";
-    import { flatfileConfig } from "./config"
-    import { listener } from "./listener"
+    // Be sure to use @flatfile/react 7.9.1 or later
+    import { listener } from "./listeners/simple";
+    import { configToBlueprint } from "@flatfile/v2-shims";
+    import { FlatfileProvider, Space, Workbook } from "@flatfile/react";
+    import { useFlatfile, useListener } from "@flatfile/react";
+    import { Flatfile } from "@flatfile/api";
 
-    const spaceProps = {
-        name: "Embedded Space",
-        publishableKey: "YOUR_PUBLISHABLE_KEY",
-    };
+    const FFApp = () => {
+        const { open, openPortal, closePortal } = useFlatfile();
 
-    const Space = ({setShowSpace}) => {
-        const space = useSpace({
-            ...spaceProps,
-            // @ts-ignore
-            workbook: configToBlueprint(flatfileConfig),
-            listener,
-            sidebarConfig: {
-                showSidebar: false,
-            },
-            closeSpace: {
-                operation: "submitAction",
-                onClose: () => setShowSpace(false),
-            },
-        });
-        return space;
-    };
-
-    export default function App() {
-        const [showSpace, setShowSpace] = useState(false);
+        // import file directly
+        useListener(listener, []);
 
         return (
-            <div className="App">
+            <div className={"App"}>
+            <div className={"contract"}>
                 <button
-                    className="contract"
                     onClick={() => {
-                        setShowSpace(!showSpace);
+                        open ? closePortal() : openPortal();
                     }}
                 >
-                    {showSpace === true ? "Close" : "Open and create new"} Space
+                {open ? "OPEN" : "CLOSE"} PORTAL
                 </button>
-                {showSpace && <Space setShowSpace={setShowSpace} />}
             </div>
-        )
-    }
+
+            <Space
+                config={{
+                    metadata: {
+                        sidebarConfig: {
+                            showSidebar: true,
+                        },
+                    },
+                }}
+            >
+                <Workbook
+                config={
+                    configToBlueprint(config as any) as Flatfile.CreateWorkbookConfig
+                }
+                onSubmit={(sheet) => {
+                    console.log("onSubmit", { sheet });
+                }}
+                ></Workbook>
+            </Space>
+            </div>
+        );
+    };
+
+    const App = () => {
+        return (
+            <FlatfileProvider
+                publishableKey={"pk_1234"}
+                config={{
+                    displayAsModal: true,
+                }}
+            >
+            <FFApp />
+            </FlatfileProvider>
+        );
+    };
+
+    export default App;
     ```
 
     ```js Platform React - Listener
