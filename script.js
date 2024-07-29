@@ -113,3 +113,9 @@ setInterval(() => {
     handleRouteChange(currentPath);
   }
 }, 1000); // Check every second
+
+const reodev = () => {     
+  !function(){var e,t,n;e="ef156246f4c97c4",t=function(){Reo.init({clientID:"ef156246f4c97c4"})},(n=document.createElement("script")).src="https://static.reo.dev/"+e+"/reo.js",n.async=!0,n.onload=t,document.head.appendChild(n)}();
+};
+
+reodev()
