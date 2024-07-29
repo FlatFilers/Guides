@@ -110,11 +110,6 @@ setInterval(() => {
   }
 }, 1000); // Check every second
 
-const reodev = () => {     
-  !function(){var e,t,n;e="ef156246f4c97c4",t=function(){Reo.init({clientID:"ef156246f4c97c4"})},(n=document.createElement("script")).src="https://static.reo.dev/"+e+"/reo.js",n.async=!0,n.onload=t,document.head.appendChild(n)}();
-};
-
-reodev()
 
 const addIubendaScripts = () => {
   // Create and add the main script
@@ -211,8 +206,6 @@ const addIubendaScripts = () => {
   mainScript.textContent = scriptContent;
   document.head.appendChild(mainScript);
 
-  // Create and add the sync script
-  // Helper function to add a script if it doesn't already exist
   const addScriptIfNotExists = (src, options = {}) => {
     if (!document.querySelector(`script[src="${src}"]`)) {
       const script = document.createElement('script');
@@ -238,40 +231,3 @@ const addIubendaScripts = () => {
 
 // Call the function to add the scripts
 addIubendaScripts();
-
-// Add these helper functions outside the main configuration object
-function pushUsprPreference() {
-  dataLayer.push({
-    iubenda_uspr_s_opted_out: _iub.cs.api.getPreferences().uspr.s,
-  });
-}
-
-function pushPurposePreferences() {
-  const usprPreferences = _iub.cs.api.getPreferences()?.uspr;
-  if (usprPreferences) {
-    Object.keys(usprPreferences).forEach(purposeName => {
-      if (usprPreferences[purposeName]) {
-        dataLayer.push({ event: `iubenda_consent_given_purpose_${purposeName}` });
-      }
-    });
-  }
-}
-
-function handleConsentStatus(preference) {
-  if (!preference) {
-    dataLayer.push({ event: 'iubenda_preference_not_needed' });
-  } else if (preference.consent === true) {
-    dataLayer.push({ event: 'iubenda_consent_given' });
-  } else if (preference.consent === false) {
-    dataLayer.push({ event: 'iubenda_consent_rejected' });
-    window.VWO = window.VWO || [];
-    window.VWO.push(['optOutVisitor']);
-    console.log('Consent rejected');
-  } else if (preference.purposes) {
-    Object.keys(preference.purposes).forEach(purposeId => {
-      if (preference.purposes[purposeId]) {
-        dataLayer.push({ event: `iubenda_consent_given_purpose_${purposeId}` });
-      }
-    });
-  }
-}
