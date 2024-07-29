@@ -157,7 +157,7 @@ You'll be able to use this configuration object with the V2 Shims package to con
     ```
 
     ```js Platform React
-    import { listener } from "./listeners/simple";
+    import { listener } from "./listener";
     import { configToBlueprint } from "@flatfile/v2-shims";
     import { FlatfileProvider, Space, Workbook } from "@flatfile/react";
     import { useFlatfile, useListener } from "@flatfile/react";
@@ -316,7 +316,7 @@ If you're transitioning from a V2 Record Hook to a Platform Record Hook in your 
 
     ```jsx Platform React - Embed
     // Be sure to use @flatfile/react 7.9.1 or later
-    import { listener } from "./listeners/simple";
+    import { listener } from "./listener";
     import { configToBlueprint } from "@flatfile/v2-shims";
     import { FlatfileProvider, Space, Workbook } from "@flatfile/react";
     import { useFlatfile, useListener } from "@flatfile/react";
