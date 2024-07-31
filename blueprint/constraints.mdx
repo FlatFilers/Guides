@@ -57,9 +57,25 @@ Unique Constraints indicate that the given field value must only appear **once**
 ]
 ```
 
-### Computed Value
+### Computed Constraint
 
-You might notice a ComputedValue type within the Blueprint code. Please do not use this value at this time as it is unsupported and may be deprecated without notice.
+The computed constraint hides the given field from the mapping process, so your users will not be able to map incoming columns to this field. 
+
+```json
+// within the context of a create Workbook API call
+ "fields": [
+  {
+    key: 'age',
+    type: 'number',
+    label: 'Age',
+    description: "The number of years since the person's birth date",
+    constraints: [
+      {
+        type: 'computed',
+      },
+    ],
+  },
+]
 
 ## Sheet-Level
 
