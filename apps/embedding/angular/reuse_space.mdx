@@ -19,7 +19,7 @@ ng new create-flatfile-angular-embed
 ```
 
 ```bash
-cd example-flatfile-angular-embed
+cd create-flatfile-angular-embed
 ```
 
 ```bash
@@ -59,7 +59,7 @@ You will also want to add some scripts to your `package.json` to start the app. 
 
 #### 2. Create the Server
 
-Lets create the server that will act as the backend of the application. This will be necessary to serve the pages as well as get the existing space, as due to security reasons the Secret Key cannot be exposed to the browser at any time.
+Lets create the server that will act as the backend of the application. This will be necessary to serve the pages as well as get the existing space, as due to security reasons the Secret Key cannot be exposed to the browser at any time. You'll want to replace the token value with your secret key or api token.
 
 ```TypeScript server/index.ts
 import express from "express";
@@ -72,7 +72,7 @@ const app = express();
 app.get('/api/spaces/:id', async (_req, res)=>{
   const {id} = _req.params;
   const flatfile = new FlatfileClient({
-    token: 'flatfile_api_key',
+    token: 'secret_key',
     environment: 'https://platform.flatfile.com/api/v1',
   });
   try {
@@ -94,12 +94,17 @@ app.listen(port, () => {
 The component should end up looking something like this:
 
 ```TypeScript src/app/app.component.ts
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { SpaceModule, ISpace } from '@flatfile/angular-sdk';
+
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, SpaceModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'create-flatfile-angular';

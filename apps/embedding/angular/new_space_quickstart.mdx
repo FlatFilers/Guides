@@ -21,7 +21,7 @@ ng new create-flatfile-angular-embed
 ```
 
 ```bash
-cd example-flatfile-angular-embed
+cd create-flatfile-angular-embed
 ```
 
 ```bash
@@ -37,12 +37,17 @@ In your `app.component.ts` you'll need to pass in a minimum of the `publishableK
 <CodeGroup>
 
 ```TypeScript src/app/app.component.ts
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { SpaceModule } from '@flatfile/angular-sdk';
+
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, SpaceModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'create-flatfile-angular-embed';
@@ -61,9 +66,9 @@ export class AppComponent {
 
   spaceProps: ISpace = {
     name: 'My space!',
-    publishableKey: 'sk_1234',
+    publishableKey: 'pk_1234',
     closeSpace: {
-      operation: 'submitActionFg',
+      operation: 'simpleSubmitAction',
       onClose: this.closeSpace.bind(this),
     },
     displayAsModal: true,
@@ -80,7 +85,7 @@ export class AppComponent {
 
 Now, let's build a Workbook inside the Space for next time.
 
-1. Update your `blueprint.js` with this simple Blueprint.
+1. Create a file `src/app/blueprint.ts` with this simple Blueprint.
 2. Update `app.component` to import the Workbook.
 
 Next time you open Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. Your Workbook will also have a Submit action. We will configure this action in the next step.
@@ -113,16 +118,16 @@ export const blueprint = {
 ```typescript app/app.component.ts
 spaceProps = {
   name: "My space!",
-  publishableKey: "sk_1234",
+  publishableKey: "pk_1234",
   closeSpace: {
-    operation: "submitActionFg",
+    operation: "simpleSubmitAction",
     onClose: this.closeSpace.bind(this),
   },
   displayAsModal: true,
   spaceBody: {
     namespace: "portal",
   },
-  sheet,
+  sheet: blueprint,
 };
 ```
 
@@ -137,9 +142,9 @@ Once you add this code, when the submit button is clicked, this will be the plac
 ```typescript app/app.component.ts
 spaceProps = {
   name: "My space!",
-  publishableKey: "sk_1234",
+  publishableKey: "pk_1234",
   closeSpace: {
-    operation: "submitActionFg",
+    operation: "simpleSubmitAction",
     onClose: this.closeSpace.bind(this),
   },
   displayAsModal: true,
@@ -163,9 +168,9 @@ Once you add this code, when a change occurs, we'll log the entered first name a
 ```typescript app/app.component.ts
 spaceProps = {
   name: "My space!",
-  publishableKey: "sk_1234",
+  publishableKey: "pk_1234",
   closeSpace: {
-    operation: "submitActionFg",
+    operation: "simpleSubmitAction",
     onClose: this.closeSpace.bind(this),
   },
   displayAsModal: true,
@@ -193,9 +198,9 @@ By attaching a `themeConfig`, we will now override colors in your Space to match
 ```typescript app/app.component.ts
 spaceProps = {
   name: "My space!",
-  publishableKey: "sk_1234",
+  publishableKey: "pk_1234",
   closeSpace: {
-    operation: "submitActionFg",
+    operation: "simpleSubmitAction",
     onClose: this.closeSpace.bind(this),
   },
   displayAsModal: true,

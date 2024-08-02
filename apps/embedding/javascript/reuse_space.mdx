@@ -1,7 +1,7 @@
 ---
-title: "Reuse an existing Space"
-description: "Reuse a Space when Flatfile is opened."
-icon: "recycle"
+title: 'Reuse an existing Space'
+description: 'Reuse a Space when Flatfile is opened.'
+icon: 'recycle'
 ---
 
 Reuse a Space when users might need to wait or can't finish in one go. It's great for keeping work context and letting users continue where they left off until the task is done.
@@ -68,7 +68,7 @@ In this file structure, your app should have two main directories, `public` and 
 
 The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
 
-The `src` directory contains the main components and logic of the application, including the `client.js` file, which initializes Flatfile and passes in available options. And the `server.mjs` file, which sets up a Node.js server using Express that listens for incoming requests and communicates with the Flatfile API to retrieve data about a specified Space.
+The `src` directory contains the main components and logic of the application, including the `client.js` file, which initializes Flatfile and passes in available options, and the `server.mjs` file, which sets up a Node.js server using Express that listens for incoming requests and communicates with the Flatfile API to retrieve data about a specified Space.
 
 ### Update your .env
 
@@ -96,7 +96,7 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 ```
 
 ```html public/index.html (full page)
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -113,7 +113,6 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
         <!-- Button to trigger the modal -->
         <div>
-          <!-- Note: PUT YOUR KEY AND ENVIRONMENT_ID IN HERE -->
           <button class="contrast" onclick="openFlatfile()">
             Open existing Space
           </button>
@@ -134,10 +133,10 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 This code sets up a Node.js server using Express that listens for incoming requests, enables CORS (Cross-Origin Resource Sharing), and communicates with the Flatfile API to retrieve data about a specified Space based on the provided environment variables.
 
 ```jsx src/server.mjs
-import dotenv from "dotenv";
-import express from "express";
-import { FlatfileClient } from "@flatfile/api";
-import cors from "cors"; // Import the cors module
+import dotenv from 'dotenv';
+import express from 'express';
+import { FlatfileClient } from '@flatfile/api';
+import cors from 'cors'; // Import the cors module
 
 dotenv.config();
 
@@ -149,23 +148,23 @@ console.log(process.env.FLATFILE_API_KEY);
 
 const flatfile = new FlatfileClient({
   token: process.env.FLATFILE_API_KEY,
-  environment: process.env.BASE_URL + "/v1",
+  environment: process.env.BASE_URL + '/v1',
 });
 
 // Enable CORS middleware
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Hello, world!");
+app.get('/', (req, res) => {
+  res.send('Hello, world!');
 });
 
-app.get("/space", async (req, res) => {
+app.get('/space', async (req, res) => {
   try {
     const space = await flatfile.spaces.get(process.env.SPACE_ID);
     res.json(space);
   } catch (error) {
-    console.error("Error retrieving space:", error);
-    res.status(500).json({ error: "Failed to retrieve space" });
+    console.error('Error retrieving space:', error);
+    res.status(500).json({ error: 'Failed to retrieve space' });
   }
 });
 
@@ -187,12 +186,12 @@ npx node src/server.mjs
 In your `client.js`, at minimum, you'll need to get and pass the `space` info. This code opens an existing Space in a modal by making a request to your server endpoint and initializing the Flatfile data import with specified options based on the server's response.
 
 ```js src/client.js
-import { initializeFlatfile } from "@flatfile/javascript";
-const server_url = "http://localhost:8080";
+import { initializeFlatfile } from '@flatfile/javascript';
+const server_url = 'http://localhost:8080';
 
 //open existing space in modal
 window.openFlatfile = () => {
-  fetch(server_url + "/space") // Make a request to the server endpoint
+  fetch(server_url + '/space') // Make a request to the server endpoint
     .then((response) => response.json())
     .then((space) => {
       const flatfileOptions = {
@@ -208,7 +207,7 @@ window.openFlatfile = () => {
       initializeFlatfile(flatfileOptions);
     })
     .catch((error) => {
-      console.error("Error retrieving space in client:", error);
+      console.error('Error retrieving space in client:', error);
     });
 };
 ```
