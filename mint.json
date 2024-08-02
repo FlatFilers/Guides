@@ -511,14 +511,16 @@
       "pages": [
         "plugins-docs/transform/record-hook",
         "plugins-docs/transform/autocast",
-        "plugins-docs/transform/dedupe"
+        "plugins-docs/transform/dedupe",
+        "plugins-docs/transform/external-constraint"
       ]
     },
     {
       "group": "Automation",
       "pages": [
-        "plugins/automations/automap",
-        "plugins/automations/webhook-event-forwarding"
+        "plugins-docs/automations/automap",
+        "plugins-docs/automations/webhook-event-forwarding"
+        
       ]
     },
     {
