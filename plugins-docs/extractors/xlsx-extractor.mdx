@@ -115,7 +115,7 @@ listener.use(ExcelExtractor({ raw: true, rawNumbers: true }));
 
 ### Header Detection
 
-Three detection options are provided for detecting headers in the file: `default`, `explicitHeaders`, and `specificRows`. By default, the first 10 rows are scanned for the row with the most non-empty cells. This row is then used as the header row.
+Four detection options are provided for detecting headers in the file: `default`, `explicitHeaders`, `specificRows`, and `Data Row & Sub Header Detection`. By default, the first 10 rows are scanned for the row with the most non-empty cells. This row is then used as the header row.
 
 #### Default
 

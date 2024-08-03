@@ -1,0 +1,155 @@
+### December 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Revamped UI for Foreground Jobs**
+
+     ![image](../changelog/images/foreground_facelift.png)
+
+     We've given our foreground jobs a fresh, new look:
+
+      1. Enhanced Job Modal Header: The job modal header now prominently displays job information, making it instantly visible and accessible.
+      2. Refined Display Details: Information that was previously in the header is now elegantly presented as an ultralight subline for improved readability.
+      3. Optimized Layout: We've repositioned the display of the percentage and remaining time for better clarity and focus.
+      4. Improved Time Estimation: For estimated completion time, we've introduced a fallback mechanism based on simple linear extrapolation, ensuring more accurate and reliable predictions.
+
+      These updates are designed to offer a more intuitive and streamlined user experience in tracking and managing foreground jobs.
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Next Action Links in Job Outcome Dialogs Now Support Linking to internal resources**
+
+     ![image](../changelog/images/next_link.png)
+
+       In addition to the existing ability to link to external URLs and trigger downloads, you can now also display links to internal resources upon job completion. This enhancement broadens the scope of actions you can perform, offering more versatility in directing users to relevant resources or actions post-job completion.
+
+      In this code below, we will create a button that says “See all downloads” with this path: `/space/us_sp_1234/files?mode=export`
+
+      **Usage**
+
+      ```jsx listener
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message: `The file has been created`,
+          acknowledge: true,
+          //Reference: https://platform.flatfile.com/s/space/{$id}/{path}?{$query}
+          next: {
+            type: "id",
+            id: "dev_sp_1234",
+            path: "files",
+            query: "mode=export",
+            label: "See all downloads",
+          },
+        },
+      });
+      ```
+
+      This improvement adds versatility and flexibility to your job outcomes, enhancing user interaction and experience.
+
+      [Learn more](../orchestration/jobs#next-links).
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Next Action Links in Job Outcome Dialogs Now Support Retrying**
+
+       You can now also display links to retry a job upon job completion or failure. This enhancement broadens the scope of actions you can perform, offering more versatility in directing users to relevant resources or actions post-job completion.
+
+      **Usage**
+
+      ```jsx listener
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message: `The file has been created`,
+          acknowledge: true,
+          next: {
+            type: "retry",
+            label: "Try again",
+          },
+        },
+      });
+      ```
+
+      This improvement adds versatility and flexibility to your job outcomes, enhancing user interaction and experience.
+
+      [Learn more](../orchestration/jobs#next-links).
+
+      </div>
+
+  </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/theming.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+     **Enhanced Theming options for Filters**
+
+     ![image](../changelog/images/theming_chips.png)
+
+       We've expanded the theming capabilities for filters, providing a more customizable and visually appealing interface:
+
+      **Usage**
+
+      ```jsx
+      "theme": {
+          "table": {
+            "filters": {
+              "outerBorder": "2px red solid",
+              "innerBorderRadius": "0px",
+              "outerBorderRadius": "0px"
+            }
+        }
+      }
+      ```
+
+      1. New Styling Features for Filters: We've introduced the option to customize filters with borders and border radius as part of the table theme.
+
+      2. Flexible Border Radius Design: To accommodate the varying sizes of elements and the potential difference in calculated border radius, we now use both inner and outer border radius settings. This enhancement not only ensures a cohesive look but also adds an extra layer of styling flexibility to the filters.
+
+      These improvements are designed to offer more control over the aesthetics of filters, enabling a seamless and integrated visual experience.
+
+      [Learn more](../guides/theming).
+
+      </div>
+
+  </div>
+
+</div>

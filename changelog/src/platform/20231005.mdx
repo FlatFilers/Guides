@@ -1,0 +1,32 @@
+### October 5, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+ <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Exciting Update: Additional Fields**
+
+        ![image](../changelog/images/addl_fields.png)
+
+        With additional fields, end users can seamlessly map to fields that don’t exist by simply adding a new property to any of your new or pre-existing Blueprint(s).
+
+        Here’s how it works:
+        - When you set allowAdditionalFields to true, your Sheet gains the ability to accept additional fields, extending beyond what’s originally specified in its configuration.
+        - These extra fields can be incorporated, either through API integrations or by end users during the file import process.
+        - Fields that go beyond the Blueprint’s initial setup are marked with a treatment property set to additional, ensuring complete transparency over what extends the Blueprint.
+        - What’s more, adding a custom field is a breeze—its name will be automatically set to match the header name from the file being mapped. This simplifies the process.
+
+        [See the docs](../blueprint/sheet-options).
+    </div>
+
+  </div>
+</div>

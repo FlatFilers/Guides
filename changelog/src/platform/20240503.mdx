@@ -1,0 +1,64 @@
+### May 3, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Updated `ListDocumentsResponse`**
+
+       The `data` property now returns an array of `Document` objects instead of the previous `DocumentResponse`. This change standardizes the format and improves consistency in how document data is handled.
+
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Job Configuration**
+
+        We added a new `predecessorIds` property to `JobConfig`. This property allows you to specify job dependencies, meaning you can list the IDs of jobs that must be completed before the current job can start. This helps in managing and sequencing job execution more effectively.
+
+        We added a new feature to handle job outcomes more effectively with a new type called `JobOutcomeNext` and its variant files. This includes:
+
+        - `JobOutcomeNextFileObject` Stores individual file information with an ID and optional label.
+        - `JobOutcomeNextFiles` Handles multiple files, including an array of JobOutcomeNextFileObject instances and an optional label.
+
+        We also added a waiting value to the JobStatus enum to indicate when a job is paused or pending, improving job processing workflows.
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Views Request and Response**
+
+        We updated `ListViewsRequest` to include optional `pageSize` and `pageNumber` properties, allowing for pagination when retrieving views.
+        We've also added a `createdBy` property to `View` and `ViewResponse` to track the creator of each view.
+    </div>
+
+  </div>
+</div>

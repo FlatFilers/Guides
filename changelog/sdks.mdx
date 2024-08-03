@@ -1,29 +1,754 @@
 ---
 title: SDKs
-description: "Notable additions and updates to Flatfile core libraries"
-icon: "cube"
+description: 'Notable additions and updates to Flatfile core libraries'
+icon: 'cube'
 ---
 
-## November
+## July 2024
 
-### November 10, 2023
+### July 17, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.11.0`
+
+        The CSS variable `--ff-color-text` has been renamed to `--ff-text-color` to be consistent with other variable names. This change affects the text color used throughout the Flatfile React components.
+        </div>
+
+  </div>
+
+</div>
+
+### July 16, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.4.0`
+
+        This exciting release adds internationalization support to the Flatfile JavaScript SDK. The SDK now detects the user's browser language or allows specifying an override language.
+        Translation strings are provided for the confirmation modal, error modal, and other UI elements.
+        The SDK also includes functionality to handle missing translation keys and log them to the console.
+
+        Additionally, this release updates the modal logic to use functional components and make the text strings dynamic based on the provided translations or defaults.
+
+        A new util function `initializeIFrameConfirmationModal` is introduced to handle mounting the confirmation modal and its associated behaviors onto the iFrame wrapper element.
+        This function takes callbacks for the modal's button click actions (exit or stay) and text string providers for the modal's title, message, and button labels.
+
+        </div>
+
+  </div>
+
+</div>
+
+### July 08, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.10.0`
+
+          The `FlatfileProvider` component now accepts a new `styleSheetOptions` prop which allows setting the nonce value and position of the injected stylesheet. This gives more control over how the styles are applied.
+
+          The package now contains utility functions `attachStyleSheet` and `styleInject` to dynamically inject the stylesheet into the DOM at runtime. This replaces the previous import of the stylesheet directly.
+
+        </div>
+
+  </div>
+
+</div>
+
+## June 2024
+
+### June 28, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.3.9`
+
+        The createlistener function now takes an additional `onClose` parameter. This function is used to handle the closing of the Flatfile space, and it removes the event listener and cleans up the DOM elements associated with the Flatfile space. The `initializeIFrameConfirmationModal` function has also been updated to use the new `closeSpaceNow` function, which simplifies the process of closing the Flatfile space.
+
+        </div>
+
+  </div>
+
+</div>
+
+### June 25, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.3.8`
+
+        A bug fix for issues with the `closeSpace.onClose()` function. This function is called when the Flatfile space is closed, and the bug fix ensures that it works correctly.
+
+        An improvement to the closing behavior of the Flatfile space. Instead of removing the iframe element immediately, a new `closeSpaceNow` function is introduced, which handles removing the necessary elements and event listeners in a more organized manner.
+
+        There is also an update to the way the confirmation modal is displayed when closing the Flatfile space. Instead of using a separate event listener, the closing logic is now handled within the existing `closeFlatfileSpace` function, which listens for the `job:outcome-acknowledged` event and triggers the closing process accordingly.
+        </div>
+
+  </div>
+
+</div>
+
+### June 16, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/core.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `flatfile@3.7.0`
+
+        The latest release of the flatfile package includes improvements for handling file uploads and inferring event topics from arrays. Listeners using an array syntax `listener.on(['commit:created', 'layer:created'], (event) => {}` will now correctly infer the event topics.
+
+        This release also includes a fix for handling file uploads with updated event `flatfile.upload`
+
+        </div>
+
+  </div>
+
+</div>
+
+## May 2024
+
+### May 24, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.9.9`
+
+        This release includes a fix to address instances where the iframe wasn't ready when the `portal:initialize` call was posted. The fix ensures that the `portal:initialize` message is sent to the iframe only after it has finished loading. This resolves an issue where the initialization process could sometimes fail due to the iframe not being ready. Developers using the `@flatfile/react` package will benefit from a more reliable initialization process for the embedded Flatfile experience.
+
+        The new `useIsIFrameLoaded` hook listens for the `load` event on the iframe and updates a state variable accordingly. The `portal:initialize` message is then sent only when the iframe has finished loading, ensuring a reliable initialization process.
+        </div>
+
+  </div>
+
+</div>
+
+### May 22, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.3.7`
+
+        This release adds the ability to set the default page when preloading the Flatfile Portal embed. Use `updateDefaultPageInSpace` and `findDefaultPage` to specify which workbook, sheet, or document page should display initially.
+
+        </div>
+
+  </div>
+
+</div>
+
+### May 21, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/core.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/listener@1.0.5`
+
+        The `unmount()` method has been added, allowing developers to cleanly disconnect the event listener from the event driver. The `EventDriver` class now includes `unmountEventHandler()` to remove attached event handlers, providing more control over event listeners.
+        </div>
+
+  </div>
+
+</div>
+
+### May 01, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+      <Snippet file="chips/listener.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.3.4`, `@flatfile/javascript@1.3.6`, `@flatfile/listener@1.0.4`, `@flatfile/react@7.9.3`
+
+        The `closeSpace.operation` and `closeSpace.onClose` properties are now optional, offering more flexibility. The `@flatfile/embedded-utils` dependency is updated to version 1.2.1, simplifying event listener setup with `handlePostMessage`.
+
+        `@flatfile/listener` now has optimized build tooling and updated dependencies, improving compatibility and performance.
+        </div>
+
+  </div>
+
+</div>
+
+## April 2024 (5)
+
+##### April 27, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.3.3`, `@flatfile/react@7.9.2`
+
+        This release enables clipboard read and write functionality within the embedded Flatfile iframe component. Also, `@flatfile/embedded-utils` is updated to version 1.2.0.
+        </div>
+
+  </div>
+
+</div>
+
+##### April 17, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.9.1`
+
+        This release improves the submission process. After data upload, the `onSubmit` action handlers now acknowledge the job automatically, enhancing user feedback.
+        </div>
+
+  </div>
+
+</div>
+
+##### April 10, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/core.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/listener@1.0.2`, `@flatfile/react@7.9.0`
+
+        `@flatfile/listener` now supports removing event listeners with `off()` and `detach()` methods. The `FlatfileProvider` component sets up a `FlatfileContext` with configurations for `Space`, `Workbook`, `Document`, and event handlers.
+        </div>
+
+  </div>
+
+</div>
+
+##### April 05, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.3.2`, `@flatfile/react@7.8.12`
+
+        Updates to dependencies and improvements in performance for both packages. `@flatfile/embedded-utils` dependency updated to 1.1.14.
+        </div>
+
+  </div>
+
+</div>
+
+##### April 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@1.3.1`, `@flatfile/react@7.8.11`
+
+          Updated `@flatfile/embedded-utils` to version 1.1.13. Simplified logic for setting `sidebarConfig` when initializing a new Flatfile import space.
+        </div>
+
+  </div>
+
+</div>
+
+## March 2024 (3)
+
+##### March 22, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.8.10`
+
+        Fixed a bug in the `usePortal` hook related to the `onSubmit` function, ensuring reliable unmounting of the iframe.
+        </div>
+
+  </div>
+
+</div>
+
+##### March 15, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+       `@flatfile/javascript@1.3.0`, `@flatfile/react@7.8.9`
+
+        Added `initNewSpace` utility to create a new space, workbook, and document in a single API request. The `environmentId` parameter is now optional.
+        </div>
+
+  </div>
+
+</div>
+
+##### March 08, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.8.8`
+
+        Fixed an issue where the embedded Flatfile iframe would not be removed properly if there was an error during initialization.
+        </div>
+
+  </div>
+
+</div>
+
+## February 2024 (7)
+
+##### February 29, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.2.6`, `@flatfile/react@7.8.7`
+
+        Updated the space creation request to only include defined parameters. Improved reliability and efficiency of data import experience.
+        </div>
+
+  </div>
+
+</div>
+
+##### February 28, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.2.5`, `@flatfile/react@7.8.6`
+
+        `startFlatfile` function now accepts new optional parameters, including namespace, metadata, labels, translation path, and language override, providing more customization.
+        </div>
+
+  </div>
+
+</div>
+
+##### February 26, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.2.3`, `@flatfile/javascript@1.2.4`, `@flatfile/react@7.8.4`, `@flatfile/react@7.8.5`
+
+        Updated default spaces URL to avoid unnecessary preflight requests. Improved support for nested entrypoints in `package.json`.
+        </div>
+
+  </div>
+
+</div>
+
+##### February 20, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.8.3`
+
+        Fixed bug related to updating the authentication token for the `@flatfile/listener` package, ensuring secure and authorized communication.
+        </div>
+
+  </div>
+
+</div>
+
+##### February 07, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+      <Snippet file="chips/listener.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@1.2.2`, `@flatfile/listener@1.0.1`, `@flatfile/react@7.8.2`
+
+          Added exports and browser fields in `package.json` for better module resolution and compatibility. Updated dependencies for improved stability.
+        </div>
+
+  </div>
+
+</div>
+
+##### February 06, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@1.1.7`, `@flatfile/javascript@1.2.0`, `@flatfile/javascript@1.2.1`, `@flatfile/react@7.8.0`, `@flatfile/react@7.8.1`
+
+          Removed global style overrides from SDKs, improving compatibility. Updated dependencies and improved type support for better integration experience.
+        </div>
+
+  </div>
+
+</div>
+
+##### February 01, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@1.1.6`
+
+          Added functionality to remove the event listener after submit and close actions, improving memory management.
+        </div>
+
+  </div>
+
+</div>
+
+## January 2024 (10)
+
+##### January 31, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@1.1.5`, `@flatfile/listener@0.4.2`
+
+          The `@flatfile/javascript` package update includes a better-organized package.json and fixes for type conflicts with peer dependencies. These changes ensure a smoother development experience and easier integration. The `@flatfile/listener` package resolves type conflicts with peer dependencies and improves type compatibility.
+
+        </div>
+
+  </div>
+
+</div>
+
+##### January 30, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@1.1.4`
+
+          The confirmation modal's close action is now independent of user parameters, ensuring the modal is consistently removed from the DOM when closed.
+        </div>
+
+  </div>
+
+</div>
+
+##### January 26, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@1.1.3`, `@flatfile/listener@0.4.1`
+
+          The `@flatfile/javascript` package consolidates source code, generates type declarations, and re-exports modules for convenience. The `@flatfile/listener` package update enhances exports and adds dotenv dependency for better environment variable management.
+
+        </div>
+
+  </div>
+
+</div>
+
+##### January 24, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/wrappers.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/javascript@1.1.2`
+
+      This release fixes an issue when reusing an existing Flatfile space and adds support for passing an existing space object to `startFlatfile`.
+
+    </div>
+
+  </div>
+
+</div>
+
+##### January 19, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@1.1.0`
+
+          The new release introduces preloading the Flatfile embed iFrame, initializing without a space ID, and adding additional metadata when creating a space. The pubnub dependency has been removed.
+
+          Updated to version 1.1.1 with a bug fix and dependency updates for improved reliability.
+        </div>
+
+  </div>
+
+</div>
+
+##### January 10, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/react@7.5.4`, `@flatfile/react@7.6.0`
+
+          The `@flatfile/react` update bundles `@flatfile/api` and removes the pubnub dependency. The package now listens for window message events directly.
+
+        </div>
+
+  </div>
+
+</div>
+
+##### January 09, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+            `@flatfile/javascript@0.3.2`, `@flatfile/listener@0.4.0`, `@flatfile/react@7.5.3`
+
+            Updates include better browser compatibility, gzipping request bodies, and using Rollup for bundling. Dependencies for `@flatfile/react` are also updated for better performance and reliability.
+        </div>
+
+  </div>
+
+</div>
+
+##### January 08, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.5.2`
+
+        The `@flatfile/react` package removes the styled-components dependency, migrating styles to SCSS for improved performance and maintainability.
+        </div>
+
+  </div>
+
+</div>
+
+##### January 05, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/core.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/listener@0.3.19`
+
+          The `@flatfile/listener` package now compresses the request body using pako compression by default when calling the `update()` method. This reduces network bandwidth usage and transfer times.
+
+        </div>
+
+  </div>
+
+</div>
+
+##### January 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/core.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/listener@0.3.18`
+
+          The `EventCallback` type now expects a Promise to be returned, allowing developers to use async/await for greater flexibility and control over asynchronous operations.
+        </div>
+
+  </div>
+
+</div>
+
+## December 2023 (4)
+
+##### December 21, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@0.3.1`, `@flatfile/react@7.5.1`
+
+          The UMD build file for the `@flatfile/javascript` package is renamed to `dist/index.js`. The `@flatfile/react` package update simplifies the import process by using `dist/index.js` for browser environments.
+        </div>
+
+  </div>
+
+</div>
+
+##### December 19, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@0.3.0`, `@flatfile/react@7.5.0`
+
+          The `@flatfile/javascript` package includes bundle optimizations and a new option to keep the space after submitting data. The `@flatfile/react` package improves accessibility with the close button's `type="button"` attribute and adds the option to keep the space active after submission.
+
+        </div>
+
+  </div>
+
+</div>
+
+##### December 13, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@0.2.2`, `@flatfile/react@7.4.0`
+
+          The `@flatfile/javascript` package introduces a new Simplified React Flow and updates dependencies. The `@flatfile/react` package adds a `usePortal` hook for a smoother integration experience.
+
+        </div>
+
+  </div>
+
+</div>
+
+##### December 01, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.3.1`
+
+        The `useSpaceTrigger` hook has been renamed to `initializeFlatfile`, and `createOrUseSpace` has been renamed to `OpenEmbed` for better clarity.
+
+        </div>
+
+  </div>
+
+</div>
+
+## November 2023 (8)
+
+##### November 28, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@0.2.1`
+
+          Re-introduces the `initializeFlatfile` method, fixing issues with the submit action and simplifying the user experience.
+
+        </div>
+
+  </div>
+
+</div>
+
+##### November 27, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+          `@flatfile/javascript@0.2.0`
+
+          Simplifies the integration flow by allowing developers to provide sheet configurations directly and introducing new utilities for record-level hooks and job submissions.
+
+        </div>
+
+  </div>
+
+</div>
+
+##### November 15, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.3.0`
+
+        The new `useSpaceTrigger` hook allows developers to control when the Flatfile import experience is triggered.
+
+        </div>
+
+  </div>
+
+</div>
+
+##### November 10, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
 <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
       <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-       `@flatfile/javascript@0.1.27` & `@flatfile/react@7.2.34`
+       `@flatfile/javascript@0.1.27`, `@flatfile/react@7.2.34`
 
-       When creating a Workbook from SDK, not all params were being passed to the API. All parameters are now seamlessly passed to the API when creating a Workbook client-side.
-
+       All parameters are now seamlessly passed to the API when creating a Workbook client-side.
     </div>
 
    </div>
-
 </div>
 
-### November 9, 2023
+##### November 9, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -37,20 +762,10 @@ icon: "cube"
     </div>
 
    </div>
-   <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/wrappers.mdx" />
-      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      `@flatfile/javascript@0.1.26`
-
-       Removed a `console.log()`.
-
-    </div>
-
-   </div>
 
 </div>
 
-### November 8, 2023
+##### November 8, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -67,7 +782,7 @@ icon: "cube"
 
 </div>
 
-### November 6, 2023
+##### November 6, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -95,7 +810,7 @@ icon: "cube"
 
 </div>
 
-### November 1, 2023
+##### November 1, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -113,7 +828,7 @@ icon: "cube"
 
 </div>
 
-## October (5)
+## October 2023 (4)
 
 ##### October 29, 2023
 
@@ -194,7 +909,7 @@ icon: "cube"
 
 </div>
 
-## September (5)
+## September 2023 (3)
 
 ##### September 29, 2023
 
@@ -275,13 +990,13 @@ icon: "cube"
 
       See all classes that can be overridden in CSS in the [Reference](/apps/embedding/reference/advanced#iframe-styles).
 
-</div>
+    </div>
 
   </div>
 
 </div>
 
-## August (7)
+## August 2023 (3)
 
 ##### August 30, 2023
 
@@ -354,14 +1069,14 @@ icon: "cube"
 
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/core.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     `@flatfile/listener@0.3.14` `event.secrets` now defaults to `spaceId`. It
@@ -369,14 +1084,14 @@ icon: "cube"
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/wrappers.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     `@flatfile/react@7.2.15` You can now pass in a spacebody. This will allow
@@ -385,14 +1100,14 @@ icon: "cube"
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/wrappers.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     `@flatfile/react@7.2.14` The close button and iframe now have a proper class

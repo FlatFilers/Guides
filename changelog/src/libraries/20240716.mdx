@@ -1,0 +1,23 @@
+### July 16, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/javascript@1.4.0`
+
+        This exciting release adds internationalization support to the Flatfile JavaScript SDK. The SDK now detects the user's browser language or allows specifying an override language.
+        Translation strings are provided for the confirmation modal, error modal, and other UI elements.
+        The SDK also includes functionality to handle missing translation keys and log them to the console.
+
+        Additionally, this release updates the modal logic to use functional components and make the text strings dynamic based on the provided translations or defaults.
+
+        A new util function `initializeIFrameConfirmationModal` is introduced to handle mounting the confirmation modal and its associated behaviors onto the iFrame wrapper element.
+        This function takes callbacks for the modal's button click actions (exit or stay) and text string providers for the modal's title, message, and button labels.
+
+        </div>
+
+  </div>
+
+</div>

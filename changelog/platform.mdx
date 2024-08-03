@@ -1,14 +1,367 @@
 ---
 title: Platform
-description: "Notable additions and updates to the Flatfile platform"
-icon: "layer-group"
+description: 'Notable additions and updates to the Flatfile platform'
+icon: 'layer-group'
 ---
 
-## May
+## July 2024
+
+### July 16, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/api@1.9.5`
+
+        A new property `treatments` of type `Flatfile.WorkbookTreatments[]` has been added to the `Workbook` and `CreateWorkbookConfig` types.
+        This array allows specifying treatments for a workbook, with the currently available treatment being `ExtractedFromSource`.
+        This change introduces a new external interface that developers using the package should be aware of when creating or updating workbooks.
+
+        Example usage:
+
+        ```typescript
+        import { Flatfile } from '@flatfile/api';
+
+        const workbookConfig: Flatfile.CreateWorkbookConfig = {
+          // ...other properties
+          treatments: [Flatfile.WorkbookTreatments.ExtractedFromSource]
+        }
+        ```
+        </div>
+
+  </div>
+
+</div>
+
+### July 13, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/api@1.9.3`
+
+        A new `JobOutcomeTrigger` type has been introduced to specify whether a job outcome's effect should be triggered automatically or manually.
+
+        </div>
+
+  </div>
+
+</div>
+
+## June 2024
+
+### June 18, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Auto-Expanding Cell Input in Editor Component**
+
+       We have enhanced the cell editing experience with an auto-expanding cell input that dynamically adjusts to fit the content.
+       This improvement ensures that users can view and edit their data without constraints, enhancing the overall editing experience.
+
+    </div>
+
+  </div>
+</div>
+
+### June 7, 2024
+
+  <div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Select Header Row**
+
+       We've added a new feature that allows users to select the header row in the data preview. This feature is particularly useful when the first row of your data contains column headers, as it enables you to specify the header row for accurate data mapping.
+
+      </div>
+
+  </div>
+
+  </div>
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Search for Users**
+
+       You can now search for users in the manager users page. This feature allows you to quickly find users by name, email, or role, making it easier to manage your user base.
+
+      ![image](../changelog/images/search.gif)
+
+      </div>
+
+  </div>
+
+  </div>
+
+### June 6, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Resend User Invite**
+
+       There is now a `/users/:userId/resend-invite` endpoint enabling admins to resend an invitation to a user who has not yet accepted it.
+
+    </div>
+
+    </div>
+
+  </div>
+
+## May 2024
+
+### May 30, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Bulk Deletion of Mapping Rules**
+
+       We added a method to delete multiple mapping rules from a program. This new `deleteMultipleRules` method simplifies the management of mapping rules by allowing bulk deletions. The `DeleteMultipleRulesRequest` type represents the request payload, detailing the array of rule IDs to be deleted.
+
+
+
+    </div>
+
+  </div>
+
+     <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **New Method to Delete Apps**
+
+       We have introduced a new `delete` method that allows you to delete an app.
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Validation Messages for Records**
+
+       The `ValidationMessage` type has been enhanced with two new optional properties: `field` and `path`. The `field` property specifies which field the validation message pertains to, while the `path` property, of type `JsonPathString`, specifies the JSONPath for the validation message. These enhancements provide more context and precision in validation feedback.
+
+    </div>
+
+  </div>
+
+     <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Job Outcomes with Custom Views**
+
+       The `JobOutcomeNext` type now includes a new `view` option, allowing jobs to specify a custom view that should be displayed upon completion. To support this, we introduced the `JobOutcomeNextView` type, which provides details for the custom view, including the sheet ID, hidden columns, and an optional label.
+
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **New Method to Update Sheets**
+
+       We introduced a new `updateSheet` method that allows you to update a sheet's name, slug, and metadata. The `SheetUpdateRequest` type represents the update request payload, including the name, slug, and metadata of the sheet. Additionally, an optional `metadata` property has been added to the `Sheet` and `SheetUpdate` types, allowing for the storage of contextual metadata related to the sheet.
+
+    </div>
+
+  </div>
+
+</div>
+
+### May 14, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **New Environment Lifecycle Events**
+
+       We've added new domain `Environment` events expanding the scope of domains our system recognizes. To leverage these events, you can listen on to the following topics:
+       The corresponding event topics are `environment:created`, `environment:updated`, and `environment:deleted`.
+
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Job Configuration Descriptions**
+
+      We have added descriptions for the DeleteRecordsJobConfig properties to provide better clarity:
+      An optional `filter` param allows allows you to provide options to filter records, with the default set to none while the `filterField` param enables narrowing the valid/error filter results to a specific field, but it requires the filter to be set.
+
+      We corrected a typo in the `JobOutcomeNextFiles` type by renaming the file property to files to accurately represent an array of file objects.
+
+    </div>
+
+  </div>
+</div>
+
+### May 3, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Updated `ListDocumentsResponse`**
+
+       The `data` property now returns an array of `Document` objects instead of the previous `DocumentResponse`. This change standardizes the format and improves consistency in how document data is handled.
+
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/dataxp.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Job Configuration**
+
+        We added a new `predecessorIds` property to `JobConfig`. This property allows you to specify job dependencies, meaning you can list the IDs of jobs that must be completed before the current job can start. This helps in managing and sequencing job execution more effectively.
+
+        We added a new feature to handle job outcomes more effectively with a new type called `JobOutcomeNext` and its variant files. This includes:
+
+        - `JobOutcomeNextFileObject` Stores individual file information with an ID and optional label.
+        - `JobOutcomeNextFiles` Handles multiple files, including an array of JobOutcomeNextFileObject instances and an optional label.
+
+        We also added a waiting value to the JobStatus enum to indicate when a job is paused or pending, improving job processing workflows.
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+       **Enhanced Views Request and Response**
+
+        We updated `ListViewsRequest` to include optional `pageSize` and `pageNumber` properties, allowing for pagination when retrieving views.
+        We've also added a `createdBy` property to `View` and `ViewResponse` to track the creator of each view.
+    </div>
+
+  </div>
+</div>
 
 ### May 1, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -52,9 +405,9 @@ icon: "layer-group"
 </div>
 </div>
 
-## April
+## April 2024 (7)
 
-### April 25, 2024
+##### April 25, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -76,7 +429,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### April 23, 2024
+##### April 23, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -98,7 +451,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### April 22, 2024
+##### April 22, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -139,29 +492,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### April 19, 2024
-
-<div style={{ display: "table", width: "auto" }}>
-
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-       **Delete Apps**
-
-        Apps can now be deleted via API. Soon, Apps will be deletable via the UI as well.
-      </div>
-
-  </div>
-</div>
-
-### April 18, 2024
+##### April 18, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -186,7 +517,7 @@ icon: "layer-group"
   
   </div>
 
-### April 17, 2024
+##### April 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -214,7 +545,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### April 12, 2024
+##### April 12, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -239,7 +570,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### April 9, 2024
+##### April 9, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -279,11 +610,11 @@ icon: "layer-group"
   </div>
 </div>
 
-## March (8)
+## March 2024 (8)
 
 ##### March 26, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -305,7 +636,7 @@ icon: "layer-group"
 
 ##### March 21, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -327,7 +658,7 @@ icon: "layer-group"
 
 ##### March 17, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -349,7 +680,7 @@ icon: "layer-group"
 
 ##### March 15, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -372,7 +703,7 @@ icon: "layer-group"
 
 ##### March 13, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -401,7 +732,7 @@ icon: "layer-group"
 
 ##### March 8, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -432,7 +763,7 @@ icon: "layer-group"
 
 ##### March 7, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -455,7 +786,7 @@ icon: "layer-group"
 
 ##### March 5, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -475,11 +806,11 @@ icon: "layer-group"
 
   </div>
 
-## February (11)
+## February 2024 (3)
 
 ##### February 29, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -638,7 +969,7 @@ icon: "layer-group"
 
 ##### February 23, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -696,11 +1027,11 @@ icon: "layer-group"
 
 </div>
 
-## January (9)
+## January 2024 (6)
 
 ##### January 24, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -729,7 +1060,7 @@ icon: "layer-group"
 
 ##### January 22, 2024
 
-  <div style={{ display: "table", width: "auto" }}>
+<div style={{ display: "table", width: "auto" }}>
 
    <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/spaces.mdx" />
@@ -1036,9 +1367,9 @@ icon: "layer-group"
 
   </div>
 
-## December (10)
+## December 2023 (5)
 
-##### December 21, 2023
+####### December 21, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -1095,7 +1426,7 @@ icon: "layer-group"
 
 </div>
 
-##### December 15, 2023
+####### December 15, 2023
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -1196,181 +1527,6 @@ icon: "layer-group"
      ![image](../changelog/images/theming_dropdowns.png)
 
       The latest updates in our theming capabilities bring a fresh look and enhanced customization to various UI elements:
-
-      **Usage**
-
-      ```jsx
-      {
-        "theme": {
-          "root": {
-            "badgeBorderColor": "green",
-            "interactiveBorderColor": "orange",
-            "interactiveBorderRadius": "0px"
-          },
-          "table": {
-            "cell": {
-              "active": {
-                "borderWidth": "2px",
-                "boxShadow": "3px 3px 0px 0px #000000"
-              }
-            },
-            "tooltip": {
-              "borderRadius": "0px"
-            },
-            "lookupEditor": {
-              "option": {
-                "borderRadius": {
-                  "hover": "0px",
-                  "active": "8px"
-                },
-                "backgroundColor": {
-                  "hover": "yellow",
-                  "active": "lavender"
-                }
-              }
-            }
-          }
-        }
-      }
-      ```
-
-      1. Enhanced Dropdown, Text Input, and Context Menu Theming: Users can now apply customized themes to dropdowns, text inputs, and context menus, offering a more cohesive and personalized interface design.
-
-      2. Refined Active Cell Styling in Tables: The active cell in the table now features themable border width and box shadow, adding depth and focus to the selected cell.
-
-      3. Upgraded Tooltips in Tables: Tooltips in the table now support theming for border radius and box shadow, allowing for smoother integration with the overall design aesthetic.
-
-      4. New Optional Border for Badges: An optional border can now be added to badges within the app. This update extends to TT badges in enum columns, providing a consistent and visually appealing element across the platform.
-
-      These theming enhancements are part of our ongoing commitment to provide a versatile and visually engaging user experience, allowing for greater consistency and branding alignment across our platform.
-
-      [Learn more](../guides/theming).
-
-      </div>
-
-  </div>
-
-</div>
-
-##### December 21, 2023
-
-<div style={{ display: "table", width: "auto" }}>
-
-    <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/theming.mdx" />
-    <div
-      style={{
-        float: "left",
-        display: "table-column",
-        paddingLeft: "30px",
-        width: "calc(80% - 30px)",
-      }}
-    >
-     **Enhanced Theming Tabs, Tooltips, and Popovers**
-
-       We're excited to announce a broad range of new theming capabilities that enhance the visual appeal and customization of our platform:
-
-      **Usage**
-
-      ```jsx
-      {
-        "theme": {
-          "root": {
-            "borderColor": "pink",
-            "modalBorderRadius": "10px",
-            "popoverBorderRadius": "8px",
-            "tabstripActiveColor": "deepskyblue",
-            "tabstripInactiveColor": "orange",
-            "popoverBackgroundColor": "limegreen",
-            "tabstripHoverTextColor": "gold",
-            "tooltipBackgroundColor": "hotpink",
-            "tabstripHoverBorderColor": "purple"
-          }
-        }
-      }
-      ```
-
-      1. Theming for Tabs: Customize the look and feel of tabs to better match your application's design and user experience.
-
-      2. Enhanced Tooltip Styling: Gain more control over tooltip aesthetics with expanded theming options, ensuring they align seamlessly with your interface.
-
-      3. Refined Borders Across Components: Apply custom themes to borders, providing a sharper and more cohesive visual distinction for various elements.
-      4. Popover Customization: Tailor the appearance of popovers with new theming capabilities, enhancing their integration within your application's layout.
-
-      5. Modal Window Styling: Elevate the design of modal windows with customizable theming options, contributing to a more engaging and harmonious user experience.
-
-      These updates offer a greater degree of flexibility in customizing the appearance of key UI components, allowing for a more integrated and visually consistent application design.
-
-      [Learn more](../guides/theming).
-
-      </div>
-
-  </div>
-
-</div>
-
-##### December 15, 2023
-
-<div style={{ display: "table", width: "auto" }}>
-
-<div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div
-      style={{
-        float: "left",
-        display: "table-column",
-        paddingLeft: "30px",
-        width: "calc(80% - 30px)",
-      }}
-    >
-     **Field Descriptions now have Markdown Support**
-
-     ![image](../changelog/images/tooltips-with-markdown.gif)
-
-       We're delighted to announce that field descriptions now support Markdown formatting. This enhancement enables you to create more informative and engaging field descriptions, complete with formatted text and hyperlinks.
-
-      **Usage**
-
-      ```jsx
-      "fields": [
-        {
-          "key": "code",
-          "label": "Product Code",
-          "description": "This can be **markdown**."
-          "type": "string"
-        },
-      ]
-      ```
-
-      - Rich Formatting Capabilities: Leverage the power of Markdown to format your field descriptions, making them more readable and useful.
-
-      - Incorporate Links: Easily include links in your field descriptions, providing direct access to additional resources or related information.
-
-      - Versatile Display Across Interfaces: These enriched descriptions are displayed as tooltips within the data table and in mapping. Additionally, the full text of the descriptions is available in the data checklist for comprehensive insights.
-
-      This update is designed to improve the clarity and effectiveness of field descriptions, enhancing the overall user experience in data interaction and comprehension.
-
-      Learn more about [Blueprint](../blueprint) and Fields.
-
-      </div>
-
-  </div>
-
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/theming.mdx" />
-    <div
-      style={{
-        float: "left",
-        display: "table-column",
-        paddingLeft: "30px",
-        width: "calc(80% - 30px)",
-      }}
-    >
-     **Enhanced Theming Interactive options**
-
-     ![image](../changelog/images/theming_dropdowns.png)
-
-       The latest updates in our theming capabilities bring a fresh look and enhanced customization to various UI elements:
 
       **Usage**
 
@@ -1696,7 +1852,8 @@ icon: "layer-group"
   </div>
 
 </div>
-## November (20)
+
+## November 2023 (6)
 
 ##### November 28, 2023
 
@@ -2174,7 +2331,7 @@ icon: "layer-group"
   </div>
 </div>
 
-## October (25)
+## October 2023 (10)
 
 ##### October 30, 2023
 
@@ -2799,7 +2956,7 @@ icon: "layer-group"
 
 </div>
 
-## September (27)
+## September 2023 (9)
 
 ##### September 27, 2023
 
@@ -3404,7 +3561,7 @@ icon: "layer-group"
 
   </div>
 
-## August (29)
+## August 2023 (4)
 
 ##### August 30, 2023
 
@@ -3594,14 +3751,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/files.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     Now, you can set a description for each Option Field value via API. End
@@ -3609,14 +3766,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/dataxp.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     We've added new API routes to capture up to 5 snapshots of a Sheet, with the
@@ -3625,14 +3782,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/dataxp.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     A Sheet with no access enabled (`access:[]`) now shows a lock icon on the
@@ -3640,28 +3797,28 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/files.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     We opted to hide the files count on the Files page if there are no files.
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/files.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     A shrimp size update to the colors of the sidebar toggle so it looks good
@@ -3669,28 +3826,28 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/spaces.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     Info inside `metadata` > `userInfo` will now display in the Spaces list.
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/spaces.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     Metadata allows you to store and retrieve additional data about a Space,
@@ -3699,14 +3856,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/spaces.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     We made a small fix to allow better vertical scrolling in the Dashboard
@@ -3714,42 +3871,42 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/dataxp.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     CTRL + Z wasn't working for a minute. This is now fixed.
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/dataxp.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     If a boolean cell is empty, we only show the toggle on hover now.
   </div>
 </div>
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/files.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     We were seeing issues where corrupt files that ran through extraction did
@@ -3795,14 +3952,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 
 {" "}
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/dataxp.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     There is now a count at the top of the files list that shows the total
@@ -3841,14 +3998,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 
 {" "}
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/theming.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     When determining the lighter shades of each main theme colors, i.e. primary,
@@ -3859,14 +4016,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 
 {" "}
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/files.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     The filename was added to the mapping scene so users can now see which file
@@ -3876,14 +4033,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 
 {" "}
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/files.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     Cells with no data can now be unmapped using “Do not import”, if previously
@@ -3893,14 +4050,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 
 {" "}
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/dataxp.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     Filter: "Last Name" like A% will now retrieve all records where Last Name
@@ -3910,14 +4067,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 
 {" "}
 
-<div style={{ display: "table-row", width: "auto" }}>
+<div style={{ display: 'table-row', width: 'auto' }}>
   <Snippet file="chips/dataxp.mdx" />
   <div
     style={{
-      float: "left",
-      display: "table-column",
-      paddingLeft: "30px",
-      width: "calc(80% - 30px)",
+      float: 'left',
+      display: 'table-column',
+      paddingLeft: '30px',
+      width: 'calc(80% - 30px)',
     }}
   >
     The continue button is now disabled on mapping scene while mappings are
@@ -3927,4 +4084,3 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning i
 </div>
 
 </div>
-````

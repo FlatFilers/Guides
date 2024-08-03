@@ -321,7 +321,8 @@ html:not(.dark) .border-primary-light {
 
 html:not(.dark) .language-html,
 html:not(.dark) .language-css,
-html:not(.dark) .token.punctuation {
+html:not(.dark) .token.punctuation,
+html:not(.dark) .token.plain-text {
   color: #000;
 }
 
@@ -570,4 +571,20 @@ button.outline-none {
 
 html:not(.dark) .bg-tooltip {
   background-color: #fff;
+}
+
+.text-gray-600.dark\:text-white\/70 {
+  color: white;
+}
+
+.rounded-md.bg-gray-100 {
+  color: white;
+}
+
+button.absolute.left-6.top-1\/2 svg {
+  color: white;
+}
+
+html:is(.dark) button.absolute.left-6.top-1\/2 svg {
+  color: black;
 }

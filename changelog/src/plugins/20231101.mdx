@@ -1,0 +1,16 @@
+### November 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core_plugin.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `@flatfile/plugin-record-hook@1.1.9`
+
+      - Previously, an issue arose when attempting to complete a commit with the `trackChanges` flag (a Workbook setting to disable actions on Sheet and Workbook when there is a commit that has not been completed) disabled on the Workbook. This issue has been resolved, and commits are now exclusively triggered when the `trackChanges` feature is enabled for the Workbook.
+
+      - Additionally, we've implemented an advanced deep comparison method between the original record and the potentially modified record. This enhancement guarantees that only essential patches for updated records are transmitted, resulting in a notably more efficient and precise data update process.
+
+    </div>
+
+  </div>
+</div>

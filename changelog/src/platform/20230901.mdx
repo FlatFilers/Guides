@@ -1,0 +1,99 @@
+### September 1, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+<div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+    **Improved FFQL handling of dates and number comparisons**
+
+      **Enhanced Number Field Queries:** When conducting equality or inequality FFQL comparisons for `number` fields, the query value is now cast to a number and then compared with the parsed "shadow" value. This rectifies issues related to numeric comparisons. Additionally, we've resolved a bug where numbers with no digits before the decimal point (e.g., ".3") were not being properly parsed into shadow values.
+
+      **Advanced Date Field Handling:** For `date` fields, query values are now attempted to be parsed into dates. On the SQL side, a `CASE` statement is employed to parse the stored values into dates for accurate comparison. To accommodate SQL-side date parsing requirements, we've integrated a regex pattern to detect `YYYY-MM-DD`, `m/d/yy`, and `m/d/yyyy` formats. This ensures correct parsing and comparison of date values.
+
+      **Fix for Invalid Number Input:** We've resolved a bug where changing a number field to an invalid number left the previous "shadow" value intact. Now, in such cases, the previous shadow value is properly cleared, leading to consistent and accurate behavior.
+
+      These updates contribute to improved query handling, better data integrity, and a more seamless experience when working with number and date fields.
+
+      </div>
+
+    </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+
+      Introducing caching for record counts, resulting in improved performance for API requests.
+
+      </div>
+
+    </div>
+
+      <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+
+     The `PATCH /sheets` endpoint has been upgraded to accept both an array of SheetUpdates and an array of SheetConfigs (backwards compatible). This expanded capability empowers users with more flexible and efficient options when updating Sheets.
+
+      </div>
+
+    </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+
+      ![image](../changelog/images/tooltips-actions.png)
+
+      We've introduced a new parameter: `tooltip` to Actions, allowing the addition of tooltips. These tooltips are now visible in the user interface for both buttons and list items whenever the associated Action is enabled. This enhancement provides users with clear and context-aware explanations for enabled Actions, contributing to an improved overall user experience.
+
+      </div>
+
+    </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+
+      Fixed a cosmetic issue with scrolling through Workbooks. The problem stemmed from the outer container scrolling based on the inner content's height. By applying overflow properties to the inner component, which holds a list of items within a flex container, we have resolved this issue.
+
+      </div>
+
+    </div>
+
+  </div>

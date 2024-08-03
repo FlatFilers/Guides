@@ -1,0 +1,23 @@
+---
+title: FlatfileProvider Component Overview
+---
+
+# FlatfileProvider Component Overview
+
+`FlatfileProvider` is a context provider for the `@flatfile/react` package that wraps your application's components where Flatfile's import functionality will be used. It initializes and provides the Flatfile import system to its child components.
+
+## Main Props
+
+- `publishableKey`: The key provided by Flatfile to authenticate your application.
+- `accessToken`: An alternative to `publishableKey` for authentication, typically used for server-side operations.
+- `children`: React nodes for nested components, which can include `Space`, `Workbook`, or `Sheet` components.
+
+Example usage:
+
+```jsx
+<FlatfileProvider publishableKey="your-publishable-key">
+  <YourComponent />
+</FlatfileProvider>
+```
+
+This setup allows you to manage and interact with Flatfile imports seamlessly across your application.

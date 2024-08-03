@@ -1,0 +1,53 @@
+### August 24, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      **🚀 Introducing `@flatfile/plugin-pdf-extractor`**
+
+     Our latest plugin, @flatfile/plugin-pdf-extractor, introduces the power of parsing .pdf files in Flatfile.
+
+     <Note>Note: A subscription to pdftables.com is required.</Note>
+
+      Options at your fingertips:
+      * 		`opt.apiKey`: Feed in your pdftables.com API key to unlock the magic.
+      * 		`opt.debug`: Toggle debugging messages to streamline development.
+
+      Tech Behind the Scenes:
+      * 		Empowered by `remeda` for dynamic functional programming and data handling.
+      * 		Seamlessly integrates Pattern Matching with TypeScript through `ts-pattern`.
+
+      [See the docs](../../../plugins-docs/extractors/pdf-extractor)
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/plugin-dedupe@0.0.2`
+
+     Includes fixes to properly job ack on failure and use a new instance of listener after a filter operation. It also adds server errors to logging.
+
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+    `@flatfile/util-file-buffer@0.0.3`
+
+    A fix was made to only run `fileBuffer` on uploaded files. This fixes an issue where extraction was occurring during export improperly.
+
+    All extractor plugins went up one tick to leverage this update to the file buffer.
+
+    <Info>The extractor most affected was `xlsx-extractor` as there’s a correlating plugin for exporting to xlsx.</Info>
+
+    </div>
+
+  </div>
+
+</div>

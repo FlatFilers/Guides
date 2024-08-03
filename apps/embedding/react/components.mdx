@@ -1,0 +1,367 @@
+---
+title: "React Components"
+description: "Configure your Space in React"
+icon: "react"
+---
+
+## Components
+
+### FlatfileProvider
+
+`FlatfileProvider` is a comprehensive React component designed for integrating Flatfile's import capabilities into your application.
+It can be initialized using either a `publishableKey` or an `accessToken`, providing flexibility depending on your authentication flow.
+The component allows for extensive customization of the embedded iFrame through styling parameters, ensuring that the import modal matches your application's aesthetics.
+It maintains the configuration necessary for creating and managing Spaces, Workbooks, and Documents within Flatfile.
+Additionally, `FlatfileProvider` manages a client-side listener to handle browser-based events, ensuring a seamless user interaction with the import process.
+
+Learn more about the [FlatfileProvider](/apps/embedding/react/components/FlatfileProvider)
+
+```tsx
+<FlatfileProvider
+    publishableKey={PUBLISHABLE_KEY}
+    config={{
+        mountElement,
+        exitText,
+        exitTitle,
+        exitPrimaryButtonText,
+        exitSecondaryButtonText,
+        displayAsModal: true
+    }}
+>
+      <FFApp />
+</FlatfileProvider>
+```
+
+### Space
+The `Space` component from the `@flatfile/react` package is utilized to define a collaborative environment or workspace within Flatfile's import system. It can be configured to create a new space or to reuse an existing one by providing a space ID.
+
+#### Main Props
+
+- `config`: Sets up the configuration for a new space, including theming and metadata.
+- `id`: An optional prop that, when provided, indicates the specific existing space to be reused instead of creating a new one.
+
+Learn more about the [Space](/apps/embedding/react/components/Space)
+
+Example usage for creating a new space:
+
+```tsx
+<Space
+  config={{
+    metadata: {
+      sidebarConfig: {
+        showSidebar: true,
+      },
+    },
+  }}
+/>
+```
+
+When you want to re-use a space, you'll need to pass an `accessToken` to the `FlatfileProvider`, then this is where you'll add the `id` of the Space you want to re-use.
+
+```tsx
+const FFApp = () => <Space id={"us_sp_123456" } />;
+const App = () => {
+  return (
+    <FlatfileProvider accessToken={ACCESS_TOKEN}>
+      <FFApp />
+    </FlatfileProvider>
+  );
+};
+```
+
+### Workbook
+
+Configures all Workbook Creation request data and a new onRecordHook helper function
+
+`onSubmit` and a new `onRecordHooks` helper can be added to the Workbook. A Workbook object containing the sheets can be passed along in the `config`.
+`onRecordHooks` takes an array of record hooks. Each one can take a slug for manually setting each per sheet. Otherwise, if no slug is added, it will apply the record hook to the corresponding sheet in the Workbook index.
+
+Learn more about the [Workbook](/apps/embedding/react/components/Workbook)
+
+```tsx
+<Workbook
+  config={workbook}
+  onSubmit={(sheet) => {
+    console.log("onSubmit", { sheet });
+  }}
+  onRecordHooks={[
+    [
+      "contacts",
+      (record) => {
+        record.set("email", "TEST SHEET RECORD");
+        return record;
+      },
+    ],
+  ]}
+/>
+```
+
+### Sheet
+The `Sheet` component from the `@flatfile/react` package integrates Flatfile's data import functionality into React applications. It simplifies configuring the data import process and managing the lifecycle of data submission and record handling.
+
+#### Main Props
+
+- `config`: Defines the structure and settings of the data to be imported.
+- `onSubmit`: A callback function that is triggered upon successful data submission.
+- `onRecordHook`: A function that allows for custom record manipulation during the import process.
+- `submitSettings`: Customizes the behavior of the data submission process.
+
+
+The Sheet option is similar to the [Simplified SDK Approach](apps/embedding/reference/simple)..
+Learn more about the [Sheet](/apps/embedding/react/components/Sheet)
+
+Example usage:
+```tsx
+<Sheet
+  config={sheet}
+  onRecordHook={(record) => {
+    record.set("email", "TEST SHEET RECORD");
+    return record;
+  }}
+  onSubmit={(sheet) => {
+    console.log("onSubmit", { sheet });
+  }}
+/>
+```
+
+### Document
+
+Configures a Document to be added to the Space. Takes a simple `Flatfile.DocumentConfig` as a param.
+
+```tsx
+const FFApp = () => <Document config={document} />;
+```
+
+## React Hooks 🪝
+
+### useFlatfile
+
+This Hook exposes a few handy functions for integrating with the FlatfileProvider
+
+- `openPortal()`: Opens the iFrame. This will create the underlying Space, Workbook and configure if necessary or open the Space provided.
+- `closePortal()`: Closes the iFrame.
+- `open`: current open status
+- `listener`: Current listener
+- `setListener()`: manually sets the listener
+
+### useListener
+
+This Hook exposes and adds any logic to the current listener with conditional dependencies
+
+```tsx
+useListener(
+  (listener) => {
+    listener.on("**", (event) => {
+      console.log("initialListener Event => ", event.topic);
+      // Handle the workbook:deleted event
+    });
+  },
+  [label]
+);
+```
+
+### usePlugin
+
+This Hook exposes and adds a plugin to the current listener with conditional dependencies
+
+```tsx
+usePlugin(
+  recordHook("contacts", (record, event) => {
+    console.log("recordHook", { event });
+    record.set("lastName", label);
+    return record;
+  }),
+  [label]
+);
+```
+
+### useEvent
+
+This Hook exposes any event coming from the iFrame to respond to with proper filtering
+
+```tsx
+useEvent("workbook:created", (event) => {
+  console.log("workbook:created", { event });
+});
+
+useEvent("*:created", (event) => {
+  console.log({ topic: event.topic });
+});
+
+useEvent("job:ready", { job: "sheet:submitActionFg" }, async (event) => {
+  const { jobId } = event.context;
+  try {
+    await api.jobs.ack(jobId, {
+      info: "Getting started.",
+      progress: 10,
+    });
+
+    // Make changes after cells in a Sheet have been updated
+    console.log("Make changes here when an action is clicked");
+    const records = await event.data;
+
+    console.log({ records });
+
+    await api.jobs.complete(jobId, {
+      outcome: {
+        message: "This is now complete.",
+      },
+    });
+
+    // Probably a bad idea to close the portal here but just as an example
+    await sleep(3000);
+    closePortal();
+  } catch (error: any) {
+    console.error("Error:", error.stack);
+
+    await api.jobs.fail(jobId, {
+      outcome: {
+        message: "This job encountered an error.",
+      },
+    });
+  }
+});
+```
+
+## Full Example:
+
+```tsx
+import { FlatfileProvider, Sheet, Space, Workbook, DocumentConfig } from "@flatfile/react";
+import { useFlatfile, useListener, usePlugin, useEvent } from "@flatfile/react";
+import { recordHook } from "@flatfile/plugin-record-hook";
+import { workbook } from "./workbook";
+import { listener as importedListener } from './listener'
+
+const FFApp = () => {
+  const { open, openPortal, closePortal } = useFlatfile()
+
+  const [lastName, setLastName] = useState('Rock')
+    const togglePortal = () => {
+      open ? closePortal() : openPortal()
+    }
+  useListener(
+    (listener) => {
+      listener.on('**', (event) => {
+        console.log('initialListener Event => ', event.topic)
+        // Handle the workbook:deleted event
+      })
+      importedListener
+    },
+    [lastName]
+  )
+
+  // import file directly
+  useListener(importedListener, [])
+
+  usePlugin(
+    recordHook('contacts', (record, event) => {
+      console.log('recordHook', { event })
+      record.set('lastName', label)
+      return record
+    }),
+    [lastName]
+  )
+
+  useEvent('workbook:created', (event) => {
+    console.log('workbook:created', { event })
+  })
+
+  useEvent('*:created', (event) => {
+    console.log({ topic: event.topic })
+  })
+
+  useEvent('job:ready', { job: 'sheet:submitActionFg' }, async (event) => {
+    const { jobId } = event.context
+    try {
+      await api.jobs.ack(jobId, {
+        info: 'Getting started.',
+        progress: 10,
+      })
+
+      // Make changes after cells in a Sheet have been updated
+      console.log('Make changes here when an action is clicked')
+      const records = await event.data
+
+      console.log({ records })
+
+      await api.jobs.complete(jobId, {
+        outcome: {
+          message: 'This is now complete.',
+        },
+      })
+
+      // Probably a bad idea to close the portal here but just as an example
+      await sleep(3000)
+      closePortal()
+    } catch (error: any) {
+      console.error('Error:', error.stack)
+
+      await api.jobs.fail(jobId, {
+        outcome: {
+          message: 'This job encountered an error.',
+        },
+      })
+    }
+  })
+
+  return (
+    <div className={styles.main}>
+      <div className={styles.description}>
+        <button onClick={togglePortal} >
+          { open ? 'OPEN' : 'CLOSE' } PORTAL
+        </button>
+        <button onClick={() => setLabel('blue')}>blue listener</button>
+        <button onClick={() => setLabel('green')}>green listener</button>
+      </div>
+
+      <Space
+        config={{
+          metadata: {
+            sidebarConfig: {
+              showSidebar: true,
+            },
+          },
+        }}
+      >
+        <Document config={document} />
+        <Workbook
+          config={workbook}
+          onSubmit={(sheet) => {
+            console.log("onSubmit", { sheet });
+          }}
+        >
+          <Sheet
+            config={sheet}
+            onRecordHook={(record) => {
+              record.set("email", "TEST SHEET RECORD");
+              return record;
+            }}
+          />
+          <Sheet config={{ ...sheet, name: "Contacts 2", slug: "contacts2" }} />
+        </Workbook>
+      </Space>
+    </div>
+  )
+}
+
+const App = () => {
+  return (
+    <FlatfileProvider
+      publishableKey={PUBLISHABLE_KEY}
+      config={{
+        mountElement,
+        exitText
+        exitTitle,
+        exitPrimaryButtonText
+        exitSecondaryButtonText,
+        displayAsModal: true,
+      }}
+    >
+      <FFApp />
+    </FlatfileProvider>
+  )
+}
+
+export default App
+
+```

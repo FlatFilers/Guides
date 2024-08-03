@@ -1,0 +1,100 @@
+### February 29, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Introducing Email Theming for Pro Plan Customers**
+
+        Users can now update their space metadata object with a theme configuration to customize the look of their emails. When this feature is flagged on, users can enjoy custom theming in their email communications.
+
+        ```js
+        {"theme":
+          {"email":
+            {"logo":"https://i.imgur.com/xuzxTAU.png",
+            "textColor":"#FDEBF7",
+            "titleColor":"#FFC0CB",
+            "buttonBgColor":"#A7C7E7",
+            "backgroundColor":"#34495E",
+            "buttonTextColor":"#FFFFFF",
+            "footerTextColor":"#F4D1D1"}
+          }
+        }
+        ```
+
+        Learn more about [Theming](../guides/theming.mdx).
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced Enum Mapping Logic for Datasets with No Values**
+
+        We’ve addressed a nuanced issue concerning enum mapping and rule application in datasets with no values. Previously, the system saved enum mapping rules with a logic in place to reuse these rules if every value in a new dataset matched the rule. This approach inadvertently included scenarios where datasets had no values, considering them as matching all rules due to the absence of values.
+
+        Now, the system filters and applies enum mapping rules based solely on the values present in the new dataset. This change ensures that rules are applied more accurately, enhancing the system’s logic in handling datasets, especially those without any values. This update aims to provide a more reliable and logical framework for data processing and rule application.
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Dashboard authentication now lasts 24 hours**
+
+        Enjoy longer, uninterrupted sessions when working with your Flatfile Dashboard.
+
+      </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+    <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+        **Enhanced File Upload Experience: Multi-Selection and Drag-and-Drop Support**
+
+        We've upgraded the Files View with new capabilities to improve your file management workflow. Now, you can select and upload multiple files simultaneously through the File Uploader, streamlining the process.
+
+        <Note>
+          While the upload progress is displayed for the initial file to maintain clarity, rest assured that all selected files are being uploaded.
+        </Note>
+
+        Additionally, the drag-and-drop feature has been enhanced to support multiple files, making it easier than ever to upload documents directly into the Files View. This update is designed to enhance productivity and simplify your data management tasks.
+
+      </div>
+
+  </div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "devDependencies" : {
+    "prettier" : "^3.3.2"
+  },
+  "scripts" : {
+    "changelog" : "npm run update-platform && npm run update-plugins && npm run update-libraries",
+    "format-changelog" : "prettier --write 'changelog/src/*/*.mdx' && prettier --write 'changelog/sdks.mdx' && prettier --write 'changelog/platform.mdx' && prettier --write 'changelog/sdks/plugins/highlights.mdx'",
+    "update-libraries" : "node changelog/bin/update.js libraries ./changelog/src/libraries ./changelog/sdks.mdx ",
+    "update-platform" : "node changelog/bin/update.js platform ./changelog/src/platform ./changelog/platform.mdx ",
+    "update-plugins" : "node changelog/bin/update.js plugins ./changelog/src/plugins ./changelog/sdks/plugins/highlights.mdx "
+  }
+}

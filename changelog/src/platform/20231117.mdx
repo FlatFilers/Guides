@@ -1,0 +1,132 @@
+### November 17, 2023
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/files.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+         **Enhanced Weighting Mechanism for User History in Enum Mapping**
+
+        We assign an 80% value to other users' history compared to the current user's history. Previously, this was only applied to field mapping, Now, this approach has been extended to enum mapping as well.
+
+        This update addresses an issue where conflicting histories between two users could result in one user being unable to edit due to the other's history taking precedence.
+
+        With this enhancement, the system now more effectively balances historical inputs from different users, ensuring smoother and more equitable enum mapping automation.
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+         *It's the little things*: Bulk delete in Spaces is now available***
+
+        ![image](../changelog/images/bulk_delete_sm.gif)
+
+        We’ve added a new feature that allows for the selection and bulk deletion of Spaces from your list. This enhancement is particularly beneficial for customers managing numerous Spaces, as it eliminates the need to delete each Space individually,  streamlining the process and saving time. Enjoy!
+    </div>
+
+  </div>
+
+   <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **New: Column Visibility Control with Local Storage Memory**
+
+         ![image](../changelog/images/column_hiding.gif)
+
+        We've introduced a new feature that allows for selective hiding or showing of columns, enabling users to customize their view for more focused work. Additionally, your column visibility preferences will now be automatically saved to local storage, ensuring that your personalized settings are remembered for future sessions. This update aims to enhance user efficiency by allowing you to tailor the interface to your specific needs and workflow.
+
+
+    </div>
+
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/spaces.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Guests can now be named in a Spaces URL**
+
+        Previously, accessing Flatfile either directly through a URL or via an iframe with an `accessToken` would categorize all user activities under an anonymous guest. Now, if you know the `guestId`, interactions in Flatfile can be tied back to that person.
+
+        This is made possible with a new endpoint, **/guests/:guestId/token**, which generates an accessToken, and can be used to load the Flatfile space at **http://platform.flatfile.com/space/:spaceId?token=:accessToken**.
+
+        With this method, Guests are now accurately named and identifiable, enhancing user recognition and auditing.
+
+        [See the endpoint](https://reference.flatfile.com/api-reference/guests/get-guest-token).
+
+    </div>
+
+   </div>
+
+     <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/files.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+        **Speed Optimization for Large Enum Lists**
+
+        When either the source (file) or destination (Blueprint) list contains more than 100 enums, our mapping AI will now utilize a simplified algorithm. This change addresses scenarios where customers have extensive enum lists, such as 5,000 different Shopify products, which previously slowed down our assignment algorithm. With this update, the execution speed for such extensive lists will be faster, ensuring a more efficient and responsive experience for clients with large datasets.
+
+    </div>
+
+   </div>
+
+    <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/files.mdx" />
+      <div
+        style={{
+          float: "left",
+          display: "table-column",
+          paddingLeft: "30px",
+          width: "calc(80% - 30px)",
+        }}
+      >
+
+       **Fixed File Extraction for Workbook-Only Guests**
+
+      We’ve fixed an issue where guests with [workbook-only access](../developer-tools/security/roles-and-permissions#workbook-grant) could upload files but couldn’t extract them due to access restrictions. Guests can now upload and extract files smoothly in workbooks they have access to.
+    </div>
+
+  </div>
+
+</div>

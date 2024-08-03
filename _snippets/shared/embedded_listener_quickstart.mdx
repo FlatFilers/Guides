@@ -113,10 +113,10 @@ window.onload = function () {
       console.log("onSubmit", data);
     },
     onRecordHook: (record) => {
-      const name = record.get("name");
-      if (name) {
-        record.set("name", name.toUpperCase());
-        record.addInfo("name", "We updated the values to all uppercase");
+      const firstName = record.get("firstName");
+      if (firstName) {
+        record.set("firstName", firstName.toUpperCase());
+        record.addInfo("firstName", "We updated the values to all uppercase");
       }
       return record;
     },

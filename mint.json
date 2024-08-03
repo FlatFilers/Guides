@@ -76,6 +76,10 @@
       "destination": "/plugins-docs/transform/record-hook"
     },
     {
+      "source": "/plugins/transform/external-constraint",
+      "destination": "/plugins-docs/transform/external-constraint"
+    },
+    {
       "source": "/plugins/transform/autocast",
       "destination": "/plugins-docs/transform/autocast"
     },
@@ -292,10 +296,11 @@
               "pages": [
                 "apps/embedding/react/guide",
                 "apps/embedding/react/new_space_quickstart",
+                "apps/embedding/react/components",
                 {
-                  "group": "Advanced",
+                  "group": "Legacy",
                   "icon": "settings",
-                  "pages": ["apps/embedding/react/new_space"]
+                  "pages": ["apps/embedding/react/legacy"]
                 }
               ]
             },
@@ -374,7 +379,8 @@
         "guides/flatfile_query_language",
         "guides/data-retention",
         "guides/api",
-        "guides/multi-part_jobs"
+        "guides/multi-part_jobs",
+        "guides/ai"
       ]
     },
     {
@@ -404,6 +410,10 @@
     {
       "group": "Upgrade",
       "pages": ["upgrade/overview"]
+    },
+    {
+      "group": "Reference",
+      "pages": ["reference/icons"]
     },
     {
       "group": "Portal - version 2",
@@ -502,14 +512,16 @@
       "pages": [
         "plugins-docs/transform/record-hook",
         "plugins-docs/transform/autocast",
-        "plugins-docs/transform/dedupe"
+        "plugins-docs/transform/dedupe",
+        "plugins-docs/transform/external-constraint"
       ]
     },
     {
       "group": "Automation",
       "pages": [
-        "plugins/automations/automap",
-        "plugins/automations/webhook-event-forwarding"
+        "plugins-docs/automations/automap",
+        "plugins-docs/automations/webhook-event-forwarding"
+        
       ]
     },
     {

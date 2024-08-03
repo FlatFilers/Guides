@@ -46,7 +46,6 @@ Setup your app to look something like this:
    ├── shims-vue.d.ts (optional if you have errors when importing App.vue)
    ├── vite-env.d.ts
    ├── styles.css (optional)
-   ├── workbook.ts (wait to add this)
    └── listener.ts (wait to add this)
 ├── index.html
 ├── tsconfig.json
@@ -57,7 +56,7 @@ Setup your app to look something like this:
 └── package-lock.json <--- already created
 ```
 
-In this file strucutre, your main directory is `src`.
+In this file structure, your main directory is `src`.
 
 Depending on how you want to handle styling your application, you can have a `styles.css` file in your src directory, create sub-directories to contain style files, or even create directories outside of `src` if you prefer. The only requirement is that the files can be imported into vue files.
 
@@ -268,7 +267,7 @@ You can create your `.env` file via the template below, as well as your `App.vue
     "compilerOptions": {
       "composite": true,
       "skipLibCheck": true,
-      "module": "es3",
+      "module": "es2015",
       "moduleResolution": "bundler",
       "allowSyntheticDefaultImports": true
     },
@@ -495,7 +494,7 @@ export const listener = FlatfileListener.create((listener) => {
   });
 
   listener.use(
-    recordHook("contacts", (record) => {
+    recordHook("TestSheet", (record) => {
       const firstName = record.get("firstName");
       console.log({ firstName });
       record.set("lastName", "Rock");
@@ -503,7 +502,7 @@ export const listener = FlatfileListener.create((listener) => {
     })
   );
 
-  listener.filter({ job: "workbook:submitActionFg" }, (configure) => {
+  listener.filter({ job: "workbook:TestSheet:submit" }, (configure) => {
     configure.on("job:ready", async ({ context: { jobId } }) => {
       try {
         await api.jobs.ack(jobId, {
