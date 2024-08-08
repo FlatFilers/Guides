@@ -1,0 +1,22 @@
+### August 08, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.12.0`
+
+        This release includes the following changes:
+
+A new `onClose` event handler has been added to the `useFlatfile` hook, allowing developers to handle when the Flatfile modal is closed. The `setOnClose` function can be used to set a callback function that will be invoked when the modal is closed. 
+
+The missing stylesheet for the legacy `useSpace` and `usePortal` flows has been restored, ensuring proper styling for these deprecated hooks.
+
+By default, the Flatfile modal now fills the entire screen. Developers may need to adjust any style overrides to accommodate this change.
+
+Additionally, a bug that prevented server-side configuration of Spaces has been fixed.
+        </div>
+  </div>
+
+</div>
