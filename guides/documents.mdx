@@ -78,17 +78,17 @@ Use this Block to render a Sheet along with all its data inside of a Document. Y
 ```ts
 const doc = await api.documents.create(spaceId, {
   title: 'Getting started',
-  body: `
-    # Welcome
-    
-    Here is an embedded Sheet:
-    
-    <embed type='embedded-sheet' name='Contacts' defaultExpanded='true' sheetId='your_sheet_id' workbookId='your_workbook_id'>
-
-    Here is another embedded Sheet:
-
-    <embed type='embedded-sheet' name='Countries' sheetId='us_sh_TVW95224' workbookId='us_wb_8e0z52gI'>
-  `,
+  body: 
+    "# Welcome\n" +
+    "\n" +
+    "Here is an embedded Sheet:\n" +
+    "\n" +
+    "<embed type='embedded-sheet' name='Contacts' defaultExpanded='true' sheetId='your_sheet_id' workbookId='your_workbook_id'>\n" +
+    "\n" +
+    "Here is another embedded Sheet:\n" +
+    "\n" +
+    "<embed type='embedded-sheet' name='Countries' sheetId='us_sh_TVW95224' workbookId='us_wb_8e0z52gI'>"
+  ,
 })
 ```
 
@@ -107,13 +107,13 @@ Use this Block to show a side-by-side comparison of the data in a Sheet now vers
 ```ts
 const doc = await api.documents.create(spaceId, {
   title: 'Getting started',
-  body: `
-    # Welcome
-    
-    Here is an embedded Diff:
-    
-    <embed type='embedded-diff' sheetId='your_sheet_id' workbookId='your_workbook_id' snapshot_id='your_snapshot_id" direction="snapshot_to_sheet">
-  `,
+  body: 
+    "# Welcome\n" +
+    "\n" +
+    "Here is an embedded Diff:\n" +
+    "\n" +
+    "<embed type='embedded-diff' sheetId='your_sheet_id' workbookId='your_workbook_id' snapshot_id='your_snapshot_id" direction="snapshot_to_sheet">"
+  ,
 })
 ```
 
