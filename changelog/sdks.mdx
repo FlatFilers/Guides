@@ -13,6 +13,20 @@ icon: 'cube'
   <div style={{ display: "table-row", width: "auto" }}>
       <Snippet file="chips/wrappers.mdx" />
         <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.12.1`
+
+        This release updates the @flatfile/react package to version 7.12.1. The update fixes a bug where the space was not completely reset upon closing the Flatfile Portal. Specifically, the changes ensure that when the Flatfile Portal is closed, the internal session space is reset, preventing any state from persisting between sessions.
+        </div>
+
+  </div>
+
+</div>
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
         `@flatfile/javascript@1.4.1`
 
 The startFlatfile function has been exported from the package, allowing developers to invoke it directly. Additionally, the FlatfileClient type has been exported from the @flatfile/api package, providing developers with access to this type when using the @flatfile/javascript package.
