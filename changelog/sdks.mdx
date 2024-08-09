@@ -6,6 +6,22 @@ icon: 'cube'
 
 ## August 2024
 
+### August 09, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/wrappers.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/react@7.12.1`
+
+        This release updates the @flatfile/react package to version 7.12.1. The update fixes a bug where the space was not completely reset upon closing the Flatfile Portal. Specifically, the changes ensure that when the Flatfile Portal is closed, the internal access token and session space are reset to their initial values, and the createSpace object is reset to its default state. This ensures a clean slate for the next time the Flatfile Portal is opened, preventing any unintended data or state from persisting between sessions.
+        </div>
+
+  </div>
+
+</div>
+
 ### August 08, 2024
 
 <div style={{ display: "table", width: "auto" }}>
