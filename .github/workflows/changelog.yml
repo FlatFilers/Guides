@@ -53,12 +53,43 @@ jobs:
       - name: Clean up the mdx files
         run: npm run format-changelog
 
-      - name: Commit changes
+      - name: Set up Git
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Commit changes
+        run: |
           git add .
           git commit -m "Update changelog"
           git push origin HEAD:${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set changelog labels
+        id: changelog_labels
+        run: |
+          changed_files=$(git diff --name-only HEAD~1 HEAD)
+          labels=()
+          for file in $changed_files; do
+            case $file in
+              'changelog/platform.mdx')
+                labels+=('platform')
+                ;;
+              'changelog/sdks.mdx')
+                labels+=('sdks')
+                ;;
+              'changelog/plugins/highlights.mdx')
+                labels+=('plugins')
+                ;;
+            esac
+          done
+
+          labels+=('changelog')
+          
+          if [ ${#labels[@]} -gt 0 ]; then
+            echo "Labels to add: ${labels[@]}"
+            gh pr edit "$GITHUB_REF" --add-label "$(IFS=, ; echo "${labels[*]}")"
+          else
+            echo "No labels to add."
+          fi

@@ -1,0 +1,85 @@
+name: Activity Changelog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  changelog-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Set HEAD and BASE commit SHAs
+        id: set_commits
+        run: |
+          HEAD=$(git rev-parse HEAD)
+          BASE=$(git rev-parse HEAD~1)
+          echo "HEAD=${HEAD}" >> $GITHUB_ENV
+          echo "BASE=${BASE}" >> $GITHUB_ENV
+
+      - name: Get labels of the latest merged PR
+        id: get_pr_details
+        run: |
+            PR_NUMBER=$(gh pr list --state merged --limit 1 --json number --jq '.[0].number')
+            PR_LABELS=$(gh pr view $PR_NUMBER --json labels --jq '.labels | map(.name) | join(", ")')
+            echo "::set-output name=pr_labels::$PR_LABELS"
+            env:
+              GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check for changelog label
+        id: changelog_check
+        run: |
+          if [[ "${{ steps.get_pr_details.outputs.pr_labels }}" != *"changelog"* ]]; then
+            echo "No changelog label found. Exiting."
+            exit 78
+          fi
+
+      - name: Create changelog update
+        id: changelog_update
+        uses: mikepenz/release-changelog-builder-action@v3.5.0
+        with:
+          toTag: ${{ env.HEAD }}
+          fromTag: ${{ env.BASE }}
+          configurationJson: |
+            {
+              "categories": [
+                {
+                  "title": "SDKs",
+                  "labels": ["sdks"]
+                },
+                {
+                  "title": "Platform",
+                  "labels": ["platform"]
+                },
+                {
+                  "title": "Plugins",
+                  "labels": ["plugins"]
+                },
+              ],
+              "sort": {
+                "order":"ASC",
+                "on_property": "mergedAt" 
+              },
+              "empty_template": "- no changes",
+              "max_back_track_time_days": 1,
+              "base_branches":["main"]
+            }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Send Notes to Slack
+        id: slack
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload: |
+            {
+              "payload": ${{ toJson(steps.changelog_update.outputs.changelog) }}
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.ACTIVITY_CHANGELOG_SLACK }}
