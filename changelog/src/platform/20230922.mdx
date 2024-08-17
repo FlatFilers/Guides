@@ -1,42 +1,13 @@
 ### September 22, 2023
 
-<div style={{ display: "table", width: "auto" }}>
+## dataxp
 
- <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
+We've revamped the way partial replaces work, enhancing your data editing experience for maximum smoothness and intuitiveness. In the past, when you attempted to replace specific characters with an empty string (""), it occasionally resulted in the cell value becoming null, which wasn't quite what you had in mind.
 
-        We've revamped the way partial replaces work, enhancing your data editing experience for maximum smoothness and intuitiveness. In the past, when you attempted to replace specific characters with an empty string (""), it occasionally resulted in the cell value becoming null, which wasn't quite what you had in mind.
+For instance, if you needed to eliminate dashes from UUID fields, you'd naturally want "abc-123" to transform into "abc123" rather than mysteriously turning null.
 
-        For instance, if you needed to eliminate dashes from UUID fields, you'd naturally want "abc-123" to transform into "abc123" rather than mysteriously turning null.
+We value your feedback. Now, you can confidently perform partial replacements without the hassle of unexpected null values.
 
-        We value your feedback. Now, you can confidently perform partial replacements without the hassle of unexpected null values.
+## files
 
-      </div>
-
-    </div>
-
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/files.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-
-        We've made improvements behind the scenes to ensure that your data gets mapped with more precision. Previously, some data could be missed during mapping, but now, we're considering both the option labels and values, making sure nothing is left behind. This means you'll have a smoother and more reliable experience when mapping your data, ensuring that everything is captured correctly.
-
-      </div>
-
-    </div>
-    </div>
+We've made improvements behind the scenes to ensure that your data gets mapped with more precision. Previously, some data could be missed during mapping, but now, we're considering both the option labels and values, making sure nothing is left behind. This means you'll have a smoother and more reliable experience when mapping your data, ensuring that everything is captured correctly.

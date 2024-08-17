@@ -1,18 +1,11 @@
 ### January 19, 2024
 
-<div style={{ display: "table", width: "auto" }}>
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+## extractors
 
-      @flatfile/plugin-delimiter-extractor@0.9.1` & `@flatfile/plugin-xlsx-extractor@v1.11.3`
+`@flatfile/plugin-delimiter-extractor@0.9.1` & `@flatfile/plugin-xlsx-extractor@v1.11.3`
 
-      New header logic has been added to the @flatfile/plugin-delimiter-extractor and @flatfile/plugin-xlsx-extractor. This update brings our extractors in line with Flatfile’s core header detection capabilities, offering three distinct header detection strategies: `default`, `explicitHeaders`, and `specificRows`.
+New header logic has been added to the @flatfile/plugin-delimiter-extractor and @flatfile/plugin-xlsx-extractor. This update brings our extractors in line with Flatfile’s core header detection capabilities, offering three distinct header detection strategies: `default`, `explicitHeaders`, and `specificRows`.
 
-      By employing the default strategy, the extractors now automatically scan the first 10 rows of your file to identify the header row based on the highest count of non-empty cells.
+By employing the default strategy, the extractors now automatically scan the first 10 rows of your file to identify the header row based on the highest count of non-empty cells.
 
-      [Discover more](../../../plugins-docs/extractors/xlsx-extractor) about these enhanced header detection options and how they can streamline your data import processes.
-    </div>
-
-  </div>
-</div>
+[Discover more](../../../plugins-docs/extractors/xlsx-extractor) about these enhanced header detection options and how they can streamline your data import processes.
