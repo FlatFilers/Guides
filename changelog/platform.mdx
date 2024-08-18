@@ -17,7 +17,19 @@ icon: 'layer-group'
 
 For the ListWorkbooks method, several new request parameters have been added:
 
--
+- name: Filter workbooks by name (prefix with - to negate filter)
+- namespace: Filter workbooks by namespace (prefix with - to negate filter)
+- label: Filter workbooks by label (prefix with - to negate filter)
+- treatment: Filter workbooks by treatment
+- includeSheets: Include sheets for each returned workbook (default true)
+
+These new parameters allow developers to filter and customize the list of workbooks returned by the API. For example, they can now filter to only show workbooks with a certain label or namespace.
+
+</div>
+
+  </div>
+
+</div>
 
 ### July 17, 2024
 
