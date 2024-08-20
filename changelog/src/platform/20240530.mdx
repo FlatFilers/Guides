@@ -1,96 +1,33 @@
 ### May 30, 2024
 
-<div style={{ display: "table", width: "auto" }}>
+## dataxp
 
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-       **Bulk Deletion of Mapping Rules**
+**Bulk Deletion of Mapping Rules**
 
-       We added a method to delete multiple mapping rules from a program. This new `deleteMultipleRules` method simplifies the management of mapping rules by allowing bulk deletions. The `DeleteMultipleRulesRequest` type represents the request payload, detailing the array of rule IDs to be deleted.
+We added a method to delete multiple mapping rules from a program. This new `deleteMultipleRules` method simplifies the management of mapping rules by allowing bulk deletions. The `DeleteMultipleRulesRequest` type represents the request payload, detailing the array of rule IDs to be deleted.
 
+## dataxp
 
+**New Method to Delete Apps**
 
-    </div>
+We have introduced a new `delete` method that allows you to delete an app.
 
-  </div>
+## spaces
 
-     <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-       **New Method to Delete Apps**
+**Enhanced Validation Messages for Records**
 
-       We have introduced a new `delete` method that allows you to delete an app.
-    </div>
+The `ValidationMessage` type has been enhanced with two new optional properties: `field` and `path`.
+The `field` property specifies which field the validation message pertains to, while the `path` property, of type `JsonPathString`, specifies the JSONPath for the validation message.
+These enhancements provide more context and precision in validation feedback.
 
-  </div>
+## dataxp
 
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-       **Enhanced Validation Messages for Records**
+**Enhanced Job Outcomes with Custom Views**
 
-       The `ValidationMessage` type has been enhanced with two new optional properties: `field` and `path`. The `field` property specifies which field the validation message pertains to, while the `path` property, of type `JsonPathString`, specifies the JSONPath for the validation message. These enhancements provide more context and precision in validation feedback.
+The `JobOutcomeNext` type now includes a new `view` option, allowing jobs to specify a custom view that should be displayed upon completion. To support this, we introduced the `JobOutcomeNextView` type, which provides details for the custom view, including the sheet ID, hidden columns, and an optional label.
 
-    </div>
+## dataxp
 
-  </div>
+**New Method to Update Sheets**
 
-     <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-       **Enhanced Job Outcomes with Custom Views**
-
-       The `JobOutcomeNext` type now includes a new `view` option, allowing jobs to specify a custom view that should be displayed upon completion. To support this, we introduced the `JobOutcomeNextView` type, which provides details for the custom view, including the sheet ID, hidden columns, and an optional label.
-
-    </div>
-
-  </div>
-
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-       **New Method to Update Sheets**
-
-       We introduced a new `updateSheet` method that allows you to update a sheet's name, slug, and metadata. The `SheetUpdateRequest` type represents the update request payload, including the name, slug, and metadata of the sheet. Additionally, an optional `metadata` property has been added to the `Sheet` and `SheetUpdate` types, allowing for the storage of contextual metadata related to the sheet.
-
-    </div>
-
-  </div>
-
-</div>
+We introduced a new `updateSheet` method that allows you to update a sheet's name, slug, and metadata. The `SheetUpdateRequest` type represents the update request payload, including the name, slug, and metadata of the sheet. Additionally, an optional `metadata` property has been added to the `Sheet` and `SheetUpdate` types, allowing for the storage of contextual metadata related to the sheet.

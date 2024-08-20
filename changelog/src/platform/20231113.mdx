@@ -1,91 +1,40 @@
 ### November 13, 2023
 
-<div style={{ display: "table", width: "auto" }}>
+## spaces
 
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
+**Full Whitelabeling now available in Pro+**
 
-        **Full Whitelabeling now available in Pro+**
+![image](../changelog/images/whitelabeling.png)
 
-        ![image](../changelog/images/whitelabeling.png)
+There are a few places where the Flatfile logo appears to your end customers.
 
-        There are a few places where the Flatfile logo appears to your end customers.
+1. The **Powered By Flatfile** logo appears in the bottom right of Workbooks.
+2. When sending invitations to Users or Guests, the Flatfile logo is included at the top of the emails.
 
-        1. The **Powered By Flatfile** logo appears in the bottom right of Workbooks.
-        2. When sending invitations to Users or Guests, the Flatfile logo is included at the top of the emails.
+For those seeking a complete white-labeling experience, we offer a fully customizable solution as part of our Pro plans and above. Feel free to get in touch with us at [support@flatfile.com](mailto:support@flatfile.com) to discuss the possibilities of a fully whitelabeled experience tailored to your needs.
 
-        For those seeking a complete white-labeling experience, we offer a fully customizable solution as part of our Pro plans and above. Feel free to get in touch with us at [support@flatfile.com](mailto:support@flatfile.com) to discuss the possibilities of a fully whitelabeled experience tailored to your needs.
+## spaces
 
-    </div>
+**Hide the info Tooltip**
 
-  </div>
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
+![image](../changelog/images/infotooltip.png)
 
-        **Hide the info Tooltip**
+Within each Space, we've implemented an informative tooltip providing essential details about the Space. This tooltip serves as valuable support for addressing customer inquiries and issues. However, we understand that there are scenarios where you may prefer to hide this information from your customers.
 
-        ![image](../changelog/images/infotooltip.png)
+To accommodate your preferences, we've introduced the option to hide this Space tooltip. To make this adjustment, you can utilize the "Update Environment" patch available in our [API Reference](https://reference.flatfile.com/api-reference/environments/update-an-environment).
 
-        Within each Space, we've implemented an informative tooltip providing essential details about the Space. This tooltip serves as valuable support for addressing customer inquiries and issues. However, we understand that there are scenarios where you may prefer to hide this information from your customers.
+```jsx
+metadata: {
+  showSpaceInfo: false;
+}
+```
 
-        To accommodate your preferences, we've introduced the option to hide this Space tooltip. To make this adjustment, you can utilize the "Update Environment" patch available in our [API Reference](https://reference.flatfile.com/api-reference/environments/update-an-environment).
+## core
 
-        ```jsx
-        metadata: {
-            showSpaceInfo: false
-          }
-        ```
-    </div>
+In this update, we've implemented a crucial enhancement by unifying the casing in our API. We've resolved issues where certain properties were inconsistently cased, which had previously hindered their proper setting and retrieval.
 
-  </div>
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/core.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
+With this unification, you can now seamlessly interact with our API, ensuring a smoother and more reliable experience.
 
-        In this update, we've implemented a crucial enhancement by unifying the casing in our API. We've resolved issues where certain properties were inconsistently cased, which had previously hindered their proper setting and retrieval.
+## dataxp
 
-        With this unification, you can now seamlessly interact with our API, ensuring a smoother and more reliable experience.
-
-    </div>
-
-  </div>
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-
-        Previously, if an existing value was present in the enum field, you couldn't select a different value from the dropdown. Additionally, when a dropdown field was empty, you were unable to use the dropdown to select a valid option, and typing out an option wasn't possible either. Both of these limitations have now been resolved.
-
-    </div>
-
-  </div>
-</div>
+Previously, if an existing value was present in the enum field, you couldn't select a different value from the dropdown. Additionally, when a dropdown field was empty, you were unable to use the dropdown to select a valid option, and typing out an option wasn't possible either. Both of these limitations have now been resolved.

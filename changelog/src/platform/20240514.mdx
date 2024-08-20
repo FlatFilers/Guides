@@ -1,44 +1,17 @@
 ### May 14, 2024
 
-<div style={{ display: "table", width: "auto" }}>
+## dataxp
 
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-       **New Environment Lifecycle Events**
+**New Environment Lifecycle Events**
 
-       We've added new domain `Environment` events expanding the scope of domains our system recognizes. To leverage these events, you can listen on to the following topics:
-       The corresponding event topics are `environment:created`, `environment:updated`, and `environment:deleted`.
+We've added new domain `Environment` events expanding the scope of domains our system recognizes. To leverage these events, you can listen on to the following topics:
+The corresponding event topics are `environment:created`, `environment:updated`, and `environment:deleted`.
 
-    </div>
+## dataxp
 
-  </div>
+**Enhanced Job Configuration Descriptions**
 
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-       **Enhanced Job Configuration Descriptions**
+We have added descriptions for the DeleteRecordsJobConfig properties to provide better clarity:
+An optional `filter` param allows allows you to provide options to filter records, with the default set to none while the `filterField` param enables narrowing the valid/error filter results to a specific field, but it requires the filter to be set.
 
-      We have added descriptions for the DeleteRecordsJobConfig properties to provide better clarity:
-      An optional `filter` param allows allows you to provide options to filter records, with the default set to none while the `filterField` param enables narrowing the valid/error filter results to a specific field, but it requires the filter to be set.
-
-      We corrected a typo in the `JobOutcomeNextFiles` type by renaming the file property to files to accurately represent an array of file objects.
-
-    </div>
-
-  </div>
-</div>
+We corrected a typo in the `JobOutcomeNextFiles` type by renaming the file property to files to accurately represent an array of file objects.
