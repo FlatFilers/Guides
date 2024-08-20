@@ -1,33 +1,17 @@
 ### September 8, 2023
 
-<div style={{ display: "table", width: "auto" }}>
+## extractors
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-    `@flatfile/plugin-extractor-___`
+`@flatfile/plugin-extractor-___`
 
-    All extractors have been fine-tuned to seamlessly handle extractions within a job, allowing the plugin more time to complete the extraction with less risk of the Agent timing out.
+All extractors have been fine-tuned to seamlessly handle extractions within a job, allowing the plugin more time to complete the extraction with less risk of the Agent timing out.
 
-    Additionally, we've resolved a bug that was causing extractions to falsely indicate completion when running in parallel, ensuring extraction truly finishes before signaling completion.
+Additionally, we've resolved a bug that was causing extractions to falsely indicate completion when running in parallel, ensuring extraction truly finishes before signaling completion.
 
-    </div>
+## transform
 
-  </div>
+`@flatfile/plugin-autocast@0.2.2`
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/transform.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+Dates that were cast to a UTC string using the autocast plugin were showing as invalid after transformation. A fix for this was added to version 0.2.2.
 
-    `@flatfile/plugin-autocast@0.2.2`
-
-
-    Dates that were cast to a UTC string using the autocast plugin were showing as invalid after transformation. A fix for this was added to version 0.2.2.
-
-    [Learn more](../../../plugins-docs/transform/autocast).
-
-    </div>
-
-  </div>
-  
-</div>
+[Learn more](../../../plugins-docs/transform/autocast).

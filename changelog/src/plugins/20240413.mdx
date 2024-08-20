@@ -1,22 +1,18 @@
 ### April 13, 2024
 
-<div style={{ display: "table", width: "auto" }}>
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/transform.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      `@flatfile/plugin-record-hook@1.5.0`
+## transform
 
-      RecordHooks now include readonly configurations. This new feature gives you more control over how data is presented and modified in your application.
-      Setting a record as readonly prevents any changes from being made, while marking individual fields as readonly allows editing for the remaining fields.
-      To utilize this functionality, simply call the new setReadOnly() method on a record instance, optionally passing in field keys to specify which fields should be readonly.
+`@flatfile/plugin-record-hook@1.5.0`
 
-      For example:
-      ```js
-      record.setReadOnly('age', 'name')
-      ```
-      This would make the 'age' and 'name' fields readonly for that record.
-      This release enhances flexibility and strengthens data integrity, enabling you to build even more robust applications with Flatfile's powerful data management tools.
-    </div>
+RecordHooks now include readonly configurations. This new feature gives you more control over how data is presented and modified in your application.
+Setting a record as readonly prevents any changes from being made, while marking individual fields as readonly allows editing for the remaining fields.
+To utilize this functionality, simply call the new setReadOnly() method on a record instance, optionally passing in field keys to specify which fields should be readonly.
 
-  </div>
-</div>
+For example:
+
+```js
+record.setReadOnly('age', 'name');
+```
+
+This would make the 'age' and 'name' fields readonly for that record.
+This release enhances flexibility and strengthens data integrity, enabling you to build even more robust applications with Flatfile's powerful data management tools.

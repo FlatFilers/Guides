@@ -1,28 +1,18 @@
 ### September 17, 2023
 
-<div style={{ display: "table", width: "auto" }}>
+## core_plugin
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core_plugin.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+🚀 **Introducing `@flatfile/util-response-rejection`**
 
-    🚀  **Introducing `@flatfile/util-response-rejection`**
+![image](../../../changelog/images/outcome_modal.png)
 
-    ![image](../../../changelog/images/outcome_modal.png)
+Meet `@flatfile/util-response-rejection`, a new utility for showcasing rejected Records _from an external API_ to your customers. Managing rejected data during egress is vital for maintaining data accuracy, and this utility simplifies the entire process, ensuring a smoother experience for handling these instances.
 
-    Meet `@flatfile/util-response-rejection`, a new utility for showcasing rejected Records _from an external API_ to your customers. Managing rejected data during egress is vital for maintaining data accuracy, and this utility simplifies the entire process, ensuring a smoother experience for handling these instances.
+Here's what it does:
 
-    Here's what it does:
+1. Takes a `RejectionResponse` containing rejected Records and a rejection message.
+2. Locates the corresponding Record and adds the rejection message as an error to the Record cell.
 
-    1. Takes a `RejectionResponse` containing rejected Records and a rejection message.
-    2. Locates the corresponding Record and adds the rejection message as an error to the Record cell.
+You can also utilize this utility directly with any listener.
 
-    You can also utilize this utility directly with any listener.
-
-    Learn more in the [docs](../../../plugins-docs/utils/response-rejection).
-
-    </div>
-
-  </div>
-  
-</div>
+Learn more in the [docs](../../../plugins-docs/utils/response-rejection).

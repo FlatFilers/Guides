@@ -64,13 +64,36 @@ function readMdxFiles(dir) {
   return fs.readdirSync(dir).filter(file => file.endsWith('.mdx'));
 }
 
+function transformMdToMdx(file) {
+  const rawUpdates = file.split('\n## ')
+
+  const formattedUpdates = rawUpdates.map((section) => {
+      const splitSection = section.split('\n')
+      const chip = splitSection.shift().replace('## ', '').trim()
+      const text = splitSection.join('\n')
+
+      return text.length > 30 ? `
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/${chip}.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      ${text.replace(/\n/g, '\n      ')}
+    </div>
+  </div>` : ''
+
+  })
+
+  return `<div style={{ display: "table", width: "auto" }}>${formattedUpdates.join('\n')}\n</div>`
+}
+
 function aggregateFilesByMonthAndYear(dir, files) {
   const aggregatedData = {};
 
   files.forEach(file => {
     const filePath = path.join(dir, file);
     const content = fs.readFileSync(filePath, 'utf8');
-
+    const lines = content.split('\n');
+    const date = lines.shift();
+    const transformedContent = `${date}\n\n${transformMdToMdx(lines.join('\n'))}`;
     const year = file.substring(0, 4);
     const month = file.substring(4, 6);
     const day = file.substring(6, 8);
@@ -80,7 +103,7 @@ function aggregateFilesByMonthAndYear(dir, files) {
       aggregatedData[monthYear] = [];
     }
 
-    aggregatedData[monthYear].push({ day, content });
+    aggregatedData[monthYear].push({ day, content: transformedContent });
   });
 
   return aggregatedData;

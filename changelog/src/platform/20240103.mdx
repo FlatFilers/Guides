@@ -1,53 +1,27 @@
 ### January 3, 2024
 
-<div style={{ display: "table", width: "auto" }}>
+## dataxp
 
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-        **Enhanced Visibility with Status Updates During File Extraction**
-        
-        ![image](../changelog/images/extract-status.gif)
+**Enhanced Visibility with Status Updates During File Extraction**
 
-        A Toast now displays intermediate states to keep you informed every step of the way during file extraction.
+![image](../changelog/images/extract-status.gif)
 
-        When uploading a file directly to the table, you’ll see statuses like “Waiting for Extraction”, “Extracting”, and “Unsupported File”, along with detailed information about the outcome of extraction jobs.
+A Toast now displays intermediate states to keep you informed every step of the way during file extraction.
 
-        When uploading on the Files page, the error message is toned down to an info message, as uploading files without an extractor is a legitimate scenario.
+When uploading a file directly to the table, you’ll see statuses like “Waiting for Extraction”, “Extracting”, and “Unsupported File”, along with detailed information about the outcome of extraction jobs.
 
-        These updates are aimed at enhancing transparency and efficiency, ensuring you’re well-informed throughout the file extraction process.
+When uploading on the Files page, the error message is toned down to an info message, as uploading files without an extractor is a legitimate scenario.
 
-        [See extractor plugins](../plugins-docs/extractors/)
+These updates are aimed at enhancing transparency and efficiency, ensuring you’re well-informed throughout the file extraction process.
 
-      </div>
-    </div>
+[See extractor plugins](../plugins-docs/extractors/)
 
-   <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-        **Improved Search Functionality for Null Values in GET Records Endpoint**
+## dataxp
 
-        We've refined the search mechanism for empty cells in the GET records endpoint. In the past, users would specify `null` in the `searchValue` parameter to locate empty cells. However, this method posed ambiguity as it didn't clearly distinguish between an exact search for null values and a partial search for the string "null".
+**Improved Search Functionality for Null Values in GET Records Endpoint**
 
-        Now, to accurately search for cells with null values, you should use empty double quotes `""` in the `searchValue` parameter.
+We've refined the search mechanism for empty cells in the GET records endpoint. In the past, users would specify `null` in the `searchValue` parameter to locate empty cells. However, this method posed ambiguity as it didn't clearly distinguish between an exact search for null values and a partial search for the string "null".
 
-        [See the endpoint](https://reference.flatfile.com/api-reference/records/get-records)
+Now, to accurately search for cells with null values, you should use empty double quotes `""` in the `searchValue` parameter.
 
-      </div>
-    </div>
-
-  </div>
+[See the endpoint](https://reference.flatfile.com/api-reference/records/get-records)
