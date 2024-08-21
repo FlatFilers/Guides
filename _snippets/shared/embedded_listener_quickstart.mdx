@@ -36,9 +36,7 @@ const blueprint = {
 window.onload = function () {
   FlatFileJavaScript.startFlatfile({
     publishableKey: "pk_1234",
-    spaceBody: {
-      namespace: "portal",
-    },
+    namespace: "portal",
     sheet: blueprint,
   });
 };
@@ -56,9 +54,7 @@ Once you add this code, when the submit button is clicked, this will be the plac
 window.onload = function () {
   FlatFileJavaScript.startFlatfile({
     publishableKey: "pk_1234",
-    spaceBody: {
-      namespace: "portal",
-    },
+    namespace: "portal",
     sheet: blueprint,
     onSubmit: async ({ sheet }) => {
       const data = await sheet.allData();
@@ -78,9 +74,7 @@ Once you add this code, when a change occurs, we'll log the entered first name a
 window.onload = function () {
   FlatFileJavaScript.startFlatfile({
     publishableKey: "pk_1234",
-    spaceBody: {
-      namespace: "portal",
-    },
+    namespace: "portal",
     sheet: blueprint,
     onSubmit: async ({ sheet }) => {
       const data = await sheet.allData();
@@ -104,9 +98,7 @@ By attaching a `themeConfig`, we will now override colors in your Space to match
 window.onload = function () {
   FlatFileJavaScript.startFlatfile({
     publishableKey: "pk_1234",
-    spaceBody: {
-      namespace: "portal",
-    },
+    namespace: "portal",
     sheet: blueprint,
     onSubmit: async ({ sheet }) => {
       const data = await sheet.allData();

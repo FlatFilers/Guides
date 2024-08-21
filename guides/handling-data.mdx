@@ -496,14 +496,14 @@ listener.use(
 ```js javascript bulkRecordHook()
 listener.use(
   bulkRecordHook("contacts", async (records, event) => {
+    const getResponse = await axios.get(
+      "https://api.sampleapis.com/beers/ale"
+    );
     await Promise.all(
       records.map(async (record) => {
         try {
           const { payload } = event.payload;
 
-          const getResponse = await axios.get(
-            "https://api.sampleapis.com/beers/ale"
-          );
           record.set(
             "assignedBeer",
             getResponse.data[Math.floor(Math.random() * 20)].name
@@ -534,14 +534,14 @@ listener.use(
   bulkRecordHook(
     "contacts",
     async (records: FlatfileRecord[], event: FlatfileEvent) => {
+      const getResponse = await axios.get(
+        "https://api.sampleapis.com/beers/ale"
+      );
       await Promise.all(
         records.map(async (record) => {
           try {
             const { payload } = event.payload;
-
-            const getResponse = await axios.get(
-              "https://api.sampleapis.com/beers/ale"
-            );
+            
             record.set(
               "assignedBeer",
               getResponse.data[Math.floor(Math.random() * 20)].name
