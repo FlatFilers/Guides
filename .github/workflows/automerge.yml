@@ -18,7 +18,7 @@ jobs:
           node-version: "18"
 
       - name: Run automerge script
-        run: node ./scripts/autoMerge.js
+        run: node .github/scripts/autoMerge.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NUMBER: ${{ github.event.pull_request.number }}
