@@ -1,8 +1,12 @@
 {
-  "scripts" : {
-    "changelog" : "npm run update-platform && npm run update-plugins && npm run update-libraries",
-    "update-libraries" : "node changelog/bin/update.js libraries ./changelog/src/libraries ./changelog/sdks.mdx ",
-    "update-platform" : "node changelog/bin/update.js platform ./changelog/src/platform ./changelog/platform.mdx ",
-    "update-plugins" : "node changelog/bin/update.js plugins ./changelog/src/plugins ./changelog/sdks/plugins/highlights.mdx "
+  "scripts": {
+    "changelog": "npm run update-platform && npm run update-plugins && npm run update-libraries",
+    "update-libraries": "node changelog/bin/update.js libraries ./changelog/src/libraries ./changelog/sdks.mdx ",
+    "update-platform": "node changelog/bin/update.js platform ./changelog/src/platform ./changelog/platform.mdx ",
+    "update-plugins": "node changelog/bin/update.js plugins ./changelog/src/plugins ./changelog/sdks/plugins/highlights.mdx "
+  },
+  "devDependencies": {
+    "@octokit/rest": "^21.0.2",
+    "dotenv": "^16.4.5"
   }
 }

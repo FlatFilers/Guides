@@ -1,0 +1,24 @@
+name: Auto-Merge PR
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  run-on-changelog-branch:
+    if: startsWith(github.head_ref, 'changelog/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Run automerge script
+        run: node ./scripts/autoMerge.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUMBER: ${{ github.event.pull_request.number }}
