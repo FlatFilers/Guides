@@ -1,0 +1,22 @@
+### August 27, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+      <Snippet file="chips/automations.mdx" />
+        <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+        `@flatfile/plugin-automap@0.4.0`
+
+        The automap plugin has been updated with the following changes:
+
+The listener has been updated to listen for the 'job:updated' event instead of the 'job:created' event to account for the mapping plan now being generated asynchronously. The handleMappingPlanCreated function has been renamed to handleMappingPlanUpdated to reflect this change.
+
+The verifyConfidentMatching function has been updated to use the 'some' operator instead of 'every' to enable more concise automapping. This means that the mapping job will be executed if at least one field mapping has a certainty of 'Absolute' instead of requiring all field mappings to have 'Absolute' certainty.
+
+The handleMappingPlanUpdated function has been updated to check if the job status is 'Planning' before proceeding with the mapping job execution. This is to account for the asynchronous nature of the mapping plan generation process.
+
+Overall, these changes improve the handling of asynchronous mapping plan generation and provide more flexibility in automapping by relaxing the certainty requirement for field mappings.
+        </div>
+  </div>
+
+</div>
