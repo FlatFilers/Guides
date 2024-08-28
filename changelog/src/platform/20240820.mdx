@@ -1,0 +1,19 @@
+### August 20, 2024
+## dataxp
+
+@flatfile/api@1.9.13
+The release notes include the following updates:
+
+1. Added a new job type 'app' to generate AI blueprints for an app.
+2. Added new fields 'guide' and 'guardrail' to the Action type, representing markdown guidance and guardrails for actions.
+
+For example, the new AiGenerateBlueprintJobConfig type contains spaceId and appId parameters:
+
+```
+interface AiGenerateBlueprintJobConfig {
+    spaceId: string;
+    appId: string; 
+}
+```
+
+The Action type now has optional 'guide' and 'guardrail' fields of type Guide and Guardrail respectively, where Guide and Guardrail are new types containing markdown content strings.
