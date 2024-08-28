@@ -2,18 +2,29 @@
 ## dataxp
 
 @flatfile/api@1.9.13
-The release notes include the following updates:
 
-1. Added a new job type 'app' to generate AI blueprints for an app.
-2. Added new fields 'guide' and 'guardrail' to the Action type, representing markdown guidance and guardrails for actions.
-
-For example, the new AiGenerateBlueprintJobConfig type contains spaceId and appId parameters:
+New fields 'guide' and 'guardrail' to the Action type, representing markdown guidance and guardrails for actions.
 
 ```
-interface AiGenerateBlueprintJobConfig {
-    spaceId: string;
-    appId: string; 
-}
+actions: [
+  {
+    operation: 'submitActionFg',
+    mode: 'foreground',
+    label: 'Submit For Approval',
+    type: 'string',
+    description: 'Submit this data to a webhook.',
+    primary: true,
+    guide: {
+        content: "### Personalized Guide \n\n Before performing this Submit For Approval action be sure..."
+    },
+    guardrail: {
+        content: "### Warning! \n\n Before performing this Submit For Approval action did you? ..."
+    }
+  },
+  {...}
+],
 ```
 
-The Action type now has optional 'guide' and 'guardrail' fields of type Guide and Guardrail respectively, where Guide and Guardrail are new types containing markdown content strings.
+The markdown content of guide will become accessible to the end user via a tooltip on the action element.
+
+The content of the guardrail will be rendered up as a modal warning before the action event is triggered.
