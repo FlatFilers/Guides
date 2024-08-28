@@ -6,6 +6,43 @@ icon: "layer-group"
 
 ## July 2024
 
+### July 23, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      <div style={{ display: "table", width: "auto" }}>
+      
+        <div style={{ display: "table-row", width: "auto" }}>
+            <Snippet file="chips/dataxp.mdx" />
+              <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+              `@flatfile/api@1.9.7`
+      
+              This release updates the `@flatfile/api` package from version 1.9.6 to 1.9.7. The major changes are:
+      
+      1. Added new filter parameters for the `listWorkbooks` function. Developers can now filter workbooks by name, namespace, label, and treatment using the new `name`, `namespace`, `label`, and `treatment` parameters respectively.
+      
+      2. Added a new `includeSheets` parameter to the `listWorkbooks` function. When set to true, it will include the associated sheets for each returned workbook.
+      
+      For example, to list all workbooks with a specific name and include their sheets:
+      
+      ```js
+      const workbooks = await client.workbooks.listWorkbooks({
+        name: 'my-workbook', 
+        includeSheets: true
+      });
+      ```
+      
+      3. Updated internal versioning headers sent with API requests.
+              </div>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+
 ### July 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
