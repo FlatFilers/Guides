@@ -1,0 +1,30 @@
+### August 20, 2024
+## dataxp
+
+@flatfile/api@1.9.13
+
+New fields 'guide' and 'guardrail' have been added to Actions. These options enable providing markdown guidance and warnings to your users.
+
+```
+actions: [
+  {
+    operation: 'submitActionFg',
+    mode: 'foreground',
+    label: 'Submit For Approval',
+    type: 'string',
+    description: 'Submit this data to a webhook.',
+    primary: true,
+    guide: {
+        content: "### Personalized Guide \n\n Before performing this Submit For Approval action be sure..."
+    },
+    guardrail: {
+        content: "### Warning! \n\n Before performing this Submit For Approval action did you? ..."
+    }
+  },
+  {...}
+],
+```
+
+The markdown content of guide will become accessible to the end user via a tooltip on the action element.
+
+The content of the guardrail will be rendered up as a modal warning before the action event is triggered.
