@@ -1,0 +1,13 @@
+### August 09, 2024
+##dataxp
+
+@flatfile/api@1.9.8
+The release notes summarizing the changes in the provided diff are:
+
+A new `reference-list` property type has been added to allow defining an array of values referenced from another sheet. Links will be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets. The `reference-list` property extends the `BaseProperty` and `ArrayableProperty` interfaces and has a `config` property of type `ReferenceListPropertyConfig` that includes a `ref` string for the full path reference to a sheet configuration in the same workbook, and a `key` string to specify the property to use as the reference key (defaults to `id`).
+
+The `ReferencePropertyConfig` has been updated to make the `relationship` property optional, allowing it to be omitted.
+
+The SDK version has been incremented from 1.9.7 to 1.9.8 across all client files.
+
+A new workflow step has been added to print all git tags using `npm view @flatfile/api versions --json`.
