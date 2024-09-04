@@ -1,11 +1,11 @@
 ### August 20, 2024
 ## dataxp
 
-@flatfile/api@1.9.13
+`@flatfile/api@1.9.13`
 
 New fields 'guide' and 'guardrail' have been added to Actions. These options enable providing markdown guidance and warnings to your users.
 
-```
+```typescript
 actions: [
   {
     operation: 'submitActionFg',
@@ -15,10 +15,10 @@ actions: [
     description: 'Submit this data to a webhook.',
     primary: true,
     guide: {
-        content: "### Personalized Guide \n\n Before performing this Submit For Approval action be sure..."
+        content: "### Personalized Guide \n\n Before performing..."
     },
     guardrail: {
-        content: "### Warning! \n\n Before performing this Submit For Approval action did you? ..."
+        content: "### Warning! \n\n This Submit ..."
     }
   },
   {...}

@@ -13,11 +13,11 @@ icon: "layer-group"
     <Snippet file="chips/dataxp.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
-      @flatfile/api@1.9.13
+      `@flatfile/api@1.9.13`
       
       New fields 'guide' and 'guardrail' have been added to Actions. These options enable providing markdown guidance and warnings to your users.
       
-      ```
+      ```typescript
       actions: [
         {
           operation: 'submitActionFg',
@@ -27,10 +27,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing this Submit For Approval action be sure..."
+              content: "### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n Before performing this Submit For Approval action did you? ..."
+              content: "### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -51,7 +51,7 @@ icon: "layer-group"
     <Snippet file="chips/dataxp.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
-      @flatfile/api@1.9.8
+      `@flatfile/api@1.9.8`
       
       A new `reference-list` property type has been added to allow defining an array of values referenced from another sheet. Links will be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
       
