@@ -3,24 +3,25 @@
 
 `@flatfile/api@1.9.14`
 
-Added a new resource `actions` for managing Flatfile actions. This includes the ability to create, retrieve, update, and delete actions. New types related to actions have been added, such as `Action`, `ActionResponse`, `ActionUpdate`, `ActionMount`, and `ApiAction`.
+##### Actions Resource
 
-Updated the `agents` resource to include new methods for listing agent versions (`listVersions`), and reverting to a previous agent version (`revert`). New types related to agent versions have been added, such as `AgentVersion`, `AgentVersionResponse`, and `AgentVersionId`.
+Actins are now a first class resource. Develops may now create, retrieve, update, and delete actions.
+New `action` events are now being published `ActionCreated`, `ActionUpdated`, and `ActionDeleted` and `actionId` can be found in the `Context` of events.
 
-Added a new method `refreshToken` to the `auth` resource for refreshing access tokens.
+##### Agent Versioning
 
-Added support for removing fields from sheets via the new `removeField` method in the `sheets` resource. A new request type `CreateFieldRequest` has been introduced, which includes an `insertAtIndex` parameter for specifying the index to insert a new field at.
+Agents versioning has been introduced. You may now retreieve agent versions (`listVersions`) via the api and reverting to a previous agent version (`revert`) can be done via API or the dashboard.
+
+##### Token Refresh
+
+A new method `refreshToken` to the `auth` resource for refreshing access tokens, enabling the automatic refresh of tokens for guest who are active in their space.
+
+##### Sheet & Cell Updates
+
+Support for removing fields from sheets via the new `removeField` method in the `sheets` resource. A new request type `CreateFieldRequest` has been introduced, which includes an `insertAtIndex` parameter for specifying the index to insert a new field at.
 
 Added support for array values in cell values (`CellValueUnion` now includes `string[]`).
 
-Added two new job config types: `AppAutobuildDeployJobConfig` and `AiGenerateSampleDataJobConfig`.
+##### Job Metadata
 
-Added a new `metadata` field to the `JobConfig` type, allowing additional metadata to be associated with jobs.
-
-Updated the `Event` and `EventTopic` types to include new event types related to actions: `ActionCreated`, `ActionUpdated`, and `ActionDeleted`.
-
-Added a new `actionId` field to the `Context` type for events, allowing the associated action ID to be tracked.
-
-Updated various internal dependencies and build tools.
-
-These changes add new functionality for managing actions, working with agent versions, refreshing access tokens, manipulating sheet fields, handling array cell values, and tracking action-related events. Developers using this SDK should review the updated types and new methods to take advantage of these features in their applications.
+Metadta is now available on the `JobConfig` type, allowing additional data to be associated with jobs.
