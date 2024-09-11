@@ -15,26 +15,26 @@ icon: "layer-group"
       
       `@flatfile/api@1.9.14`
       
-      ##### Actions Resource
+      #### Actions Resource
       
-      Actins are now a first class resource. Develops may now create, retrieve, update, and delete actions.
-      New `action` events are now being published `ActionCreated`, `ActionUpdated`, and `ActionDeleted` and `actionId` can be found in the `Context` of events.
+      Actions are now a first class resource. Developers may now create, retrieve, update, and delete actions via the api.
+      New action events ActionCreated, ActionUpdated, and ActionDeleted are now being published and an actionId field has been added to the Context of events.
       
-      ##### Agent Versioning
+      #### Agent Versioning
       
-      Agents versioning has been introduced. You may now retreieve agent versions (`listVersions`) via the api and reverting to a previous agent version (`revert`) can be done via API or the dashboard.
+      Agents versioning has been introduced. You may now retreieve agent versions via the api and revert to a previous version via the api and the dashboard.
       
-      ##### Token Refresh
+      #### Token Refresh
       
-      A new method `refreshToken` to the `auth` resource for refreshing access tokens, enabling the automatic refresh of tokens for guest who are active in their space.
+      Guests actively using their space will have their token's automatically renewed.
       
-      ##### Sheet & Cell Updates
+      #### Sheet & Cell Updates
       
-      Support for removing fields from sheets via the new `removeField` method in the `sheets` resource. A new request type `CreateFieldRequest` has been introduced, which includes an `insertAtIndex` parameter for specifying the index to insert a new field at.
+      Support for removing fields from sheets via the new removeField method in the `sheets` resource. A new request type `CreateFieldRequest` has been introduced, which includes an `insertAtIndex` parameter for specifying the index to insert a new field at.
       
-      Added support for array values in cell values (`CellValueUnion` now includes `string[]`).
+      Support for array values in cell values has also been added.
       
-      ##### Job Metadata
+      #### Job Metadata
       
       Metadta is now available on the `JobConfig` type, allowing additional data to be associated with jobs.
     </div>
