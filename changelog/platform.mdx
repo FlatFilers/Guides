@@ -6,6 +6,41 @@ icon: "layer-group"
 
 ## September 2024
 
+### September 10, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `@flatfile/api@1.9.14`
+      
+      #### Actions Resource
+      
+      Actions are now a first class resource. Developers may now create, retrieve, update, and delete actions via the api.
+      New action events ActionCreated, ActionUpdated, and ActionDeleted are now being published and an actionId field has been added to the Context of events.
+      
+      #### Agent Versioning
+      
+      Agents versioning has been introduced. You may now retreieve agent versions via the api and revert to a previous version via the api and the dashboard.
+      
+      #### Token Refresh
+      
+      Guests actively using their space will have their token's automatically renewed.
+      
+      #### Sheet & Cell Updates
+      
+      Support for removing fields from sheets via the new removeField method in the `sheets` resource. A new request type `CreateFieldRequest` has been introduced, which includes an `insertAtIndex` parameter for specifying the index to insert a new field at.
+      
+      Support for array values in cell values has also been added.
+      
+      #### Job Metadata
+      
+      Metadta is now available on the `JobConfig` type, allowing additional data to be associated with jobs.
+    </div>
+  </div>
+</div>
+
 ### September 06, 2024
 
 <div style={{ display: "table", width: "auto" }}>
