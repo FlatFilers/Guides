@@ -18,6 +18,22 @@ icon: "layer-group"
       With the addition of archived spaces there is now an ability to  `unarchiveSpace` method and `space:unarchived` event.
       
       Deprecated use of metadata field at the cell value level, recommending use of record level metadata instead.
+
+          
+    </div>
+  </div>
+</div>
+  
+### September 11, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `spaces-ui`
+      
+      Updates to track and display information related to schema changes, such as adding or removing columns from a table are now summarized and tracked in the Jobs Panel. 
+      
     </div>
   </div>
 </div>
@@ -73,14 +89,29 @@ icon: "layer-group"
 
 ## August 2024
 
-### August 20, 2024
+### August 22, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
+    <Snippet file="chips/spaces-ui.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
-      `@flatfile/api@1.9.13`
+      `spaces-ui`
+      
+      Experience seamless collaboration like never before, enabling your team to work more efficiently and make informed decisions faster via real-time collaboration capabilities in sheets. Users now have the ability to see each other's presence, leave comments on cells or rows, and mention others.
+    </div>
+  </div>
+</div>
+
+### August 20, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `@flatfile/api@1.9.13` `spaces-ui`
       
       New fields 'guide' and 'guardrail' have been added to Actions. These options enable providing markdown guidance and warnings to your users.
       
@@ -106,7 +137,67 @@ icon: "layer-group"
       
       The markdown content of guide will become accessible to the end user via a tooltip on the action element.
       
-      The content of the guardrail will be rendered up as a modal warning before the action event is triggered.
+      The `guardrail` component will render as a modal warning before the action event is triggered. This can be useful for actions that have critical consequences or require user acknowledgment before proceeding.
+      
+      This can be useful for actions that have critical consequences or require user acknowledgment before proceeding.
+      
+      
+    </div>
+  </div>
+</div>
+
+### August 15, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `spaces-ui`
+      
+      The "requireAllValidTotal" option has been added for custom actions in the Sheet toolbar.
+      This new option requires all rows in the Sheet to be valid for the action to be enabled, regardless of selection. 
+      If "requireAllValidTotal" is set and there are any validation errors in the entire Sheet, the custom action will be disabled with the corresponding tooltip message. 
+      
+      The existing "requireAllValid" option has been updated to only apply to the selected rows, rather than all rows. 
+      If "requireAllValid" is set and there are validation errors in the selected rows, the custom action will be disabled with the corresponding tooltip message.
+      
+      
+      
+      
+      
+    </div>
+  </div>
+</div>
+
+### August 14, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `spaces-ui`
+      
+      The translation strings have been updated to include a new error message for when an import source file cannot be located. The "lockedIconTooltip" string has also been added for locked sheets.
+      
+      A new "files.queries.ts" file has been added with queries related to retrieving files. The "flatfileQuery.ts" file has been updated to include the new files queries.
+      
+      Mock data for file queries has been added in "files.mocks.ts".
+      
+      The "SheetTabs" component has been updated to use the "getSheet" query instead of relying on the workbook's sheet data. It now renders a locked icon for locked sheets.
+      
+      The "SheetView" component has been updated to handle locked sheets and to show the locked icon.
+      
+      The "useSheetFile" hook has been updated to determine if a workbook is a file or connection based on treatments and labels. It now uses the "getFiles" query to retrieve import files and navigate to the import page. The hook no longer relies on the "FileController" and "useObservable".
+      
+      The "ReadOnly" component has been updated to render a different icon and tooltip for locked sheets.
+      
+      The "SidebarSheetItem" component has been updated to use the "getSheet" query and to show the locked icon for locked sheets.
+      
+      The "useSheetAccess" hook has been updated to handle locked sheets and return the appropriate access values.
+      
+      Overall, these changes introduce support for handling locked sheets, improve the handling of import files, and update various components and hooks to use React Query for data fetching.
+      
     </div>
   </div>
 </div>
@@ -204,7 +295,7 @@ icon: "layer-group"
   </div>
 </div>
 
-## June 2024 (3)
+## June 2024 (4)
 
 ##### June 18, 2024
 
@@ -218,6 +309,24 @@ icon: "layer-group"
       
       We have enhanced the cell editing experience with an auto-expanding cell input that dynamically adjusts to fit the content.
       This improvement ensures that users can view and edit their data without constraints, enhancing the overall editing experience.
+      
+    </div>
+  </div>
+</div>
+
+##### June 10, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `spaces-ui`
+      
+      Improvements have been made to error handling and user feedback in the file import and mapping process. If an error occurs, a popover is displayed to the user with the error message, providing clearer feedback on failures during the import process.
+      
+      Additionally, in the FileUploadRedirectContext, a similar useEffect hook has been introduced to display a popover with any error messages from the mapToSheetObservable. This provides feedback to the user when errors occur during the mapping of a file to a sheet.
+      
       
     </div>
   </div>
@@ -250,6 +359,16 @@ icon: "layer-group"
       
     </div>
   </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `spaces-ui`
+      
+      A new view allowing users to "Map Headers" in the mapping flow allows users to select the header row for source data files. This page is displayed after the "Map Fields" page and before the "Map Enums" page.
+    </div>
+  </div>
 </div>
 
 ##### June 6, 2024
@@ -268,7 +387,7 @@ icon: "layer-group"
   </div>
 </div>
 
-## May 2024 (4)
+## May 2024 (6)
 
 ##### May 30, 2024
 
@@ -332,6 +451,20 @@ icon: "layer-group"
   </div>
 </div>
 
+##### May 29, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `spaces-ui`
+      
+      A new "Update View" button can now be found in the job outcome modal for jobs that modify the visibility of columns in a workbook sheet. This button triggers updating the column visibility based on the job outcome.
+    </div>
+  </div>
+</div>
+
 ##### May 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
@@ -359,6 +492,44 @@ icon: "layer-group"
       
       We corrected a typo in the `JobOutcomeNextFiles` type by renaming the file property to files to accurately represent an array of file objects.
       
+    </div>
+  </div>
+
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `spaces-ui`
+      
+      ###### Download Files Made Easier
+      
+      Support has been aded in the job outcome modal for downloading files. When clicked, you'll immediately download your data.
+      
+      The `Jobs Panel` will also show your recent downloads.
+    </div>
+  </div>
+</div>
+
+##### May 07, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `spaces-ui`
+      
+      ###### Saving and Sharing Custom Views
+      
+      Users can now apply filters, sorting, and search queries to the Sheet data and save those settings as a reusable view. Key changes include:
+      
+      - Added a "Views" dropdown in the Sheet toolbar to manage and apply saved views.
+      - Added a "Save View" modal that allows users to name and save the current Sheet filters/sorting as a view.
+      - Users can copy a sharable link with the view settings applied.
+      - Saved views are grouped into "My Views" and "All Views" sections.
+      - Added backend APIs to create, update, and delete saved views.
+      - Added new React hooks and components to support the saved views functionality.
+      - Updated translations for the new UI elements related to saved views.
     </div>
   </div>
 </div>
