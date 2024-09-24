@@ -1,0 +1,20 @@
+### September 24, 2024
+##dataxp
+
+api@e20d6f0
+The release notes are as follows:
+
+Added a new `context` column of type `JSONB` to the `executions` table to store contextual information related to an execution. Added a new `topic` column of type `VARCHAR(32)` to the `executions` table to store the topic of the event that triggered the execution. Created a new index `executions_topic_idx` on the `topic` column of the `executions` table for efficient querying. The `AgentWorker` now stores the `context` and `topic` from the event in the `Execution` record when creating a new execution. The `AgentsRepository` and `AgentsService` now accept and store the `context` and `topic` when creating a new `Execution` record. The `executionDefinition` now includes the `topic` field as a `string` with a maximum length of 32 characters and indexed, and the `context` field as an object. For example:
+
+```typescript
+const execution = await prisma.execution.create({
+  data: {
+    agentId,
+    eventId,
+    success,
+    log,
+    context: JSON.parse(JSON.stringify(context)),
+    topic,
+  },
+})
+```
