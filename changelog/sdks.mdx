@@ -61,12 +61,12 @@ icon: "cube"
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/wrappers.mdx" />
+    <Snippet file="chips/##wrappers.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
-      `@flatfile/react@7.12.2`
+      @flatfile/react@7.12.2
+      The release includes a new `removeSheet` method to allow removing a specific sheet from the workbook by its sheet slug.
       
-      The release includes a fix to allow seamless changing of sheet configurations between opening the Portal instance. It adds a removeSheet functionality that allows removing a specific sheet from the workbook by its sheet slug. This enables updating or replacing existing sheets without issues. The Sheet component has been updated to use this new removeSheet functionality and manage the sheet configuration changes in a more robust manner. Developers can now dynamically update or replace sheet configurations without any side effects.
     </div>
   </div>
 </div>
