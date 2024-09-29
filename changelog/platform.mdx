@@ -32,8 +32,7 @@ icon: "layer-group"
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       `spaces-ui`
       
-      Updates to track and display information related to schema changes, such as adding or removing columns from a table are now summarized and tracked in the Jobs Panel. 
-      
+      Updates to Snapshots resource to track changes to a sheet's schema (i.e. added and removed columns). A more robust Snapshot will enable more complex features when comparing 2 different snapshots.
     </div>
   </div>
 </div>
@@ -98,7 +97,7 @@ icon: "layer-group"
       
       `spaces-ui`
       
-      Experience seamless collaboration like never before, enabling your team to work more efficiently and make informed decisions faster via real-time collaboration capabilities in sheets. Users now have the ability to see each other's presence, leave comments on cells or rows, and mention others.
+      Collaboration remains behind a feature flag and we have not formerly made this available for customers. I think we probably leave this out of the changelog or we add a [Public Release Coming Soon] or something like that to not cause confusion.
     </div>
   </div>
 </div>
@@ -178,25 +177,7 @@ icon: "layer-group"
       
       `spaces-ui`
       
-      The translation strings have been updated to include a new error message for when an import source file cannot be located. The "lockedIconTooltip" string has also been added for locked sheets.
-      
-      A new "files.queries.ts" file has been added with queries related to retrieving files. The "flatfileQuery.ts" file has been updated to include the new files queries.
-      
-      Mock data for file queries has been added in "files.mocks.ts".
-      
-      The "SheetTabs" component has been updated to use the "getSheet" query instead of relying on the workbook's sheet data. It now renders a locked icon for locked sheets.
-      
-      The "SheetView" component has been updated to handle locked sheets and to show the locked icon.
-      
-      The "useSheetFile" hook has been updated to determine if a workbook is a file or connection based on treatments and labels. It now uses the "getFiles" query to retrieve import files and navigate to the import page. The hook no longer relies on the "FileController" and "useObservable".
-      
-      The "ReadOnly" component has been updated to render a different icon and tooltip for locked sheets.
-      
-      The "SidebarSheetItem" component has been updated to use the "getSheet" query and to show the locked icon for locked sheets.
-      
-      The "useSheetAccess" hook has been updated to handle locked sheets and return the appropriate access values.
-      
-      Overall, these changes introduce support for handling locked sheets, improve the handling of import files, and update various components and hooks to use React Query for data fetching.
+      Introduces support for handling locked sheets (indicated by the locked icon), and improves the handling of import files.
       
     </div>
   </div>
@@ -325,9 +306,6 @@ icon: "layer-group"
       
       Improvements have been made to error handling and user feedback in the file import and mapping process. If an error occurs, a popover is displayed to the user with the error message, providing clearer feedback on failures during the import process.
       
-      Additionally, in the FileUploadRedirectContext, a similar useEffect hook has been introduced to display a popover with any error messages from the mapToSheetObservable. This provides feedback to the user when errors occur during the mapping of a file to a sheet.
-      
-      
     </div>
   </div>
 </div>
@@ -356,17 +334,6 @@ icon: "layer-group"
       You can now search for users in the manager users page. This feature allows you to quickly find users by name, email, or role, making it easier to manage your user base.
       
       ![image](../changelog/images/search.gif)
-      
-    </div>
-  </div>
-
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces-ui.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `spaces-ui`
-      
-      A new view allowing users to "Map Headers" in the mapping flow allows users to select the header row for source data files. This page is displayed after the "Map Fields" page and before the "Map Enums" page.
     </div>
   </div>
 </div>
@@ -461,6 +428,11 @@ icon: "layer-group"
       `spaces-ui`
       
       A new "Update View" button can now be found in the job outcome modal for jobs that modify the visibility of columns in a workbook sheet. This button triggers updating the column visibility based on the job outcome.
+      
+      There are 2 new capabilities to the next property of Job Outcomes:
+      
+      - `view` gives developers the ability to manipulate the Sheet's view on completion of a Job - Giving control over things like applying a filter or hiding a column
+      - `download` gives developers the ability to include file details (such as a fileName and URL), which are then used to trigger a download to the user's browser on completion of the job
     </div>
   </div>
 </div>
@@ -495,19 +467,6 @@ icon: "layer-group"
     </div>
   </div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces-ui.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `spaces-ui`
-      
-      ###### Download Files Made Easier
-      
-      Support has been aded in the job outcome modal for downloading files. When clicked, you'll immediately download your data.
-      
-      The `Jobs Panel` will also show your recent downloads.
-    </div>
-  </div>
 </div>
 
 ##### May 07, 2024
