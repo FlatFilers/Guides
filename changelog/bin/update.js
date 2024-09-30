@@ -93,17 +93,28 @@ function aggregateFilesByMonthAndYear(dir, files) {
     const content = fs.readFileSync(filePath, 'utf8');
     const lines = content.split('\n');
     const date = lines.shift();
-    const transformedContent = `${date}\n\n${transformMdToMdx(lines.join('\n'))}`;
-    const year = file.substring(0, 4);
-    const month = file.substring(4, 6);
-    const day = file.substring(6, 8);
+    const transformedContent = transformMdToMdx(lines.join('\n'));
+    
+    const dateMatch = file.match(/^(\d{4})(\d{2})(\d{2})/);
+    if (!dateMatch) {
+      console.warn(`Skipping file with invalid name format: ${file}`);
+      return;
+    }
+    
+    const [, year, month, day] = dateMatch;
     const monthYear = `${getMonthName(month)} ${year}`;
 
     if (!aggregatedData[monthYear]) {
       aggregatedData[monthYear] = [];
     }
 
-    aggregatedData[monthYear].push({ day, content: transformedContent });
+    let dayEntry = aggregatedData[monthYear].find(entry => entry.day === day);
+    if (!dayEntry) {
+      dayEntry = { day, content: date };
+      aggregatedData[monthYear].push(dayEntry);
+    }
+
+    dayEntry.content += '\n\n' + transformedContent;
   });
 
   return aggregatedData;
