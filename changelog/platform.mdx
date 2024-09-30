@@ -39,6 +39,19 @@ icon: "layer-group"
   </div>
 </div>
 
+### September 11, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `spaces-ui`
+      
+      Updates to Snapshots resource to track changes to a sheet's schema (i.e. added and removed columns). A more robust Snapshot will enable more complex features when comparing 2 different snapshots.
+    </div>
+  </div>
+</div>
+
 ### September 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
@@ -93,11 +106,12 @@ icon: "layer-group"
 ### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
+
   <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
+    <Snippet file="chips/spaces-ui.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
-      `@flatfile/api@1.9.13`
+      `@flatfile/api@1.9.13` `spaces-ui`
       
       New fields 'guide' and 'guardrail' have been added to Actions. These options enable providing markdown guidance and warnings to your users.
       
@@ -123,7 +137,49 @@ icon: "layer-group"
       
       The markdown content of guide will become accessible to the end user via a tooltip on the action element.
       
-      The content of the guardrail will be rendered up as a modal warning before the action event is triggered.
+      The `guardrail` component will render as a modal warning before the action event is triggered. This can be useful for actions that have critical consequences or require user acknowledgment before proceeding.
+      
+      This can be useful for actions that have critical consequences or require user acknowledgment before proceeding.
+      
+      
+    </div>
+  </div>
+</div>
+
+### August 15, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      `spaces-ui`
+      
+      The "requireAllValidTotal" option has been added for custom actions in the Sheet toolbar.
+      This new option requires all rows in the Sheet to be valid for the action to be enabled, regardless of selection. 
+      If "requireAllValidTotal" is set and there are any validation errors in the entire Sheet, the custom action will be disabled with the corresponding tooltip message. 
+      
+      The existing "requireAllValid" option has been updated to only apply to the selected rows, rather than all rows. 
+      If "requireAllValid" is set and there are validation errors in the selected rows, the custom action will be disabled with the corresponding tooltip message.
+      
+      
+      
+      
+      
+    </div>
+  </div>
+</div>
+
+### August 14, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `spaces-ui`
+      
+      Introduces support for handling locked sheets (indicated by the locked icon), and improves the handling of import files.
+      
     </div>
   </div>
 </div>
@@ -221,7 +277,7 @@ icon: "layer-group"
   </div>
 </div>
 
-## June 2024 (3)
+## June 2024 (4)
 
 ##### June 18, 2024
 
@@ -235,6 +291,21 @@ icon: "layer-group"
       
       We have enhanced the cell editing experience with an auto-expanding cell input that dynamically adjusts to fit the content.
       This improvement ensures that users can view and edit their data without constraints, enhancing the overall editing experience.
+      
+    </div>
+  </div>
+</div>
+
+##### June 10, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `spaces-ui`
+      
+      Improvements have been made to error handling and user feedback in the file import and mapping process. If an error occurs, a popover is displayed to the user with the error message, providing clearer feedback on failures during the import process.
       
     </div>
   </div>
@@ -264,7 +335,6 @@ icon: "layer-group"
       You can now search for users in the manager users page. This feature allows you to quickly find users by name, email, or role, making it easier to manage your user base.
       
       ![image](../changelog/images/search.gif)
-      
     </div>
   </div>
 </div>
@@ -285,7 +355,7 @@ icon: "layer-group"
   </div>
 </div>
 
-## May 2024 (4)
+## May 2024 (6)
 
 ##### May 30, 2024
 
@@ -349,6 +419,25 @@ icon: "layer-group"
   </div>
 </div>
 
+##### May 29, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `spaces-ui`
+      
+      A new "Update View" button can now be found in the job outcome modal for jobs that modify the visibility of columns in a workbook sheet. This button triggers updating the column visibility based on the job outcome.
+      
+      There are 2 new capabilities to the next property of Job Outcomes:
+      
+      - `view` gives developers the ability to manipulate the Sheet's view on completion of a Job - Giving control over things like applying a filter or hiding a column
+      - `download` gives developers the ability to include file details (such as a fileName and URL), which are then used to trigger a download to the user's browser on completion of the job
+    </div>
+  </div>
+</div>
+
 ##### May 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
@@ -376,6 +465,31 @@ icon: "layer-group"
       
       We corrected a typo in the `JobOutcomeNextFiles` type by renaming the file property to files to accurately represent an array of file objects.
       
+    </div>
+  </div>
+
+</div>
+
+##### May 07, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces-ui.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      `spaces-ui`
+      
+      ###### Saving and Sharing Custom Views
+      
+      Users can now apply filters, sorting, and search queries to the Sheet data and save those settings as a reusable view. Key changes include:
+      
+      - Added a "Views" dropdown in the Sheet toolbar to manage and apply saved views.
+      - Added a "Save View" modal that allows users to name and save the current Sheet filters/sorting as a view.
+      - Users can copy a sharable link with the view settings applied.
+      - Saved views are grouped into "My Views" and "All Views" sections.
+      - Added backend APIs to create, update, and delete saved views.
+      - Added new React hooks and components to support the saved views functionality.
+      - Updated translations for the new UI elements related to saved views.
     </div>
   </div>
 </div>
