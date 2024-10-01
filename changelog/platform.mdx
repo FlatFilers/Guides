@@ -4,6 +4,34 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## October 2024
+
+### October 01, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/##dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@5e48ffc
+      The time utility functions are updated with improved testing. The `nowInSeconds` function now accurately calculates the current time in seconds by flooring the result. The `past` and `future` functions are updated to properly handle the calculation of past and future times relative to the current time. The tests are also updated to mock the current time using `Date.now` for consistent and deterministic results. The release notes include an example of the expected usage of the `past` and `future` functions, showing how to calculate times relative to the current time.
+      
+      Example usage:
+      
+      ```typescript
+      import { seconds } from '@nestjs/throttler'
+      import { past, future } from './time.utils'
+      
+      // Calculate a time 5 seconds ago
+      const fiveSecondsAgo = past(seconds(5))
+      
+      // Calculate a time 10 seconds from now
+      const tenSecondsLater = future(seconds(10))
+      ```
+    </div>
+  </div>
+</div>
+
 ## September 2024
 
 ### September 27, 2024
@@ -214,9 +242,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## July 2024
+## July 2024 (4)
 
-### July 23, 2024
+##### July 23, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -230,7 +258,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 17, 2024
+##### July 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -246,7 +274,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 16, 2024
+##### July 16, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -275,7 +303,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 13, 2024
+##### July 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
