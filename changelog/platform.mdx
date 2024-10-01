@@ -4,6 +4,38 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## October 2024
+
+### October 01, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/##dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@52ba16e
+      Added a new API endpoint `/spaces/:spaceId/theme` that retrieves a space's theme (logo and primary color) based on a provided URL. The theme is fetched from the Brandfetch API using the BRANDFETCH_TOKEN environment variable. This allows developers to dynamically fetch branding assets for their spaces.
+      
+      Added functionality to the BFFService to fetch a space's theme from a provided URL using the Brandfetch API. The URL is first parsed to extract the domain, which is then used to query the Brandfetch API for the brand data. The logo URL and primary color are extracted from the response and returned. If the BRANDFETCH_TOKEN environment variable is not set, an error is thrown.
+      
+      Example usage:
+      
+      ```
+      GET /spaces/:spaceId/theme?url=https://example.com
+      ```
+      
+      This endpoint returns an object containing the logo URL and primary color for the provided domain, for example:
+      
+      ```json
+      {
+        "logo": "https://cdn.brandfetch.io/...",
+        "primaryColor": "#ff0000"
+      }
+      ```
+    </div>
+  </div>
+</div>
+
 ## September 2024
 
 ### September 27, 2024
@@ -214,9 +246,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## July 2024
+## July 2024 (4)
 
-### July 23, 2024
+##### July 23, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -230,7 +262,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 17, 2024
+##### July 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -246,7 +278,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 16, 2024
+##### July 16, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -275,7 +307,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 13, 2024
+##### July 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
