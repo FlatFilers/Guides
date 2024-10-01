@@ -1,0 +1,18 @@
+### October 01, 2024
+##dataxp
+
+api@5e48ffc
+The time utility functions are updated with improved testing. The `nowInSeconds` function now accurately calculates the current time in seconds by flooring the result. The `past` and `future` functions are updated to properly handle the calculation of past and future times relative to the current time. The tests are also updated to mock the current time using `Date.now` for consistent and deterministic results. The release notes include an example of the expected usage of the `past` and `future` functions, showing how to calculate times relative to the current time.
+
+Example usage:
+
+```typescript
+import { seconds } from '@nestjs/throttler'
+import { past, future } from './time.utils'
+
+// Calculate a time 5 seconds ago
+const fiveSecondsAgo = past(seconds(5))
+
+// Calculate a time 10 seconds from now
+const tenSecondsLater = future(seconds(10))
+```
