@@ -1,0 +1,9 @@
+### October 01, 2024
+##spaces
+
+spaces-ui@6c66a5d
+The release notes include the following changes:
+
+A bug fix has been made in the createConstraintsAgent function responsible for creating the "constraints" agent. The filter condition for checking if the "constraints" agent exists has been updated to use a more robust check. The mutation to create the agent now uses the mutateAsync method instead of mutate, ensuring that the promise is awaited before continuing. The useEffect dependency array has been updated to include only the agentsData dependency, removing the unnecessary dependencies on environment and createAgentMutation.
+
+These changes improve the reliability and correctness of the createConstraintsAgent function, ensuring that the "constraints" agent is properly created and initialized when needed. Developers using this package can expect a more robust and consistent behavior when working with the "constraints" agent.
