@@ -1,0 +1,5 @@
+### October 01, 2024
+##dataxp
+
+api@238c048
+This release introduces changes to the AppAutobuildsController in the nexus/apps module. The conditions for throwing a 400 error with the message "Can only specify File or Fields or Prompt" have been updated. The new condition checks if files and fields are provided together, or if files array is not empty and prompt is provided, or if fields and prompt are provided together. This change ensures that only one of the three options (file, fields, or prompt) can be specified, preventing the combination of these options. Developers should be aware of this restriction when working with the AppAutobuildsController and ensure they provide only one of the allowed options.
