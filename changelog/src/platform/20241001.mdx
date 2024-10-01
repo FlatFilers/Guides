@@ -1,0 +1,17 @@
+### October 01, 2024
+##dataxp
+
+api@c602aea
+Here are the key updates in this release:
+
+- Refactored the IDP (Identity Provider) enum to appear after the AccountDisabledReason enum in the Prisma schema.
+- Added a viewOnly decorator on several model primary keys to exclude them from create/update operations.
+- Renamed some database column names in various models to match the property names (e.g. driver_settings to driverSettings).
+- Added database mappings for some properties that were previously missing (e.g. actions.inputForm renamed to inputForm).
+- Refactored data transfer objects (DTOs) to use more specific types like ApiData, PrismaData instead of generic types.
+- Updated generated code to use the new DTO types for create/update operations.
+- Fixed some incorrect or missing database mappings in constraint, app, appAutobuild and other definitions.
+- Excluded some properties with initial values from database mapping to avoid overriding defaults (e.g. appEnvironmentFilters).
+- Added default values for some datetime properties to avoid null values.
+
+These changes primarily aim to improve and align the data modeling across the application. There are no new user-facing features or major API changes in this release.
