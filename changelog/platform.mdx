@@ -4,6 +4,25 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## October 2024
+
+### October 01, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/##spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@6c66a5d
+      The release notes include the following changes:
+      
+      A bug fix has been made in the createConstraintsAgent function responsible for creating the "constraints" agent. The filter condition for checking if the "constraints" agent exists has been updated to use a more robust check. The mutation to create the agent now uses the mutateAsync method instead of mutate, ensuring that the promise is awaited before continuing. The useEffect dependency array has been updated to include only the agentsData dependency, removing the unnecessary dependencies on environment and createAgentMutation.
+      
+      These changes improve the reliability and correctness of the createConstraintsAgent function, ensuring that the "constraints" agent is properly created and initialized when needed. Developers using this package can expect a more robust and consistent behavior when working with the "constraints" agent.
+    </div>
+  </div>
+</div>
+
 ## September 2024
 
 ### September 27, 2024
@@ -214,9 +233,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## July 2024
+## July 2024 (4)
 
-### July 23, 2024
+##### July 23, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -230,7 +249,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 17, 2024
+##### July 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -246,7 +265,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 16, 2024
+##### July 16, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -275,7 +294,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 13, 2024
+##### July 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
