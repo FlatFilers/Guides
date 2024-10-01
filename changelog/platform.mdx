@@ -4,6 +4,29 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## October 2024
+
+### October 01, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@93ecd37
+      The getDataDiff function has been updated to handle array values correctly when comparing proposed changes with existing source (src) and artifact data.
+      
+      If the proposed array value is the same as the existing array value in either the source or artifacts, it will not be included in the changeset returned by getDataDiff.
+      
+      The function now uses the lodash isEqual utility to compare array values, instead of strict equality (===), to account for differences in order or reference of array elements.
+      
+      For example, if the proposed tags array is ['jedi', 'sith'], it will not be included in the changeset if the existing source tags are ['JEDI', 'SITH'] or if the existing artifact tags are ['jedi', 'sith'], because the values are considered equal despite differences in capitalization or array order.
+      
+      This change ensures that unnecessary changes are not included in the changeset when working with array values, reducing noise and improving the accuracy of the changeset calculation.
+    </div>
+  </div>
+</div>
+
 ## September 2024
 
 ### September 27, 2024
@@ -214,9 +237,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## July 2024
+## July 2024 (4)
 
-### July 23, 2024
+##### July 23, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -230,7 +253,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 17, 2024
+##### July 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -246,7 +269,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 16, 2024
+##### July 16, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -275,7 +298,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### July 13, 2024
+##### July 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
