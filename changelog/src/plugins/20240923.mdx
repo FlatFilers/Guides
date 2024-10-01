@@ -2,4 +2,4 @@
 ##extractors
 
 @flatfile/plugin-xlsx-extractor@3.1.5
-This release fixes an issue when using `raw` or `rawNumbers` with non-string values in the header row. The utility function `prependNonUniqueHeaderColumns` now handles non-string values correctly by checking the data type before performing string operations. This ensures that header columns with non-string values are properly handled and deduplicated. For example, if the header row contains a numeric value such as `123`, it will no longer cause an error when using `raw` or `rawNumbers`.
+This release fixes an issue in header row logic that erred when the header row contained non-string values and the `raw` or `rawNumbers` params were set to true.
