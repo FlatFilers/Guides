@@ -1,0 +1,29 @@
+### October 03, 2024
+## spaces
+
+spaces-ui@1c95474
+The following release notes summarize the changes in the provided diff:
+
+Implemented sheet ordering functionality in the sidebar. Sheets are now displayed in the order specified by the `sheetSidebarOrder` setting in the workbook. Any sheets not included in the order are appended to the end. Added drag and drop functionality to reorder sheets, which updates the `sheetSidebarOrder` setting.
+
+Added a Sheet List component in the "Sidebar" build mode, allowing users to add, rename, and delete sheets. The Sheet List displays sheets in the configured order and allows reordering via drag and drop.
+
+Refactored the Blueprint Sidebar to display the selected sheet's fields and constraints. Users can add, edit, and remove fields and constraints for the selected sheet.
+
+Implemented a "Default Page" setting in the Space metadata, allowing users to configure the initial page displayed when entering the Space. Options include specific documents, workbook sheets, or the data checklist.
+
+Added checkboxes to control the visibility of the Data Checklist and Sidebar for guests in the Space.
+
+Consolidated theme configuration into the Theme Sidebar in the "Theme" build mode.
+
+Renamed the "Fields" build mode to "Blueprint" to better represent its functionality of configuring the data model and constraints.
+
+Removed the ability to create, rename, and delete sheets from the "Blueprint" mode, as this functionality has been moved to the "Sidebar" mode.
+
+Example code snippet for updating the default page setting:
+
+```typescript
+updateSpaceMetadata({ defaultPage: 'checklist' }) // Set the default page to the Data Checklist
+updateSpaceMetadata({ defaultPage: 'document:abc123' }) // Set the default page to a specific document
+updateSpaceMetadata({ defaultPage: 'workbook:xyz789:sheet123' }) // Set the default page to a specific workbook sheet
+```
