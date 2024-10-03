@@ -6,6 +6,45 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@cb604d9
+      The release includes the following updates:
+      
+      A new action "Clear Column" has been added to remove all contents from a column in a sheet. This action will clear the values in the specified column for all records in the sheet. The Clear Column action is available to all users, regardless of their entitlement status.
+      
+      For accounts with the Source Editor entitlement and workbooks marked as "Extracted From Source", two additional actions have been introduced: "Add Column" and "Remove Column". The Add Column action allows adding a new column to the sheet, while the Remove Column action removes an existing column from the sheet. These actions provide more control over the schema of source-extracted workbooks.
+      
+      The logic for handling column actions has been updated with a new class `ClearColumnLogic` to support the Clear Column functionality. This class handles the job execution, streaming updates, and record updates to clear the specified column values.
+      
+      The `stream.utils` module has a new utility function `emitStreamingUpdate` to emit job progress events during streaming operations like clearing columns.
+      
+      The release also includes related unit tests for the new `ClearColumnLogic` class and updates to existing tests to cover the new functionality.
+      
+      Example usage:
+      To clear a column named "Test 1" from a sheet, create a job with the following configuration:
+      
+      ```
+      {
+        operation: "ClearColumn",
+        input: { columnName: "Test 1" },
+        subject: {
+          type: "collection",
+          params: { sheetId: "<sheet_id>", columnKey: "Test 1" }
+        }
+      }
+      ```
+      
+      This will create a job that clears all values in the "Test 1" column for the specified sheet.
+    </div>
+  </div>
+</div>
+
 ### October 01, 2024
 
 <div style={{ display: "table", width: "auto" }}>
