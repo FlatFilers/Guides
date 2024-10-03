@@ -1,0 +1,7 @@
+### October 03, 2024
+## spaces
+
+spaces-ui@a29637a
+The release notes include the following changes:
+
+A change has been made to how the `createConstraintsAgent` function fetches and creates the constraints agent. Instead of filtering the agent list for the 'constraints' agent, it now uses the `find` method to locate it directly. If the constraints agent is not found, it fetches the bundle from a GitHub URL and creates a new agent using the `createAgentMutation` mutation. The updated code no longer checks the response status code and handles errors when fetching the constraints bundle. It also adds a check to ensure that `agentsData` is not null or undefined before attempting to create the constraints agent.
