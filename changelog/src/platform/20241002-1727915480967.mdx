@@ -1,0 +1,11 @@
+### October 02, 2024
+## dataxp
+
+api@14a09b3
+The provided diff includes the following updates:
+
+The DataInterceptor now handles instances of ModelCollection in addition to ResourceCollection. It checks if the data object is an instance of either ResourceCollection or ModelCollection, and if so, it returns the API representation of the data along with the calculated pagination details.
+
+The calculatePagination method now accepts both ResourceCollection and ModelCollection objects. It calculates the pagination details based on the skip, take, and length properties of the collection's pagination object.
+
+These changes allow the DataInterceptor to handle responses that involve ModelCollection instances, providing a consistent way to format and include pagination information for these types of responses. Developers using this package can now expect the DataInterceptor to handle both ResourceCollection and ModelCollection instances in a similar manner.
