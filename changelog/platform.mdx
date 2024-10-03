@@ -6,6 +6,39 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@d3786ce
+      A new operation `ClipAddRecords` has been added to the QuickStore driver. This operation allows adding records to a data clip sheet and its associated snapshot sheet. When executed, it inserts the specified records from the source sheet into the data clip sheet and the snapshot sheet, ignoring any conflicts based on the record ID. This ensures that the data clip and snapshot always contain the added records.
+      
+      To use this operation, the `clipAddRecords` method has been added to the Driver class. It takes the following parameters:
+      
+      - `recordIds`: An array of record IDs to be added.
+      - `sourceSheetId`: The ID of the source sheet from which the records will be copied.
+      - `dataClipId`: The ID of the data clip to which the records will be added.
+      - `snapshotId`: The ID of the snapshot to which the records will be added.
+      
+      Example usage:
+      
+      ```typescript
+      const result = await driver.clipAddRecords({
+        recordIds: ['record1', 'record2'],
+        sourceSheetId: { full: 'sourceSheet' },
+        dataClipId: 'dataClipId',
+        snapshotId: { full: 'snapshotId' }
+      });
+      ```
+      
+      This operation updates both the data clip sheet and its associated snapshot sheet, ensuring that the added records are available in both locations.
+    </div>
+  </div>
+</div>
+
 ### October 01, 2024
 
 <div style={{ display: "table", width: "auto" }}>
