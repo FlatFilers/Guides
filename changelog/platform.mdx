@@ -6,6 +6,21 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@a29637a
+      The release notes include the following changes:
+      
+      A change has been made to how the `createConstraintsAgent` function fetches and creates the constraints agent. Instead of filtering the agent list for the 'constraints' agent, it now uses the `find` method to locate it directly. If the constraints agent is not found, it fetches the bundle from a GitHub URL and creates a new agent using the `createAgentMutation` mutation. The updated code no longer checks the response status code and handles errors when fetching the constraints bundle. It also adds a check to ensure that `agentsData` is not null or undefined before attempting to create the constraints agent.
+    </div>
+  </div>
+</div>
+
 ### October 01, 2024
 
 <div style={{ display: "table", width: "auto" }}>
