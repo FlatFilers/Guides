@@ -6,6 +6,35 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@4ff06d0
+      Here are the release notes summarizing the changes in the provided diff:
+      
+      The "data_clips" table has a new column "snapshot_id" of type VARCHAR(32) added to store the snapshot ID associated with each data clip.
+      
+      The DataClipsController now has new endpoints for creating, retrieving, updating, and deleting data clips. The endpoints are protected by new privileges: "data-clip:create", "data-clip:read", "data-clip:update", and "data-clip:delete".
+      
+      The DataClipsService has new methods for creating, retrieving, updating, and deleting data clips. The createClip method performs various operations like creating a new clipped sheet, creating a snapshot, and persisting the data clip details in the database.
+      
+      The DataClipsRepository has new methods for fetching, creating, updating, and deleting data clips from the database. It also has a new method getResourceHierarchyOfDataClip to retrieve the account, environment, and space IDs associated with a data clip.
+      
+      The Entitlements resource now has a new entitlement "DataClipsEnabled" that determines if data clips are enabled. The entitlement influences the privileges "data-clip:create", "data-clip:read", "data-clip:update", and "data-clip:delete".
+      
+      The WorkbooksService has a new method createSheet that allows creating a new sheet with optional treatments like "CLIPPED_FROM_SHEET".
+      
+      The WorkbookRepository has updates to the createSheet method to support passing treatments while creating a new sheet.
+      
+      Overall, these changes introduce the data clips feature, which allows users to create clipped versions of existing sheets along with snapshots, provided they have the necessary entitlement.
+    </div>
+  </div>
+</div>
+
 ### October 01, 2024
 
 <div style={{ display: "table", width: "auto" }}>
