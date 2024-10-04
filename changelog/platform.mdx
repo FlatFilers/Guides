@@ -13,8 +13,59 @@ icon: "layer-group"
     <Snippet file="chips/spaces.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
-      Implemented sheet ordering functionality in the sidebar. Sheets are now displayed in the order specified by the `sheetSidebarOrder` setting in the workbook. Any sheets not included in the order are appended to the end. 
+      spaces-ui@1c95474
+      The following release notes summarize the changes in the provided diff:
       
+      Implemented sheet ordering functionality in the sidebar. Sheets are now displayed in the order specified by the `sheetSidebarOrder` setting in the workbook. Any sheets not included in the order are appended to the end. Added drag and drop functionality to reorder sheets, which updates the `sheetSidebarOrder` setting.
+      
+      Added a Sheet List component in the "Sidebar" build mode, allowing users to add, rename, and delete sheets. The Sheet List displays sheets in the configured order and allows reordering via drag and drop.
+      
+      Refactored the Blueprint Sidebar to display the selected sheet's fields and constraints. Users can add, edit, and remove fields and constraints for the selected sheet.
+      
+      Implemented a "Default Page" setting in the Space metadata, allowing users to configure the initial page displayed when entering the Space. Options include specific documents, workbook sheets, or the data checklist.
+      
+      Added checkboxes to control the visibility of the Data Checklist and Sidebar for guests in the Space.
+      
+      Consolidated theme configuration into the Theme Sidebar in the "Theme" build mode.
+      
+      Renamed the "Fields" build mode to "Blueprint" to better represent its functionality of configuring the data model and constraints.
+      
+      Removed the ability to create, rename, and delete sheets from the "Blueprint" mode, as this functionality has been moved to the "Sidebar" mode.
+      
+      Example code snippet for updating the default page setting:
+      
+      ```typescript
+      updateSpaceMetadata({ defaultPage: 'checklist' }) // Set the default page to the Data Checklist
+      updateSpaceMetadata({ defaultPage: 'document:abc123' }) // Set the default page to a specific document
+      updateSpaceMetadata({ defaultPage: 'workbook:xyz789:sheet123' }) // Set the default page to a specific workbook sheet
+      ```
+    </div>
+  </div>
+</div>
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@4ff06d0
+      Here are the release notes summarizing the changes in the provided diff:
+      
+      The "data_clips" table has a new column "snapshot_id" of type VARCHAR(32) added to store the snapshot ID associated with each data clip.
+      
+      The DataClipsController now has new endpoints for creating, retrieving, updating, and deleting data clips. The endpoints are protected by new privileges: "data-clip:create", "data-clip:read", "data-clip:update", and "data-clip:delete".
+      
+      The DataClipsService has new methods for creating, retrieving, updating, and deleting data clips. The createClip method performs various operations like creating a new clipped sheet, creating a snapshot, and persisting the data clip details in the database.
+      
+      The DataClipsRepository has new methods for fetching, creating, updating, and deleting data clips from the database. It also has a new method getResourceHierarchyOfDataClip to retrieve the account, environment, and space IDs associated with a data clip.
+      
+      The Entitlements resource now has a new entitlement "DataClipsEnabled" that determines if data clips are enabled. The entitlement influences the privileges "data-clip:create", "data-clip:read", "data-clip:update", and "data-clip:delete".
+      
+      The WorkbooksService has a new method createSheet that allows creating a new sheet with optional treatments like "CLIPPED_FROM_SHEET".
+      
+      The WorkbookRepository has updates to the createSheet method to support passing treatments while creating a new sheet.
+      
+      Overall, these changes introduce the data clips feature, which allows users to create clipped versions of existing sheets along with snapshots, provided they have the necessary entitlement.
     </div>
   </div>
 </div>
