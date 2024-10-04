@@ -1,0 +1,32 @@
+### October 04, 2024
+## dataxp
+
+api@3d8442f
+The release notes summarize the following updates:
+
+The generate constraint task now extracts a constraint function and constraint options from the assistant's response. The constraint options define the structure of the constraint's configuration object, including properties like label, type, required status, and description for each option. The response format has been updated to include both the constraint function and constraint options sections.
+
+The constraint generation logic has been updated to parse the assistant's response and create the constraint with both the function and options. Error handling has been improved to catch invalid responses.
+
+The ConstraintOptions and OptionConfig types have been added to define the structure of the constraint options.
+
+The BuiltInConstraintModel now includes an options property to store the constraint options.
+
+Example:
+
+```
+BEGIN_FUNCTION
+function constraint(value, key, { config, record }) {
+  // Constraint logic here
+  if (value.length > config.maxLength) {
+    record.addError(key, `${key} exceeds maximum length of ${config.maxLength}`)
+  }
+}
+END_FUNCTION
+
+BEGIN_OPTIONS
+{ "maxLength": { "label": "Max Length", "type": "number", "required": true, "description": "Maximum allowed length" } }
+END_OPTIONS
+```
+
+In the above example, the constraint function checks if the value exceeds the configured maxLength, and the options define the maxLength configuration with its label, type, required status, and description.
