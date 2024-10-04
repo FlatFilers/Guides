@@ -1,0 +1,19 @@
+### October 04, 2024
+## dataxp
+
+api@15f6667
+A Blueprint defines a Workbook in the Flatfile platform with one or more Sheets and fields. The update introduces a new constraint type called "stored" constraint to replace "external" constraint. Stored constraints allow defining validation rules and formatting functions for fields, beyond the built-in required and unique constraints. Existing external constraints like "flatfileIsValidEmail" and "flatfileIsValidUsPhoneNumber" are now considered stored constraints.
+
+When defining a field, stored constraints can be added with a "type" of "stored", a "validator" name, and a "config" object for any additional configuration options. For example:
+
+```json
+{
+  "type": "stored",
+  "validator": "length",
+  "config": {
+    "max": 100
+  }
+}
+```
+
+The stored constraint definition is accompanied by a JavaScript function that implements the validation/formatting logic based on the provided configuration. Developers can now use stored constraints instead of external constraints to define custom validations and formatting rules for their data fields.
