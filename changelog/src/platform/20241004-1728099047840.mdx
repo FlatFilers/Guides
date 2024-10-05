@@ -1,0 +1,40 @@
+### October 04, 2024
+## dataxp
+
+api@e8f6e6d
+The release notes contain the following updates:
+
+Added a new relation between the `DataClip` and `Workbook` models. The `DataClip` model now has a `workbookRelation` field that references the `Workbook` model with a foreign key constraint. This relation is named "WorkbookRelation" and enforces the `ON DELETE RESTRICT` behavior. Correspondingly, the `Workbook` model has a new `dataClips` field that represents the one-to-many relationship with `DataClip` objects.
+
+Removed the direct `workbookId` foreign key field from the `DataClip` model. The `workbookId` value is now referenced through the newly added `workbookRelation` field.
+
+Updated the `DataClipsRepository` to fetch the `accountId` and `environmentId` for a `DataClip` by joining with the `Workbook` model through the new `workbookRelation` field instead of the previous `sourceSheetRelation` and `workbook` nested fields.
+
+Updated the `DataClipsService` to connect a new `DataClip` to the associated `Workbook` through the `workbookRelation` field when creating a new `DataClip`. The `workbookId` is no longer directly assigned to the `DataClip` object.
+
+For developers using this package, the changes introduce a new way to access and manage the relationship between `DataClip` and `Workbook` objects. Instead of directly referencing the `workbookId`, developers should now use the `workbookRelation` field on `DataClip` objects to access the associated `Workbook`. Similarly, the `dataClips` field on `Workbook` objects can be used to retrieve the related `DataClip` objects.
+
+Example usage:
+
+```typescript
+// Fetching a DataClip's associated Workbook
+const dataClip = await prisma.dataClip.findUnique({
+  where: { id: dataClipId },
+  include: { workbookRelation: true }
+});
+const workbook = dataClip?.workbookRelation;
+
+// Creating a new DataClip and connecting it to a Workbook
+const newDataClip = await prisma.dataClip.create({
+  data: {
+    name: 'New Data Clip',
+    description: 'Description of the new data clip',
+    createdBy: userId,
+    snapshotId: snapshotId,
+    spaceId: spaceId,
+    status: DataClipStatus.OPEN,
+    clipSheetRelation: { connect: { id: clipSheetId } },
+    workbookRelation: { connect: { id: workbookId } }
+  }
+});
+```
