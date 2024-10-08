@@ -6,6 +6,35 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 08, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@eab37a6
+      The release contains the following updates:
+      
+      A new enum value 'EMPTY' has been added to the AutobuildType enumeration. This allows creating an app autobuild without specifying files, fields, or a prompt. 
+      
+      When creating an app autobuild with the 'empty' query parameter set to true, a basic workbook with one sheet and one field will be automatically initialized for the app's space.
+      
+      The AIGenerateBlueprintLogic has been updated to set the autobuild flag to true when creating a new app from a blueprint.
+      
+      The AppAutobuildsController has been updated to handle the 'empty' query parameter when creating a new app autobuild. If 'empty' is true, no blueprint generation or sample data generation jobs will be enqueued.
+      
+      For example, to create an empty app autobuild:
+      
+      ```
+      POST /apps/{appId}/autobuilds?environmentId={environmentId}&empty=true
+      ```
+      
+      This will create a new app autobuild of type 'EMPTY' and initialize a basic workbook for the app's space.
+    </div>
+  </div>
+</div>
+
 ### October 04, 2024
 
 <div style={{ display: "table", width: "auto" }}>
