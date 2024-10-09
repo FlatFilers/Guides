@@ -1,0 +1,21 @@
+### October 09, 2024
+## dataxp
+
+api@03ae9be
+The release notes include the following updates:
+
+The `getResolutionTable` function now accepts a `DataClipId` object instead of a string for the `dataClipId` parameter. It also formats the table name differently using the `full` property of the `DataClipId`.
+
+The `ClipGenerateResolutions` operation has been updated to improve performance by removing the use of `Promise.all` when loading the resolutions table and setting resolves. It now handles these steps sequentially. The SQL query used to generate resolutions has also been updated to handle additional resolution scenarios beyond just conflicts. The `resolveTo` column now has values of 'conflict', 'main', or 'clip' to indicate the resolution source. The `createResolvesObject` function has been updated to reflect these changes.
+
+The `ClipGetResolutions` operation has been updated to handle pagination correctly when fetching resolution records. The SQL query now orders by the `pk` column and applies the `OFFSET` and `LIMIT` clauses based on the provided `pageSize` and `pageNumber`.
+
+The `Utils` class has updated the `buildClipResolutionTable` function to accept a `DataClipId` object instead of a string for the `dataClipId` parameter.
+
+The `scaffoldResolutionsTable` function has also been updated to use the `DataClipId` object and format the table name accordingly.
+
+Several interfaces and operation definitions have been updated to use the `DataClipId` type instead of a string for the `dataClipId` parameter.
+
+A new endpoint `/data-clips/:dataClipId/resolutions` has been added to the `DataClipsController`. This endpoint allows retrieving resolution records for a given `DataClipId` with pagination support using the `pageSize` and `pageNumber` query parameters. It returns an array of `Flatfile.DiffRecords`.
+
+The `DataClipsService` has a new `getResolutions` method to handle the logic for the new `/data-clips/:dataClipId/resolutions` endpoint. It retrieves the resolution records from the ephemeral driver and returns them.
