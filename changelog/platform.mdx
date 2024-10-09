@@ -6,6 +6,45 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 09, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@71efda0
+      The clip generation resolutions query has been updated to use parameterized table names instead of hardcoded values. This allows the query to work with different table names dynamically.
+      
+      The DataClipsController has been extended with a new PATCH endpoint `/api/v1/data-clips/:dataClipId/resolutions`. This endpoint allows updating the resolutions for a given data clip record. It takes a `dataClipId` path parameter and a request body containing an array of `Resolve` objects with the updated resolution values, and the `recordId` for the record being updated. The controller calls the `DataClipsService` to perform the resolution update.
+      
+      A new method `updateResolutions` has been added to the `DataClipsService`. This method takes the `dataClipId`, `recordId`, and an array of `Resolve` objects representing the updated resolutions. It retrieves the relevant `DataClip` and `Sheet` objects, and calls the `ephemeral` service to update the resolutions in the database. It returns a `Success` object indicating the success of the operation.
+      
+      Example usage:
+      
+      ```typescript
+      const updateRequest: Flatfile.UpdateResolutionRequest = {
+        recordId: 'rec_xyz123',
+        resolves: [
+          {
+            key: 'name',
+            resolveTo: 'clip'
+          },
+          {
+            key: 'email',
+            resolveTo: 'main'
+          }
+        ]
+      }
+      
+      const response = await axios.patch(`/api/v1/data-clips/${dataClipId}/resolutions`, updateRequest)
+      ```
+      
+      This update allows developers to programmatically update the resolution values for individual data clip records, providing more control over the data reconciliation process.
+    </div>
+  </div>
+</div>
+
 ### October 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
