@@ -1,0 +1,5 @@
+### October 09, 2024
+## spaces
+
+spaces-ui@20d3515
+In the SpaceApp component, a null check has been added when accessing the `isAutoBuildWorkingSpace` and `isInAutoBuild` properties of the `spaceMeta` object. This change ensures that the code does not throw an error if `spaceMeta` is undefined or null. Developers using this package will not experience crashes or unexpected behavior when these properties are not available.
