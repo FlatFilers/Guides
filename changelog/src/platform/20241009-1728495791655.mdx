@@ -1,0 +1,22 @@
+### October 09, 2024
+## dataxp
+
+api@5cb45df
+Updated the ability to add records to an existing data clip. The POST /v1/data-clips/:dataClipId/add-records endpoint has been added, which accepts a list of record IDs and adds them to the clipped sheet. This allows developers to incrementally add records to an existing data clip.
+
+Added ability to create a snapshot when creating a new data clip. The snapshot table is created with the same schema and indexes as the original sheet, and the data is copied over. This ensures that the snapshot always contains the latest data from the original sheet at the time of creation.
+
+Improved logging and error handling for the addRecords operation. If the requested data clip does not exist, a 404 error is thrown. Logs the total number of records added and the overall success status.
+
+Note that record IDs that already exist in the clipped sheet or are invalid are safely skipped during insertion using the ON CONFLICT ("id") DO NOTHING clause. In a future iteration, a comparison between requested and actually added records will provide more accurate success reporting.
+
+Example usage:
+
+```typescript
+const addRecordsResponse = await $.req()
+  .post(`/v1/data-clips/${dataClipId.full}/add-records`)
+  .send({ recordIds: ['record1', 'record2'] })
+  .expect(201)
+
+// addRecordsResponse.body.data.success will be true if all records were successfully added
+```
