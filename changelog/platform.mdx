@@ -6,6 +6,21 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 09, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@6c23b4f
+      The agent routing logic has been updated to filter agents based on the event topic they are subscribed to. The `AgentRouter` now filters the list of agents retrieved from the `getAgents` method to only include agents whose `topics` array includes the event's topic. Similarly, the `AgentWorker` now retrieves the list of agents without filtering based on the event topic. The `mocks.ts` file has been updated to include an additional topic, `Flatfile.EventTopic.FileCreated`, in the `topics` array of the `agentResource` mock object. These changes ensure that agents are only executed for events they are subscribed to, based on the event topic, improving efficiency and preventing unnecessary agent executions.
+      
+      For example, if an event with the topic `Flatfile.EventTopic.RecordsUpdated` is received, only agents with that topic in their `topics` array will be executed, while agents subscribed to other topics like `Flatfile.EventTopic.FileCreated` will be skipped.
+    </div>
+  </div>
+</div>
+
 ### October 04, 2024
 
 <div style={{ display: "table", width: "auto" }}>
