@@ -1,9 +1,6 @@
 ### October 04, 2024
 ## dataxp
 
-api@54d7c66
-This release includes the following updates:
-
 A new `promptType` field has been added to the `prompts` table. This field is an enum with two possible values: `AI_ASSIST` and `CONSTRAINT_GENERATION`. The default value is set to `AI_ASSIST`.
 
 For prompts with the `AI_ASSIST` type, if the exact same prompt already exists for the same account, environment, space, and creator, the existing prompt's `updatedAt` field will be updated instead of creating a new prompt. This ensures that the list of recent prompts displayed to the user remains unique.
