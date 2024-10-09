@@ -6,6 +6,19 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 09, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@20d3515
+      In the SpaceApp component, a null check has been added when accessing the `isAutoBuildWorkingSpace` and `isInAutoBuild` properties of the `spaceMeta` object. This change ensures that the code does not throw an error if `spaceMeta` is undefined or null. Developers using this package will not experience crashes or unexpected behavior when these properties are not available.
+    </div>
+  </div>
+</div>
+
 ### October 04, 2024
 
 <div style={{ display: "table", width: "auto" }}>
