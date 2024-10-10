@@ -1,0 +1,57 @@
+<CodeGroup>
+
+```jsx listener.ts
+import api from '@flatfile/api'
+import { FlatfileListener } from '@flatfile/listener'
+
+export default function (listener: FlatfileListener) {
+  // Parent and Part Jobs have the same operation name.
+  // Filtering by isPart: false, ensures that the Job is the Parent
+  listener.filter(
+    { job: 'sheet:submitLargeSheet', isPart: false },
+    (submitLargeSheet) => {
+      submitLargeSheet.on('job:ready', async (event) => {
+        const {
+          context: { jobId, sheetId },
+        } = event
+        console.log('job:ready [PARENT]', { jobId: event.context.jobId })
+
+        const { data: counts } = await api.sheets.getRecordCounts(sheetId)
+        const { total  } = counts.counts
+        await api.jobs.ack(jobId, {
+          info: `Splitting Job`,
+          progress: 10,
+        })
+        console.log('splitting job: ', { jobId, total })
+
+        const splitjob = await api.jobs.split(jobId, { parts: total })
+        console.log('splitjob: ', { splitjob })
+
+        await api.jobs.ack(jobId, {
+          info: `Job Split into ${total} parts.`,
+          progress: 20,
+        })
+      })
+
+      // Listen for all parts to finish and then complete the parent Job
+
+      submitLargeSheet.on('job:parts-completed', async (event) => {
+        const {
+          context: { jobId },
+        } = event
+
+        console.log('job:parts-completed: ', jobId)
+
+        await api.jobs.complete(jobId, {
+          outcome: {
+            message: 'This job is now complete.',
+          },
+        })
+      })
+    }
+  )
+
+// See full code example (https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/dynamic-configurations/index.ts)
+```
+
+</CodeGroup>
