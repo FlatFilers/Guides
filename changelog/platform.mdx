@@ -6,6 +6,19 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 10, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@742ac55
+      Updated the constraint handling for fields in the blueprint sidebar. Fields can now have stored constraints with optional configuration options defined by the constraint validator. When adding a new constraint, if a constraint with the same validator already exists for the field, it will update the existing constraint with the new configuration instead of adding a duplicate. When removing a constraint, it filters out constraints of type 'stored' with the given validator. The EditConstraintForm component now renders input fields for any configuration options defined by the selected constraint, allowing users to provide values for those options. The configuration is saved along with the constraint when adding or updating it on the field. For example, if a constraint has an option for a minimum value, the user can specify the minimum value through the rendered input field.
+    </div>
+  </div>
+</div>
+
 ### October 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
