@@ -1,0 +1,10 @@
+### October 08, 2024
+##automations
+
+@flatfile/plugin-automap@0.5.2
+This release reverts a change that was made previously, where the .some() function was replaced with .every().
+This change affects the AutomapService class, specifically the isConfident and isStrongOrAbsolute methods.
+The isConfident method now checks if every field mapping in the job execution plan has a metadata certainty of Absolute, instead of checking if at least one field mapping has an Absolute certainty.
+Similarly, the isStrongOrAbsolute method checks if every field mapping has a certainty of Strong or Absolute, instead of checking if at least one field mapping meets that condition.
+This change tightens the criteria for determining if a job execution plan is considered confident or strong/absolute, as it now requires all field mappings to meet the certainty criteria, rather than just one.
+Developers using this package should be aware that the criteria for confident and strong/absolute job execution plans have been made more strict with this change.
