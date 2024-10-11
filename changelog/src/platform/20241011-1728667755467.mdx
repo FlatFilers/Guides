@@ -1,0 +1,142 @@
+### October 11, 2024
+## dataxp
+
+api@0713108
+```json
+{
+  "name": "Customers",
+  "slug": "customers",
+  "sheets": [
+    {
+      "name": "Customer Details",
+      "slug": "customer-details",
+      "fields": [
+        {
+          "key": "name",
+          "type": "string",
+          "constraints": [
+            {
+              "constraint": "flatfileRequired",
+              "params": {}
+            }
+          ],
+          "label": "Full Name",
+          "description": "The full name of the customer",
+          "actions": [
+            {
+              "label": "Generate Sample Data",
+              "operation": "ai-generate-sample-data",
+              "description": "Generate random sample data for this field"
+            }
+          ]
+        },
+        {
+          "key": "email",
+          "type": "string",
+          "constraints": [
+            {
+              "constraint": "flatfileRequired",
+              "params": {}
+            },
+            {
+              "constraint": "flatfileIsValidEmail",
+              "params": {}
+            }
+          ],
+          "label": "Email Address",
+          "description": "The email address of the customer",
+          "actions": [
+            {
+              "label": "Generate Sample Data",
+              "operation": "ai-generate-sample-data",
+              "description": "Generate random sample data for this field"
+            }
+          ]
+        },
+        {
+          "key": "phone",
+          "type": "string",
+          "constraints": [
+            {
+              "constraint": "flatfileIsValidUsPhoneNumber",
+              "params": {}
+            }
+          ],
+          "label": "Phone Number",
+          "description": "The phone number of the customer",
+          "actions": [
+            {
+              "label": "Generate Sample Data",
+              "operation": "ai-generate-sample-data",
+              "description": "Generate random sample data for this field"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Preferences",
+      "slug": "preferences",
+      "fields": [
+        {
+          "key": "priority",
+          "type": "option",
+          "options": [
+            {
+              "value": "high",
+              "label": "High Priority",
+              "description": "Setting a value to High Priority means it will be prioritized over other values"
+            },
+            {
+              "value": "normal",
+              "label": "Normal Priority"
+            }
+          ],
+          "label": "Priority Level",
+          "description": "The priority level for this customer",
+          "actions": [
+            {
+              "label": "Generate Sample Data",
+              "operation": "ai-generate-sample-data",
+              "description": "Generate random sample data for this field"
+            }
+          ]
+        },
+        {
+          "key": "manager",
+          "type": "reference-single",
+          "ref": "managers",
+          "label": "Account Manager",
+          "description": "The account manager assigned to this customer",
+          "actions": [
+            {
+              "label": "Generate Sample Data",
+              "operation": "ai-generate-sample-data",
+              "description": "Generate random sample data for this field"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Managers",
+      "slug": "managers",
+      "fields": [
+        {
+          "key": "name",
+          "type": "string",
+          "label": "Manager Name",
+          "description": "The name of the account manager",
+          "actions": [
+            {
+              "label": "Generate Sample Data",
+              "operation": "ai-generate-sample-data",
+              "description": "Generate random sample data for this field"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
