@@ -1,0 +1,19 @@
+### October 11, 2024
+## dataxp
+
+api@4053e15
+Here are the key changes summarized in the diff:
+
+- Fixed a typo where `deletedAt` was set to `undefined` instead of `null` in some tests.
+- Updated the Anthropic model instantiation to use the `AutobuildType.File` instead of `AutobuildType.FILE`.
+- Updated the OpenAI API call in the generate blueprint logic to use `AutobuildType.File`.
+- Added support for the `s256` code challenge method in the oAuthCode definition.
+- Removed some unused imports and variables related to FileDrive, FileStatus, Mode, and FileOrigin enums from the @db/core module.
+- Added new enum tokens for FileDrive, FileStatus, Mode, FileOrigin, AppType, ABFileDrive, AutobuildType, and DataClipStatus using the @flatfile/models package.
+- Added a new `toEventPayload` method to the FileModel class.
+- Replaced direct usage of enums with the new tokens from @flatfile/models.
+- Updated various repository, service, and controller methods to use the new enum token transformations.
+- Added API visibility annotations (e.g., `.api.hide()`) to some fields in the app and appAutobuild definitions.
+- Updated the DataClipsController to transform the incoming API status enum to the database enum using `DataClipStatusTransform.fromAPI`.
+
+The main changes revolve around replacing direct usage of enums from the @db/core module with new enum tokens defined in the @flatfile/models package. This allows for better separation of concerns and more flexibility in handling enums across different contexts (e.g., API, database, etc.).
