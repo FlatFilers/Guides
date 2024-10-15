@@ -6,6 +6,31 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 15, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@a37ecb5
+      The release notes include the following updates:
+      
+      A new detach utility function has been added that conditionally awaits a promise based on the NODE_ENV environment variable. During testing (NODE_ENV=test), it awaits the promise to ensure asynchronous operations are fully completed and prevent test flakiness. In other environments, it allows the promise to run asynchronously to avoid blocking execution.
+      
+      In the JobsService, the createJobPlanResource method is now awaited using the detach function instead of running asynchronously. This ensures the operation completes during testing.
+      
+      The jobs2.e2e-spec test suite has been updated with additional cleanup logic in the afterEach hooks to delete mapping programs specific to the environment and user being tested. This should improve test reliability.
+      
+      The 'correctly moves job to failed status on failure' test case has been updated to use a spy on the WorkbooksService.createSnapshot method instead of mocking the addRecords function. This change likely improves test maintainability.
+      
+      Two new test cases have been added to the detach.spec.ts file to verify the behavior of the detach function in both test and production environments.
+      
+      Overall, these changes aim to improve test reliability, maintainability, and introduce a new utility function to conditionally await asynchronous operations based on the environment.
+    </div>
+  </div>
+</div>
+
 ### October 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
