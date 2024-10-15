@@ -6,6 +6,41 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 15, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@d24baae
+      The following updates have been made to the package:
+      
+      The `getResolutionTable` function now returns the schema and table name for the clip resolutions table based on the provided data clip ID and optional schema name.
+      
+      In the `ClipGenerateResolutions` class, the snapshot table name has been updated to use the correct property `snapshotTable`.
+      
+      In the `ClipGetResolutions` class, the logic for resolving values has been updated to handle the case where the `resolveTo` value is set to 'main'.
+      
+      The `DataClipsController` now accepts a `grant` parameter along with the `dataClipId` and `dataClipUpdateData` parameters in the `update` method.
+      
+      The `DataClipsService` has been updated with the following changes:
+      
+      1. The `update` method now accepts a `grant` parameter and handles the logic for status transitions from 'OPEN' to 'READY' and from 'READY' to 'MERGED'.
+      
+      2. Two new private methods have been added:
+         - `handleStatusChangeToReady`: This method compares cell-level data between the source sheet, clip sheet, and clip origin, and updates the clip resolution table with a list of fields, identifying if it is a resolve or conflict and a `resolveTo` key (without a value).
+         - `handleStatusChangeFromReadyToMerge`: This method updates the source sheet with the resolved records from the clip when the status changes from 'READY' to 'MERGED'.
+      
+      3. The `update` method now returns the updated `DataClip` object after handling the status transitions and associated logic.
+      
+      4. The `DataClips.e2e-spec.ts` file has been updated with additional tests for status transitions, but these tests have been skipped for now.
+      
+      These changes introduce new functionality for handling data clip status transitions and updating the source sheet with resolved records from the clip. The update method now accepts a `grant` parameter and handles the necessary logic based on the status change. Additionally, the clip resolution table is updated when transitioning from 'OPEN' to 'READY', and the source sheet is updated with resolved records when transitioning from 'READY' to 'MERGED'.
+    </div>
+  </div>
+</div>
+
 ### October 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
