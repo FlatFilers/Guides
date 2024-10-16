@@ -6,6 +6,33 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 16, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@41f7273
+      The release notes summarize the following changes:
+      
+      Added a `config` field to the `ResolutionRow` type, which holds configuration data, specifically `markedForDeletion`, for each record in the resolutions table. Updated queries and code to handle the new `config` field.
+      
+      Added a TODO comment suggesting optimization of the `getCellConflicts` query to chunk the data.
+      
+      In the `ClipGetResolutions` class, added logic to count the number of records marked for deletion and include it in the summary response.
+      
+      Added new query parameters `includeRecords` and `includeSummary` to the `getResolutions` endpoint in the `DataClipsController`. These parameters allow selectively including records or summary information in the response.
+      
+      Updated the `getResolutions` method in the `DataClipsService` to handle the new `includeRecords` and `includeSummary` parameters and return the appropriate response structure.
+      
+      Implemented logic in the `mergeResolutions` method of the `DataClipsService` to delete records marked for deletion from the source sheet during the merge process.
+      
+      Modified the `scaffoldResolutionsTable` function to create a `config` column instead of the previous `meta` column in the resolutions table.
+    </div>
+  </div>
+</div>
+
 ### October 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
