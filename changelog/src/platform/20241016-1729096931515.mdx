@@ -1,0 +1,23 @@
+### October 16, 2024
+## spaces
+
+spaces-ui@47d9786
+The release introduces the following changes:
+
+The SheetTabs component now constructs the sheet link using the constructSheetLink utility function, which takes into account the current location and the buildMode and buildPage query parameters. This allows the sheet link to include the buildMode and buildPage query parameters when necessary.
+
+The SheetView component has been updated to pass the correct path to the SheetTabs component, removing "/sheet" from the path.
+
+The SidebarWorkbookItem component now uses the constructSheetLink utility function to construct the links for workbook sheets, ensuring that the buildMode and buildPage query parameters are included when necessary.
+
+The constructSheetLink utility function has been added to the BuildMode/Sidebar/utils module. This function constructs the sheet link by appending the sheet ID to the base link and adding the buildMode and buildPage query parameters if they are present in the current location.
+
+Example usage:
+
+```tsx
+const location = useLocation();
+const sheetLink = constructSheetLink('/space/123/workbook/456', 'sheet-abc', location);
+// sheetLink could be '/space/123/workbook/456/sheet/sheet-abc?buildMode=true&buildPage=page1'
+```
+
+These changes ensure that the sheet links include the necessary query parameters for the build mode and build page, improving the navigation experience in the application.
