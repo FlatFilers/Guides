@@ -23,6 +23,21 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@7e1d3ce
+      The release notes include the following updates:
+      
+      The `ReactOnClickOutsideWrapper` component now renders a styled `MainWrapper` element instead of a plain `main` element. The `MainWrapper` is styled with a height of 100% using the `styled-components` library. This change ensures that the wrapper element occupies the full height of its parent container.
+      
+      Additionally, the `onClick` event handler is now attached to the `MainWrapper` element instead of the `main` element. This change ensures that clicks outside of the children components within the wrapper are properly handled, regardless of the height of the wrapper element.
+    </div>
+  </div>
+</div>
+
 ### October 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
