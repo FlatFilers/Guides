@@ -23,6 +23,40 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@2fb2db3
+      Updated the useOnClickOutside hook to use React's event system instead of the DOM event system, allowing click events that occur inside a portaled element to bubble up correctly. Replaced usage of the useOnClickOutside hook with the new useReactOnClickOutside hook in CommentItem and SheetView components. Added a ReactOnClickOutsideWrapper component that wraps the app to provide context for the useReactOnClickOutside hook. Minor updates to test cases to account for the new useReactOnClickOutside hook.
+      
+      For example, in the CommentItem component, the useReactOnClickOutside hook is now used with the containerRef to hide the reactions dropdown when clicking outside:
+      
+      ```tsx
+      useReactOnClickOutside(containerRef, onHideReactions)
+      ```
+      
+      In SheetView, the useReactOnClickOutside hook is used with the sheetTableRef to stop commenting mode when clicking outside the sheet table:
+      
+      ```tsx
+      useReactOnClickOutside(sheetTableRef, onClickOutside)
+      ```
+      
+      The ReactOnClickOutsideWrapper component provides the context for the useReactOnClickOutside hook, wrapping the entire app in main.tsx:
+      
+      ```tsx
+      <ReactOnClickOutsideWrapper>
+        <Routing />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </ReactOnClickOutsideWrapper>
+      ```
+      
+      This change ensures that click events inside portaled elements like tooltips, popovers, and modals are correctly detected as outside clicks, simplifying the outside click detection logic for these components.
+    </div>
+  </div>
+</div>
+
 ### October 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
