@@ -1,0 +1,15 @@
+### October 24, 2024
+## dataxp
+
+api@15f0a27
+The release notes include the following changes:
+
+The maximum old space size for the Node.js process during code coverage testing with Jest has been reduced from 8192 MB to 4096 MB. The number of Jest worker processes has also been reduced from 70% of available CPU cores to 30%. These changes aim to optimize memory usage during testing.
+
+The version of the @testcontainers/postgresql dependency has been updated from 10.8.2 to 10.13.2, which likely includes bug fixes and improvements to the library used for managing PostgreSQL test containers.
+
+For the internal spaces initialization route (/v1/internal/spaces/init), the express.raw middleware has been updated to increase the request body size limit from the default to 100 MB. This change allows larger payloads to be processed by this route. Code example:
+
+```
+app.use(route, express.raw({ type: 'text/plain', limit: '100mb' }))
+```
