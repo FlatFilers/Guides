@@ -6,6 +6,39 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 21, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@3190a21
+      The release notes summarize the following changes:
+      
+      The resolveEnvironments method in the OAuthService has been updated to handle different scenarios for fetching environments based on a user's access permissions. The changes include:
+      
+      1. If the user has an AccountGrant, it will return all environments associated with the account.
+      
+      2. If the user has specific space permissions, it will return the environments associated with those spaces in addition to the environments from the AccountGrant.
+      
+      3. If the user has an AccountGrant with full account access, it will return all environments associated with the account without needing to fetch environments for specific spaces.
+      
+      The method now uses a Set to ensure unique environment IDs are returned, and the logic has been refactored to handle these different cases more efficiently.
+      
+      Example:
+      ```typescript
+      const result = await service.resolveEnvironments(
+        accountId,
+        grant,
+        permissions
+      );
+      ```
+      The `result` will contain the environments the user has access to based on their grant and permissions.
+    </div>
+  </div>
+</div>
+
 ### October 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
