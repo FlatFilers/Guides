@@ -1,0 +1,5 @@
+### October 24, 2024
+## dataxp
+
+api@8c8c903
+The updates allow updating the `mergedAt` field of a `DataClip` entity when its status changes to `Merged`. Previously, the `mergedAt` field was read-only, and now it can be set to the current date when the status is `Merged`. The `DataClipsService` has been updated to set the `mergedAt` field appropriately. The `dataClipDefinition` in the `dataClip.definition.ts` file has been modified to remove the `readOnly` constraint on the `mergedAt` field. The corresponding Prisma schema has been regenerated with these changes.
