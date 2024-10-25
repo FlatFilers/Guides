@@ -1,0 +1,7 @@
+### October 25, 2024
+## dataxp
+
+api@367fc65
+The release notes include the following changes:
+
+Logging improvements have been made for better error handling and visibility around Liveblocks integration. In the case of failures related to authorizing or preparing a Liveblocks session, relevant error messages will now be logged along with additional context such as the HTTP status, response body, and user information. If there are any errors parsing the Liveblocks session response or authorizing the session, a null token will be returned instead of throwing an exception.
