@@ -1,0 +1,21 @@
+### October 25, 2024
+## dataxp
+
+api@c6f2c9c
+The release notes for the provided changes are as follows:
+
+Added functionality to update a sheet by its ID or by the workbook ID and sheet slug. The `updateSheetById` method updates a sheet by its ID, while the `updateSheetByWorkbookIdAndSheetSlug` method updates a sheet using the workbook ID and sheet slug. Both methods handle cases where the sheet is deleted and throw a `NotFoundException` exception.
+
+The `updateSheetByWorkbookIdAndSheetSlug` method also handles scenarios where there are multiple sheets with the same slug, ensuring that only the undeleted sheet with the specified slug is updated.
+
+Example usage:
+
+```typescript
+// Update a sheet by its ID
+const updatedSheet = await workbookRepository.updateSheetById(sheetId, { metadata: { foo: 'bar' } });
+
+// Update a sheet by workbook ID and sheet slug
+const updatedSheet = await workbookRepository.updateSheetByWorkbookIdAndSheetSlug(workbookId, 'my-sheet', { metadata: { foo: 'bar' } });
+```
+
+Additionally, error handling has been improved by throwing a `NotFoundException` when attempting to update a deleted sheet.
