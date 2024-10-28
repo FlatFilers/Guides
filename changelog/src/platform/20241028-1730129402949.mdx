@@ -1,0 +1,15 @@
+### October 28, 2024
+## dataxp
+
+dashboard@ca0752f
+The release notes include the following changes:
+
+The CreateNewAppForm component now uses the getInputProps hook from the newAppForm to bind the name input field to the form state. This ensures that the input value is properly managed by the form state.
+
+The namespace input field in the CreateNewAppForm component is now correctly bound to the namespace field of the newAppForm state using getInputProps. Previously, it was incorrectly bound to the icon field. Additionally, a minor text correction has been made in the description for the namespace field.
+
+In the UpdateAppForm component, a new ref (namespaceCopyRef) has been added to allow copying the namespace value to the clipboard. The existing idCopyRef has been renamed to appIdCopyRef for clarity.
+
+The namespace input field in the UpdateAppForm component now has a rightSection with an action icon to copy the namespace value to the clipboard when clicked. This functionality was previously present for the appId field but not for the namespace field.
+
+For developers using these components, the changes primarily improve the user experience by allowing them to easily copy relevant identifier values (appId and namespace) to the clipboard. Additionally, the fix in the CreateNewAppForm component ensures that the namespace field is correctly bound to the form state, preventing potential issues with form data management.
