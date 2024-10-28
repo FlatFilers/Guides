@@ -20,6 +20,17 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@f87bad9
+      Updated the edit constraint form to disable the save button if the constraint label, validator, or function fields are empty. Added the ability to disable the add constraint button for new fields in the edit field content component. In the edit field content component, display the constraint validator if the label is empty when rendering constraints. Updated the edit field form to update the field key to a snake case version of the label for new fields, but only if the key was not previously set or matched the previous label. This ensures that the key remains stable once it has been set. Refactored the input change handler in the edit field form to improve readability and performance.
+    </div>
+  </div>
+</div>
+
 ### October 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
