@@ -15,7 +15,7 @@ icon: "plug"
       
       @flatfile/plugin-convert-openapi-schema@0.3.2
       Updated the plugin to version 0.3.2. This release fixes an async/await bug in the plugin. The plugin now properly handles asynchronous operations related to configuring the space with OpenAPI schema. The changes include updating the index.ts file to use the configureSpace function correctly and removing unnecessary code. The setup.factory.ts file was refactored to handle undefined data more gracefully when generating fields.
-
+      
       @flatfile/plugin-convert-yaml-schema@0.3.2
       This release includes an important bug fix and updates several dependencies. The async/await bug in the plugin has been resolved. Additionally, the dependency on @flatfile/plugin-convert-json-schema has been updated to version 0.4.2. The package.json file has been updated with new script commands for running different types of tests (unit, e2e). The plugin's entry point (index.ts) has been refactored to simplify the configureSpaceWithYamlSchema function, which now uses the configureSpace function from the @flatfile/plugin-space-configure package. The setup.factory.ts file has been updated to return a Setup object instead of a SetupFactory, and the generateSetup function now handles schema processing and field generation more efficiently.
       
