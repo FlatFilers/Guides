@@ -1,0 +1,5 @@
+### October 28, 2024
+##schema
+
+@flatfile/plugin-convert-openapi-schema@0.3.2
+Updated the plugin to version 0.3.2. This release fixes an async/await bug in the plugin. The plugin now properly handles asynchronous operations related to configuring the space with OpenAPI schema. The changes include updating the index.ts file to use the configureSpace function correctly and removing unnecessary code. The jest.config.js file was added for running tests. The package.json file was updated with new test scripts for running unit and end-to-end tests separately. The setup.factory.ts file was refactored to handle undefined data more gracefully when generating fields.
