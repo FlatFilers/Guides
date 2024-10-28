@@ -23,6 +23,39 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@dabe5e7
+      The release contains the following updates:
+      
+      IDP Role Synchronization has been added. This feature allows synchronizing the roles specified by an Identity Provider (IDP) with the user's roles in Flatfile. If the account has the "idpRoles" entitlement enabled, the roles from the user's IDP will be mapped to the corresponding roles in Flatfile when the user first activates. The IDP can only specify a single account-level role.
+      
+      A new method `syncPermissions` has been introduced in the `OAuthService`. This method checks if the "idpRoles" entitlement is enabled for the account. If enabled, it ensures that the user's roles match the role specified by the IDP. It removes any extra permissions the user shouldn't have and assigns the correct role if the current role doesn't match the IDP role.
+      
+      The `OAuthUser` interface now includes a `idpSpecifiedRoles` property to hold the roles specified by the IDP.
+      
+      The `FronteggDriver` has been updated to populate the `idpSpecifiedRoles` property with the roles from the IDP token during user creation or update.
+      
+      Example usage:
+      
+      ```typescript
+      const oauthUser: OAuthUser = {
+        id: userId.full,
+        accountId: accountId.full,
+        idpSpecifiedRoles: ['flatfile_admin']
+      }
+      
+      await oauthService.syncPermissions(oauthUser)
+      ```
+      
+      This will ensure that the user has the "Admin" role for the account, removing any other roles the user might have had previously.
+    </div>
+  </div>
+</div>
+
 ### October 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
