@@ -3,3 +3,9 @@
 
 @flatfile/plugin-convert-yaml-schema@0.3.2
 This release includes an important bug fix and updates several dependencies. The async/await bug in the plugin has been resolved. Additionally, the dependency on @flatfile/plugin-convert-json-schema has been updated to version 0.4.2. The package.json file has been updated with new script commands for running different types of tests (unit, e2e). The plugin's entry point (index.ts) has been refactored to simplify the configureSpaceWithYamlSchema function, which now uses the configureSpace function from the @flatfile/plugin-space-configure package. The setup.factory.ts file has been updated to return a Setup object instead of a SetupFactory, and the generateSetup function now handles schema processing and field generation more efficiently.
+
+@flatfile/plugin-convert-sql-ddl@0.2.2
+This release updates the @flatfile/plugin-convert-sql-ddl package to version 0.2.2. It includes a fix for an async/await bug. The configureSpaceWithSqlDDL function has been refactored to use the configureSpace function from @flatfile/plugin-space-configure, simplifying the implementation. The generateSetup function has been updated to remove the source property from the workbook object and return a Setup type instead of a SetupFactory type.
+
+@flatfile/plugin-convert-json-schema@0.4.2
+This release fixes an async/await bug in the plugin. Additionally the generateSetup function has been refactored to handle cases where the data or data.properties is undefined, and the partialSheetConfig.source property is no longer deleted.
