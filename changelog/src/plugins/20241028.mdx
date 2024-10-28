@@ -1,5 +1,8 @@
 ### October 28, 2024
 ##schema
 
+@flatfile/plugin-convert-sql-ddl@0.2.2
+This release updates the @flatfile/plugin-convert-sql-ddl package to version 0.2.2. It includes a fix for an async/await bug. The configureSpaceWithSqlDDL function has been refactored to use the configureSpace function from @flatfile/plugin-space-configure, simplifying the implementation. The generateSetup function has been updated to remove the source property from the workbook object and return a Setup type instead of a SetupFactory type.
+
 @flatfile/plugin-convert-json-schema@0.4.2
 This release fixes an async/await bug in the plugin. Additionally the generateSetup function has been refactored to handle cases where the data or data.properties is undefined, and the partialSheetConfig.source property is no longer deleted.
