@@ -23,6 +23,32 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@73f0376
+      The provided diff includes changes related to event handling, file management, and tracing in the platform application. Here are the key updates:
+      
+      Added a new `emitRaw` and overloaded `emit` methods to the `EventsService` to emit events for models with or without a strictly typed domain name. The `emit` method accepts a grant, model, topic suffix, optional payload, and optional environment ID. The `emitRaw` method follows a similar pattern but accepts the full event topic.
+      
+      In the `FilesController`, removed the OpenTelemetry tracing logic and updated the `createFile` method to use the new `EventsService.emitRaw` method for emitting file creation events. The `getFile` method now directly returns the file model instead of handling undefined cases.
+      
+      Updated the `FilesService` with the following changes:
+      - Added the `@TraceMethod` decorator to trace method execution.
+      - Removed OpenTelemetry tracing logic from the `createFile` method.
+      - Simplified the `createFile` method to use the new `EventsService.emitRaw` for emitting file creation events.
+      - Refactored the `deleteFile` method to use the new `EventsService.emit` method for emitting file deletion events.
+      - Removed the `getFileMaybe` method.
+      
+      Added a new `TraceMethod` decorator in the `tracing.ts` file to provide a custom decorator for tracing method execution.
+      
+      Other minor changes include updating the `.eslintrc.js` file to disable the `no-dupe-class-members` rule and updating test cases in `events.service.spec.ts` and `files.service.spec.ts`.
+    </div>
+  </div>
+</div>
+
 ### October 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
