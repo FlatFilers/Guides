@@ -6,6 +6,29 @@ icon: "plug"
 
 ## October 2024
 
+### October 28, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/##schema.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-convert-openapi-schema@0.3.2
+      Updated the plugin to version 0.3.2. This release fixes an async/await bug in the plugin. The plugin now properly handles asynchronous operations related to configuring the space with OpenAPI schema. The changes include updating the index.ts file to use the configureSpace function correctly and removing unnecessary code. The setup.factory.ts file was refactored to handle undefined data more gracefully when generating fields.
+      
+      @flatfile/plugin-convert-yaml-schema@0.3.2
+      This release includes an important bug fix and updates several dependencies. The async/await bug in the plugin has been resolved. Additionally, the dependency on @flatfile/plugin-convert-json-schema has been updated to version 0.4.2. The package.json file has been updated with new script commands for running different types of tests (unit, e2e). The plugin's entry point (index.ts) has been refactored to simplify the configureSpaceWithYamlSchema function, which now uses the configureSpace function from the @flatfile/plugin-space-configure package. The setup.factory.ts file has been updated to return a Setup object instead of a SetupFactory, and the generateSetup function now handles schema processing and field generation more efficiently.
+      
+      @flatfile/plugin-convert-sql-ddl@0.2.2
+      This release updates the @flatfile/plugin-convert-sql-ddl package to version 0.2.2. It includes a fix for an async/await bug. The configureSpaceWithSqlDDL function has been refactored to use the configureSpace function from @flatfile/plugin-space-configure, simplifying the implementation. The generateSetup function has been updated to remove the source property from the workbook object and return a Setup type instead of a SetupFactory type.
+      
+      @flatfile/plugin-convert-json-schema@0.4.2
+      This release fixes an async/await bug in the plugin. Additionally the generateSetup function has been refactored to handle cases where the data or data.properties is undefined, and the partialSheetConfig.source property is no longer deleted.
+
+    </div>
+  </div>
+</div>
+
 ### October 22, 2024
 
 <div style={{ display: "table", width: "auto" }}>
@@ -14,7 +37,8 @@ icon: "plug"
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
       @flatfile/plugin-automap@0.6.0
-      This release removes the remeda dependency and adds the modern-async dependency. It also introduces a new option disableFileNameUpdate which disables updating the file name with automatic mapping information. The file name update behavior previously occurred unconditionally, but now can be controlled via this new option. There are no changes to the external interface beyond the addition of this new option.
+      This release removes the remeda dependency and adds the modern-async dependency. It also introduces a new option disableFileNameUpdate which disables updating the file name with automatic mapping information. The file name update behavior previously occurred unconditionally, but now can be controlled via this new option. There are no changes to the external interface beyond the addition of this new option.      
+
     </div>
   </div>
 </div>
@@ -23,11 +47,12 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/##extractors.mdx" />
+    <Snippet file="chips/extractors.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
-      @flatfile/plugin-delimiter-extractor@2.2.3
-      This release corrects the DelimiterOption import. The package version has been updated to 2.2.3.
+      `@flatfile/plugin-delimiter-extractor@2.2.3` 
+      
+      This release corrects the DelimiterOption import.
       
     </div>
   </div>
@@ -39,10 +64,11 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/##extractors.mdx" />
+    <Snippet file="chips/extractors.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
-      @flatfile/plugin-xlsx-extractor@3.1.5
+      `@flatfile/plugin-xlsx-extractor@3.1.5`
+      
       This release fixes an issue in header row logic that erred when the header row contained non-string values and the `raw` or `rawNumbers` params were set to true.
       
     </div>
