@@ -6,6 +6,19 @@ icon: "plug"
 
 ## October 2024
 
+### October 28, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/##schema.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-convert-json-schema@0.4.2
+      This release fixes an async/await bug in the plugin. It sets up Jest configurations specifically for the JSON Schema plugin, including test environment, transform, setup files, timeout, and global setup. The release also updates the package version to 0.4.2 and modifies the scripts in package.json to include separate commands for running unit tests and end-to-end tests. The main change is in the index.ts file, where the configureSpaceWithJsonSchema function now uses the configureSpace function from the @flatfile/plugin-space-configure package, passing in the generateSetup function as a parameter. The generateSetup function has been refactored to handle cases where the data or data.properties is undefined, and the partialSheetConfig.source property is no longer deleted. Additionally, the isValidUrl function has been included to validate URLs.
+    </div>
+  </div>
+</div>
+
 ### October 18, 2024
 
 <div style={{ display: "table", width: "auto" }}>
