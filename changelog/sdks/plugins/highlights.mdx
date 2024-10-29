@@ -6,6 +6,29 @@ icon: "plug"
 
 ## October 2024
 
+### October 29, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/schema.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-convert-sql-ddl@0.3.0
+      The release introduces the following updates to the @flatfile/plugin-convert-sql-ddl package:
+      
+      The bundler used for the package has been swapped from Parcel to tsup. The configuration file for tsup has been added as tsup.config.mjs. The Jest configuration file has been renamed from jest.config.js to jest.config.cjs to align with the new bundler.
+      
+      The package now supports ECMAScript module (ESM) distribution with different entry points for Node.js and browser environments. The package.json file has been updated with new "exports" field to define the entry points.
+      
+      The build scripts in package.json have been updated to use tsup instead of Parcel. New scripts "checks" and "lint" have been added for running TypeScript checks and linting.
+      
+      The dependencies @flatfile/plugin-convert-json-schema and @flatfile/plugin-space-configure have been updated to their latest versions 0.5.0 and 0.7.0 respectively. A new dev dependency @flatfile/bundler-config-tsup has been added for configuring the tsup bundler.
+      
+      The "type" field in package.json has been set to "module" to indicate that the package is using ECMAScript modules.
+    </div>
+  </div>
+</div>
+
 ### October 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
