@@ -6,6 +6,34 @@ icon: "plug"
 
 ## October 2024
 
+### October 29, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/automations.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-export-workbook@2.0.0
+      The release includes both minor and patch changes. The minor change involves swapping the package's bundler from Rollup to tsup. This change may impact the way the package is built and distributed.
+      
+      Patch changes include updating the dependencies @flatfile/plugin-job-handler to version 0.7.0 and @flatfile/util-common to version 1.5.0. Developers using this package should ensure they have compatible versions of these dependencies installed.
+      
+      Additionally, the release introduces a new Jest configuration file jest.config.cjs and updates the package.json file with changes to the export fields, script commands, and devDependencies. Developers may need to adjust their project setup and build scripts accordingly.
+      
+      The package now exports both CommonJS and ES modules, with the main entry point being dist/index.cjs for CommonJS and dist/index.js for ES modules. Developers should update their import statements accordingly.
+      
+      Example:
+      ```js
+      // For CommonJS
+      const exportWorkbook = require('@flatfile/plugin-export-workbook');
+      
+      // For ES modules
+      import exportWorkbook from '@flatfile/plugin-export-workbook';
+      ```
+    </div>
+  </div>
+</div>
+
 ### October 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
