@@ -6,6 +6,34 @@ icon: "plug"
 
 ## October 2024
 
+### October 29, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-record-hook@1.8.0
+      This release introduces the following updates:
+      
+      The package bundler has been swapped to tsup. The @flatfile/util-common dependency has been updated to version 1.5.0. A new option `options.debug` of type `boolean` with a default value of `false` has been added, which allows turning on debug logging. Several development dependencies and configuration files have been updated to support the new bundler and other tooling changes. Unit and end-to-end test configurations have been separated, and additional checks have been added to the build process.
+      
+      For developers using this package, the new `options.debug` parameter allows enabling debug logging, which can aid in troubleshooting issues. The updated dependency may introduce changes that could impact functionality, so reviewing the release notes for @flatfile/util-common version 1.5.0 is recommended. The bundler change should not impact the package's external interface, but may improve performance or introduce other optimizations.
+      
+      Example usage:
+      
+      ```js
+      import RecordHook from '@flatfile/plugin-record-hook';
+      
+      const recordHook = new RecordHook({
+        debug: true, // Enable debug logging
+        // ... other options
+      });
+      ```
+    </div>
+  </div>
+</div>
+
 ### October 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
