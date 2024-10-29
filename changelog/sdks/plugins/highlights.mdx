@@ -6,6 +6,31 @@ icon: "plug"
 
 ## October 2024
 
+### October 29, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/schema.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-convert-openapi-schema@0.4.0
+      The release introduces the following changes:
+      
+      The package bundler has been swapped from Rollup to tsup. This is a minor change that affects the internal build process. 
+      
+      The @flatfile/plugin-space-configure dependency has been updated to version 0.7.0. This is a patch update for consumers of the package.
+      
+      The package now exports types in the .d.ts and .d.cts formats for both Node.js and browser environments. This improves TypeScript support for developers using the package.
+      
+      The package.json file has been updated to reflect the new bundler and export configurations. The build scripts have also been updated accordingly.
+      
+      The jest.config.js file has been renamed to jest.config.cjs to align with the Node.js CommonJS module resolution. This is an internal change that should not affect package consumers.
+      
+      Overall, these changes aim to improve the internal build process, update dependencies, and enhance TypeScript support for the package.
+    </div>
+  </div>
+</div>
+
 ### October 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
