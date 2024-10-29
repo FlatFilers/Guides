@@ -1,0 +1,15 @@
+### October 29, 2024
+## automations
+
+@flatfile/plugin-webhook-egress@1.5.0
+The release includes updates to the webhook egress plugin.
+
+The package's bundler has been swapped from Rollup to tsup. This change improves the build process and output formats.
+
+The release updates several dependencies: @flatfile/util-response-rejection to version 1.5.0, @flatfile/plugin-job-handler to version 0.7.0, and @flatfile/util-common to version 1.5.0.
+
+A new Jest configuration file jest.config.cjs has been added for running tests. The package.json scripts have been updated to use tsup for building and include new scripts for linting, type checking, and running tests.
+
+The package now supports ES modules and includes separate builds for node and browser environments. The exports field in package.json has been updated to define the different entry points.
+
+Overall, this release updates the build tooling, testing setup, and dependencies for the webhook egress plugin.
