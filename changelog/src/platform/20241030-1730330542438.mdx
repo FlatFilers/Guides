@@ -1,0 +1,17 @@
+### October 30, 2024
+## dataxp
+
+api@4641e9b
+In this update, several changes have been made to optimize the performance of mapping plan creation and database queries:
+
+1. The logging statements have been updated to log the length of arrays/objects instead of the entire object itself to reduce the amount of data logged and improve performance.
+
+2. In the `MappingsRepository`, a new approach has been introduced to handle large key sizes in the mapping programs. When the source or destination key sizes exceed a certain threshold (500 in this case), the mapping program is queried separately and merged with the mapping rules to avoid deserialization issues caused by large JSON objects.
+
+3. The `CorePrismaService` and `SdkPrismaService` have been updated to log Prisma events with more context, making it easier to identify the source of the logs.
+
+4. In the `MappingsService`, some logging statements have been updated to log the length of objects instead of the entire object. Additionally, the logging of certain intermediate variables has been removed to reduce the amount of data logged.
+
+5. The `MappingPlanCreator` has been updated to remove unnecessary logging of objects and to log only the relevant information during the plan creation process.
+
+These changes aim to improve the overall performance of the mapping plan creation process and database queries by reducing the amount of data logged and optimizing the handling of large key sizes in mapping programs.
