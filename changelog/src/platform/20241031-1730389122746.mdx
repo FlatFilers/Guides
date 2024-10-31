@@ -1,0 +1,15 @@
+### October 31, 2024
+## dataxp
+
+api@fc0aa2d
+The following changes have been made:
+
+The UserInviteResource class has been renamed to UserInviteModel. Import statements have been updated to reflect this change. The UserInviteModel now extends from a base Resource class, and its constructor and toAPI method have been removed.
+
+The AuthRepository class has updated methods to use the new UserInviteModel class instead of UserInviteResource. Methods such as createUserInvite, getUserInviteById, getUserInviteByUserId, deleteUserInviteById, and acceptInvite now return an instance of UserInviteModel instead of UserInviteResource.
+
+The AuthService class has updated the getUserInviteById method to return an instance of UserInviteModel instead of UserInviteResource.
+
+The userInvite.resource.spec.ts file, which contained tests for the UserInviteResource class, has been removed.
+
+These changes likely aim to simplify the implementation of the UserInvite model by removing the custom toAPI method and extending from a base Resource class. Developers consuming this package should now expect to receive instances of UserInviteModel instead of UserInviteResource when working with user invites.
