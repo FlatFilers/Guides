@@ -6,6 +6,29 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 31, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@79f91d0
+      The release notes contain the following updates:
+      
+      A new `ViewModel` class has been introduced to represent a view resource, replacing the previous `ViewsResource` class. This new class will be used to interact with view data.
+      
+      The `getViews` method in the `ViewsRepository` class now returns a `ResourceCollection` of `ViewModel` instances instead of `ViewsResource` instances.
+      
+      The `getView`, `createView`, `updateView`, and `deleteView` methods in the `ViewsRepository` class now utilize the `ViewModel` class for building and returning view data, instead of the previous `ViewsResource` class.
+      
+      The `ViewsResource` class has been removed from the codebase.
+      
+      These changes refactor the way view data is represented and handled within the application, potentially improving code organization, maintainability, and future extensibility. Developers consuming this package should update their code to handle the new `ViewModel` class when interacting with view data.
+    </div>
+  </div>
+</div>
+
 ### October 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
