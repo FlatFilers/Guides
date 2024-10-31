@@ -6,6 +6,41 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 31, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@c4e92c5
+      The release includes updates related to data retention policies:
+      
+      The DataRetentionPolicyResource class has been renamed to DataRetentionPolicyModel. This class now uses the RetentionPolicyTypeTransform utility to convert between the API and database representations of the retention policy type. The API and database policy type mappings have been moved from the DataRetentionPolicyResource class to the RetentionPolicyTypeTransform utility.
+      
+      Improvements have been made to the DataRetentionPoliciesRepository and DataRetentionPoliciesService to use the new DataRetentionPolicyModel class and the RetentionPolicyTypeTransform utility.
+      
+      The getDataRetentionPolicyResourceHierarchy method in the DataRetentionPoliciesService has been renamed to getDataRetentionPolicyModelHierarchy.
+      
+      Example usage:
+      
+      ```typescript
+      import { DataRetentionPolicyModel } from './dataRetentionPolicy.model'
+      import { RetentionPolicyTypeTransform } from '@flatfile/models'
+      
+      const policyData = {
+        id: 'abc123',
+        type: RetentionPolicyTypeTransform.apiToDB(Flatfile.DataRetentionPolicyEnum.LastActivity),
+        period: 30,
+        // ...
+      }
+      
+      const policyModel = new DataRetentionPolicyModel(policyData)
+      ```
+    </div>
+  </div>
+</div>
+
 ### October 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
