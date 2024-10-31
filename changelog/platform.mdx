@@ -6,6 +6,36 @@ icon: "layer-group"
 
 ## October 2024
 
+### October 31, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@f423a0a
+      The provided diff includes the following changes:
+      
+      - Improved the SQL query for inserting records into the clip sheet table and snapshot table to use parameterized queries and avoid SQL injection.
+      - Added additional checks for null values when determining conflict status in the ClipGenerateResolutions operation.
+      - Added metadata to the ClipGetResolutions response, including isNewRow, removedFromMain, and hasConflict flags.
+      - Added a hasConflict flag to the resolutions table and updated queries to set this flag appropriately.
+      - Improved the ClipUpdateResolutions operation to handle conflicts and set the hasConflict flag correctly.
+      - Updated the scaffoldResolutionsTable function to add new columns for isNewRow, removedFromMain, and hasConflict.
+      - In the DataClipsService, added logic to handle the status change from Ready to Open by unlocking the clip sheet.
+      - Improved the handleStatusChangeFromReadyToMerge method to:
+        - Lock the clip sheet when changing status to Ready.
+        - Check for conflicts before merging and throw an error if conflicts exist.
+        - Update only modified records in the source sheet.
+        - Add new records from the clip to the source sheet.
+        - Remove marked for deletion records from the source sheet.
+      - Removed the code that updates the DataClip status to Merged after merging changes, as this is likely handled elsewhere.
+      
+      These changes aim to improve the handling of conflicts and edge cases during data clip operations, enhance security by using parameterized queries, and provide better metadata and error handling.
+    </div>
+  </div>
+</div>
+
 ### October 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
