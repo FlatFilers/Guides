@@ -1,0 +1,28 @@
+### November 01, 2024
+## dataxp
+
+api@aab130b
+The release notes for this update are as follows:
+
+The assistant now provides better error handling and recovery for failed blueprint generation attempts. It will retry up to 5 times if the workbook creation fails due to issues like missing referenced fields in the generated blueprint. On each retry, it will present the previous failed blueprint attempt and error details to the assistant, instructing it to fix the issues and return an updated blueprint.
+
+Additionally, if the response from the assistant is too long, it will no longer retry and immediately throw an error, as this error is unlikely to be resolved by retrying. The retry logic helps to increase the success rate of blueprint generation by allowing the assistant to correct its own mistakes based on the provided feedback.
+
+For example, if a referenced field is missing, the retry section will show:
+
+```
+IMPORTANT - PREVIOUS ATTEMPT FAILED. PLEASE READ CAREFULLY:
+ERROR: Referenced field with key "fieldKey" in sheet "sheetName" does not exist
+
+PREVIOUS BLUEPRINT FOR REFERENCE:
+{previousBlueprint}
+
+INSTRUCTIONS:
+1. Take the previous blueprint 
+2. Add the missing "fieldKey" field to the "sheetName" sheet
+3. Ensure all other reference fields are valid
+4. Return the complete updated blueprint
+5. Make sure the response is valid JSON wrapped in a code block
+```
+
+This provides the assistant with the necessary context to fix the issue and generate a valid blueprint on the subsequent attempt.
