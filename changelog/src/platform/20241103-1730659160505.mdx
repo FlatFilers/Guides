@@ -1,0 +1,47 @@
+### November 03, 2024
+## dataxp
+
+api@1f5d4d7
+This release introduces a new endpoint `/v2-alpha/workbooks/bulk-create` that allows you to create multiple workbooks in a single request, sharing a common base configuration. The endpoint accepts a `config` object with the base configuration for the workbooks, and an array of `workbooks` objects with overrides for individual workbook properties. The key features are:
+
+You can specify a base configuration for sheets, actions, settings, metadata, and treatments to be shared across all created workbooks.
+
+Individual workbooks can override properties like name, namespace, labels, metadata, settings, and treatments from the base configuration.
+
+The endpoint supports creating workbooks silently without emitting `workbook:created` events.
+
+It gracefully handles failures during bulk creation, returning a list of results indicating success or failure for each workbook, along with any errors.
+
+The endpoint returns 400 if the required `config` or `workbooks` array is missing, and 404 if the specified `spaceId` does not exist.
+
+Example request body:
+```json
+{
+  "spaceId": "dev_sp_123",
+  "config": {
+    "name": "Base Workbook",
+    "sheets": [
+      {
+        "name": "Sheet 1",
+        "slug": "sheet-1",
+        "fields": [
+          {"key": "name", "type": "string", "label": "Name"},
+          {"key": "email", "type": "string", "label": "Email"}
+        ]
+      }
+    ]
+  },
+  "workbooks": [
+    {
+      "name": "Overridden Workbook 1",
+      "namespace": "namespace-1",
+      "labels": ["label-1"]
+    },
+    {
+      "name": "Overridden Workbook 2",
+      "namespace": "namespace-2",
+      "settings": {"trackChanges": true}
+    }
+  ]
+}
+```
