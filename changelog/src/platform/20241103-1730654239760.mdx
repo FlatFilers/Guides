@@ -1,0 +1,25 @@
+### November 03, 2024
+## dataxp
+
+api@94ec5fb
+The release updates include:
+
+Added a new 'SMALL_DATA' treatment for workbooks. This treatment is applied to workbooks with small amounts of data and likely disables certain indexing and optimization strategies.
+
+Optimized the remove fields operation by using a new UpsertSheet class to handle sheet updates more efficiently. This also updates the schema version after field removals.
+
+Optimized the upsert fields operation by using the new UpsertSheet class and avoiding unnecessary deletions and re-insertions of fields during updates.
+
+Optimized the workbook build process to only run expensive queries when the workbook has the 'EXTRACTED_FROM_SOURCE' treatment. This avoids unnecessary work for workbooks not extracted from source data.
+
+Optimized the buildSheet utility function to conditionally enable indexing based on the new 'SMALL_DATA' treatment. Indexing is disabled for small data workbooks.
+
+Optimized the database build process by only scaffolding the database if necessary when the query fails, instead of scaffolding on every request.
+
+Refactored the UpsertSheet class to encapsulate field addition, removal, indexing, and constraint handling for more maintainable code.
+
+Example code for querying the new 'SMALL_DATA' treatment:
+
+```
+workbook.treatments.includes('SMALL_DATA')
+```
