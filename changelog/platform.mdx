@@ -4,6 +4,41 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@94ec5fb
+      The release updates include:
+      
+      Added a new 'SMALL_DATA' treatment for workbooks. This treatment is applied to workbooks with small amounts of data and likely disables certain indexing and optimization strategies.
+      
+      Optimized the remove fields operation by using a new UpsertSheet class to handle sheet updates more efficiently. This also updates the schema version after field removals.
+      
+      Optimized the upsert fields operation by using the new UpsertSheet class and avoiding unnecessary deletions and re-insertions of fields during updates.
+      
+      Optimized the workbook build process to only run expensive queries when the workbook has the 'EXTRACTED_FROM_SOURCE' treatment. This avoids unnecessary work for workbooks not extracted from source data.
+      
+      Optimized the buildSheet utility function to conditionally enable indexing based on the new 'SMALL_DATA' treatment. Indexing is disabled for small data workbooks.
+      
+      Optimized the database build process by only scaffolding the database if necessary when the query fails, instead of scaffolding on every request.
+      
+      Refactored the UpsertSheet class to encapsulate field addition, removal, indexing, and constraint handling for more maintainable code.
+      
+      Example code for querying the new 'SMALL_DATA' treatment:
+      
+      ```
+      workbook.treatments.includes('SMALL_DATA')
+      ```
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +218,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +242,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +263,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +286,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +301,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
