@@ -1,0 +1,27 @@
+### November 04, 2024
+## dataxp
+
+api@1fd242a
+Here are the key updates in this release:
+
+- Added a new built-in constraint `flatfileMapsToBoolean` that maps acceptable true or false values to a boolean. It supports custom true/false value lists, case sensitivity, and strict mapping options.
+
+- Added several new built-in constraints for validating various data types:
+  - `flatfileIsValidCity` validates a city name is valid for a given country code.
+  - `flatfileIsValidCountry` validates a country name or code.
+  - `flatfileIsValidCurrency` validates currency amounts with configurable symbol, decimal/thousands separators, negative values, etc.
+  - `flatfileIsValidDateRange` validates a date is within a given range, supporting relative dates like "today", "tomorrow", etc.
+  - `flatfileIsValidLength` validates the length of a string between a min and max value.
+  - `flatfileIsValidNumRange` validates a number is between a min and max value.
+  - `flatfileIsValidRegex` validates a value against a regular expression pattern.
+  - `flatfileIsValidStateProvince` validates a state/province name for a given country code.
+  - `flatfileIsValidUrl` validates a URL with options like requiring protocol, allowed protocols, etc.
+  - `flatfileIsString`, `flatfileIsNumber`, `flatfileIsBoolean`, `flatfileIsDate` validate basic data types.
+
+- The `generate.blueprint` task now applies type constraints to generated blueprints, adding validators like `flatfileIsString` for string fields automatically.
+
+- The `ai.generate.constraint` job now accepts an additional `label` option for field constraints to provide a UI label.
+
+- The `builtin.constraints.ts` file was updated to export the constraint metadata.
+
+Overall, this release adds many new built-in validators to support common data validation scenarios, enhancing Flatfile's data validation capabilities.
