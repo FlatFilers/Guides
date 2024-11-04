@@ -1,0 +1,7 @@
+### November 04, 2024
+## dataxp
+
+api@cdfc5b7
+The release notes include the following updates:
+
+Added the required `account_id` and `environment_id` columns to the `data_clips` table. Added the `collaborators` column of type `string array` with a default value of empty array. Created indexes on `data_clips` table for `account_id` and `environment_id`. Added foreign key constraints for `account_id` and `environment_id` referencing the `accounts` and `environments` tables respectively. Updated the `DataClip` model to include the new `accountId`, `environmentId`, and `collaborators` fields. Added methods to retrieve the resource hierarchy of a `DataClip` and `Space`. Implemented the `list` method in `DataClipsController` and `DataClipsService` to retrieve a list of `DataClips` filtered by `spaceId`, `sheetId`, and `status`. Updated the `delete` method in `DataClipsController` and `DataClipsService` to first set the `status` of the `DataClip` to `Deleted` before deleting it. Added a new field `DataClips` of type `DataClip` array to the `Account` and `Environment` models to establish the relationships.
