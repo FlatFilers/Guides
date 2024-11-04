@@ -4,6 +4,43 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 04, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@1fd242a
+      Here are the key updates in this release:
+      
+      - Added a new built-in constraint `flatfileMapsToBoolean` that maps acceptable true or false values to a boolean. It supports custom true/false value lists, case sensitivity, and strict mapping options.
+      
+      - Added several new built-in constraints for validating various data types:
+        - `flatfileIsValidCity` validates a city name is valid for a given country code.
+        - `flatfileIsValidCountry` validates a country name or code.
+        - `flatfileIsValidCurrency` validates currency amounts with configurable symbol, decimal/thousands separators, negative values, etc.
+        - `flatfileIsValidDateRange` validates a date is within a given range, supporting relative dates like "today", "tomorrow", etc.
+        - `flatfileIsValidLength` validates the length of a string between a min and max value.
+        - `flatfileIsValidNumRange` validates a number is between a min and max value.
+        - `flatfileIsValidRegex` validates a value against a regular expression pattern.
+        - `flatfileIsValidStateProvince` validates a state/province name for a given country code.
+        - `flatfileIsValidUrl` validates a URL with options like requiring protocol, allowed protocols, etc.
+        - `flatfileIsString`, `flatfileIsNumber`, `flatfileIsBoolean`, `flatfileIsDate` validate basic data types.
+      
+      - The `generate.blueprint` task now applies type constraints to generated blueprints, adding validators like `flatfileIsString` for string fields automatically.
+      
+      - The `ai.generate.constraint` job now accepts an additional `label` option for field constraints to provide a UI label.
+      
+      - The `builtin.constraints.ts` file was updated to export the constraint metadata.
+      
+      Overall, this release adds many new built-in validators to support common data validation scenarios, enhancing Flatfile's data validation capabilities.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +220,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +244,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +265,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +288,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +303,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
