@@ -4,6 +4,35 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 04, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@ce85b52
+      The release notes summarizing the changes from the provided diff are:
+      
+      Added a new table `constraint_version` to store versions of constraints. When a constraint is created, updated, or deleted, a new version of the constraint will be created in the `constraint_version` table. The `Constraint` model now has a `versions` field linking it to the `ConstraintVersion` model. The `Prompt` model also has a new `constraintVersion` field linking it to the `ConstraintVersion` model.
+      
+      Added new methods to the `ConstraintsRepository` to handle creating, retrieving, and deleting constraint versions. These include `getConstraintVersions`, `getConstraintVersion`, `createConstraintVersion`, and `getMaxConstraintVersion`.
+      
+      Added new methods to the `ConstraintsController` to allow retrieving constraint versions: `getConstraintVersions` and `getConstraintVersion`.
+      
+      Modified the `ConstraintsRepository.createConstraint` and `ConstraintsRepository.updateConstraint` methods to create a new constraint version when creating or updating a constraint. The `updateConstraint` method now accepts an optional `promptId` parameter to associate a prompt with the new constraint version.
+      
+      Modified the `ConstraintsService.updateConstraint` method to accept an optional `promptId` parameter and pass it to the repository.
+      
+      Added a new `ConstraintVersionModel` to handle constraint version data.
+      
+      Added a new migration file `20241009130436_add_constraint_versions_table` to create the `constraint_version` table and set up foreign key relationships.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +212,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +236,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +257,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +280,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +295,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
