@@ -1,0 +1,11 @@
+### November 04, 2024
+## dataxp
+
+api@df98619
+The release includes the following updates:
+
+The error handling in the `extractJson` function has been improved. Instead of returning a generic error when no JSON is found in the response, it now checks if the response is too long (starts with backticks but does not end with backticks) and throws a more specific error message "Response is too long. Please use a smaller file/prompt". If the response is not too long but still does not contain valid JSON, it throws an error "Response returned in invalid format".
+
+In the `AIGenerateBlueprintLogic` class, the error logging has been enhanced. When an error occurs during blueprint generation, the job ID is now logged as `this.job.id.full` instead of `this.job.id`. Additionally, the error message thrown includes the specific reason for the failure, e.g., "Error generating blueprint. Job failed: <job_id>. Reason: <error_message>".
+
+The error handling when parsing the JSON response from the language model has been improved. Instead of throwing a generic error message, it now logs the error stack trace, job ID, error message, and the problematic result. The error message thrown is now "Parsing json response failed. Reason: Invalid json".
