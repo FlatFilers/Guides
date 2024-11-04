@@ -4,6 +4,23 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 04, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@cdfc5b7
+      The release notes include the following updates:
+      
+      Added the required `account_id` and `environment_id` columns to the `data_clips` table. Added the `collaborators` column of type `string array` with a default value of empty array. Created indexes on `data_clips` table for `account_id` and `environment_id`. Added foreign key constraints for `account_id` and `environment_id` referencing the `accounts` and `environments` tables respectively. Updated the `DataClip` model to include the new `accountId`, `environmentId`, and `collaborators` fields. Added methods to retrieve the resource hierarchy of a `DataClip` and `Space`. Implemented the `list` method in `DataClipsController` and `DataClipsService` to retrieve a list of `DataClips` filtered by `spaceId`, `sheetId`, and `status`. Updated the `delete` method in `DataClipsController` and `DataClipsService` to first set the `status` of the `DataClip` to `Deleted` before deleting it. Added a new field `DataClips` of type `DataClip` array to the `Account` and `Environment` models to establish the relationships.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +200,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +224,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +245,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +268,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +283,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
