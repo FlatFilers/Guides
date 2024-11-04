@@ -1,0 +1,5 @@
+### November 04, 2024
+## dataxp
+
+api@25502e0
+The getApps method in the AppsRepositoryGenerated class has been updated with an additional orderBy parameter of type Prisma.AppOrderByWithRelationInput or an array of Prisma.AppOrderByWithRelationInput. This new parameter allows the developer to specify the order in which the apps will be retrieved from the database. If no orderBy parameter is provided, the apps will be ordered by descending createdAt date by default. For example, to order the apps by ascending name, the developer can call getApps(accountId, { name: 'asc' }).
