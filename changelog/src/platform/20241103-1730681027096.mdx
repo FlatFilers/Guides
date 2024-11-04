@@ -1,0 +1,7 @@
+### November 03, 2024
+## dataxp
+
+api@e2bd9eb
+The release notes summarize the following changes:
+
+A method for building ephemeral tables for a workbook has been updated. The previous implementation, which involved building the workbook and updating the `ready_at` field in the workbook repository, has been replaced with a new method `buildEphemeralTables`. This method takes `workbookId` and `grant` as parameters and is responsible for fetching and building the ephemeral database for the given workbook. The code comment indicates that the refetch is currently necessary despite being problematic.
