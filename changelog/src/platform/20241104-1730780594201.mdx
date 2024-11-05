@@ -1,0 +1,13 @@
+### November 04, 2024
+## dataxp
+
+api@b8c23da
+The following updates have been made:
+
+The order of inserting sheets and fields into the database has been swapped. Now sheets are inserted before fields. This change ensures that the foreign key constraint on the fields table referencing the sheets table is satisfied.
+
+The creation of the sheets table has been updated to use the Knex schema builder instead of a raw SQL query. It now creates the table with the specified columns and sets indexes and constraints.
+
+The creation of the versions table has been updated to use the Knex schema builder instead of a raw SQL query. It now creates the table with the specified columns and sets indexes.
+
+The creation of the fields table has been updated to use the Knex schema builder instead of a raw SQL query. It now creates the table with the specified columns, sets indexes, and defines a foreign key constraint referencing the sheets table. Additionally, a unique constraint has been added on the combination of the 'key' and 'sheetId' columns.
