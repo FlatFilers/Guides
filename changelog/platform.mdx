@@ -4,6 +4,31 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 05, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@f8ef0a1
+      The update includes changes to handle fields with special characters in the `get.records.ts` operation and adds tests to cover this scenario.
+      
+      The `GetRecords` operation is updated to escape identifiers when accessing fields with special characters in the record objects. This is done by using the `escapeIdentifier` function when accessing the `rel_` field.
+      
+      The `get.records.ts` file is updated to not escape the field name when creating a new Map for a `reference-list` type field if no IDs are found. This change ensures that the field name is not unnecessarily escaped.
+      
+      Two new test cases are added to the `ephemeral.service.spec.ts` file to verify the behavior when retrieving records with links for fields containing special characters. The tests cover scenarios for both `reference` and `reference-list` field types.
+      
+      The tests create a workbook with two sheets, one containing a `reference-list` field with special characters and the other containing a regular string field. Records are added to both sheets, and then the tests retrieve the records with links for the sheet containing the string field. The tests assert that the retrieved records are defined and have a length greater than zero, ensuring that the links are correctly resolved even when the field name contains special characters.
+      
+      These changes ensure that the application can handle fields with special characters when retrieving records and resolving links, improving the overall robustness and compatibility of the application.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +208,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +232,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +253,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +276,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +291,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
