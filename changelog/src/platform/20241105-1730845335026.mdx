@@ -1,0 +1,19 @@
+### November 05, 2024
+## dataxp
+
+api@2508117
+The release notes include the following updates:
+
+A custom file create privilege check has been added to the FilesController to ensure the user has the necessary 'file:create' privilege before creating a new file. This check is performed using the PrivilegeAuthorizer.assertHasAccessFromResource method, which takes the spaceId, grant, privilege name, and EventEmitter2 instance as arguments. This change was necessary because the FileInterceptor middleware does not allow passing the spaceId and environmentId in the request body, which caused issues with the PrivilegesGuard decorator.
+
+Example:
+```typescript
+await PrivilegeAuthorizer.assertHasAccessFromResource(
+  spaceId,
+  grant,
+  'file:create' as PrivilegeName,
+  this.eventEmitter
+);
+```
+
+Additionally, the assertSpaceExistsForUser method call has been removed from the FilesService.createFile method, as it was redundant with the new privilege check.
