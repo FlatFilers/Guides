@@ -1,0 +1,5 @@
+### November 05, 2024
+## schema
+
+@flatfile/plugin-convert-openapi-schema@0.5.0
+This release enhances support for the JSON schema array field type by mapping it to a Flatfile string-list data type. Previously, array fields were mapped to an enum field type, which had limitations. With this change, developers working with OpenAPI schemas that include array fields will now have a more appropriate representation of those fields as string-lists in the generated Flatfile Blueprint. For example, if the OpenAPI schema has an array field like "tags": ["tag1", "tag2"], it will now be correctly mapped to a Flatfile string-list instead of an enum. This improvement provides better fidelity when converting OpenAPI schemas to Flatfile Blueprints.
