@@ -4,6 +4,35 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 05, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@2508117
+      The release notes include the following updates:
+      
+      A custom file create privilege check has been added to the FilesController to ensure the user has the necessary 'file:create' privilege before creating a new file. This check is performed using the PrivilegeAuthorizer.assertHasAccessFromResource method, which takes the spaceId, grant, privilege name, and EventEmitter2 instance as arguments. This change was necessary because the FileInterceptor middleware does not allow passing the spaceId and environmentId in the request body, which caused issues with the PrivilegesGuard decorator.
+      
+      Example:
+      ```typescript
+      await PrivilegeAuthorizer.assertHasAccessFromResource(
+        spaceId,
+        grant,
+        'file:create' as PrivilegeName,
+        this.eventEmitter
+      );
+      ```
+      
+      Additionally, the assertSpaceExistsForUser method call has been removed from the FilesService.createFile method, as it was redundant with the new privilege check.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +212,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +236,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +257,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +280,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +295,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
