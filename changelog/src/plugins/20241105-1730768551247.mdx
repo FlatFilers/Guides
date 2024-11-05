@@ -1,0 +1,5 @@
+### November 05, 2024
+## schema
+
+@flatfile/plugin-convert-json-schema@0.6.0
+The release provides improved support for JSON schema array fields by mapping them to Flatfile's string-list field type. Previously, array fields were mapped to an enum field type with an empty options list, which was not an accurate representation. With this change, array fields in the JSON schema will now correctly map to the string-list field type in the generated Flatfile blueprint. This update enhances the plugin's ability to accurately convert JSON schemas to Flatfile blueprints, ensuring better data representation and a more seamless integration experience for developers.
