@@ -1,0 +1,13 @@
+### November 05, 2024
+## dataxp
+
+api@67346be
+The release notes include the following updates:
+
+A new constant `newDate` is introduced with a fixed date value of '2024-11-03T17:32:04.628Z'. This date value is assigned to the `mergedAt`, `createdAt`, and `updatedAt` properties of the `dataClipEntity` and `dataClipResource` objects. This change ensures a consistent date value is used across different tests.
+
+The `dataClipResource` object is now a constant instead of a variable, ensuring its value remains unchanged throughout the tests.
+
+New setup and teardown functions are added to the test suite. The `beforeEach` function mocks the `Date.now` method to return the fixed date value from `newDate`. The `afterEach` function restores all mocked functions.
+
+A new utility function `isNotFoundException` is introduced to check if an object is an instance of `NotFoundException` with an `isHandled` property. This function is likely used in one or more test cases to handle specific exceptions.
