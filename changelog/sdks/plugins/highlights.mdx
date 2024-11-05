@@ -4,6 +4,21 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## November 2024
+
+### November 05, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/schema.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-convert-json-schema@0.6.0
+      The release provides improved support for JSON schema array fields by mapping them to Flatfile's string-list field type. Previously, array fields were mapped to an enum field type with an empty options list, which was not an accurate representation. With this change, array fields in the JSON schema will now correctly map to the string-list field type in the generated Flatfile blueprint. This update enhances the plugin's ability to accurately convert JSON schemas to Flatfile blueprints, ensuring better data representation and a more seamless integration experience for developers.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +102,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
