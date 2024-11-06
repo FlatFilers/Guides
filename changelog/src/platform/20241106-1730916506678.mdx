@@ -1,0 +1,11 @@
+### November 06, 2024
+## dataxp
+
+api@1cc9a03
+The release notes summarize the following updates:
+
+The "Generate Sample Data" action is now automatically added to every field in the blueprint. This action has the label "Generate Sample Data", operation "ai-generate-sample-data", and description "Generate random sample data for this field". Developers no longer need to manually add this action to each field.
+
+The logic for applying deterministic updates to the blueprint, previously named "applyTypeConstraints", has been renamed to "applyDeterministicUpdates". This function now includes the addition of the "Generate Sample Data" action to each field, in addition to applying type constraints.
+
+The function "applyDeterministicUpdates" now handles the addition of the "Generate Sample Data" action for each field in the blueprint. This ensures that every field has this action available, which allows developers to easily generate random sample data for testing or demonstration purposes.
