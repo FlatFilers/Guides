@@ -1,0 +1,15 @@
+### November 06, 2024
+## dataxp
+
+api@5c1916a
+The release notes for this update are:
+
+The AI assistant now generates minified JSON responses when creating blueprints. This reduces the response size and improves efficiency. The JSON responses will be wrapped in a code block without unnecessary white-spaces and new lines.
+
+The retry section context for generating blueprints has been simplified. Instead of providing the previous attempt and error details, only the original user input data will be provided for retry attempts.
+
+The logic for processing blueprint generation requests has been updated to handle the new minified JSON response format. The extraction of the JSON blueprint from the AI response has been modified accordingly.
+
+The prompt templates used by the AI to generate blueprints now explicitly state that the response must be in minified JSON format. This ensures the AI follows the new response format conventions.
+
+When adding a missing field to a blueprint, the instructions now specify that the response should be valid minified JSON wrapped in a code block.
