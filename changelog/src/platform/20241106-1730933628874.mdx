@@ -1,0 +1,5 @@
+### November 06, 2024
+## dataxp
+
+api@e6a23ec
+Updated the addIndexesWhenRelevant method to be addGlobalIndexesWhenRelevant which handles adding global indexes as needed. Added a new addFieldIndexesWhenRelevant method that is called when registering new fields or updating existing fields to ensure field-specific indexes are created or updated as needed. The method checks if the sheet is being registered for the first time, and if not, it calls addFieldIndexesWhenRelevant to handle field-specific indexes even when not registering new fields. This ensures that any changes to field configurations that require index updates are properly handled. Developers using this package should expect improved index management and maintenance as fields are added, updated, or removed from the sheet configuration.
