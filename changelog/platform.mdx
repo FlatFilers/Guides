@@ -4,6 +4,27 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 06, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@1cc9a03
+      The release notes summarize the following updates:
+      
+      The "Generate Sample Data" action is now automatically added to every field in the blueprint. This action has the label "Generate Sample Data", operation "ai-generate-sample-data", and description "Generate random sample data for this field". Developers no longer need to manually add this action to each field.
+      
+      The logic for applying deterministic updates to the blueprint, previously named "applyTypeConstraints", has been renamed to "applyDeterministicUpdates". This function now includes the addition of the "Generate Sample Data" action to each field, in addition to applying type constraints.
+      
+      The function "applyDeterministicUpdates" now handles the addition of the "Generate Sample Data" action for each field in the blueprint. This ensures that every field has this action available, which allows developers to easily generate random sample data for testing or demonstration purposes.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +204,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +228,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +249,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +272,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +287,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
