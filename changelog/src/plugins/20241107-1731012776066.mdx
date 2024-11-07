@@ -1,0 +1,26 @@
+### November 07, 2024
+## extractors
+
+@flatfile/plugin-json-extractor@0.10.0
+This release introduces several updates to the JSON extractor plugin:
+
+The plugin now supports multi-sheet extraction from JSON files, allowing multiple data arrays within the JSON object to be parsed into separate sheets. The parsing logic has been updated to handle this scenario.
+
+The package bundler has been swapped to tsup for improved performance.
+
+Dependencies have been updated, including a minor update to @flatfile/util-extractor.
+
+The test setup has been migrated from Jest to Vitest, and test utilities have been consolidated into the @flatfile/config-vitest package.
+
+The minimum supported Node.js version has been raised to 18.
+
+No changes have been made to the public API of the JSONExtractor function, but developers should be aware of the new multi-sheet extraction capability when working with JSON data sources.
+
+For example, given a JSON file with two top-level arrays named "contacts" and "orders", the output will now contain two separate sheets:
+
+```json
+{
+  "contacts": [...],
+  "orders": [...]
+}
+```
