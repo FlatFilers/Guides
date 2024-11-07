@@ -1,0 +1,13 @@
+### November 06, 2024
+## dataxp
+
+api@ccd8faa
+The release notes contain the following updates:
+
+A new event topic 'data-clip' has been introduced with subtopics 'data-clip:created', 'data-clip:updated', and 'data-clip:deleted'. These events will be emitted when a data clip is created, updated, or deleted, respectively. A new method toEventPayload() has been added to the DataClipModel class to prepare the data clip payload for the events.
+
+The delete method in the DataClipsController has been updated to accept a grant parameter. This parameter is now passed down to the delete method in the DataClipsService.
+
+The DataClipsService now emits events when a data clip is created, updated, or deleted using the EventsService. The 'data-clip:created' event is emitted after a successful data clip creation. The 'data-clip:updated' event is emitted after a successful data clip update. The 'data-clip:deleted' event is emitted after a successful data clip deletion.
+
+Several tests have been updated to verify the emission of these new events. For example, the dataClips.e2e-spec.ts file now includes tests to check for the presence of the 'data-clip:created', 'data-clip:updated', and 'data-clip:deleted' events after performing the respective operations.
