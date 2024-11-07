@@ -1,0 +1,19 @@
+### November 07, 2024
+## transform
+
+@flatfile/plugin-autocast@5.0.0
+The release notes indicate the following changes:
+
+The package's bundler has been changed from the previous bundler to tsup. This is a minor change that may affect the build process and output.
+
+The package's minimum required Node.js version has been updated to >= 18. Developers using an older version of Node.js will need to upgrade before using this version.
+
+The testing setup has been updated to use Vitest instead of Jest. New scripts have been added for running tests with Vitest: `test`, `test:unit`, and `test:e2e`.
+
+Dependencies have been updated:
+- `@flatfile/plugin-record-hook` has been updated to version 1.10.0 (from 1.9.0).
+- `@flatfile/util-common` has been updated to version 1.6.0 (from 1.5.0).
+- `@flatfile/bundler-config-tsup` has been updated to version 0.2.0 (from 0.1.0).
+- A new dependency `@flatfile/config-vitest` has been added for the Vitest configuration.
+
+No changes to the external interface or functionality of the plugin have been mentioned.
