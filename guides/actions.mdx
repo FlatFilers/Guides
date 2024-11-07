@@ -586,7 +586,96 @@ First, configure your action to have an inputForm on your Blueprint. These will 
 
 Next, listen for a `job:ready` and filter on the `job` you'd like to process. Grab the data entered in the form from the job itself and leverage it as required for your use case.
 
-<Snippet file="shared/workbook_submit_pt5.mdx" />
+<CodeGroup>
+
+```js listener.js
+import api from "@flatfile/api";
+
+export default async function (listener) {
+  listener.on(
+    "job:ready",
+    { job: "workbook:actionWithInput" },
+    async (event) => {
+      const { jobId } = event.context;
+
+      try {
+        await api.jobs.ack(jobId, {
+          info: "Acknowledging job",
+          progress: 1,
+        });
+
+        // retrieve input
+        const { data: job } = await api.jobs.get(jobId);
+        const input = job.input;
+        console.log({ input });
+
+        // do something with input...
+
+        await api.jobs.complete(jobId, {
+          outcome: {
+            message: "Action was successful",
+          },
+        });
+        return;
+      } catch (error) {
+        console.error(error);
+        await api.jobs.fail(jobId, {
+          outcome: {
+            message: "Action failed",
+          },
+        });
+        return;
+      }
+    }
+  );
+}
+```
+
+```ts listener.ts
+import api from "@flatfile/api";
+import type { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
+
+export default async function (listener: FlatfileListener) {
+  listener.on(
+    "job:ready",
+    { job: "workbook:actionWithInput" },
+    async (event: FlatfileEvent) => {
+      const { jobId } = event.context;
+
+      try {
+        await api.jobs.ack(jobId, {
+          info: "Acknowledging job",
+          progress: 1,
+        });
+
+        // retrieve input
+        const { data: job } = await api.jobs.get(jobId);
+        const input = job.input;
+        console.log({ input });
+
+        // do something with input...
+
+        await api.jobs.complete(jobId, {
+          outcome: {
+            message: "Action was successful",
+          },
+        });
+        return;
+      } catch (error) {
+        console.error(error);
+        await api.jobs.fail(jobId, {
+          outcome: {
+            message: "Action failed",
+          },
+        });
+        return;
+      }
+    }
+  );
+}
+```
+
+</CodeGroup>
 
 ## Actions with Constraints
 
