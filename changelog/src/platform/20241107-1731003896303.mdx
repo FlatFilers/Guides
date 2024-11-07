@@ -1,0 +1,22 @@
+### November 07, 2024
+## dataxp
+
+api@4135545
+Updated the index naming convention for sheets to prevent exceeding the maximum identifier length allowed by the database. The new convention shortens the index name to 63 characters while keeping it unique by appending part of the MD5 hash of the original identifier. This change ensures that all index names comply with the database's length restrictions.
+
+For example, when creating an index with the previous convention, a long workbook ID and sheet ID combined with a long column identifier could exceed the maximum allowed length:
+
+```
+const idx = `${this.workbookId.full}_${this.sheetId.full}_${identifier}_rel_idx`
+```
+
+With the new `shortenIndexName` function, the index name will be truncated to 63 characters and suffixed with a unique hash:
+
+```js
+const idx = shortenIndexName(
+  `${this.workbookId.full}_${this.sheetId.full}_${identifier}`,
+  `rel_idx`
+)
+```
+
+This change ensures that all index names are valid and comply with the database's naming rules, preventing potential errors or failures during index creation.
