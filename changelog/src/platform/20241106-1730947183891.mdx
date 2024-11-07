@@ -1,0 +1,11 @@
+### November 06, 2024
+## dataxp
+
+api@f2773a6
+The release notes introduce the ability to retrieve a sheet by its slug. A new query parameter `sheetSlug` has been added to the `/workbooks/v2/records` and `/workbooks/v2/records/batch` endpoints. When provided along with the `workbookId`, it will retrieve the sheet with the matching slug. For example, to retrieve records from the sheet with slug 'my-sheet' in the workbook with ID '123':
+
+```
+GET /workbooks/v2/records?workbookId=123&sheetSlug=my-sheet
+```
+
+The `getSheetBySlug` method has been added to the `WorkbookRepository` and `WorkbooksService` classes to enable this functionality. This allows developers to access sheets directly by their human-readable slug instead of the internal ID. The release also includes access control checks to ensure the user has the required permissions to access the requested workbook and sheet.
