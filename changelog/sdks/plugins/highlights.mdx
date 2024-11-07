@@ -4,6 +4,35 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## November 2024
+
+### November 07, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-record-hook@1.10.0
+      This release introduces the following changes:
+      
+      The package is now bundled using tsup instead of the previous bundler. This is a minor change.
+      
+      The package now requires Node.js version 18 or higher, up from the previous requirement of Node.js 16 or higher.
+      
+      The development dependencies have been updated, including @flatfile/bundler-config-tsup to version 0.2.0 and the addition of @flatfile/config-vitest.
+      
+      The rollup configuration has been updated to include new options for building the UMD bundle, while excluding Node.js, browser, and TypeScript definition builds.
+      
+      The testing setup has been migrated from Jest to Vitest. The test commands have been updated accordingly, with separate commands for running unit tests and end-to-end tests. The test files have also been updated to use Vitest's APIs.
+      
+      The package now includes a vitest.config.ts file for configuring Vitest.
+      
+      Overall, these changes primarily involve updates to the build and testing infrastructure, with no changes to the core functionality of the package. Developers using this package should ensure they are running Node.js 18 or higher and may need to update their testing setup if they were relying on the previous Jest configuration.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +116,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
