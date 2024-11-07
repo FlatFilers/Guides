@@ -1,0 +1,17 @@
+### November 07, 2024
+## extractors
+
+@flatfile/plugin-xlsx-extractor@3.4.0
+The release includes the following changes:
+
+The package now uses tsup as the bundler instead of the previous bundler. This change swaps the bundler used for building the package.
+
+The minimum required Node.js version has been updated to >=18.0.0 from the previous requirement of >=16.0.0. Developers using this package must now use Node.js 18 or later versions.
+
+The package has been updated to a new major version 3.4.0 from the previous 3.3.1 version.
+
+The development dependency @flatfile/bundler-config-tsup has been updated to version 0.2.0. A new development dependency @flatfile/config-vitest has been added.
+
+The testing setup has been migrated from Jest to Vitest. The test scripts have been updated accordingly, using the vitest command instead of jest. Examples: "test": "vitest run --mode defaults src/*.spec.ts --passWithNoTests", "test:unit": "vitest run --mode defaults src/*.spec.ts --passWithNoTests --exclude src/*.e2e.spec.ts".
+
+The dependency @flatfile/util-extractor has been updated to version 2.3.0.
