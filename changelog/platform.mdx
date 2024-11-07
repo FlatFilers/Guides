@@ -4,6 +4,38 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 07, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@4135545
+      Updated the index naming convention for sheets to prevent exceeding the maximum identifier length allowed by the database. The new convention shortens the index name to 63 characters while keeping it unique by appending part of the MD5 hash of the original identifier. This change ensures that all index names comply with the database's length restrictions.
+      
+      For example, when creating an index with the previous convention, a long workbook ID and sheet ID combined with a long column identifier could exceed the maximum allowed length:
+      
+      ```
+      const idx = `${this.workbookId.full}_${this.sheetId.full}_${identifier}_rel_idx`
+      ```
+      
+      With the new `shortenIndexName` function, the index name will be truncated to 63 characters and suffixed with a unique hash:
+      
+      ```js
+      const idx = shortenIndexName(
+        `${this.workbookId.full}_${this.sheetId.full}_${identifier}`,
+        `rel_idx`
+      )
+      ```
+      
+      This change ensures that all index names are valid and comply with the database's naming rules, preventing potential errors or failures during index creation.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +215,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +239,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +260,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +283,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +298,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
