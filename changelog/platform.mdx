@@ -4,6 +4,27 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 06, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@f2773a6
+      The release notes introduce the ability to retrieve a sheet by its slug. A new query parameter `sheetSlug` has been added to the `/workbooks/v2/records` and `/workbooks/v2/records/batch` endpoints. When provided along with the `workbookId`, it will retrieve the sheet with the matching slug. For example, to retrieve records from the sheet with slug 'my-sheet' in the workbook with ID '123':
+      
+      ```
+      GET /workbooks/v2/records?workbookId=123&sheetSlug=my-sheet
+      ```
+      
+      The `getSheetBySlug` method has been added to the `WorkbookRepository` and `WorkbooksService` classes to enable this functionality. This allows developers to access sheets directly by their human-readable slug instead of the internal ID. The release also includes access control checks to ensure the user has the required permissions to access the requested workbook and sheet.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +204,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +228,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +249,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +272,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +287,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
