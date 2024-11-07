@@ -4,6 +4,27 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## November 2024
+
+### November 07, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-zip-extractor@0.8.0
+      The release introduces the following changes:
+      
+      The package's bundler has been swapped to tsup. Dependencies have been updated including @flatfile/plugin-job-handler@0.8.0, @flatfile/util-file-buffer@0.6.0, and @flatfile/util-common@1.6.0. The minimum required Node.js version is now >= 18. 
+      
+      The testing setup has been updated to use Vitest. The npm scripts for running tests have been updated accordingly: `test` runs all tests, `test:unit` runs unit tests, and `test:e2e` runs end-to-end tests. The Jest configuration file has been removed.
+      
+      The e2e test suite has been updated to use the new @flatfile/utils-testing utilities, including the TestListener and setupDriver functions. The tests now use the Vitest API for defining tests.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +108,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
