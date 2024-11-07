@@ -4,6 +4,33 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## November 2024
+
+### November 07, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-xml-extractor@0.9.0
+      The release notes summarize the following changes:
+      
+      The package now uses tsup as its bundler instead of the previous bundler. This changes the internal build process.
+      
+      The package has updated its dependency @flatfile/util-extractor to version 2.3.0. This may include updates or bug fixes from that dependency package.
+      
+      The package has dropped support for Node.js versions below 18, requiring Node.js 18 or higher.
+      
+      The test setup has been migrated from Jest to Vitest. This changes the way tests are run and configured. A new vitest.config.ts file has been added to configure Vitest.
+      
+      The package.json scripts for running tests have been updated to use the Vitest command instead of Jest.
+      
+      The minimum required versions of @flatfile/bundler-config-tsup and @flatfile/listener dependencies have been updated, which may include updates or bug fixes from those packages.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +114,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
