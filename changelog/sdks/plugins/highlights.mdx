@@ -4,6 +4,23 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## November 2024
+
+### November 07, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/schema.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-convert-openapi-schema@0.6.0
+      The release notes are as follows:
+      
+      The package now uses tsup as the bundler, replacing the previous bundler. The minimum required Node.js version has been updated to 18. The test runner has been updated to Vitest, replacing Jest. Test scripts have been updated accordingly: `npm run test` to run all tests, `npm run test:unit` for unit tests, and `npm run test:e2e` for end-to-end tests. The peer dependency @flatfile/plugin-space-configure has been updated to version 0.8.0. Developers using this package should ensure they have Node.js 18 or later installed and update any scripts or tooling that reference the test commands. The package's bundle output may change due to the new bundler.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +104,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
