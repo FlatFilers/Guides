@@ -4,6 +4,31 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 07, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@d9e09b9
+      The release notes for this update are as follows:
+      
+      - Renamed the `createClip` method to `create` in the `DataClipsController` and `DataClipsService`.
+      - Added support for adding collaborators when creating a new data clip. The `create` method now accepts an optional `collaborators` array containing user IDs or guest IDs. Invalid IDs are filtered out, and valid collaborators are added to the data clip.
+      - Updated the `update` method in `DataClipsController` and `DataClipsService` to handle updating the name, description, collaborators, and status of a data clip.
+      - Refactored the `update` method logic to separate the status transition handling into individual methods for better readability and maintainability.
+      - Improved the handling of status transitions from OPEN to READY and from READY to MERGED, including updating source sheet records based on clip resolutions.
+      - Added a new test case in `dataClips.e2e-spec.ts` to test the status transition logic from OPEN to READY and READY to MERGED, including verifying source sheet record updates.
+      - Added test cases in `dataClips.service.spec.ts` to test creating and updating a data clip with collaborators.
+      
+      Overall, this update introduces support for adding collaborators to data clips during creation and update, refactors the update method logic for better maintainability, and improves the handling of status transitions between OPEN, READY, and MERGED states, including updating source sheet records based on clip resolutions.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +208,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +232,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +253,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +276,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +291,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
