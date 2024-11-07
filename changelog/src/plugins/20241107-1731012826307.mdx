@@ -1,0 +1,23 @@
+### November 07, 2024
+## automations
+
+@flatfile/plugin-webhook-egress@1.6.0
+The release notes include the following changes:
+
+The plugin's bundler has been swapped to tsup. This change updates the build tooling to use the newer tsup bundler instead of the previous bundler.
+
+The minimum required Node.js version has been updated to >=18. Developers using this package will need to ensure they are running Node.js version 18 or later.
+
+The testing setup has been updated to use Vitest instead of Jest. This updates the testing framework and associated configuration. For example, the jest.config.cjs file has been removed and replaced with a vitest.config.ts file.
+
+The @flatfile/util-response-rejection, @flatfile/plugin-job-handler, and @flatfile/util-common dependencies have been updated to their latest versions 1.6.0, 0.8.0, and 1.6.0, respectively. Developers should review the release notes for these updated dependencies as well.
+
+The e2e tests have been updated to use the new testing setup with Vitest. This includes changes to the test file itself, such as using Vitest's new APIs like vi.spyOn() and vi.restoreAllMocks(). Additionally, the fetchMock library has been removed and replaced with native fetch mocking using vi.spyOn(global, 'fetch').
+
+For example, the following code shows how fetch is now mocked:
+
+```
+vi.spyOn(global, 'fetch').mockResolvedValueOnce(
+  new Response(JSON.stringify({ data: {} }), { status: 200 })
+)
+```
