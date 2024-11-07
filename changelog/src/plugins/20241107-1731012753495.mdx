@@ -1,0 +1,7 @@
+### November 07, 2024
+## core_plugin
+
+@flatfile/plugin-constraints@6.0.0
+The release includes the following changes:
+
+The package's bundler has been swapped to tsup. The Node.js version requirement has been increased to >= 18. The @flatfile/plugin-record-hook dependency has been updated to version 1.10.0. The Jest testing framework has been replaced with Vitest. The package now uses the @flatfile/config-vitest and @flatfile/bundler-config-tsup shared configurations. The test scripts have been updated to use the vitest command. The e2e tests have been skipped for now. The code examples demonstrating the externalConstraint and externalSheetConstraint plugins have been updated to use the new testing utilities from @flatfile/utils-testing, including TestListener and setupDriver. The tests now run the driver and mount the listener before executing.
