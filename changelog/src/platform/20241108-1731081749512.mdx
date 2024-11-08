@@ -1,0 +1,19 @@
+### November 08, 2024
+## spaces
+
+spaces-ui@67996b3
+The release notes for these changes are:
+
+Added a new RuleList component to display and manage rules (constraints) for a field. The RuleList provides functionality to add new rules, edit existing rule descriptions, view rule settings, and delete rules. It optimistically updates the UI and handles job creation for rule operations in the background.
+
+Renamed the `handleAddConstraint` function to `handleUpdateConstraint` in the `useFieldOperations` hook. This function now only updates the constraints for a field, it does not add new constraints.
+
+Removed the `EditConstraintForm` component and replaced it with the `EditRuleForm` component. The `EditRuleForm` allows editing the configuration options for a selected rule constraint.
+
+Refactored the `EditFieldForm` component to use the new `RuleList` and `EditRuleForm` components for rule management. It now supports selecting and editing individual rules.
+
+Added a new `DeleteRuleModal` component to display a confirmation modal before deleting a rule.
+
+Modified the `BlueprintSidebar` component to use the `fullHeight` prop for the `MarginTop` component, allowing the content to take up the full height of the sidebar.
+
+Updated the `ConstraintsList` component to handle cases where the constraint label or validator is undefined.
