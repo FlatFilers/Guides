@@ -4,6 +4,41 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 08, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@23f3b4b
+      The release notes include the following changes:
+      
+      The error message thrown when a field key has multiple instances of the same stored constraint validator has been updated. Instead of stating "Field key 'new_field' has multiple instances of the constraint validator: 'foo'", the error message now states "Field key 'new_field' has multiple instances of the stored constraint validator: 'foo'". This change clarifies that the error is specific to stored constraint validators and not external constraint validators.
+      
+      The code has been updated to check for duplicate stored constraint validators only, instead of checking for both stored and external constraint validators. The following code block has been modified:
+      
+      ```typescript
+      field.constraints?.forEach((constraint) => {
+        if (constraint.type === BaseConstraintTypeEnum.Stored) {
+          if (constraintSet.has(constraint.validator)) {
+            throw new HandledBadRequestException(
+              `Field key "${field.key}" has multiple instances of the stored constraint validator: "${constraint.validator}"`
+            )
+          } else {
+            constraintSet.add(constraint.validator)
+          }
+        }
+      })
+      ```
+      
+      This change ensures that only stored constraint validators are checked for duplicates, and external constraint validators are not included in the duplicate check.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +218,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +242,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +263,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +286,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +301,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
