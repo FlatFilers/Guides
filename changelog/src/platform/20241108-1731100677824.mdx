@@ -1,0 +1,5 @@
+### November 08, 2024
+## dataxp
+
+api@8015d35
+Updated the Hungarian algorithm package used for optimal assignment of fields during mapping to munkres-js, replacing the previous hungarian-on3 package. The munkres-js package is now a dependency, while hungarian-on3 has been removed. Added a condition to skip field assignments where the cost (1 - weight) exceeds the mapping confidence threshold. Implemented a heuristic to use a greedy assignment algorithm instead of the optimal Munkres algorithm when the total number of fields (source + destination) exceeds 500, as the time complexity of the optimal algorithm becomes prohibitively expensive for large datasets. The greedy algorithm provides faster performance at the cost of potentially less optimal field assignments.
