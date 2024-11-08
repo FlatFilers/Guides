@@ -4,6 +4,21 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 08, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@8015d35
+      Updated the Hungarian algorithm package used for optimal assignment of fields during mapping to munkres-js, replacing the previous hungarian-on3 package. The munkres-js package is now a dependency, while hungarian-on3 has been removed. Added a condition to skip field assignments where the cost (1 - weight) exceeds the mapping confidence threshold. Implemented a heuristic to use a greedy assignment algorithm instead of the optimal Munkres algorithm when the total number of fields (source + destination) exceeds 500, as the time complexity of the optimal algorithm becomes prohibitively expensive for large datasets. The greedy algorithm provides faster performance at the cost of potentially less optimal field assignments.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +198,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +222,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +243,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +266,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +281,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
