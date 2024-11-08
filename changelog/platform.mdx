@@ -4,6 +4,23 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 07, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@cfb45c0
+      Added a new endpoint to bulk update the lock status of multiple workbooks. Developers can now send a POST request to `/workbooks/bulk-update-lock-status` with a `spaceId`, an array of `workbookIds`, and a `status` boolean value. This endpoint will update the `locked_at` and `locked_by_actor_id` fields for all sheets belonging to the specified workbooks, allowing developers to lock or unlock multiple workbooks simultaneously. The endpoint requires the `workbook:update` privilege and checks the user's access rights based on the provided `spaceId`.
+      
+      Additionally, a new `updateLockStatusOfWorkbookSheets` method has been added to the `WorkbookRepository` class, which performs the actual update of the sheet entities in the database.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +200,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +224,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +245,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +268,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +283,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
