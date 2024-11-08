@@ -1,0 +1,7 @@
+### November 07, 2024
+## dataxp
+
+api@cfb45c0
+Added a new endpoint to bulk update the lock status of multiple workbooks. Developers can now send a POST request to `/workbooks/bulk-update-lock-status` with a `spaceId`, an array of `workbookIds`, and a `status` boolean value. This endpoint will update the `locked_at` and `locked_by_actor_id` fields for all sheets belonging to the specified workbooks, allowing developers to lock or unlock multiple workbooks simultaneously. The endpoint requires the `workbook:update` privilege and checks the user's access rights based on the provided `spaceId`.
+
+Additionally, a new `updateLockStatusOfWorkbookSheets` method has been added to the `WorkbookRepository` class, which performs the actual update of the sheet entities in the database.
