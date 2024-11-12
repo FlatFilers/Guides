@@ -1,0 +1,7 @@
+### November 12, 2024
+## dataxp
+
+api@fcfbe0b
+```json
+{"name":"Test Workbook","sheets":[{"name":"Sheet1","slug":"sheet1","fields":[{"key":"name","type":"string","label":"Full Name","description":"The full name of the customer","constraints":[{"type":"required"}]},{"key":"birthdate","type":"date","label":"Birthdate","description":"The customer's date of birth"},{"key":"last_scare_time","type":"string","label":"Last Scare Time","description":"The time of the last scare"},{"key":"last_scare_location","type":"string","label":"Last Scare Location","description":"The location of the last scare","constraints":[{"type":"stored","validator":"validateLocation","config":{"allowedLocations":["US","MX","GB"],"errorMessage":"Location must be US, MX or GB"}}]},{"key":"total_scares","type":"number","label":"Total Scares","description":"The total number of scares"},{"key":"us_scare_score","type":"number","label":"US Scare Score","description":"The customer's US scare score","config":{"decimalPlaces":2}},{"key":"non_us_scare_score","type":"number","label":"Non-US Scare Score","description":"The customer's non-US scare score","config":{"decimalPlaces":2}},{"key":"active","type":"boolean","label":"Active","description":"Is the customer currently active?"}]}]}
+```
