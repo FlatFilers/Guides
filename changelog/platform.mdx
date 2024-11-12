@@ -4,6 +4,23 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 12, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@fcfbe0b
+      ```json
+      {"name":"Test Workbook","sheets":[{"name":"Sheet1","slug":"sheet1","fields":[{"key":"name","type":"string","label":"Full Name","description":"The full name of the customer","constraints":[{"type":"required"}]},{"key":"birthdate","type":"date","label":"Birthdate","description":"The customer's date of birth"},{"key":"last_scare_time","type":"string","label":"Last Scare Time","description":"The time of the last scare"},{"key":"last_scare_location","type":"string","label":"Last Scare Location","description":"The location of the last scare","constraints":[{"type":"stored","validator":"validateLocation","config":{"allowedLocations":["US","MX","GB"],"errorMessage":"Location must be US, MX or GB"}}]},{"key":"total_scares","type":"number","label":"Total Scares","description":"The total number of scares"},{"key":"us_scare_score","type":"number","label":"US Scare Score","description":"The customer's US scare score","config":{"decimalPlaces":2}},{"key":"non_us_scare_score","type":"number","label":"Non-US Scare Score","description":"The customer's non-US scare score","config":{"decimalPlaces":2}},{"key":"active","type":"boolean","label":"Active","description":"Is the customer currently active?"}]}]}
+      ```
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +200,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +224,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +245,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +268,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +283,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
