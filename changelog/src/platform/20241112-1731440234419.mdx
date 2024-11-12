@@ -1,0 +1,5 @@
+### November 12, 2024
+## dataxp
+
+api@61f12b7
+Updated the AIRuleCreationLogic to debounce the validation of records after updating a workbook. Introduced a new keyed debouncer utility to handle the debouncing logic. Now, after updating a workbook, it will wait for 1 second before validating the records for the associated sheet, preventing redundant validations if multiple updates occur within a short period. This change does not affect the external interface or the behavior exposed to developers using the package.
