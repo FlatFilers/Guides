@@ -1,0 +1,21 @@
+### November 12, 2024
+## dataxp
+
+api@36741e5
+This release introduces improvements to the way the workbook sheets are updated and cached.
+
+The updateManySheets method now retrieves all affected sheets before performing the bulk update operation, and then invalidates the cache for those sheets after the update is completed. This ensures that the cache is kept up-to-date and consistent with the latest data.
+
+Additionally, a new private method invalidateSheets has been added, which is responsible for removing the relevant cache keys for the provided sheets. This method generates cache keys based on the workbook and sheet IDs and deletes them from the cache.
+
+The existing caching logic has been updated to use the new invalidateSheets method, ensuring that the cache is properly invalidated when necessary.
+
+For example, when committing changes to a sheet, the cache keys for the workbook, workbook with space, and sheet will be invalidated:
+
+```typescript
+await this.invalidateSheets([
+  { id: SheetId.from(sheetId).key, workbook_id: workbookId?.key },
+])
+```
+
+This change improves the overall cache management and ensures that the application always serves the latest data, reducing the risk of stale data being served from the cache.
