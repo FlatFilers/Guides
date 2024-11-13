@@ -1,0 +1,9 @@
+### November 13, 2024
+## dataxp
+
+api@85e8645
+Added information about conditional field validation based on other field values. When generating rules, if the prompt requires a field to be required or have certain validation conditions based on the value of another field, the AI assistant will now use the "flatfileConditionalFieldValidator" stored constraint and specify the available record fields in the "dependencies" option. This allows configuring field-level validation rules that depend on other field values.
+
+Provided an example of the record fields that are available to use in the "dependencies" option, which includes the field key and data type for each field in the sheet's schema.
+
+Updated test cases to pass the available record fields to the rule generation assistant, and to verify that the assistant is called with the expected record field information.
