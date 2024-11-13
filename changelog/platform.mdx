@@ -4,6 +4,33 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 13, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@b4f9944
+      The release notes include the following updates:
+      
+      The @faker-js/faker package has been moved from devDependencies to dependencies in the package.json file. This means the faker library will be included in the production build.
+      
+      In the generate.sample.data.ts file, the import path for fakerFunctions has been updated to import from faker.functions instead of consts.
+      
+      The consts.ts file containing the fakerFunctions array has been removed. A new faker.functions.ts file has been added which dynamically generates the fakerFunctions array by calling each faker function and checking for deprecation warnings.
+      
+      In the ai.faker.driver.ts file, the logic for randomly selecting a date function (date.past, date.future, date.birthdate) for date fields has been removed.
+      
+      The utils.ts file has been updated to handle date formatting for specific date faker functions like date.birthdate, date.future, date.past, date.soon, and date.between. For these functions, the response will be formatted as a string using the date-fns library.
+      
+      For example, for the date.birthdate function, the response will be formatted as "yyyy-MM-dd". For date.future, date.past, date.soon, and date.between, the response will be formatted as an ISO string.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +210,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +234,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +255,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +278,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +293,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
