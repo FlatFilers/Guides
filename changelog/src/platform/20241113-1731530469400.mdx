@@ -1,0 +1,13 @@
+### November 13, 2024
+## dataxp
+
+api@96a0478
+The release notes include the following updates:
+
+The schema for representing fields in sheets and workbooks has been updated to include a new `label` property. This label will be displayed to users, while the `key` property remains for internal identification. For example, a field with `key: 'firstName'` will now also have `label: 'First Name'`. The `metadata` property has also been added to store additional field-level metadata.
+
+The schema for representing headers in sheets has also been updated to include the new `label` property, aligning with the field representation change. Headers now have the structure `{ key, label, type, metadata }`.
+
+For cases where field or header keys contain special characters like `$` or `%`, these characters are now replaced with an underscore and the character name in uppercase (e.g. `my_key_$` becomes `my_key__DOLLAR_`).
+
+Developers consuming the workbook and sheet data structures should update their code to handle the new `label` and `metadata` properties. Any code that assumes a specific structure for fields or headers may need to be updated accordingly.
