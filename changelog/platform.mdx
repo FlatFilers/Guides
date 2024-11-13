@@ -4,6 +4,29 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## November 2024
+
+### November 13, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@96a0478
+      The release notes include the following updates:
+      
+      The schema for representing fields in sheets and workbooks has been updated to include a new `label` property. This label will be displayed to users, while the `key` property remains for internal identification. For example, a field with `key: 'firstName'` will now also have `label: 'First Name'`. The `metadata` property has also been added to store additional field-level metadata.
+      
+      The schema for representing headers in sheets has also been updated to include the new `label` property, aligning with the field representation change. Headers now have the structure `{ key, label, type, metadata }`.
+      
+      For cases where field or header keys contain special characters like `$` or `%`, these characters are now replaced with an underscore and the character name in uppercase (e.g. `my_key_$` becomes `my_key__DOLLAR_`).
+      
+      Developers consuming the workbook and sheet data structures should update their code to handle the new `label` and `metadata` properties. Any code that assumes a specific structure for fields or headers may need to be updated accordingly.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 28, 2024
@@ -183,9 +206,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## August 2024
+## August 2024 (4)
 
-### August 20, 2024
+##### August 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
@@ -207,10 +230,10 @@ icon: "layer-group"
           description: 'Submit this data to a webhook.',
           primary: true,
           guide: {
-              content: "### Personalized Guide \n\n Before performing..."
+              content: "##### Personalized Guide \n\n Before performing..."
           },
           guardrail: {
-              content: "### Warning! \n\n This Submit ..."
+              content: "##### Warning! \n\n This Submit ..."
           }
         },
         {...}
@@ -228,7 +251,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 15, 2024
+##### August 15, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -251,7 +274,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 14, 2024
+##### August 14, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -266,7 +289,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### August 09, 2024
+##### August 09, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
