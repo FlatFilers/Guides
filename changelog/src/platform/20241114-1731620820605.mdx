@@ -1,0 +1,17 @@
+### November 14, 2024
+## spaces
+
+spaces-ui@96b207e
+The provided diff includes the following changes:
+
+Added a new hook called `useValidateSheetMutation` from the `@/api/mutations/sheets.mutations` module. This hook is likely used for validating the current sheet.
+
+In the `handleRemoveConstraint` function, after successfully removing a constraint, a new function `handleValidateSheet` is called. This function likely validates the current sheet after a constraint is removed.
+
+Added a new function called `handleValidateSheet` which calls the `validateSheet.mutate` function (from the `useValidateSheetMutation` hook) with the current `sheetId` as an argument. This function is used to validate the current sheet.
+
+In the `EditRuleForm` component, a new prop called `validateSheet` is added. This prop is expected to be a function that will be called when a constraint configuration is updated.
+
+Inside the `handleEditConfig` function in the `EditRuleForm` component, after successfully updating a constraint configuration, the `validateSheet` function (passed as a prop) is called. This will likely validate the current sheet after a constraint configuration is updated.
+
+These changes introduce the ability to validate the current sheet whenever a constraint is removed or a constraint configuration is updated. The sheet validation is likely performed to ensure the sheet remains in a valid state after these changes.
