@@ -1,0 +1,25 @@
+### November 15, 2024
+## dataxp
+
+api@3c8170c
+This release includes updates related to record pagination and the ability to customize the page size for record inserts and updates using Quickstore.
+
+A new entitlement `customRecordsPageSize` has been introduced. This entitlement can be used to set a custom page size for record inserts and updates when using the Quickstore storage strategy. The default page sizes remain unchanged (300,000 for inserts and 100,000 for updates), but this entitlement allows overriding these defaults.
+
+The `ClearColumnLogic` has been updated to respect the `customRecordsPageSize` entitlement when determining the page size for clearing column values.
+
+The `MappingLogic`, `MappingProgramLogic`, and `MappingStreamingLogic` classes have been updated to respect the `customRecordsPageSize` entitlement when determining the page size for record inserts and updates during mapping operations.
+
+The `WorkbooksService` and `WorkbookWorker` have been updated to respect the `customRecordsPageSize` entitlement when performing record rebasing and updates.
+
+The `RecordsController` has been updated to respect the `customRecordsPageSize` entitlement when performing bulk record inserts and updates.
+
+Example usage:
+```typescript
+// Set a custom page size of 500,000 for record inserts and updates
+await entitlementsService.setEntitlement(
+  'customRecordsPageSize',
+  workbookId,
+  { pageSize: 500000 }
+);
+```
