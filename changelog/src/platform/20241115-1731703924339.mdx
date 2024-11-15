@@ -1,0 +1,7 @@
+### November 15, 2024
+## dataxp
+
+dashboard@e04c175
+The release notes for the changes include:
+
+The code for subscribing to job events related to app autobuild and deploy operations has been removed, along with the state and logic for managing the deploying state. The CreateNewSpace component for creating a new space is no longer conditionally disabled based on the deploying state. Instead, it is now only disabled if the current app's environmentFilters do not include the current environment's filter type. The disabling condition now solely relies on checking the environmentFilters of the current app against the current environment's filter type.
