@@ -6,6 +6,39 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 15, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@c2e3961
+      This release updates the Constraint Management user interface and functionality in the Spaces UI application.
+      
+      The main changes include:
+      
+      1. Removed the ability to create, update, or rename constraints. Constraints can now only be deleted from the Constraint Options view.
+      
+      2. Consolidated the "Your Constraints" and "Library Constraints" sections into a single "Active Constraints" section that includes custom, stored, and global constraints.
+      
+      3. Simplified the Constraint Options view by removing the "Config" and "Code" tabs. The view now displays the constraint name, options, and a list of fields the constraint is active on. Global constraints cannot be deleted from this view.
+      
+      4. Updated the Edit Rule Form to display Rule Options and provide a "Constraint Options Info" button to navigate to the Constraint Options view for the selected constraint.
+      
+      5. Improved the styling and layout of various components, including the use of cards for constraint options, code formatting for option types, and inline alignment of labels and values.
+      
+      6. Removed the ability to edit constraint functions directly from the UI. This functionality must now be handled through the workbook blueprint or agent code.
+      
+      7. Streamlined the constraint operations by removing the ability to create or update constraints from the UI. Constraints can now only be deleted, which updates the associated workbook to remove the constraint from all fields.
+      
+      8. Addressed an issue where the Edit Field Form modal would remain open after saving changes to a constraint.
+      
+      These changes aim to simplify the constraint management experience in the Spaces UI, focusing on viewing and deleting constraints rather than creating or modifying them directly. Developers will need to rely more on the workbook blueprint and agent code for advanced constraint configuration.
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
