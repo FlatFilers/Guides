@@ -1,0 +1,5 @@
+### November 19, 2024
+## dataxp
+
+api@c01359c
+The preserveEmptyCSVData function has been updated to handle empty fields in CSV data more robustly. It now splits the input string on commas, replaces any empty parts with an empty quoted string (""), and then rejoins the parts with commas. This ensures that consecutive commas are replaced with a quoted empty string, preserving the structure of the CSV data. The function also handles input strings that end with a comma by adding an empty quoted string at the end if necessary. This update improves the handling of empty fields in CSV data, ensuring that the data structure is maintained accurately.
