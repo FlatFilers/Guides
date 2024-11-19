@@ -1,0 +1,11 @@
+### November 19, 2024
+## dataxp
+
+api@3e9c078
+A new utility function `preserveEmptyCSVData` has been added to handle preserving empty values in CSV data. This function maps over each line of the CSV data and replaces consecutive commas with a comma followed by an empty quoted string (e.g. `,,` becomes `,"",`). It also appends an empty quoted string at the end of a line that ends with a comma. This ensures that empty values in the CSV data are not lost during processing.
+
+The `parseFiles` function has been updated to use the new `preserveEmptyCSVData` utility when reading plain text files (such as CSV files). This change ensures that any empty values in CSV data are preserved during file parsing.
+
+Additionally, a new test suite `utils.spec.ts` has been added to cover the behavior of the `preserveEmptyCSVData` utility function. The test cases cover scenarios such as adding empty quoted strings between consecutive commas, handling multiple lines of CSV data, not modifying lines without consecutive commas, and handling empty input arrays.
+
+These changes improve the handling of CSV data by preserving empty values, ensuring that no data is lost during file parsing. Developers using this package can now expect CSV data to be processed correctly, even when it contains empty values.
