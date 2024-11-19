@@ -1,0 +1,5 @@
+### November 19, 2024
+## transform
+
+@flatfile/plugin-record-hook@1.11.0
+This release removes unchanged values from the payload to improve performance. When comparing records before committing updates, it now removes fields that have not changed, including nested value objects if all their fields are unchanged. This reduces the payload size and improves efficiency when updating modified records. The diff includes updates to the deepEqual utility function to support this new behavior, as well as new timer utilities to provide debug timing information.
