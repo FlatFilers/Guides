@@ -6,6 +6,73 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 19, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      dashboard@3f47ca6
+      The release notes include the following updates:
+      
+      The SettingsPage component no longer receives the spaceId prop. It will not update the space metadata when activating the app.
+      
+      The SettingsPage now navigates to the /apps/custom/${app.id}/list route with a state object containing a deploying flag set to true when activating the app.
+      
+      The SpaceStep component no longer passes the spaceId prop to the SettingsPage component.
+      
+      The CustomAppList page now receives the deploying state from the location object and initializes its deploying state based on that value. If the deploying state is true, it will replace the URL state to remove the deploying flag.
+      
+      The CustomAppList page now listens for job events related to the app-autobuild-deploy operation and updates its deploying state accordingly. It sets deploying to true when the job is in progress and false when the job is complete, failed, or cancelled.
+      
+      When the deploying state is true in the CustomAppList page, the CreateNewSpace button is replaced with a disabled "Deploying agent..." button.
+      
+      Example usage:
+      
+      ```jsx
+      // SettingsPage component
+      export const SettingsPage = ({ appId }: { appId: string }) => {
+        // ...
+      }
+      
+      // CustomAppList page
+      export const CustomAppListPage = () => {
+        const [deploying, setDeploying] = useState(false)
+        // ...
+      
+        useEffect(() => {
+          if (location.state?.deploying) {
+            setDeploying(true)
+            window.history.replaceState({}, document.title)
+          }
+        }, [location.state])
+      
+        // ...
+      
+        return (
+          <>
+            {/* ... */}
+            {canCreateSpace &&
+              (deploying ? (
+                <Button size='xs' disabled>
+                  Deploying agent...
+                </Button>
+              ) : (
+                <CreateNewSpace
+                  // ...
+                  disabled={!currentApp?.environmentFilters?.type?.includes(filterType) || deploying}
+                />
+              ))}
+            {/* ... */}
+          </>
+        )
+      }
+      ```
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
