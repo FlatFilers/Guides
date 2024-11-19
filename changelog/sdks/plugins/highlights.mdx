@@ -4,6 +4,21 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## November 2024
+
+### November 19, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-record-hook@1.11.0
+      This release removes unchanged values from the payload to improve performance. When comparing records before committing updates, it now removes fields that have not changed, including nested value objects if all their fields are unchanged. This reduces the payload size and improves efficiency when updating modified records. The diff includes updates to the deepEqual utility function to support this new behavior, as well as new timer utilities to provide debug timing information.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +102,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
