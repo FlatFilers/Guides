@@ -1,0 +1,11 @@
+### November 19, 2024
+## dataxp
+
+api@11bf5e5
+The release notes include the following updates:
+
+A new optional `for` query parameter of type `EventId` is added to the `GET /api/v2/workbooks/:workbookId/sheets/:sheetId/records` endpoint. This parameter allows specifying an event ID to retrieve options from the event data when streaming records. When provided, the service will retrieve options from the event data and merge them with the existing options. This allows customizing the records streaming behavior based on event-specific data.
+
+An example usage would be `GET /api/v2/workbooks/:workbookId/sheets/:sheetId/records?for=<eventId>`.
+
+The service now supports merging options from event data when streaming records if the `for` parameter is provided. This enables more flexible and dynamic records streaming based on event-specific requirements.
