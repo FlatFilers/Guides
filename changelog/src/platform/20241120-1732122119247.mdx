@@ -1,0 +1,11 @@
+### November 20, 2024
+## dataxp
+
+api@e92705a
+The release notes state the following updates:
+
+A new exception is raised when a guest user attempts to create another guest user, preventing nested guest accounts. The AuthService.createGuest method now throws a HandledForbiddenException with the message 'Guests cannot create other guests' if the provided grant is an instance of SpaceGrant.
+
+The AuthService.hasPermissionToEnvironment method has been updated to handle SpaceGrant instances. If the grant is a SpaceGrant, it checks if the space associated with the grant has an environment ID. If so, it compares the environment ID of the space with the provided environment ID and returns true if they match, allowing access to the environment.
+
+These changes improve security by preventing guest users from creating other guest accounts and ensuring proper access control for spaces and environments based on the provided grants.
