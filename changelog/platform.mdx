@@ -6,6 +6,38 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 20, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@6da7043
+      The following changes have been made:
+      
+      The DEFAULT_LARGE_MODEL constant has been added to store a larger Anthropic model for handling longer responses. The AnthropicModel class has been updated to use the larger model's maximum token limit of 8192 when the model name includes '3-5-haiku', otherwise it uses the default limit of 4096 tokens.
+      
+      The generate.blueprint.ts file has been updated with the following changes:
+      - Added examples of required and conditional field constraints in JSON format.
+      - Updated the template with critical output requirements, such as only returning a minified JSON code block.
+      - Updated instructions and examples for handling required fields with no conditions and required fields with conditions using the 'required' and 'stored' constraints respectively.
+      - The getModel function now accepts a modelOverride parameter to allow using a different model.
+      
+      The ai.generate.blueprint.logic.spec.ts file has been updated with the following changes:
+      - A new test case 'retries with larger model on response too long errors' has been added to verify that the larger model is used when the initial response is too long.
+      - A new test case 'throws error if retry with larger model also is too short' has been added to ensure an error is thrown if the larger model's response is also too long.
+      
+      The ai.generate.blueprint.logic.ts file has been updated with the following changes:
+      - The processDataWithAssistant method now accepts a modelOverride parameter to allow using a different model.
+      - If the initial response from the default model is too long, it retries with the DEFAULT_LARGE_MODEL.
+      - If the larger model's response is also too long, it throws an error.
+      
+      These changes introduce a larger Anthropic model to handle cases where the initial response is too long. The logic will attempt to generate the blueprint with the larger model if the initial response exceeds the token limit. Additionally, the generate.blueprint function has been updated with stricter output requirements and improved instructions for handling different types of field constraints.
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
