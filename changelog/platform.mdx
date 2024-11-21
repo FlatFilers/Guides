@@ -6,6 +6,27 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 21, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      dashboard@fd10389
+      The SettingsPage component now receives the spaceId as a prop in addition to the appId. The activate function within SettingsPage has been updated to remove the isInAutoBuild and isAutoBuildWorkingSpace properties from the space's metadata before updating the app's activatedAt property. This will ensure that the space's metadata remains clean after the auto-build process is complete. Additionally, the SpaceStep component now passes the workingSpace.id as the spaceId prop when rendering the SettingsPage.
+      
+      Example usage:
+      
+      ```jsx
+      <SettingsPage appId={appId} spaceId={workingSpaceId} />
+      ```
+      
+      This change allows the SettingsPage to access and modify the relevant space metadata during the auto-build process, ensuring a consistent state across the application and space resources.
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
