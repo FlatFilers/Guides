@@ -1,0 +1,30 @@
+### November 22, 2024
+## dataxp
+
+api@0d55498
+The release includes the following updates:
+
+Server-Timing headers will now be added to HTTP responses to provide visibility into request timings for the application, database queries, and ephemeral traces. This will help optimize performance by identifying slow operations.
+
+New endpoints have been added to manage user roles and permissions, including retrieving a list of users with roles, getting a specific user's roles, updating a user's roles, and inviting a new user with specified roles.
+
+Several endpoints have been updated to report server timings using the new @ReportServerTiming() decorator. These include endpoints for retrieving actions, agents, jobs, initial space resources, live blocks tokens, user roles, analytics, and various workbook and sheet operations like fetching, creating, updating, and deleting records.
+
+A new ServerTimingInterceptor has been introduced to handle the logic of adding Server-Timing headers to responses based on the @ReportServerTiming() decorator.
+
+The Prisma clients for the core and SDK databases have been updated to track query durations and include them in the Server-Timing headers.
+
+The DebugTrace class now supports logging ephemeral traces starting with 'trace:' to the Server-Timing headers.
+
+Here's an example of how to use the new @ReportServerTiming() decorator:
+
+```typescript
+@Get('/sheets/:sheetId')
+@UsePrivilege('sheet:read')
+@ReportServerTiming()
+async getSheet(@Param('sheetId', SheetId) id: SheetId): Promise<Sheet> {
+  return ensure(this.wb.getSheet(id))
+}
+```
+
+This change aims to provide better visibility into the performance of various operations within the application, enabling easier identification and optimization of slow areas.
