@@ -1,0 +1,19 @@
+### November 22, 2024
+## dataxp
+
+api@1507922
+The release notes describe the following updates:
+
+Added a new constant `fileData` which contains mock data for a file object. Added a new constant `largeFileData` which contains mock data for a large file object. 
+
+Updated the `extraction.mapping.e2e-spec.ts` test to wait for the extraction job of the uploaded file to complete before proceeding. Previously, it was creating a separate file extraction job, which is no longer necessary since CSV files are automatically extracted upon upload.
+
+Updated the `jobs2.e2e-spec.ts` test to handle the case where a previously extracted file is attempted to be extracted again. In this case, the job will be canceled with a message indicating the file has already been extracted.
+
+Added a new test case in `extraction.logic.spec.ts` to verify that the extraction logic cancels the job if the file has already been extracted, and transitions the job status to `CANCELED` with the appropriate message.
+
+Updated the `extraction.logic.ts` to check if the file has already been extracted before proceeding with the extraction. If the file has already been extracted, it will cancel the job with a message indicating the file has already been extracted.
+
+Added a new utility function `waitForJobStatus` in `testing.utils.ts` to wait for a job to reach a specific status within a given timeout.
+
+These updates ensure that CSV files are properly extracted upon upload, and that any attempt to extract an already extracted file will result in a canceled job with an appropriate message. The changes also introduce new mock data and test cases to cover these scenarios.
