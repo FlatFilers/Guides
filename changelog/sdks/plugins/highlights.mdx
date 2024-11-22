@@ -4,6 +4,21 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## November 2024
+
+### November 22, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-json-extractor@0.11.0
+      This release adds support for parsing JSONL (JSON Lines) files in the JSON Extractor plugin. The plugin now accepts files with the .jsonl or .jsonlines extension and treats them as a sequence of JSON objects, one per line. Empty lines are skipped, and invalid lines are ignored with a console warning during parsing. The existing support for parsing regular JSON files remains unchanged.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +102,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
