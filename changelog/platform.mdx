@@ -6,6 +6,51 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 22, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@ed2d98f
+      The following changes have been made to the package:
+      
+      1. Removed the `flatfileIsString`, `flatfileIsNumber`, `flatfileIsBoolean`, and `flatfileIsDate` constraints from the built-in constraints list.
+      
+      2. Removed the `isString`, `isNumber`, `isBoolean`, and `isDate` utility functions and their corresponding test files.
+      
+      3. Updated the `TYPE_CONSTRAINT_MAP` in `utils.ts` to use `flatfileIsValidNumRange`, `flatfileIsValidDateRange`, and `flatfileMapsToBoolean` instead of the removed constraints.
+      
+      4. Modified the `isValidCity` constraint to only check if the city is found in the specified country, instead of checking for the state/province as well. The default country code is now 'US' if not provided.
+      
+      5. Modified the `isValidCountry` constraint to use a simpler approach for validating country names and codes.
+      
+      6. Removed the requirement of checking for empty values in several constraints, as the updated constraints now handle null, undefined, and empty values gracefully.
+      
+      7. Updated the `isValidDateRange` constraint to handle relative date formats like 'now', 'today', 'tomorrow', and 'yesterday', as well as custom error messages.
+      
+      8. Updated the `isValidLength` constraint to handle invalid min/max value configurations and provide a default error message.
+      
+      9. Updated the `isValidNumRange` constraint to handle non-finite values and provide a default error message.
+      
+      10. Updated the `isValidPhoneNumber` constraint to handle non-string inputs gracefully.
+      
+      11. Updated the `isValidRegex` constraint to provide a default error message.
+      
+      12. Updated the `isValidStateProvince` constraint to use the default 'US' country code if not provided and handle error messages gracefully.
+      
+      13. Updated the `isValidUrl` constraint to handle null, undefined, and empty values gracefully.
+      
+      14. Updated the `isValidUSPhoneNumber` constraint to handle non-string inputs gracefully.
+      
+      The main changes involve removing the built-in type validation constraints (`isString`, `isNumber`, `isBoolean`, `isDate`) and updating the remaining constraints to handle null, undefined, and empty values consistently. Additionally, some constraints have been simplified or updated to provide better error handling and default error messages.
+      
+      Overall, these changes aim to streamline the built-in constraints, improve error handling, and provide more consistent behavior across different constraints.
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
