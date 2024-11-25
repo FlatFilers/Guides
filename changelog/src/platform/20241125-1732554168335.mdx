@@ -1,0 +1,13 @@
+### November 25, 2024
+## dataxp
+
+api@282f52a
+Added a new utility function `cleanString` to clean and normalize strings by handling special characters, escaped sequences, and line endings. The function has configurable options to remove null characters (`\u0000`), remove tab characters (`\t`), and specify the replacement for newline characters. By default, it removes null and tab characters, and replaces all newline variants with `\n`.
+
+Modified the `AddRecords` class in the `quick` driver to use the `cleanString` utility for sanitizing JSON source data before inserting it into the database. This ensures that invalid null characters are removed from the JSON data.
+
+Updated the `ExtractionLogic` class in the `extraction` job to use the `cleanString` utility when writing data to temporary files during the extraction process. This normalizes newline characters and removes tabs from the extracted data.
+
+Added a test suite for the `cleanString` function, covering various scenarios and edge cases, including performance tests for large input strings.
+
+These changes provide a centralized utility for string cleaning and normalization, which can be used across the codebase to handle special characters and line endings consistently. The removal of null characters from JSON data ensures compatibility with the Postgres JSONB columns, while the normalization of newlines and tabs improves data consistency and interoperability.
