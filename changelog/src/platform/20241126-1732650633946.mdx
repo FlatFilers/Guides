@@ -1,0 +1,11 @@
+### November 26, 2024
+## dataxp
+
+api@d73d6bd
+The snapshot creation process has been updated to improve efficiency and maintain data integrity. The main changes are as follows:
+
+The snapshot table for sheet data is now created and populated in a single SQL statement using a SELECT * instead of creating an empty table and then inserting data. Constraints and indexes from the original sheet table are recreated on the snapshot table with new names to prevent conflicts. This is done by fetching the constraint and index definitions from the original table and applying them to the snapshot table with a unique suffix. 
+
+The creation of the fields and sheets snapshot tables remains the same, with rows being inserted into new tables created from the original fields and sheets tables, but only for the specific sheet being snapshotted.
+
+These changes streamline the snapshot creation process, improve performance by reducing the number of SQL statements executed, and ensure data integrity by maintaining constraints and indexes on the snapshot table.
