@@ -1,0 +1,15 @@
+### November 26, 2024
+## dataxp
+
+api@2f23c09
+The MappingsService has been updated to include the spaceId parameter when generating a signed access token for a grant. This change ensures that the access token is scoped to the specific space associated with the grant, enhancing security and access control. Developers using this service will now need to provide the spaceId along with other necessary parameters when requesting an access token. For example:
+
+```typescript
+const accessToken = AuthService.getSignedAccessToken({
+  accountId: grant.accountId,
+  spaceId: grant.entityId, // Provide the spaceId
+  environmentId,
+  programId: id,
+  agentId: grant.actorId,
+});
+```
