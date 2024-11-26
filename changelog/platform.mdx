@@ -6,6 +6,26 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 26, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@0168aa2
+      The isValidNumRange function now handles cases where the input value cannot be parsed as a number. It adds an error to the record if the value is not a valid number or if it falls outside the specified range. The function now converts the input value to a number before checking if it is within the allowed range. If the parsed number is NaN (Not a Number), it will add an error to the record with the configured error message. This change ensures that the validation function properly handles non-numeric input values and provides a consistent error message in such cases.
+      
+      Example usage:
+      
+      ```typescript
+      isValidNumRange('abc', 'testKey', { max: 10 });
+      // Adds an error: 'Value must be between -Infinity and 10'
+      ```
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
