@@ -6,6 +6,27 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 26, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@194654b
+      A new server timing middleware has been added to track the duration of requests and various components involved in handling the request. The AuthGuard has been updated to track its own timing and include it in the server timing response header. The ServerTimingInterceptor has been updated to include guard timings in the server timing header. The middleware now sets the serverTimingStart property on the request object to track the start time of the request for accurate timing measurements. These updates provide more detailed insights into the performance of the application by measuring the time spent in different components during request handling.
+      
+      For example, the server timing header may now include entries like:
+      
+      ```
+      Server-Timing: app;dur=123, AuthGuard;dur=45, other-guard;dur=20
+      ```
+      
+      This indicates the total request duration of 123ms, with 45ms spent in the AuthGuard and 20ms spent in another guard. Developers can use this information to identify and optimize slow components in their application.
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
