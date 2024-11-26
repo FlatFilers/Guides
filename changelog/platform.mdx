@@ -6,6 +6,29 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 26, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@2f23c09
+      The MappingsService has been updated to include the spaceId parameter when generating a signed access token for a grant. This change ensures that the access token is scoped to the specific space associated with the grant, enhancing security and access control. Developers using this service will now need to provide the spaceId along with other necessary parameters when requesting an access token. For example:
+      
+      ```typescript
+      const accessToken = AuthService.getSignedAccessToken({
+        accountId: grant.accountId,
+        spaceId: grant.entityId, // Provide the spaceId
+        environmentId,
+        programId: id,
+        agentId: grant.actorId,
+      });
+      ```
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
