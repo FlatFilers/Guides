@@ -6,6 +6,36 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 26, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@08d7832
+      Added a query parameter to the `streamRecords` method in the `ClearColumnLogic` class to filter the records based on the job query. The `getJobQuery` function is used to obtain the query from the job object.
+      
+      Refactored the `WorkbooksEvents` service's `getApiActions` method to first check if the workbook treatment includes `WorkbookTreatmentsEnum.ExtractedFromSource`. If so, it then checks if the account has the `SourceEditor` entitlement. If the entitlement is present, it adds the `addColumnAction` and `removeColumnAction` to the list of available actions for the workbook, along with the existing `clearColumnAction`. This change ensures that the `addColumnAction` and `removeColumnAction` are only available for workbooks extracted from a source if the account has the `SourceEditor` entitlement.
+      
+      Example usage:
+      
+      ```typescript
+      import { WorkbooksEvents } from './workbooks.events';
+      
+      const workbooksEvents = new WorkbooksEvents();
+      const actions = await workbooksEvents.getApiActions(
+        workbookId,
+        accountId,
+        [WorkbookTreatmentsEnum.ExtractedFromSource]
+      );
+      ```
+      
+      In the example above, if the account has the `SourceEditor` entitlement and the workbook treatment includes `WorkbookTreatmentsEnum.ExtractedFromSource`, the `actions` array will contain the `clearColumnAction`, `addColumnAction`, and `removeColumnAction`.
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
