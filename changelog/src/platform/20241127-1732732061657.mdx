@@ -1,0 +1,11 @@
+### November 27, 2024
+## dataxp
+
+api@74b1c28
+The release notes include the following changes:
+
+Properly escape composite constraint names when generating unique constraint violation messages. This ensures that constraint names containing special characters are correctly handled and displayed in error messages.
+
+Add a new end-to-end test case to verify that composite constraint violation messages are correctly displayed with the constraint name. This test creates a workbook with a composite constraint on two fields, inserts records that violate the constraint, and asserts that the expected error messages are returned.
+
+No changes to external interfaces or parameters.
