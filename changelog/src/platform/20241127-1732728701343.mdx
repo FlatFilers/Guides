@@ -1,0 +1,11 @@
+### November 27, 2024
+## dataxp
+
+api@9fb0142
+The updates include changes to the `AgentsRepository` class methods `getAgentExecutions` and `getAgentLog`.
+
+The `getAgentExecutions` method now fetches execution details directly from the `executions` table without joining with the `events` and `subscriptions` tables. The `context` field is retrieved from the `executions` table instead of the `events` table, and the `topic` field is selected directly from the `executions` table.
+
+The `getAgentLog` method has been simplified to fetch executions without including the `event` and `subscription` details. The `topic` and `context` fields are now retrieved directly from the `execution` record.
+
+These changes streamline the data retrieval process by avoiding unnecessary joins and reducing the complexity of the queries. Developers using this package will benefit from improved performance and simplified data retrieval when fetching agent execution logs and details.
