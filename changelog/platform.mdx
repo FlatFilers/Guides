@@ -6,6 +6,35 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 26, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@f577b06
+      The release notes include the following updates:
+      
+      The naming convention for constraints and indexes in snapshots has been modified. Instead of appending a random suffix to the name, the sheet ID is replaced with the snapshot ID in the name. This change ensures consistent naming across different snapshot operations.
+      
+      For constraints, the constraint name is replaced with the new name following the updated naming convention, and the constraint definition is updated accordingly. For example:
+      
+      ```sql
+      ALTER TABLE snapshot_table_name ADD CONSTRAINT new_constraint_name constraint_definition
+      ```
+      
+      For indexes, the index name is replaced with the new name following the updated naming convention. The index type (UNIQUE or non-unique) and the columns remain the same. For example:
+      
+      ```sql
+      CREATE [UNIQUE] INDEX new_index_name ON snapshot_table_name (column1, column2, ...)
+      ```
+      
+      These changes ensure consistent and predictable naming for constraints and indexes across different snapshot operations, making it easier to manage and maintain snapshots.
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
