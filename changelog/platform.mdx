@@ -14,13 +14,7 @@ icon: "layer-group"
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
       api@38b0f93
-      The release notes include a change to the `applyObjectToPartialResourceHierarchy` function. The function now checks if the length of the `obj` parameter's values is greater than 250. If the length exceeds 250, the function will return an empty object instead of attempting to parse the object. This change is likely to prevent performance issues or errors when dealing with large objects. Developers using this package should be aware that if they pass in objects with more than 250 values, the function will not process them and return an empty object instead. For example:
-      
-      ```typescript
-      const largeObject = { /* ... object with more than 250 key-value pairs */ };
-      const resourceHierarchy = applyObjectToPartialResourceHierarchy({}, largeObject);
-      // resourceHierarchy will be an empty object {}
-      ```
+      The release notes include a a performance improvement related to the 
     </div>
   </div>
 </div>
