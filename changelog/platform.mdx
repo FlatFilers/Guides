@@ -6,6 +6,37 @@ icon: "layer-group"
 
 ## November 2024
 
+### November 27, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      dashboard@74d281a
+      The release notes include the following updates:
+      
+      Added environment variables VITE_HUBSPOT_FORM_ID and VITE_HUBSPOT_PORTAL_ID for Hubspot form integration. These variables should be configured by the developer to enable the Hubspot form functionality.
+      
+      Added a new public image projects.png for use in the application.
+      
+      Introduced a new FirstLoginModal component that displays a modal prompting the user to select their role (Developer, Services, or Other) on their first login. The modal is shown only once per session and redirects to the /demo route for the Services role.
+      
+      Added a new DemoPage component for showcasing the Flatfile Projects product. This page includes a detailed description, an image, and a button to open a Hubspot form modal for booking a demo.
+      
+      Added a new HubspotForm component that renders a Hubspot form and pre-populates it with user details (email, firstname, lastname) if provided.
+      
+      Added a new isFirstLogin utility function to determine if the current user is on their first login based on the createdAt and lastSeenAt timestamps. This function is used to conditionally show the FirstLoginModal.
+      
+      Updated the HomePage component to render the FirstLoginModal on the first login and apply a blur effect while the modal is open.
+      
+      Added a new /demo route for rendering the DemoPage component.
+      
+      Overall, these changes enhance the user onboarding experience by introducing a first-time login modal to categorize users and showcase the Flatfile Projects product through a dedicated demo page with a Hubspot form integration for booking demos.
+    </div>
+  </div>
+</div>
+
 ### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
