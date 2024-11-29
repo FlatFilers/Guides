@@ -1,0 +1,46 @@
+### November 29, 2024
+## dataxp
+
+api@2c6d56b
+Updated the package to prevent duplicate extraction usage events from being recorded and charged. Specifically:
+
+A new repository method `getDuplicateExtractionEvent` has been added to check if a usage event for a file extraction already exists based on the source, fileId, and startRow metadata. If a duplicate is found, the service will return false and not record a new usage event.
+
+The `addUsageEvent` method in the service now calls `getDuplicateExtractionEvent` before attempting to add the usage event. If a duplicate is found, it will return false without recording the event.
+
+Example usage:
+
+```typescript
+const fileId = new FileId()
+const workbookId = new WorkbookId()
+
+// This will be recorded
+const newUsageEvent = await usageService.addUsageEvent({
+  type: UsageEventType.PDV,
+  value: 10,
+  spaceId,
+  accountId,
+  metadata: {
+    source: 'runExtraction',
+    fileId: fileId.full,
+    startRow: 1, 
+    workbookId: workbookId.full
+  }
+})
+
+// This is a duplicate and will not be recorded
+const duplicateUsageEvent = await usageService.addUsageEvent({
+  type: UsageEventType.PDV,
+  value: 10, 
+  spaceId,
+  accountId,
+  metadata: {
+    source: 'runExtraction',
+    fileId: fileId.full, 
+    startRow: 1,
+    workbookId: 'someOtherWorkbookId' // Note workbookId is different but will still be considered a duplicate
+  }
+})
+```
+
+This change aims to prevent overcounting and overcharging customers for duplicate file extractions until the root cause of the duplicates is resolved.
