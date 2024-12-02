@@ -36,6 +36,27 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      dashboard@150014d
+      The release notes include the following updates:
+      
+      The Hubspot form for booking demos has been removed from the new dashboard application. The environment variables related to the Hubspot form ID and portal ID have been removed from the .env.defaults and .env.production files.
+      
+      A new dependency "@calcom/embed-react" has been added to the package.json file. This is likely a calendar embedding library for booking demos.
+      
+      The DemoPage component has been updated to use the @calcom/embed-react library to embed a calendar for booking demos. The Hubspot form has been replaced with the Cal component from this library. The calendar is initialized with a namespace of "demo-dash" and a link of "team/flatfile/demo-dash". The calendar is configured to display the month view layout and pre-fill the user's name and email from the user's identity. 
+      
+      The BookDemoPage component now opens a modal with the embedded calendar instead of the Hubspot form when the "Book A Demo" button is clicked. The modal's opened state is controlled by the calendarModalOpened state variable.
+      
+      These changes replace the Hubspot form for booking demos with an embedded calendar powered by the @calcom/embed-react library, providing a more seamless and integrated experience for users to book demos directly within the application.
+    </div>
+  </div>
+</div>
+
 ## November 2024
 
 ### November 13, 2024
