@@ -1,0 +1,5 @@
+### December 02, 2024
+## spaces
+
+spaces-ui@85fedf6
+The changes update the behavior of the `extractJobOutcomeDetails` function, which extracts details from a Job object. The `trigger` property is now calculated using a new `getDefaultTrigger` function if the `triggerObject?.type` is falsy. This ensures that a default trigger value is always provided. Additionally, the `auto` variable in the `useJobsToast` hook is now calculated directly from the `trigger` value, removing the conditional check with `getDefaultTrigger`. This change simplifies the logic for determining whether a job is automatic or silent.
