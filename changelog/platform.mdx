@@ -4,6 +4,21 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## December 2024
+
+### December 02, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@85fedf6
+      The changes update the behavior of the `extractJobOutcomeDetails` function, which extracts details from a Job object. The `trigger` property is now calculated using a new `getDefaultTrigger` function if the `triggerObject?.type` is falsy. This ensures that a default trigger value is always provided. Additionally, the `auto` variable in the `useJobsToast` hook is now calculated directly from the `trigger` value, removing the conditional check with `getDefaultTrigger`. This change simplifies the logic for determining whether a job is automatic or silent.
+    </div>
+  </div>
+</div>
+
 ## November 2024
 
 ### November 13, 2024
@@ -86,9 +101,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## September 2024
+## September 2024 (6)
 
-### September 27, 2024
+##### September 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -105,7 +120,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 25, 2024
+##### September 25, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -119,7 +134,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 20, 2024
+##### September 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -135,7 +150,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 11, 2024
+##### September 11, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -148,7 +163,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 10, 2024
+##### September 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -157,31 +172,31 @@ icon: "layer-group"
       
       `@flatfile/api@1.9.14`
       
-      #### Actions Resource
+      ###### Actions Resource
       
       Actions are now a first class resource. Developers may now create, retrieve, update, and delete actions via the api.
       New action events ActionCreated, ActionUpdated, and ActionDeleted are now being published and an actionId field has been added to the Context of events.
       
-      #### Agent Versioning
+      ###### Agent Versioning
       
       Agents versioning has been introduced. You may now retreieve agent versions via the api and revert to a previous version via the api and the dashboard.
       
-      #### Token Refresh
+      ###### Token Refresh
       
       Guests actively using their space will have their token's automatically renewed.
       
-      #### Sheet & Cell Updates
+      ###### Sheet & Cell Updates
       
       Support for array values in cell values has also been added.
       
-      #### Job Metadata
+      ###### Job Metadata
       
       Metadta is now available on the `JobConfig` type, allowing additional data to be associated with jobs.
     </div>
   </div>
 </div>
 
-### September 06, 2024
+##### September 06, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
