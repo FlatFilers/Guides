@@ -36,6 +36,29 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      dashboard@7b9dae9
+      The release notes include the following updates:
+      
+      The useCollection hook for fetching users now accepts pageNumber and pageSize parameters to enable pagination. This means developers using the package can now paginate the list of users, with a default page size of 15.
+      
+      The pagination state and functionality have been extracted into a separate pagination object, which is passed as a prop to components that require pagination functionality. This includes currentPage, setCurrentPage, pageCount, and setPageCount properties, allowing for easy management of pagination state and behavior.
+      
+      The search functionality has been enhanced with the introduction of the useDebounce hook, which debounces the search value input for 500 milliseconds before triggering a search. This optimization improves performance by reducing unnecessary searches for each keystroke. For example:
+      
+      ```tsx
+      const debouncedSearchValue = useDebounce<string | undefined>(searchValue, 500)
+      ```
+      
+      Overall, these changes improve the user experience by adding pagination and optimizing the search functionality, while also making the code more modular and reusable.
+    </div>
+  </div>
+</div>
+
 ## November 2024
 
 ### November 13, 2024
