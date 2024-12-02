@@ -4,6 +4,23 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## December 2024
+
+### December 02, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@6d2b4c0
+      The release notes summarize the following changes:
+      
+      A bug fix was made to the handling of enum field options when updating a sheet. Previously, if the `config.options` property was undefined, an error would occur. Now, if `config.options` is undefined, it defaults to an empty array. This ensures that the code can safely handle cases where `config.options` is not present or is undefined. For example, if a developer was updating a sheet with an enum field that did not previously have any options defined, the update can now proceed without errors.
+    </div>
+  </div>
+</div>
+
 ## November 2024
 
 ### November 13, 2024
@@ -86,9 +103,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## September 2024
+## September 2024 (6)
 
-### September 27, 2024
+##### September 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -105,7 +122,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 25, 2024
+##### September 25, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -119,7 +136,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 20, 2024
+##### September 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -135,7 +152,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 11, 2024
+##### September 11, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -148,7 +165,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 10, 2024
+##### September 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -157,31 +174,31 @@ icon: "layer-group"
       
       `@flatfile/api@1.9.14`
       
-      #### Actions Resource
+      ###### Actions Resource
       
       Actions are now a first class resource. Developers may now create, retrieve, update, and delete actions via the api.
       New action events ActionCreated, ActionUpdated, and ActionDeleted are now being published and an actionId field has been added to the Context of events.
       
-      #### Agent Versioning
+      ###### Agent Versioning
       
       Agents versioning has been introduced. You may now retreieve agent versions via the api and revert to a previous version via the api and the dashboard.
       
-      #### Token Refresh
+      ###### Token Refresh
       
       Guests actively using their space will have their token's automatically renewed.
       
-      #### Sheet & Cell Updates
+      ###### Sheet & Cell Updates
       
       Support for array values in cell values has also been added.
       
-      #### Job Metadata
+      ###### Job Metadata
       
       Metadta is now available on the `JobConfig` type, allowing additional data to be associated with jobs.
     </div>
   </div>
 </div>
 
-### September 06, 2024
+##### September 06, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
