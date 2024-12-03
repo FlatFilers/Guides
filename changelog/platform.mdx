@@ -6,6 +6,33 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@e1f1983
+      The release includes the following changes:
+      
+      A new column `parent_sheet_id` of type `VARCHAR(32)` has been added to the `sheets` table. This column will hold the ID of the parent sheet if the current sheet is a data clip created from another sheet.
+      
+      The `getSheets` method in the `WorkbookRepository` has been updated to exclude child sheets (data clips) by default when fetching sheets from a workbook. This ensures that only the main/source sheets are shown in the left sheet section and tab section. A new optional parameter `includeChildren` has been introduced to include child sheets if set to `true`.
+      
+      A new method `getDataClippedSheets` has been added to the `WorkbooksService` to fetch all sheets, including data clips (child sheets), from a workbook.
+      
+      The `getSheetBySlug` method in the `WorkbookRepository` has been updated to exclude child sheets when fetching a sheet by its slug. This is because data clips and the source sheet share the same slug.
+      
+      A new method `getSheetsBySlug` has been added to the `WorkbooksService` to fetch a sheet by its slug, including any data clips (child sheets) associated with it.
+      
+      The `createSheet` method in the `WorkbookRepository` and `WorkbooksService` now accepts an optional `parentSheetId` parameter. This parameter is used when creating a new sheet as a data clip of an existing sheet, allowing the new sheet to be linked to its parent sheet.
+      
+      Various test cases and mock data have been updated to account for the new data clip functionality and the `parent_sheet_id` column.
+    </div>
+  </div>
+</div>
+
 ### December 02, 2024
 
 <div style={{ display: "table", width: "auto" }}>
