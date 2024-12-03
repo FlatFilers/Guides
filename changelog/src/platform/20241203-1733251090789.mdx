@@ -1,0 +1,19 @@
+### December 03, 2024
+## dataxp
+
+api@300b3ab
+The release includes the following updates:
+
+Secrets controller has been updated to not retrieve the environmentId when fetching space details if the spaceId is provided. This change improves performance by avoiding an unnecessary lookup.
+
+New tests have been added to ensure that space admin users can only access space-level secrets and not environment-level secrets within the same space. This enforces proper access control and security.
+
+The SpacesService now has an option to exclude the guest link generation when fetching space details. This can improve performance in scenarios where the guest link is not required.
+
+For example, when fetching space details without needing the guest link, you can use:
+
+```typescript
+const space = await spacesService.getSpace(spaceId, grant, false);
+```
+
+This update enhances the security of the application by ensuring proper access control for space admin users and provides performance optimizations by selectively generating guest links and avoiding unnecessary environment lookups.
