@@ -6,6 +6,29 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@08caf1a
+      The changes made to the `EnumForm` component introduce the following updates:
+      
+      The way enum option values and labels are handled has been updated. When changing an option's value, the label will now be preserved if it already exists, otherwise, it will be set to an empty string. When changing an option's label, if the new value is not an empty string, the label will be updated accordingly.
+      
+      The code for handling option changes has been updated to use object spread syntax and conditional logic to ensure the correct behavior for updating option values and labels.
+      
+      When adding a new option, the initial value for the label property is now set to an empty string instead of an empty object.
+      
+      The `value` prop for the `TextInput` component that displays the label has been updated to use the option's label value or an empty string if the label is undefined or null.
+      
+      These changes provide a more intuitive and consistent way of handling enum option values and labels, ensuring that existing labels are preserved when changing option values and allowing for empty labels when desired. Developers using this component will now have better control over the display and management of enum options.
+    </div>
+  </div>
+</div>
+
 ### December 02, 2024
 
 <div style={{ display: "table", width: "auto" }}>
