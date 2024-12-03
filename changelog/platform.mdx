@@ -6,6 +6,40 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@9ec2f27
+      The AI rule creation logic has been updated with the following changes:
+      
+      1. The `validator` property in the job configuration has been replaced with an `index` property. This index property is used to specify the position where a new constraint should be added or an existing constraint should be updated in the field constraints array.
+      
+      2. When adding or updating a constraint, the logic now checks if the new constraint's validator already exists in the available app constraints. If it does, it retrieves the existing constraint's version and updates the constraint at the specified index in the field constraints array. If the new validator does not exist, it adds the new constraint to the end of the field constraints array or at the specified index if it is a valid position.
+      
+      3. The validation logic for sheets has been updated to remove the check for duplicate stored or external constraint validators within a field. The validation now only checks if the number of constraints for a field exceeds the maximum allowed constraints.
+      
+      Example usage:
+      ```typescript
+      const jobConfig: Flatfile.AiRuleCreationJobConfig = {
+        prompt: 'prompt-new-constraint',
+        sheetId: 'sheet-id',
+        fieldKey: 'field-key',
+        index: 2, // Specify the index to add or update the constraint
+      };
+      
+      const logic = new AIRuleCreationLogic(/* job, ruleService, etc. */);
+      await logic.execute();
+      ```
+      
+      In the provided example, if the field's constraints array has three or more constraints, the new constraint will be added or updated at index 2. If the index is out of bounds, the new constraint will be added to the end of the constraints array.
+    </div>
+  </div>
+</div>
+
 ### December 02, 2024
 
 <div style={{ display: "table", width: "auto" }}>
