@@ -6,6 +6,46 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 03, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@32afc6a
+      The updates in this diff include the following:
+      
+      A new feature has been added to generate tool suggestions for data transformation tasks. This feature includes:
+      
+      1. A new endpoint `/internal/sheets/:sheetId/generate-tool-suggestions` that accepts column keys to analyze and returns a ranked list of suggested transformation tools based on the data structure and patterns.
+      
+      2. Two analysis strategies for generating tool suggestions:
+         - Pattern-based analysis: Fast execution (around 0.11ms on average) with 62.5% accuracy in testing. This strategy uses structural pattern matching and is good for simple transformations.
+         - LLM (Large Language Model) analysis: Higher accuracy (93.8% in testing) but slower execution (around 494ms on average). This strategy uses context-aware suggestions from the Claude 3 Haiku model and is better suited for complex scenarios.
+      
+      3. Comprehensive testing framework with 16 test cases covering various data scenarios, including nested data structures, mixed data types, null handling, and complex formatting requirements.
+      
+      4. New dependencies: `@ai-sdk/amazon-bedrock` and `ai` libraries for LLM analysis.
+      
+      5. Example usage:
+      
+      ```typescript
+      POST /internal/sheets/:sheetId/generate-tool-suggestions
+      {
+          "columnKeys": ["first_name", "last_name"]
+      }
+      // Response
+      {
+        "data": ["combine", "split", "firstAvailable"]
+      }
+      ```
+      
+      This feature allows developers to get intelligent suggestions for the most appropriate transformation tools based on their data structure and patterns, improving the efficiency and accuracy of data transformation tasks.
+    </div>
+  </div>
+</div>
+
 ### December 02, 2024
 
 <div style={{ display: "table", width: "auto" }}>
