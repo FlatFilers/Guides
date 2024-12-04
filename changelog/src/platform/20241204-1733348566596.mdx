@@ -1,0 +1,13 @@
+### December 04, 2024
+## dataxp
+
+api@1cb4615
+The release notes include the following updates:
+
+Added privilege guards and decorators to the AccountsController and UsersController methods to restrict access based on user privileges. The getCurrent, updateAccount, getUsers, createUser, getUser, and updateUser methods now require the 'account:read', 'account:update', or 'account:manage-users' privileges respectively. For example, to update an account, the user must have the 'account:update' privilege.
+
+Added tests to verify that users without the required privileges are denied access to the protected controller methods. This includes tests for anonymous guest tokens attempting to access restricted endpoints.
+
+Added the ability to update an account's defaultAppId by sending a PATCH request to the /accounts/current endpoint with the new defaultAppId value. A test was added to verify this functionality.
+
+Updated the default-entitlements.local.yaml file, but the specific changes are not clear from the provided diff.
