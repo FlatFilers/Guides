@@ -6,6 +6,25 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 04, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@10f06d4
+      The release updates include the following changes to the user interface:
+      
+      Added a new "plugins.viewMapped" section with status messages to display when updating a table to only show mapped fields. The new status messages are "updatingTable", "halfway", "almostDone", "complete", and "error". For example, the "complete" message is "Table update complete. Please audit the data".
+      
+      These status messages have been added in multiple languages including English, French, Spanish, German, Italian, Portuguese, Chinese, Japanese, Korean, Indonesian, Turkish, and Vietnamese. This allows users to see the relevant status update in their preferred language when a table is being filtered to mapped fields only.
+      
+      Developers consuming this package should be aware of these new localized strings related to the viewMapped plugin functionality. Any user interface that leverages this plugin may need to account for displaying these status messages during its operation.
+    </div>
+  </div>
+</div>
+
 ### December 02, 2024
 
 <div style={{ display: "table", width: "auto" }}>
