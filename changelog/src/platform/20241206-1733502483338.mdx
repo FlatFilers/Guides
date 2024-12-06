@@ -4,4 +4,4 @@
 dashboard@ff59135
 The release notes describe the following changes:
 
-The EnvironmentSecrets component has been updated to allow editing the name of a secret. When editing a secret, a TextInput field is now rendered with the onChange event handler set. This event handler updates the updatedSecretValues state with the new name value entered in the TextInput field. This allows the user to change the name of the secret being edited. Previously, the TextInput field was read-only and did not allow modifying the secret name.
+There was a bug causing the name of environment secrets not to update when edited. This fixes the bug ensuring environment secret names are updated.
