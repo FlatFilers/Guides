@@ -1,0 +1,5 @@
+### December 06, 2024
+## dataxp
+
+api@2a8970b
+Added the ability to create custom constraints in Flatfile to validate and transform data during the import process. Custom constraints are functions that receive a value, a field key, and a context object containing configuration options, record interface methods, and utility dependencies. The record interface allows adding errors, warnings, info messages, getting and setting field values. Custom constraints can perform advanced validation logic, make external API calls asynchronously, reference other fields, and transform data if needed. Configuration options are defined via a schema to customize the constraint behavior. The Flatfile SDK was introduced to create, update, and retrieve custom constraints programmatically. Examples are provided for creating date range validators, complex string validators, and numeric range validators with unit conversions.
