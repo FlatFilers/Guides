@@ -21,6 +21,27 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@6f1a638
+      Updated the tracing setup to conditionally register the DatadogContextManager based on the USE_DATADOG environment variable. If USE_DATADOG is not set or false, it will register the tracer provider without any special context manager. This change ensures that the tracing setup works correctly with or without Datadog, and provides flexibility for different tracing configurations.
+      
+      Example usage:
+      
+      ```
+      // With Datadog
+      USE_DATADOG=true node app.js
+      
+      // Without Datadog
+      node app.js
+      ```
+    </div>
+  </div>
+</div>
+
 ### December 02, 2024
 
 <div style={{ display: "table", width: "auto" }}>
