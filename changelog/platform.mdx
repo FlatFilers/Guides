@@ -6,6 +6,43 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 06, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@2d8ce74
+      In this release:
+      
+      The SheetTabs component now uses the mockUseBuildModeContext helper from the test utils.
+      
+      The SheetView component now uses the useTableScroller hook from @flatfile/turntable to enable scrolling to a specific column index when editing fields in the build mode sidebar. It implements scroll handling on window resize and cleanup when unmounting. The scroll logic is extracted into a new utility function getScrollLeftForIndex.
+      
+      The TransformPreview's useScrollTo hook now uses the new getScrollLeftForIndex utility function.
+      
+      A new scrollUtils file is added containing the getScrollLeftForIndex utility function to calculate the scroll position to center a column in the viewport.
+      
+      In the BlueprintSidebar, when selecting a field to edit, it now scrolls the sheet table to center the selected column. It uses the new setScrollToColumnIndex function from the BuildModeContext.
+      
+      The EditFieldForm component's Content is now set to not be scrollable to prevent nested scrollbars.
+      
+      The BuildModeSidebar container is now styled with a stable scrollbar gutter and increased width.
+      
+      The Content component in the sidebar styles now accepts a scrollable prop to control whether it should have overflow scrolling or not.
+      
+      The SpacePageLayout component now uses the mockUseBuildModeContext helper from the test utils.
+      
+      The BuildModeContext now exposes scrollToColumnIndex and setScrollToColumnIndex state to control scrolling to a specific column index in the sheet table.
+      
+      The useSheetAccess hook is updated to use the mockUseBuildModeContext helper from the test utils in its tests.
+      
+      Overall, these changes add the ability to scroll the sheet table to a specific column when editing fields in the build mode sidebar, and make some style adjustments to the sidebar.
+    </div>
+  </div>
+</div>
+
 ### December 02, 2024
 
 <div style={{ display: "table", width: "auto" }}>
