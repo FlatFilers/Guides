@@ -21,6 +21,33 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@6efc66d
+      The release notes provide the following updates:
+      
+      Implemented the ability to fetch distinct values for a specific field with error and valid counts by passing `distinct=true&fieldKey=<field_key>&includeCounts=true`. This returns all the distinct values for the given field along with their total count, valid count, and error count.
+      
+      Added support for sorting the distinct values when fetching with counts by using the `sortField` and `sortDirection` parameters.
+      
+      Implemented fetching distinct values for all fields in a sheet with counts by passing `distinct=true&includeCounts=true`. This returns an object with all fields as keys and their distinct values with counts as the values.
+      
+      Fixed an issue where fetching distinct values for a specific field without counts (`distinct=true&fieldKey=<field_key>`) was not correctly applying filters.
+      
+      Added a new test case to verify that the error counts are calculated correctly when fetching distinct values with counts for a field with a unique constraint.
+      
+      For example, to get distinct values for the "name" field with counts and sorted by name in ascending order:
+      
+      ```
+      /sheets/:sheetId/cells?distinct=true&fieldKey=name&includeCounts=true&sortField=name&sortDirection=asc
+      ```
+    </div>
+  </div>
+</div>
+
 ### December 02, 2024
 
 <div style={{ display: "table", width: "auto" }}>
