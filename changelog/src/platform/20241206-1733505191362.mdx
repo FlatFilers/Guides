@@ -1,0 +1,15 @@
+### December 06, 2024
+## dataxp
+
+api@6f1a638
+Updated the tracing setup to conditionally register the DatadogContextManager based on the USE_DATADOG environment variable. If USE_DATADOG is not set or false, it will register the tracer provider without any special context manager. This change ensures that the tracing setup works correctly with or without Datadog, and provides flexibility for different tracing configurations.
+
+Example usage:
+
+```
+// With Datadog
+USE_DATADOG=true node app.js
+
+// Without Datadog
+node app.js
+```
