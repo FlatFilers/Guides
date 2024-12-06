@@ -1,0 +1,5 @@
+### December 06, 2024
+## dataxp
+
+api@f260fcd
+The AIRuleCreationLogic class has been updated to fetch constraints for an app without including disabled constraints. Previously, the `getConstraintsByAppId` method was called with the `true` argument, which would include disabled constraints. Now, it is called with `false`, which will exclude disabled constraints from the retrieved list.
