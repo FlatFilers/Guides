@@ -1,0 +1,14 @@
+### December 09, 2024
+## dataxp
+
+dashboard@6c1aa56
+The release notes include the following updates:
+
+A new first-time login modal has been added to the dashboard, prompting the user to select their role from a list of options. The modal will display the text "Which of these best describes you?" and provide an option for "I'm a frontend developer looking to embed an importer in my app". When this option is selected, the user will proceed to the main dashboard interface.
+
+To illustrate the changes, the e2e tests have been updated to include the following steps:
+
+1. Wait for the "Which of these best describes you?" modal to appear within a 10-second timeout.
+2. Click the "I'm a frontend developer looking to embed an importer in my app" option to proceed.
+
+This change affects the initial onboarding experience for new users, allowing them to self-identify their role and receive a tailored experience within the dashboard application.
