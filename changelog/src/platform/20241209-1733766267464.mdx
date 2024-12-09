@@ -1,0 +1,15 @@
+### December 09, 2024
+## spaces
+
+spaces-ui@c105937
+This update introduces a temporary color state variable and modifies the color picker functionality in the ThemeSidebar component. The changes allow the user to preview the selected color before applying it to the space theme. The key updates are as follows:
+
+A new state variable 'tempColor' is introduced to hold the temporary color value selected by the user in the color picker.
+
+The 'handleColorChange' function now only updates the 'tempColor' state with the selected color instead of directly updating the primary color and space metadata.
+
+The 'handleColorClose' function is modified to apply the 'tempColor' value to the primary color and update the space metadata only if 'tempColor' is not empty. This ensures that the space theme is only updated when the user confirms the color selection by closing the color picker.
+
+In the ColorPickerPopover, the 'SketchPicker' component now displays the 'tempColor' if it is set, otherwise, it displays the current 'primaryColor'.
+
+These changes allow the user to preview the selected color in the color picker before committing the change to the space theme, providing a better user experience and preventing accidental theme updates.
