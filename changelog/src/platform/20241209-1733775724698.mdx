@@ -1,0 +1,5 @@
+### December 09, 2024
+## dataxp
+
+api@e64d9d6
+The update adds a null check for the config.options property when handling enum fields during sheet upsert operations. Specifically, the newOptions constant is now initialized with an empty array if the config.options property is not present, preventing potential errors when attempting to access undefined values.
