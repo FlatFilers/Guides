@@ -1,0 +1,31 @@
+### December 10, 2024
+## dataxp
+
+api@9b82260
+The release notes include the following updates:
+
+The AnthropicModel now handles messages differently when invoking the model. It now includes the system and human messages from the chat history.
+
+In the generate constraint task, a minor typo "libary" was corrected to "library".
+
+The generate rule task has been updated with several changes:
+
+- The task no longer attempts to use existing constraints. Instead, it always generates a new constraint function.
+- The validator name is now generated with a unique identifier using nanoid.
+- The response format has been simplified to remove the "USE_EXISTING_CONSTRAINT" field.
+- The requirement for the constraint function description has been made more explicit.
+- Mocking for nanoid has been added in the tests.
+- The tests have been updated to reflect the new response format.
+
+In the AI rule creation logic:
+
+- The logic no longer retrieves or checks for existing constraints.
+- The constraint version is always set to 1 for newly generated constraints.
+- The added rule no longer includes a config object, since the config is meant to be part of the constraint function.
+
+The ai.rule.creation.logic.spec.ts test has been updated to account for the changes in the AI rule creation logic and the generate rule task. Examples:
+
+- Tests for using existing constraints have been removed.
+- Expectations have been updated to match the new rule structure without a config.
+
+Overall, these changes streamline the rule generation process by removing the need to check for existing constraints and always generating a new custom constraint function based on the provided prompt.
