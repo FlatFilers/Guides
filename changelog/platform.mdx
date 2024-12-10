@@ -14,13 +14,7 @@ icon: "layer-group"
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
       spaces-ui@3da8d71
-      The release notes include changes to the handling of enumeration fields in the PromptBar component.
-      
-      When rendering fields of type 'enum', the component now checks if the 'options' property exists on the 'config' object before accessing its length. This ensures that the component does not crash when the 'config' object or the 'options' array is undefined.
-      
-      Additionally, the check to determine if an 'enum' field has many values has been updated. Instead of checking if the length of the 'options' array is greater than the MAX_ENUM_VALUES constant, it now checks if the 'options' array exists and its length is greater than MAX_ENUM_VALUES.
-      
-      These changes improve the robustness of the PromptBar component by handling edge cases where the 'config' object or the 'options' array is undefined or missing. Developers using this component can expect better handling of enumeration fields, especially when dealing with large or undefined option sets.
+      Fixes a bug where AI assist would crash when ‘config’ object or the ‘options’ array is undefined.
     </div>
   </div>
 </div>
