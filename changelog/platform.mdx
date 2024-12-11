@@ -6,6 +6,21 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 11, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@5cbfef1
+      The release notes for this update are:
+      
+      A new job operation `AddRecordsToDataClip` has been added to allow adding records to a data clip. The `JobsResource` now supports this operation and will use a new `AddRecordsLogic` to handle the job. The `AddRecordsLogic` accepts a `dataClipId` and `sheetId` in the job config, and an optional query in the job subject to filter the records to add. It supports adding all, valid, or error records based on the provided filter, as well as specific record IDs without a filter. The logic handles chunking large numbers of records and queuing add-records jobs for each chunk. A new `DataClipsService` has been introduced to facilitate adding records to data clips. The `JobsService` now injects this service.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
