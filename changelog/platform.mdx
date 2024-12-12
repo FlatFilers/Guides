@@ -6,6 +6,64 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 12, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@2736f60
+      The following updates have been made:
+      
+      Added a new job operation `UpdateDataClipResolutions` to update resolutions for data clip records. This allows resolving conflicts by field, field and value, or resolving all conflicts to either the main source or the clip source.
+      
+      Introduced a new logic class `UpdateResolutionsLogic` that handles the processing of resolution updates for data clip records. This class includes methods to resolve conflicts based on different criteria, such as field, field and value, or resolving all conflicts to a specific target (main source or clip source).
+      
+      Updated the `DataClipsController` and `DataClipsService` to handle the new resolution update structure, which accepts an array of record updates instead of individual record updates.
+      
+      Added unit tests for the `UpdateResolutionsLogic` class to ensure the correct resolution updates are applied based on different scenarios.
+      
+      Example usage:
+      
+      ```typescript
+      // Resolve conflicts for a specific field and value
+      const params = {
+        dataClipId: new DataClipId(),
+        clippedSheetId: new SheetId(),
+        resolveTo: 'clip' as Flatfile.ResolveTo,
+        columnField: 'field1',
+        columnValue: 'value1',
+      }
+      
+      // Resolve conflicts for a specific column
+      const params = {
+        dataClipId: new DataClipId(),
+        clippedSheetId: new SheetId(),
+        resolveTo: 'main' as Flatfile.ResolveTo,
+        columnField: 'field1',
+      }
+      
+      // Resolve all conflicts to the clip source
+      const params = {
+        dataClipId: new DataClipId(),
+        clippedSheetId: new SheetId(),
+        resolveTo: 'clip' as Flatfile.ResolveTo,
+      }
+      
+      // Resolve all conflicts to the main source
+      const params = {
+        dataClipId: new DataClipId(),
+        clippedSheetId: new SheetId(),
+        resolveTo: 'main' as Flatfile.ResolveTo,
+      }
+      ```
+      
+      This update introduces a new job operation that allows developers to update resolutions for data clip records in a more flexible and efficient manner, enabling conflict resolution based on various criteria.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
