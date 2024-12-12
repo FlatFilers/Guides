@@ -1,0 +1,7 @@
+### December 12, 2024
+## spaces
+
+spaces-ui@f5cec24
+The release notes summarize the following updates:
+
+After removing a rule from the RuleList component, the ValidateSheetMutation is now called to validate the sheet. This ensures that the sheet remains valid after the rule removal operation. The mutation is triggered after successfully removing the rule and updating the local state. If there is an error during the rule removal or sheet validation, the local state is reverted to the previous rules. This change improves the integrity of the application by validating the sheet after a rule is removed, ensuring that the sheet remains in a consistent state.
