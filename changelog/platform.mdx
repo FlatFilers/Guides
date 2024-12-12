@@ -6,6 +6,29 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 12, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@4a27482
+      Here are the release notes summarizing the changes:
+      
+      The generate constraint logic has been updated to include additional context about the sheet and column for which the constraint is being generated. A new additionalSheetContext variable is added that provides details like the sheet name, column fields, and the specific column key the constraint is for. This context is passed to the AI assistant when generating the constraint function and options.
+      
+      The generate rule logic has also been updated with similar changes. New variables sheetName and fieldKey are added to provide the sheet name and specific column key for which the rule is being generated. The recordFields now includes additional column metadata like label and description. This additional context is passed to the AI assistant when generating the rule label, constraint function description, and constraint config.
+      
+      The ai rule creation logic spec has been updated to verify the new context being passed to the AI assistants. It checks that the additionalSheetContext includes the expected details, and that the sheetName, fieldKey, and enhanced recordFields are passed correctly.
+      
+      The ai rule creation logic has been updated to construct the additionalSheetContext string and pass it along when generating constraints. It also passes the sheetName and fieldKey when generating rules with the assistant.
+      
+      Overall, these changes enhance the context provided to the AI assistants when generating rules and constraints, allowing for more relevant and specific outputs tailored to the particular sheet and column.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
