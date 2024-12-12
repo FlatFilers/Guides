@@ -6,6 +6,29 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 12, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@3e4bdc4
+      The release notes detail the following updates:
+      
+      The mapping service now correctly handles destination fields that are all uppercase. Previously, uppercase fields in the destination sheet would not match incoming source data fields. Now, the service automatically matches uppercase destination field names to their lowercase or alternate name equivalents in the source data. This improves the accuracy of field mapping between source and destination sheets when the destination has uppercase field names.
+      
+      The mapping service logic has been updated to add the uppercase version of source field names to the list of alternative names considered during field mapping. This ensures that source fields written in all uppercase letters will be properly mapped to their corresponding destination fields, whether the destination fields are uppercase, lowercase, or an alternate name.
+      
+      For both source and destination fields, the alternative name normalization process has been updated to use a Set instead of an array to store and compare names. This change improves performance and prevents duplicate alternative names from being considered during mapping.
+      
+      The mapping service now logs errors using the provided Logger instance. Previously, errors may not have been properly logged during the mapping process.
+      
+      The createMappingPlan function now handles cases where the destination field has multiple alternative names, including an uppercase version. For example, if the destination has fields "n_i_c_k_n_a_m_e" and "nickname", both will be considered as potential matches for the source "name" field.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
