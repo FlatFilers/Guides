@@ -6,6 +6,25 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 11, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@a7ebe6d
+      The release notes include the following changes:
+      
+      The `columnName` method has been removed from the `ForeignOperation` class. This method was previously used to generate column names based on an index.
+      
+      In the `GetAtoms` class, the `getDistinctValues` method has been updated to use the column name directly instead of relying on the `columnName` method. The method now selects the column using its key name instead of an index. For example, `SELECT *, 'columnKey' as data ...` instead of `SELECT *, column1 as data ...`.
+      
+      This change simplifies the code by removing the need to generate column names dynamically based on indexes. It also improves readability by using the actual column names in the SQL queries. Developers using this package should note that the internal implementation of retrieving distinct values has been simplified, but the external interface and behavior should remain the same.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
