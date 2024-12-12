@@ -6,6 +6,25 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 12, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@16aaaf7
+      The release notes include the following changes:
+      
+      The configuration constant `CHANNEL_WIDTH_FOR_INSERT_ONLY` has been removed from the `AgentRouter` and its related test file. This constant was previously used to set the channel width for the queue provider, but it is no longer being used.
+      
+      The `AgentRouter` no longer sets the `channelWidth` property when creating a new queue provider instance. This means that the default channel width will be used instead of a custom value.
+      
+      Developers using this package should be aware that the queue provider instances created by the `AgentRouter` will no longer have a custom channel width set, and will instead use the default channel width configuration. This change may affect the performance or behavior of the queue system, depending on the default configuration and the application's requirements.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
