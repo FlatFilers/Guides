@@ -6,6 +6,34 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 13, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@46acfb0
+      A new enumeration option has been added to provide a "High Priority" value for enum fields. Enum fields can now have an option configured with a value of "1" and a label of "High Priority". This allows developers to define a high priority option for enum fields in their application.
+      
+      Example:
+      {
+        "type":"enum",
+        "config":{
+          "options":[
+            {
+              "value":"1",
+              "label":"High Priority"
+            }
+          ]
+        }
+      }
+      
+      The alternativeNames array for enum options has been retained, but the color, icon, and meta properties have been removed from the EnumOption object definition. Developers should no longer attempt to set these properties when configuring enum options.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
