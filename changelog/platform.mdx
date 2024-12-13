@@ -6,6 +6,31 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 13, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@04bde67
+      The release notes summarize the following changes:
+      
+      The `maxLength` and `minLength` props in the `TextArea` styled component have been renamed to `maxHeight` and `minHeight`, respectively. This change impacts developers using the `TextArea` component, as they now need to use the new prop names to set the maximum and minimum height of the textarea. For example:
+      
+      ```jsx
+      <TextArea
+        maxHeight={600}
+        minHeight={300}
+        // Other props
+      />
+      ```
+      
+      In the `ConstraintFields` component, the `maxLength` and `minLength` props on the textarea element have been updated to use the new `maxHeight` and `minHeight` prop names accordingly.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
