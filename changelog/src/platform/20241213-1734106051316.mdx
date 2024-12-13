@@ -1,0 +1,19 @@
+### December 13, 2024
+## spaces
+
+spaces-ui@88559f2
+The following changes have been made:
+
+- Updated the version of `@tanstack/react-query` and `@tanstack/react-query-devtools` libraries.
+- Modified the implementation of various React Query hooks to use the new options syntax introduced in the updated library version.
+- Refactored the `useQuery` and `useMutation` hooks to use the new `queryKey` and `queryFn` / `mutationFn` options.
+- Updated the `onSuccess` and `onError` handlers to use the new callback signature.
+- Added `keepPreviousData` option to keep previous data when refetching queries.
+- Adjusted the usage of `invalidateQueries` to use the new `queryKey` option.
+- Removed the `useErrorBoundary` option from mutations as it is no longer supported.
+- Removed the `useIsMutating` hook and replaced it with the new `useIsMutating` hook that accepts a `mutationKey` option.
+- Updated the usage of the `refetchOptions` in the `SheetSelector` component to match the new library API.
+- Removed the `initialData` option from `useQuery` hooks as it is no longer supported.
+- Replaced the `useQueryCache` hook with the new `QueryCache` instance.
+
+These changes align the application with the new API of the `@tanstack/react-query` library. Developers using the application should ensure that their code is updated to use the new API for managing queries and mutations. Additionally, the new `QueryCache` instance provides better control over the query cache and allows for custom error handling.
