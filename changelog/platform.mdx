@@ -6,6 +6,33 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 16, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@89515ef
+      The release notes include the following updates:
+      
+      The `MappingsService` has been updated to handle alternative field names in a more efficient manner. Instead of using a `Set` to store alternative names, it now uses an array. The normalization of alternative names has been optimized by normalizing each alternative name as it is processed rather than normalizing all alternative names separately. Additionally, the `key` property of the field object is now assigned the original alternative name instead of the normalized name, allowing for better preservation of the original field name.
+      
+      When working with field mappings, developers can now provide alternative names for fields as an array, and these alternative names will be correctly handled and mapped to the original field. For example:
+      
+      ```typescript
+      const field = {
+        key: 'originalFieldName',
+        label: 'labelFieldName',
+        alternativeNames: ['altName1', 'altName2']
+      }
+      ```
+      
+      In this case, the field mapping will be accessible using the original field name (`originalFieldName`), the label (`labelFieldName`), the uppercase original field name (`ORIGINALFIELDNAME`), and the provided alternative names (`altName1` and `altName2`).
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
