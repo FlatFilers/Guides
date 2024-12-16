@@ -6,6 +6,31 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 16, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@af9405a
+      The release includes several updates to the mapping plan and rules handling:
+      
+      A new process for handling remembered enum rules was added to keep only the most recent rule per destination field. It sorts the rules chronologically, reverses the order to have the oldest first, then uses Object.fromEntries to keep the last value for duplicate destination field keys.
+      
+      For destination fields of type "enum-list", if the last remembered rule is not a find-replace rule, the autodetected delimiter will be added as a normalize-list rule.
+      
+      In filterRememberedRules, special handling was added for normalize-list rules. It splits source values by the separator, creates a unique set, and filters the remembered rule values to only include those that appear in the split source values.
+      
+      The mappings service was updated to handle normalize-list rules. It stores normalize-list rules by the normalized destination field key, keeping track of the separator, source field, values, and creation date. When retrieving remembered rules, it merges find-replace and normalize-list rules together.
+      
+      The service now includes MappingRuleType.NORMALIZE_LIST when retrieving rule history, and the rule history is filtered to include both find-replace and normalize-list rules for enum handling.
+      
+      These changes improve the handling of remembered rules, particularly for enum-list destination fields, by ensuring the most recent relevant rules are applied and autodetecting delimiters when appropriate. Developers using the package may need to account for the new normalize-list rule type in their code.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
