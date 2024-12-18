@@ -89,13 +89,13 @@ const flatfileOptions = {
 <ParamField path="spaceBody" type="object">
   Pass in space options to configure a new Space. Find all available parameters
   for spaceBody in the [API
-  Reference](https://reference.flatfile.com/api-reference/spaces/create-a-space).
+  Reference](https://reference.flatfile.com/api-reference/spaces/create).
 </ParamField>
 
 ```typescript src/client.js
 const flatfileOptions = {
   publishableKey,
-  //additional props, see Create Space endpoint for all the full list of properties (https://reference.flatfile.com/api-reference/spaces/create-a-space)
+  //additional props, see Create Space endpoint for all the full list of properties (https://reference.flatfile.com/api-reference/spaces/create)
   spaceBody: {
     name: "New Space",
     namespace: "Red",
