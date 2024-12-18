@@ -1,0 +1,13 @@
+### December 18, 2024
+## dataxp
+
+api@b759b61
+Added the ability to request a Liveblocks collaboration token for a specific workbook within a space. The getLiveblocksToken method now requires a workbookId parameter in addition to the spaceId. It grants the returned token full access to the specified workbook and the parent space. For example:
+
+```typescript
+const spaceId = SpaceId.from('space123');
+const workbookId = WorkbookId.from('workbook456');
+const token = await spacesInitService.getLiveblocksToken(grant, spaceId, workbookId);
+```
+
+Previously, the token granted access to all sheets within all workbooks of the space. This change scopes the token access to a single workbook for improved security and flexibility.
