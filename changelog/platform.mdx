@@ -6,6 +6,46 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 18, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@b275536
+      The release notes for this update are:
+      
+      The `@langchain` dependencies have been updated to their latest versions. The `@langchain/anthropic` package has been updated to version 0.3.8, `@langchain/aws` has been added at version 0.1.2, `@langchain/community` has been updated to version 0.3.17, `@langchain/core` has been updated to version 0.3.20, and `@langchain/openai` has been added at version 0.3.14. The `langchain` package itself has been updated to version 0.3.6.
+      
+      The `BedrockModel` has been updated to use the `ChatBedrockConverse` class from the `@langchain/aws` package instead of the `BedrockChat` class from the `@langchain/community` package. This change includes updates to how the model is instantiated and invoked.
+      
+      The `AnthropicModel` has been updated to handle additional models with larger token limits (8192 tokens for models containing "3-5-haiku" or "claude-3-5-sonnet" in their names).
+      
+      The `ChatPromptTemplate.fromPromptMessages` method has been renamed to `ChatPromptTemplate.fromMessages` across the codebase.
+      
+      The `JsonObject` type import from `langchain/tools` has been removed in the `BillingService`.
+      
+      Example usage:
+      
+      ```typescript
+      import { ChatBedrockConverse } from '@langchain/aws';
+      
+      const model = new ChatBedrockConverse({
+        model: 'mistral.mixtral-8x7b-instruct-v0:1',
+        region: process.env['AWS_REGION'],
+        credentials: {
+          accessKeyId: process.env['AWS_ACCESS_KEY_ID'],
+          secretAccessKey: process.env['AWS_SECRET_ACCESS_KEY'],
+        },
+        temperature: 0.7, // model-specific parameter
+        maxTokens: 4096,
+      });
+      ```
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
