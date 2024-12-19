@@ -4,6 +4,35 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## December 2024
+
+### December 19, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/core_plugin.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-space-configure@0.8.1
+      This release note updates the @flatfile/plugin-space-configure package to version 0.8.1. It adds a type definition for the tick() function used in the configureSpace() method. The tick() function is now typed as TickFunction imported from the @flatfile/plugin-job-handler package. This provides better type safety for consumers of the package when using the tick() function callback. Additionally, the @flatfile/plugin-job-handler dependency has been updated to version 0.8.1.
+      
+      Example usage:
+      
+      ```typescript
+      import { configureSpace } from '@flatfile/plugin-space-configure';
+      
+      configureSpace({
+        // ...
+      }, async (event, workbookIds, tick) => {
+        // tick is now typed as TickFunction
+        await tick(0.5, 'Processing workbooks...');
+        // ...
+      });
+      ```
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +116,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
