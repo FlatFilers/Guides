@@ -4,6 +4,39 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## December 2024
+
+### December 19, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/schema.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-convert-sql-ddl@0.4.1
+      This release introduces a new type for the tick() function, which is used to provide progress updates during job execution. The tick() function is now typed as TickFunction from the @flatfile/plugin-job-handler package. This change helps improve type safety and consistency across the codebase.
+      
+      Additionally, this release updates the dependencies @flatfile/plugin-space-configure to version 0.8.1 and @flatfile/plugin-convert-json-schema to version 0.7.1. These dependency updates may include bug fixes or improvements from the respective packages.
+      
+      For developers using this package, the main change to be aware of is the introduction of the TickFunction type for the tick() function. If you were previously passing a custom function to the tick parameter, ensure that it adheres to the TickFunction type signature, which likely accepts a progress number and an optional message string, and returns a Promise<Flatfile.JobResponse>.
+      
+      Example usage:
+      
+      ```typescript
+      import type { TickFunction } from '@flatfile/plugin-job-handler'
+      
+      const tick: TickFunction = async (progress, message) => {
+        console.log(`Progress: ${progress}%`)
+        if (message) {
+          console.log(`Message: ${message}`)
+        }
+        return { success: true }
+      }
+      ```
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +120,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
