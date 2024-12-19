@@ -1,0 +1,22 @@
+### December 19, 2024
+## extractors
+
+@flatfile/plugin-job-handler@0.8.1
+This release adds a type definition for the `tick` function used in the `jobHandler` function. The `TickFunction` type defines the signature of the `tick` callback function, which accepts a `progress` number parameter representing the job progress and an optional `info` string parameter for additional information. This change improves type safety and provides better developer experience when using the `jobHandler` function.
+
+Example usage:
+
+```typescript
+import { jobHandler, TickFunction } from '@flatfile/plugin-job-handler';
+
+const handleJob = async (event: FlatfileEvent, tick: TickFunction) => {
+  // Job handling logic
+  await tick(0.25, 'Processing data');
+  // ...
+  await tick(0.75, 'Finalizing job');
+  // ...
+  await tick(1, 'Job complete');
+};
+
+const jobPlugin = jobHandler('myJob', handleJob);
+```
