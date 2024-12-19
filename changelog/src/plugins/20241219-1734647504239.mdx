@@ -1,0 +1,9 @@
+### December 19, 2024
+## schema
+
+@flatfile/plugin-convert-yaml-schema@0.5.1
+This release adds a type for the tick() function which is used in the plugin's callback function. The tick function type is imported from the @flatfile/plugin-job-handler package. This provides better type safety when using the tick function within the plugin's callback.
+
+The plugin has also updated its dependencies, including @flatfile/plugin-space-configure and @flatfile/plugin-convert-json-schema, to their latest versions. This ensures the plugin is using the latest updates from these dependencies.
+
+Additionally, an example code snippet in the README has been updated to use the imported TickFunction type for the tick parameter in the callback function signature. This change reflects the updated type definition for the tick function.
