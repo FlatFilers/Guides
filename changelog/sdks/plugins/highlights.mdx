@@ -4,6 +4,21 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## December 2024
+
+### December 19, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/schema.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-convert-openapi-schema@0.6.1
+      This release note updates the @flatfile/plugin-convert-openapi-schema package to version 0.6.1. The changes include adding a type for the tick() function and updating a dependency. Specifically, the tick() function now has a TickFunction type imported from @flatfile/plugin-job-handler. Additionally, the @flatfile/plugin-space-configure dependency was updated to version 0.8.1. This means that for developers using this package, they will now have type safety when using the tick() function, which is likely used for reporting progress or status updates during long-running operations. The updated dependency version should also be noted, as it may include changes that could impact the behavior of the package.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +102,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
