@@ -6,6 +6,31 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 19, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@2b5c904
+      The updated code introduces several changes to the EditFieldForm component:
+      
+      1. A new function `getFieldConstraints` is added to filter and return only the 'stored' and 'external' constraint rules from the `field.constraints` array.
+      
+      2. An `initialRules` state is introduced using the `useMemo` hook, which stores the initial set of 'stored' and 'external' constraint rules for the field. This value is derived from the `field.constraints` array and is memoized to avoid unnecessary re-computations.
+      
+      3. The `rules` state is updated to use the `getFieldConstraints` function instead of filtering the constraints inline.
+      
+      4. The `useEffect` hook that sets the `hasUnsavedChanges` state has been modified to check for changes in both the form values (`formValues`) and the constraint rules (`rules`). If either the form values or the rules have changed from their initial state, `hasUnsavedChanges` is set to true.
+      
+      5. In the `handleSubmit` function, a new block of code has been added to include the `rules` array in the `constraints` array if it is not empty.
+      
+      These changes introduce the ability to edit and manage constraint rules for fields in the EditFieldForm component. Developers using this package can now add, modify, or remove 'stored' and 'external' constraint rules for fields, and the changes will be reflected in the `constraints` array of the field object. Additionally, the component now tracks changes to both form values and constraint rules to determine if there are unsaved changes.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
