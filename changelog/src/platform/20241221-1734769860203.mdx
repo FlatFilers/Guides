@@ -1,0 +1,13 @@
+### December 21, 2024
+## dataxp
+
+api@1dedeae
+This update introduces a conditional check before rebuilding a sheet in a workbook. The changes include:
+
+The code now checks if there are updates to fields or other properties (excluding actions and fields) before rebuilding the sheet. If there are updates to fields or other properties, the sheet will be rebuilt using the ephemeral.forWorkbook(workbook).utils.buildSheet() method. 
+
+The updatedSheet object is destructured to extract the slug, actions, and fields properties. The remaining properties are assigned to the nonActionOrFieldUpdates object.
+
+If there are updates to fields (shouldUpdateFields is true) or if there are updates to other properties (Object.keys(nonActionOrFieldUpdates).length is greater than 0), the sheet will be rebuilt.
+
+The changes aim to optimize the rebuilding process by only triggering it when necessary, potentially improving performance and avoiding unnecessary rebuilds when only actions or fields are updated.
