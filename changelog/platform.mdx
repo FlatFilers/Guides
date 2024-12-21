@@ -6,6 +6,27 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 21, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@1dedeae
+      This update introduces a conditional check before rebuilding a sheet in a workbook. The changes include:
+      
+      The code now checks if there are updates to fields or other properties (excluding actions and fields) before rebuilding the sheet. If there are updates to fields or other properties, the sheet will be rebuilt using the ephemeral.forWorkbook(workbook).utils.buildSheet() method. 
+      
+      The updatedSheet object is destructured to extract the slug, actions, and fields properties. The remaining properties are assigned to the nonActionOrFieldUpdates object.
+      
+      If there are updates to fields (shouldUpdateFields is true) or if there are updates to other properties (Object.keys(nonActionOrFieldUpdates).length is greater than 0), the sheet will be rebuilt.
+      
+      The changes aim to optimize the rebuilding process by only triggering it when necessary, potentially improving performance and avoiding unnecessary rebuilds when only actions or fields are updated.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
