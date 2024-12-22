@@ -1,0 +1,18 @@
+### December 22, 2024
+## dataxp
+
+api@1143ff1
+The release includes the following updates:
+
+The JobTransition class in the job.transition.ts file has been updated to handle undefined values for the parts property correctly. The setParts method now checks if parts is not strictly equal to undefined before setting the parts property on the job object.
+
+The JobsRepository has been updated with a new updateJob method that accepts an optional includeParts parameter. If includeParts is false, the parts property will be excluded from the update. If includeParts is true or not provided, the parts property will be included in the update. For example:
+
+```typescript
+await repository.updateJob(jobResource, false); // Excludes parts property
+await repository.updateJob(jobResource, true); // Includes parts property
+```
+
+The JobsService has been updated to call the repository's updateJob method with the appropriate includeParts value based on whether the parts property is provided in the job transition request. If parts is provided, includeParts is set to true; otherwise, it is set to false.
+
+The DataClipsService has been imported in the jobs.service.ts file, although it is not clear from the diff how it is being used.
