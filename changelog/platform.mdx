@@ -6,6 +6,40 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 30, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@fc88fd3
+      The update allows excluding the processed field when updating a job in the repository. If the processed field is not provided in the transition, it will be excluded from the update. The includeProcessed flag in the updateJob method controls whether the processed field should be included or excluded during the update. The unit tests were updated to reflect this change, verifying the behavior when includeProcessed is set to true or false, and when the processed value is provided or not provided in the transition.
+      
+      The update also renames the includeParts parameter to includeProcessed in the updateJob method and related tests to better reflect the purpose of the flag. The processed field is now explicitly set or excluded during the update based on the includeProcessed flag, while the parts field is always included.
+      
+      For developers using this package, the change allows more control over which fields are updated in the job entity, potentially reducing unnecessary updates and improving performance. If the processed field is not relevant for a particular update, it can be excluded by not providing it in the transition object.
+      
+      Example usage:
+      
+      ```typescript
+      // Exclude processed field from update
+      await service.transitionJob(grant, {
+        jobId: jobResource.id,
+        status: JobStatus.EXECUTING,
+      });
+      
+      // Include processed field in update
+      await service.transitionJob(grant, {
+        jobId: jobResource.id,
+        status: JobStatus.EXECUTING,
+        processed: 4,
+      });
+      ```
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
