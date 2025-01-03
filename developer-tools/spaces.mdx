@@ -7,6 +7,12 @@ icon: "planet-ringed"
 <Snippet file="shared/dxpbanner.mdx" />
 
 Flatfile Spaces are micro-applications, each having their own database, filestore, and auth.
+
+### Learning Path
+1. Start with [Core Concepts](../overview.mdx) to understand how Spaces fit into Flatfile
+2. Learn about [Authentication](../developer-tools/security/authentication.mdx) to secure your Space
+3. Explore [Workbooks](../apps/workbooks/overview.mdx) to handle data within your Space
+4. Master [Events](../orchestration/events.mdx) to add interactivity
 Use Spaces to integrate Flatfile into your data exchange workflow, whether that happens directly
 in your application or as part of a currently offline process.
 
@@ -35,6 +41,20 @@ With Spaces, you can:
 ## Anatomy
 
 A Space is comprised of Workbooks, Files, Users, Documents, Themes and Metadata.
+
+```mermaid
+graph TD
+    A[Space] --> B[Workbooks]
+    A --> C[Files]
+    A --> D[Users]
+    A --> E[Documents]
+    A --> F[Theme]
+    A --> G[Metadata]
+    B --> H[Sheet 1]
+    B --> I[Sheet 2]
+    D --> J[Admins]
+    D --> K[Guest Users]
+```
 
 <img
   src="../images/concepts/spaces_anatomy.png"

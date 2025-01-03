@@ -3,3 +3,61 @@ title: "flatfile"
 url: "https://www.npmjs.com/package/flatfile"
 icon: "terminal"
 ---
+
+The `flatfile` package provides core functionality for interacting with the Flatfile platform.
+
+## Installation
+
+```bash
+npm install flatfile
+```
+
+## Key Concepts
+
+1. **Authentication** - How to securely connect to Flatfile
+2. **Space Management** - Creating and configuring spaces
+3. **Event Handling** - Processing data events
+4. **Error Handling** - Dealing with common issues
+
+## Basic Usage
+
+```typescript
+import { initFlatfile } from 'flatfile'
+
+// Initialize with your API key
+const flatfile = initFlatfile({
+  apiKey: 'your_api_key'
+})
+
+// Create a space
+const space = await flatfile.spaces.create({
+  name: 'My First Space'
+})
+```
+
+## Common Patterns
+
+1. **Error Handling**
+```typescript
+try {
+  const space = await flatfile.spaces.create({
+    name: 'My Space'
+  })
+} catch (error) {
+  if (error.code === 'AUTH_ERROR') {
+    // Handle authentication issues
+  }
+  // Handle other errors
+}
+```
+
+2. **Event Listening**
+```typescript
+flatfile.events.on('data:ready', async (event) => {
+  // Handle data ready event
+})
+```
+
+## API Reference
+
+See our [complete API reference](https://reference.flatfile.com) for detailed documentation.
