@@ -1,118 +1,114 @@
 ---
-title: Flatfile Developer Docs
-description: "Explore our guides and examples to implement Flatfile."
+title: "Flatfile Platform Overview"
+description: "A powerful data import platform that transforms how organizations handle customer data onboarding."
 mode: "wide"
 icon: "hand-wave"
 ---
 
-<Info>
-  We've fine-tuned ChatGPT 4 specifically on our API and SDKs. Simply type your
-  query into the search bar, and you'll receive precise answers that align with
-  your needs.
-</Info>
+## What is Flatfile?
 
-## Prerequisites
+Flatfile is a data onboarding platform that solves the complex challenge of importing, validating, and transforming customer data at scale. It provides a collaborative environment where teams can efficiently handle data imports while ensuring data quality and consistency.
 
-Before getting started with Flatfile, ensure you have:
-- Basic understanding of data import/export concepts
-- Node.js and npm installed (version 14 or higher)
-- Access to your Flatfile account and API keys
+### Core Purpose
 
-## Core concepts
+Flatfile addresses three critical data challenges:
+- **Data Import Complexity**: Simplifies the process of accepting data from customers in any format
+- **Data Quality**: Ensures imported data meets your exact specifications through automated validation
+- **Team Collaboration**: Enables teams to work together on data onboarding projects with built-in workflows
 
-Discover the 3 core pillars of Flatfile: Spaces, Workbooks, and Events. Experience their seamless efficiency and collaboration as they power your data workflow in Flatfile.
+### Key Capabilities
+
+#### 1. Smart Data Import
+- Intuitive spreadsheet-like interface for data review
+- Automatic column mapping suggestions
+- Support for multiple file formats
+- Real-time validation and error highlighting
+
+#### 2. Data Validation & Transformation
+- Blueprint: A powerful schema definition language for data validation
+- Automated data type conversion and formatting
+- Custom validation rules and transformations
+- Bulk error resolution tools
+
+#### 3. Collaborative Workflows
+- Shared workspaces for team collaboration
+- Event-driven architecture for custom workflows
+- Progress tracking and audit trails
+- Role-based access controls
+
+## Implementation Options
+
+Flatfile offers multiple ways to integrate with your existing systems:
+
+<CardGroup cols={3}>
+  <Card title="Embedded Import" icon="person-to-portal" href="./apps/embedding">
+    Add a secure, branded import experience directly in your application
+  </Card>
+  <Card title="Headless Integration" icon="bolt-auto" href="./guides/automap">
+    Automate file processing without user interface
+  </Card>
+  <Card title="Collaborative Projects" icon="arrow-progress" href="./apps/projects">
+    Manage complex data onboarding with your team
+  </Card>
+</CardGroup>
+
+## Core Concepts
+
+Understanding these three pillars will help you get the most from Flatfile:
 
 <CardGroup cols={3}>
   <Card title="Spaces" href="./developer-tools/spaces" icon="circle-1">
-    Where the workflow unfolds, encompassing user invitations, data loading, and
-    data egress.
+    Independent micro-applications for data workflows, including user management and file storage
   </Card>
   <Card title="Workbooks" href="./apps/workbooks" icon="circle-2">
-    The basis for data normalization, including mapping, transformation,
-    validation, and collaboration.
+    Blueprint-defined databases for data normalization and validation
   </Card>
   <Card title="Events" href="./orchestration/events" icon="circle-3">
-    The mechanism for orchestrating workflows, enabling bulk task execution and
-    experience automation.
+    Orchestration system for automating workflows and data processing
   </Card>
 </CardGroup>
 
----
+## Getting Started
 
-## Beginner Tutorials
+1. **Prerequisites**
+   - Node.js (v14+)
+   - Flatfile account and API keys
+   - Basic understanding of data structures
 
-Once you have a handle on the core concepts that make up the Flatfile Platform, follow one of our tutorials to see how these concepts translate to your use case.
+2. **Quick Implementation**
+   Choose your path based on your use case:
+   - Embedded Import (15 mins)
+   - Full Integration (30 mins)
+   - Headless Implementation (20 mins)
 
-{" "}
+3. **First Steps**
+   - Set up authentication
+   - Create your first Space
+   - Define data structure with Blueprint
+   - Configure data validation
 
-<CardGroup cols={2}>
-  <Card
-    title="Embed in your App"
-    href="./apps/embedding/overview"
-    icon="person-to-portal"
-  >
-    Easily add an embedded import experience to any app.
-  </Card>
-  <Card
-    title="Projects"
-    href="./apps/custom/tutorial-landing"
-    icon="arrow-progress"
-  >
-    Build a Workbook and apply a data transformation and a validation.
-  </Card>
-</CardGroup>
+## Integration Methods
 
----
+Flatfile provides flexible integration options:
 
-## Explore our plugins
+### Client Libraries
+- React, Vue, Angular components
+- JavaScript/TypeScript SDK
+- REST API access
 
-Flatfile offers a number of ways to expand your implementation past our base offerings, like a plugin that adds in the ability to extract Excel documents. Check out our plugins to see how you can further enhance your Platform implementation.
+### Authentication Options
+- Secret keys for server-side operations
+- Publishable keys for client-side embedding
+- Environment-specific credentials for development/production
 
-<CardGroup cols={3}>
-  <Card title="record-hook" href="plugins-docs/transform/record-hook" icon="npm">
-    A concise syntax for running custom logic on individual data records.
-  </Card>
-    <Card title="autocast" href="plugins-docs/transform/autocast" icon="npm">
-    Automatically convert user-inputted data to the correct type so it can be
-    processed
-  </Card>
-  <Card
-    title="json-schema"
-    href="plugins-docs/schemas/convert-json-schema"
-    icon="clock"
-  >
-    Use your schema to infer Flatfile Blueprint, a powerful DDL with a focus on
-    validation and data preparation.
-  </Card>
+### Customization
+- Theming to match your brand
+- Custom validation rules
+- Workflow automation
+- Data transformation plugins
 
-</CardGroup>
+<Info>
+  Need help getting started? Our AI-powered search can provide specific answers
+  about our API and SDKs. Just type your query in the search bar above.
+</Info>
 
-[View all plugins](./plugins-docs)
-
----
-
-## Browse by use case
-
-<CardGroup cols={3}>
-  <Card
-    title="Embed in your app"
-    icon="person-to-portal"
-    href="/apps/embedding"
-  >
-    Securely and easily add an embedded import experience to any app.
-  </Card>
-  <Card
-    title="Setup headless file feeds"
-    icon="bolt-auto"
-    href="/guides/automap"
-  >
-    Automatically collect data files from any source.
-  </Card>
-  <Card
-    title="Run onboarding projects"
-    icon="arrow-progress"
-    href="/apps/projects"
-  >
-    Collaborate across teams on large data onboarding projects.
-  </Card>
-</CardGroup>
