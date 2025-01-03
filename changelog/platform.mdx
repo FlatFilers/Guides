@@ -4,6 +4,36 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## January 2025
+
+### January 03, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@ea7d02f
+      This update modifies the ClearColumnLogic class with the following changes:
+      
+      It adds type annotations to the emitStreamingUpdate and runClearColumn methods. The emitStreamingUpdate method now returns a Promise<Flatfile.Event>. The runClearColumn method now returns a Promise with an object containing the workbookId and sheetId.
+      
+      In the runClearColumn method, it filters out any records where the specified fieldKey does not have a value before updating. It then maps over the remaining records, creating a shallow copy and setting the value at the specified fieldKey to an empty string.
+      
+      It adds logging statements to print the recordsUpdates array during the runClearColumn method.
+      
+      The update improves the type safety and logging capabilities of the ClearColumnLogic class. Developers using this package will now have better type information for the return values of emitStreamingUpdate and runClearColumn. The logging statements will aid in debugging issues related to the clear column operation.
+      
+      For example, to handle the returned values:
+      
+      ```typescript
+      const { workbookId, sheetId } = await clearColumnLogic.runClearColumn(pageSize);
+      const streamingEvent = await clearColumnLogic.emitStreamingUpdate({ job, sheetId, workbookId });
+      ```
+    </div>
+  </div>
+</div>
+
 ## December 2024
 
 ### December 10, 2024
@@ -93,9 +123,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## October 2024
+## October 2024 (4)
 
-### October 28, 2024
+##### October 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -112,7 +142,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### October 17, 2024
+##### October 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -128,7 +158,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### October 03, 2024
+##### October 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -141,7 +171,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### October 01, 2024
+##### October 01, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
