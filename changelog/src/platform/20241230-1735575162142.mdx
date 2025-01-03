@@ -4,24 +4,5 @@
 api@dd194c1
 This release includes the following updates:
 
-The application now automatically extracts CSV files into DuckDB as the default storage strategy. If the SourceEditor entitlement is enabled, CSV files are automatically extracted into Quickstore instead. 
-
-New utility functions have been added to handle trailing empty rows in CSV files during extraction. The `copyFileWithoutTrailingEmptyRows` function creates a temporary copy of the CSV file without any trailing empty rows. The `fileEndsWithEmptyCsvRecords` function checks if a CSV file ends with empty records.
-
-During the DuckDB extraction process, if the input CSV file ends with empty records, a temporary copy of the file without trailing empty rows is created and used for extraction. The temporary file is cleaned up after the extraction.
-
-The extraction logic has been updated to handle encoding conversions and file copying differently for DuckDB and Quickstore extractions.
-
-Example usage for the developer:
-
-```typescript
-// Check if a CSV file ends with empty records
-const fileEndsWithEmptyRecords = await fileEndsWithEmptyCsvRecords('/path/to/file.csv', ',')
-
-// Create a temporary copy of a CSV file without trailing empty rows
-await copyFileWithoutTrailingEmptyRows({
-  source: { path: '/path/to/source.csv', encoding: 'utf8' },
-  destination: { path: '/path/to/destination.csv', encoding: 'utf8' },
-  delimiter: ','
-})
+Trailing empty records in CSV files will now be trimmed during file extraction. Empty records in-between records with values will continue to be kept.
 ```
