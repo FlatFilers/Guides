@@ -6,6 +6,33 @@ icon: "layer-group"
 
 ## December 2024
 
+### December 13, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@88559f2
+      The following changes have been made:
+      
+      - Updated the version of `@tanstack/react-query` and `@tanstack/react-query-devtools` libraries.
+      - Modified the implementation of various React Query hooks to use the new options syntax introduced in the updated library version.
+      - Refactored the `useQuery` and `useMutation` hooks to use the new `queryKey` and `queryFn` / `mutationFn` options.
+      - Updated the `onSuccess` and `onError` handlers to use the new callback signature.
+      - Added `keepPreviousData` option to keep previous data when refetching queries.
+      - Adjusted the usage of `invalidateQueries` to use the new `queryKey` option.
+      - Removed the `useErrorBoundary` option from mutations as it is no longer supported.
+      - Removed the `useIsMutating` hook and replaced it with the new `useIsMutating` hook that accepts a `mutationKey` option.
+      - Updated the usage of the `refetchOptions` in the `SheetSelector` component to match the new library API.
+      - Removed the `initialData` option from `useQuery` hooks as it is no longer supported.
+      - Replaced the `useQueryCache` hook with the new `QueryCache` instance.
+      
+      These changes align the application with the new API of the `@tanstack/react-query` library. Developers using the application should ensure that their code is updated to use the new API for managing queries and mutations. Additionally, the new `QueryCache` instance provides better control over the query cache and allows for custom error handling.
+    </div>
+  </div>
+</div>
+
 ### December 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
