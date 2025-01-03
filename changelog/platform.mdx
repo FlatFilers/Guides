@@ -16,18 +16,7 @@ icon: "layer-group"
       api@97f8987
       The provided diff updates introduce the following changes:
       
-      1. **Maintain Record Order when Inserting Records**
-         - The `AddRecords` operation now maintains the order of records when inserting them into the database table. An `ordinal` column has been added to the temporary table to keep track of the original order of the records.
-         - The `INSERT` statement now uses the `ORDER BY ordinal ASC` clause to insert records in the correct order.
       
-      2. **Add a New Test File for Validating Record Order**
-         - A new test file `v2.records.controller.e2e-spec.ts` has been added to validate the behavior of maintaining the record order when inserting records via the `/v2-alpha/records.jsonl` endpoint.
-         - The test reads a CSV file containing field definitions, converts the CSV lines to JSON objects, and sends them as a JSONL payload to the `/v2-alpha/records.jsonl` endpoint.
-         - After inserting the records, the test downloads the sheet data and verifies that the order of the records in the downloaded CSV file matches the original order in the input CSV file.
-      
-      These changes ensure that when inserting records into a sheet, the order of the records is preserved, maintaining the original sequence as provided by the user or data source. This consistency in record order can be crucial for certain use cases where the order of records carries significance or impacts downstream processing.
-      
-      The new test file validates this behavior by comparing the order of records before and after insertion, ensuring that the implementation correctly maintains the expected order.
     </div>
   </div>
 </div>
