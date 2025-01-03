@@ -1,0 +1,20 @@
+### January 03, 2025
+## dataxp
+
+api@ea7d02f
+This update modifies the ClearColumnLogic class with the following changes:
+
+It adds type annotations to the emitStreamingUpdate and runClearColumn methods. The emitStreamingUpdate method now returns a Promise<Flatfile.Event>. The runClearColumn method now returns a Promise with an object containing the workbookId and sheetId.
+
+In the runClearColumn method, it filters out any records where the specified fieldKey does not have a value before updating. It then maps over the remaining records, creating a shallow copy and setting the value at the specified fieldKey to an empty string.
+
+It adds logging statements to print the recordsUpdates array during the runClearColumn method.
+
+The update improves the type safety and logging capabilities of the ClearColumnLogic class. Developers using this package will now have better type information for the return values of emitStreamingUpdate and runClearColumn. The logging statements will aid in debugging issues related to the clear column operation.
+
+For example, to handle the returned values:
+
+```typescript
+const { workbookId, sheetId } = await clearColumnLogic.runClearColumn(pageSize);
+const streamingEvent = await clearColumnLogic.emitStreamingUpdate({ job, sheetId, workbookId });
+```
