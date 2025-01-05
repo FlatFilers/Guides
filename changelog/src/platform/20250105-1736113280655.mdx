@@ -1,0 +1,24 @@
+### January 05, 2025
+## dataxp
+
+api@220e0a6
+This release updates the mapping and normalization logic for field keys. The following changes have been made:
+
+The normalizeKey function now handles various scenarios for converting strings to snake_case format. It replaces special characters like % with "percent" and $ with "dollar". It splits consecutive uppercase letters from subsequent capital letters followed by lowercase. It converts hyphens, underscores, and multiple spaces to single underscores. If the entire string is numeric, it returns a number instead of a string.
+
+For numeric inputs, normalizeKey returns the number itself if the input is already a number. It converts string-encoded numbers to actual numbers, but does not convert an empty string to 0.
+
+The unCamelCase function has been removed as it is no longer used.
+
+The createMappingPlan function no longer adds uppercase versions of field keys as alternative names.
+
+A comprehensive test suite has been added for the normalizeKey function, covering various input formats and edge cases.
+
+Example usage:
+```
+normalizeKey('ShippingCost%') // 'shipping_cost_percent'
+normalizeKey('HTTPStatusCode') // 'http_status_code'
+normalizeKey('123') // 123 (number)
+```
+
+These changes improve the handling of field key normalization, ensuring consistent and predictable snake_case formatting across different input formats. Developers using this package should expect more accurate and consistent mapping of field keys to their snake_case counterparts.
