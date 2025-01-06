@@ -1,0 +1,5 @@
+### January 06, 2025
+## spaces
+
+spaces-ui@ab36961
+The paths to the translation files for different locales have been moved from the public/locales directory to the src/locales directory. This change affects the import statements for these translation files in the i18n.ts file and the _testHelper.tsx file. As a developer using this package, you do not need to make any changes as the functionality remains the same. However, if you were previously importing or referencing the translation files directly from the public/locales path, you will need to update the import paths to use the new src/locales path.
