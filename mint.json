@@ -23,6 +23,9 @@
       "light": "#fff"
     }
   },
+  "codeBlock": {
+   "mode": "auto"
+},
   "feedback": {
     "raiseIssue": true,
     "suggestEdit": true
