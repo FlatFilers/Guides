@@ -588,3 +588,11 @@ button.absolute.left-6.top-1\/2 svg {
 html:is(.dark) button.absolute.left-6.top-1\/2 svg {
   color: black;
 }
+
+svg.w-4.h-4.bg-white\/40.dark\:group-hover\:bg-white\/60 {
+  background-color: black;
+}
+
+html:is(.dark) svg.w-4.h-4.bg-white\/40.dark\:group-hover\:bg-white\/60 {
+  background-color: white;
+}
