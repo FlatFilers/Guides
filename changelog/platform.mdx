@@ -4,6 +4,33 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## January 2025
+
+### January 07, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@b288583
+      The release includes the following updates:
+      
+      A new feature has been added to create agents from templates. When creating an agent, options can now be provided with a valid template name to generate the agent source code and source map from the specified template. The supported templates and their configuration options are defined in the new AgentTemplatesEnum.
+      
+      The AgentsService now checks if a valid template is provided in the options when creating an agent. If a template is specified and no source code is provided, it will generate the source code and source map from the specified template. It also validates the provided options and sets default values if necessary.
+      
+      A new helper class BundleDeployAgent has been introduced to handle the bundling process for agent templates. It provides methods to generate the source code and source map from a template, process templates with options like namespace, add node modules, and compile the code.
+      
+      A new file agent.templates.validator.ts has been added, which contains the AgentTemplateValidator class. This class provides methods to validate the provided template options and fill in default values for missing options.
+      
+      An example template called "constraints" has been added under the templates directory. This template includes a listener that uses the @flatfile/plugin-stored-constraints plugin. The template can be configured with options like namespace.
+      
+      When creating an agent with a valid template and options, the agent's slug and topics will be automatically set based on the template configuration if not provided explicitly.
+    </div>
+  </div>
+</div>
+
 ## December 2024
 
 ### December 30, 2024
@@ -118,9 +145,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## October 2024
+## October 2024 (4)
 
-### October 28, 2024
+##### October 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -137,7 +164,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### October 17, 2024
+##### October 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -153,7 +180,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### October 03, 2024
+##### October 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -166,7 +193,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### October 01, 2024
+##### October 01, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
