@@ -6,6 +6,23 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 08, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@816fe99
+      Updated the file upload functionality to truncate long filenames when displaying error messages. Filenames exceeding 45 characters will be truncated, keeping the file extension visible. For example, "this_is_a_very_long_filename.txt" will be displayed as "this_is_a_very_long_fil…name.txt". This improves the user experience by preventing error messages from becoming too long and difficult to read.
+      
+      Added a new utility function `truncateFilename` that takes a filename string and an optional limit (default 45 characters). It returns the truncated filename with an ellipsis if the filename exceeds the limit. The function handles filenames with and without extensions.
+      
+      In the `useFileUpload` hook, the `truncateFilename` function is now used when displaying the error message for failed file uploads, ensuring long filenames are properly truncated.
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
