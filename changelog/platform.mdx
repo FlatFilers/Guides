@@ -6,6 +6,27 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 08, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@fcebcb8
+      Added support for updating data clip collaborators. When a data clip's collaborators are updated, an event with the new list of collaborators will be emitted. This allows external systems to be notified of the change.
+      
+      Example usage:
+      
+      ```javascript
+      const updatedDataClip = await dataClipsService.setCollaborators(dataClip.id, newCollaborators, user)
+      ```
+      
+      The `setCollaborators` method takes the data clip ID, an array of new collaborator IDs, and the user making the update. It returns the updated data clip object. An event will be emitted with the updated list of collaborators, enabling other services to react accordingly.
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
