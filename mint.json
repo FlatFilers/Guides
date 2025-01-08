@@ -17,7 +17,7 @@
   "colors": {
     "primary": "#000",
     "light": "#fff",
-    "dark": "#3B2FC9",
+    "dark": "#000",
     "background": {
       "dark": "#000",
       "light": "#fff"

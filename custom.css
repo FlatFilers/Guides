@@ -340,7 +340,7 @@ html:not(.dark) .token.string {
   color: #8d4021;
 }
 
-htmlhtml:not(.dark) .token.console,
+html:not(.dark) .token.console,
 :not(.dark) .token.interpolation,
 html:not(.dark) .token.parameter {
   color: #5da8d0;
@@ -590,3 +590,137 @@ html:is(.dark) button.absolute.left-6.top-1\/2 svg {
 }
 
 .bg-gray-100\/40 { background-color: white; }
+
+.rounded,
+.rounded-sm,
+.rounded-md,
+.rounded-lg,
+.rounded-xl,
+.rounded-2xl,
+.rounded-3xl,
+.rounded-full {
+  border-radius: 0 !important;
+}
+
+button,
+input,
+select,
+textarea,
+.card,
+.alert,
+.badge,
+.btn,
+.dropdown-content,
+.modal,
+.notification,
+.panel,
+.tooltip {
+  border-radius: 0 !important;
+}
+
+.nav-item,
+.nav-link,
+.menu-item,
+.tab {
+  border-radius: 0 !important;
+}
+
+.rounded-t,
+.rounded-t-sm,
+.rounded-t-md,
+.rounded-t-lg,
+.rounded-t-xl,
+.rounded-t-2xl,
+.rounded-t-3xl {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.rounded-b,
+.rounded-b-sm,
+.rounded-b-md,
+.rounded-b-lg,
+.rounded-b-xl,
+.rounded-b-2xl,
+.rounded-b-3xl {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.rounded-tl,
+.rounded-tr,
+.rounded-bl,
+.rounded-br {
+  border-radius: 0 !important;
+}
+
+[class*="rounded-["] {
+  border-radius: 0 !important;
+}
+
+img {
+  border-radius: 0 !important;
+}
+
+/* Light mode scrollbar styles */
+html:not(.dark) ::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 7px;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border: 3px solid #f1f1f1;
+  border-radius: 7px;
+}
+
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode scrollbar styles */
+html.dark ::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 7px;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px solid #1a1a1a;
+  border-radius: 7px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+html.dark ::-webkit-scrollbar-thumb:active {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Firefox scrollbar styles */
+* {
+  scrollbar-width: thin;
+}
+
+html:not(.dark) * {
+  scrollbar-color: rgba(0, 0, 0, 0.2) #f1f1f1;
+}
+
+html.dark * {
+  scrollbar-color: rgba(255, 255, 255, 0.2) #1a1a1a;
+}
+
+html.dark .bg-zinc-50\/50 {
+  background-color: rgb(0 0 0);
+}
