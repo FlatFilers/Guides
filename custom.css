@@ -1,4 +1,4 @@
-/* /*
+/*
  * Legal Disclaimer for Web licence
  *
  * Licence to use self-hosted webfonts for displaying dynamic text on specified website domains. Our package includes WOFF and WOFF2 font formats.
@@ -277,7 +277,7 @@ h5 {
 .rounded-lg,
 .rounded-sm,
 .rounded-xl {
-  border-radius: 0 !important;
+  border-radius: 0;
 }
 
 .rounded-t-\[0\.68rem\] {
@@ -719,4 +719,8 @@ html:not(.dark) * {
 
 html.dark * {
   scrollbar-color: rgba(255, 255, 255, 0.2) #1a1a1a;
+}
+
+html.dark .bg-zinc-50\/50 {
+  background-color: rgb(0 0 0);
 }
