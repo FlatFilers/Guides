@@ -4,6 +4,31 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## January 2025
+
+### January 08, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/extractors.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-xlsx-extractor@3.4.1
+      This release updates the xlsx-extractor plugin with the following changes:
+      
+      The header row is now trimmed to the last non-null or non-whitespace header cell. This ensures that any trailing empty cells in the header row are removed.
+      
+      The xlsx dependency has been updated to version 0.20.3.
+      
+      The internal logic for parsing XLSX files has been refactored. This includes changes to how rows and headers are processed, and how data is formatted into Flatfile records. These changes should be transparent to developers using the plugin.
+      
+      A new utility function trimTrailingEmptyCells has been added to trim trailing empty cells from rows.
+      
+      For example, if the header row in an XLSX file is ['Column A', 'Column B', '', ''], the trimmed header will be ['Column A', 'Column B'].
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +112,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
