@@ -6,6 +6,29 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 09, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@345bc66
+      The release notes include the following updates:
+      
+      A new PATCH /v1/data-clips/:dataClipId/refresh-resolutions endpoint has been added to refresh the resolutions for a given data clip. This will update the resolution table to reflect the latest changes made to the clip records. It requires the 'data-clip:update' privilege.
+      
+      When refreshing resolutions, a new 'data-clip:resolutions-refreshed' event is emitted, allowing consumers to subscribe to this event topic to be notified of resolution refreshes.
+      
+      The behavior of the data clip status transition from READY to OPEN has been updated. It no longer unlocks the associated clip sheet when transitioning from READY to OPEN.
+      
+      The behavior when creating resolutions for a data clip has been updated. It no longer locks the associated clip sheet when creating resolutions.
+      
+      These changes provide a way for consumers to refresh data clip resolutions on-demand and be notified of resolution refreshes. They also update the behavior around locking/unlocking the clip sheet during certain state transitions.
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
