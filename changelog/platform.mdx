@@ -6,6 +6,49 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 09, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@f3ed6a9
+      The following updates were made to the EditFieldContent, EditFieldForm, EditRuleForm, and RuleList components:
+      
+      The EditFieldContent component now receives the field object and an array of rules with indices (RuleWithIndex[]) instead of the fieldKey and fieldRules array. The component passes these props to the RuleList component.
+      
+      The EditFieldForm component now enhances the rules array with additional metadata, such as the originalIndex and a description for stored constraints. It also uses a useRef hook to store the initial rules for detecting unsaved changes.
+      
+      The RuleList component has been updated to handle the new RuleWithIndex type and manage rule operations based on the originalIndex instead of the visual index. It now tracks rule job IDs using the originalIndex and optimistically updates the UI when adding, editing, or removing rules. It also handles error cases more robustly.
+      
+      The EditRuleForm component has been refactored for better rendering of the rule options section.
+      
+      These changes improve the handling of rules, particularly when adding, editing, or removing them. The use of originalIndex ensures that rule operations are performed correctly, even when the visual order of rules changes. Additionally, the code has been refactored for better readability and maintainability.
+      
+      Developers consuming this package should be aware of the following changes:
+      
+      1. The EditFieldContent component now expects a field object and an array of RuleWithIndex objects instead of a fieldKey and fieldRules array.
+      2. Rule operations, such as adding, editing, and removing, now handle scenarios more robustly and provide better feedback to the user.
+      3. The rule options section in the EditRuleForm component has been refactored, but its functionality remains the same.
+      
+      Example usage:
+      
+      ```jsx
+      <EditFieldContent
+        field={myField}
+        rules={myRules}
+        sheetId={sheetId}
+        onRemoveRule={handleRemoveRule}
+        showRuleEditor={showRuleEditor}
+        setRule={setSelectedRuleIndex}
+        // ... other props
+      />
+      ```
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
