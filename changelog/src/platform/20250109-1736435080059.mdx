@@ -1,0 +1,21 @@
+### January 09, 2025
+## dataxp
+
+api@add742e
+The following updates have been made:
+
+1. Several package dependencies have been updated to their latest versions, including @nestjs/axios, @nestjs/bullmq, @nestjs/cache-manager, @nestjs/common, @nestjs/core, @nestjs/event-emitter, @nestjs/platform-express, @nestjs/serve-static, @nestjs/terminus, @nestjs/throttler, axios, dd-trace, ioredis, nest-commander, nest-winston, nestjs-ddtrace, nestjs-http-promise, nestjs-request-context, and reflect-metadata.
+
+2. A new package dependency @nest-lab/throttler-storage-redis has been added for Redis-based throttling storage.
+
+3. The `OnEvent` decorator in the `ResourceHierarchyBuilder` has been updated with the `suppressErrors` option set to false.
+
+4. The `OnEvent` decorator in the `WorkbooksService` has been updated with the `suppressErrors` option set to false.
+
+5. The `tsconfig.json` file has been updated to set the `preserveSymlinks` option to true.
+
+6. In the `FronteggService` spec, the `error` logger call has been updated to expect an object as the second argument.
+
+7. In the `DebounceService`, the `getClient` method has been replaced with `getOrThrow` when retrieving the Redis client.
+
+These changes should not significantly impact the external interface or functionality for developers using the package. However, they bring in the latest package versions, improve error handling with the `suppressErrors` option, and enable symlink preservation in the TypeScript configuration.
