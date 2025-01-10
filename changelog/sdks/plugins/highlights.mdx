@@ -4,6 +4,29 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+## January 2025
+
+### January 10, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/transform.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      @flatfile/plugin-record-hook@2.0.0
+      The `@flatfile/plugin-record-hook` package has been updated to version 2.0.0. A major change has been made to mark the `event` parameter as non-optional in the `BulkRecordHook` function. The `RecordHook` and `BulkRecordHook` functions now expect the `event` parameter to be provided. This is a breaking change and developers using this package will need to update their code to pass the `event` parameter when calling these functions. For example:
+      
+      ```typescript
+      await BulkRecordHook(event, (records, event) => {
+        // Handle records and event
+      });
+      ```
+      
+      The `recordHookPlugin` and `bulkRecordHookPlugin` functions have also been updated to require the `event` parameter when registering callbacks. Developers will need to update their callback functions to accept the `event` parameter.
+    </div>
+  </div>
+</div>
+
 ## October 2024
 
 ### October 29, 2024
@@ -87,9 +110,9 @@ icon: "plug"
   </div>
 </div>
 
-## August 2024
+## August 2024 (1)
 
-### August 27, 2024
+##### August 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
 
