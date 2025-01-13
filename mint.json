@@ -56,95 +56,95 @@
     },
     {
       "source": "/plugins/extractors/json-extractor",
-      "destination": "https://flatfile.com/plugins/json-extractor"
+      "destination": "https://flatfile.com/plugins/plugin-json-extractor"
     },
     {
       "source": "/plugins/extractors/xml-extractor",
-      "destination": "https://flatfile.com/plugins/xml-extractor"
+      "destination": "https://flatfile.com/plugins/plugin-xml-extractor"
     },
     {
       "source": "/plugins/extractors/zip-extractor",
-      "destination": "/plugins-docs/extractors/zip-extractor"
+      "destination": "https://flatfile.com/plugins/plugin-zip-extractor"
     },
     {
       "source": "/plugins/extractors/delimiter-extractor",
-      "destination": "/plugins-docs/extractors/delimiter-extractor"
+      "destination": "https://flatfile.com/plugins/plugin-delimiter-extractor"
     },
     {
       "source": "/plugins/extractors/pdf-extractor",
-      "destination": "https://flatfile.com/plugins/pdf-extractor"
+      "destination": "https://flatfile.com/plugins/plugin-pdf-extractor"
     },
     {
       "source": "/plugins/transform/record-hook",
       "destination": "https://flatfile.com/plugins/record-hook"
     },
-    {
-      "source": "/plugins/transform/external-constraint",
-      "destination": "https://flatfile.com/plugins/external-constraint"
-    },
+    // {
+    //   "source": "/plugins/transform/external-constraint",
+    //   "destination": "https://flatfile.com/plugins/plugin-external-constraint"
+    // },
     {
       "source": "/plugins/transform/autocast",
-      "destination": "https://flatfile.com/plugins/autocast"
+      "destination": "https://flatfile.com/plugins/plugin-autocast"
     },
     {
       "source": "/plugins/transform/dedupe",
-      "destination": "https://flatfile.com/plugins/dedupe"
+      "destination": "https://flatfile.com/plugins/plugin-dedupe"
     },
     {
       "source": "/plugins/automations/automap",
-      "destination": "/https://flatfile.com/plugins/automap"
+      "destination": "/https://flatfile.com/plugins/plugin-automap"
     },
     {
       "source": "/plugins/export/workbook",
-      "destination": "https://flatfile.com/plugins/workbook"
+      "destination": "https://flatfile.com/plugins/plugin-export-workbook"
     },
     {
       "source": "/plugins/export/webhook",
-      "destination": "https://flatfile.com/plugins/webhook"
+      "destination": "https://flatfile.com/plugins/plugin-webhook-egress"
     },
     {
       "source": "/plugins/schemas/convert-json-schema",
-      "destination": "https://flatfile.com/plugins/convert-json-schema"
+      "destination": "https://flatfile.com/plugins/plugin-convert-json-schema"
     },
     {
       "source": "/plugins/schemas/convert-yaml-schema",
-      "destination": "https://flatfile.com/plugins/convert-yaml-schema"
+      "destination": "https://flatfile.com/plugins/plugin-convert-yaml-schema"
     },
     {
       "source": "/plugins/schemas/convert-sql-ddl",
-      "destination": "https://flatfile.com/plugins/convert-sql-ddl"
+      "destination": "https://flatfile.com/plugins/plugin-convert-sql-ddl"
     },
     {
       "source": "/plugins/schemas/convert-openapi",
-      "destination": "https://flatfile.com/plugins/convert-openapi"
+      "destination": "https://flatfile.com/plugins/plugin-convert-openapi-schema"
     },
-    {
-      "source": "/plugins/datasets/zipcodes",
-      "destination": "https://flatfile.com/plugins/zipcodes"
-    },
+    // {
+    //   "source": "/plugins/datasets/zipcodes",
+    //   "destination": "https://flatfile.com/plugins/plugin-zipcodes"
+    // },
     {
       "source": "/plugins/migrations/dxp-configure",
-      "destination": "https://flatfile.com/plugins/dxp-configure"
+      "destination": "https://flatfile.com/plugins/plugin-dxp-configure"
     },
     {
       "source": "/plugins/core/job-handler",
-      "destination": "https://flatfile.com/plugins/job-handler"
+      "destination": "https://flatfile.com/plugins/plugin-job-handler"
     },
     {
       "source": "/plugins/core/space-configure",
-      "destination": "https://flatfile.com/plugins/space-configure"
+      "destination": "https://flatfile.com/plugins/plugin-space-configure"
     },
-    {
-      "source": "/plugins/utils/extractor",
-      "destination": "https://flatfile.com/plugins/extractor"
-    },
+    // {
+    //   "source": "/plugins/utils/extractor",
+    //   "destination": "https://flatfile.com/plugins/plugin-extractor"
+    // },
     {
       "source": "/plugins/utils/file-buffer",
-      "destination": "https://flatfile.com/plugins/file-buffer"
+      "destination": "https://flatfile.com/plugins/util-file-buffer"
     },
     {
       "source": "/plugins/utils/response-rejection",
-      "destination": "https://flatfile.com/plugins/response-rejection"
+      "destination": "https://flatfile.com/plugins/util-response-rejection"
     }
   ],
   "topbarLinks": [
