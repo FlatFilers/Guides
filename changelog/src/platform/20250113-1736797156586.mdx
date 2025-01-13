@@ -1,0 +1,17 @@
+### January 13, 2025
+## spaces
+
+spaces-ui@76c2758
+The release notes for this update include:
+
+The sidebar's initial collapsed state has been updated to be collapsed by default. The sidebar will now be expanded automatically when the component mounts.
+
+The logic for toggling the sidebar's collapsed state has been updated to respect the sidebarHiddenFromUser configuration, preventing the sidebar from being expanded if it is set to be hidden for guest users.
+
+The BuildModeContext now uses a useCallback hook for the updateSidebar function to avoid unnecessary re-renders.
+
+A new useEffect hook has been added to automatically collapse the sidebar when the view is not in the 'space' view.
+
+The dependency array for the useEffect hook that updates the sidebar based on the BuildSidebarMode has been updated to depend on the updateSidebar function to ensure it is properly updated.
+
+These changes improve the handling of the sidebar's collapsed state, ensuring it respects the configured settings and view state, while also optimizing performance with memoized functions and proper dependency arrays.
