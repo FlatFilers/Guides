@@ -51,94 +51,8 @@ Learn how to create a Space with a theme, and update a theme from an Event liste
 <ParamField path="warningColor" type="string">
   The color used for warning messages.
 </ParamField>
-<ParamField path="successColor" type="string">
-  The color used for successful Actions.
-</ParamField>
-<ParamField path="actionColor" type="string">
-  The color used for Action buttons and text. This will default to a slightly
-  lighter shade of your primary color.
-</ParamField>
-<Info>
-  For a more cohesive aesthetic, use the same color for your Action and Primary
-  color.
-</Info>
 <ParamField path="borderColor" type="string">
   The color used for borders throughout the application.
-</ParamField>
-
-#### Buttons
-
-<ParamField path="buttonBorderRadius" type="string">
-  The border radius for all standard buttons.
-</ParamField>
-
-#### Badges
-
-<ParamField path="badgeBorderColor" type="string">
-  The border color for all badges.
-</ParamField>
-<ParamField path="badgeBorderRadius" type="string">
-  The border radius for all badges.
-</ParamField>
-
-#### Checkboxes
-
-<ParamField path="checkboxBorderColor" type="string">
-  The border color for all checkboxes.
-</ParamField>
-<ParamField path="checkboxBorderRadius" type="string">
-  The border radius for all checkboxes.
-</ParamField>
-
-#### Dropdowns, Text Inputs, and Context Menus
-
-<ParamField path="interactiveBorderColor" type="string">
-  The border color for all dropdowns, text inputs, and context menus.
-</ParamField>
-<ParamField path="interactiveBorderRadius" type="string">
-  The border radius for all dropdowns, text inputs, and context menus.
-</ParamField>
-
-#### Tabstrip
-
-<ParamField path="tabstripActiveColor" type="string">
-  The color for active tabs in a tabstrip.
-</ParamField>
-<ParamField path="tabstripInactiveColor" type="string">
-  The color for inactive tabs in a tabstrip.
-</ParamField>
-<ParamField path="tabstripHoverTextColor" type="string">
-  The text color for tabs in a tabstrip on hover.
-</ParamField>
-<ParamField path="tabstripHoverBorderColor" type="string">
-  The border color for tabs in a tabstrip on hover.
-</ParamField>
-
-#### Modals
-
-<ParamField path="modalBorderRadius" type="string">
-  The border radius for modals.
-</ParamField>
-
-#### Pills
-
-<ParamField path="pillBorderRadius" type="string">
-  The border radius for all pills.
-</ParamField>
-
-#### Popovers
-
-<ParamField path="popoverBackgroundColor" type="string">
-  The background color for popovers.
-</ParamField>
-<ParamField path="popoverBorderRadius" type="string">
-  The border radius for popovers.
-</ParamField>
-
-#### Tooltips
-
-<ParamField path="tooltipBackgroundColor" type="string">
-  The background color for tooltips.
 </ParamField>
 
 ### `theme.sidebar`
@@ -168,20 +82,6 @@ Learn how to create a Space with a theme, and update a theme from an Event liste
 </ParamField>
 <ParamField path="backgroundColor" type="string">
   The background color of the sidebar.
-</ParamField>
-<ParamField path="footerTextColor" type="string">
-  The text color of the footer in the sidebar.
-</ParamField>
-<ParamField path="borderColor" type="string">
-  The color of horizontal lines between sections in the navigation.
-</ParamField>
-
-### `theme.document`
-
-![theme.document](../images/customize/theme_document.png)
-
-<ParamField path="borderColor" type="string">
-  The color of horizontal rules in Documents.
 </ParamField>
 
 ### `theme.table`
@@ -346,6 +246,120 @@ The text color of the footer text in dark mode
 </ParamField>
 <ParamField path="backgroundColor" type="string">
 The background color of the email in dark mode
+</ParamField>
+
+## Deprecation Notice
+<Info>
+  Flatfile's new design system released in Q1 2025 supports a more streamlined experience when configuring theme. The new system
+  accepts a more limited set of properties, but ensures those supplied properties are cohesively applied across the application. 
+
+  As a result, many of the original `theme.root` properties which applied to specific UI elements have been deprecated. We have taken 
+  steps to ensure some level of backwards compatibility for these properties in the new system - however we recommend any usage of these properties
+  be updated to the new system as soon as possible.
+</Info>
+
+### `theme.root` [deprecated]
+
+#### Colors
+
+<ParamField path="successColor" type="string" deprecated>
+  The color used for successful Actions.
+</ParamField>
+<ParamField path="actionColor" type="string" deprecated>
+  The color used for Action buttons and text. This will default to a slightly
+  lighter shade of your primary color.
+</ParamField>
+
+#### Buttons
+
+<ParamField path="buttonBorderRadius" type="string" deprecated>
+  The border radius for all standard buttons.
+</ParamField>
+
+#### Badges
+
+<ParamField path="badgeBorderColor" type="string" deprecated>
+  The border color for all badges.
+</ParamField>
+<ParamField path="badgeBorderRadius" type="string" deprecated>
+  The border radius for all badges.
+</ParamField>
+
+#### Checkboxes
+
+<ParamField path="checkboxBorderColor" type="string" deprecated>
+  The border color for all checkboxes.
+</ParamField>
+<ParamField path="checkboxBorderRadius" type="string" deprecated>
+  The border radius for all checkboxes.
+</ParamField>
+
+#### Interactive elements
+
+<ParamField path="interactiveBorderColor" type="string" deprecated>
+  The border color for all dropdowns, text inputs, and context menus.
+</ParamField>
+<ParamField path="interactiveBorderRadius" type="string" deprecated>
+  The border radius for all dropdowns, text inputs, and context menus.
+</ParamField>
+
+#### Tabstrip
+
+<ParamField path="tabstripActiveColor" type="string" deprecated>
+  The color for active tabs in a tabstrip.
+</ParamField>
+<ParamField path="tabstripInactiveColor" type="string" deprecated>
+  The color for inactive tabs in a tabstrip.
+</ParamField>
+<ParamField path="tabstripHoverTextColor" type="string" deprecated>
+  The text color for tabs in a tabstrip on hover.
+</ParamField>
+<ParamField path="tabstripHoverBorderColor" type="string" deprecated>
+  The border color for tabs in a tabstrip on hover.
+</ParamField>
+
+#### Modals
+
+<ParamField path="modalBorderRadius" type="string" deprecated>
+  The border radius for modals.
+</ParamField>
+
+#### Pills
+
+<ParamField path="pillBorderRadius" type="string" deprecated>
+  The border radius for all pills.
+</ParamField>
+
+#### Popovers
+
+<ParamField path="popoverBackgroundColor" type="string" deprecated>
+  The background color for popovers.
+</ParamField>
+<ParamField path="popoverBorderRadius" type="string" deprecated>
+  The border radius for popovers.
+</ParamField>
+
+#### Tooltips
+
+<ParamField path="tooltipBackgroundColor" type="string" deprecated>
+  The background color for tooltips.
+</ParamField>
+
+### `theme.sidebar` [deprecated]
+
+#### Colors
+
+<ParamField path="footerTextColor" type="string" deprecated>
+  The text color of the footer in the sidebar.
+</ParamField>
+<ParamField path="borderColor" type="string" deprecated>
+  The color of horizontal lines between sections in the navigation.
+</ParamField>
+
+### `theme.document` [deprecated]
+
+<ParamField path="borderColor" type="string" deprecated>
+  The color of horizontal rules in Documents.
 </ParamField>
 
 
