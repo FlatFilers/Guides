@@ -78,10 +78,6 @@
       "source": "/plugins/transform/record-hook",
       "destination": "https://flatfile.com/plugins/record-hook"
     },
-    // {
-    //   "source": "/plugins/transform/external-constraint",
-    //   "destination": "https://flatfile.com/plugins/plugin-external-constraint"
-    // },
     {
       "source": "/plugins/transform/autocast",
       "destination": "https://flatfile.com/plugins/plugin-autocast"
@@ -118,10 +114,6 @@
       "source": "/plugins/schemas/convert-openapi",
       "destination": "https://flatfile.com/plugins/plugin-convert-openapi-schema"
     },
-    // {
-    //   "source": "/plugins/datasets/zipcodes",
-    //   "destination": "https://flatfile.com/plugins/plugin-zipcodes"
-    // },
     {
       "source": "/plugins/migrations/dxp-configure",
       "destination": "https://flatfile.com/plugins/plugin-dxp-configure"
@@ -134,10 +126,10 @@
       "source": "/plugins/core/space-configure",
       "destination": "https://flatfile.com/plugins/plugin-space-configure"
     },
-    // {
-    //   "source": "/plugins/utils/extractor",
-    //   "destination": "https://flatfile.com/plugins/plugin-extractor"
-    // },
+        {
+      "source": "/plugins/utils/extractor",
+      "destination": "https://flatfile.com/plugins/util-extractor"
+    },
     {
       "source": "/plugins/utils/file-buffer",
       "destination": "https://flatfile.com/plugins/util-file-buffer"
