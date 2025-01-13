@@ -1,0 +1,9 @@
+### January 13, 2025
+## spaces
+
+spaces-ui@2e7bfaf
+The provided diff introduces the following changes:
+
+The hook `useDataClips` now checks the `dataClipsEnabled` entitlement first before proceeding with any other operations. If the entitlement is not available, the hook returns an object containing `isResolvingDataClipMerge` and `setIsResolvingDataClipMerge`. This change ensures that the data clip functionality is only accessible to users with the appropriate entitlement.
+
+Additionally, the `querySafeStatus` object and subsequent functions related to data clip operations are now defined after the entitlement check. This change likely optimizes the code by avoiding unnecessary computations when the data clip functionality is not enabled for the user.
