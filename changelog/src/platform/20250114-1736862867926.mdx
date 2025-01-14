@@ -1,0 +1,5 @@
+### January 14, 2025
+## spaces
+
+spaces-ui@0d69ddd
+The BuildModeContext component has been updated with a change in the dependency array of the useEffect hook that updates the sidebar visibility. Previously, the updateSidebar function was included in the dependency array, but it has been removed. This change prevents unnecessary re-renders of the component when the updateSidebar function changes, optimizing performance. The sidebar visibility will now only update when the mode state changes, which is the intended behavior.
