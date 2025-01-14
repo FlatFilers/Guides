@@ -1,0 +1,9 @@
+### January 14, 2025
+## spaces
+
+spaces-ui@3a640c9
+The release notes include the following changes:
+
+The z-index value of the overlay element in the SheetViewEmptyStates component has been increased from 30 to 200. This change ensures that the overlay element will be displayed on top of other elements in the application, improving visibility and preventing potential overlapping issues.
+
+The tailwind.config.ts file has been updated to remove the predefined z-index values from 10 to 90. Instead, a comment has been added explaining the level 100 z-index, which is used for the Spaces ContentContainer, full-screen page not found page, and the sidebar. This change simplifies the z-index configuration and provides a cleaner structure for managing z-index values across the application.
