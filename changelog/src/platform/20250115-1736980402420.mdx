@@ -1,0 +1,19 @@
+### January 15, 2025
+## dataxp
+
+api@32354e2
+Here are the key release notes summarizing the changes:
+
+The diff includes several changes related to testing and mocking in the platform application.
+
+Added a mock fix for an outstanding issue with Jest and timers. This defines a writable `performance` property on the global object to resolve the issue.
+
+Removed the `initializeTestingModuleBuilder` and `mockProvider` functions. These were custom utilities for creating and overriding testing modules, which are no longer needed.
+
+Updated various test files to use the `TestBed` utility from the `@suites/unit` library for setting up testing modules and mocking dependencies. This library provides a more standardized and streamlined approach to testing Nest applications.
+
+Refactored tests throughout the codebase to utilize `TestBed` and the new mocking approach, including mocking services, repositories, and other dependencies as needed.
+
+Removed the `getTestLogger` utility function, as logging is now handled through the `TestBed` setup.
+
+Overall, these changes simplify and standardize the testing setup and mocking approach in the platform application, leveraging the `@suites/unit` library for better maintainability and consistency.
