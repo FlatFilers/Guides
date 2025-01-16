@@ -1,0 +1,24 @@
+### January 15, 2025
+## dataxp
+
+api@82fee31
+Here are the release notes summarizing the changes in the provided diff:
+
+Added SFTP support for uploading files. Spaces can now retrieve SFTP credentials to upload files directly to Flatfile's infrastructure. The uploaded files will be automatically processed and imported into the space.
+
+New APIs:
+- GET /auth/sftp-credentials: Retrieve SFTP credentials for the specified space.
+- POST /auth/sftp: Authenticate SFTP credentials.
+
+New webhook endpoint:
+- POST /webhook/sftp-upload: Handle S3 upload notifications from uploaded SFTP files.
+
+Added SftpCredential model to manage credentials for SFTP file uploads. Each space will have a unique SFTP username and encrypted password stored securely.
+
+Added file origin 'SFTP' to identify files uploaded via SFTP.
+
+Integrated AWS S3 and SQS to facilitate SFTP file uploads. When a file is uploaded to the designated S3 bucket via SFTP, a job is queued to download the file, create a Flatfile file record, and import the data into the space.
+
+Implemented encryption utilities to securely store SFTP passwords using AWS KMS or a no-op encryption method for local development.
+
+This change enables a new file upload workflow for spaces with the 'sftp' entitlement. SFTP provides a secure and convenient way for external systems to upload data files directly to Flatfile.
