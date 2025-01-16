@@ -11,10 +11,26 @@ icon: "plug"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/automations.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-automap@0.7.0`
-      The release updates the @flatfile/plugin-automap package to version 0.7.0. The bundler for the package has been swapped from Parcel to tsup. The @flatfile/util-common dependency has been updated to version 1.5.0. The package now uses an ES module build with different entry points for Node.js and browser environments. The build scripts have been updated to use tsup instead of Parcel. Additional scripts for linting and checking have been added. The package.json file has been updated with the new build output paths and formats. The Jest configuration file has been renamed from jest.config.js to jest.config.cjs to support the ES module build. For developers using this package, the import paths may need to be updated based on the new module entry points.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/plugin-automap@0.7.0` The release updates the
+      @flatfile/plugin-automap package to version 0.7.0. The bundler for the
+      package has been swapped from Parcel to tsup. The @flatfile/util-common
+      dependency has been updated to version 1.5.0. The package now uses an ES
+      module build with different entry points for Node.js and browser
+      environments. The build scripts have been updated to use tsup instead of
+      Parcel. Additional scripts for linting and checking have been added. The
+      package.json file has been updated with the new build output paths and
+      formats. The Jest configuration file has been renamed from jest.config.js
+      to jest.config.cjs to support the ES module build. For developers using
+      this package, the import paths may need to be updated based on the new
+      module entry points.
     </div>
   </div>
 </div>
@@ -24,20 +40,45 @@ icon: "plug"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/##schema.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      @flatfile/plugin-convert-openapi-schema@0.3.2
-      Updated the plugin to version 0.3.2. This release fixes an async/await bug in the plugin. The plugin now properly handles asynchronous operations related to configuring the space with OpenAPI schema. The changes include updating the index.ts file to use the configureSpace function correctly and removing unnecessary code. The setup.factory.ts file was refactored to handle undefined data more gracefully when generating fields.
-      
-      @flatfile/plugin-convert-yaml-schema@0.3.2
-      This release includes an important bug fix and updates several dependencies. The async/await bug in the plugin has been resolved. Additionally, the dependency on @flatfile/plugin-convert-json-schema has been updated to version 0.4.2. The package.json file has been updated with new script commands for running different types of tests (unit, e2e). The plugin's entry point (index.ts) has been refactored to simplify the configureSpaceWithYamlSchema function, which now uses the configureSpace function from the @flatfile/plugin-space-configure package. The setup.factory.ts file has been updated to return a Setup object instead of a SetupFactory, and the generateSetup function now handles schema processing and field generation more efficiently.
-      
-      @flatfile/plugin-convert-sql-ddl@0.2.2
-      This release updates the @flatfile/plugin-convert-sql-ddl package to version 0.2.2. It includes a fix for an async/await bug. The configureSpaceWithSqlDDL function has been refactored to use the configureSpace function from @flatfile/plugin-space-configure, simplifying the implementation. The generateSetup function has been updated to remove the source property from the workbook object and return a Setup type instead of a SetupFactory type.
-      
-      @flatfile/plugin-convert-json-schema@0.4.2
-      This release fixes an async/await bug in the plugin. Additionally the generateSetup function has been refactored to handle cases where the data or data.properties is undefined, and the partialSheetConfig.source property is no longer deleted.
-      
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      @flatfile/plugin-convert-openapi-schema@0.3.2 Updated the plugin to
+      version 0.3.2. This release fixes an async/await bug in the plugin. The
+      plugin now properly handles asynchronous operations related to configuring
+      the space with OpenAPI schema. The changes include updating the index.ts
+      file to use the configureSpace function correctly and removing unnecessary
+      code. The setup.factory.ts file was refactored to handle undefined data
+      more gracefully when generating fields.
+      @flatfile/plugin-convert-yaml-schema@0.3.2 This release includes an
+      important bug fix and updates several dependencies. The async/await bug in
+      the plugin has been resolved. Additionally, the dependency on
+      @flatfile/plugin-convert-json-schema has been updated to version 0.4.2.
+      The package.json file has been updated with new script commands for
+      running different types of tests (unit, e2e). The plugin's entry point
+      (index.ts) has been refactored to simplify the
+      configureSpaceWithYamlSchema function, which now uses the configureSpace
+      function from the @flatfile/plugin-space-configure package. The
+      setup.factory.ts file has been updated to return a Setup object instead of
+      a SetupFactory, and the generateSetup function now handles schema
+      processing and field generation more efficiently.
+      @flatfile/plugin-convert-sql-ddl@0.2.2 This release updates the
+      @flatfile/plugin-convert-sql-ddl package to version 0.2.2. It includes a
+      fix for an async/await bug. The configureSpaceWithSqlDDL function has been
+      refactored to use the configureSpace function from
+      @flatfile/plugin-space-configure, simplifying the implementation. The
+      generateSetup function has been updated to remove the source property from
+      the workbook object and return a Setup type instead of a SetupFactory
+      type. @flatfile/plugin-convert-json-schema@0.4.2 This release fixes an
+      async/await bug in the plugin. Additionally the generateSetup function has
+      been refactored to handle cases where the data or data.properties is
+      undefined, and the partialSheetConfig.source property is no longer
+      deleted.
     </div>
   </div>
 </div>
@@ -47,10 +88,21 @@ icon: "plug"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/##automations.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      @flatfile/plugin-automap@0.6.0
-      This release removes the remeda dependency and adds the modern-async dependency. It also introduces a new option disableFileNameUpdate which disables updating the file name with automatic mapping information. The file name update behavior previously occurred unconditionally, but now can be controlled via this new option. There are no changes to the external interface beyond the addition of this new option.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      @flatfile/plugin-automap@0.6.0 This release removes the remeda dependency
+      and adds the modern-async dependency. It also introduces a new option
+      disableFileNameUpdate which disables updating the file name with automatic
+      mapping information. The file name update behavior previously occurred
+      unconditionally, but now can be controlled via this new option. There are
+      no changes to the external interface beyond the addition of this new
+      option.
     </div>
   </div>
 </div>
@@ -60,12 +112,16 @@ icon: "plug"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-delimiter-extractor@2.2.3` 
-      
-      This release corrects the DelimiterOption import.
-      
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/plugin-delimiter-extractor@2.2.3` This release corrects the
+      DelimiterOption import.
     </div>
   </div>
 </div>
@@ -77,12 +133,17 @@ icon: "plug"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-xlsx-extractor@3.1.5`
-      
-      This release fixes an issue in header row logic that erred when the header row contained non-string values and the `raw` or `rawNumbers` params were set to true.
-      
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/plugin-xlsx-extractor@3.1.5` This release fixes an issue in
+      header row logic that erred when the header row contained non-string
+      values and the `raw` or `rawNumbers` params were set to true.
     </div>
   </div>
 </div>
@@ -258,20 +319,28 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-constraints@2.0.0`
-      `@flatfile/plugin-record-hook@1.6.0`
-      `@flatfile/plugin-autocast@1.0.0`
-      
-      The latest release of the core packages adds support for the new string-list and enum-list field types, allowing developers to work with these data types seamlessly within their applications.
-      With this release, developers can now define constraints that validate string-list and enum-list field types, providing greater flexibility and control over data validation processes.
-      This new capability streamlines the development workflow and ensures data integrity across various use cases.
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/plugin-constraints@2.0.0` `@flatfile/plugin-record-hook@1.6.0`
+    `@flatfile/plugin-autocast@1.0.0` The latest release of the core packages
+    adds support for the new string-list and enum-list field types, allowing
+    developers to work with these data types seamlessly within their
+    applications. With this release, developers can now define constraints that
+    validate string-list and enum-list field types, providing greater
+    flexibility and control over data validation processes. This new capability
+    streamlines the development workflow and ensures data integrity across
+    various use cases.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/core.mdx" />
@@ -427,20 +496,30 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-xlsx-extractor@1.11.6`
-      
-      This release enhances the xlsx extractor plugin with improved debug messaging and a new option for configuring header detection.
-      When running in debug mode, developers will now see helpful log messages indicating which sheet is being processed and what headers were detected.
-      Additionally, a new `headerDetectionOptions` option has been added to the `ExcelExtractorOptions` interface, allowing consumers to customize the algorithm used for detecting headers in their Excel files.
-      This gives users more control over how headers are identified, improving compatibility with different spreadsheet formats.
-      Overall, these changes provide better visibility into the extraction process and more flexibility for handling diverse Excel data sources.
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/plugin-xlsx-extractor@1.11.6` This release enhances the xlsx
+    extractor plugin with improved debug messaging and a new option for
+    configuring header detection. When running in debug mode, developers will
+    now see helpful log messages indicating which sheet is being processed and
+    what headers were detected. Additionally, a new `headerDetectionOptions`
+    option has been added to the `ExcelExtractorOptions` interface, allowing
+    consumers to customize the algorithm used for detecting headers in their
+    Excel files. This gives users more control over how headers are identified,
+    improving compatibility with different spreadsheet formats. Overall, these
+    changes provide better visibility into the extraction process and more
+    flexibility for handling diverse Excel data sources.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/transform.mdx" />
@@ -502,16 +581,22 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/transform.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/util-common@1.0.1`
-      
-      This release replaces the `api.records.get` on @flatfile/api with a fetch to the GET records endpoint. This significantly improves large response times.
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/transform.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/util-common@1.0.1` This release replaces the `api.records.get` on
+    @flatfile/api with a fetch to the GET records endpoint. This significantly
+    improves large response times.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/transform.mdx" />
@@ -549,28 +634,37 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/transform.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-record-hook@1.4.5`
-      
-      This release brings improvements and optimizations to enhance performance and functionality:
-      **Smart Change Detection:** The plugin now intelligently compares original and modified values to identify actual changes. If there’s no change (a no-op situation), it avoids unnecessary record updates, enhancing efficiency and better supporting trackChanges.
-      
-      **UMD Build Availability:** A UMD build is now included, expanding compatibility across different module systems and environments.
-      
-      **Slimmer Node.js Build:** The Node.js build has been optimized to reduce its size, improving load times and resource usage.
-      
-      **Removal of Axios Dependency:** We’ve eliminated the Axios dependency in favor of native solutions, streamlining the library and reducing external dependencies.
-      Custom Concurrency Control: The plugin now implements its own concurrency control mechanism, moving away from reliance on external libraries. This bespoke solution is tailored to the specific needs of record hook operations, enhancing stability and performance.
-      
-      These updates mark a step forward in optimizing @flatfile/plugin-record-hook for developers and ensuring seamless integration into your data processing workflows.
-      
-      [Learn more in the docs](../../../plugins-docs/transform/record-hook).
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/transform.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/plugin-record-hook@1.4.5` This release brings improvements and
+    optimizations to enhance performance and functionality: **Smart Change
+    Detection:** The plugin now intelligently compares original and modified
+    values to identify actual changes. If there’s no change (a no-op situation),
+    it avoids unnecessary record updates, enhancing efficiency and better
+    supporting trackChanges. **UMD Build Availability:** A UMD build is now
+    included, expanding compatibility across different module systems and
+    environments. **Slimmer Node.js Build:** The Node.js build has been
+    optimized to reduce its size, improving load times and resource usage.
+    **Removal of Axios Dependency:** We’ve eliminated the Axios dependency in
+    favor of native solutions, streamlining the library and reducing external
+    dependencies. Custom Concurrency Control: The plugin now implements its own
+    concurrency control mechanism, moving away from reliance on external
+    libraries. This bespoke solution is tailored to the specific needs of record
+    hook operations, enhancing stability and performance. These updates mark a
+    step forward in optimizing @flatfile/plugin-record-hook for developers and
+    ensuring seamless integration into your data processing workflows. [Learn
+    more in the docs](https://flatfile.com/plugins/plugin-record-hook).
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/automations.mdx" />
@@ -588,7 +682,7 @@ icon: "plug"
       
       These improvements are designed to make your data export process more efficient and tailored to your specific needs.
       
-      [Learn more](../../../plugins-docs/export/workbook) about exporting workbooks with @flatfile/plugin-export-workbook
+      [Learn more](https://flatfile.com/plugins/plugin-export-workbook/) about exporting workbooks with @flatfile/plugin-export-workbook
       
     </div>
   </div>
@@ -600,25 +694,35 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/automations.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-webhook-egress@1.2.3`
-      
-      The latest version introduces key improvements for enhanced functionality and user experience:
-      
-      **Switch to Fetch:** In this version, we’ve transitioned from using axios to fetch for HTTP requests, streamlining the library’s usage across different environments.
-      Browser Compatibility: The plugin is now fully compatible with browser environments, extending its utility beyond server-side applications.
-      
-      **Enhanced Response Rejection Handling:** The integration of our response rejection utility allows for sophisticated post-webhook action decisions. Following a webhook egress, the utility analyzes the response to determine whether to delete records that were successfully submitted or to mark them with a status column reflecting their outcome. It also allows specifying custom error messages for fields within records that encountered rejections.
-      
-      This update aims to offer more flexibility, reliability, and broader applicability of the webhook egress plugin, ensuring seamless integration into your data workflow.
-      
-      [Learn more in the docs](../../../plugins-docs/export/webhook)
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/automations.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/plugin-webhook-egress@1.2.3` The latest version introduces key
+    improvements for enhanced functionality and user experience: **Switch to
+    Fetch:** In this version, we’ve transitioned from using axios to fetch for
+    HTTP requests, streamlining the library’s usage across different
+    environments. Browser Compatibility: The plugin is now fully compatible with
+    browser environments, extending its utility beyond server-side applications.
+    **Enhanced Response Rejection Handling:** The integration of our response
+    rejection utility allows for sophisticated post-webhook action decisions.
+    Following a webhook egress, the utility analyzes the response to determine
+    whether to delete records that were successfully submitted or to mark them
+    with a status column reflecting their outcome. It also allows specifying
+    custom error messages for fields within records that encountered rejections.
+    This update aims to offer more flexibility, reliability, and broader
+    applicability of the webhook egress plugin, ensuring seamless integration
+    into your data workflow. [Learn more in the
+    docs](https://flatfile.com/plugins/plugin-webhook-egress/)
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/transform.mdx" />
@@ -630,7 +734,7 @@ icon: "plug"
       
       This enhancement is particularly useful in conjunction with the rawNumbers property found in `@flatfile/plugin-xlsx-extractor`, where numeric values extracted from documents can be seamlessly transformed into string fields for consistency and ease of use.
       
-      [Learn more](../../../plugins-docs/transform/autocast)
+      [Learn more](https://flatfile.com/plugins/plugin-autocast)
       
     </div>
   </div>
@@ -652,7 +756,7 @@ icon: "plug"
       
       By employing the default strategy, the extractors now automatically scan the first 10 rows of your file to identify the header row based on the highest count of non-empty cells.
       
-      [Discover more](../../../plugins-docs/extractors/xlsx-extractor) about these enhanced header detection options and how they can streamline your data import processes.
+      [Discover more](https://flatfile.com/plugins/plugin-xlsx-extractor/) about these enhanced header detection options and how they can streamline your data import processes.
       
     </div>
   </div>
@@ -678,7 +782,7 @@ icon: "plug"
       
       These improvements are aimed at providing a more robust, user-friendly experience for working with Excel files, ensuring data integrity and easing the extraction process.
       
-      [Learn more about the improvements](../../../plugins-docs/extractors/xlsx-extractor)
+      [Learn more about the improvements](https://flatfile.com/plugins/plugin-xlsx-extractor/)
       
     </div>
   </div>
@@ -714,7 +818,7 @@ icon: "plug"
       
       With the `@flatfile/plugin-convert-yaml-schema`, you can simplify the schema conversion process—all in one powerful package.
       
-      Check out the [docs](https://flatfile.com/docs/plugins-docs/schemas/convert-yaml-schema).
+      Check out the [docs](https://flatfile.com/plugins/plugin-convert-yaml-schema).
       
     </div>
   </div>
@@ -750,7 +854,7 @@ icon: "plug"
       
       With the `@flatfile/plugin-convert-json-schema`, you can simplify the schema conversion process—all in one powerful package.
       
-      Check out the [docs](https://flatfile.com/docs/plugins-docs/schemas/convert-json-schema).
+      Check out the [docs](https://flatfile.com/plugins/plugin-convert-json-schema).
       
     </div>
   </div>
@@ -942,20 +1046,25 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/util-extractor@0.4.5`
-      
-      `util-extractor` is a crucial dependency used in all extractor plugins. We've made an important fix on the import method across all extractor plugins. If you previously encountered the following error message, you can now resolve this issue by updating to the latest extractor version.
-      
-      ```ssh
-      Module not found: Error: Can't resolve '@flatfile/api/api'
-      ```
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/util-extractor@0.4.5` `util-extractor` is a crucial dependency
+    used in all extractor plugins. We've made an important fix on the import
+    method across all extractor plugins. If you previously encountered the
+    following error message, you can now resolve this issue by updating to the
+    latest extractor version. ```ssh Module not found: Error: Can't resolve
+    '@flatfile/api/api' ```
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/extractors.mdx" />
@@ -1039,7 +1148,7 @@ icon: "plug"
       
       You can also utilize this utility directly with any listener.
       
-      Learn more in the [docs](../../../plugins-docs/utils/response-rejection).
+      Learn more in the [docs](https://flatfile.com/plugins/util-response-rejection/).
       
     </div>
   </div>
@@ -1049,18 +1158,25 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-extractor-___`
-      
-      All extractors have been fine-tuned to seamlessly handle extractions within a job, allowing the plugin more time to complete the extraction with less risk of the Agent timing out.
-      
-      Additionally, we've resolved a bug that was causing extractions to falsely indicate completion when running in parallel, ensuring extraction truly finishes before signaling completion.
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/plugin-extractor-___` All extractors have been fine-tuned to
+    seamlessly handle extractions within a job, allowing the plugin more time to
+    complete the extraction with less risk of the Agent timing out.
+    Additionally, we've resolved a bug that was causing extractions to falsely
+    indicate completion when running in parallel, ensuring extraction truly
+    finishes before signaling completion.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/transform.mdx" />
@@ -1070,7 +1186,7 @@ icon: "plug"
       
       Dates that were cast to a UTC string using the autocast plugin were showing as invalid after transformation. A fix for this was added to version 0.2.2.
       
-      [Learn more](../../../plugins-docs/transform/autocast).
+      [Learn more](https://flatfile.com/plugins/plugin-autocast).
       
     </div>
   </div>
@@ -1094,7 +1210,7 @@ icon: "plug"
       listener.use(autocast({ sheetSlug: 'bar' }, ['numberField', 'dateField']));
       ```
       
-      [Learn more](../../../plugins-docs/transform/autocast).
+      [Learn more](https://flatfile.com/plugins/plugin-autocast).
       
     </div>
   </div>
@@ -1134,7 +1250,7 @@ icon: "plug"
       
       Note: **@flatfile/plugin-record-hook** listens for the same event type (commit:created). Plugins will fire in the order they are placed in the listener.
       
-      Check out the [docs](../../../plugins-docs/transform/autocast).
+      Check out the [docs](https://flatfile.com/plugins/plugin-autocast).
       
     </div>
   </div>
@@ -1144,45 +1260,49 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      🚀 **Introducing `@flatfile/plugin-jobs-handler`**
-      
-      Our latest plugin, `@flatfile/plugin-jobs-handler`, streamlines handling Flatfile Jobs, which are a large unit of work performed asynchronously on a resource such as a file, Workbook, or Sheet.
-      
-      **Options at your fingertips:**
-      
-      - Update Job progress using `await tick(progress, message)`, returning a promise for `JobResponse`.
-      - `opts.debug` Enable debug logging for the plugin
-      
-      To get started simplifying the management of your Jobs, explore the [README](../../../plugins-docs/core/job-handler).
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    🚀 **Introducing `@flatfile/plugin-jobs-handler`** Our latest plugin,
+    `@flatfile/plugin-jobs-handler`, streamlines handling Flatfile Jobs, which
+    are a large unit of work performed asynchronously on a resource such as a
+    file, Workbook, or Sheet. **Options at your fingertips:** - Update Job
+    progress using `await tick(progress, message)`, returning a promise for
+    `JobResponse`. - `opts.debug` Enable debug logging for the plugin To get
+    started simplifying the management of your Jobs, explore the
+    [README](https://flatfile.com/plugins/plugin-job-handler/).
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      🚀 **Introducing `@flatfile/plugin-space-configure`**
-      
-      Streamline the dynamic setup of new Flatfile Spaces with `@flatfile/plugin-space-configure`.
-      
-      **How it works:**
-      
-      - The `setup` parameter holds the Blueprint for the new Space.
-      - And the `callback` parameter (invoked once the Space and Workbooks are fully configured) receives three arguments:
-      
-      1. `event`
-      2. `workbookIds`
-      3. Using the `@flatfile/plugin-jobs-handler` under the hood, the `tick` function can be used to update the Job’s progress.
-      
-      To simplify auto-configuring your Spaces, explore the [README](../../../plugins-docs/core/space-configure).
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    🚀 **Introducing `@flatfile/plugin-space-configure`** Streamline the dynamic
+    setup of new Flatfile Spaces with `@flatfile/plugin-space-configure`. **How
+    it works:** - The `setup` parameter holds the Blueprint for the new Space. -
+    And the `callback` parameter (invoked once the Space and Workbooks are fully
+    configured) receives three arguments: 1. `event` 2. `workbookIds` 3. Using
+    the `@flatfile/plugin-jobs-handler` under the hood, the `tick` function can
+    be used to update the Job’s progress. To simplify auto-configuring your
+    Spaces, explore the [README](https://flatfile.com/plugins/plugin-space-configure/).
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/extractors.mdx" />
@@ -1197,7 +1317,7 @@ icon: "plug"
       
       _Note: Previously, we were extracting with a chunkSize of 1,000._
       
-      **Ex: Excel Usage: (See [docs](../../../plugins-docs/extractors/xlsx-extractor))**
+      **Ex: Excel Usage: (See [docs](https://flatfile.com/plugins/plugin-xlsx-extractor))**
       
       ```ts
       listener.use(ExcelExtractor({ chunkSize: 300, parallel: 2 }));
@@ -1231,41 +1351,46 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **🚀 Introducing `@flatfile/plugin-pdf-extractor`**
-      
-      Our latest plugin, @flatfile/plugin-pdf-extractor, introduces the power of parsing .pdf files in Flatfile.
-      
-      <Note>Note: A subscription to pdftables.com is required.</Note>
-      
-      Options at your fingertips:
-      
-      - `opt.apiKey`: Feed in your pdftables.com API key to unlock the magic.
-      - `opt.debug`: Toggle debugging messages to streamline development.
-      
-      Tech Behind the Scenes:
-      
-      - Empowered by `remeda` for dynamic functional programming and data handling.
-      - Seamlessly integrates Pattern Matching with TypeScript through `ts-pattern`.
-      
-      [See the docs](../../../plugins-docs/extractors/pdf-extractor)
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **🚀 Introducing `@flatfile/plugin-pdf-extractor`** Our latest
+    plugin, @flatfile/plugin-pdf-extractor, introduces the power of parsing .pdf
+    files in Flatfile.
+    <Note>Note: A subscription to pdftables.com is required.</Note>
+    Options at your fingertips: - `opt.apiKey`: Feed in your pdftables.com API
+    key to unlock the magic. - `opt.debug`: Toggle debugging messages to
+    streamline development. Tech Behind the Scenes: - Empowered by `remeda` for
+    dynamic functional programming and data handling. - Seamlessly integrates
+    Pattern Matching with TypeScript through `ts-pattern`. [See the
+    docs](https://flatfile.com/plugins/plugin-pdf-extractor)
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-dedupe@0.0.2`
-      
-      Includes fixes to properly job ack on failure and use a new instance of listener after a filter operation. It also adds server errors to logging.
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/plugin-dedupe@0.0.2` Includes fixes to properly job ack on
+    failure and use a new instance of listener after a filter operation. It also
+    adds server errors to logging.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/extractors.mdx" />
@@ -1290,81 +1415,108 @@ icon: "plug"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/transform.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **🚀 Introducing `@flatfile/@flatfile/plugin-dedupe`**
-      
-      @flatfile/plugin-dedupe adds a touch of magic by seamlessly removing duplicate records right within a sheet with several options to fit your use case:
-      
-      - `opt.keep`: Decide whether to hang on to the first or last duplicate record.
-      - `opt.custom`: Craft your own dedupe function, for those out-of-the-box scenarios.
-      - `opt.debug`: Toggle on those helpful debug messages when you’re in the lab.
-      
-      Tech:
-      
-      - Powered by `ts-pattern` for in-depth Pattern Matching in TypeScript.
-      - Leverages the mighty `remeda` for JavaScript’s functional programming and data wizardry.
-      
-      [See the docs](../../../plugins-docs/transform/dedupe)
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/transform.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **🚀 Introducing `@flatfile/@flatfile/plugin-dedupe`**
+    @flatfile/plugin-dedupe adds a touch of magic by seamlessly removing
+    duplicate records right within a sheet with several options to fit your use
+    case: - `opt.keep`: Decide whether to hang on to the first or last duplicate
+    record. - `opt.custom`: Craft your own dedupe function, for those
+    out-of-the-box scenarios. - `opt.debug`: Toggle on those helpful debug
+    messages when you’re in the lab. Tech: - Powered by `ts-pattern` for
+    in-depth Pattern Matching in TypeScript. - Leverages the mighty `remeda` for
+    JavaScript’s functional programming and data wizardry. [See the
+    docs](https://flatfile.com/plugins/plugin-dedupe)
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **🚀 Introducing `@flatfile/plugin-delimiter-extractor`**
-      
-      Introducing the latest addition to our extractor plugins: @flatfile/plugin-delimiter-extractor. Designed to streamline your data extraction tasks, this plugin is tailored to process delimited files including tab (\t), pipe (|), semicolon (;), colon (:), tilde (~), caret (^), and hash (#).
-      
-      Parameters and Options:
-      
-      - `fileExt` specifies the file name or extension to listen for, allowing you to define the file types to process.
-      - `options.delimiter` the delimiter character used in the file.
-      - `options.dynamicTyping` automatically convert numeric and boolean data in the file to their appropriate data types, ensuring accurate processing.
-      - `options.skipEmptyLines`: With ‘true’, completely empty lines (evaluating to an empty string) will be skipped during parsing. With ‘greedy’, lines with only whitespace characters are also skipped.
-      - `options.transform `define a function to be applied to each parsed value before dynamicTyping.
-      
-      [See the docs](../../../plugins-docs/extractors/delimiter-extractor)
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **🚀 Introducing `@flatfile/plugin-delimiter-extractor`** Introducing the
+    latest addition to our extractor
+    plugins: @flatfile/plugin-delimiter-extractor. Designed to streamline your
+    data extraction tasks, this plugin is tailored to process delimited files
+    including tab (\t), pipe (|), semicolon (;), colon (:), tilde (~), caret
+    (^), and hash (#). Parameters and Options: - `fileExt` specifies the file
+    name or extension to listen for, allowing you to define the file types to
+    process. - `options.delimiter` the delimiter character used in the file. -
+    `options.dynamicTyping` automatically convert numeric and boolean data in
+    the file to their appropriate data types, ensuring accurate processing. -
+    `options.skipEmptyLines`: With ‘true’, completely empty lines (evaluating to
+    an empty string) will be skipped during parsing. With ‘greedy’, lines with
+    only whitespace characters are also skipped. - `options.transform `define a
+    function to be applied to each parsed value before dynamicTyping. [See the
+    docs](https://flatfile.com/plugins/plugin-delimiter-extractor)
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-xlsx-extractor@1.4.0`
-      
-      Includes a fix for ghost rows in Excel files (happened if there was formatting on a cell but no data)
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/plugin-xlsx-extractor@1.4.0` Includes a fix for ghost rows in
+    Excel files (happened if there was formatting on a cell but no data)
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-delimiter-extractor@0.4.0` & `@flatfile/plugin-xlsx-extractor@1.5.0`
-      
-      Adds ability to support duplicate headers with non-unique header keys.
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/plugin-delimiter-extractor@0.4.0` &
+    `@flatfile/plugin-xlsx-extractor@1.5.0` Adds ability to support duplicate
+    headers with non-unique header keys.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/plugin-delimiter-extractor@0.3.0` & `@flatfile/plugin-xlsx-extractor@1.3.2`
-      
-      Adds header row auto-detection (the same function used for CSVs in platform)
-      
-    </div>
+{" "}
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/extractors.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/plugin-delimiter-extractor@0.3.0` &
+    `@flatfile/plugin-xlsx-extractor@1.3.2` Adds header row auto-detection (the
+    same function used for CSVs in platform)
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/extractors.mdx" />
@@ -1377,4 +1529,3 @@ icon: "plug"
     </div>
   </div>
 </div>
-

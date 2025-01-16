@@ -11,7 +11,7 @@ Our latest plugin, `@flatfile/plugin-jobs-handler`, streamlines handling Flatfil
 - Update Job progress using `await tick(progress, message)`, returning a promise for `JobResponse`.
 - `opts.debug` Enable debug logging for the plugin
 
-To get started simplifying the management of your Jobs, explore the [README](../../../plugins-docs/core/job-handler).
+To get started simplifying the management of your Jobs, explore the [README](https://flatfile.com/plugins/plugin-job-handler/).
 
 ## extractors
 
@@ -28,7 +28,7 @@ Streamline the dynamic setup of new Flatfile Spaces with `@flatfile/plugin-space
 2. `workbookIds`
 3. Using the `@flatfile/plugin-jobs-handler` under the hood, the `tick` function can be used to update the Job’s progress.
 
-To simplify auto-configuring your Spaces, explore the [README](../../../plugins-docs/core/space-configure).
+To simplify auto-configuring your Spaces, explore the [README](https://flatfile.com/plugins/plugin-space-configure/).
 
 ## extractors
 
@@ -41,7 +41,7 @@ A new version of an underlying utility (`@flatfile/util-extractor`) introduces 2
 
 _Note: Previously, we were extracting with a chunkSize of 1,000._
 
-**Ex: Excel Usage: (See [docs](../../../plugins-docs/extractors/xlsx-extractor))**
+**Ex: Excel Usage: (See [docs](https://flatfile.com/plugins/plugin-xlsx-extractor))**
 
 ```ts
 listener.use(ExcelExtractor({ chunkSize: 300, parallel: 2 }));
