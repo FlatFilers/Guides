@@ -6,6 +6,52 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 16, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@4515140
+      The release notes include the following updates:
+      
+      Improved error logging for authentication by adding stack traces and relevant metadata when errors occur during the authentication process, user login, access token retrieval, and API token retrieval. This will aid in debugging authentication-related issues.
+      
+      For example, when authenticating a user, if an error occurs, the error stack trace and the user's email will be logged:
+      
+      ```
+      this.logger.error(`Error on authenticating`, error.stack, {
+        email,
+      })
+      ```
+      
+      When retrieving an access token from Frontegg, if an error occurs, the error stack trace and the client ID will be logged:
+      
+      ```
+      this.logger.error(
+        `Error getting access token from Frontegg`,
+        error.stack,
+        {
+          clientId,
+        }
+      )
+      ```
+      
+      When retrieving API tokens, if an error occurs, the error stack trace, tenant ID, and user ID will be logged:
+      
+      ```
+      this.logger.error(`Error getting API tokens`, error.stack, {
+        tenantId,
+        userId,
+      })
+      ```
+      
+      This change enhances the logging capabilities for authentication-related operations, providing more detailed information to aid in troubleshooting and resolving issues.
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
