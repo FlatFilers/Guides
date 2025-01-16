@@ -662,7 +662,7 @@ icon: "plug"
     hook operations, enhancing stability and performance. These updates mark a
     step forward in optimizing @flatfile/plugin-record-hook for developers and
     ensuring seamless integration into your data processing workflows. [Learn
-    more in the docs](../../../plugins-docs/transform/record-hook).
+    more in the docs](https://flatfile.com/plugins/plugin-record-hook).
   </div>
 </div>
 
@@ -682,7 +682,7 @@ icon: "plug"
       
       These improvements are designed to make your data export process more efficient and tailored to your specific needs.
       
-      [Learn more](../../../plugins-docs/export/workbook) about exporting workbooks with @flatfile/plugin-export-workbook
+      [Learn more](https://flatfile.com/plugins/plugin-export-workbook/) about exporting workbooks with @flatfile/plugin-export-workbook
       
     </div>
   </div>
@@ -720,7 +720,7 @@ icon: "plug"
     This update aims to offer more flexibility, reliability, and broader
     applicability of the webhook egress plugin, ensuring seamless integration
     into your data workflow. [Learn more in the
-    docs](../../../plugins-docs/export/webhook)
+    docs](https://flatfile.com/plugins/plugin-webhook-egress/)
   </div>
 </div>
 
@@ -734,7 +734,7 @@ icon: "plug"
       
       This enhancement is particularly useful in conjunction with the rawNumbers property found in `@flatfile/plugin-xlsx-extractor`, where numeric values extracted from documents can be seamlessly transformed into string fields for consistency and ease of use.
       
-      [Learn more](../../../plugins-docs/transform/autocast)
+      [Learn more](https://flatfile.com/plugins/plugin-autocast)
       
     </div>
   </div>
@@ -756,7 +756,7 @@ icon: "plug"
       
       By employing the default strategy, the extractors now automatically scan the first 10 rows of your file to identify the header row based on the highest count of non-empty cells.
       
-      [Discover more](../../../plugins-docs/extractors/xlsx-extractor) about these enhanced header detection options and how they can streamline your data import processes.
+      [Discover more](https://flatfile.com/plugins/plugin-xlsx-extractor/) about these enhanced header detection options and how they can streamline your data import processes.
       
     </div>
   </div>
@@ -782,7 +782,7 @@ icon: "plug"
       
       These improvements are aimed at providing a more robust, user-friendly experience for working with Excel files, ensuring data integrity and easing the extraction process.
       
-      [Learn more about the improvements](../../../plugins-docs/extractors/xlsx-extractor)
+      [Learn more about the improvements](https://flatfile.com/plugins/plugin-xlsx-extractor/)
       
     </div>
   </div>
@@ -1148,7 +1148,7 @@ icon: "plug"
       
       You can also utilize this utility directly with any listener.
       
-      Learn more in the [docs](../../../plugins-docs/utils/response-rejection).
+      Learn more in the [docs](https://flatfile.com/plugins/util-response-rejection/).
       
     </div>
   </div>
@@ -1186,7 +1186,7 @@ icon: "plug"
       
       Dates that were cast to a UTC string using the autocast plugin were showing as invalid after transformation. A fix for this was added to version 0.2.2.
       
-      [Learn more](../../../plugins-docs/transform/autocast).
+      [Learn more](https://flatfile.com/plugins/plugin-autocast).
       
     </div>
   </div>
@@ -1210,7 +1210,7 @@ icon: "plug"
       listener.use(autocast({ sheetSlug: 'bar' }, ['numberField', 'dateField']));
       ```
       
-      [Learn more](../../../plugins-docs/transform/autocast).
+      [Learn more](https://flatfile.com/plugins/plugin-autocast).
       
     </div>
   </div>
@@ -1250,7 +1250,7 @@ icon: "plug"
       
       Note: **@flatfile/plugin-record-hook** listens for the same event type (commit:created). Plugins will fire in the order they are placed in the listener.
       
-      Check out the [docs](../../../plugins-docs/transform/autocast).
+      Check out the [docs](https://flatfile.com/plugins/plugin-autocast).
       
     </div>
   </div>
@@ -1278,7 +1278,7 @@ icon: "plug"
     progress using `await tick(progress, message)`, returning a promise for
     `JobResponse`. - `opts.debug` Enable debug logging for the plugin To get
     started simplifying the management of your Jobs, explore the
-    [README](../../../plugins-docs/core/job-handler).
+    [README](https://flatfile.com/plugins/plugin-job-handler/).
   </div>
 </div>
 
@@ -1300,7 +1300,7 @@ icon: "plug"
     configured) receives three arguments: 1. `event` 2. `workbookIds` 3. Using
     the `@flatfile/plugin-jobs-handler` under the hood, the `tick` function can
     be used to update the Job’s progress. To simplify auto-configuring your
-    Spaces, explore the [README](../../../plugins-docs/core/space-configure).
+    Spaces, explore the [README](https://flatfile.com/plugins/plugin-space-configure/).
   </div>
 </div>
 
@@ -1317,7 +1317,7 @@ icon: "plug"
       
       _Note: Previously, we were extracting with a chunkSize of 1,000._
       
-      **Ex: Excel Usage: (See [docs](../../../plugins-docs/extractors/xlsx-extractor))**
+      **Ex: Excel Usage: (See [docs](https://flatfile.com/plugins/plugin-xlsx-extractor))**
       
       ```ts
       listener.use(ExcelExtractor({ chunkSize: 300, parallel: 2 }));
@@ -1371,7 +1371,7 @@ icon: "plug"
     streamline development. Tech Behind the Scenes: - Empowered by `remeda` for
     dynamic functional programming and data handling. - Seamlessly integrates
     Pattern Matching with TypeScript through `ts-pattern`. [See the
-    docs](../../../plugins-docs/extractors/pdf-extractor)
+    docs](https://flatfile.com/plugins/plugin-pdf-extractor)
   </div>
 </div>
 
@@ -1435,7 +1435,7 @@ icon: "plug"
     messages when you’re in the lab. Tech: - Powered by `ts-pattern` for
     in-depth Pattern Matching in TypeScript. - Leverages the mighty `remeda` for
     JavaScript’s functional programming and data wizardry. [See the
-    docs](../../../plugins-docs/transform/dedupe)
+    docs](https://flatfile.com/plugins/plugin-dedupe)
   </div>
 </div>
 
@@ -1464,7 +1464,7 @@ icon: "plug"
     an empty string) will be skipped during parsing. With ‘greedy’, lines with
     only whitespace characters are also skipped. - `options.transform `define a
     function to be applied to each parsed value before dynamicTyping. [See the
-    docs](../../../plugins-docs/extractors/delimiter-extractor)
+    docs](https://flatfile.com/plugins/plugin-delimiter-extractor)
   </div>
 </div>
 
