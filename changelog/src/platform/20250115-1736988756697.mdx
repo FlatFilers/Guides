@@ -1,0 +1,9 @@
+### January 15, 2025
+## dataxp
+
+api@8a8afe6
+The release notes summarize the following changes:
+
+The UpdateResolutionsLogic class has been updated to use the `clipId` property instead of the `dataClipId` property when accessing the job configuration object. This change affects the internal logic for updating data clip resolutions.
+
+The `getClipResolutions` method in the DataClipsService class has been simplified. It no longer emits a `DataClipResolutionsUpdated` event after fetching the clip resolutions. This change affects the behavior of fetching clip resolutions, but the method signature and parameters remain the same.
