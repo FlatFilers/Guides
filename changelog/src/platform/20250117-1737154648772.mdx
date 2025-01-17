@@ -1,0 +1,17 @@
+### January 17, 2025
+## dataxp
+
+api@73a2530
+Added the ability to fetch guidance objects associated with a space, including in the SpaceInit interface returned to clients. The GuidanceService now has a getSpaceGuidance method that retrieves an array of Guidance objects for a given space, mapping them to their API representation. The SpacesInitService has been updated to include this guidance array when initializing spaces. A new dependency on the GuidesModule has been added to the InternalModule.
+
+Guidance is now included in the SpaceInit interface, allowing clients to access guidance data when initializing a space. Developers can expect to receive an array of Guidance objects in the guidance field of the SpaceInit object, or null if there is no guidance data.
+
+Example usage:
+
+```typescript
+const spaceInit = await spacesInitService.initSpace(spaceId);
+const guidance = spaceInit.guidance;
+// guidance is an array of Guidance objects or null
+```
+
+The allowed target prefixes for guidance permissions have been updated. The 'sheet:query' prefix has been removed, and the 'dynamic:workbook:sheet:' prefix has been added.
