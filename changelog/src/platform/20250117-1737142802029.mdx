@@ -1,0 +1,19 @@
+### January 17, 2025
+## spaces
+
+spaces-ui@ce9fda4
+Added the ability to show/hide the password field value by clicking an eye icon. The password field now displays masked characters by default, and clicking the eye icon will toggle between showing the actual password value or masking it. Added a copy button next to the password field to allow copying the password to the clipboard. The username field remains unchanged, displaying the value and allowing copying to the clipboard.
+
+For example:
+
+```jsx
+// Password is masked by default
+<Input type="password" value="my-secret-password" />
+
+// Click eye icon to show actual password value
+<Input type="text" value="my-secret-password" />
+
+// Click copy icon to copy "my-secret-password" to clipboard
+```
+
+This update improves the security of displaying sensitive credential information while still allowing users to view and copy the values when needed.
