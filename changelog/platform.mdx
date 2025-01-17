@@ -6,6 +6,30 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 17, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@aa755f4
+      Updated the import file view to collapse the sidebar when opened and restore it when closed. Added a scroll container to the sidebar in build mode to prevent overflow. Added a className prop to the SheetActionBar component to conditionally apply styles, used to make the action bar relative when in build mode or autobuild mode. In the import file view, the content area is now a flex container with the action bar positioned relatively when in build mode or autobuild mode.
+      
+      Example usage:
+      
+      ```jsx
+      <SheetActionBar 
+        className={buildModeActive || isInAutobuild ? 'relative' : ''}
+        // other props
+      />
+      ```
+      
+      This allows positioning the action bar relative to its parent container when in build mode or autobuild mode.
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
