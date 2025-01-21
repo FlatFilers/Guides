@@ -1,0 +1,17 @@
+### January 21, 2025
+## dataxp
+
+api@5915be2
+The AgentsService and AgentTemplateValidator classes have been updated to remove the slug parameter from the isConfigurable method. The slug parameter was previously used to validate the agent template, but it has been removed. This change simplifies the interface and reduces the number of parameters required for the isConfigurable method.
+
+The BundleDeployAgent class has been updated to use the templateOptions.namespace property instead of options.namespace when configuring the bundle. This change ensures that the namespace is correctly applied when bundling the agent.
+
+The basic-listener template has been updated with the following changes:
+1. The @flatfile/plugin-stored-constraints package has been added as a dependency.
+2. The storedConstraint plugin has been added to the listener's namespace, allowing developers to use stored constraints in their agents.
+
+The constraints template has been updated to use the latest version of the @flatfile/plugin-stored-constraints package (version 1.0.0).
+
+The node_modules.tar files for the basic-listener and constraints templates have been updated to reflect the changes in their respective package.json files.
+
+Overall, these changes improve the codebase by simplifying the agent validation process, enhancing the agent bundling process, and introducing new features (stored constraints) to the basic-listener template. Developers using these templates or interacting with the AgentsService and AgentTemplateValidator classes should be aware of these changes.
