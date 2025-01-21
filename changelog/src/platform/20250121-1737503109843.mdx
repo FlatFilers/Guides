@@ -1,0 +1,21 @@
+### January 21, 2025
+## dataxp
+
+api@71307ff
+The release notes summarize the following changes:
+
+A new function `normalizeKeyV1Deprecated` has been introduced for backwards compatibility with a legacy key normalization approach. This function is used to populate a `fieldMap` with both the current and legacy normalized versions of field keys and alternative names. The legacy normalization entries are added to maintain compatibility with historical data, but can be removed in the future once sufficient history with the new normalization approach has been established.
+
+In the `applyMappingRules` function, a check has been added to attempt to fetch the destination field from the `destinationFieldMap` using the legacy `normalizeKeyV1Deprecated` normalization if the field is not found using the current normalization approach. This ensures compatibility with historical mapping rules that used the legacy normalization.
+
+These changes maintain backwards compatibility with existing data and mapping rules that used the previous key normalization approach, while allowing for a transition to a new normalization approach. Developers using the package should be aware that both the current and legacy normalization approaches are being used during this transition period, but the legacy approach will eventually be deprecated and removed.
+
+Example usage:
+
+```typescript
+const fieldMap = {...}
+const normalizedKey = normalizeKey(field.key);
+const normalizedLegacyKey = normalizeKeyV1Deprecated(field.key);
+fieldMap[normalizedKey] = {...field, ...metadata};
+fieldMap[normalizedLegacyKey] = {...field, ...metadata};
+```
