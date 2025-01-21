@@ -6,6 +6,40 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 21, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@43cf102
+      Added functionality to copy the current URL to the clipboard with a success message when the copy is successful, and an error message when the copy fails.
+      
+      In the DataClipShareModal component, the handleCopyLink function now attempts to copy the current URL to the clipboard using the navigator.clipboard.writeText method. On success, it displays a success popover message. On failure, it calls the handleError function with an error message.
+      
+      Updated the translation.json file to include a new success message for when the link is copied successfully, and a new error message for when copying the link fails.
+      
+      Modified the DataClipDetails component to wrap the user email text in a div element instead of using React fragments.
+      
+      In the DataClipDiffView component, added a new DataClipDiffTableContent component that renders the Table component with the appropriate props. The DataClipDiffView component now renders the DataClipDiffTableContent inside a TableProviders component, passing the tableId prop.
+      
+      For example, to copy the current URL:
+      
+      ```tsx
+      const handleCopyLink = () => {
+        try {
+          navigator.clipboard.writeText(window.location.href)
+          // Display success message
+        } catch (e) {
+          // Display error message
+        }
+      }
+      ```
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
