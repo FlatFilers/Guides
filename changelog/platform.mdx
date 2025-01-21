@@ -6,6 +6,31 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 21, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@ba8d860
+      The release notes summarize the following changes:
+      
+      A legacy key normalization function `normalizeKeyV1Deprecated` has been added, which is marked as deprecated. This function performs key normalization following a different approach than the existing `normalizeKey` function.
+      
+      The `getNormalizedKeys` function now accepts an optional `legacy` boolean parameter. When set to `true`, it will use the `normalizeKeyV1Deprecated` function for key normalization instead of `normalizeKey`.
+      
+      In the `MappingsRepository` class, the `fetchRules` method has been updated to support legacy key normalization. It now accepts additional parameters `exactlyTheseSourceKeysLegacy`, `exactlyTheseDestinationKeysLegacy`, `someOfTheseSourceKeysLegacy`, and `someOfTheseDestinationKeysLegacy`. These parameters allow querying rules based on legacy normalized keys.
+      
+      In the `MappingsService` class, the `buildMappings` method has been updated to calculate legacy normalized source and destination keys using `getNormalizedKeys` with the `legacy` parameter set to `true`. These legacy keys are used when fetching historical rules that match source and destination fields.
+      
+      The `buildFuzzyMappings` method in `MappingsService` has also been updated to include legacy normalized source and destination keys when fetching historical rules that partially match source and destination fields.
+      
+      These changes introduce support for legacy key normalization, allowing the application to handle historical data that was normalized using a different approach. Developers using this package should be aware of the new parameters and functions related to legacy key normalization.
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
