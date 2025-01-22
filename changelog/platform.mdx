@@ -23,6 +23,34 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@4b7e23f
+      Adds a new endpoint `/tools/generate-rule` which allows generating rules using AI. This endpoint requires the `sheet:update` privilege. It accepts a request body of type `Flatfile.AiRuleCreationJobConfig` which includes the sheet ID for which the rules need to be generated. The method first validates the workbook and sheet existence using the provided sheet ID. It then creates a job with the configuration details, including the workbook ID, job operation type (`AIRuleCreation`), and the request body. The job is created using the `jobsService.createJob` method, passing the configuration and the grant object. Finally, it returns the job ID in the response.
+      
+      Example usage:
+      
+      ```typescript
+      const response = await fetch('/tools/generate-rule', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          sheetId: 'sheet-id-123'
+        })
+      });
+      
+      const { data } = await response.json();
+      console.log(data.jobId); // Prints the generated job ID
+      ```
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
