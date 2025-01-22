@@ -23,6 +23,42 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@02a0db6
+      Added a new thread_id column to the Snapshot model that can optionally store a thread identifier string.
+      
+      The createSnapshot method now accepts an optional threadId parameter, and stores it in the new thread_id column when provided.
+      
+      The listSnapshots method now accepts an optional threadId parameter, and will filter the returned snapshots to only those with a matching thread_id when provided.
+      
+      This allows grouping snapshots by a thread identifier, which could be useful for applications that need to manage snapshots within distinct conversation threads or similar contexts.
+      
+      For example, to create a snapshot associated with a thread:
+      
+      ```typescript
+      const snapshot = await workbooksService.createSnapshot({
+        sheetId: 'sheet123', 
+        label: 'Initial state',
+        threadId: 'conversationThread456'
+      });
+      ```
+      
+      And to retrieve only the snapshots for a given thread:
+      
+      ```typescript
+      const threadSnapshots = await workbooksService.listSnapshots({
+        sheetId: 'sheet123',
+        threadId: 'conversationThread456'
+      });
+      ```
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
