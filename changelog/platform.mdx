@@ -6,6 +6,31 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 22, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@50d4918
+      Updated the functionality of generating resolutions for data clips. The main changes include:
+      
+      1. Added a new method `cleanupEmptyResolves` that removes rows from the resolutions table where the resolves column is an empty array or null. This helps in keeping the resolutions table clean and optimized.
+      
+      2. Modified the `addResolvesToResolutionsTable` method to skip rows where the resolves array is empty, instead of adding them to the resolutions table.
+      
+      3. Updated the logic for handling unchanged values in the clip records. When a clip record's value is the same as the corresponding main record's value, no resolution is generated for that field. This ensures that the resolutions table only contains relevant changes.
+      
+      4. Improved the handling of null values in the main records. The updated logic correctly identifies new records added to the clip, records removed from the main and modified in the clip, and handles conflicts where the main record's value is null.
+      
+      These changes improve the efficiency and accuracy of the resolutions generation process, ensuring that only relevant changes are tracked and reducing unnecessary data storage. Developers using the package will benefit from a more optimized and streamlined experience when working with data clips and managing resolutions.
+      
+      Additionally, a new test case has been added to verify the correct behavior when handling unchanged values in the clip records. The test ensures that no resolutions are generated for fields where the clip record's value is the same as the corresponding main record's value.
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
