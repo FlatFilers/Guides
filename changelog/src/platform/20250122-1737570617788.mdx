@@ -1,0 +1,34 @@
+### January 22, 2025
+## dataxp
+
+api@58cfdb4
+In this release:
+
+The AssistantModule now imports the MarkFieldRequiredTask and exports it. A new task MarkFieldRequiredTask is introduced to mark a field as required or not required in a sheet. The task can be used to update the constraints of a field to include or remove the 'required' constraint.
+
+A new endpoint /internal/tools/mark-field-required is added to the BFFController. This endpoint accepts a sheetId, fieldKey, and a boolean required value. It creates a job to run the MarkFieldRequiredTask with the provided parameters.
+
+The JobsModule now imports the MarkFieldRequiredTask. The JobsResource and JobsService are updated to handle the new job operation AIRunTool which runs the MarkFieldRequiredTask.
+
+A new job logic AIRunToolLogic is introduced to handle the AIRunTool job operation. It executes the MarkFieldRequiredTask and updates the job status accordingly.
+
+The WorkbooksService now includes a new method upsertField to update an existing field in a sheet. It is used by the MarkFieldRequiredTask to update the field constraints.
+
+Example usage:
+
+```typescript
+// Mark the 'email' field as required
+const response = await fetch('/v1/internal/tools/mark-field-required', {
+  method: 'POST',
+  body: JSON.stringify({
+    sheetId: 'sheet_abc123',
+    fieldKey: 'email',
+    required: true
+  })
+});
+const { data } = await response.json();
+const { jobId } = data;
+
+// Check job status
+const job = await fetch(`/v1/jobs/${jobId}`);
+```
