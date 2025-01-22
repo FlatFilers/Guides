@@ -1,0 +1,9 @@
+### January 22, 2025
+## dataxp
+
+api@0e17e6e
+Added the ability to create a template space when initiating an app autobuild.
+When initiating an app autobuild, a new template space will be created with the name "{app name} Template".
+This template space will have the isAppTemplate flag set to true and the metadata property isAutoBuildWorkingSpace set to true.
+The template space creation supports providing a namespace parameter to specify the namespace for the created space.
+The buildDependenciesForAutobuild method on the AppAutobuildsService now expects an AppModel object instead of an AppId, allowing it to use the app name when creating the template space.
