@@ -23,6 +23,17 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@bccddc8
+      The release introduces the ability to filter spaces by the associated app ID when retrieving a list of spaces. A new query parameter `appId` has been added to the `/v1/spaces` endpoint. Developers can now pass the `appId` query parameter to retrieve only the spaces associated with the specified app. For example, `?appId=us_app_123` will return only spaces linked to the app with ID `us_app_123`. If an invalid or non-existent app ID is provided, an empty list will be returned.
+    </div>
+  </div>
+</div>
+
 ### January 06, 2025
 
 <div style={{ display: "table", width: "auto" }}>
