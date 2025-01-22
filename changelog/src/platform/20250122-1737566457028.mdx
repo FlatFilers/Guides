@@ -1,0 +1,7 @@
+### January 22, 2025
+## dataxp
+
+api@f721f1b
+The release notes include the following changes:
+
+Two new endpoints are protected with the `space:read` privilege: `GET /spaces/:spaceId/theme` and `POST /sheets/:sheetId/generate-tool-suggestions`. This means that only users with the `space:read` permission can access these endpoints. The `GET /spaces/:spaceId/theme` endpoint accepts a `spaceId` path parameter and a `url` query parameter, and returns the theme from the provided URL for the specified space. The `POST /sheets/:sheetId/generate-tool-suggestions` endpoint accepts a `sheetId` path parameter and generates tool suggestions for the specified sheet.
