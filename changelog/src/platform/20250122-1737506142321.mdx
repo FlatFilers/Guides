@@ -1,0 +1,19 @@
+### January 22, 2025
+## dataxp
+
+api@3f3c972
+The release includes the following updates:
+
+A new boolean field `is_app_template` has been added to the `spaces` table to indicate if a space is an app template. This field is set to false by default.
+
+The `SpacesController` has a new query parameter `isAppTemplate` to filter spaces based on whether they are app templates or not.
+
+The `SpacesService` filters the spaces based on the `isAppTemplate` query parameter.
+
+The `SpacesRepository` has a new method `applyAppTemplateFilter` to apply the `isAppTemplate` filter when fetching spaces. It also checks if an app template already exists for an app before creating a new one, throwing a `BadRequestException` if it does.
+
+The `Space` model has a new property `isAppTemplate` which is set when creating or updating a space.
+
+When creating a space, if `isAppTemplate` is set to true and an app template already exists for the specified app, a `BadRequestException` is thrown with the message "App template already exists for this app".
+
+The release adds the ability to mark a space as an app template and filter spaces based on whether they are app templates or not. This feature is useful for distinguishing spaces that serve as templates for apps.
