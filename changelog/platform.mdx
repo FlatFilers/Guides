@@ -6,6 +6,34 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 23, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@76c303a
+      The release notes include the following changes:
+      
+      The ClipGenerateResolutions class now fetches existing resolutions from the database before creating new resolutions. It preserves any existing resolved entries when creating the new resolvesObject, instead of overwriting them.
+      
+      The UpdateResolutionsLogic class has been updated:
+      - It now logs the job initialization details.
+      - The acceptClipChanges and acceptSourceChanges methods have been removed.
+      - A new resolveAllConflicts method has been added, which resolves all conflicts to either the clip or main source globally.
+      - When updating resolutions, it now checks for unresolved conflicts by inspecting the resolves array directly.
+      - If unresolved conflicts are found, it logs an error with the details of the unresolved conflicts and throws an error.
+      
+      The DataClipsService class has been updated:
+      - When merging clip resolutions, it checks for unresolved conflicts by inspecting the resolves array directly.
+      - If unresolved conflicts are found, it logs an error with the details of the unresolved conflicts and throws an error.
+      
+      These changes introduce new logic for handling existing resolutions and unresolved conflicts during the clip resolution process. Developers using this package should be aware of the updated behavior and the potential for errors to be thrown if unresolved conflicts are found after the merge process.
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
