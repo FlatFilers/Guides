@@ -1,0 +1,5 @@
+### January 23, 2025
+## dataxp
+
+api@cf48adf
+The changes update the buildBaseResolutionsQuery function to include an additional condition in the SQL query. The new condition checks if the 'resolveTo' property of the resolve_item object is null. This condition is added to the WHERE clause of the query that selects elements from the resolves array. The purpose of this change is to filter out any resolved conflicts where the 'resolveTo' property is not null. Developers using this function will now only receive unresolved conflicts in the query results, improving the accuracy and reliability of conflict resolution handling.
