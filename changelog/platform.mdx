@@ -6,6 +6,30 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 23, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@d0d1a25
+      The release notes include the following updates:
+      
+      A new filter option has been added to the `buildBaseResolutionsQuery` function to exclude resolved conflicts. If the `filterConflicts` parameter is provided as `true`, the query will additionally filter out any resolved conflicts where the `resolveTo` property is not null. This allows developers to focus on retrieving only the unresolved conflicts. For example:
+      
+      ```typescript
+      const query = buildBaseResolutionsQuery({
+        filterConflicts: true,
+        filterColumn: 'title',
+        pageSize: 10,
+        pageNumber: 1,
+      });
+      ```
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
