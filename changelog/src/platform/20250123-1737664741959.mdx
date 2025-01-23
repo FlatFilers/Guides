@@ -1,0 +1,24 @@
+### January 23, 2025
+## spaces
+
+spaces-ui@567dd32
+The package has been updated with the following changes:
+
+The nanoid package has been added as a new dependency. The nanoid library is used to generate unique, alphanumeric, URL-friendly string identifiers.
+
+The SpaceApp component now listens for additional events related to sheet creation, updating, and deletion. This allows the application to react to changes in sheets within the workspace.
+
+The BlueprintSidebar component has been updated to receive the sheetId from the useBuildModeContext hook instead of as a prop. This change improves the component's design and makes it easier to manage state.
+
+The BuildModeSidebar component has been updated with several new features and improvements:
+
+1. A new threadId is generated using nanoid for each session, allowing the chat to maintain context across sessions.
+2. A VersionController instance is created to handle version restoration.
+3. The useAction hook from the observable API is used to create a restoreVersion action.
+4. A new handleRevert function has been added to revert to a specific version snapshot based on the snapshotId.
+5. The ChatUI component from the @flatfile/agent-ui package has been integrated, providing a user interface for the chat functionality.
+6. Error handling has been improved in the useChat hook, displaying error messages to the user when an error occurs during chat processing.
+7. The onRevert prop has been added to the ChatUI component, allowing the user to revert to a previous version snapshot.
+8. The usePopover hook from the @flatfile/shared-ui package has been imported and used to display a success message when a rollback is successful.
+
+These changes enhance the application's functionality by adding version control capabilities, improving error handling, and providing a better user experience through the integration of the ChatUI component and popover notifications.
