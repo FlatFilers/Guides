@@ -6,6 +6,41 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 23, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@23de63b
+      The updates include changes to how the Flatfile platform handles app autobuilds and blueprint generation.
+      
+      The AppAutobuildDeployLogic no longer writes a blueprint.ts file during the deployment process. The logic for removing AI sample data actions from the blueprint has been removed.
+      
+      The AppsService now updates the associated space to be a template when an app with an autobuild is activated. This involves updating the space's name and setting the isAppTemplate property to true.
+      
+      The AppsRepository has been updated to return the app and autobuild separately when fetching an app with its autobuild. The getAppByIdWithAutoBuilds method has been renamed to getAppByIdWithAutoBuild.
+      
+      The SpacesEvents class now includes a handleUpdateSpaceEvent method to handle updating a space's configuration, which is used when updating the space to be a template during app activation.
+      
+      The basic-listener template has been updated to use the new @flatfile/plugin-space-configure-from-template plugin instead of custom logic for configuring the space. The plugin handles creating or updating workbooks based on a template blueprint.
+      
+      The basic-listener-node-modules.tar file in the templates directory has been updated, likely with new or updated plugin dependencies.
+      
+      Example usage:
+      
+      ```typescript
+      import { configureSpaceFromTemplate } from '@flatfile/plugin-space-configure-from-template'
+      
+      listener.namespace(namespace, (namespacedEvents) => {
+        namespacedEvents.use(configureSpaceFromTemplate())
+      })
+      ```
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
