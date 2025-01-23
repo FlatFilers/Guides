@@ -6,6 +6,34 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 23, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@177d648
+      Updated the generate blueprint function to include support for reference fields. Added new instructions for handling reference and enum field types. Fields of type reference or reference-list should now be defined with a config object containing ref and key properties, referencing another sheet. Stored constraints should not be used to validate reference or enum fields, as this validation is now handled by the field configuration. Additional helper text was provided to illustrate proper reference field setup.
+      
+      For example, to define a reference field for customerId:
+      
+      ```json
+      {
+        "key": "customerId", 
+        "type": "reference",
+        "config": {
+          "ref": "customers",
+          "key": "id"
+        }
+      }
+      ```
+      
+      This links the customerId field to the id field on the customers sheet. Removed the hardcoded constraints object, as it is no longer needed. The examples array was condensed to contain common constraint examples.
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
