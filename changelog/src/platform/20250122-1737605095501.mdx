@@ -1,0 +1,24 @@
+### January 22, 2025
+## dataxp
+
+api@509383a
+The release notes for this update are:
+
+The AssistantModule now imports the AgentsModule and SpacesModule, and exports the AddExtractorTask. A new AddExtractorTask has been added, which allows developers to add pre-built extractor agents (xlsx, json, xml) to their spaces. The task fetches the agent source code from a remote URL and registers it with the AgentsService. The BFFController has a new /tools/add-extractor endpoint that accepts an extractorType and spaceId, and uses the AddExtractorTask to add the specified extractor agent to the given space. The JobsModule now imports the AddExtractorTask, and the AIRunToolLogic has been updated to handle the 'addExtractor' job type by invoking the AddExtractorTask. 
+
+Example usage:
+
+```typescript
+// Add an xlsx extractor to a space
+const response = await fetch('/api/v1/internal/tools/add-extractor', {
+  method: 'POST',
+  headers: { 'Authorization': 'Bearer <token>' },
+  body: JSON.stringify({
+    extractorType: 'xlsx', 
+    spaceId: '<space-id>'
+  })
+});
+const { data: { jobId } } = await response.json();
+```
+
+This allows developers to easily add pre-built extractor agents to their spaces through the API, enabling data extraction from various file formats like Excel, JSON, and XML files.
