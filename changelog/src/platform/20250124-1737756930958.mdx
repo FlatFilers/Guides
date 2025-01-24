@@ -1,0 +1,11 @@
+### January 24, 2025
+## dataxp
+
+api@6afabc5
+The release notes contain the following updates:
+
+A new `cacheAndDebounce` method has been added to the `CacheService`. This method allows for debouncing a function that retrieves data from a cache. If the cached data is not present, it will execute the provided function and cache the result. However, if the debounce key is set, it will wait for the debounce time before checking the cache again. This prevents multiple executions of the function while waiting for the initial execution to complete and cache the result.
+
+The `WorkbooksCache` class now uses the `cacheAndDebounce` method instead of the `wrap` method when caching count records for a workbook and sheet. This change introduces a 1-second debounce time to prevent multiple executions of the count records query while waiting for the initial execution to complete and cache the result.
+
+The `setupQuickstoreConnection` function in the `quick` driver of the `ephemeral` module now sets additional options for the Knex connection pool. These options include setting the minimum pool size to 0, setting an idle timeout of 10 seconds, and an acquire timeout of 30 seconds.
