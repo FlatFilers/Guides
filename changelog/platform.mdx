@@ -13,9 +13,34 @@ fields marked as readonly will not be replaced during the replaceRecords
 operation. If excludeReadOnly is false or not provided, readonly records and
 fields will be replaced as before.
 
+<<<<<<< HEAD
 The findAndReplaceRecords method in the WorkbooksService now checks if the field
 being replaced is readonly and throws an error if excludeReadOnly is set to
 true, preventing modification of readonly fields.
+=======
+### January 24, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@b2de027
+      The release notes include the following updates:
+      
+      The unique validation and record/cell validity handling has been improved to properly escape field keys containing special characters like periods. A specific test case has been added to validate unique constraint validation with a field key containing a period ('email.address'). 
+      
+      The unique validation now correctly applies the 'error' state and appropriate error messages when duplicate values are encountered for fields with a unique constraint. Previously, there were issues where the validation state and messages were not applied correctly in certain scenarios.
+      
+      The unique validation logic has been updated to handle cases where all initially added records have invalid (duplicate) values for fields with a unique constraint. The validation state and error messages are now appropriately updated as records are modified.
+      
+      Overall, these changes improve the handling of unique constraints, especially for field keys containing special characters, and ensure that validation states and error messages are correctly applied and updated when dealing with duplicate values across various record update scenarios.
+    </div>
+  </div>
+</div>
+
+### January 22, 2025
+>>>>>>> ccdf33d (Update changelog)
 
 Several new tests have been added to validate the behavior of the replaceRecords
 operation with readonly records and fields, covering scenarios with
