@@ -6,6 +6,39 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 24, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@421e7b1
+      The code change modifies the behavior of the `buildBaseResolutionsQuery` function.
+      
+      It adds a conditional statement to include or exclude resolved conflicts from the generated SQL query based on the `filterConflicts` parameter. If `filterConflicts` is `true`, the SQL query will filter out resolved conflicts by adding the condition `AND resolve_item->>'resolveTo' IS NULL`. If `filterConflicts` is `false`, the SQL query will include both resolved and unresolved conflicts. This change provides more flexibility in filtering the conflicts based on the desired behavior.
+      
+      For example, if `filterConflicts` is `true`, the generated SQL query will look like this:
+      
+      ```sql
+      SELECT
+        resolve_item->>'value' AS value,
+        resolve_item->>'reason' AS reason
+      FROM (
+        SELECT
+          unnest(resolves) AS resolve_item
+        FROM jsonb_array_elements(resolves) AS resolve_item
+        WHERE resolve_item->>'field' = '${filterColumn}'
+          AND resolve_item->>'type' = 'conflict'
+          AND resolve_item->>'resolveTo' IS NULL
+      )
+      ```
+      
+      This query will select `value` and `reason` fields from the `resolves` array where the `field` matches `filterColumn`, the `type` is `'conflict'`, and the `resolveTo` field is `NULL` (indicating an unresolved conflict).
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
