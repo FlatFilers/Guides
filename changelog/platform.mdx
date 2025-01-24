@@ -6,6 +6,29 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 24, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@5f43c0f
+      The release notes are as follows:
+      
+      The options type for agent templates has been extended to support 'array' and 'object' types. This allows for more complex option structures in agent templates.
+      
+      A new 'autocast' agent template has been added. It allows automatically casting data types in imported data based on a set of field filters and options. It requires the 'sheetslug' option which specifies the data source, and optionally takes 'fieldfilters' to specify fields to cast and 'options' to configure casting behavior.
+      
+      A new 'webhookEgress' agent template has been added. It sends workbook data to a specified webhook URL when a job is ready. It requires the 'jobname' option to specify the job name and the 'url' option for the webhook URL.
+      
+      A new 'actionListener' agent template has been added. It allows executing a custom action function when a job is ready. It requires the 'jobname' option to specify the job name and the 'actionfunction' option which is the function to execute.
+      
+      The BundleDeployAgent class has been updated to support injecting the new template option values like sheetslug, fieldfilters, options, jobname, url and actionfunction into the deployed agent code.
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
