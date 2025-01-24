@@ -6,6 +6,47 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 24, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@3dab512
+      The release notes include the following changes:
+      
+      The BuildModeSidebar component now imports the `EnvironmentsContext` and accesses the `environment` object from it. This environment object is used to pass the `accountId` and `appId` values to the chat API when initializing the chat UI.
+      
+      The `useChat` hook from the `@ai-sdk/react` package is now called with an additional `accountId` and `appId` property in the `body` object. These values are retrieved from the `environment` object accessed from the `EnvironmentsContext`.
+      
+      This change allows the chat UI to be initialized with additional context information, such as the account ID and application ID, which can be used by the chat API for better conversation handling and personalization.
+      
+      Example usage:
+      
+      ```tsx
+      const { environment } = useContext(EnvironmentsContext);
+      
+      const {
+        isOpen,
+        openChat,
+        closeChat,
+        restart,
+      } = useChat({
+        api: CHAT_API_URL,
+        body: {
+          accountId: environment?.accountId,
+          spaceId: space.id,
+          appId: space.appId,
+          authToken: token,
+          threadId: threadId,
+        },
+      });
+      ```
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
