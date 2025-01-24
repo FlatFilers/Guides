@@ -6,6 +6,29 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 24, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@1d20802
+      The release includes the following updates:
+      
+      The code for generating resolutions in data clips has been updated to handle changes in both the main and clip values. When an existing resolution is found, it checks if the main or clip value has changed, and if so, it adds a new resolution entry with the updated values. If both the main and clip values have changed, it resets the `resolveTo` field to `null` to mark it as a conflict.
+      
+      Additionally, the new resolution entries now include two new fields: `clipValueReference` and `mainValueReference`, which store the respective values from the clip and main sources. This allows for better tracking of value changes.
+      
+      When refreshing resolutions after a clip value change, if the clip value for a record has changed again, the code will reset the `resolveTo` field to `null` for that record, marking it as a conflict to be resolved.
+      
+      For example, if a record initially had a city value of "San Francisco" in the main source and "New York" in the clip source, with a resolution to use the clip value, and then both values were updated to "Tokyo" and "New York City" respectively, the resolution would be reset to a conflict with `resolveTo: null`. If the developer then updates the resolution to use the clip value, and the clip value changes again (e.g., to "Manhattan"), the resolution for that record would be reset to a conflict again.
+      
+      This update ensures that the resolution generation logic correctly handles changes in both the main and clip values, and provides more information about the specific values involved in each resolution.
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
