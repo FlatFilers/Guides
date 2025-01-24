@@ -6,6 +6,37 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 23, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@ac00666
+      The release notes include updates to permissions for two global roles: "Admin" and "Editor".
+      
+      For the "Admin" role, a new permission "data-clip:*" has been added, granting full access to data clips.
+      
+      For the "Editor" role, the existing permissions have been extended to also include "data-clip:*", allowing editors to access and manage data clips.
+      
+      These changes enable administrators and editors to work with data clips within the platform. Developers using the platform should be aware of these updated permissions when working with data clips in their applications.
+      
+      For example, code that creates or manipulates data clips may now require the appropriate permissions:
+      
+      ```typescript
+      import { DataClipService } from '@my-platform/data-clip';
+      
+      // Create a new data clip (requires "data-clip:*" permission)
+      const newClip = await dataClipService.create({
+        name: 'My Data Clip',
+        data: { ... }
+      });
+      ```
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
