@@ -1,0 +1,31 @@
+### January 26, 2025
+## dataxp
+
+api@35688de
+The release notes would be:
+
+The automap agent template is a new addition that allows you to automatically map data between different data sources and destinations using the @flatfile/plugin-automap plugin. It listens for 'job:updated' and 'job:completed' events and applies the specified mapping options.
+
+An example of using the automap agent:
+
+```js
+const options = {
+  source: {
+    type: 'postgres',
+    // ... other source options
+  },
+  destination: {
+    type: 'salesforce',
+    // ... other destination options 
+  },
+  mapping: [
+    // mapping rules
+  ]
+}
+
+target.use(automap(options))
+```
+
+The webhookEgress agent template has been updated to use the latest @flatfile/plugin-webhook-egress@1.6.1 which includes bug fixes and improvements.
+
+The AgentTemplateValidator now only checks if the provided options are valid for the specified template, instead of also checking for required topics. The required topics are now automatically set based on the selected template.
