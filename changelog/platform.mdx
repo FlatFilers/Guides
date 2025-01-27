@@ -6,6 +6,29 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 27, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@c439ea9
+      The release notes include the following updates:
+      
+      Added a new hook `useMonitorRecordMutations` to monitor the status of record mutations (add, update, delete) for a given workbook. This hook returns two arrays: `pendingMutations` and `failedMutations`, allowing components to react accordingly.
+      
+      Updated the `useWorkbookHasCommits` hook to use `useMonitorRecordMutations` instead of directly checking for active mutations using `useIsMutating`. This change improves the accuracy of detecting pending and failed mutations.
+      
+      Updated the `WorkbookCountsContext` to utilize `useMonitorRecordMutations` for setting the `isFetching` state based on pending and failed mutations. When there are pending mutations, `isFetching` is set to true for the current sheet. When all mutations are completed (either successful or failed), `isFetching` is set to false.
+      
+      Added a `gcTime` option to the `useRecordMutation` hook, which sets the time after which a mutation is garbage collected. This option is set to 100ms for add, update, and delete record mutations.
+      
+      Improved the handling of expected commits in the `useWorkbookHasCommits` hook. If there are failed mutations and no pending mutations, the expected commit state is cleared.
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
