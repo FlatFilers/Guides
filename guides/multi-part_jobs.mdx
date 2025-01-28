@@ -11,13 +11,15 @@ When a job is split up into parts, the original part is considered the "parent" 
 When all Job Parts have been completed, a new event `job:parts-completed` is emitted, so that you can listen for that event to complete the Parent Job.
 This event has a payload that has summary statistics about the parts. 
 ```json
-payload: {
-    parts: {
-      total,
-      completed,
-      failed,
-      canceled,
-     },
+{
+    "payload": {
+        "parts": {
+            "total": 10,
+            "completed": 10,
+            "failed": 0,
+            "canceled": 0
+        }
+    }
 }
 ```
 By inspecting this payload, you can determine if the all have completed successfully or not. Based on that information, you are expected to complete or fail the parent Job.
