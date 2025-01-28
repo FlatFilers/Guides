@@ -1,48 +1,35 @@
 ### March 5, 2024
 
-<div style={{ display: "table", width: "auto" }}>
+## transform
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/transform.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      `@flatfile/plugin-record-hook@1.4.5`
+`@flatfile/plugin-record-hook@1.4.5`
 
-      This release brings improvements and optimizations to enhance performance and functionality:
-      **Smart Change Detection:** The plugin now intelligently compares original and modified values to identify actual changes. If there’s no change (a no-op situation), it avoids unnecessary record updates, enhancing efficiency and better supporting trackChanges.
+This release brings improvements and optimizations to enhance performance and functionality:
+**Smart Change Detection:** The plugin now intelligently compares original and modified values to identify actual changes. If there’s no change (a no-op situation), it avoids unnecessary record updates, enhancing efficiency and better supporting trackChanges.
 
-      **UMD Build Availability:** A UMD build is now included, expanding compatibility across different module systems and environments.
+**UMD Build Availability:** A UMD build is now included, expanding compatibility across different module systems and environments.
 
-      **Slimmer Node.js Build:** The Node.js build has been optimized to reduce its size, improving load times and resource usage.
+**Slimmer Node.js Build:** The Node.js build has been optimized to reduce its size, improving load times and resource usage.
 
-      **Removal of Axios Dependency:** We’ve eliminated the Axios dependency in favor of native solutions, streamlining the library and reducing external dependencies.
-      Custom Concurrency Control: The plugin now implements its own concurrency control mechanism, moving away from reliance on external libraries. This bespoke solution is tailored to the specific needs of record hook operations, enhancing stability and performance.
+**Removal of Axios Dependency:** We’ve eliminated the Axios dependency in favor of native solutions, streamlining the library and reducing external dependencies.
+Custom Concurrency Control: The plugin now implements its own concurrency control mechanism, moving away from reliance on external libraries. This bespoke solution is tailored to the specific needs of record hook operations, enhancing stability and performance.
 
-      These updates mark a step forward in optimizing @flatfile/plugin-record-hook for developers and ensuring seamless integration into your data processing workflows.
+These updates mark a step forward in optimizing @flatfile/plugin-record-hook for developers and ensuring seamless integration into your data processing workflows.
 
+[Learn more in the docs](https://flatfile.com/plugins/plugin-record-hook).
 
-      [Learn more in the docs](../../../plugins-docs/transform/record-hook).
-    </div>
+## automations
 
-  </div>
+`@flatfile/plugin-export-workbook@0.1.6`
 
-    <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/automations.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      `@flatfile/plugin-export-workbook@0.1.6`
+This update introduces several enhancements to improve your data export workflows:
 
-      This update introduces several enhancements to improve your data export workflows:
+**Sheet-Specific Exports:** Users now have the flexibility to export individual sheets within a workbook, providing greater control over data management and distribution.
 
-      **Sheet-Specific Exports:** Users now have the flexibility to export individual sheets within a workbook, providing greater control over data management and distribution.
+**Customizable Job Names:** To further personalize your workflow, this version allows you to specify custom job names, offering an alternative to relying on the default naming convention.
 
-      **Customizable Job Names:** To further personalize your workflow, this version allows you to specify custom job names, offering an alternative to relying on the default naming convention.
+**Enhanced Character Checks:** We’ve implemented additional checks for characters that might not be recognized by Excel, reducing the likelihood of errors after exporting the workbook.
 
-      **Enhanced Character Checks:** We’ve implemented additional checks for characters that might not be recognized by Excel, reducing the likelihood of errors after exporting the workbook.
+These improvements are designed to make your data export process more efficient and tailored to your specific needs.
 
-      These improvements are designed to make your data export process more efficient and tailored to your specific needs.
-
-      [Learn more](../../../plugins-docs/export/workbook) about exporting workbooks with @flatfile/plugin-export-workbook
-    </div>
-
-  </div>
-
-</div>
+[Learn more](https://flatfile.com/plugins/plugin-export-workbook/) about exporting workbooks with @flatfile/plugin-export-workbook

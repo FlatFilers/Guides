@@ -1,0 +1,4 @@
+### December 02, 2024
+## dataxp
+
+A bug fix was made to the handling of enum field options when updating a sheet. Previously, if the `config.options` property was undefined, an error would occur. Now, if `config.options` is undefined, it defaults to an empty array. This ensures that the code can safely handle cases where `config.options` is not present or is undefined. For example, if a developer was updating a sheet with an enum field that did not previously have any options defined, the update can now proceed without errors.

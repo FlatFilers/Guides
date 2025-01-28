@@ -136,9 +136,9 @@ listener.use(
 
 </CodeGroup>
 
-### `FlatfileRecord.computeIfPresent`
+### FlatfileRecord.computeIfPresent
 
-Same as [`compute`](#flatfilerecord-compute), but only computes a new value if an initial value is provided (not null). Useful for computations that may throw an error on null values.
+Same as [compute](#flatfilerecord-compute), but only computes a new value if an initial value is provided (not null). Useful for computations that may throw an error on null values.
 
 #### Syntax
 
@@ -231,7 +231,7 @@ listener.use(
 
 </CodeGroup>
 
-### `FlatfileRecord.validate`
+### FlatfileRecord.validate
 
 Sets a field as invalid if its value does not meet a specified condition, and displays an [error message](#flatfilerecord-adderror) to the user.
 
@@ -247,7 +247,7 @@ validate(fieldName, validator, message);
 
 <ParamField path="validator" type="(value, record) => boolean">
   A function that determines whether a given field value is valid. Receives the
-  intial value of the field, as well as the entire record if you want to access
+  initial value of the field, as well as the entire record if you want to access
   other field values on the record.
 </ParamField>
 
@@ -321,7 +321,7 @@ listener.use(
 
 Attach comments, errors, and warnings to specific fields in each record. These messages provide contextual information or alerts to users who interact with the record, helping them understand any issues or actions required.
 
-### `FlatfileRecord.addInfo()`
+### FlatfileRecord.addInfo()
 
 ![Info](../images/guides/FlatfileRecord_info.png)
 
@@ -352,7 +352,7 @@ if (email !== null && validEmailAddress.test(email)) {
 }
 ```
 
-### `FlatfileRecord.addError()`
+### FlatfileRecord.addError()
 
 ![Error](../images/guides/FlatfileRecord_error.png)
 
@@ -375,13 +375,14 @@ addError(fields, message);
 
 #### Example
 
-```jsx const email = record.get("email"); const validEmailAddress = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+```jsx 
+const email = record.get("email"); const validEmailAddress = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
 if (email !== null && !validEmailAddress.test(email)) {
   record.addError("email", "This is not a valid email address.");
 }
 ```
 
-### `FlatfileRecord.addWarning()`
+### FlatfileRecord.addWarning()
 
 ![Warning](../images/guides/FlatfileRecord_warning.png)
 
@@ -404,7 +405,8 @@ FlatfileRecord.addWarning(fields, message);
 
 #### Example
 
-```jsx const email = record.get("email");
+```jsx 
+const email = record.get("email");
 if (email === null) {
   record.addWarning(
     "email",
@@ -496,14 +498,14 @@ listener.use(
 ```js javascript bulkRecordHook()
 listener.use(
   bulkRecordHook("contacts", async (records, event) => {
+    const getResponse = await axios.get(
+      "https://api.sampleapis.com/beers/ale"
+    );
     await Promise.all(
       records.map(async (record) => {
         try {
           const { payload } = event.payload;
 
-          const getResponse = await axios.get(
-            "https://api.sampleapis.com/beers/ale"
-          );
           record.set(
             "assignedBeer",
             getResponse.data[Math.floor(Math.random() * 20)].name
@@ -534,14 +536,14 @@ listener.use(
   bulkRecordHook(
     "contacts",
     async (records: FlatfileRecord[], event: FlatfileEvent) => {
+      const getResponse = await axios.get(
+        "https://api.sampleapis.com/beers/ale"
+      );
       await Promise.all(
         records.map(async (record) => {
           try {
             const { payload } = event.payload;
-
-            const getResponse = await axios.get(
-              "https://api.sampleapis.com/beers/ale"
-            );
+            
             record.set(
               "assignedBeer",
               getResponse.data[Math.floor(Math.random() * 20)].name
@@ -570,7 +572,7 @@ listener.use(
 
 </CodeGroup>
 
-### Using `POST`
+### Using POST
 
 When a record is created or updated, you may need to send data to an API. Sends the payload data from an Event to a webhook receiver URL using a `POST` request, then update the record object based on the success or failure of the request. Last, add messages to the fields accordingly.
 

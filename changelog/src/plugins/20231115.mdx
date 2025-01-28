@@ -1,33 +1,27 @@
 ### November 15, 2023
 
-<div style={{ display: "table", width: "auto" }}>
-    <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/schema.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      **🚀 Introducing @flatfile/plugin-convert-json-schema 🚀**
+## schema
 
-      `@flatfile/plugin-convert-json-schema` automates the process of converting JSON Schema into the Flatfile Blueprint.
+**🚀 Introducing @flatfile/plugin-convert-json-schema 🚀**
 
-      To get started, simply provide a sourceUrl of your schema, and wrap it with the plugin:
+`@flatfile/plugin-convert-json-schema` automates the process of converting JSON Schema into the Flatfile Blueprint.
 
-      ```jsx
-      listener.use(
-        configureSpaceWithJsonSchema([
-          { sourceUrl: "https://example.com/customer.schema.json" },
-        ])
-      );
-      ```
+To get started, simply provide a sourceUrl of your schema, and wrap it with the plugin:
 
-      Additionally, you can enhance the experience with a few optional parameters:
-      - `options.workbookConfig`: The options.workbookConfig parameter allows you to incorporate other optional Workbook configurations seamlessly.
-      - `options.debug`: Toggle the options.debug parameter on/off to access helpful debugging messages for development purposes.
-      - `callback`: The callback parameter, which receives three arguments—event, workbookIds, and a tick function—empowers you with the ability to update the Job’s progress. Note: This callback function is invoked once the Space and Workbooks are fully configured.
+```jsx
+listener.use(
+  configureSpaceWithJsonSchema([
+    { sourceUrl: "https://example.com/customer.schema.json" },
+  ])
+);
+```
 
-      With the `@flatfile/plugin-convert-json-schema`, you can simplify the schema conversion process—all in one powerful package.
+Additionally, you can enhance the experience with a few optional parameters:
 
-      Check out the [docs](https://flatfile.com/docs/plugins-docs/schemas/convert-json-schema).
+- `options.workbookConfig`: The options.workbookConfig parameter allows you to incorporate other optional Workbook configurations seamlessly.
+- `options.debug`: Toggle the options.debug parameter on/off to access helpful debugging messages for development purposes.
+- `callback`: The callback parameter, which receives three arguments—event, workbookIds, and a tick function—empowers you with the ability to update the Job’s progress. Note: This callback function is invoked once the Space and Workbooks are fully configured.
 
-    </div>
+With the `@flatfile/plugin-convert-json-schema`, you can simplify the schema conversion process—all in one powerful package.
 
-  </div>
-</div>
+Check out the [docs](https://flatfile.com/plugins/plugin-convert-json-schema).

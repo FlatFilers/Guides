@@ -55,9 +55,7 @@ Initialize Flatfile to open in a modal. Pass in your `publishableKey` and a new 
       window.onload = function () {
         FlatFileJavaScript.startFlatfile({
           publishableKey: 'pk_1234',
-          spaceBody: {
-            namespace: 'portal',
-          },
+          namespace: 'portal',
           onSubmit: async ({ sheet }) => {
             const data = await sheet.allData();
             console.log('onSubmit', data);

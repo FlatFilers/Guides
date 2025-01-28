@@ -1,22 +1,16 @@
 ### May 20, 2024
 
-<div style={{ display: "table", width: "auto" }}>
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/export.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      `@flatfile/plugin-export-workbook@0.3.0`
+## export
 
-      This release adds a new optional parameter `autoDownload` to the `@flatfile/plugin-export-workbook` package.
-       When set to true, this parameter will automatically download the exported Excel file after it has been uploaded to Flatfile.
+`@flatfile/plugin-export-workbook@0.3.0`
 
-      For example:
+This release adds a new optional parameter `autoDownload` to the `@flatfile/plugin-export-workbook` package.
+When set to true, this parameter will automatically download the exported Excel file after it has been uploaded to Flatfile.
 
-      ```js
-      listener.use(exportWorkbookPlugin({ autoDownload: true }));
-      ```
+For example:
 
-      This gives developers more flexibility in how they handle the exported file.
-    </div>
+```js
+listener.use(exportWorkbookPlugin({ autoDownload: true }));
+```
 
-  </div>
-</div>
+This gives developers more flexibility in how they handle the exported file.

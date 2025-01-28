@@ -10,7 +10,7 @@ Blueprint offers 6 supported field types. Field Types inform the user interface 
 
 <Note>
   Setting a field type does not transform or validate data out-of-the-box. Try
-  [@flatfile/autocast](../plugins-docs/transform/autocast) to automatically
+  [@flatfile/autocast](https://flatfile.com/plugins/plugin-autocast) to automatically
   convert the data in the Sheet to match the type defined by the Blueprint.
 </Note>
 
@@ -59,6 +59,10 @@ Defines an enumerated list of options for the user to select from. Matching tool
   Permit the user to create new options for this specific field.
 </ParamField>
 
+<ParamField path="config.sortBy" default="label" type="string">
+  The field to sort the options by (label, value, ordinal)
+</ParamField>
+
 <ParamField path="config.options" required>
   An array of valid options the user can select from
 </ParamField>
@@ -83,6 +87,9 @@ Defines an enumerated list of options for the user to select from. Matching tool
 
 <ParamField path="metadata" type="object">
   An arbitrary JSON object to be associated with this option and made available to hooks
+</ParamField>
+<ParamField path="ordinal" type="number">
+  The ordinal position of this option in the list. Only used if `sortBy` is set to `ordinal`. Options are sorted in ascending order.
 </ParamField>
 </Expandable>
 

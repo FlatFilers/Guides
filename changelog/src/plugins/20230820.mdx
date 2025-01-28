@@ -1,94 +1,58 @@
 ### August 20, 2023
 
-<div style={{ display: "table", width: "auto" }}>
+## transform
 
-<div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/transform.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      **🚀 Introducing `@flatfile/@flatfile/plugin-dedupe`**
+**🚀 Introducing `@flatfile/@flatfile/plugin-dedupe`**
 
-      @flatfile/plugin-dedupe adds a touch of magic by seamlessly removing duplicate records right within a sheet with several options to fit your use case:
+@flatfile/plugin-dedupe adds a touch of magic by seamlessly removing duplicate records right within a sheet with several options to fit your use case:
 
-        -     	`opt.keep`: Decide whether to hang on to the first or last duplicate record.
-        -     	`opt.custom`: Craft your own dedupe function, for those out-of-the-box scenarios.
-        -     	`opt.debug`: Toggle on those helpful debug messages when you’re in the lab.
+- `opt.keep`: Decide whether to hang on to the first or last duplicate record.
+- `opt.custom`: Craft your own dedupe function, for those out-of-the-box scenarios.
+- `opt.debug`: Toggle on those helpful debug messages when you’re in the lab.
 
-        Tech:
+Tech:
 
-        -     	Powered by `ts-pattern` for in-depth Pattern Matching in TypeScript.
-        -     	Leverages the mighty `remeda` for JavaScript’s functional programming and data wizardry.
+- Powered by `ts-pattern` for in-depth Pattern Matching in TypeScript.
+- Leverages the mighty `remeda` for JavaScript’s functional programming and data wizardry.
 
+[See the docs](https://flatfile.com/plugins/plugin-dedupe)
 
-        [See the docs](../../../plugins-docs/transform/dedupe)
+## extractors
 
-    </div>
+**🚀 Introducing `@flatfile/plugin-delimiter-extractor`**
 
-  </div>
+Introducing the latest addition to our extractor plugins: @flatfile/plugin-delimiter-extractor. Designed to streamline your data extraction tasks, this plugin is tailored to process delimited files including tab (\t), pipe (|), semicolon (;), colon (:), tilde (~), caret (^), and hash (#).
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      **🚀 Introducing `@flatfile/plugin-delimiter-extractor`**
+Parameters and Options:
 
-      Introducing the latest addition to our extractor plugins: @flatfile/plugin-delimiter-extractor. Designed to streamline your data extraction tasks, this plugin is tailored to process delimited files including tab (\t), pipe (|), semicolon (;), colon (:), tilde (~), caret (^), and hash (#).
+- `fileExt` specifies the file name or extension to listen for, allowing you to define the file types to process.
+- `options.delimiter` the delimiter character used in the file.
+- `options.dynamicTyping` automatically convert numeric and boolean data in the file to their appropriate data types, ensuring accurate processing.
+- `options.skipEmptyLines`: With ‘true’, completely empty lines (evaluating to an empty string) will be skipped during parsing. With ‘greedy’, lines with only whitespace characters are also skipped.
+- `options.transform `define a function to be applied to each parsed value before dynamicTyping.
 
-      Parameters and Options:
+[See the docs](https://flatfile.com/plugins/plugin-delimiter-extractor)
 
-      -     	`fileExt` specifies the file name or extension to listen for, allowing you to define the file types to process.
-      -     	`options.delimiter` the delimiter character used in the file.
-      -     	`options.dynamicTyping` automatically convert numeric and boolean data in the file to their appropriate data types, ensuring accurate processing.
-      -     	`options.skipEmptyLines`: With ‘true’, completely empty lines (evaluating to an empty string) will be skipped during parsing. With ‘greedy’, lines with only whitespace characters are also skipped.
-      -     	`options.transform `define a function to be applied to each parsed value before dynamicTyping.
+## extractors
 
+`@flatfile/plugin-xlsx-extractor@1.4.0`
 
-      [See the docs](../../../plugins-docs/extractors/delimiter-extractor)
+Includes a fix for ghost rows in Excel files (happened if there was formatting on a cell but no data)
 
-    </div>
+## extractors
 
-  </div>
+`@flatfile/plugin-delimiter-extractor@0.4.0` & `@flatfile/plugin-xlsx-extractor@1.5.0`
 
-  <div style={{ display: "table-row", width: "auto" }}>
-  <Snippet file="chips/extractors.mdx" />
-  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-    `@flatfile/plugin-xlsx-extractor@1.4.0`
+Adds ability to support duplicate headers with non-unique header keys.
 
-      Includes a fix for ghost rows in Excel files (happened if there was formatting on a cell but no data)
+## extractors
 
-    </div>
+`@flatfile/plugin-delimiter-extractor@0.3.0` & `@flatfile/plugin-xlsx-extractor@1.3.2`
 
-  </div>
+Adds header row auto-detection (the same function used for CSVs in platform)
 
-  <div style={{ display: "table-row", width: "auto" }}>
-  <Snippet file="chips/extractors.mdx" />
-  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-    `@flatfile/plugin-delimiter-extractor@0.4.0` & `@flatfile/plugin-xlsx-extractor@1.5.0`
+## extractors
 
-      Adds ability to support duplicate headers with non-unique header keys.
+`@flatfile/plugin-zip-extractor@0.3.2`
 
-    </div>
-
-  </div>
-
-  <div style={{ display: "table-row", width: "auto" }}>
-  <Snippet file="chips/extractors.mdx" />
-  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-    `@flatfile/plugin-delimiter-extractor@0.3.0` & `@flatfile/plugin-xlsx-extractor@1.3.2`
-
-      Adds header row auto-detection (the same function used for CSVs in platform) 
-
-    </div>
-
-  </div>
-
-  <div style={{ display: "table-row", width: "auto" }}>
-  <Snippet file="chips/extractors.mdx" />
-  <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-    `@flatfile/plugin-zip-extractor@0.3.2`
-
-      Includes a fix to exclude unwanted dir (MACOSX) and it now checks file name not full path
-
-    </div>
-
-  </div>
-
-</div>
+Includes a fix to exclude unwanted dir (MACOSX) and it now checks file name not full path

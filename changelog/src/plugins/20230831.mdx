@@ -1,38 +1,29 @@
 ### August 31, 2023
 
-<div style={{ display: "table", width: "auto" }}>
+## extractors
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/extractors.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+🚀 **Introducing `@flatfile/plugin-autocast`**
 
-    🚀  **Introducing `@flatfile/plugin-autocast`**
+Effortlessly transform data in your Sheets to align with the field types specified in the Blueprint.
 
-    Effortlessly transform data in your Sheets to align with the field types specified in the Blueprint.
+Supported field types:
 
-    Supported field types:
+- **Numbers:** String numbers ('1'), string decimals ('1.1'), and string numbers with commas ('1,000') are interpreted as numbers.
 
-    - **Numbers:** String numbers ('1'), string decimals ('1.1'), and string numbers with commas ('1,000') are interpreted as numbers.
+- **Booleans:**
 
-    - **Booleans:**
-      - Truthy values: '1', 'yes', 'true', 'on', ' ', 'y', and 1.
-      - Falsy values: '- ', '0', 'no', 'false', 'off', ' ', 'n', 0, -1.
+  - Truthy values: '1', 'yes', 'true', 'on', ' ', 'y', and 1.
+  - Falsy values: '- ', '0', 'no', 'false', 'off', ' ', 'n', 0, -1.
 
-    - **Dates:** Date strings and numbers are cast to a UTC string (note: `YYYY-MM-DD...` is interpreted as an ISO 8601 date and is treated as treated as UTC, while other formats are treated as local time and converted to UTC).
-      - '2023-08-16' => 'Wed, 16 Aug 2023 00:00:00 GMT'
-      - '08-16-2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
-      - '08/16/2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
-      - 'Aug 16, 2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
-      - 'August 16, 2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
-      - '2023-08-16T00:00:00.000Z' => 'Wed, 16 Aug 2023 00:00:00 GMT'
-      - 1692144000000 => 'Wed, 16 Aug 2023 00:00:00 GMT'
+- **Dates:** Date strings and numbers are cast to a UTC string (note: `YYYY-MM-DD...` is interpreted as an ISO 8601 date and is treated as treated as UTC, while other formats are treated as local time and converted to UTC).
+  - '2023-08-16' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+  - '08-16-2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+  - '08/16/2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+  - 'Aug 16, 2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+  - 'August 16, 2023' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+  - '2023-08-16T00:00:00.000Z' => 'Wed, 16 Aug 2023 00:00:00 GMT'
+  - 1692144000000 => 'Wed, 16 Aug 2023 00:00:00 GMT'
 
-    Note: **@flatfile/plugin-record-hook** listens for the same event type (commit:created). Plugins will fire in the order they are placed in the listener.
+Note: **@flatfile/plugin-record-hook** listens for the same event type (commit:created). Plugins will fire in the order they are placed in the listener.
 
-    Check out the [docs](../../../plugins-docs/transform/autocast).
-
-    </div>
-
-  </div>
-
-</div>
+Check out the [docs](https://flatfile.com/plugins/plugin-autocast).

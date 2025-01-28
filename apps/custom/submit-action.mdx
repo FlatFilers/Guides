@@ -22,7 +22,7 @@ In this step of the tutorial, we're going to configure our Workbook's primary Ac
 The primary Action button is located in the upper right corner of your Workbook.
 
 <img
-  src="images/quickstart/submit_action.png"
+  src="../../images/quickstart/submit_action.png"
   caption="Submit in the top right corner of your Workbook"
 />
 
@@ -52,7 +52,7 @@ import { responseRejectionHandler } from "@flatfile/util-response-rejection";
 
 To configure our listener to call to a webhook, let's create a webhook. We recommend using [Webhook.site](https://webhook.site). Simply navigate to their site and copy `Your unique URL`.
 
-Now, update the value of the `WEBHOOK_SITE_URL` variable in your `.env` file with the webhook url you just copied.
+Now, update the value of the `const webhookReceiver` variable in your `index.ts` or `index.js` file with the webhook url you just copied.
 
 <Snippet file="shared/workbook_submit_pt2.mdx" />
 

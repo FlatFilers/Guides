@@ -9,49 +9,19 @@ jobs:
   changelog-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Authenticate with private NPM package
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > ~/.npmrc
-
-      - name: Create pull request
-        id: create_pr
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Open PR for changelog update"
-          branch: ${{ github.ref }}
-          base: main
-          title: "Changelog update from ${{ github.ref_name }}"
-          body:  |
-            This pull request has been automatically created to update the changelog.
-
-            Edit the YYMMDD.mdx file with any updates.
-            Committing your changes will trigger the update changelog workflow, which will pull your updates into the main changelog files.
-
       - name: Checkout PR branch
         uses: actions/checkout@v2
         with:
           ref: ${{ steps.create_pr.outputs.pull_request_number }}
           fetch-depth: 0
   
-      - name: Install dependencies
-        run: npm install
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
   
       - name: Run changelog script
         run: npm run changelog
-  
-      - name: Clean up the mdx files
-        run: npm run format-changelog
 
       - name: Commit changes
         run: |

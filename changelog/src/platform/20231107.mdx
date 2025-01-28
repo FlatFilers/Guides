@@ -1,77 +1,40 @@
 ### November 7, 2023
 
-<div style={{ display: "table", width: "auto" }}>
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
+## dataxp
 
-        **Control your mapping accuracy**
+**Control your mapping accuracy**
 
-        We're excited to announce a new parameter within Sheet configuration, aptly named `mappingConfidenceThreshold`. This parameter empowers you to fine-tune your experience when working with automatically suggested fields during mapping jobs.
+We're excited to announce a new parameter within Sheet configuration, aptly named `mappingConfidenceThreshold`. This parameter empowers you to fine-tune your experience when working with automatically suggested fields during mapping jobs.
 
-        With `mappingConfidenceThreshold`, you have the flexibility to configure the minimum required confidence level. Think of it as a precision control, offering you the choice between conservative (exact match) or liberal (fuzzy matching) settings.
+With `mappingConfidenceThreshold`, you have the flexibility to configure the minimum required confidence level. Think of it as a precision control, offering you the choice between conservative (exact match) or liberal (fuzzy matching) settings.
 
-        **How it works**
+**How it works**
 
-        Set the value greater than 0 and up to a maximum of 1, for a more precise control over the mapping process:
+Set the value greater than 0 and up to a maximum of 1, for a more precise control over the mapping process:
 
-        ```jsx workbook.js
-          sheets: [
-            mappingConfidenceThreshold: .6,
-            {...}
-          ]
-        ```
+```jsx workbook.js
+  sheets: [
+    mappingConfidenceThreshold: .6,
+    {...}
+  ]
+```
 
-        [Learn more](../blueprint/sheet-options#mappingConfidenceThreshold)
+[Learn more](../blueprint/sheet-options#mappingConfidenceThreshold)
 
-    </div>
+## dataxp
 
-  </div>
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/dataxp.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-        **More Precise Filtering is now Available**
+**More Precise Filtering is now Available**
 
-        Now, FFQL queries made via filter: in the the search bar can be seamlessly combined with other filters. Whether you prefer using tabbed filters like “valid” and “error,” or you rely on the “Filter By Value” menu, you can now harness the power of FFQL alongside these filters.
+Now, FFQL queries made via filter: in the the search bar can be seamlessly combined with other filters. Whether you prefer using tabbed filters like “valid” and “error,” or you rely on the “Filter By Value” menu, you can now harness the power of FFQL alongside these filters.
 
-        With this update, you’ll experience precise narrowing of row results every time you apply FFQL queries in conjunction with other filters. No more guesswork—your filtered results will be spot on, making it easier than ever to find the information you need with pinpoint accuracy.
+With this update, you’ll experience precise narrowing of row results every time you apply FFQL queries in conjunction with other filters. No more guesswork—your filtered results will be spot on, making it easier than ever to find the information you need with pinpoint accuracy.
 
-    </div>
+## theming
 
-  </div>
-  <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/theming.mdx" />
-      <div
-        style={{
-          float: "left",
-          display: "table-column",
-          paddingLeft: "30px",
-          width: "calc(80% - 30px)",
-        }}
-      >
-        **Theming Column Headers**
+**Theming Column Headers**
 
-        ![image](../changelog/images/fontinheader.png)
+![image](../changelog/images/fontinheader.png)
 
-        You can  now control the font of the headers in a table using the `column.header.fontFamily` property.
+You can now control the font of the headers in a table using the `column.header.fontFamily` property.
 
-        [Learn more](../guides/theming#theme-table)
-
-    </div>
-
-  </div>
-</div>
+[Learn more](../guides/theming#theme-table)

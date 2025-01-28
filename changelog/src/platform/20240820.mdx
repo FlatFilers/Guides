@@ -1,0 +1,34 @@
+### August 20, 2024
+## dataxp
+## spaces-ui
+
+`@flatfile/api@1.9.13` `spaces-ui`
+
+New fields 'guide' and 'guardrail' have been added to Actions. These options enable providing markdown guidance and warnings to your users.
+
+```typescript
+actions: [
+  {
+    operation: 'submitActionFg',
+    mode: 'foreground',
+    label: 'Submit For Approval',
+    type: 'string',
+    description: 'Submit this data to a webhook.',
+    primary: true,
+    guide: {
+        content: "### Personalized Guide \n\n Before performing..."
+    },
+    guardrail: {
+        content: "### Warning! \n\n This Submit ..."
+    }
+  },
+  {...}
+],
+```
+
+The markdown content of guide will become accessible to the end user via a tooltip on the action element.
+
+The `guardrail` component will render as a modal warning before the action event is triggered. This can be useful for actions that have critical consequences or require user acknowledgment before proceeding.
+
+This can be useful for actions that have critical consequences or require user acknowledgment before proceeding.
+

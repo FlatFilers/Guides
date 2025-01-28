@@ -1,168 +1,72 @@
 ### August 20, 2023
 
-<div style={{ display: "table", width: "auto" }}>
+## dataxp
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div
-      style={{
-        float: "left",
-        display: "table-column",
-        paddingLeft: "30px",
-        width: "calc(80% - 30px)",
-      }}
-    >
-      **🚀 Introducing Command+k Triggered Search and Transformation (Early Access)**
+**🚀 Introducing Command+k Triggered Search and Transformation (Early Access)**
 
-      ![image](../changelog/images/AI-assist.png)
+![image](../changelog/images/AI-assist.png)
 
-      This update enhances your workflow by centralizing experiences under the Command+k shortcut.
+This update enhances your workflow by centralizing experiences under the Command+k shortcut.
 
-      A straightforward forward slash, followed by these options, grants access to our data transformation and query tools:
+A straightforward forward slash, followed by these options, grants access to our data transformation and query tools:
 
-      - `/transform` (AI-powered)
-      - `/query` (AI-powered)
-      - `/search` (global search)
-      - `/filter` (Flatfile Query Language, ffql)
-      - `/in` (field-specific search)
+- `/transform` (AI-powered)
+- `/query` (AI-powered)
+- `/search` (global search)
+- `/filter` (Flatfile Query Language, ffql)
+- `/in` (field-specific search)
 
-      Chat with us or email [support@flatfile.com](mailto:support@flatfile.com) to have this feature flagged on in your Account today!
+Chat with us or email [support@flatfile.com](mailto:support@flatfile.com) to have this feature flagged on in your Account today!
 
-      </div>
+## dataxp
 
-  </div>
+There is now a count at the top of the files list that shows the total
+number of files.
 
-{" "}
+## spaces
 
-<div style={{ display: 'table-row', width: 'auto' }}>
-  <Snippet file="chips/dataxp.mdx" />
-  <div
-    style={{
-      float: 'left',
-      display: 'table-column',
-      paddingLeft: '30px',
-      width: 'calc(80% - 30px)',
-    }}
-  >
-    There is now a count at the top of the files list that shows the total
-    number of files.
-  </div>
-</div>
+![image](../changelog/images/sidebar_collapsed.png)
 
-    <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+The Sidebar now has three different states:
 
-      ![image](../changelog/images/sidebar_collapsed.png)
+- Collapsed state
+- Open state
+- Totally hidden state
 
-        The Sidebar now has three different states:
-        - Collapsed state
-        - Open state
-        - Totally hidden state
+Additionally, the Sidebar will now automatically collapse itself on smaller screens.
 
-        Additionally, the Sidebar will now automatically collapse itself on smaller screens.
-      </div>
+## spaces
 
-    </div>
+We now handle overflowing space name(s) by:
 
-    <div style={{ display: "table-row", width: "auto" }}>
-      <Snippet file="chips/spaces.mdx" />
-      <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-        We now handle overflowing space name(s) by:
-        - Breaking the word
-        - Limiting the name to two lines and giving it an ellipsis if it overflows
-        - Adding a tooltip with the space name to truncated names
-        - Previously, badge names in the data checklist could break to two lines making them hard to read. This is also fixed.
+- Breaking the word
+- Limiting the name to two lines and giving it an ellipsis if it overflows
+- Adding a tooltip with the space name to truncated names
+- Previously, badge names in the data checklist could break to two lines making them hard to read. This is also fixed.
 
-    </div>
+## theming
 
-    </div>
+When determining the lighter shades of each main theme colors, i.e. primary,
+danger, warning and success, there are now checks to ensure no colors end up
+as white.
 
-{" "}
+## files
 
-<div style={{ display: 'table-row', width: 'auto' }}>
-  <Snippet file="chips/theming.mdx" />
-  <div
-    style={{
-      float: 'left',
-      display: 'table-column',
-      paddingLeft: '30px',
-      width: 'calc(80% - 30px)',
-    }}
-  >
-    When determining the lighter shades of each main theme colors, i.e. primary,
-    danger, warning and success, there are now checks to ensure no colors end up
-    as white.
-  </div>
-</div>
+The filename was added to the mapping scene so users can now see which file
+they are currently mapping.
 
-{" "}
+## files
 
-<div style={{ display: 'table-row', width: 'auto' }}>
-  <Snippet file="chips/files.mdx" />
-  <div
-    style={{
-      float: 'left',
-      display: 'table-column',
-      paddingLeft: '30px',
-      width: 'calc(80% - 30px)',
-    }}
-  >
-    The filename was added to the mapping scene so users can now see which file
-    they are currently mapping.
-  </div>
-</div>
+Cells with no data can now be unmapped using “Do not import”, if previously
+mapped to a value.
 
-{" "}
+## dataxp
 
-<div style={{ display: 'table-row', width: 'auto' }}>
-  <Snippet file="chips/files.mdx" />
-  <div
-    style={{
-      float: 'left',
-      display: 'table-column',
-      paddingLeft: '30px',
-      width: 'calc(80% - 30px)',
-    }}
-  >
-    Cells with no data can now be unmapped using “Do not import”, if previously
-    mapped to a value.
-  </div>
-</div>
+Filter: "Last Name" like A% will now retrieve all records where Last Name
+starts with “A”. Previously, it was retrieving records that contained “A”.
 
-{" "}
+## dataxp
 
-<div style={{ display: 'table-row', width: 'auto' }}>
-  <Snippet file="chips/dataxp.mdx" />
-  <div
-    style={{
-      float: 'left',
-      display: 'table-column',
-      paddingLeft: '30px',
-      width: 'calc(80% - 30px)',
-    }}
-  >
-    Filter: "Last Name" like A% will now retrieve all records where Last Name
-    starts with “A”. Previously, it was retrieving records that contained “A”.
-  </div>
-</div>
-
-{" "}
-
-<div style={{ display: 'table-row', width: 'auto' }}>
-  <Snippet file="chips/dataxp.mdx" />
-  <div
-    style={{
-      float: 'left',
-      display: 'table-column',
-      paddingLeft: '30px',
-      width: 'calc(80% - 30px)',
-    }}
-  >
-    The continue button is now disabled on mapping scene while mappings are
-    loading. This ensures user can only advance to review scene after mappings
-    are saved.
-  </div>
-</div>
-
-</div>
+The continue button is now disabled on mapping scene while mappings are
+loading. This ensures user can only advance to review scene after mappings
+are saved.
