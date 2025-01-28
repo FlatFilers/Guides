@@ -1,0 +1,44 @@
+<CodeGroup>
+
+```jsx listener.ts
+import api from "@flatfile/api";
+import { FlatfileListener } from "@flatfile/listener";
+
+export default function (listener: FlatfileListener) {
+  // Parent and Part Jobs have the same operation name.
+  // Filtering by isPart: true, ensures that the Job is a Part
+  // The job operation name is an example, you can define your own.
+  listener.filter(
+    { job: "sheet:submitLargeSheet", isPart: true },
+    (submitLargeSheet) => {
+      submitLargeSheet.on("job:ready", async (event) => {
+        const {
+          context: { jobId },
+        } = event;
+        await api.jobs.ack(jobId)
+        const job = await api.jobs.get(jobId);
+        console.dir({ job }, { depth: 10 });
+        const { partData, parentId } = job.data;
+        const { records } = await event.data({
+          pageSize: 1,
+          pageNumber: partData.part + 1,
+        });
+
+        console.log({ record: records[0].values });
+        console.log("submitting part: ", jobId, partData);
+
+        await new Promise((r) => setTimeout(r, 1000));
+
+        await api.jobs.complete(jobId, {
+          outcome: {
+            message: "This job is now complete.",
+          },
+        });
+      });
+    }
+  );
+}
+// See full code example (https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/dynamic-configurations/index.ts)
+```
+
+</CodeGroup>
