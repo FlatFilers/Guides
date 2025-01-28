@@ -1,0 +1,17 @@
+### January 28, 2025
+## dataxp
+
+api@9e12dd7
+The release notes contain the following updates:
+
+A new API endpoint has been added to retrieve the message history for a given space. This endpoint is accessed via a GET request to `/spaces/:spaceId/messages/history` and requires the `space:read` privilege. It returns a `PubNubMessageHistoryResponse` object containing the message history for the specified space.
+
+Example usage:
+
+```typescript
+const response = await httpClient.get<Flatfile.spaces.PubNubMessageHistoryResponse>(`/spaces/${spaceId}/messages/history`);
+```
+
+The `PubNubPublisher` class now includes a `fetchMessages` method that allows retrieving messages from the PubNub service. It takes an object with `channels` and `start` parameters, where `channels` is an array of channel names and `start` is a timestamp representing the start time for fetching messages.
+
+A new dependency `@types/pubnub` has been added to the project, likely for better type support for the PubNub library.
