@@ -6,6 +6,35 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 28, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@b1b5da0
+      Added a stop function to the chat assistant component to allow stopping the AI response generation. The stop function and loading state are now passed as props to the chat input component.
+      
+      Modified the summary view to filter out workbooks labeled as "file" from being displayed. The expanded items state is now initialized based on the filtered workbooks list, excluding file workbooks.
+      
+      These changes provide the ability to stop AI response generation on demand and improve the summary view by excluding file workbooks from being displayed and expanded by default.
+      
+      Example usage for stopping AI response generation:
+      
+      ```jsx
+      <ChatInput
+        {...{
+          stop,
+          isLoading,
+          // other props
+        }}
+      />
+      ```
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
