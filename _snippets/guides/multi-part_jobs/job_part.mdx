@@ -7,6 +7,7 @@ import { FlatfileListener } from "@flatfile/listener";
 export default function (listener: FlatfileListener) {
   // Parent and Part Jobs have the same operation name.
   // Filtering by isPart: true, ensures that the Job is a Part
+  // The job operation name is an example, you can define your own.
   listener.filter(
     { job: "sheet:submitLargeSheet", isPart: true },
     (submitLargeSheet) => {
@@ -14,7 +15,7 @@ export default function (listener: FlatfileListener) {
         const {
           context: { jobId },
         } = event;
-
+        await api.jobs.ack(jobId)
         const job = await api.jobs.get(jobId);
         console.dir({ job }, { depth: 10 });
         const { partData, parentId } = job.data;
@@ -32,11 +33,6 @@ export default function (listener: FlatfileListener) {
           outcome: {
             message: "This job is now complete.",
           },
-        });
-
-        await api.jobs.ack(parentId, {
-          info: `Part ${partData.part + 1} / ${partData.total} submitted. `,
-          progress: 20 + (partData.part + 1 / partData.total) * 80,
         });
       });
     }

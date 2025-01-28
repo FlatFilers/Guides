@@ -7,6 +7,7 @@ import { FlatfileListener } from '@flatfile/listener'
 export default function (listener: FlatfileListener) {
   // Parent and Part Jobs have the same operation name.
   // Filtering by isPart: false, ensures that the Job is the Parent
+  // The job operation name is an example, you can define your own.
   listener.filter(
     { job: 'sheet:submitLargeSheet', isPart: false },
     (submitLargeSheet) => {
@@ -24,7 +25,9 @@ export default function (listener: FlatfileListener) {
         })
         console.log('splitting job: ', { jobId, total })
 
-        const splitjob = await api.jobs.split(jobId, { parts: total })
+        const batchSize = 1000
+        const totalParts = Math.ceil(total / batchSize)
+        const splitjob = await api.jobs.split(jobId, { parts: totalParts })
         console.log('splitjob: ', { splitjob })
 
         await api.jobs.ack(jobId, {
