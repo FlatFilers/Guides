@@ -6,6 +6,29 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 28, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@005822b
+      The release notes for the provided diff are as follows:
+      
+      The BuildModeSidebar component has been updated to support an expanded view. The Container component now accepts an isExpanded prop which determines the width and positioning of the container. When isExpanded is true, the container occupies the full screen with a fixed position. The transition between the expanded and collapsed state is animated with a smooth transition effect.
+      
+      The ChatUI component now includes additional properties for the header, allowing the user to expand the chat interface to full screen. The allowExpand prop enables the expand button, and the isExpanded prop controls the expanded state. The onExpand prop is a callback function that toggles the isExpanded state.
+      
+      The placeholder text for the chat input has been updated to provide a more relevant prompt: "Ask me anything about your Flatfile configuration...".
+      
+      An emptyState prop has been added to the ChatUI component, which displays a title and description when there are no messages. The provided title is "Flatfile Assistant", and the description explains the purpose of the assistant.
+      
+      In the handleRestore function, the logic for finding the snapshot message has been updated to look for a different structure in the toolInvocations result object. Instead of looking for snapshot.id, it now looks for data.id.
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
