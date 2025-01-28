@@ -1,0 +1,24 @@
+### January 28, 2025
+## dataxp
+
+api@0e9c9b5
+The release notes are as follows:
+
+The agent.templates.validator.ts file has been updated with the following changes:
+
+1. The option names for the autocast template have been updated. The `sheetslug` option is now `sheetSlug`, and the `fieldfilters` option is now `fieldFilters`.
+2. The slug and templateDir for the webhookEgress template have been updated to use kebab-case. The slug is now `webhook-egress` and the templateDir is `webhook-egress`.
+3. The slug and templateDir for the actionListener template have been updated to use kebab-case. The slug is now `action-listener` and the templateDir is `action-listener`.
+4. The option names for the webhookEgress and actionListener templates have been updated to use camelCase. The `jobname` option is now `jobName`. The `url` option has been added for the webhookEgress template. The `actionfunction` option is now `actionFunction` for the actionListener template.
+
+The configure.bundle.ts file has been updated to use the new compileTemplateToDirectory function from the process.template.ts file to compile templates with Handlebars.
+
+A new process.template.ts file has been added, which contains the compileTemplateToDirectory function. This function uses Handlebars to compile template files and write the output to a destination directory, allowing for dynamic template rendering.
+
+The autocast/src/index.ts, automap/src/index.ts, constraints/src/index.ts, webhook-egress/src/index.ts, and action-listener/src/index.ts template files have been updated to use Handlebars templating syntax for dynamic rendering of options and namespaces.
+
+The ai-generate-blueprint/utils.ts file has been updated to remove the logic for adding type-based constraints to fields. The addSampleDataAction function now only adds the sample data action.
+
+The action-listener template directory has been renamed from actionListener to action-listener, and its files have been updated accordingly.
+
+The webhookEgress template directory has been renamed from webhookEgress to webhook-egress, and its files have been updated accordingly.
