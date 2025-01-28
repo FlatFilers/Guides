@@ -6,6 +6,27 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 27, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@3838337
+      The release includes several updates related to handling record deletion in data clips:
+      
+      The query for generating clip resolutions has been updated to exclude records marked for deletion from the `clip_kv` common table expression by adding the condition `clip_records.config->>'markedForDeletion' IS NULL`. Additionally, a new case has been added to the `INSERT INTO` statement to handle records marked for deletion by checking if `(clip_records.config->'markedForDeletion')::boolean = true`. The `cleanupEmptyResolves` function has also been updated to exclude records marked for deletion from being deleted when their resolves are empty or null.
+      
+      In the `DataClipsService`, a new check has been added when deleting marked records from the source sheet. After attempting to delete the marked records, it verifies if the records still exist in the source sheet by fetching them again. If any records still exist, it logs an error indicating a failure to delete the records from the source sheet.
+      
+      These changes ensure that records marked for deletion in a data clip are properly handled during the resolution generation process and when cleaning up empty resolves. Additionally, it adds a safeguard to prevent accidentally deleting records from the source sheet if the deletion fails.
+      
+      For example, when a record is marked for deletion in a data clip, its configuration will include `"markedForDeletion": true`. The updated queries will then handle this record differently, either excluding it from certain operations or explicitly marking it for deletion in the resolutions table. If the deletion from the source sheet fails for any reason, an error will be logged.
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
