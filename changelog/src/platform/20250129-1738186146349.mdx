@@ -1,0 +1,15 @@
+### January 29, 2025
+## spaces
+
+spaces-ui@796b573
+The release notes include the following updates:
+
+The BuildModeSidebar component now uses the useFlatfileQuery hook to fetch workbook data from the backend based on the current space ID. This data is passed down to the ChatUI component as a prop.
+
+The environmentId for the current environment is now included in the context data passed to the ChatUI component.
+
+In the SummaryView component, the initial state for expandedItems is now derived from the workbook data using a useMemo hook. This ensures that all workbook and sheet IDs are initially expanded when the component mounts.
+
+The handleCollapseAll function in SummaryView now collapses all expanded items by setting the expandedItems state to an empty array.
+
+These changes allow for better integration of workbook data in the ChatUI component, improve the handling of expanded items in the SummaryView, and provide additional context data to the ChatUI component.
