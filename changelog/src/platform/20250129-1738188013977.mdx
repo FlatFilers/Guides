@@ -1,0 +1,13 @@
+### January 29, 2025
+## dataxp
+
+api@43de273
+The release notes include the following updates:
+
+The logic for updating existing resolutions when refreshing data clip resolutions has been modified. Instead of overwriting the entire resolution, it now merges the new resolution update with the existing resolution, preserving previously resolved values for the `clipValueReference` and `mainValueReference` fields if they are not explicitly provided in the update.
+
+An end-to-end test case has been added to validate that previously resolved fields remain resolved after refreshing resolutions when the corresponding values have not changed. This test also verifies that unchanged records are skipped during the refresh process.
+
+The comment suggesting a future optimization to process multiple records at once for efficiency when updating clip resolution resolves has been removed.
+
+These changes aim to maintain the integrity of previously resolved data when refreshing resolutions for data clips, ensuring that developers do not lose their manual resolution efforts unless the underlying data has changed. The added test case helps ensure this behavior is maintained. Example usage remains the same, but developers can expect more consistent resolution state when refreshing resolutions without changes to the source data.
