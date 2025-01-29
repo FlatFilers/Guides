@@ -6,6 +6,25 @@ icon: "layer-group"
 
 ## January 2025
 
+### January 29, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@b0e6e95
+      The release notes include the following updates:
+      
+      Inngest queue driver is now supported as a new queue driver option. To use the Inngest queue driver, set `QUEUE_DRIVER=INNGEST` and configure the necessary Inngest environment variables (`INNGEST_WEBHOOK_PORT`, `INNGEST_EVENT_KEY`, `INNGEST_SIGNING_KEY`, `INNGEST_BASE_URL`, and `INNGEST_DEV`). When using the Inngest queue driver, an Express server is started to handle Inngest webhooks, and any registered Inngest functions are served at the `/api/inngest` endpoint.
+      
+      The cache URL configuration has been updated. Instead of using a separate `CACHE_URL` environment variable, it now defaults to `redis://localhost:6380`, which is configured in the `docker-compose.yml` file.
+      
+      The `inngest` and `nest-inngest` packages have been added as dependencies.
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
