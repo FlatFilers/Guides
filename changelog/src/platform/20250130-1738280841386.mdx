@@ -1,0 +1,14 @@
+### January 30, 2025
+## dataxp
+
+api@224ffac
+The release notes include the following updates:
+
+The logger configuration has been modified to include request information, such as the HTTP method and path, in the log message. This change adds more context to the logs, making it easier to understand the requests being processed by the application. 
+
+The LogsMiddleware has been updated to capture the request path and include it in the request data object. This additional information will be logged along with the method, original URL, and status code, providing a more comprehensive view of the request being handled.
+
+Example log message with the new format:
+`Responded to api request GET /users/1234`
+
+These changes enhance the logging capabilities of the application, allowing developers to better understand and debug incoming requests.
