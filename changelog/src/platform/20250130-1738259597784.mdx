@@ -1,0 +1,23 @@
+### January 30, 2025
+## dataxp
+
+dashboard@4ee8724
+The release notes include the following updates:
+
+The UpdateAppForm component now has a new optional prop called disableNamespace. When set to true, it will disable the namespace field in the form. This change allows developers to control whether the namespace field should be editable or not when updating an app.
+
+In the SettingsPage component, the UpdateAppForm is now rendered with the disableNamespace prop set to false, allowing the namespace field to be editable.
+
+In the UpdateAppModal component, the UpdateAppForm is rendered with the disableNamespace prop set to true, disabling the namespace field when updating an app through the modal.
+
+Example usage:
+
+```jsx
+// Render the UpdateAppForm with namespace field enabled
+<UpdateAppForm currentApp={app} saveButton='Deploy' onSubmit={activate} disableNamespace={false} />
+
+// Render the UpdateAppForm with namespace field disabled
+<UpdateAppForm {...props} closeModal={close} disableNamespace />
+```
+
+This change provides more control over the namespace field when updating an app, allowing developers to decide whether it should be editable or not based on the context.
