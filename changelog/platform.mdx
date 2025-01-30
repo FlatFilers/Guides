@@ -18,6 +18,25 @@ icon: "layer-group"
   </div>
 </div>
 
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@00a7eba
+      The release notes include the following changes:
+      
+      The container div for the Document component now has a fixed height and horizontally scrolls if its content exceeds the container size. The padding on the left and right sides has been removed.
+      
+      The PageHeader component has been moved to be a direct child of the container div, and its position is no longer absolute. The className prop has been removed.
+      
+      A new div with a className of 'px-4' has been added as a wrapper around the Markdown component, providing some horizontal padding.
+      
+      These changes likely improve the layout and responsiveness of the Document component, particularly for smaller screen sizes or when the document content is long. Developers using this component may notice differences in how the content is displayed and scrolled.
+    </div>
+  </div>
+</div>
+
 ### January 22, 2025
 
 <div style={{ display: "table", width: "auto" }}>
