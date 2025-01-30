@@ -1,0 +1,11 @@
+### January 30, 2025
+## dataxp
+
+api@4092642
+The release notes include two changes:
+
+1. The job handler for action listeners is now called with the job name directly, instead of prefixing it with "workbook:". For example, instead of `jobHandler('workbook:my-job', actionFunction)`, it is now `jobHandler('my-job', actionFunction)`.
+
+2. Similarly, the webhook egress listener is now called with the job name directly, without the "workbook:" prefix. For example, `webhookEgress('my-job', url)` instead of `webhookEgress('workbook:my-job', url)`.
+
+These changes simplify the way job names are passed to the job handler and webhook egress functions, eliminating the need for the "workbook:" prefix. Developers using these functions should update their code accordingly.
