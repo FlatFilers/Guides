@@ -1,0 +1,9 @@
+### January 29, 2025
+## spaces
+
+spaces-ui@fa45688
+The changes in this update modify the display behavior of an empty state component in a user interface.
+
+When an overlay is visible and the user has permission to add or import content into the sheet, the empty state component will no longer be rendered. This prevents conflicting user experience messages from being displayed simultaneously.
+
+The updated logic checks if the overlay is visible and if the user has the ability to either add to the sheet or import content into the sheet. If both conditions are met, the empty state component will not be rendered, allowing the overlay to take precedence in the user interface.
