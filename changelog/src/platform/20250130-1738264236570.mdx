@@ -1,0 +1,13 @@
+### January 30, 2025
+## dataxp
+
+api@d56803f
+The release notes include the following updates:
+
+The AddExtractorTask has been removed from the AssistantModule. This task was previously used to add an extractor agent (e.g. xlsx-extractor, json-extractor, xml-extractor) to a given space. The corresponding unit tests, types, and implementation files for this task have also been deleted.
+
+The /tools/add-extractor API endpoint in the BFFController has been removed. This endpoint was previously used to trigger the AddExtractorTask for adding an extractor agent.
+
+The AIRunToolLogic logic for running jobs has been updated to remove the handling of the 'addExtractor' job config type. This job config type was previously used to run the AddExtractorTask.
+
+As a result of these changes, the functionality to automatically add extractor agents to a space has been removed from the platform. Developers using the platform will no longer have access to this functionality through the API or other means.
