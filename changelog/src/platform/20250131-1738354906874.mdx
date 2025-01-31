@@ -1,0 +1,13 @@
+### January 31, 2025
+## dataxp
+
+api@0cf0250
+The release notes summarize the following updates:
+
+The ActionsController has been updated with new privilege requirements. The createAction and createActions methods now require the 'action:create' privilege, the updateAction method requires the 'action:update' privilege, the getActions and getAction methods require the 'action:read' privilege, and the deleteAction method requires the 'action:delete' privilege. Additionally, the environmentId parameter has been removed from the createAction and createActions methods.
+
+The ActionsService has been updated to use the EventEmitter2 for resource hierarchy resolution. The createAction and createActions methods now use the ResourceHierarchy to retrieve the environmentId instead of requiring it as a parameter. The createActions method now has a limit of 30 actions per bulk creation.
+
+The global roles have been updated. The 'READER' role now includes the 'action:read' permission, and the 'ADMIN' role now includes the 'action:*' permission, granting full access to actions.
+
+The WorkbooksEvents have been updated with changes to the order of imports for action-related functions.
