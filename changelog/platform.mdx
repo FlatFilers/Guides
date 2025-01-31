@@ -14,27 +14,15 @@ icon: "layer-group"
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
       spaces-ui@b006b25
-      Here are the key changes in the code diff:
-      
-      1. apps/spaces-ui/src/apps/WorkbookApp/TransformPreview/hooks/usePreviewRecords.tsx:
-         - Fixed a typo in the error message for the "entilementError" case. It was misspelled as "entilementError" and has been corrected to "entitlementError".
-      
-      2. apps/spaces-ui/src/i18n.ts:
-         - Added import statements for translation JSON files for the following new locales:
+      Adds support for:
            - Spanish (es-419)
            - Malay (ms)
            - Dutch (nl)
            - Polish (pl)
            - Swedish (sv)
            - Thai (th)
+           - Chinese Traditional (zh-Hant)
            - Chinese Traditional Hong Kong (zh-hant-HK)
-         - Added the new locales to the `supportedLanguages` array.
-         - Updated the `localTranslations` and `finalTranslations` objects to include the new locales and their respective translation files.
-      
-      3. apps/spaces-ui/src/locales/en/translation.json:
-         - Fixed the typo in the "entilementError" key, renaming it to "entitlementError".
-      
-      The main change is adding support for seven new locales by importing their translation JSON files and updating the necessary data structures to include them. Additionally, a minor typo correction was made in the English translation file and the corresponding code that references that error message.
     </div>
   </div>
 </div>
