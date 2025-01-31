@@ -17,12 +17,15 @@
   "colors": {
     "primary": "#000",
     "light": "#fff",
-    "dark": "#3B2FC9",
+    "dark": "#000",
     "background": {
       "dark": "#000",
       "light": "#fff"
     }
   },
+  "codeBlock": {
+   "mode": "auto"
+},
   "feedback": {
     "raiseIssue": true,
     "suggestEdit": true
@@ -45,103 +48,95 @@
     },
     {
       "source": "/plugins",
-      "destination": "/plugins-docs"
+      "destination": "https://flatfile.com/plugins/"
     },
     {
       "source": "/plugins/extractors/xlsx-extractor",
-      "destination": "/plugins-docs/extractors/xlsx-extractor"
+      "destination": "https://flatfile.com/plugins/xlsx-extractor"
     },
     {
       "source": "/plugins/extractors/json-extractor",
-      "destination": "/plugins-docs/extractors/json-extractor"
+      "destination": "https://flatfile.com/plugins/plugin-json-extractor"
     },
     {
       "source": "/plugins/extractors/xml-extractor",
-      "destination": "/plugins-docs/extractors/xml-extractor"
+      "destination": "https://flatfile.com/plugins/plugin-xml-extractor"
     },
     {
       "source": "/plugins/extractors/zip-extractor",
-      "destination": "/plugins-docs/extractors/zip-extractor"
+      "destination": "https://flatfile.com/plugins/plugin-zip-extractor"
     },
     {
       "source": "/plugins/extractors/delimiter-extractor",
-      "destination": "/plugins-docs/extractors/delimiter-extractor"
+      "destination": "https://flatfile.com/plugins/plugin-delimiter-extractor"
     },
     {
       "source": "/plugins/extractors/pdf-extractor",
-      "destination": "/plugins-docs/extractors/pdf-extractor"
+      "destination": "https://flatfile.com/plugins/plugin-pdf-extractor"
     },
     {
       "source": "/plugins/transform/record-hook",
-      "destination": "/plugins-docs/transform/record-hook"
-    },
-    {
-      "source": "/plugins/transform/external-constraint",
-      "destination": "/plugins-docs/transform/external-constraint"
+      "destination": "https://flatfile.com/plugins/record-hook"
     },
     {
       "source": "/plugins/transform/autocast",
-      "destination": "/plugins-docs/transform/autocast"
+      "destination": "https://flatfile.com/plugins/plugin-autocast"
     },
     {
       "source": "/plugins/transform/dedupe",
-      "destination": "/plugins-docs/transform/dedupe"
+      "destination": "https://flatfile.com/plugins/plugin-dedupe"
     },
     {
       "source": "/plugins/automations/automap",
-      "destination": "/plugins-docs/automations/automap"
+      "destination": "/https://flatfile.com/plugins/plugin-automap"
     },
     {
       "source": "/plugins/export/workbook",
-      "destination": "/plugins-docs/export/workbook"
+      "destination": "https://flatfile.com/plugins/plugin-export-workbook"
     },
     {
       "source": "/plugins/export/webhook",
-      "destination": "/plugins-docs/export/webhook"
+      "destination": "https://flatfile.com/plugins/plugin-webhook-egress"
     },
     {
       "source": "/plugins/schemas/convert-json-schema",
-      "destination": "/plugins-docs/schemas/convert-json-schema"
+      "destination": "https://flatfile.com/plugins/plugin-convert-json-schema"
     },
     {
       "source": "/plugins/schemas/convert-yaml-schema",
-      "destination": "/plugins-docs/schemas/convert-yaml-schema"
+      "destination": "https://flatfile.com/plugins/plugin-convert-yaml-schema"
     },
     {
       "source": "/plugins/schemas/convert-sql-ddl",
-      "destination": "/plugins-docs/schemas/convert-sql-ddl"
+      "destination": "https://flatfile.com/plugins/plugin-convert-sql-ddl"
     },
     {
       "source": "/plugins/schemas/convert-openapi",
-      "destination": "/plugins-docs/schemas/convert-openapi"
-    },
-    {
-      "source": "/plugins/datasets/zipcodes",
-      "destination": "/plugins-docs/datasets/zipcodes"
+      "destination": "https://flatfile.com/plugins/plugin-convert-openapi-schema"
     },
     {
       "source": "/plugins/migrations/dxp-configure",
-      "destination": "/plugins-docs/migrations/dxp-configure"
+      "destination": "https://flatfile.com/plugins/plugin-dxp-configure"
     },
     {
       "source": "/plugins/core/job-handler",
-      "destination": "/plugins-docs/core/job-handler"
+      "destination": "https://flatfile.com/plugins/plugin-job-handler"
     },
     {
       "source": "/plugins/core/space-configure",
-      "destination": "/plugins-docs/core/space-configure"
+      "destination": "https://flatfile.com/plugins/plugin-space-configure"
     },
-    {
+        {
       "source": "/plugins/utils/extractor",
-      "destination": "/plugins-docs/utils/extractor"
+      "destination": "https://flatfile.com/plugins/util-extractor"
     },
     {
       "source": "/plugins/utils/file-buffer",
-      "destination": "/plugins-docs/utils/file-buffer"
+      "destination": "https://flatfile.com/plugins/util-file-buffer"
     },
     {
       "source": "/plugins/utils/response-rejection",
-      "destination": "/plugins-docs/utils/response-rejection"
+      "destination": "https://flatfile.com/plugins/util-response-rejection"
     }
   ],
   "topbarLinks": [
@@ -379,6 +374,7 @@
         "guides/flatfile_query_language",
         "guides/data-retention",
         "guides/api",
+        "guides/multi-part_jobs",
         "guides/ai"
       ]
     },
@@ -485,91 +481,6 @@
     {
       "group": "Mapping",
       "pages": ["developer-tools/mapping-libraries/flatfile-mapping-python"]
-    },
-    {
-      "group": "Plugins",
-      "pages": ["plugins-docs/overview"]
-    },
-    {
-      "group": "Extractors",
-      "pages": [
-        "plugins-docs/extractors/xlsx-extractor",
-        "plugins-docs/extractors/json-extractor",
-        "plugins-docs/extractors/xml-extractor",
-        "plugins-docs/extractors/zip-extractor",
-        "plugins-docs/extractors/delimiter-extractor",
-        "plugins-docs/extractors/pdf-extractor",
-        {
-          "group": "More in development",
-          "icon": "clock",
-          "pages": ["plugins-docs/extractors/doc-extractor"]
-        }
-      ]
-    },
-    {
-      "group": "Transform",
-      "pages": [
-        "plugins-docs/transform/record-hook",
-        "plugins-docs/transform/autocast",
-        "plugins-docs/transform/dedupe",
-        "plugins-docs/transform/external-constraint"
-      ]
-    },
-    {
-      "group": "Automation",
-      "pages": [
-        "plugins-docs/automations/automap",
-        "plugins-docs/automations/webhook-event-forwarding"
-        
-      ]
-    },
-    {
-      "group": "Export",
-      "pages": ["plugins-docs/export/workbook", "plugins-docs/export/webhook"]
-    },
-    {
-      "group": "Schemas",
-      "pages": [
-        "plugins-docs/schemas/convert-json-schema",
-        "plugins-docs/schemas/convert-yaml-schema",
-        "plugins-docs/schemas/convert-sql-ddl",
-        "plugins-docs/schemas/convert-openapi",
-        {
-          "group": "More in development",
-          "icon": "clock",
-          "pages": ["plugins-docs/schemas/convert-graphql"]
-        }
-      ]
-    },
-    {
-      "group": "Datasets",
-      "pages": [
-        "plugins-docs/datasets/zipcodes",
-        {
-          "group": "More in development",
-          "icon": "clock",
-          "pages": ["plugins-docs/datasets/countries"]
-        }
-      ]
-    },
-    {
-      "group": "Migrations",
-      "pages": ["plugins-docs/migrations/dxp-configure"]
-    },
-    {
-      "group": "Core",
-      "pages": [
-        "plugins-docs/core/job-handler",
-        "plugins-docs/core/space-configure"
-      ]
-    },
-    {
-      "group": "Utils",
-      "pages": [
-        "plugins-docs/utils/extractor",
-        "plugins-docs/utils/file-buffer",
-        "plugins-docs/utils/response-rejection"
-      ]
     }
   ],
   "footerSocials": {
@@ -602,7 +513,7 @@
     },
     {
       "name": "Plugins",
-      "url": "plugins-docs"
+      "url": "https://flatfile.com/plugins"
     },
     {
       "name": "CLI",

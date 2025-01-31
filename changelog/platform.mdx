@@ -4,6 +4,171 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## January 2025
+
+### January 30, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      Namespace modification is now supported via API only. Other app fields remain editable via the UI but the ability to edit a namespace has been removed post-creation.
+    </div>
+  </div>
+</div>
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@00a7eba
+      The release notes include the following changes:
+      
+      Fixes bug where long document titles would overlap the page header.
+    </div>
+  </div>
+</div>
+
+### January 22, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      The release adds the ability to mark a space as an app template and filter spaces based on whether they are app templates or not.
+      
+      This can be used with the new space-configure-from-template plugin to create new spaces using an existing space as a template.
+      
+      When using Autobuild for a new App, the space generated during Autobuild will automatically be tagged as the template for that App.
+    </div>
+  </div>
+</div>
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      The release introduces the ability to filter spaces by the associated app ID when retrieving a list of spaces. A new query parameter `appId` has been added to the `/v1/spaces` endpoint. Developers can now pass the `appId` query parameter to retrieve only the spaces associated with the specified app. For example, `?appId=us_app_123` will return only spaces linked to the app with ID `us_app_123`. If an invalid or non-existent app ID is provided, an empty list will be returned.
+    </div>
+  </div>
+</div>
+
+### January 06, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      The manual entry and file upload button shown when the workbook is empty have has their max width updated so they can support more text.
+    </div>
+  </div>
+</div>
+
+## December 2024
+
+### December 30, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      Trailing empty records in CSV files will now be trimmed during file extraction. Empty records in-between records with values will continue to be kept.
+    </div>
+  </div>
+</div>
+
+### December 20, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      - Record order is now maintained when inserting records
+      - When using the Flatfile API to add records, the order of those records will now be preserved keeping the original sequence as provided
+    </div>
+  </div>
+</div>
+
+### December 10, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      
+      Fixes a bug where AI assist would crash when ‘config’ object or the ‘options’ array is undefined.
+    </div>
+  </div>
+</div>
+
+### December 09, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      Fixes a bug where an error would be thrown when config options was undefined during sheet upsert operations.
+    </div>
+  </div>
+</div>
+
+### December 06, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      There was a bug causing the name of environment secrets not to update when edited. This fixes the bug ensuring environment secret names are updated.
+    </div>
+  </div>
+</div>
+
+### December 04, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      The `viewMapped` functionality has been updated to include new text strings for messaging related to updating a table to only view mapped fields. The messages include "Updating the table to only view mapped fields", "Halfway there, hang tight...", "Almost done...", "Table update complete. Please audit the data", and "An error occurred while updating the workbook. See Event Logs." These strings will be displayed to the user during the process of updating a table to show only mapped fields, providing status updates and handling potential errors. This change enhances the user experience by providing clear communication during this operation.
+    </div>
+  </div>
+</div>
+
+### December 02, 2024
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      A bug fix was made to the handling of enum field options when updating a sheet. Previously, if the `config.options` property was undefined, an error would occur. Now, if `config.options` is undefined, it defaults to an empty array. This ensures that the code can safely handle cases where `config.options` is not present or is undefined. For example, if a developer was updating a sheet with an enum field that did not previously have any options defined, the update can now proceed without errors.
+    </div>
+  </div>
+</div>
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      Added three keys: `addColumn`, `clearColumn`, and `removeColumn` with their respective translations for adding, clearing, and removing columns.
+      
+      In the English translation file, the title of the “mapValues” section has been updated from “Map values” to “Map Fields”.
+    </div>
+  </div>
+</div>
+
 ## November 2024
 
 ### November 13, 2024
@@ -18,9 +183,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## October 2024
+## October 2024 (4)
 
-### October 28, 2024
+##### October 28, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -37,7 +202,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### October 17, 2024
+##### October 17, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -53,7 +218,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### October 03, 2024
+##### October 03, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -66,7 +231,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### October 01, 2024
+##### October 01, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -86,9 +251,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## September 2024
+## September 2024 (6)
 
-### September 27, 2024
+##### September 27, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -105,7 +270,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 25, 2024
+##### September 25, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -119,7 +284,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 20, 2024
+##### September 20, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -135,7 +300,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 11, 2024
+##### September 11, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -148,7 +313,7 @@ icon: "layer-group"
   </div>
 </div>
 
-### September 10, 2024
+##### September 10, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -157,31 +322,31 @@ icon: "layer-group"
       
       `@flatfile/api@1.9.14`
       
-      #### Actions Resource
+      ###### Actions Resource
       
       Actions are now a first class resource. Developers may now create, retrieve, update, and delete actions via the api.
       New action events ActionCreated, ActionUpdated, and ActionDeleted are now being published and an actionId field has been added to the Context of events.
       
-      #### Agent Versioning
+      ###### Agent Versioning
       
       Agents versioning has been introduced. You may now retreieve agent versions via the api and revert to a previous version via the api and the dashboard.
       
-      #### Token Refresh
+      ###### Token Refresh
       
       Guests actively using their space will have their token's automatically renewed.
       
-      #### Sheet & Cell Updates
+      ###### Sheet & Cell Updates
       
       Support for array values in cell values has also been added.
       
-      #### Job Metadata
+      ###### Job Metadata
       
       Metadta is now available on the `JobConfig` type, allowing additional data to be associated with jobs.
     </div>
   </div>
 </div>
 
-### September 06, 2024
+##### September 06, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -1362,7 +1527,7 @@ icon: "layer-group"
       
       These updates are aimed at enhancing transparency and efficiency, ensuring you’re well-informed throughout the file extraction process.
       
-      [See extractor plugins](../plugins-docs/extractors/)
+      [See extractor plugins](https://flatfile.com/plugins/category/extractors/)
       
     </div>
   </div>
