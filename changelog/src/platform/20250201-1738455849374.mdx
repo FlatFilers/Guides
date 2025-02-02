@@ -1,0 +1,19 @@
+### February 01, 2025
+## dataxp
+
+api@ef4c245
+The following updates have been made:
+
+Added a new entitlement called `enumMappingThresholds` that allows setting thresholds for the number of fields to use the enum mapping AI algorithm vs exact/fuzzy matching, and the fuzzy match threshold. Default thresholds are provided.
+
+Added support for fuzzy matching of enum values when the AI mapping algorithm is not used due to the field count exceeding the threshold. Fuzzy matches with a score above the configured threshold will be included in the mapping plan.
+
+Refactored the `addExactEnumMatches` function to `addExactAndFuzzyEnumMatches` to include fuzzy matches.
+
+Optimized the call to the enum AI mapping service by chunking the source and destination values into smaller chunks to avoid timeouts or overwhelming the service.
+
+Updated the mapping plan creation process to include the new `enumMatchingThresholds` configuration.
+
+Updated the mapping service to retrieve and use the `enumMatchingThresholds` entitlement values, falling back to default values if not set.
+
+The updates aim to improve enum mapping performance and accuracy, especially for larger sets of enum values, by introducing fuzzy matching and configurable thresholds for when to use different mapping algorithms.
