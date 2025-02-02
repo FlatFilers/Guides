@@ -1,0 +1,11 @@
+### February 02, 2025
+## dataxp
+
+api@af1b546
+The release notes include the following updates:
+
+When parsing CSV data, the getCsvStream function now handles unescaped double quotes in field values by setting the relax_quotes option to true. This means that CSV data with unescaped quotes will be parsed correctly without throwing an error. For example, the value "a,b",c" will be parsed as ['a', 'b",c'] instead of throwing an "Invalid Opening Quote" error.
+
+The header detection logic in the headerizer module has been updated to handle CSV data with unescaped double quotes. The getHeaders method no longer throws an error for unescaped quotes when relax_quotes is enabled in the underlying getCsvStream call. Instead, it will parse the data and return the headers as expected.
+
+For example, given the CSV data "a,b",c\n1,2,3", with relax_quotes enabled, the getHeaders method will parse the headers as ['a', 'b"', 'c'] instead of throwing an error.
