@@ -4,6 +4,27 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## February 2025
+
+### February 02, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@af1b546
+      The release notes include the following updates:
+      
+      When parsing CSV data, the getCsvStream function now handles unescaped double quotes in field values by setting the relax_quotes option to true. This means that CSV data with unescaped quotes will be parsed correctly without throwing an error. For example, the value "a,b",c" will be parsed as ['a', 'b",c'] instead of throwing an "Invalid Opening Quote" error.
+      
+      The header detection logic in the headerizer module has been updated to handle CSV data with unescaped double quotes. The getHeaders method no longer throws an error for unescaped quotes when relax_quotes is enabled in the underlying getCsvStream call. Instead, it will parse the data and return the headers as expected.
+      
+      For example, given the CSV data "a,b",c\n1,2,3", with relax_quotes enabled, the getHeaders method will parse the headers as ['a', 'b"', 'c'] instead of throwing an error.
+    </div>
+  </div>
+</div>
+
 ## January 2025
 
 ### January 31, 2025
@@ -192,9 +213,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## November 2024
+## November 2024 (1)
 
-### November 13, 2024
+##### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
