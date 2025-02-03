@@ -375,7 +375,8 @@
         "guides/data-retention",
         "guides/api",
         "guides/multi-part_jobs",
-        "guides/ai"
+        "guides/ai",
+        "guides/dataclips"
       ]
     },
     {
