@@ -1,0 +1,15 @@
+### February 02, 2025
+## dataxp
+
+api@3edb0ff
+The cleanString utility function has been updated to change the default behavior for newline replacement. Instead of replacing all newline variants with '\\n', it now replaces them with '\n' by default. This change aligns the default behavior with a more standard representation of newlines as a single character. Additionally, the newlineReplacement option in the CleanStringOptions interface has been updated to reflect this change. The unit tests for cleanString have also been updated to reflect the new default behavior.
+
+In the ExtractionLogic class, the cleanString function is now called with an option to replace newlines with '\\n'. This ensures that when joining rows of cells, newlines within cells are represented as '\\n' in the resulting string.
+
+These changes affect the behavior of cleanString and its usage in the ExtractionLogic class. Developers using this package should be aware that the default newline representation in the output of cleanString has changed from '\\n' to '\n'. If the previous behavior of replacing newlines with '\\n' is desired, the newlineReplacement option should be explicitly set when calling cleanString.
+
+For example, to maintain the previous behavior:
+
+```typescript
+const cleanedString = cleanString(input, { newlineReplacement: '\\n' });
+```
