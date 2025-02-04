@@ -4,6 +4,21 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## February 2025
+
+### February 04, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@a35d78f
+      Updated the `ClipGenerateResolutions` class to use prepared statements when executing SQL queries for updating resolution data. The update query now uses placeholders for the `resolves` JSON data, `has_conflict` boolean, and the `id` key. The actual values are passed as arguments to the `raw` method, mitigating the risk of SQL injection attacks. This change improves the security and safety of the application when handling user-provided data.
+    </div>
+  </div>
+</div>
+
 ## January 2025
 
 ### January 31, 2025
@@ -192,9 +207,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## November 2024
+## November 2024 (1)
 
-### November 13, 2024
+##### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
