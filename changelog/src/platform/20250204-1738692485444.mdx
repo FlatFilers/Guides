@@ -1,0 +1,26 @@
+### February 04, 2025
+## spaces
+
+spaces-ui@e3ee325
+Added support for composing IDs with a data clip ID, allowing comments and presence indicators to be scoped to a specific data clip within a workbook. This ensures comments and presence indicators are correctly displayed when multiple data clips are embedded within the same workbook.
+
+When rendering comments, threads, and presence indicators for a cell, the component now checks if a data clip ID is provided in the URL parameters. If so, it composes the cell ID with the data clip ID to create a unique identifier for that cell within the context of the current data clip. This composed ID is used to retrieve the relevant comment threads and presence data from the respective maps.
+
+The component also includes a helper function `idsMatch` to handle matching plain cell IDs with composed cell IDs, ensuring that comments and presence indicators are correctly associated with their corresponding cells, regardless of whether the cell ID is plain or composed with a data clip ID.
+
+This update enhances the functionality of the workbook application by enabling proper comment and presence indicator handling when multiple data clips are embedded within the same workbook, providing a better user experience for collaborative data analysis.
+
+Example usage:
+
+```javascript
+// With a data clip ID in the URL parameters
+const dataClipId = 'abc123';
+const composedCellId = `${cellId}-${dataClipId}`;
+
+// Retrieving a thread for a composed cell ID
+const thread = threadsMap.get(composedCellId);
+
+// Rendering a thread or presence indicator using the composed cell ID
+<Thread id={composedCellId} thread={thread} />;
+<CellPresence id={composedCellId} presence={presence} />;
+```
