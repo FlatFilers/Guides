@@ -1,0 +1,9 @@
+### February 04, 2025
+## dataxp
+
+api@6fcd6aa
+The provided diff updates the AgentsService to validate that the environment ID belongs to the given account ID before upserting an agent. It adds a check to ensure that the environment hierarchy account matches the provided account ID. If the environment does not exist in the account, it throws a HandledBadRequestException with the message "Environment does not exist in account".
+
+Additionally, it adds an end-to-end test case to ensure that the API returns a 400 Bad Request error when trying to create an agent with an environment ID that does not belong to the given account.
+
+The diff also mocks the EventEmitter2 service in the AgentsService unit tests to test the new environment hierarchy validation logic. It adds a test case to verify that an error is thrown if the environment hierarchy account does not match the grant account.
