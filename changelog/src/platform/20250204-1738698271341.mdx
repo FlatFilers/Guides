@@ -1,0 +1,5 @@
+### February 04, 2025
+## dataxp
+
+api@a35d78f
+Updated the `ClipGenerateResolutions` class to use prepared statements when executing SQL queries for updating resolution data. The update query now uses placeholders for the `resolves` JSON data, `has_conflict` boolean, and the `id` key. The actual values are passed as arguments to the `raw` method, mitigating the risk of SQL injection attacks. This change improves the security and safety of the application when handling user-provided data.
