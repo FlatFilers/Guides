@@ -374,6 +374,7 @@
         "guides/flatfile_query_language",
         "guides/data-retention",
         "guides/api",
+        "guides/multi-part_jobs",
         "guides/ai"
       ]
     },

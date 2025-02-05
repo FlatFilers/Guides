@@ -59,6 +59,10 @@ Defines an enumerated list of options for the user to select from. Matching tool
   Permit the user to create new options for this specific field.
 </ParamField>
 
+<ParamField path="config.sortBy" default="label" type="string">
+  The field to sort the options by (label, value, ordinal)
+</ParamField>
+
 <ParamField path="config.options" required>
   An array of valid options the user can select from
 </ParamField>
@@ -83,6 +87,9 @@ Defines an enumerated list of options for the user to select from. Matching tool
 
 <ParamField path="metadata" type="object">
   An arbitrary JSON object to be associated with this option and made available to hooks
+</ParamField>
+<ParamField path="ordinal" type="number">
+  The ordinal position of this option in the list. Only used if `sortBy` is set to `ordinal`. Options are sorted in ascending order.
 </ParamField>
 </Expandable>
 
