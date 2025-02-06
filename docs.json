@@ -75,7 +75,6 @@
                     "group": "React",
                     "icon": "react",
                     "pages": [
-                      "documentation/sdks/react/new_space_quickstart",
                       "documentation/sdks/react/components",
                       "documentation/sdks/react/legacy"
                     ]
@@ -84,7 +83,6 @@
                     "group": "Javascript",
                     "icon": "js",
                     "pages": [
-                      "documentation/sdks/javascript/new_space_quickstart",
                       "documentation/sdks/javascript/new_space",
                       "documentation/sdks/javascript/reuse_space"
                     ]
@@ -101,7 +99,6 @@
                     "group": "Angular",
                     "icon": "angular",
                     "pages": [
-                      "documentation/sdks/angular/new_space_quickstart",
                       "documentation/sdks/angular/new_space",
                       "documentation/sdks/angular/reuse_space"
                         ]
@@ -135,7 +132,7 @@
               {
                 "group": "Tutorials",
                 "pages": [
-                  "quickstart",
+                  "learning-center/tutorials/quickstart",
                   {
                     "group": "10 Minutes",
                     "pages": [

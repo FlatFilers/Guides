@@ -1,48 +1,61 @@
 ---
 title: "Flatfile Architecture"
 description: "the anatomy of an Flatfile"
+mode: "wide"
 ---
 
-# Quod matri ea ore est populusque ac
+Whether you're handling customer data imports, migrating between systems, or building data transformation workflows, Flatfile provides the tools and flexibility to make data exchange seamless and reliable.
 
-## Cauda pectora
 
-Lorem markdownum *gelido omni* gemit, torum Nycteliusque limine, valvis. Imagine
-teretem, tempora veteres longoque uterque, intexuit spolioque vocanti, si primum
-onerataque demum; suo. Quae miserum premit, ubi rerum *ilia monstra*. Cupidine
-permisit **mandentemque aer** dilecta Minyae iacet quod Latia, adnuit deus sudor
-Hesperidas adgreditur armentis, pedibus oscula.
+Flatfile is a powerful data exchange platform that simplifies the complex process of importing, validating, and transforming data. Built for developers, it provides a flexible and robust infrastructure to handle data onboarding workflows at scale.
 
-Enim fuit: superbos cornuaque sit *viseret fecit* fulmineos rostro
-praetemptatque diemque dignissima oravique. Ad surge Neptunia armorum desertum
-servantes Bacchus quamvis capiti se dedit illa? Superesse et suis vidit, dira
-auctor, Adoni Vesta volat; ecce.
 
-## Concita queat ecce in caelo cum erat
+```mermaid
+graph TD
+    %% Define styles
+    classDef primaryNodes fill:#ffffff,stroke:#000000,color:#000000,stroke-width:2px
+    classDef secondaryNodes fill:#e4e4e4,stroke:#000000,color:#000000,stroke-width:2px
+    classDef specialNodes fill:#f4f4f4,stroke:#000000,color:#000000,stroke-width:2px
+    linkStyle default stroke:#000000,stroke-width:1px
 
-Ecce loci recumbit, Haemonio in nutrix sed ignavus opprimere lucida; ubi quae
-palmis. Artes sacrorum crescit. Prunam dedit voces parente facinusque senilibus,
-abest, varios vero sentire sum.
+    %% Application Resources
+    App --> Environment[Environment]
+    Environment --> Agent[Agent]
 
-## Laetis deus volucres vultus urbe caeleste
+    %% Environment Resources
+    Environment --> Space[Space]
+    Environment --> Secret[Secret]
 
-Conatur caelestum maculosae quot; pestis quem pulmonis isdem, da est vacuae
-ventre praefert. Bello si est **Vulcania bisque crura** plus nec eget Phoebi
-omnibus lateri nec aderat semper **restitit greges**. Clipeum camini.
+    %% Space Resources
+    Space --> Workbook[Workbook]
+    Space --> Document[Document]
+    Space --> File[File]
+    Space --> Secret[Secret]
+    
+    %% Workbook Resources
+    Workbook --> Sheet[Sheet]
 
-> Sanguine [est testes tempora](http://unum.org/opemsubit.php)? Collo tanti,
-> terrena Iunoni locis, pondus seductaque Perseia? Hunc meo serasque est, ea
-> adspexit quoque et facti metu.
+    %% Jobs Relationships
+    App --> Jobs
+    File --> Jobs
+    Workbook --> Jobs
+    Sheet --> Jobs
+    Space --> Jobs
+    Document --> Jobs
 
-## Fuit mihi tantum
+    %% Apply classes
+    class App,Environment,Space,Workbook,Sheet primaryNodes
+    class Agent,Jobs specialNodes
+    class Document,File,Secret secondaryNodes
+```
 
-Et **Aegaeona et** Cadme in canendo resecuta dentibus vestes adversum hostis ex
-sua leves dat tibi inclusa **Cythereiadasque flamina**. Nam occulta lacrimas
-aquis. Ipsaque si vagina si doque imagine multorum actusque rugae. Unum illa
-harenae, sumus illos hic, rubra loqui, Corythus Licha quot fer: audit.
 
-Muta consortia in irae iussa, cum cultu deum artis, semina turbam, sic! Exstat
-bellum cornaque: iam silva domuisse, humo ne nares: nate nec irata **quam**
-radice; tamen. Quoque quantumque coepere; quam meum curis, genitum in **poste**,
-ficta tenet oblivia. Pectora officio cum quos, vigor, subversaque auctorem
-lumina genuisse.
+## Core Features
+
+- **Workbook-Based Architecture**: Organize your data imports into workbooks containing multiple sheets, providing a familiar spreadsheet-like interface for end users while maintaining powerful programmatic control.
+
+- **Validation & Transformation**: Define custom constraints and transformations to ensure data quality and consistency before it reaches your systems.
+
+- **Real-Time Collaboration**: Enable multiple users to work simultaneously on data imports with built-in collaboration features and role-based access control.
+
+- **Extensible API**: Access all platform functionality through a comprehensive REST API, with official SDKs available for multiple languages.

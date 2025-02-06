@@ -1,56 +1,18 @@
 ---
 title: "Blueprint"
 description: "define your data schema"
-icon: "draw-drafting"
+icon: "compass-drafting"
+mode: "wide"
 ---
 
-## Terms
-
-- **Blueprint** — A collection of sheets that describe a complete dataset
-- **Sheet** — A collection of fields that describe a single entity (eg. people, products, companies)
-- **Field** — Describes an attribute of the entity (eg. name, email) and how it should behave
-
-<RequestExample>
-```json Blueprint Example
-{
-  "sheets": [
-    {
-      "name": "Products",
-      "description": "A list of products available for sale",
-      "slug": "products",
-      "readOnly": false,
-      "allowAdditionalFields": false,
-      "access": ["add", "edit"],
-      "constraints": [{ "name": "constraint name", "fields": ["field_key_one", "field_key_two"], "type": "unique", "strategy": "concat"}],
-      "fields": [
-        {
-          "key": "code",
-          "label": "Product Code",
-          "description": "This can be **markdown**."
-          "type": "string"
-        },
-        {
-          "key": "description",
-          "type": "string"
-        },
-        {
-          "key": "price",
-          "type": "number"
-        }
-      ],
-      "actions": [],
-      "metadata": {},
-      "treatments": {'additional'}
-    }
-  ]
-}
-```
-</RequestExample>
+Blueprint is your guide to structuring data in Flatfile. 
+It defines how your data should look, behave, and connect—from simple field validations to complex relationships between datasets. 
+Think of it as a smart schema that helps you collect exactly the data you need, in exactly the format you want it.
 
 <CardGroup cols={2}>
   <Card
     title="Sheet Options"
-    icon="file-spreadsheet"
+    icon="table-list"
     href="/blueprint/sheet-options"
   >
     Configure the basic behavior of your Sheet with Sheet-level options.
@@ -60,22 +22,22 @@ icon: "draw-drafting"
   </Card>
   <Card
     title="Field Constraints"
-    icon="ruler-combined"
+    icon="list-check"
     href="/blueprint/constraints"
   >
     Learn about the available constraints and how they work.
   </Card>
   <Card
     title="Field Relationships"
-    icon="diagram-nested"
+    icon="link"
     href="/blueprint/relationships"
   >
     Establish connections between Sheets and fields.
   </Card>
-  <Card title="Access Control" icon="shield-halved" href="/blueprint/access">
+  <Card title="Access Control" icon="lock" href="/blueprint/access">
     Configure field, Sheet, and Workbook level user capabilities.
   </Card>
-  <Card title="Treatments" icon="user-ninja" href="/blueprint/sheet-options">
+  <Card title="Treatments" icon="layer-group" href="/blueprint/sheet-options">
     Unique presentation for a field in the UI. Learn more about
     `allowAdditionalFields`
   </Card>
