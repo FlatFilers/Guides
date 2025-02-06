@@ -1,74 +1,74 @@
 ---
-title: 'DataClips (Beta)'
-description: 'Learn how DataClips enables safer data modification and enhanced collaboration'
+title: 'Data clips (Beta)'
+description: 'Learn how Data clips enables safer data modification and enhanced collaboration'
 icon: 'scissors'
 ---
 
 <Note>
-  DataClips is currently in beta and may have some limitations and unexpected behavior. To get early access to DataClips, 
-  connect with one of our product experts to get DataClips enabled. 
+  Data clips is currently in beta and may have some limitations and unexpected behavior. To get early access to Data clips, 
+  connect with one of our product experts to get Data clips enabled. 
   [Connect with a product expert.](https://flatfile.com/contact-sales/consult/)
 </Note>
 
 ## Overview
 
-DataClips allow users to extract, edit, and collaborate on a subset of data from a 
+Data clips allow users to extract, edit, and collaborate on a subset of data from a 
 <Tooltip tip="A collection of fields...">[Sheet](../blueprint/overview#terms)</Tooltip> without 
 affecting the original sheet. Once changes are finalized, they can be merged back into the main sheet, 
 ensuring controlled updates while preserving the original dataset's integrity.
 
 ## How it works
 
-### **Creating a DataClip**
-Users can create a DataClip by selecting specific records from a sheet, allowing for focused edits without 
+### **Creating a Data clip**
+Users can create a Data clip by selecting specific records from a sheet, allowing for focused edits without 
 affecting live data. This is especially useful for sharing only the necessary data with collaborators, 
-ensuring they can make updates independently of the main sheet. Multiple DataClips can be created from a 
+ensuring they can make updates independently of the main sheet. Multiple Data clips can be created from a 
 single sheet, enabling different teams or individuals to work in parallel without interfering with each other’s workflows.
 
 <Note>
-  DataClips are currently not supported in pre-processing. This functionality is being considered for future updates.
+  Data clips are currently not supported in pre-processing. This functionality is being considered for future updates.
 </Note>
 
-### **Adding Records to a DataClip**
-DataClips are flexible—users can continue refining them even after creation. Additional records can be added to an existing 
-DataClip, allowing for evolving workflows where new data points become relevant. This ensures that the right information is 
+### **Adding Records to a Data clip**
+Data clips are flexible—users can continue refining them even after creation. Additional records can be added to an existing 
+Data clip, allowing for evolving workflows where new data points become relevant. This ensures that the right information is 
 included as needs change, without having to create a new clip from scratch.
 
 ### **Editing and Collaboration**
-DataClips let users in a <Tooltip tip="A micro-application...">Space</Tooltip> edit records independently 
+Data clips let users in a <Tooltip tip="A micro-application...">Space</Tooltip> edit records independently 
 of the main sheet, ensuring the original data remains intact until changes are merged. The collaboration 
 entitlement allows users to leave comments for discussion within a clip, making it easy to refine and 
 finalize updates seamlessly. To enable collaboration, you can [connect with a product expert.](https://flatfile.com/contact-sales/consult/)
 
 ### **Marking Records for Deletion**
 Users can flag records for deletion, which will remove the records from the main sheet once the changes 
-are merged. These records remain visible in the DataClip with a strikethrough to indicate pending removal. 
+are merged. These records remain visible in the Data clip with a strikethrough to indicate pending removal. 
 If needed, users can easily revert a record that has been marked for deletion before merging via the restore functionality.
 
 
 ### **Merging Changes**
 When merging, users are presented with a visual diff of all changes, allowing them to review and confirm updates 
-before they are applied. If the same record has been modified in both the DataClip and the main sheet, a conflict 
+before they are applied. If the same record has been modified in both the Data clip and the main sheet, a conflict 
 resolution interface ensures that users can make an informed decision on which version to keep. The merge process 
 enforces data integrity by preventing unresolved conflicts from being applied, ensuring that only finalized, 
-accurate data is merged. Only the creator of a DataClip has the authority to merge changes back into the main sheet, 
+accurate data is merged. Only the creator of a Data clip has the authority to merge changes back into the main sheet, 
 maintaining control over the final updates.
 
-### **DataClip Library**
-The DataClip Library provides an organized way to find and manage DataClips. Users can search for DataClips by sheet ID, 
+### **Data clip Library**
+The Data clip Library provides an organized way to find and manage Data clips. Users can search for Data clips by sheet ID, 
 creator, or clip name, as well as filter by status, making it easy to locate specific clips. 
 
 From the library, users can:
-- Edit DataClip details, such as updating the name or description.
-- Delete a DataClip when it’s no longer needed.
+- Edit Data clip details, such as updating the name or description.
+- Delete a Data clip when it’s no longer needed.
 
 ## Events and Triggers
 
-The following new events are introduced for tracking DataClip activities:
-- `data-clip:created` – Triggered when a new DataClip is created.
-- `data-clip:updated` – Fired when a DataClip is modified (excluding individual cell edits).
-- `data-clip:deleted` – Triggered when a DataClip is removed.
+The following new events are introduced for tracking Data clip activities:
+- `data-clip:created` – Triggered when a new Data clip is created.
+- `data-clip:updated` – Fired when a Data clip is modified (excluding individual cell edits).
+- `data-clip:deleted` – Triggered when a Data clip is removed.
 
-These events integrate seamlessly with existing event-driven workflows, allowing teams to monitor and react to DataClip actions efficiently.
+These events integrate seamlessly with existing event-driven workflows, allowing teams to monitor and react to Data clip actions efficiently.
 
 ---
