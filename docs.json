@@ -69,6 +69,12 @@
                 ]
               },
               {
+                "group": "Plugins",
+                "pages": [
+                  "documentation/plugins"
+                ]
+              },
+              {
                 "group": "SDKs",
                 "pages": [
                   {
