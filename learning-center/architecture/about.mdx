@@ -10,40 +10,41 @@ Flatfile is a powerful data exchange platform that simplifies the complex proces
 
 ```mermaid
 graph TD
-    %% Define styles
-    classDef primaryNodes fill:#ffffff,stroke:#000000,color:#000000,stroke-width:2px
-    classDef secondaryNodes fill:#e4e4e4,stroke:#000000,color:#000000,stroke-width:2px
-    classDef specialNodes fill:#f4f4f4,stroke:#000000,color:#000000,stroke-width:2px
 
-    %% Application Resources
-    App --> Environment[Environment]
-    Environment --> Agent[Agent]
+%% Define styles
+classDef primaryNodes fill:#ffffff,stroke:#000000,color:#000000,stroke-width:2px
+classDef secondaryNodes fill:#e4e4e4,stroke:#000000,color:#000000,stroke-width:2px
+classDef specialNodes fill:#f4f4f4,stroke:#000000,color:#000000,stroke-width:2px
 
-    %% Environment Resources
-    Environment --> Space[Space]
-    Environment --> Secret[Secret]
+%% Top Level Resources with bidirectional relationship
+App <--> Environment
 
-    %% Space Resources
-    Space --> Workbook[Workbook]
-    Space --> Document[Document]
-    Space --> File[File]
-    Space --> Secret[Secret]
-    
-    %% Workbook Resources
-    Workbook --> Sheet[Sheet]
+%% Environment Resources
+Environment --> Space
+Environment --> Secret
+Environment --> Agent
 
-    %% Jobs Relationships
-    App --> Jobs
-    File --> Jobs
-    Workbook --> Jobs
-    Sheet --> Jobs
-    Space --> Jobs
-    Document --> Jobs
+%% Space Resources
+Space --> Workbook
+Space --> Document
+Space --> File
+Space --> Secret
 
-    %% Apply classes
-    class App,Environment,Space,Workbook,Sheet primaryNodes
-    class Agent,Jobs specialNodes
-    class Document,File,Secret secondaryNodes
+%% Workbook Resources
+Workbook --> Sheet
+
+%% Jobs Relationships
+App --> Jobs
+File --> Jobs
+Workbook --> Jobs
+Sheet --> Jobs
+Space --> Jobs
+Document --> Jobs
+
+%% Apply classes
+class App,Environment,Space,Workbook,Sheet primaryNodes
+class Agent,Jobs specialNodes
+class Document,File,Secret secondaryNodes
 ```
 
 
