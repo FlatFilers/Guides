@@ -144,7 +144,46 @@ icon: "layer-group"
   </div>
 </div>
 
-### January 13, 2025
+### January 17, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@becac6b
+      The release notes include the following updates:
+      
+      An error is now thrown if attempting to clear a readonly column in a sheet. This prevents modifying data in readonly columns.
+      
+      Example:
+      ```
+      const field = {
+        key: 'ReadonlyColumn',
+        label: 'Readonly Column', 
+        type: 'string',
+        readonly: true
+      }
+      ```
+      Attempting to clear this column will throw an error: 'Column is readonly and cannot be cleared'.
+      
+      An error is also thrown if attempting to clear any column in a readonly sheet. This prevents modifying data in readonly sheets.  
+      
+      Example:
+      ```
+      const sheet = {
+        config: {
+          readonly: true,
+          fields: [...]
+        }
+      }
+      ```
+      Attempting to clear a column in this sheet will throw an error: 'Sheet is readonly. Column cannot be cleared'.
+      
+      These changes ensure data integrity by preventing unintended modification of readonly data.
+    </div>
+  </div>
+</div>
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -152,11 +191,10 @@ icon: "layer-group"
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
 
       api@70e1e81
-      The `clearColumnAction` now has a constraint added that checks if the column is enabled before allowing the action to be executed. This ensures that the action can only be performed on columns that are currently enabled, preventing any potential issues or errors that could arise from attempting to clear a disabled column.
+      The `clearColumnAction` now has a constraint `hasColumnEnabled` added that checks if the column is enabled before allowing the action to be executed. This ensures that the action can only be performed on columns that are currently enabled, preventing any potential issues or errors that could arise from attempting to clear a disabled column.
     </div>
   </div>
 </div>
-
 
 ### January 06, 2025
 
