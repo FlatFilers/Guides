@@ -1,54 +1,11 @@
 ---
-title: "Types"
-description: "Learn more about each supported field type: `string`, `number`, `boolean`, `date`, `enum`, `reference`"
+title: "Field Types"
+description: "supported field types"
 ---
-
-## Default Options
-
-Each field has the following configuration options. Read the documentation for each type as there may be additional configuration options.
-
-<ParamField path="key" type="string" required>
-  The system name of this field. Primarily informs JSON and egress structures.
-</ParamField>
-
-<ParamField path="type" required>
-  One of `string`, `number`, `boolean`, `date`, `enum`, `reference`. Defines the
-  handling of this property.
-</ParamField>
-
-<ParamField path="label" default="key" type="string">
-  A user-facing descriptive label designed to be displayed in the UI such as a
-  table header.
-</ParamField>
-
-<ParamField path="description" type="string">
-  A long form description of the property intended to be displayed to an end
-  user.
-</ParamField>
-
-<ParamField path="constraints" default="[]" type="array">
-  An array of system level Validation Rules meant to be applied after hooks are
-  run.
-</ParamField>
-
-<ParamField path="config" default="{}" type="object">
-  Configuration relevant to the type of column. See property documentation
-  below.
-</ParamField>
-
-<ParamField path="multi" default="false" type="boolean">
-  Will allow multiple values and store / provide the values in an array if set.
-  Not all field types support arrays.
-</ParamField>
-
-<ParamField path="meta" default="{}" type="object">
-  Arbitrary object of values to pass through to hooks and egress
-</ParamField>
----------
 
 ## `string` _(default)_
 
-Defines a property that should be stored and read as a basic string.
+A property that should be stored and read as a basic string.
 
 ```json
 {
@@ -60,7 +17,7 @@ Defines a property that should be stored and read as a basic string.
 
 ## `number`
 
-Defines a property that should be stored and read as either an integer or floating point number. Database engines should look at the configuration to determine ideal storage format.
+A property that should be stored and read as either an integer or floating point number. Database engines should look at the configuration to determine ideal storage format.
 
 <ParamField path="config.decimal_places" default="0" type="number">
   The number of decimal places to preserve accuracy to. Overages should be

@@ -13,13 +13,12 @@
       {
         "version": "latest",
         "tabs": [
-
           {
             "tab": "Documentation",
             "groups": [
               {
                 "group": "Welcome To Flatfile",
-                "pages": [ "home" ]
+                "pages": [ "flatfile" ]
               },
               {
                 "group": "APIs",
@@ -49,6 +48,24 @@
                     ]
                   }
                  
+                ]
+              },
+              {
+                "group": "Blueprint",
+                "pages": [
+                  "documentation/blueprint/about",
+                  {
+                    "group": "Schema",
+                    "pages": [
+                      "documentation/blueprint/sheet-options",
+                      "documentation/blueprint/field-options",
+                      "documentation/blueprint/field-types",
+                      "documentation/blueprint/relationships",
+                      "documentation/blueprint/constraints",
+                      "documentation/blueprint/access"  
+                    ]
+                  }
+                  
                 ]
               },
               {
@@ -108,8 +125,11 @@
               {
                 "group": "Core Architecture",
                 "pages": [
-                  "learning-center/environment",
-                  "learning-center/spaces"
+                  "learning-center/architecture/about",
+                  "learning-center/architecture/apps",
+                  "learning-center/architecture/environment",
+                  "learning-center/architecture/spaces",
+                  "learning-center/architecture/workbooks"
                 ]
               },
               {
@@ -119,12 +139,12 @@
                   {
                     "group": "10 Minutes",
                     "pages": [
-                      "learning-center/apps/custom/tutorial-landing",
-                      "learning-center/apps/custom/meet-the-listener",
-                      "learning-center/apps/custom/meet-the-workbook",
-                      "learning-center/apps/custom/add-data-transformation",
-                      "learning-center/apps/custom/submit-action",
-                      "learning-center/apps/custom/deploying"
+                      "learning-center/tutorials/10min/tutorial-landing",
+                      "learning-center/tutorials/10min/meet-the-listener",
+                      "learning-center/tutorials/10min/meet-the-workbook",
+                      "learning-center/tutorials/10min/add-data-transformation",
+                      "learning-center/tutorials/10min/submit-action",
+                      "learning-center/tutorials/10min/deploying"
                     ]
                   }
                 ]
@@ -132,6 +152,7 @@
               {
                 "group": "Guides",
                 "pages": [
+                  "learning-center/guides/list",
                   {
                     "group": "By Feature",
                     "pages": [
@@ -155,7 +176,6 @@
                       "learning-center/guides/additional-fields",
                       "learning-center/guides/flatfile_query_language",
                       "learning-center/guides/data-retention",
-                      "learning-center/guides/api",
                       "learning-center/guides/multi-part_jobs",
                       "learning-center/guides/ai"
                     ]
@@ -163,11 +183,11 @@
                 ]
               },
               {
-                "group": "Security",
+                "group": "Use Cases",
                 "pages": [
-                  "developer-tools/security/authentication",
-                  "developer-tools/security/account-token",
-                  "developer-tools/security/roles-and-permissions"
+                  "learning-center/use-cases/portal",
+                  "learning-center/use-cases/headless",
+                  "learning-center/use-cases/projects"
                 ]
               }
             ]
@@ -211,21 +231,7 @@
         "version": "v2",
         "href": "https://flatfile.com/versioned-docs/2.0"
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "API Reference",
-          "href": "https://reference.flatfile.com",
-          "icon": "asterisk"
-        },
-        {
-          "anchor": "Join Our Community",
-          "href": "https://flatfile.com/join-slack/",
-          "icon": "slack"
-        }
-      ]
-    }
+    ]
   },
   "styling": {
     "codeblocks": "system"
@@ -257,13 +263,12 @@
       {
         "label": "Create Account",
         "href": "https://flatfile.com/account/sign-up/"
+      },
+      {
+        "label": "Join Our Community",
+        "href": "https://flatfile.com/join-slack/"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Sign In",
-      "href": "https://platform.flatfile.com/oauth/dashboard"
-    }
+    ]
   },
   "search": {
     "prompt": "Ask any question"

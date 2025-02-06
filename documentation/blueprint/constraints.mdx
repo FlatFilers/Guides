@@ -1,16 +1,15 @@
 ---
 title: "Constraints"
-description: "System level validation rules"
-icon: "spell-check"
+description: "system level validation rules"
 ---
 
-## Field-Level Constraints
+## Field-Level
 
 Field-level constraints allow you to indicate additional validations that will be applied to fields of a Sheet. These constraints are in addition to the implicit constraints based on types of data. (eg: String, Number)
 
 For example, a value is required for every record (RequiredConstraint), or every record must contain a unique value for the field (UniqueConstraint).
 
-### Required Constraint
+### Required
 
 Required Constraints indicate that the given field **must** be provided with a non-null value.
 
@@ -32,7 +31,7 @@ Required Constraints indicate that the given field **must** be provided with a n
 ]
 ```
 
-### Unique Constraint
+### Unique
 
 Unique Constraints indicate that the given field value must only appear **once** in all the values for that field.
 
@@ -57,7 +56,7 @@ Unique Constraints indicate that the given field value must only appear **once**
 ]
 ```
 
-### Computed Constraint
+### Computed
 
 The computed constraint hides the given field from the mapping process, so your users will not be able to map incoming columns to this field. 
 

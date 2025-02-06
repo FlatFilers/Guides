@@ -1,7 +1,6 @@
 ---
 title: "Relationships"
-description: Referencing data in other Sheets
-icon: "link"
+description: "referencing data in other Sheets"
 ---
 
 The relationship defines a reference to another Sheet, similar to a Foreign Key.
@@ -9,16 +8,14 @@ Links should be established automatically by the mapping engine (the logic that
 creates a mapping plan automatically when a user maps their data into a workbook)
 or similar upon an evaluation of unique or similar columns between datasets.
 
-## Configuration Options
+## Options
 
 - **ref** - Full path reference to another Sheet/table configuration. Must be in
 the same Workbook
 - **relationship** - The type of relationship this defines. Currently, only
 `has-one` is supported
 
-## Usage
-
-### Inheritance
+## Inheritance
 
 This example introduces two fields linked by a relationship, inheriting the
 respective email addresses of the father and mother from another Sheet.
@@ -50,7 +47,7 @@ respective email addresses of the father and mother from another Sheet.
 ```
 
 
-### Lookups
+## Lookups
 
 This example mimics a vlookup operation by fetching a value from a linked record
 and applying it to a designated field in the original record.

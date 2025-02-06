@@ -1,7 +1,6 @@
 ---
 title: "Access"
-description: "Controlling user interactions with your Sheets and fields"
-icon: 'eye-slash'
+description: "control user interactions with your data"
 ---
 
 # Sheet level access
@@ -10,7 +9,7 @@ icon: 'eye-slash'
 With `access` you can control Sheet-level access for users. 
 </ParamField>
 
-## `"*"` _(default)_
+### `"*"` _(default)_
 A user can use all access actions to this Sheet
 
 <Warning>
@@ -18,19 +17,19 @@ Warning: If you use `"*"` access control, users will gain new functionalities as
 </Warning>
 
   
-## `"add"`
+### `"add"`
 A user can add a record(s) to the Sheet
 
-## `"delete"`
+### `"delete"`
 A user can delete record(s) from the Sheet
 
-## `"edit"`
+### `"edit"`
 A user can edit records (field values) in the Sheet
   
-## `"import"`
+### `"import"`
 A user can import CSVs to this Sheet
 
-## `<empty>`
+### `<empty>`
 If no parameters are specified in the access array, sheet-level readOnly access will be applied. No data can be added, edited, imported, or removed. 
 
 
@@ -52,7 +51,9 @@ If no parameters are specified in the access array, sheet-level readOnly access 
 
 
 
-# Field-level access via `readonly`
+# Field-level access
+
+### `readonly`
 
 On a field level you can restrict a user's interaction with the data to `readonly`. This feature is useful if you're inviting others to view uploaded data, but do not want to allow them to edit that field. See the example in context below:
 

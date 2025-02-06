@@ -1,0 +1,42 @@
+---
+title: "Field Options"
+description: "configurable properties for a Field"
+---
+
+<ParamField path="key" type="string" required>
+  The system name of this field. Primarily informs JSON and egress structures.
+</ParamField>
+
+<ParamField path="type" required>
+  One of `string`, `number`, `boolean`, `date`, `enum`, `reference`. Defines the
+  handling of this property. See [Field Types](./field-types) for more information.
+</ParamField>
+
+<ParamField path="label" default="key" type="string">
+  A user-facing descriptive label designed to be displayed in the UI such as a
+  table header.
+</ParamField>
+
+<ParamField path="description" type="string">
+  A long form description of the property intended to be displayed to an end
+  user.
+</ParamField>
+
+<ParamField path="constraints" default="[]" type="array">
+  An array of system level Validation Rules meant to be applied after hooks are
+  run.
+</ParamField>
+
+<ParamField path="config" default="{}" type="object">
+  Configuration relevant to the type of column. See property documentation
+  below.
+</ParamField>
+
+<ParamField path="multi" default="false" type="boolean">
+  Will allow multiple values and store / provide the values in an array if set.
+  Not all field types support arrays.
+</ParamField>
+
+<ParamField path="meta" default="{}" type="object">
+  Arbitrary object of values to pass through to hooks and egress
+</ParamField>

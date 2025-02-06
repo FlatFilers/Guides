@@ -1,45 +1,7 @@
 ---
-title: "Sheet options"
-description: Configure the basic behavior of your Sheet
-icon: "file-spreadsheet"
+title: "Sheet Options"
+description: "configurable properties for a Sheet"
 ---
-
-Sheets have some basic options that determine their behavior.
-
-<RequestExample>
-```json Blueprint Example
-{
-  "sheets": [
-    {
-      "name": "Products",
-      "description": "A list of products available for sale",
-      "slug": "products",
-      "readOnly": false,
-      "allowAdditionalFields": false,
-      "access": ["add", "edit"],
-      "constraints": [{ name: "constraint name", fields: ["field_key_one", "field_key_two"], type: "unique", strategy: "concat"}],
-      "fields": [
-        {
-          "key": "code",
-          "label": "Product Code",
-          "type": "string"
-        },
-        {
-          "key": "description",
-          "type": "string"
-        },
-        {
-          "key": "price",
-          "type": "number"
-        }
-      ],
-      "actions": [],
-      "metadata": {},
-    }
-  ]
-}
-```
-</RequestExample>
 
 <ParamField path="name" type="string" required>
   The name of your Sheet as it will appear to your end users.
@@ -106,3 +68,7 @@ Sheets have some basic options that determine their behavior.
   {""}
   Learn more about [Constraints](./constraints).
 </ParamField>
+
+
+
+
