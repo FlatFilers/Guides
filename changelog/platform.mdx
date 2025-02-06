@@ -4,7 +4,145 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+## February 2025
+
+### February 04, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@a372b5a
+      The release includes the following updates:
+      
+      Records with readonly configurations are now handled differently in the replaceRecords operation. A new option called excludeReadOnly has been introduced to control whether readonly records or fields should be skipped or replaced. If excludeReadOnly is set to true, records with a readonly config or fields marked as readonly will not be replaced during the replaceRecords operation. If excludeReadOnly is false or not provided, readonly records and fields will be replaced as before.
+      
+      The findAndReplaceRecords method in the WorkbooksService now checks if the field being replaced is readonly and throws an error if excludeReadOnly is set to true, preventing modification of readonly fields.
+      
+      Several new tests have been added to validate the behavior of the replaceRecords operation with readonly records and fields, covering scenarios with excludeReadOnly set to true and false.
+      
+      The SearchRecordsOptions and GetCellValuesOptions interfaces have been updated to include the new excludeReadOnly option.
+      
+      Example usage:
+      
+      ```typescript
+      // Replace non-readonly records or fields
+      const records = await wb.op.replaceRecords({
+        sheetId: wb.contacts.id,
+        options: {},
+        find: 'John',
+        replace: 'Jonathan',
+        field: { key: 'firstName' },
+        legacyReplace: false,
+        actorId: UserId.make(),
+      })
+      
+      // Skip readonly records or fields
+      const records = await wb.op.replaceRecords({
+        sheetId: wb.contacts.id,
+        options: { excludeReadOnly: true },
+        find: 'John',
+        replace: 'Jonathan',
+        field: { key: 'firstName' },
+        legacyReplace: false,
+        actorId: UserId.make(),
+      })
+      ```
+    </div>
+  </div>
+</div>
+
 ## January 2025
+
+### January 31, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@b006b25
+         Added support for:
+           - Spanish (es-419)
+           - Malay (ms)
+           - Dutch (nl)
+           - Polish (pl)
+           - Swedish (sv)
+           - Thai (th)
+           - Chinese Traditional (zh-hant)
+           - Chinese Traditional Hong Kong (zh-hant-HK)
+        
+      
+    </div>
+  </div>
+</div>
+
+### January 30, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      Namespace modification is now supported via API only. Other app fields remain editable via the UI but the ability to edit a namespace has been removed post-creation.
+    </div>
+  </div>
+</div>
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/spaces.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      spaces-ui@00a7eba
+      The release notes include the following changes:
+      
+      Fixes bug where long document titles would overlap the page header.
+    </div>
+  </div>
+</div>
+
+### January 23, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      api@6186151
+      The release notes now include the following updates:
+      
+      When clearing a column in a job operation, a snapshot of the sheet will be taken before the column is cleared. This snapshot will be labeled with the specific column key that is being cleared, providing a record of the sheet state before the column clearing operation. The snapshot is taken by calling a new utility function `takeSnapshotForJob`, which handles creating and labeling the snapshot based on the job, sheet, and column details. This allows developers to review the sheet state prior to the column clearing if needed.
+    </div>
+  </div>
+</div>
+
+### January 22, 2025
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      The release adds the ability to mark a space as an app template and filter spaces based on whether they are app templates or not.
+      
+      This can be used with the new space-configure-from-template plugin to create new spaces using an existing space as a template.
+      
+      When using Autobuild for a new App, the space generated during Autobuild will automatically be tagged as the template for that App.
+    </div>
+  </div>
+</div>
+
+<div style={{ display: "table", width: "auto" }}>
+  <div style={{ display: "table-row", width: "auto" }}>
+    <Snippet file="chips/dataxp.mdx" />
+    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
+      
+      The release introduces the ability to filter spaces by the associated app ID when retrieving a list of spaces. A new query parameter `appId` has been added to the `/v1/spaces` endpoint. Developers can now pass the `appId` query parameter to retrieve only the spaces associated with the specified app. For example, `?appId=us_app_123` will return only spaces linked to the app with ID `us_app_123`. If an invalid or non-existent app ID is provided, an empty list will be returned.
+    </div>
+  </div>
+</div>
 
 ### January 13, 2025
 
@@ -12,12 +150,13 @@ icon: "layer-group"
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
+
       api@70e1e81
       The `clearColumnAction` now has a constraint added that checks if the column is enabled before allowing the action to be executed. This ensures that the action can only be performed on columns that are currently enabled, preventing any potential issues or errors that could arise from attempting to clear a disabled column.
     </div>
   </div>
 </div>
+
 
 ### January 06, 2025
 
@@ -26,7 +165,6 @@ icon: "layer-group"
     <Snippet file="chips/spaces.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
-      spaces-ui@3db32fc
       The manual entry and file upload button shown when the workbook is empty have has their max width updated so they can support more text.
     </div>
   </div>
@@ -132,9 +270,9 @@ icon: "layer-group"
   </div>
 </div>
 
-## November 2024
+## November 2024 (1)
 
-### November 13, 2024
+##### November 13, 2024
 
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
@@ -1490,7 +1628,7 @@ icon: "layer-group"
       
       These updates are aimed at enhancing transparency and efficiency, ensuring you’re well-informed throughout the file extraction process.
       
-      [See extractor plugins](../plugins-docs/extractors/)
+      [See extractor plugins](https://flatfile.com/plugins/category/extractors/)
       
     </div>
   </div>
