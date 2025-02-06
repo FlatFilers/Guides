@@ -203,14 +203,16 @@
   font-display: swap;
 }
 
-/* Square all corners */
-* {
-  border-radius: 0 !important;
-}
-
+/* Light mode overrides */
 :root {
-  --gray-50: 0 0 0;
-  --gray-100: 0 0 0;
+  --primary: 0 0 0;
+  --background-light: 255 255 255;
+  --text-light: 0 0 0;
+  --border-light: rgba(0, 0, 0, 0.1);
+
+  /* Light mode grays */
+  /* --gray-50: 0 0 0; */
+  /* --gray-100: 0 0 0; */
   --gray-200: 0 0 0;
   --gray-300: 0 0 0;
   --gray-400: 0 0 0;
@@ -222,7 +224,14 @@
   --gray-950: 0 0 0;
 }
 
+/* Dark mode overrides */
 :root.dark {
+  --primary: 255 255 255;
+  --background-dark: 0 0 0;
+  --text-dark: 255 255 255;
+  --border-dark: rgba(255, 255, 255, 0.1);
+
+  /* Dark mode grays */
   --gray-50: 255 255 255;
   --gray-100: 255 255 255;
   --gray-200: 255 255 255;
@@ -236,6 +245,32 @@
   --gray-950: 255 255 255;
 }
 
-.fill-primary {
-  fill: #fff;
+/* Square all corners */
+* {
+  border-radius: 0 !important;
 }
+
+/* Hide dark mode toggle border*/
+button[aria-label="Toggle dark mode"] {
+  border: none;
+  background-color: transparent;
+}
+
+/* Hide scrollbar */
+* {
+  -ms-overflow-style: none !important;  
+  scrollbar-width: none !important;
+}
+
+/* Change font weight for text-2xl */
+.text-2xl {
+  font-weight: 450 !important;
+}
+
+/* Hide .h-5 elements */
+.h-5 {
+  display: none;
+}
+
+
+

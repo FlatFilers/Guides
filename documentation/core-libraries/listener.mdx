@@ -1,0 +1,43 @@
+---
+title: "Listener"
+icon: "ear"
+description: "@flatfile/listener"
+---
+
+The Flatfile Listener is a core building block of the Flatfile platform. 
+Listening and responding to events is what enables developers to build powerful integrations with Flatfile.
+This package enables you to handle all the events in your data pipeline — from the moment data arrives to its final transformation. Think of it as your event command center.
+
+### Basic Usage
+
+```typescript
+import { Listener } from "@flatfile/listener"
+
+export default (listener: Listener) => {
+  listener.on('**', (event) => {
+    console.log(event)
+  })
+}
+```
+
+## Core Components
+Let's explore the building blocks that make the Listener powerful.
+
+
+### Working with Records
+
+These classes give you full control over your data, letting you read, modify, and validate records with ease.
+
+### Managing Sessions
+
+Keep tabs on everything happening in your workspace — from active uploads to schema changes.
+
+### Event Handling
+
+Catch and respond to any action in your data pipeline. Whether it's new data arriving or a validation completing, you're in control.
+
+### Authentication
+
+Handle API calls securely with built-in authentication and header management.
+
+

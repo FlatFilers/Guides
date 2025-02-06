@@ -1,0 +1,148 @@
+
+{
+    "tab": "Guides",
+    "groups": [
+      {
+        "group": "By Feature",
+        "pages": [
+          "guides/handling-data",
+          "guides/actions",
+          "guides/dynamic-configurations",
+          "guides/namespaces",
+          "guides/metadata",
+          "guides/egress",
+          "guides/theming",
+          "guides/guest_sidebar",
+          "guides/documents",
+          "guides/secrets",
+          "guides/automap",
+          "guides/localization",
+          "guides/additional-fields",
+          "guides/flatfile_query_language",
+          "guides/data-retention",
+          "guides/api",
+          "guides/multi-part_jobs",
+          "guides/ai"
+        ]
+      },
+      {
+        "group": "By Integration",
+        "pages": [
+          "guides/bubble-io"
+        ]
+      }
+    ]
+  },
+  {
+    "tab": "Blueprint",
+    "groups": [
+      {
+        "group": "Blueprint",
+        "pages": [
+          "blueprint/overview",
+          "blueprint/sheet-options",
+          "blueprint/field-types",
+          "blueprint/constraints",
+          "blueprint/relationships",
+          "blueprint/access"
+        ]
+      }
+    ]
+  },
+  {
+    "tab": "Plugins",
+    "href": "https://flatfile.com/plugins"
+  },
+  {
+    "tab": "CLI",
+    "groups": [
+      {
+        "group": "Overview",
+        "pages": [
+          {
+            "group": "Developing with Flatfile",
+            "icon": "square-terminal",
+            "pages": [
+              "developer-tools/developing/running-local",
+              "developer-tools/developing/check-for-agents"
+            ]
+          },
+          "developer-tools/deploying"
+        ]
+      },
+      {
+        "group": "Core Architecture",
+        "pages": [
+          "developer-tools/environment",
+          "developer-tools/spaces"
+        ]
+      },
+      {
+        "group": "Security",
+        "pages": [
+          "developer-tools/security/authentication",
+          "developer-tools/security/account-token",
+          "developer-tools/security/roles-and-permissions"
+        ]
+      },
+      {
+        "group": "Core libraries",
+        "pages": [
+          "developer-tools/core-libraries/flatfile",
+          "developer-tools/core-libraries/listener",
+          "developer-tools/versioning"
+        ]
+      },
+      {
+        "group": "APIs",
+        "pages": [
+          "developer-tools/core-libraries/api",
+          "developer-tools/core-libraries/api-python",
+          "developer-tools/core-libraries/api-go",
+          "developer-tools/core-libraries/api-java"
+        ]
+      },
+      {
+        "group": "Embedded Wrappers",
+        "pages": [
+          "developer-tools/core-libraries/wrappers/vanilla",
+          "developer-tools/core-libraries/wrappers/react",
+          "developer-tools/core-libraries/wrappers/angular",
+          "developer-tools/core-libraries/wrappers/vuejs"
+        ]
+      },
+      {
+        "group": "Mapping",
+        "pages": [
+          "developer-tools/mapping-libraries/flatfile-mapping-python"
+        ]
+      }
+    ]
+  },
+  {
+    "tab": "Upgrade",
+    "groups": [
+      {
+        "group": "Upgrade",
+        "pages": [
+          "upgrade/overview"
+        ]
+      },
+      {
+        "group": "Portal - version 2",
+        "pages": [
+          "upgrade/v2_upgrade",
+          "upgrade/v2_upgrade_concepts",
+          "upgrade/v2_repo"
+        ]
+      },
+      {
+        "group": "Portal - version 3",
+        "pages": [
+          "upgrade/v3_upgrade",
+          "upgrade/v3_dxp_configure",
+          "upgrade/v3_repo"
+        ]
+      }
+    ]
+  }

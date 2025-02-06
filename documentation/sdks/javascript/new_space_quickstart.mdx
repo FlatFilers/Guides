@@ -1,0 +1,115 @@
+---
+title: 'Quickstart'
+description: 'create a new Space every time Flatfile is opened'
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+
+## Before you begin
+
+<Snippet file="shared/pk_needed.mdx" />
+
+## Prepare your project
+
+### Create your file structure
+
+Setup your app to look something like this:
+
+```
+├── public/
+   └── index.html
+   └── styles.css
+├── src/
+   └── blueprint.js
+```
+
+In this file structure, your app should have two main directories, `public` and `src`.
+
+The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the `styles.css` file for styling the iframe.
+
+The `src` directory contains the main components and logic of the application, including the `blueprint.js` file, which defines your schema.
+
+## Build your importer
+
+### 1. Initialize Flatfile
+
+Initialize Flatfile to open in a modal. Pass in your `publishableKey` and a new Space will be created on each page load. Also, add the content here to your `styles.css`.
+
+<CodeGroup>
+
+```html public/index.html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello, world!</title>
+    <script src="https://unpkg.com/@flatfile/javascript/dist/index.js"></script>
+    <script src="../src/blueprint.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+    <script>
+      window.onload = function () {
+        FlatFileJavaScript.startFlatfile({
+          publishableKey: 'pk_1234',
+          namespace: 'portal',
+          onSubmit: async ({ sheet }) => {
+            const data = await sheet.allData();
+            console.log('onSubmit', data);
+          },
+          onRecordHook: (record) => {
+            const firstName = record.get('firstName');
+            console.log({ firstName });
+            record.set('lastName', 'Rock');
+            return record;
+          },
+          themeConfig: {
+            root: {
+              primaryColor: 'red',
+              textColor: 'white',
+              logo: 'https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg',
+            },
+          },
+        });
+      };
+    </script>
+  </head>
+</html>
+```
+
+<Snippet file="shared/iframeStyles.mdx" />
+
+</CodeGroup>
+
+### 2. Run in browser
+
+Now, open `index.html` in a browser. You should see that Flatfile opens on page load and an empty Space gets created.
+
+<Snippet file="shared/embedded_listener_quickstart.mdx" />
+
+### 7. Customize
+
+You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+
+## Example Projects
+
+Find these Javascript example projects in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="create-flatfile-javascript-simplified"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-javascript-simplified"
+  >
+    Clone the simplified Flatfile Javascript tutorial using a CDN here.
+  </Card>
+  <Card
+    title="create-flatfile-javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/create-flatfile-javascript"
+  >
+    Want to get started? Clone the Flatfile JavaScript tutorial here.
+  </Card>
+</CardGroup>

@@ -13,127 +13,161 @@
       {
         "version": "latest",
         "tabs": [
+
           {
             "tab": "Documentation",
             "groups": [
               {
-                "group": "Documentation",
-                "pages": [
-                  "overview",
-                  "starter-projects"
-                ]
+                "group": "Welcome To Flatfile",
+                "pages": [ "home" ]
               },
               {
-                "group": "Platform Apps",
+                "group": "APIs",
                 "pages": [
+                  "documentation/api",
                   {
-                    "group": "Portal",
-                    "icon": "person-to-portal",
+                    "group": "Authentication",
                     "pages": [
-                      "apps/embedding/overview",
-                      {
-                        "group": "Javascript",
-                        "icon": "js",
-                        "pages": [
-                          "apps/embedding/javascript/guide",
-                          "apps/embedding/javascript/new_space_quickstart",
-                          {
-                            "group": "Advanced",
-                            "icon": "settings",
-                            "pages": [
-                              "apps/embedding/javascript/new_space",
-                              "apps/embedding/javascript/reuse_space"
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "group": "React",
-                        "icon": "react",
-                        "pages": [
-                          "apps/embedding/react/guide",
-                          "apps/embedding/react/new_space_quickstart",
-                          "apps/embedding/react/components",
-                          {
-                            "group": "Legacy",
-                            "icon": "settings",
-                            "pages": [
-                              "apps/embedding/react/legacy"
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "group": "Vue.js",
-                        "icon": "vuejs",
-                        "pages": [
-                          "apps/embedding/vue/guide",
-                          "apps/embedding/vue/new_space",
-                          {
-                            "group": "Advanced",
-                            "icon": "settings",
-                            "pages": [
-                              "apps/embedding/vue/reuse_space"
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "group": "Angular",
-                        "icon": "angular",
-                        "pages": [
-                          "apps/embedding/angular/guide",
-                          "apps/embedding/angular/new_space_quickstart",
-                          {
-                            "group": "Advanced",
-                            "icon": "settings",
-                            "pages": [
-                              "apps/embedding/angular/new_space",
-                              "apps/embedding/angular/reuse_space"
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "group": "Reference",
-                        "icon": "asterisk",
-                        "pages": [
-                          "apps/embedding/reference/simple",
-                          "apps/embedding/reference/common",
-                          "apps/embedding/reference/advanced"
-                        ]
-                      }
-                    ]
-                  },
-                  "apps/projects/overview",
-                  "apps/workbooks",
-                  {
-                    "group": "Build an app",
-                    "icon": "grid-2",
-                    "pages": [
-                      "apps/custom/tutorial-landing",
-                      "apps/custom/meet-the-listener",
-                      "apps/custom/meet-the-workbook",
-                      "apps/custom/add-data-transformation",
-                      "apps/custom/submit-action",
-                      "apps/custom/deploying"
+                      "documentation/authentication/authentication",
+                      "documentation/authentication/account-token",
+                      "documentation/authentication/roles-and-permissions"
                     ]
                   }
                 ]
               },
               {
-                "group": "Orchestration",
+                "group": "Core Libraries",
                 "pages": [
-                  "orchestration/listeners",
-                  "orchestration/events",
-                  "orchestration/actions",
-                  "orchestration/jobs"
+                  "documentation/core-libraries/toolkit",
+                  "documentation/core-libraries/listener",
+                  {
+                    "group": "CLI",
+                    "icon": "square-terminal",
+                    "pages": [
+                      "documentation/core-libraries/cli/develop",
+                      "documentation/core-libraries/cli/deploy"
+                    ]
+                  }
+                 
                 ]
               },
               {
-                "group": "Reference",
+                "group": "SDKs",
                 "pages": [
-                  "reference/icons"
+                  {
+                    "group": "React",
+                    "icon": "react",
+                    "pages": [
+                      "documentation/sdks/react/new_space_quickstart",
+                      "documentation/sdks/react/components",
+                      "documentation/sdks/react/legacy"
+                    ]
+                  },
+                  {
+                    "group": "Javascript",
+                    "icon": "js",
+                    "pages": [
+                      "documentation/sdks/javascript/new_space_quickstart",
+                      "documentation/sdks/javascript/new_space",
+                      "documentation/sdks/javascript/reuse_space"
+                    ]
+                  },
+                  {
+                    "group": "Vue.js",
+                    "icon": "vuejs",
+                    "pages": [
+                      "documentation/sdks/vue/new_space",
+                      "documentation/sdks/vue/reuse_space"
+                    ]
+                  },
+                  {
+                    "group": "Angular",
+                    "icon": "angular",
+                    "pages": [
+                      "documentation/sdks/angular/new_space_quickstart",
+                      "documentation/sdks/angular/new_space",
+                      "documentation/sdks/angular/reuse_space"
+                        ]
+                  },
+                  {
+                    "group": "Reference",
+                    "icon": "asterisk",
+                    "pages": [
+                      "documentation/sdks/reference/simple",
+                      "documentation/sdks/reference/common",
+                      "documentation/sdks/reference/advanced"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Learning Center",
+            "groups": [
+              {
+                "group": "Core Architecture",
+                "pages": [
+                  "learning-center/environment",
+                  "learning-center/spaces"
+                ]
+              },
+              {
+                "group": "Tutorials",
+                "pages": [
+                  "quickstart",
+                  {
+                    "group": "10 Minutes",
+                    "pages": [
+                      "learning-center/apps/custom/tutorial-landing",
+                      "learning-center/apps/custom/meet-the-listener",
+                      "learning-center/apps/custom/meet-the-workbook",
+                      "learning-center/apps/custom/add-data-transformation",
+                      "learning-center/apps/custom/submit-action",
+                      "learning-center/apps/custom/deploying"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Guides",
+                "pages": [
+                  {
+                    "group": "By Feature",
+                    "pages": [
+                      "learning-center/guides/handling-data",
+                      "learning-center/guides/actions",
+                      "learning-center/guides/dynamic-configurations",
+                      "learning-center/guides/namespaces",
+                      "learning-center/guides/metadata",
+                      "learning-center/guides/egress",
+                      "learning-center/guides/theming"
+                    ]
+                  },
+                  {
+                    "group": "Advanced Topics",
+                    "pages": [
+                      "learning-center/guides/guest_sidebar",
+                      "learning-center/guides/documents",
+                      "learning-center/guides/secrets",
+                      "learning-center/guides/automap",
+                      "learning-center/guides/localization",
+                      "learning-center/guides/additional-fields",
+                      "learning-center/guides/flatfile_query_language",
+                      "learning-center/guides/data-retention",
+                      "learning-center/guides/api",
+                      "learning-center/guides/multi-part_jobs",
+                      "learning-center/guides/ai"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Security",
+                "pages": [
+                  "developer-tools/security/authentication",
+                  "developer-tools/security/account-token",
+                  "developer-tools/security/roles-and-permissions"
                 ]
               }
             ]
@@ -164,220 +198,6 @@
                   "changelog/sdks/wrappers/angular",
                   "changelog/sdks/wrappers/vue"
                 ]
-              },
-              {
-                "group": "Plugins",
-                "pages": [
-                  {
-                    "group": "Extractors",
-                    "pages": [
-                      "changelog/sdks/plugins/extractors/xlsx-extractor",
-                      "changelog/sdks/plugins/extractors/json-extractor",
-                      "changelog/sdks/plugins/extractors/xml-extractor",
-                      "changelog/sdks/plugins/extractors/zip-extractor",
-                      "changelog/sdks/plugins/extractors/delimiter-extractor",
-                      "changelog/sdks/plugins/extractors/pdf-extractor"
-                    ]
-                  },
-                  {
-                    "group": "Transform",
-                    "pages": [
-                      "changelog/sdks/plugins/transform/record-hook",
-                      "changelog/sdks/plugins/transform/autocast",
-                      "changelog/sdks/plugins/transform/dedupe"
-                    ]
-                  },
-                  {
-                    "group": "Automation",
-                    "pages": [
-                      "changelog/sdks/plugins/automations/automap"
-                    ]
-                  },
-                  {
-                    "group": "Export",
-                    "pages": [
-                      "changelog/sdks/plugins/export/export-workbook",
-                      "changelog/sdks/plugins/export/webhook-egress"
-                    ]
-                  },
-                  {
-                    "group": "Schemas",
-                    "pages": [
-                      "changelog/sdks/plugins/schemas/json-schema",
-                      "changelog/sdks/plugins/schemas/yaml-schema",
-                      "changelog/sdks/plugins/schemas/sql-ddl-converter",
-                      "changelog/sdks/plugins/schemas/openapi-schema"
-                    ]
-                  },
-                  {
-                    "group": "Migrations",
-                    "pages": [
-                      "changelog/sdks/plugins/migrations/dxp-configure"
-                    ]
-                  },
-                  {
-                    "group": "Core",
-                    "pages": [
-                      "changelog/sdks/plugins/core/job-handler",
-                      "changelog/sdks/plugins/core/space-configure"
-                    ]
-                  },
-                  {
-                    "group": "Utils",
-                    "pages": [
-                      "changelog/sdks/plugins/utils/extractor",
-                      "changelog/sdks/plugins/utils/file-buffer",
-                      "changelog/sdks/plugins/utils/response-rejection"
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Guides",
-            "groups": [
-              {
-                "group": "By Feature",
-                "pages": [
-                  "guides/handling-data",
-                  "guides/actions",
-                  "guides/dynamic-configurations",
-                  "guides/namespaces",
-                  "guides/metadata",
-                  "guides/egress",
-                  "guides/theming",
-                  "guides/guest_sidebar",
-                  "guides/documents",
-                  "guides/secrets",
-                  "guides/automap",
-                  "guides/localization",
-                  "guides/additional-fields",
-                  "guides/flatfile_query_language",
-                  "guides/data-retention",
-                  "guides/api",
-                  "guides/multi-part_jobs",
-                  "guides/ai"
-                ]
-              },
-              {
-                "group": "By Integration",
-                "pages": [
-                  "guides/bubble-io"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Blueprint",
-            "groups": [
-              {
-                "group": "Blueprint",
-                "pages": [
-                  "blueprint/overview",
-                  "blueprint/sheet-options",
-                  "blueprint/field-types",
-                  "blueprint/constraints",
-                  "blueprint/relationships",
-                  "blueprint/access"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Plugins",
-            "href": "https://flatfile.com/plugins"
-          },
-          {
-            "tab": "CLI",
-            "groups": [
-              {
-                "group": "Overview",
-                "pages": [
-                  {
-                    "group": "Developing with Flatfile",
-                    "icon": "square-terminal",
-                    "pages": [
-                      "developer-tools/developing/running-local",
-                      "developer-tools/developing/check-for-agents"
-                    ]
-                  },
-                  "developer-tools/deploying"
-                ]
-              },
-              {
-                "group": "Core Architecture",
-                "pages": [
-                  "developer-tools/environment",
-                  "developer-tools/spaces"
-                ]
-              },
-              {
-                "group": "Security",
-                "pages": [
-                  "developer-tools/security/authentication",
-                  "developer-tools/security/account-token",
-                  "developer-tools/security/roles-and-permissions"
-                ]
-              },
-              {
-                "group": "Core libraries",
-                "pages": [
-                  "developer-tools/core-libraries/flatfile",
-                  "developer-tools/core-libraries/listener",
-                  "developer-tools/versioning"
-                ]
-              },
-              {
-                "group": "APIs",
-                "pages": [
-                  "developer-tools/core-libraries/api",
-                  "developer-tools/core-libraries/api-python",
-                  "developer-tools/core-libraries/api-go",
-                  "developer-tools/core-libraries/api-java"
-                ]
-              },
-              {
-                "group": "Embedded Wrappers",
-                "pages": [
-                  "developer-tools/core-libraries/wrappers/vanilla",
-                  "developer-tools/core-libraries/wrappers/react",
-                  "developer-tools/core-libraries/wrappers/angular",
-                  "developer-tools/core-libraries/wrappers/vuejs"
-                ]
-              },
-              {
-                "group": "Mapping",
-                "pages": [
-                  "developer-tools/mapping-libraries/flatfile-mapping-python"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Upgrade",
-            "groups": [
-              {
-                "group": "Upgrade",
-                "pages": [
-                  "upgrade/overview"
-                ]
-              },
-              {
-                "group": "Portal - version 2",
-                "pages": [
-                  "upgrade/v2_upgrade",
-                  "upgrade/v2_upgrade_concepts",
-                  "upgrade/v2_repo"
-                ]
-              },
-              {
-                "group": "Portal - version 3",
-                "pages": [
-                  "upgrade/v3_upgrade",
-                  "upgrade/v3_dxp_configure",
-                  "upgrade/v3_repo"
-                ]
               }
             ]
           }
@@ -400,7 +220,7 @@
           "icon": "asterisk"
         },
         {
-          "anchor": "Join our community",
+          "anchor": "Join Our Community",
           "href": "https://flatfile.com/join-slack/",
           "icon": "slack"
         }
@@ -435,23 +255,24 @@
   "navbar": {
     "links": [
       {
-        "label": "Create account",
+        "label": "Create Account",
         "href": "https://flatfile.com/account/sign-up/"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Sign in",
+      "label": "Sign In",
       "href": "https://platform.flatfile.com/oauth/dashboard"
     }
   },
   "search": {
-    "prompt": "Ask any question (ChatGPT powered)"
+    "prompt": "Ask any question"
   },
   "footer": {
     "socials": {
       "website": "https://flatfile.com",
-      "github": "https://github.com/FlatFilers"
+      "github": "https://github.com/FlatFilers",
+      "slack": "https://flatfile.com/join-slack/"
     }
   },
   "integrations": {
