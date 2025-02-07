@@ -1,9 +1,6 @@
 ### January 27, 2025
 ## dataxp
 
-api@e28afe2
-The provided diff includes the following changes:
-
 The order of imports from the `@flatfile/api` module has been updated. The `RecordUpdates` and `Success` types are now imported in a different order.
 
 The implementation of the `clearColumn` method has been refactored. Instead of using the `map` and `filter` array methods, it now uses the `reduce` method to generate the `recordsUpdates` array. The new implementation checks if the field value exists and if the field is not read-only before clearing it. This change likely improves performance and readability.
