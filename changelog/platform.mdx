@@ -25,9 +25,6 @@ true, preventing modification of readonly fields.
     <Snippet file="chips/dataxp.mdx" />
     <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
       
-      api@e28afe2
-      The provided diff includes the following changes:
-      
       The order of imports from the `@flatfile/api` module has been updated. The `RecordUpdates` and `Success` types are now imported in a different order.
       
       The implementation of the `clearColumn` method has been refactored. Instead of using the `map` and `filter` array methods, it now uses the `reduce` method to generate the `recordsUpdates` array. The new implementation checks if the field value exists and if the field is not read-only before clearing it. This change likely improves performance and readability.
@@ -37,6 +34,7 @@ true, preventing modification of readonly fields.
       Additionally, the code now handles read-only fields correctly. If a field is marked as read-only in the `RecordConfig`, its value will not be cleared.
       
       These changes improve the functionality, performance, and messaging of the `clearColumn` logic without introducing any breaking changes to the external interface.
+      
     </div>
   </div>
 </div>
