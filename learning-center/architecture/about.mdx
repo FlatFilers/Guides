@@ -4,14 +4,7 @@ description: "the anatomy of an Flatfile"
 mode: "wide"
 ---
 
-Whether you're handling customer data imports, migrating between systems, or
-building data transformation workflows, Flatfile provides the tools and
-flexibility to make data exchange seamless and reliable.
-
-Flatfile is a powerful data exchange platform that simplifies the complex
-process of importing, validating, and transforming data. Built for developers,
-it provides a flexible and robust infrastructure to handle data onboarding
-workflows at scale.
+Our platform follows a hierarchical structure designed to provide secure, organized access to various resources and automation capabilities. This document outlines the core components and their relationships.
 
 ```mermaid
 flowchart TD
@@ -60,18 +53,27 @@ flowchart TD
     style AGENT fill:none,stroke:#333
 ```
 
-## Core Features
+### App
 
-- **Workbook-Based Architecture**: Organize your data imports into workbooks
-  containing multiple sheets, providing a familiar spreadsheet-like interface
-  for end users while maintaining powerful programmatic control.
+Apps are a concept for organizing Spaces. They exist across environments, supporting a a development pipeline moving from development, to staging to production.
 
-- **Validation & Transformation**: Define custom constraints and transformations
-  to ensure data quality and consistency before it reaches your systems.
+### Environment
+An Environment serves as a container that encompasses three main component groups:
 
-- **Real-Time Collaboration**: Enable multiple users to work simultaneously on
-  data imports with built-in collaboration features and role-based access
-  control.
+- **Spaces**: Micro-applications that handle content and data storage
+- **Agents**: Listeners securely deployed on the Flatfile Cloud that manage automation and job execution
+- **Secrets**: Provide secure credential management
 
-- **Extensible API**: Access all platform functionality through a comprehensive
-  REST API, with official SDKs available for multiple languages.
+### Spaces
+A space is a micro-applications, each with their own database, filestore, and auth.
+
+- **Files**: Basic file storage
+- **Documents**: Structured document storage
+- **Workbooks**: Contain one or more Sheets
+- **Sheets**: Individual data sheets within Workbooks
+
+### Agents
+Agents are functions customized by you to listen for events and execute jobs. Manage agents with our [CLI](/documentation/core-libraries/cli) and deploy them to the Flatfile Cloud for secure handling of your jobs and events.
+
+- **Agents**: Main automation workers
+- **Jobs**: Individual tasks executed by Agents
