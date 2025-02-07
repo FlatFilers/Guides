@@ -6,17 +6,24 @@ icon: "palette"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-Flatfile supports modifying most UI elements including colors, fonts, borders, padding, and
-more via the <Tooltip tip="A micro-application...">[Space](../developer-tools/spaces)</Tooltip> endpoint.
+Flatfile supports modifying most UI elements including colors, fonts, borders,
+padding, and more via the
 
-1. Start by simply updating `theme.root.primaryColor` and `theme.sidebar.logo` when calling `spaces.update()`.
+<Tooltip tip="A micro-application...">
+  [Space](../developer-tools/spaces)
+</Tooltip>
+endpoint.
+
+1. Start by simply updating `theme.root.primaryColor` and `theme.sidebar.logo`
+   when calling `spaces.update()`.
 2. If needed, you can customize the theme further with additional css variables.
 
 ---
 
 ### Building a theme
 
-Learn how to create a Space with a theme, and update a theme from an Event listener.
+Learn how to create a Space with a theme, and update a theme from an Event
+listener.
 
 <Snippet file="guides/theming/block1.mdx" />
 
@@ -194,68 +201,79 @@ Learn how to create a Space with a theme, and update a theme from an Event liste
   The color of the pill buttons in the toolbar
 </ParamField>
 
-
 ### `theme.email`
-You can theme the guest invite emails as well as guest email verification emails via the properties below. These are sent to a guest when they are invited to a Space via the guest management page in your Space.
-<Info>
-  Email theming is only available on the pro and enterprise plans.
-</Info>
+
+You can theme the guest invite emails as well as guest email verification emails
+via the properties below. These are sent to a guest when they are invited to a
+Space via the guest management page in your Space.
+
+<Info>Email theming is only available on the pro and enterprise plans.</Info>
 
 <ParamField path="logo" type="string">
-The URL of the image displayed at the top of the email
+  The URL of the image displayed at the top of the email
 </ParamField>
 <ParamField path="textColor" type="string">
-The color of the text in the email
+  The color of the text in the email
 </ParamField>
 <ParamField path="titleColor" type="string">
-The color of the title in the email
+  The color of the title in the email
 </ParamField>
 <ParamField path="buttonBgColor" type="string">
-The background color of the button
+  The background color of the button
 </ParamField>
 <ParamField path="buttonTextColor" type="string">
-The text color of the button
+  The text color of the button
 </ParamField>
 <ParamField path="footerTextColor" type="string">
-The text color of the footer text
+  The text color of the footer text
 </ParamField>
 <ParamField path="backgroundColor" type="string">
-The background color of the email
+  The background color of the email
 </ParamField>
 
 #### `theme.email.dark`
-If your default email theme (as set above) is light, we suggest adding a dark mode email theme. Different email providers handle dark and light mode differently. While Apple Mail and some other clients will respect dark mode variables, some email providers do not support dark mode and will display your default theme. We suggest you test your themes across various email clients before going to production to ensure consistent appearance.
+
+If your default email theme (as set above) is light, we suggest adding a dark
+mode email theme. Different email providers handle dark and light mode
+differently. While Apple Mail and some other clients will respect dark mode
+variables, some email providers do not support dark mode and will display your
+default theme. We suggest you test your themes across various email clients
+before going to production to ensure consistent appearance.
 
 <ParamField path="logo" type="string">
-The URL of the image displayed at the top of the email in dark mode
+  The URL of the image displayed at the top of the email in dark mode
 </ParamField>
 <ParamField path="textColor" type="string">
-The color of the text in the email in dark mode
+  The color of the text in the email in dark mode
 </ParamField>
 <ParamField path="titleColor" type="string">
-The color of the title in the email in dark mode
+  The color of the title in the email in dark mode
 </ParamField>
 <ParamField path="buttonBgColor" type="string">
-The background color of the button in dark mode
+  The background color of the button in dark mode
 </ParamField>
 <ParamField path="buttonTextColor" type="string">
-The text color of the button in dark mode
+  The text color of the button in dark mode
 </ParamField>
 <ParamField path="footerTextColor" type="string">
-The text color of the footer text in dark mode
+  The text color of the footer text in dark mode
 </ParamField>
 <ParamField path="backgroundColor" type="string">
-The background color of the email in dark mode
+  The background color of the email in dark mode
 </ParamField>
 
 ## Deprecation Notice
+
 <Info>
   Flatfile's new design system released in Q1 2025 supports a more streamlined experience when configuring theme. The new system
-  accepts a more limited set of properties, but ensures those supplied properties are cohesively applied across the application. 
+  accepts a more limited set of properties, but ensures those supplied properties are cohesively applied across the application.
 
-  As a result, many of the original `theme.root` properties which applied to specific UI elements have been deprecated. We have taken 
-  steps to ensure some level of backwards compatibility for these properties in the new system - however we recommend any usage of these properties
-  be updated to the new system as soon as possible.
+As a result, many of the original `theme.root` properties which applied to
+specific UI elements have been deprecated. We have taken steps to ensure some
+level of backwards compatibility for these properties in the new system -
+however we recommend any usage of these properties be updated to the new system
+as soon as possible.
+
 </Info>
 
 ### `theme.root` [deprecated]
@@ -361,7 +379,6 @@ The background color of the email in dark mode
 <ParamField path="borderColor" type="string" deprecated>
   The color of horizontal rules in Documents.
 </ParamField>
-
 
 ## Example Project
 

@@ -23,7 +23,8 @@ and a production environment are set up.
 
 ## Creating an Environment
 
-Your `publishableKey` and `secretKey` are specific to an environment therefore to create a new Environment, you'll have to use a personal access token.
+Your `publishableKey` and `secretKey` are specific to an environment therefore
+to create a new Environment, you'll have to use a personal access token.
 
 1. Open Settings
 2. Click to Personal Tokens
@@ -33,7 +34,8 @@ Your `publishableKey` and `secretKey` are specific to an environment therefore t
 curl -X POST https://platform.flatfile.com/v1/auth -H 'Content-Type: application/json' -d '{"clientId":"1234-1234", "secret":"1234-1234"}'
 ```
 
-4. The response will include an `accessToken`. You can present that as your **Bearer `token`** in place of the `secretKey`.
+4. The response will include an `accessToken`. You can present that as your
+   **Bearer `token`** in place of the `secretKey`.
 
 [Create an environment](https://platform.flatfile.com/dashboard)
 
@@ -41,18 +43,26 @@ curl -X POST https://platform.flatfile.com/v1/auth -H 'Content-Type: application
 
 Environments support two types of guest authentication:
 
-1. `magic_link`: This method dispatches an email to your guests, which includes a magic link to facilitate login.
-2. `shared_link`: This method transforms the Space URL into a public one, typically used in conjunction with embedded Flatfile.
+1. `magic_link`: This method dispatches an email to your guests, which includes
+   a magic link to facilitate login.
+2. `shared_link`: This method transforms the Space URL into a public one,
+   typically used in conjunction with embedded Flatfile.
 
 ### Additional Info
 
-Should the `guestAuthentication` be left unspecified, both `magic_link` and `shared_link` types are enabled by default.
+Should the `guestAuthentication` be left unspecified, both `magic_link` and
+`shared_link` types are enabled by default.
 
-It's important to note that `guestAuthentication` settings can be applied at both Environment and Space levels. However, in case of any conflicting settings, the authentication type set at the Space level will take precedence over the Environment level setting. This flexibility enables customization based on specific needs, ensuring the right balance of accessibility and security.
+It's important to note that `guestAuthentication` settings can be applied at
+both Environment and Space levels. However, in case of any conflicting settings,
+the authentication type set at the Space level will take precedence over the
+Environment level setting. This flexibility enables customization based on
+specific needs, ensuring the right balance of accessibility and security.
 
 ## Secret and publishable keys
 
-All Accounts have two key types for each environment. Learn when to use each type of key:
+All Accounts have two key types for each environment. Learn when to use each
+type of key:
 
 | Type            | Id                     | Description                                                                                                             |
 | --------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------- |

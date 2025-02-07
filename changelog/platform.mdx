@@ -60,20 +60,17 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      spaces-ui@b006b25
-         Added support for:
-           - Spanish (es-419)
-           - Malay (ms)
-           - Dutch (nl)
-           - Polish (pl)
-           - Swedish (sv)
-           - Thai (th)
-           - Chinese Traditional (zh-hant)
-           - Chinese Traditional Hong Kong (zh-hant-HK)
-        
-      
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      spaces-ui@b006b25 Added support for: - Spanish (es-419) - Malay (ms) -
+      Dutch (nl) - Polish (pl) - Swedish (sv) - Thai (th) - Chinese Traditional
+      (zh-hant) - Chinese Traditional Hong Kong (zh-hant-HK)
     </div>
   </div>
 </div>
@@ -83,9 +80,17 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Namespace modification is now supported via API only. Other app fields remain editable via the UI but the ability to edit a namespace has been removed post-creation.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Namespace modification is now supported via API only. Other app fields
+      remain editable via the UI but the ability to edit a namespace has been
+      removed post-creation.
     </div>
   </div>
 </div>
@@ -93,12 +98,16 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      spaces-ui@00a7eba
-      The release notes include the following changes:
-      
-      Fixes bug where long document titles would overlap the page header.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      spaces-ui@00a7eba The release notes include the following changes: Fixes
+      bug where long document titles would overlap the page header.
     </div>
   </div>
 </div>
@@ -108,12 +117,23 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      api@6186151
-      The release notes now include the following updates:
-      
-      When clearing a column in a job operation, a snapshot of the sheet will be taken before the column is cleared. This snapshot will be labeled with the specific column key that is being cleared, providing a record of the sheet state before the column clearing operation. The snapshot is taken by calling a new utility function `takeSnapshotForJob`, which handles creating and labeling the snapshot based on the job, sheet, and column details. This allows developers to review the sheet state prior to the column clearing if needed.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      api@6186151 The release notes now include the following updates: When
+      clearing a column in a job operation, a snapshot of the sheet will be
+      taken before the column is cleared. This snapshot will be labeled with the
+      specific column key that is being cleared, providing a record of the sheet
+      state before the column clearing operation. The snapshot is taken by
+      calling a new utility function `takeSnapshotForJob`, which handles
+      creating and labeling the snapshot based on the job, sheet, and column
+      details. This allows developers to review the sheet state prior to the
+      column clearing if needed.
     </div>
   </div>
 </div>
@@ -123,13 +143,20 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      The release adds the ability to mark a space as an app template and filter spaces based on whether they are app templates or not.
-      
-      This can be used with the new space-configure-from-template plugin to create new spaces using an existing space as a template.
-      
-      When using Autobuild for a new App, the space generated during Autobuild will automatically be tagged as the template for that App.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      The release adds the ability to mark a space as an app template and filter
+      spaces based on whether they are app templates or not. This can be used
+      with the new space-configure-from-template plugin to create new spaces
+      using an existing space as a template. When using Autobuild for a new App,
+      the space generated during Autobuild will automatically be tagged as the
+      template for that App.
     </div>
   </div>
 </div>
@@ -137,9 +164,21 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      The release introduces the ability to filter spaces by the associated app ID when retrieving a list of spaces. A new query parameter `appId` has been added to the `/v1/spaces` endpoint. Developers can now pass the `appId` query parameter to retrieve only the spaces associated with the specified app. For example, `?appId=us_app_123` will return only spaces linked to the app with ID `us_app_123`. If an invalid or non-existent app ID is provided, an empty list will be returned.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      The release introduces the ability to filter spaces by the associated app
+      ID when retrieving a list of spaces. A new query parameter `appId` has
+      been added to the `/v1/spaces` endpoint. Developers can now pass the
+      `appId` query parameter to retrieve only the spaces associated with the
+      specified app. For example, `?appId=us_app_123` will return only spaces
+      linked to the app with ID `us_app_123`. If an invalid or non-existent app
+      ID is provided, an empty list will be returned.
     </div>
   </div>
 </div>
@@ -203,9 +242,16 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      The manual entry and file upload button shown when the workbook is empty have has their max width updated so they can support more text.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      The manual entry and file upload button shown when the workbook is empty
+      have has their max width updated so they can support more text.
     </div>
   </div>
 </div>
@@ -217,9 +263,17 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Trailing empty records in CSV files will now be trimmed during file extraction. Empty records in-between records with values will continue to be kept.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Trailing empty records in CSV files will now be trimmed during file
+      extraction. Empty records in-between records with values will continue to
+      be kept.
     </div>
   </div>
 </div>
@@ -229,10 +283,17 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      - Record order is now maintained when inserting records
-      - When using the Flatfile API to add records, the order of those records will now be preserved keeping the original sequence as provided
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      - Record order is now maintained when inserting records - When using the
+      Flatfile API to add records, the order of those records will now be
+      preserved keeping the original sequence as provided
     </div>
   </div>
 </div>
@@ -242,10 +303,16 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      
-      Fixes a bug where AI assist would crash when ‘config’ object or the ‘options’ array is undefined.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Fixes a bug where AI assist would crash when ‘config’ object or the
+      ‘options’ array is undefined.
     </div>
   </div>
 </div>
@@ -255,9 +322,16 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Fixes a bug where an error would be thrown when config options was undefined during sheet upsert operations.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Fixes a bug where an error would be thrown when config options was
+      undefined during sheet upsert operations.
     </div>
   </div>
 </div>
@@ -267,9 +341,16 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      There was a bug causing the name of environment secrets not to update when edited. This fixes the bug ensuring environment secret names are updated.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      There was a bug causing the name of environment secrets not to update when
+      edited. This fixes the bug ensuring environment secret names are updated.
     </div>
   </div>
 </div>
@@ -279,9 +360,24 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      The `viewMapped` functionality has been updated to include new text strings for messaging related to updating a table to only view mapped fields. The messages include "Updating the table to only view mapped fields", "Halfway there, hang tight...", "Almost done...", "Table update complete. Please audit the data", and "An error occurred while updating the workbook. See Event Logs." These strings will be displayed to the user during the process of updating a table to show only mapped fields, providing status updates and handling potential errors. This change enhances the user experience by providing clear communication during this operation.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      The `viewMapped` functionality has been updated to include new text
+      strings for messaging related to updating a table to only view mapped
+      fields. The messages include "Updating the table to only view mapped
+      fields", "Halfway there, hang tight...", "Almost done...", "Table update
+      complete. Please audit the data", and "An error occurred while updating
+      the workbook. See Event Logs." These strings will be displayed to the user
+      during the process of updating a table to show only mapped fields,
+      providing status updates and handling potential errors. This change
+      enhances the user experience by providing clear communication during this
+      operation.
     </div>
   </div>
 </div>
@@ -291,9 +387,21 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      A bug fix was made to the handling of enum field options when updating a sheet. Previously, if the `config.options` property was undefined, an error would occur. Now, if `config.options` is undefined, it defaults to an empty array. This ensures that the code can safely handle cases where `config.options` is not present or is undefined. For example, if a developer was updating a sheet with an enum field that did not previously have any options defined, the update can now proceed without errors.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      A bug fix was made to the handling of enum field options when updating a
+      sheet. Previously, if the `config.options` property was undefined, an
+      error would occur. Now, if `config.options` is undefined, it defaults to
+      an empty array. This ensures that the code can safely handle cases where
+      `config.options` is not present or is undefined. For example, if a
+      developer was updating a sheet with an enum field that did not previously
+      have any options defined, the update can now proceed without errors.
     </div>
   </div>
 </div>
@@ -301,11 +409,18 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Added three keys: `addColumn`, `clearColumn`, and `removeColumn` with their respective translations for adding, clearing, and removing columns.
-      
-      In the English translation file, the title of the “mapValues” section has been updated from “Map values” to “Map Fields”.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Added three keys: `addColumn`, `clearColumn`, and `removeColumn` with
+      their respective translations for adding, clearing, and removing columns.
+      In the English translation file, the title of the “mapValues” section has
+      been updated from “Map values” to “Map Fields”.
     </div>
   </div>
 </div>
@@ -317,9 +432,16 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Updates to the mapping flow to prevent a user from accidentally navigating "back" into a mapping flow after it has already been completed.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Updates to the mapping flow to prevent a user from accidentally navigating
+      "back" into a mapping flow after it has already been completed.
     </div>
   </div>
 </div>
@@ -331,14 +453,17 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Bug Fixes in Edit and Create App Forms**
-            
-      We've resolved several issues affecting the Edit and Create App forms:
-       - Fixed form validation issues
-       - Improved error handling
-       - Enhanced user feedback
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      **Bug Fixes in Edit and Create App Forms** We've resolved several issues
+      affecting the Edit and Create App forms: - Fixed form validation issues -
+      Improved error handling - Enhanced user feedback
     </div>
   </div>
 </div>
@@ -348,13 +473,23 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Updated the AutoBuild flow to allow editing the working space name during the build process. The name can now be edited by clicking an icon next to the space name, which reveals an input field to enter a new name. The name change is saved when the input field loses focus or the Enter key is pressed. Added a badge indicating "Dev Mode" when not in the production environment.
-      
-      Simplified the loading step by removing the detailed progress indicators and showing only a centered loader component.
-      
-      Updated the BlueprintTab component to display a bottom border and align the blueprint view action icons to the right.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Updated the AutoBuild flow to allow editing the working space name during
+      the build process. The name can now be edited by clicking an icon next to
+      the space name, which reveals an input field to enter a new name. The name
+      change is saved when the input field loses focus or the Enter key is
+      pressed. Added a badge indicating "Dev Mode" when not in the production
+      environment. Simplified the loading step by removing the detailed progress
+      indicators and showing only a centered loader component. Updated the
+      BlueprintTab component to display a bottom border and align the blueprint
+      view action icons to the right.
     </div>
   </div>
 </div>
@@ -364,10 +499,17 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Implemented sheet ordering functionality in the sidebar. Sheets are now displayed in the order specified by the `sheetSidebarOrder` setting in the workbook. Any sheets not included in the order are appended to the end. 
-      
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Implemented sheet ordering functionality in the sidebar. Sheets are now
+      displayed in the order specified by the `sheetSidebarOrder` setting in the
+      workbook. Any sheets not included in the order are appended to the end.
     </div>
   </div>
 </div>
@@ -377,17 +519,28 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      The getDataDiff function has been updated to handle array values correctly when comparing proposed changes with existing source (src) and artifact data.
-      
-      If the proposed array value is the same as the existing array value in either the source or artifacts, it will not be included in the changeset returned by getDataDiff.
-      
-      The function now uses the lodash isEqual utility to compare array values, instead of strict equality (===), to account for differences in order or reference of array elements.
-      
-      For example, if the proposed tags array is ['jedi', 'sith'], it will not be included in the changeset if the existing source tags are ['JEDI', 'SITH'] or if the existing artifact tags are ['jedi', 'sith'], because the values are considered equal despite differences in capitalization or array order.
-      
-      This change ensures that unnecessary changes are not included in the changeset when working with array values, reducing noise and improving the accuracy of the changeset calculation.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      The getDataDiff function has been updated to handle array values correctly
+      when comparing proposed changes with existing source (src) and artifact
+      data. If the proposed array value is the same as the existing array value
+      in either the source or artifacts, it will not be included in the
+      changeset returned by getDataDiff. The function now uses the lodash
+      isEqual utility to compare array values, instead of strict equality (===),
+      to account for differences in order or reference of array elements. For
+      example, if the proposed tags array is ['jedi', 'sith'], it will not be
+      included in the changeset if the existing source tags are ['JEDI', 'SITH']
+      or if the existing artifact tags are ['jedi', 'sith'], because the values
+      are considered equal despite differences in capitalization or array order.
+      This change ensures that unnecessary changes are not included in the
+      changeset when working with array values, reducing noise and improving the
+      accuracy of the changeset calculation.
     </div>
   </div>
 </div>
@@ -399,14 +552,19 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/api@1.9.17`
-      
-      Secrets have been updated to introduce new optional fields for filtering.
-      
-      A new optional `actorId` field of type `ActorId` has been added to the `ListSecrets` request type and `WriteSecret` type for secrets. 
-      This allows filtering secrets by the associated actor (user, guest, agent, or api key).
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/api@1.9.17` Secrets have been updated to introduce new optional
+      fields for filtering. A new optional `actorId` field of type `ActorId` has
+      been added to the `ListSecrets` request type and `WriteSecret` type for
+      secrets. This allows filtering secrets by the associated actor (user,
+      guest, agent, or api key).
     </div>
   </div>
 </div>
@@ -416,11 +574,17 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/api@1.9.16`
-      
-      Added new methods to for managing stored sheet constraints: `getConstraints`, `createConstraint`, `getConstraintById`, `updateConstraint`, and `deleteConstraint`.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/api@1.9.16` Added new methods to for managing stored sheet
+      constraints: `getConstraints`, `createConstraint`, `getConstraintById`,
+      `updateConstraint`, and `deleteConstraint`.
     </div>
   </div>
 </div>
@@ -430,13 +594,18 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/api@1.9.15`
-      
-      With the addition of archived spaces there is now an ability to  `unarchiveSpace` method and `space:unarchived` event.
-      
-      Deprecated use of metadata field at the cell value level, recommending use of record level metadata instead.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/api@1.9.15` With the addition of archived spaces there is now
+      an ability to `unarchiveSpace` method and `space:unarchived` event.
+      Deprecated use of metadata field at the cell value level, recommending use
+      of record level metadata instead.
     </div>
   </div>
 </div>
@@ -446,10 +615,17 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces-ui.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      `spaces-ui`
-      
-      Updates to Snapshots resource to track changes to a sheet's schema (i.e. added and removed columns). A more robust Snapshot will enable more complex features when comparing 2 different snapshots.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `spaces-ui` Updates to Snapshots resource to track changes to a sheet's
+      schema (i.e. added and removed columns). A more robust Snapshot will
+      enable more complex features when comparing 2 different snapshots.
     </div>
   </div>
 </div>
@@ -459,30 +635,26 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/api@1.9.14`
-      
-      ###### Actions Resource
-      
-      Actions are now a first class resource. Developers may now create, retrieve, update, and delete actions via the api.
-      New action events ActionCreated, ActionUpdated, and ActionDeleted are now being published and an actionId field has been added to the Context of events.
-      
-      ###### Agent Versioning
-      
-      Agents versioning has been introduced. You may now retreieve agent versions via the api and revert to a previous version via the api and the dashboard.
-      
-      ###### Token Refresh
-      
-      Guests actively using their space will have their token's automatically renewed.
-      
-      ###### Sheet & Cell Updates
-      
-      Support for array values in cell values has also been added.
-      
-      ###### Job Metadata
-      
-      Metadta is now available on the `JobConfig` type, allowing additional data to be associated with jobs.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/api@1.9.14` ###### Actions Resource Actions are now a first
+      class resource. Developers may now create, retrieve, update, and delete
+      actions via the api. New action events ActionCreated, ActionUpdated, and
+      ActionDeleted are now being published and an actionId field has been added
+      to the Context of events. ###### Agent Versioning Agents versioning has
+      been introduced. You may now retreieve agent versions via the api and
+      revert to a previous version via the api and the dashboard. ###### Token
+      Refresh Guests actively using their space will have their token's
+      automatically renewed. ###### Sheet & Cell Updates Support for array
+      values in cell values has also been added. ###### Job Metadata Metadta is
+      now available on the `JobConfig` type, allowing additional data to be
+      associated with jobs.
     </div>
   </div>
 </div>
@@ -492,13 +664,19 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dashboard.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Session name validation has been introduced to the dashboard, preventing the creation of new sessions with the same name.
-      
-      ![image](../changelog/images/spacename_validation.png)
-      
-      Note that sessions created via embedded or the api will not be constrained, this is a dashboard only validation.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      Session name validation has been introduced to the dashboard, preventing
+      the creation of new sessions with the same name.
+      ![image](../changelog/images/spacename_validation.png) Note that sessions
+      created via embedded or the api will not be constrained, this is a
+      dashboard only validation.
     </div>
   </div>
 </div>
@@ -553,20 +731,24 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces-ui.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      `spaces-ui`
-      
-      The "requireAllValidTotal" option has been added for custom actions in the Sheet toolbar.
-      This new option requires all rows in the Sheet to be valid for the action to be enabled, regardless of selection. 
-      If "requireAllValidTotal" is set and there are any validation errors in the entire Sheet, the custom action will be disabled with the corresponding tooltip message. 
-      
-      The existing "requireAllValid" option has been updated to only apply to the selected rows, rather than all rows. 
-      If "requireAllValid" is set and there are validation errors in the selected rows, the custom action will be disabled with the corresponding tooltip message.
-      
-      
-      
-      
-      
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `spaces-ui` The "requireAllValidTotal" option has been added for custom
+      actions in the Sheet toolbar. This new option requires all rows in the
+      Sheet to be valid for the action to be enabled, regardless of selection.
+      If "requireAllValidTotal" is set and there are any validation errors in
+      the entire Sheet, the custom action will be disabled with the
+      corresponding tooltip message. The existing "requireAllValid" option has
+      been updated to only apply to the selected rows, rather than all rows. If
+      "requireAllValid" is set and there are validation errors in the selected
+      rows, the custom action will be disabled with the corresponding tooltip
+      message.
     </div>
   </div>
 </div>
@@ -576,12 +758,16 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces-ui.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `spaces-ui`
-      
-      Introduces support for handling locked sheets (indicated by the locked icon), and improves the handling of import files.
-      
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `spaces-ui` Introduces support for handling locked sheets (indicated by
+      the locked icon), and improves the handling of import files.
     </div>
   </div>
 </div>
@@ -591,13 +777,20 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/api@1.9.8`
-      
-      A new `reference-list` property type has been added to allow defining an array of values referenced from another sheet. Links will be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
-      
-      The `ReferencePropertyConfig` has been updated to make the `relationship` property optional, allowing it to be omitted.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/api@1.9.8` A new `reference-list` property type has been added
+      to allow defining an array of values referenced from another sheet. Links
+      will be established automatically by the matching engine or similar upon
+      an evaluation of unique or similar columns between datasets. The
+      `ReferencePropertyConfig` has been updated to make the `relationship`
+      property optional, allowing it to be omitted.
     </div>
   </div>
 </div>
@@ -609,11 +802,21 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/api@1.9.7`
-      
-      New options have been added to the ListWorkbooksRequest to allow filtering workbooks by name, namespace, label, and treatment, as well as controlling whether to include sheets. For example, you can now pass a `name` parameter to filter workbooks by name, or a `treatment` parameter to filter by treatment. The `includeSheets` boolean parameter controls whether sheet data is included in the response.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/api@1.9.7` New options have been added to the
+      ListWorkbooksRequest to allow filtering workbooks by name, namespace,
+      label, and treatment, as well as controlling whether to include sheets.
+      For example, you can now pass a `name` parameter to filter workbooks by
+      name, or a `treatment` parameter to filter by treatment. The
+      `includeSheets` boolean parameter controls whether sheet data is included
+      in the response.
     </div>
   </div>
 </div>
@@ -703,12 +906,18 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces-ui.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `spaces-ui`
-      
-      Improvements have been made to error handling and user feedback in the file import and mapping process. If an error occurs, a popover is displayed to the user with the error message, providing clearer feedback on failures during the import process.
-      
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `spaces-ui` Improvements have been made to error handling and user
+      feedback in the file import and mapping process. If an error occurs, a
+      popover is displayed to the user with the error message, providing clearer
+      feedback on failures during the import process.
     </div>
   </div>
 </div>
@@ -717,16 +926,24 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Select Header Row**
-      
-      We've added a new feature that allows users to select the header row in the data preview. This feature is particularly useful when the first row of your data contains column headers, as it enables you to specify the header row for accurate data mapping.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Select Header Row** We've added a new feature that allows users to select
+    the header row in the data preview. This feature is particularly useful when
+    the first row of your data contains column headers, as it enables you to
+    specify the header row for accurate data mapping.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -763,51 +980,83 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Bulk Deletion of Mapping Rules**
-      
-      We added a method to delete multiple mapping rules from a program. This new `deleteMultipleRules` method simplifies the management of mapping rules by allowing bulk deletions. The `DeleteMultipleRulesRequest` type represents the request payload, detailing the array of rule IDs to be deleted.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **New Method to Delete Apps**
-      
-      We have introduced a new `delete` method that allows you to delete an app.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Bulk Deletion of Mapping Rules** We added a method to delete multiple
+    mapping rules from a program. This new `deleteMultipleRules` method
+    simplifies the management of mapping rules by allowing bulk deletions. The
+    `DeleteMultipleRulesRequest` type represents the request payload, detailing
+    the array of rule IDs to be deleted.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Enhanced Validation Messages for Records**
-      
-      The `ValidationMessage` type has been enhanced with two new optional properties: `field` and `path`.
-      The `field` property specifies which field the validation message pertains to, while the `path` property, of type `JsonPathString`, specifies the JSONPath for the validation message.
-      These enhancements provide more context and precision in validation feedback.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Enhanced Job Outcomes with Custom Views**
-      
-      The `JobOutcomeNext` type now includes a new `view` option, allowing jobs to specify a custom view that should be displayed upon completion. To support this, we introduced the `JobOutcomeNextView` type, which provides details for the custom view, including the sheet ID, hidden columns, and an optional label.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **New Method to Delete Apps** We have introduced a new `delete` method that
+    allows you to delete an app.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Enhanced Validation Messages for Records** The `ValidationMessage` type
+    has been enhanced with two new optional properties: `field` and `path`. The
+    `field` property specifies which field the validation message pertains to,
+    while the `path` property, of type `JsonPathString`, specifies the JSONPath
+    for the validation message. These enhancements provide more context and
+    precision in validation feedback.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Enhanced Job Outcomes with Custom Views** The `JobOutcomeNext` type now
+    includes a new `view` option, allowing jobs to specify a custom view that
+    should be displayed upon completion. To support this, we introduced the
+    `JobOutcomeNextView` type, which provides details for the custom view,
+    including the sheet ID, hidden columns, and an optional label.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -826,16 +1075,23 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces-ui.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `spaces-ui`
-      
-      A new "Update View" button can now be found in the job outcome modal for jobs that modify the visibility of columns in a workbook sheet. This button triggers updating the column visibility based on the job outcome.
-      
-      There are 2 new capabilities to the next property of Job Outcomes:
-      
-      - `view` gives developers the ability to manipulate the Sheet's view on completion of a Job - Giving control over things like applying a filter or hiding a column
-      - `download` gives developers the ability to include file details (such as a fileName and URL), which are then used to trigger a download to the user's browser on completion of the job
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `spaces-ui` A new "Update View" button can now be found in the job outcome
+      modal for jobs that modify the visibility of columns in a workbook sheet.
+      This button triggers updating the column visibility based on the job
+      outcome. There are 2 new capabilities to the next property of Job
+      Outcomes: - `view` gives developers the ability to manipulate the Sheet's
+      view on completion of a Job - Giving control over things like applying a
+      filter or hiding a column - `download` gives developers the ability to
+      include file details (such as a fileName and URL), which are then used to
+      trigger a download to the user's browser on completion of the job
     </div>
   </div>
 </div>
@@ -844,31 +1100,47 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **New Environment Lifecycle Events**
-      
-      We've added new domain `Environment` events expanding the scope of domains our system recognizes. To leverage these events, you can listen on to the following topics:
-      The corresponding event topics are `environment:created`, `environment:updated`, and `environment:deleted`.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Enhanced Job Configuration Descriptions**
-      
-      We have added descriptions for the DeleteRecordsJobConfig properties to provide better clarity:
-      An optional `filter` param allows allows you to provide options to filter records, with the default set to none while the `filterField` param enables narrowing the valid/error filter results to a specific field, but it requires the filter to be set.
-      
-      We corrected a typo in the `JobOutcomeNextFiles` type by renaming the file property to files to accurately represent an array of file objects.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **New Environment Lifecycle Events** We've added new domain `Environment`
+    events expanding the scope of domains our system recognizes. To leverage
+    these events, you can listen on to the following topics: The corresponding
+    event topics are `environment:created`, `environment:updated`, and
+    `environment:deleted`.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Enhanced Job Configuration Descriptions** We have added descriptions for
+    the DeleteRecordsJobConfig properties to provide better clarity: An optional
+    `filter` param allows allows you to provide options to filter records, with
+    the default set to none while the `filterField` param enables narrowing the
+    valid/error filter results to a specific field, but it requires the filter
+    to be set. We corrected a typo in the `JobOutcomeNextFiles` type by renaming
+    the file property to files to accurately represent an array of file objects.
+  </div>
+</div>
 
 </div>
 
@@ -877,21 +1149,25 @@ icon: "layer-group"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces-ui.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `spaces-ui`
-      
-      ###### Saving and Sharing Custom Views
-      
-      Users can now apply filters, sorting, and search queries to the Sheet data and save those settings as a reusable view. Key changes include:
-      
-      - Added a "Views" dropdown in the Sheet toolbar to manage and apply saved views.
-      - Added a "Save View" modal that allows users to name and save the current Sheet filters/sorting as a view.
-      - Users can copy a sharable link with the view settings applied.
-      - Saved views are grouped into "My Views" and "All Views" sections.
-      - Added backend APIs to create, update, and delete saved views.
-      - Added new React hooks and components to support the saved views functionality.
-      - Updated translations for the new UI elements related to saved views.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `spaces-ui` ###### Saving and Sharing Custom Views Users can now apply
+      filters, sorting, and search queries to the Sheet data and save those
+      settings as a reusable view. Key changes include: - Added a "Views"
+      dropdown in the Sheet toolbar to manage and apply saved views. - Added a
+      "Save View" modal that allows users to name and save the current Sheet
+      filters/sorting as a view. - Users can copy a sharable link with the view
+      settings applied. - Saved views are grouped into "My Views" and "All
+      Views" sections. - Added backend APIs to create, update, and delete saved
+      views. - Added new React hooks and components to support the saved views
+      functionality. - Updated translations for the new UI elements related to
+      saved views.
     </div>
   </div>
 </div>
@@ -900,34 +1176,51 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Updated `ListDocumentsResponse`**
-      
-      The `data` property now returns an array of `Document` objects instead of the previous `DocumentResponse`. This change standardizes the format and improves consistency in how document data is handled.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Enhanced Job Configuration**
-      
-      We added a new `predecessorIds` property to `JobConfig`. This property allows you to specify job dependencies, meaning you can list the IDs of jobs that must be completed before the current job can start. This helps in managing and sequencing job execution more effectively.
-      
-      We added a new feature to handle job outcomes more effectively with a new type called `JobOutcomeNext` and its variant files. This includes:
-      
-      - `JobOutcomeNextFileObject` Stores individual file information with an ID and optional label.
-      - `JobOutcomeNextFiles` Handles multiple files, including an array of JobOutcomeNextFileObject instances and an optional label.
-      
-      We also added a waiting value to the JobStatus enum to indicate when a job is paused or pending, improving job processing workflows.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Updated `ListDocumentsResponse`** The `data` property now returns an array
+    of `Document` objects instead of the previous `DocumentResponse`. This
+    change standardizes the format and improves consistency in how document data
+    is handled.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Enhanced Job Configuration** We added a new `predecessorIds` property to
+    `JobConfig`. This property allows you to specify job dependencies, meaning
+    you can list the IDs of jobs that must be completed before the current job
+    can start. This helps in managing and sequencing job execution more
+    effectively. We added a new feature to handle job outcomes more effectively
+    with a new type called `JobOutcomeNext` and its variant files. This
+    includes: - `JobOutcomeNextFileObject` Stores individual file information
+    with an ID and optional label. - `JobOutcomeNextFiles` Handles multiple
+    files, including an array of JobOutcomeNextFileObject instances and an
+    optional label. We also added a waiting value to the JobStatus enum to
+    indicate when a job is paused or pending, improving job processing
+    workflows.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -946,16 +1239,25 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Improved event emission logic for workbook creation and update**
-      
-      Previously, the `workbook:created` event was emitted even when the workbook was only being updated. Now, the logic emits a `workbook:updated` event when necessary. Additionally, the `POST /:workbookId/rebuild` endpoint now handles eventing properly.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Improved event emission logic for workbook creation and update**
+    Previously, the `workbook:created` event was emitted even when the workbook
+    was only being updated. Now, the logic emits a `workbook:updated` event when
+    necessary. Additionally, the `POST /:workbookId/rebuild` endpoint now
+    handles eventing properly.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -1017,22 +1319,29 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Improved Duplicate Field Key Validation in Workbook Sheets**
-      
-      **Case-Insensitive Checking**:
-      
-      Our latest update enhances the validation process by identifying duplicate field keys in workbook sheets, including case-insensitive comparisons. This ensures that field keys are unique regardless of character casing, maintaining data integrity and consistency across your datasets.
-      
-      **Data Integrity Assurance**:
-      
-      By preventing the entry of duplicate keys, even when differences are only in letter casing, we enhance the accuracy and reliability of data processing within our application.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Improved Duplicate Field Key Validation in Workbook Sheets**
+    **Case-Insensitive Checking**: Our latest update enhances the validation
+    process by identifying duplicate field keys in workbook sheets, including
+    case-insensitive comparisons. This ensures that field keys are unique
+    regardless of character casing, maintaining data integrity and consistency
+    across your datasets. **Data Integrity Assurance**: By preventing the entry
+    of duplicate keys, even when differences are only in letter casing, we
+    enhance the accuracy and reliability of data processing within our
+    application.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -1110,16 +1419,24 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Support continuing to the next row on enter key press**
-      
-      Users can now seamlessly move to the next row in the cell by hitting the enter key. This enhancement improves the user experience and streamlines data entry in the Flatfile platform.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Support continuing to the next row on enter key press** Users can now
+    seamlessly move to the next row in the cell by hitting the enter key. This
+    enhancement improves the user experience and streamlines data entry in the
+    Flatfile platform.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -1314,29 +1631,48 @@ icon: "layer-group"
     </div>
   </div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Enhanced Enum Mapping Logic for Datasets with No Values**
-      
-      We’ve addressed a nuanced issue concerning enum mapping and rule application in datasets with no values. Previously, the system saved enum mapping rules with a logic in place to reuse these rules if every value in a new dataset matched the rule. This approach inadvertently included scenarios where datasets had no values, considering them as matching all rules due to the absence of values.
-      
-      Now, the system filters and applies enum mapping rules based solely on the values present in the new dataset. This change ensures that rules are applied more accurately, enhancing the system’s logic in handling datasets, especially those without any values. This update aims to provide a more reliable and logical framework for data processing and rule application.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Dashboard authentication now lasts 24 hours**
-      
-      Enjoy longer, uninterrupted sessions when working with your Flatfile Dashboard.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Enhanced Enum Mapping Logic for Datasets with No Values** We’ve addressed
+    a nuanced issue concerning enum mapping and rule application in datasets
+    with no values. Previously, the system saved enum mapping rules with a logic
+    in place to reuse these rules if every value in a new dataset matched the
+    rule. This approach inadvertently included scenarios where datasets had no
+    values, considering them as matching all rules due to the absence of values.
+    Now, the system filters and applies enum mapping rules based solely on the
+    values present in the new dataset. This change ensures that rules are
+    applied more accurately, enhancing the system’s logic in handling datasets,
+    especially those without any values. This update aims to provide a more
+    reliable and logical framework for data processing and rule application.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Dashboard authentication now lasts 24 hours** Enjoy longer, uninterrupted
+    sessions when working with your Flatfile Dashboard.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -1358,27 +1694,47 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Optimized Space Loading Series: Reduced Requests for Translations**
-      
-      We've streamlined the loading process for Spaces by eliminating an unnecessary request for translations that previously triggered an additional getSpaceById call. This refinement reduces the load time, ensuring Spaces are displayed more promptly for a smoother user experience.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Enhanced Filtering on `GET /spaces` Endpoint with Namespace Parameter Support**
-      
-      We've upgraded the `GET /spaces` endpoint to support an empty value for the `namespace` query parameter. This update allows for more nuanced filtering, specifically enabling the identification of spaces without a namespace. When the namespace parameter is omitted entirely, the endpoint now returns spaces across all namespaces, providing greater flexibility in data retrieval and management.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Optimized Space Loading Series: Reduced Requests for Translations** We've
+    streamlined the loading process for Spaces by eliminating an unnecessary
+    request for translations that previously triggered an additional
+    getSpaceById call. This refinement reduces the load time, ensuring Spaces
+    are displayed more promptly for a smoother user experience.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Enhanced Filtering on `GET /spaces` Endpoint with Namespace Parameter
+    Support** We've upgraded the `GET /spaces` endpoint to support an empty
+    value for the `namespace` query parameter. This update allows for more
+    nuanced filtering, specifically enabling the identification of spaces
+    without a namespace. When the namespace parameter is omitted entirely, the
+    endpoint now returns spaces across all namespaces, providing greater
+    flexibility in data retrieval and management.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -1398,27 +1754,47 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Optimized Space Loading Series: Reduced Requests for Translations**
-      
-      We've streamlined the loading process for Spaces by eliminating an unnecessary request for translations that previously triggered an additional getSpaceById call. This refinement reduces the load time, ensuring Spaces are displayed more promptly for a smoother user experience.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **New: Advanced Column Filtering Feature**
-      
-      Beyond the existing functionalities of sorting, replacing empty values, and conducting searches within fields, we’ve now integrated a precise value filtering option for columns. This new feature includes a convenient search mechanism to effortlessly pinpoint and filter by the specific value you’re seeking. Streamline your data analysis and management with this robust filtering capability.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Optimized Space Loading Series: Reduced Requests for Translations** We've
+    streamlined the loading process for Spaces by eliminating an unnecessary
+    request for translations that previously triggered an additional
+    getSpaceById call. This refinement reduces the load time, ensuring Spaces
+    are displayed more promptly for a smoother user experience.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **New: Advanced Column Filtering Feature** Beyond the existing
+    functionalities of sorting, replacing empty values, and conducting searches
+    within fields, we’ve now integrated a precise value filtering option for
+    columns. This new feature includes a convenient search mechanism to
+    effortlessly pinpoint and filter by the specific value you’re seeking.
+    Streamline your data analysis and management with this robust filtering
+    capability.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -1460,28 +1836,28 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Expanding Global Reach with Additional Languages**
-      
-      We've added an expansion of our language support to include a variety of new translations. This update builds upon our existing capabilities, which previously covered French, German, Indonesian, Portuguese, and Spanish.
-      
-      **What's New?**
-      
-      - Italian (it)
-      - Japanese (jp)
-      - Korean (kr)
-      - Brazilian Portuguese (pt-BR)
-      - Turkish (tr)
-      - Vietnamese (vi)
-      - Chinese (zh)
-      
-      Our goal is to continuously add languages that resonate with our diverse user base. If there's a language you need that we haven't yet included, let us know!
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Expanding Global Reach with Additional Languages** We've added an
+    expansion of our language support to include a variety of new translations.
+    This update builds upon our existing capabilities, which previously covered
+    French, German, Indonesian, Portuguese, and Spanish. **What's New?** -
+    Italian (it) - Japanese (jp) - Korean (kr) - Brazilian Portuguese (pt-BR) -
+    Turkish (tr) - Vietnamese (vi) - Chinese (zh) Our goal is to continuously
+    add languages that resonate with our diverse user base. If there's a
+    language you need that we haven't yet included, let us know!
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -1520,24 +1896,29 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/theming.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Powered by Flatfile looks a little different now**
-      
-      ![image](../changelog/images/powered_by.png)
-      
-      Based on user feedback, we've updated the visual design of the "Powered by Flatfile" chip to distinguish it from actionable buttons, enhancing the user interface for clarity.
-      
-      <Note>
-        For those interested in a fully branded experience, we offer the option to
-        remove this chip entirely through our [Professional
-        package](https://flatfile.com/pricing/).
-      </Note>
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/theming.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Powered by Flatfile looks a little different now**
+    ![image](../changelog/images/powered_by.png) Based on user feedback, we've
+    updated the visual design of the "Powered by Flatfile" chip to distinguish
+    it from actionable buttons, enhancing the user interface for clarity.
+    <Note>
+      For those interested in a fully branded experience, we offer the option to
+      remove this chip entirely through our [Professional
+      package](https://flatfile.com/pricing/).
+    </Note>
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -1561,18 +1942,28 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **New: At-a-glance Insights are now available in the Sidebar**
-      
-      ![image](../changelog/images/sidebar-counts.gif)
-      
-      Enhancements to the Spaces sidebar now offer at-a-glance insights for greater efficiency: each workbook's entry displays a count of contained Sheets, alongside a tally of records within each Sheet. Additionally, the validity of records is intuitively indicated with color-coded dots—green for valid and red for invalid—directly within the Sheet summary. This allows for quick identification and management of data accuracy.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **New: At-a-glance Insights are now available in the Sidebar**
+    ![image](../changelog/images/sidebar-counts.gif) Enhancements to the Spaces
+    sidebar now offer at-a-glance insights for greater efficiency: each
+    workbook's entry displays a count of contained Sheets, alongside a tally of
+    records within each Sheet. Additionally, the validity of records is
+    intuitively indicated with color-coded dots—green for valid and red for
+    invalid—directly within the Sheet summary. This allows for quick
+    identification and management of data accuracy.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -1590,53 +1981,73 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Toolbar blocking jobs Extended to Workbook-Mounted Actions**
-      
-      We've extended the functionality of the `toolbarBlocking` job mode beyond individual Sheets. Now, when it's applied to Workbook-mounted actions, this mode also disables workbook actions (including all of the Sheets actions/toolbars) during a job's progress. By its nature, it also still allows interaction with the actual data tables.
-      
-      This enhancement provides more consistent control throughout your entire Workbook, ensuring tasks are completed efficiently and without accidental interference or unintended navigation.
-      
-      [Learn more](../orchestration/actions#optional-parameters)
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **State-Based Messaging on Actions via Tooltips**
-      
-      We've introduced an exciting new capability to enhance user interaction and feedback in our application. You can now add custom messages to actions, tailored according to their state:
-      
-      - Error
-      - Info
-      
-      These messages will be displayed as tooltips when users hover over an action, providing context-specific text that corresponds to the action's current state.
-      
-      [Follow the guide](../guides/actions#usage-7)
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Toolbar blocking jobs Extended to Workbook-Mounted Actions** We've
+    extended the functionality of the `toolbarBlocking` job mode beyond
+    individual Sheets. Now, when it's applied to Workbook-mounted actions, this
+    mode also disables workbook actions (including all of the Sheets
+    actions/toolbars) during a job's progress. By its nature, it also still
+    allows interaction with the actual data tables. This enhancement provides
+    more consistent control throughout your entire Workbook, ensuring tasks are
+    completed efficiently and without accidental interference or unintended
+    navigation. [Learn more](../orchestration/actions#optional-parameters)
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Decoupling Actions Updates from the Workbook's Schema**
-      
-      Previously, using workbook update endpoint necessitated submitting all the fields, even for minor adjustments to an action. Now, with our improved `PATCH` endpoint, you can update actions without needing to include the `fields` property in your payload.
-      
-      This refinement simplifies the update process, focusing solely on the changes you intend to make.
-      
-      [See the endpoint](https://reference.flatfile.com/api-reference/workbooks/update-a-workbook)
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **State-Based Messaging on Actions via Tooltips** We've introduced an
+    exciting new capability to enhance user interaction and feedback in our
+    application. You can now add custom messages to actions, tailored according
+    to their state: - Error - Info These messages will be displayed as tooltips
+    when users hover over an action, providing context-specific text that
+    corresponds to the action's current state. [Follow the
+    guide](../guides/actions#usage-7)
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Decoupling Actions Updates from the Workbook's Schema** Previously, using
+    workbook update endpoint necessitated submitting all the fields, even for
+    minor adjustments to an action. Now, with our improved `PATCH` endpoint, you
+    can update actions without needing to include the `fields` property in your
+    payload. This refinement simplifies the update process, focusing solely on
+    the changes you intend to make. [See the
+    endpoint](https://reference.flatfile.com/api-reference/workbooks/update-a-workbook)
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -1652,26 +2063,31 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Enhanced Visibility with Status Updates During File Extraction**
-      
-      ![image](../changelog/images/extract-status.gif)
-      
-      A Toast now displays intermediate states to keep you informed every step of the way during file extraction.
-      
-      When uploading a file directly to the table, you’ll see statuses like “Waiting for Extraction”, “Extracting”, and “Unsupported File”, along with detailed information about the outcome of extraction jobs.
-      
-      When uploading on the Files page, the error message is toned down to an info message, as uploading files without an extractor is a legitimate scenario.
-      
-      These updates are aimed at enhancing transparency and efficiency, ensuring you’re well-informed throughout the file extraction process.
-      
-      [See extractor plugins](https://flatfile.com/plugins/category/extractors/)
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Enhanced Visibility with Status Updates During File Extraction**
+    ![image](../changelog/images/extract-status.gif) A Toast now displays
+    intermediate states to keep you informed every step of the way during file
+    extraction. When uploading a file directly to the table, you’ll see statuses
+    like “Waiting for Extraction”, “Extracting”, and “Unsupported File”, along
+    with detailed information about the outcome of extraction jobs. When
+    uploading on the Files page, the error message is toned down to an info
+    message, as uploading files without an extractor is a legitimate scenario.
+    These updates are aimed at enhancing transparency and efficiency, ensuring
+    you’re well-informed throughout the file extraction process. [See extractor
+    plugins](https://flatfile.com/plugins/category/extractors/)
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -1977,25 +2393,33 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Revamped UI for Foreground Jobs**
-      
-      ![image](../changelog/images/foreground_facelift.png)
-      
-      We've given our foreground jobs a fresh, new look:
-      
-      1. Enhanced Job Modal Header: The job modal header now prominently displays job information, making it instantly visible and accessible.
-      2. Refined Display Details: Information that was previously in the header is now elegantly presented as an ultralight subline for improved readability.
-      3. Optimized Layout: We've repositioned the display of the percentage and remaining time for better clarity and focus.
-      4. Improved Time Estimation: For estimated completion time, we've introduced a fallback mechanism based on simple linear extrapolation, ensuring more accurate and reliable predictions.
-      
-      These updates are designed to offer a more intuitive and streamlined user experience in tracking and managing foreground jobs.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Revamped UI for Foreground Jobs**
+    ![image](../changelog/images/foreground_facelift.png) We've given our
+    foreground jobs a fresh, new look: 1. Enhanced Job Modal Header: The job
+    modal header now prominently displays job information, making it instantly
+    visible and accessible. 2. Refined Display Details: Information that was
+    previously in the header is now elegantly presented as an ultralight subline
+    for improved readability. 3. Optimized Layout: We've repositioned the
+    display of the percentage and remaining time for better clarity and focus.
+    4. Improved Time Estimation: For estimated completion time, we've introduced
+    a fallback mechanism based on simple linear extrapolation, ensuring more
+    accurate and reliable predictions. These updates are designed to offer a
+    more intuitive and streamlined user experience in tracking and managing
+    foreground jobs.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -2107,29 +2531,50 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Introducing New Endpoint for Workbook Commit Retrieval**
-      
-      We're excited to announce the addition of the new GET `/workbooks/{workbookId}/commits` endpoint. This improvement streamlines the process of retrieving all commits associated with a specific workbook, offering a more efficient way to determine the completion status of all processing activities on that workbook.
-      
-      While this enhancement primarily benefits the Flatfile UI, the endpoint is fully exposed, making it a valuable tool for developers looking to optimize commit retrieval and processing status checks in their own applications.
-      
-      [See the endpoint](https://reference.flatfile.com/api-reference/workbooks/get-commits-for-a-workbook)
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      We've successfully addressed and fixed the issue related to extracting/uploading files with special characters in their names. If you previously encountered difficulties with such files, this update resolves those challenges, ensuring smoother and more reliable file handling going forward.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Introducing New Endpoint for Workbook Commit Retrieval** We're excited to
+    announce the addition of the new GET `/workbooks/{workbookId}/commits`
+    endpoint. This improvement streamlines the process of retrieving all commits
+    associated with a specific workbook, offering a more efficient way to
+    determine the completion status of all processing activities on that
+    workbook. While this enhancement primarily benefits the Flatfile UI, the
+    endpoint is fully exposed, making it a valuable tool for developers looking
+    to optimize commit retrieval and processing status checks in their own
+    applications. [See the
+    endpoint](https://reference.flatfile.com/api-reference/workbooks/get-commits-for-a-workbook)
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    We've successfully addressed and fixed the issue related to
+    extracting/uploading files with special characters in their names. If you
+    previously encountered difficulties with such files, this update resolves
+    those challenges, ensuring smoother and more reliable file handling going
+    forward.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -2178,14 +2623,24 @@ icon: "layer-group"
     </div>
   </div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      We made an enhancement to bulk cell pasting. Previously, locking the cell occurred prematurely, causing values to flash after pasting. Now, locking is effectively executed later, resulting in a smoother and more stable pasting experience.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    We made an enhancement to bulk cell pasting. Previously, locking the cell
+    occurred prematurely, causing values to flash after pasting. Now, locking is
+    effectively executed later, resulting in a smoother and more stable pasting
+    experience.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -2205,74 +2660,121 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Enhanced Weighting Mechanism for User History in Enum Mapping**
-      
-      We assign an 80% value to other users' history compared to the current user's history. Previously, this was only applied to field mapping, Now, this approach has been extended to enum mapping as well.
-      
-      This update addresses an issue where conflicting histories between two users could result in one user being unable to edit due to the other's history taking precedence.
-      
-      With this enhancement, the system now more effectively balances historical inputs from different users, ensuring smoother and more equitable enum mapping automation.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      _It's the little things_: Bulk delete in Spaces is now available\*\*\*
-      
-      ![image](../changelog/images/bulk_delete_sm.gif)
-      
-      We’ve added a new feature that allows for the selection and bulk deletion of Spaces from your list. This enhancement is particularly beneficial for customers managing numerous Spaces, as it eliminates the need to delete each Space individually, streamlining the process and saving time. Enjoy!
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Enhanced Weighting Mechanism for User History in Enum Mapping** We assign
+    an 80% value to other users' history compared to the current user's history.
+    Previously, this was only applied to field mapping, Now, this approach has
+    been extended to enum mapping as well. This update addresses an issue where
+    conflicting histories between two users could result in one user being
+    unable to edit due to the other's history taking precedence. With this
+    enhancement, the system now more effectively balances historical inputs from
+    different users, ensuring smoother and more equitable enum mapping
+    automation.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **New: Column Visibility Control with Local Storage Memory**
-      
-      ![image](../changelog/images/column_hiding.gif)
-      
-      We've introduced a new feature that allows for selective hiding or showing of columns, enabling users to customize their view for more focused work. Additionally, your column visibility preferences will now be automatically saved to local storage, ensuring that your personalized settings are remembered for future sessions. This update aims to enhance user efficiency by allowing you to tailor the interface to your specific needs and workflow.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Guests can now be named in a Spaces URL**
-      
-      Previously, accessing Flatfile either directly through a URL or via an iframe with an `accessToken` would categorize all user activities under an anonymous guest. Now, if you know the `guestId`, interactions in Flatfile can be tied back to that person.
-      
-      This is made possible with a new endpoint, **/guests/:guestId/token**, which generates an accessToken, and can be used to load the Flatfile space at **http://platform.flatfile.com/space/:spaceId?token=:accessToken**.
-      
-      With this method, Guests are now accurately named and identifiable, enhancing user recognition and auditing.
-      
-      [See the endpoint](https://reference.flatfile.com/api-reference/guests/get-guest-token).
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    _It's the little things_: Bulk delete in Spaces is now available\*\*\*
+    ![image](../changelog/images/bulk_delete_sm.gif) We’ve added a new feature
+    that allows for the selection and bulk deletion of Spaces from your list.
+    This enhancement is particularly beneficial for customers managing numerous
+    Spaces, as it eliminates the need to delete each Space individually,
+    streamlining the process and saving time. Enjoy!
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Speed Optimization for Large Enum Lists**
-      
-      When either the source (file) or destination (Blueprint) list contains more than 100 enums, our mapping AI will now utilize a simplified algorithm. This change addresses scenarios where customers have extensive enum lists, such as 5,000 different Shopify products, which previously slowed down our assignment algorithm. With this update, the execution speed for such extensive lists will be faster, ensuring a more efficient and responsive experience for clients with large datasets.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **New: Column Visibility Control with Local Storage Memory**
+    ![image](../changelog/images/column_hiding.gif) We've introduced a new
+    feature that allows for selective hiding or showing of columns, enabling
+    users to customize their view for more focused work. Additionally, your
+    column visibility preferences will now be automatically saved to local
+    storage, ensuring that your personalized settings are remembered for future
+    sessions. This update aims to enhance user efficiency by allowing you to
+    tailor the interface to your specific needs and workflow.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Guests can now be named in a Spaces URL** Previously, accessing Flatfile
+    either directly through a URL or via an iframe with an `accessToken` would
+    categorize all user activities under an anonymous guest. Now, if you know
+    the `guestId`, interactions in Flatfile can be tied back to that person.
+    This is made possible with a new endpoint, **/guests/:guestId/token**, which
+    generates an accessToken, and can be used to load the Flatfile space at
+    **http://platform.flatfile.com/space/:spaceId?token=:accessToken**. With
+    this method, Guests are now accurately named and identifiable, enhancing
+    user recognition and auditing. [See the
+    endpoint](https://reference.flatfile.com/api-reference/guests/get-guest-token).
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Speed Optimization for Large Enum Lists** When either the source (file) or
+    destination (Blueprint) list contains more than 100 enums, our mapping AI
+    will now utilize a simplified algorithm. This change addresses scenarios
+    where customers have extensive enum lists, such as 5,000 different Shopify
+    products, which previously slowed down our assignment algorithm. With this
+    update, the execution speed for such extensive lists will be faster,
+    ensuring a more efficient and responsive experience for clients with large
+    datasets.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/files.mdx" />
@@ -2290,23 +2792,30 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Full Whitelabeling now available in Pro+**
-      
-      ![image](../changelog/images/whitelabeling.png)
-      
-      There are a few places where the Flatfile logo appears to your end customers.
-      
-      1. The **Powered By Flatfile** logo appears in the bottom right of Workbooks.
-      2. When sending invitations to Users or Guests, the Flatfile logo is included at the top of the emails.
-      
-      For those seeking a complete white-labeling experience, we offer a fully customizable solution as part of our Pro plans and above. Feel free to get in touch with us at [support@flatfile.com](mailto:support@flatfile.com) to discuss the possibilities of a fully whitelabeled experience tailored to your needs.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Full Whitelabeling now available in Pro+**
+    ![image](../changelog/images/whitelabeling.png) There are a few places where
+    the Flatfile logo appears to your end customers. 1. The **Powered By
+    Flatfile** logo appears in the bottom right of Workbooks. 2. When sending
+    invitations to Users or Guests, the Flatfile logo is included at the top of
+    the emails. For those seeking a complete white-labeling experience, we offer
+    a fully customizable solution as part of our Pro plans and above. Feel free
+    to get in touch with us at
+    [support@flatfile.com](mailto:support@flatfile.com) to discuss the
+    possibilities of a fully whitelabeled experience tailored to your needs.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -2329,16 +2838,25 @@ icon: "layer-group"
     </div>
   </div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      In this update, we've implemented a crucial enhancement by unifying the casing in our API. We've resolved issues where certain properties were inconsistently cased, which had previously hindered their proper setting and retrieval.
-      
-      With this unification, you can now seamlessly interact with our API, ensuring a smoother and more reliable experience.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    In this update, we've implemented a crucial enhancement by unifying the
+    casing in our API. We've resolved issues where certain properties were
+    inconsistently cased, which had previously hindered their proper setting and
+    retrieval. With this unification, you can now seamlessly interact with our
+    API, ensuring a smoother and more reliable experience.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -2380,18 +2898,29 @@ icon: "layer-group"
     </div>
   </div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **More Precise Filtering is now Available**
-      
-      Now, FFQL queries made via filter: in the the search bar can be seamlessly combined with other filters. Whether you prefer using tabbed filters like “valid” and “error,” or you rely on the “Filter By Value” menu, you can now harness the power of FFQL alongside these filters.
-      
-      With this update, you’ll experience precise narrowing of row results every time you apply FFQL queries in conjunction with other filters. No more guesswork—your filtered results will be spot on, making it easier than ever to find the information you need with pinpoint accuracy.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **More Precise Filtering is now Available** Now, FFQL queries made via
+    filter: in the the search bar can be seamlessly combined with other filters.
+    Whether you prefer using tabbed filters like “valid” and “error,” or you
+    rely on the “Filter By Value” menu, you can now harness the power of FFQL
+    alongside these filters. With this update, you’ll experience precise
+    narrowing of row results every time you apply FFQL queries in conjunction
+    with other filters. No more guesswork—your filtered results will be spot on,
+    making it easier than ever to find the information you need with pinpoint
+    accuracy.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/theming.mdx" />
@@ -2435,40 +2964,66 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Removed Character Limit on Mappings, Jobs, and Enum Mappings**
-      
-      We have lifted the previous 255-character limit for mappings, jobs, and enum mappings. This update allows for greater flexibility and more detailed entries in these areas.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **New API Feature to Restore Archived Spaces**
-      
-      API users now have the capability to restore an archived space. This can be done by setting the `archivedAt` property of the space to null via the `PATCH /spaces/:spaceId` endpoint.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Removed Character Limit on Mappings, Jobs, and Enum Mappings** We have
+    lifted the previous 255-character limit for mappings, jobs, and enum
+    mappings. This update allows for greater flexibility and more detailed
+    entries in these areas.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Improved Cascade Deletion for Spaces, Workbooks, and Sheets**
-      
-      We've enhanced the deletion process for Spaces. In the past, deleting a Space did not automatically cascade to its Workbooks and Sheets. Now, with the latest update, soft deleting a Space will also soft delete its associated Workbooks and Sheets.
-      
-      Furthermore, we've refined the `GET /workbooks` query. It now filters out workbooks linked to previously deleted Spaces, ensuring that only relevant and active workbooks are displayed. This update is helpful for Spaces deleted before this improvement was implemented.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **New API Feature to Restore Archived Spaces** API users now have the
+    capability to restore an archived space. This can be done by setting the
+    `archivedAt` property of the space to null via the `PATCH /spaces/:spaceId`
+    endpoint.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Improved Cascade Deletion for Spaces, Workbooks, and Sheets** We've
+    enhanced the deletion process for Spaces. In the past, deleting a Space did
+    not automatically cascade to its Workbooks and Sheets. Now, with the latest
+    update, soft deleting a Space will also soft delete its associated Workbooks
+    and Sheets. Furthermore, we've refined the `GET /workbooks` query. It now
+    filters out workbooks linked to previously deleted Spaces, ensuring that
+    only relevant and active workbooks are displayed. This update is helpful for
+    Spaces deleted before this improvement was implemented.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -2545,14 +3100,24 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      In the past, when your Space took more than 10 seconds to build, an "empty space created" message would appear. With our latest update, as long as you acknowledge the space:configure job, you can rest assured this dialog will no longer appear.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    In the past, when your Space took more than 10 seconds to build, an "empty
+    space created" message would appear. With our latest update, as long as you
+    acknowledge the space:configure job, you can rest assured this dialog will
+    no longer appear.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -2620,20 +3185,29 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **The API now supports two new actions: `sheets.lock` and `sheets.unlock`.**
-      
-      With the introduction of these API actions, you gain the ability to manage sheet locking within your application. The `sheets.lock` action allows you to lock a sheet, preventing any further modifications to its content. Conversely, the `sheets.unlock` action enables you to release the lock and restore full editing capabilities to the sheet.
-      
-      These new API actions provide greater control and flexibility when it comes to managing sheet access and data integrity.
-      
-      [See the endpoint](https://reference.flatfile.com/api-reference/sheets/lock-a-sheet)
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **The API now supports two new actions: `sheets.lock` and `sheets.unlock`.**
+    With the introduction of these API actions, you gain the ability to manage
+    sheet locking within your application. The `sheets.lock` action allows you
+    to lock a sheet, preventing any further modifications to its content.
+    Conversely, the `sheets.unlock` action enables you to release the lock and
+    restore full editing capabilities to the sheet. These new API actions
+    provide greater control and flexibility when it comes to managing sheet
+    access and data integrity. [See the
+    endpoint](https://reference.flatfile.com/api-reference/sheets/lock-a-sheet)
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -2679,46 +3253,71 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Now Available: Set estimated time of completion on Jobs**
-      
-      ![image](../changelog/images/estimatedTime_actions.png)
-      
-      When acknowledging a job from a Workbook or Sheet action, you now have the option to set the `estimatedCompletionAt` parameter. Setting the estimated time of completion for the job leads to more informative and interactive features in the UI.
-      
-      1. In the Foreground Job overlay, you'll see real-time progress displayed as a percentage, along with an estimate of the remaining time.
-      
-      2. Additionally, the Jobs Panel will share visibility into the estimated remaining time for acknowledged jobs.
-      
-      [Learn more about using Actions](../guides/actions).
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Previously, when uploading a file, actions could only be added to it after the file was uploaded (by calling a file update via a listener). Now, with our latest update, you can now include actions during file upload allowing actions to be applied to the file immediately upon creation.
-      
-      See the [API Reference](https://reference.flatfile.com/api-reference/files/upload-a-file).
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Now Available: Set estimated time of completion on Jobs**
+    ![image](../changelog/images/estimatedTime_actions.png) When acknowledging a
+    job from a Workbook or Sheet action, you now have the option to set the
+    `estimatedCompletionAt` parameter. Setting the estimated time of completion
+    for the job leads to more informative and interactive features in the UI. 1.
+    In the Foreground Job overlay, you'll see real-time progress displayed as a
+    percentage, along with an estimate of the remaining time. 2. Additionally,
+    the Jobs Panel will share visibility into the estimated remaining time for
+    acknowledged jobs. [Learn more about using Actions](../guides/actions).
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      The find/replace operation is now able to handle large datasets. Now, records are batched into groups of 10,000 rows, and a unique versionId is assigned to each batch. Additionally, the workbook service will emit events for each batch processed.
-      
-      This improvement is particularly beneficial for @flatfile/plugin-record-hook, which can now retrieve and respond to all records in a single find/replace operation, thanks to the 10,000-row batching.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Previously, when uploading a file, actions could only be added to it after
+    the file was uploaded (by calling a file update via a listener). Now, with
+    our latest update, you can now include actions during file upload allowing
+    actions to be applied to the file immediately upon creation. See the [API
+    Reference](https://reference.flatfile.com/api-reference/files/upload-a-file).
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    The find/replace operation is now able to handle large datasets. Now,
+    records are batched into groups of 10,000 rows, and a unique versionId is
+    assigned to each batch. Additionally, the workbook service will emit events
+    for each batch processed. This improvement is particularly beneficial for
+    @flatfile/plugin-record-hook, which can now retrieve and respond to all
+    records in a single find/replace operation, thanks to the 10,000-row
+    batching.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/core.mdx" />
@@ -2798,68 +3397,113 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Introducing New and Enhanced Event Logs**
-      
-      ![image](../changelog/images/event_logs.png)
-      
-      Our aim is to make it easy for everyone to monitor events, find problems, and help developers avoid overcomplicating their code with excessive Console logs that would need removal later.
-      
-      With our enhanced Event logs, you can now:
-      
-      1. View a comprehensive list of logged events, categorized by event topic.
-      2. Easily discern the status of each event.
-      3. Gauge the execution time of each event.
-      4. Access events chronologically, with the most recent at the top.
-      5. Dive into each event for context and review any associated console logs.
-      
-      As an added bonus, you have the capability to filter events, focusing solely on failures.
-      
-      See it live: [platform.flatfie.com/logs](http://platform.flatfile.com/logs)
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Choosing a `namespace` on Space creation is now easier than ever. Rather than manually typing the namespaces into a free-form text field, you can simply choose from a dropdown menu of available options. The available namespaces are conveniently listed within the `namespaces` array of the Environment, providing a more efficient and accurate way to handle namespace selection.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Introducing New and Enhanced Event Logs**
+    ![image](../changelog/images/event_logs.png) Our aim is to make it easy for
+    everyone to monitor events, find problems, and help developers avoid
+    overcomplicating their code with excessive Console logs that would need
+    removal later. With our enhanced Event logs, you can now: 1. View a
+    comprehensive list of logged events, categorized by event topic. 2. Easily
+    discern the status of each event. 3. Gauge the execution time of each event.
+    4. Access events chronologically, with the most recent at the top. 5. Dive
+    into each event for context and review any associated console logs. As an
+    added bonus, you have the capability to filter events, focusing solely on
+    failures. See it live:
+    [platform.flatfie.com/logs](http://platform.flatfile.com/logs)
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/transform.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Previously, when using the find and replace feature, only the initial batch of records had data hooks run again. Now, the find/replace operation efficiently groups records into batches of 10,000 rows, assigning a unique versionId to each batch. This improvement empowers record-hooks to process all records seamlessly within a single find/replace operation.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Now, you can include a free-form JSON object as `metadata` on your Workbook, providing you with a flexible way to store additional information related to it. Whether you're creating a new Workbook or updating an existing one, you have the option to enrich your Workbooks with meaningful metadata.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Choosing a `namespace` on Space creation is now easier than ever. Rather
+    than manually typing the namespaces into a free-form text field, you can
+    simply choose from a dropdown menu of available options. The available
+    namespaces are conveniently listed within the `namespaces` array of the
+    Environment, providing a more efficient and accurate way to handle namespace
+    selection.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Previously, when adding a secret to a space through the API, we supported spaces in secret names. However, the UI had regex logic that filtered out spaces when validating secret names.
-      
-      In this update, we've harmonized the process by accepting space characters as valid characters for secret names in both the API and the UI. Your secret names can now include spaces without any issues.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/transform.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Previously, when using the find and replace feature, only the initial batch
+    of records had data hooks run again. Now, the find/replace operation
+    efficiently groups records into batches of 10,000 rows, assigning a unique
+    versionId to each batch. This improvement empowers record-hooks to process
+    all records seamlessly within a single find/replace operation.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Now, you can include a free-form JSON object as `metadata` on your Workbook,
+    providing you with a flexible way to store additional information related to
+    it. Whether you're creating a new Workbook or updating an existing one, you
+    have the option to enrich your Workbooks with meaningful metadata.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Previously, when adding a secret to a space through the API, we supported
+    spaces in secret names. However, the UI had regex logic that filtered out
+    spaces when validating secret names. In this update, we've harmonized the
+    process by accepting space characters as valid characters for secret names
+    in both the API and the UI. Your secret names can now include spaces without
+    any issues.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -2877,18 +3521,25 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **We’ve added Portuguese (Brazilian) translations!**
-      
-      Building upon our existing language support (based on your customers’ browser locale), which already included French, German, and Spanish translations, we’ve expanded our capabilities to cater to an even broader audience.
-      
-      Need another language? Let us know and we’ll prioritize getting it added.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **We’ve added Portuguese (Brazilian) translations!** Building upon our
+    existing language support (based on your customers’ browser locale), which
+    already included French, German, and Spanish translations, we’ve expanded
+    our capabilities to cater to an even broader audience. Need another
+    language? Let us know and we’ll prioritize getting it added.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -2906,18 +3557,29 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      We've revamped the way partial replaces work, enhancing your data editing experience for maximum smoothness and intuitiveness. In the past, when you attempted to replace specific characters with an empty string (""), it occasionally resulted in the cell value becoming null, which wasn't quite what you had in mind.
-      
-      For instance, if you needed to eliminate dashes from UUID fields, you'd naturally want "abc-123" to transform into "abc123" rather than mysteriously turning null.
-      
-      We value your feedback. Now, you can confidently perform partial replacements without the hassle of unexpected null values.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    We've revamped the way partial replaces work, enhancing your data editing
+    experience for maximum smoothness and intuitiveness. In the past, when you
+    attempted to replace specific characters with an empty string (""), it
+    occasionally resulted in the cell value becoming null, which wasn't quite
+    what you had in mind. For instance, if you needed to eliminate dashes from
+    UUID fields, you'd naturally want "abc-123" to transform into "abc123"
+    rather than mysteriously turning null. We value your feedback. Now, you can
+    confidently perform partial replacements without the hassle of unexpected
+    null values.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/files.mdx" />
@@ -2933,39 +3595,52 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Localization is Now Available**
-      
-      ![image](../changelog/images/localization.png)
-      
-      We are excited to introduce localization features in Flatfile! Now, your customers will enjoy automatic translations based on their browser locale, including French, German, and Spanish.
-      
-      Key Features:
-      
-      - Translations are exclusively applied in Spaces (guest areas).
-      - Our user-friendly guide will assist you in effortlessly translating and personalizing the content within your space, whether it's custom actions, documents, and more.
-      - Require another language? Send us a note, and we'll make it a priority to include it.
-      
-      [Follow the guide](../guides/localization) or try the [Localization demo Space](https://platform.flatfile.com/getting-started) to get started.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **New: Promote Sheet Actions**
-      
-      ![image](../changelog/images/primary_actions.png)
-      
-      Previously, the `primary:true` concept on Actions didn't affect Sheet actions, leaving them all in the "more actions" drop-down. But now, setting primary to true will showcase these actions right in the Sheet toolbar, as buttons with clear, user-friendly text.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Localization is Now Available**
+    ![image](../changelog/images/localization.png) We are excited to introduce
+    localization features in Flatfile! Now, your customers will enjoy automatic
+    translations based on their browser locale, including French, German, and
+    Spanish. Key Features: - Translations are exclusively applied in Spaces
+    (guest areas). - Our user-friendly guide will assist you in effortlessly
+    translating and personalizing the content within your space, whether it's
+    custom actions, documents, and more. - Require another language? Send us a
+    note, and we'll make it a priority to include it. [Follow the
+    guide](../guides/localization) or try the [Localization demo
+    Space](https://platform.flatfile.com/getting-started) to get started.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **New: Promote Sheet Actions**
+    ![image](../changelog/images/primary_actions.png) Previously, the
+    `primary:true` concept on Actions didn't affect Sheet actions, leaving them
+    all in the "more actions" drop-down. But now, setting primary to true will
+    showcase these actions right in the Sheet toolbar, as buttons with clear,
+    user-friendly text.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -2981,22 +3656,27 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Introducing: Code Blocks for Documents**
-      
-      ![image](../changelog/images/documents_codeblocks.png)
-      
-      We've introduced the ability to add code blocks to your Documents. You can now use the following syntax to define code blocks and specify the language:
-      
-      ![image](../changelog/images/documents_codeblocks_sample.png)
-      
-      Your code will be formatted accordingly, enhancing the clarity and presentation of your content.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Introducing: Code Blocks for Documents**
+    ![image](../changelog/images/documents_codeblocks.png) We've introduced the
+    ability to add code blocks to your Documents. You can now use the following
+    syntax to define code blocks and specify the language:
+    ![image](../changelog/images/documents_codeblocks_sample.png) Your code will
+    be formatted accordingly, enhancing the clarity and presentation of your
+    content.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/spaces.mdx" />
@@ -3012,38 +3692,62 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Introducing support for finding empty fields in ffql using the syntax:
-      
-      ```jsx
-      filter: first_name eq ""
-      ```
-      
-      Now, you can easily query and filter records with empty values.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Resolved an issue where attempting to upsert an Environment secret that was already defined within a Space was not functioning as expected. This fix ensures proper handling when upserting a secret into an Environment after specifying a Space ID.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Introducing support for finding empty fields in ffql using the syntax:
+    ```jsx filter: first_name eq "" ``` Now, you can easily query and filter
+    records with empty values.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Resolved an issue where the import button could prematurely appear before a file was ready to be imported. This was due to an early update of the file's status with a workbook ID, which has now been adjusted to wait until the data is queriable before updating. The import process now aligns better with the file's readiness.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Resolved an issue where attempting to upsert an Environment secret that was
+    already defined within a Space was not functioning as expected. This fix
+    ensures proper handling when upserting a secret into an Environment after
+    specifying a Space ID.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Resolved an issue where the import button could prematurely appear before a
+    file was ready to be imported. This was due to an early update of the file's
+    status with a workbook ID, which has now been adjusted to wait until the
+    data is queriable before updating. The import process now aligns better with
+    the file's readiness.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -3059,14 +3763,22 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      When a file stream becomes unreadable due to file malformation, improvements were made to ensure that any errors are correctly communicated to the UI.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    When a file stream becomes unreadable due to file malformation, improvements
+    were made to ensure that any errors are correctly communicated to the UI.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/files.mdx" />
@@ -3082,35 +3794,60 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Documents in the sidebar are now organized based on their creation date. This enhancement helps developers have more control the order of their Documents.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      If you have access to multiple Spaces, you'll notice a dropdown menu at the top left corner of each Space. Previously, there was an issue where all the data within the Space would update correctly, except for Workbooks/Sheets in the sidebar. This issue has been successfully resolved.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Documents in the sidebar are now organized based on their creation date.
+    This enhancement helps developers have more control the order of their
+    Documents.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      2 new Demo spaces were added: Documents & Theming. In these demo Spaces, you'll learn how to:
-      
-      1. Add Markdown + HTML Documents to your Space
-      2. Customize the look and feel of Flatfile to match your brand
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    If you have access to multiple Spaces, you'll notice a dropdown menu at the
+    top left corner of each Space. Previously, there was an issue where all the
+    data within the Space would update correctly, except for Workbooks/Sheets in
+    the sidebar. This issue has been successfully resolved.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    2 new Demo spaces were added: Documents & Theming. In these demo Spaces,
+    you'll learn how to: 1. Add Markdown + HTML Documents to your Space 2.
+    Customize the look and feel of Flatfile to match your brand
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -3218,57 +3955,95 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Improved FFQL handling of dates and number comparisons**
-      
-      **Enhanced Number Field Queries:**
-      
-      When conducting equality or inequality FFQL comparisons for `number` fields, the query value is now cast to a number and then compared with the parsed "shadow" value. This rectifies issues related to numeric comparisons. Additionally, we've resolved a bug where numbers with no digits before the decimal point (e.g., ".3") were not being properly parsed into shadow values.
-      
-      **Advanced Date Field Handling:**
-      
-      For `date` fields, query values are now attempted to be parsed into dates. On the SQL side, a `CASE` statement is employed to parse the stored values into dates for accurate comparison. To accommodate SQL-side date parsing requirements, we've integrated a regex pattern to detect `YYYY-MM-DD`, `m/d/yy`, and `m/d/yyyy` formats. This ensures correct parsing and comparison of date values.
-      
-      **Fix for Invalid Number Input:**
-      
-      We've resolved a bug where changing a number field to an invalid number left the previous "shadow" value intact. Now, in such cases, the previous shadow value is properly cleared, leading to consistent and accurate behavior.
-      
-      These updates contribute to improved query handling, better data integrity, and a more seamless experience when working with number and date fields.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Introducing caching for record counts, resulting in improved performance for API requests.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Improved FFQL handling of dates and number comparisons** **Enhanced Number
+    Field Queries:** When conducting equality or inequality FFQL comparisons for
+    `number` fields, the query value is now cast to a number and then compared
+    with the parsed "shadow" value. This rectifies issues related to numeric
+    comparisons. Additionally, we've resolved a bug where numbers with no digits
+    before the decimal point (e.g., ".3") were not being properly parsed into
+    shadow values. **Advanced Date Field Handling:** For `date` fields, query
+    values are now attempted to be parsed into dates. On the SQL side, a `CASE`
+    statement is employed to parse the stored values into dates for accurate
+    comparison. To accommodate SQL-side date parsing requirements, we've
+    integrated a regex pattern to detect `YYYY-MM-DD`, `m/d/yy`, and `m/d/yyyy`
+    formats. This ensures correct parsing and comparison of date values. **Fix
+    for Invalid Number Input:** We've resolved a bug where changing a number
+    field to an invalid number left the previous "shadow" value intact. Now, in
+    such cases, the previous shadow value is properly cleared, leading to
+    consistent and accurate behavior. These updates contribute to improved query
+    handling, better data integrity, and a more seamless experience when working
+    with number and date fields.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      The `PATCH /sheets` endpoint has been upgraded to accept both an array of SheetUpdates and an array of SheetConfigs (backwards compatible). This expanded capability empowers users with more flexible and efficient options when updating Sheets.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      # ![image](../changelog/images/tooltips-actions.png)
-      
-      We've introduced a new parameter: `tooltip` to Actions, allowing the addition of tooltips. These tooltips are now visible in the user interface for both buttons and list items whenever the associated Action is enabled. This enhancement provides users with clear and context-aware explanations for enabled Actions, contributing to an improved overall user experience.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Introducing caching for record counts, resulting in improved performance for
+    API requests.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    The `PATCH /sheets` endpoint has been upgraded to accept both an array of
+    SheetUpdates and an array of SheetConfigs (backwards compatible). This
+    expanded capability empowers users with more flexible and efficient options
+    when updating Sheets.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    # ![image](../changelog/images/tooltips-actions.png) We've introduced a new
+    parameter: `tooltip` to Actions, allowing the addition of tooltips. These
+    tooltips are now visible in the user interface for both buttons and list
+    items whenever the associated Action is enabled. This enhancement provides
+    users with clear and context-aware explanations for enabled Actions,
+    contributing to an improved overall user experience.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -3286,63 +4061,103 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **🚀 4 New Example Spaces**
-      
-      Visit the **Getting Started** page on your Dashboard to discover four new options for effortlessly generating demo spaces:
-      
-      1. Namespaces
-      2. Metadata
-      3. Egress
-      4. Sidebar Customization
-      
-      Similar to the rest of the options, we've provided the underlying code for each Space, simplifying the process of breaking down and comprehending the elements on display.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **Authentication Query Enhancement**
-      
-      The authentication query has been streamlined for optimized performance. Extensive benchmarking has revealed that this refinement contributes to a reduction of approximately 20 milliseconds for each request. This enhancement results in faster overall processing and improved response times.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **🚀 4 New Example Spaces** Visit the **Getting Started** page on your
+    Dashboard to discover four new options for effortlessly generating demo
+    spaces: 1. Namespaces 2. Metadata 3. Egress 4. Sidebar Customization Similar
+    to the rest of the options, we've provided the underlying code for each
+    Space, simplifying the process of breaking down and comprehending the
+    elements on display.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      The **Data Checklist** now includes data types that correspond to each field. Additionally, the searchable dropdowns are now more user friendly.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      A pagination logic issue concerning **Environments** has been resolved. The correction ensures accurate calculation of the number of pages and consistent delivery of valid responses in accordance with the [Pagination](https://flatfile.stoplight.io/docs/api/1dcb99aada63f-pagination) type.
-      
-      Furthermore, the default page size for **Spaces** has been set to 10, aligning it with the specifications outlined in the API documentation.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **Authentication Query Enhancement** The authentication query has been
+    streamlined for optimized performance. Extensive benchmarking has revealed
+    that this refinement contributes to a reduction of approximately 20
+    milliseconds for each request. This enhancement results in faster overall
+    processing and improved response times.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Previously, attempting to navigate into a dropdown using the keyboard's tab key was unresponsive. This issue has been addressed, and tabbing via keyboard now smoothly activates dropdowns, accompanied by a focus outline for the custom trigger.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    The **Data Checklist** now includes data types that correspond to each
+    field. Additionally, the searchable dropdowns are now more user friendly.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    A pagination logic issue concerning **Environments** has been resolved. The
+    correction ensures accurate calculation of the number of pages and
+    consistent delivery of valid responses in accordance with the
+    [Pagination](https://flatfile.stoplight.io/docs/api/1dcb99aada63f-pagination)
+    type. Furthermore, the default page size for **Spaces** has been set to 10,
+    aligning it with the specifications outlined in the API documentation.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Previously, attempting to navigate into a dropdown using the keyboard's tab
+    key was unresponsive. This issue has been addressed, and tabbing via
+    keyboard now smoothly activates dropdowns, accompanied by a focus outline
+    for the custom trigger.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/core.mdx" />
@@ -3384,127 +4199,213 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **🚀 A Revamped Starting Point**
-      
-      ![image](../changelog/images/get-started.png)
-      
-      Navigate to your Dashboard's Getting Started page to find an array of new options for effortlessly creating demo spaces. Additionally, we've included the underlying code for each Space, making it straightforward to deconstruct and understand what you're seeing.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/infra.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **🚀 Major improvements to our queue system**
-      
-      We’ve implemented a state-of-the-art technology to substantially enhance the reliability and performance of our queue system. This improvement has a profound impact on the execution of asynchronous tasks, like data validation.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **🚀 A Revamped Starting Point**
+    ![image](../changelog/images/get-started.png) Navigate to your Dashboard's
+    Getting Started page to find an array of new options for effortlessly
+    creating demo spaces. Additionally, we've included the underlying code for
+    each Space, making it straightforward to deconstruct and understand what
+    you're seeing.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Now, you can set a description for each Option Field value via API.
-      End users can then view this description as a tooltip during mapping.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      We've added new API routes to capture up to 5 snapshots of a Sheet, with the
-      flexibility to restore any of them using the API at your convenience. Stay
-      tuned as we prepare to bring this functionality to the UI as well.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/infra.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **🚀 Major improvements to our queue system** We’ve implemented a
+    state-of-the-art technology to substantially enhance the reliability and
+    performance of our queue system. This improvement has a profound impact on
+    the execution of asynchronous tasks, like data validation.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      A Sheet with no access enabled (`access:[]`) now shows a lock icon on the
-      Sheet tab.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      We opted to hide the files count on the Files page if there are no files.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Now, you can set a description for each Option Field value via API. End
+    users can then view this description as a tooltip during mapping.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      A shrimp size update to the colors of the sidebar toggle so it looks good
-      with all themes.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Info inside `metadata` > `userInfo` will now display in the Spaces list.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    We've added new API routes to capture up to 5 snapshots of a Sheet, with the
+    flexibility to restore any of them using the API at your convenience. Stay
+    tuned as we prepare to bring this functionality to the UI as well.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Metadata allows you to store and retrieve additional data about a Space,
-      Record, or Field without exposing it to end users. Now, Environments also
-      have a `metadata` string array.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      We made a small fix to allow better vertical scrolling in the Dashboard
-      sidebar.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    A Sheet with no access enabled (`access:[]`) now shows a lock icon on the
+    Sheet tab.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      CTRL + Z wasn't working for a minute. This is now fixed.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      If a boolean cell is empty, we only show the toggle on hover now.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    We opted to hide the files count on the Files page if there are no files.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    A shrimp size update to the colors of the sidebar toggle so it looks good
+    with all themes.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Info inside `metadata` > `userInfo` will now display in the Spaces list.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Metadata allows you to store and retrieve additional data about a Space,
+    Record, or Field without exposing it to end users. Now, Environments also
+    have a `metadata` string array.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    We made a small fix to allow better vertical scrolling in the Dashboard
+    sidebar.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    CTRL + Z wasn't working for a minute. This is now fixed.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    If a boolean cell is empty, we only show the toggle on hover now.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/files.mdx" />
@@ -3521,110 +4422,154 @@ icon: "layer-group"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      **🚀 Introducing Command+k Triggered Search and Transformation (Early Access)**
-      
-      ![image](../changelog/images/AI-assist.png)
-      
-      This update enhances your workflow by centralizing experiences under the Command+k shortcut.
-      
-      A straightforward forward slash, followed by these options, grants access to our data transformation and query tools:
-      
-      - `/transform` (AI-powered)
-      - `/query` (AI-powered)
-      - `/search` (global search)
-      - `/filter` (Flatfile Query Language, ffql)
-      - `/in` (field-specific search)
-      
-      Chat with us or email [support@flatfile.com](mailto:support@flatfile.com) to have this feature flagged on in your Account today!
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      There is now a count at the top of the files list that shows the total
-      number of files.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    **🚀 Introducing Command+k Triggered Search and Transformation (Early
+    Access)** ![image](../changelog/images/AI-assist.png) This update enhances
+    your workflow by centralizing experiences under the Command+k shortcut. A
+    straightforward forward slash, followed by these options, grants access to
+    our data transformation and query tools: - `/transform` (AI-powered) -
+    `/query` (AI-powered) - `/search` (global search) - `/filter` (Flatfile
+    Query Language, ffql) - `/in` (field-specific search) Chat with us or email
+    [support@flatfile.com](mailto:support@flatfile.com) to have this feature
+    flagged on in your Account today!
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      ![image](../changelog/images/sidebar_collapsed.png)
-      
-      The Sidebar now has three different states:
-      
-      - Collapsed state
-      - Open state
-      - Totally hidden state
-      
-      Additionally, the Sidebar will now automatically collapse itself on smaller screens.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/spaces.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      We now handle overflowing space name(s) by:
-      
-      - Breaking the word
-      - Limiting the name to two lines and giving it an ellipsis if it overflows
-      - Adding a tooltip with the space name to truncated names
-      - Previously, badge names in the data checklist could break to two lines making them hard to read. This is also fixed.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    There is now a count at the top of the files list that shows the total
+    number of files.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/theming.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      When determining the lighter shades of each main theme colors, i.e. primary,
-      danger, warning and success, there are now checks to ensure no colors end up
-      as white.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      The filename was added to the mapping scene so users can now see which file
-      they are currently mapping.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    ![image](../changelog/images/sidebar_collapsed.png) The Sidebar now has
+    three different states: - Collapsed state - Open state - Totally hidden
+    state Additionally, the Sidebar will now automatically collapse itself on
+    smaller screens.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/files.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Cells with no data can now be unmapped using “Do not import”, if previously
-      mapped to a value.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      Filter: "Last Name" like A% will now retrieve all records where Last Name
-      starts with “A”. Previously, it was retrieving records that contained “A”.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/spaces.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    We now handle overflowing space name(s) by: - Breaking the word - Limiting
+    the name to two lines and giving it an ellipsis if it overflows - Adding a
+    tooltip with the space name to truncated names - Previously, badge names in
+    the data checklist could break to two lines making them hard to read. This
+    is also fixed.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/theming.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    When determining the lighter shades of each main theme colors, i.e. primary,
+    danger, warning and success, there are now checks to ensure no colors end up
+    as white.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    The filename was added to the mapping scene so users can now see which file
+    they are currently mapping.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/files.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Cells with no data can now be unmapped using “Do not import”, if previously
+    mapped to a value.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/dataxp.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    Filter: "Last Name" like A% will now retrieve all records where Last Name
+    starts with “A”. Previously, it was retrieving records that contained “A”.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/dataxp.mdx" />
@@ -3637,4 +4582,3 @@ icon: "layer-group"
     </div>
   </div>
 </div>
-

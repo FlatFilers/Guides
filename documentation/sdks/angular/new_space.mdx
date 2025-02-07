@@ -3,7 +3,9 @@ title: "Embed Flatfile"
 description: "create a new Space every time Flatfile is opened"
 ---
 
-For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+For synchronous data import/exchange completed in one session, create a new
+Space each time Flatfile is opened. This suits situations where a clean slate
+for every interaction is preferred.
 
 ## Before you begin
 
@@ -27,7 +29,8 @@ npm i @flatfile/angular-sdk @flatfile/plugin-record-hook @flatfile/listener
 
 ### 1. Initialize Flatfile
 
-In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey`.
+In your `app.component.ts` you'll need to pass in a minimum of the
+`publishableKey`.
 
 <CodeGroup>
 
@@ -88,7 +91,8 @@ export class AppComponent {
 
 ### 2. Start your client
 
-Now, start your front end by heading to the terminal and running the following command.
+Now, start your front end by heading to the terminal and running the following
+command.
 
 ```bash
   npm run start
@@ -98,7 +102,11 @@ Now, start your front end by heading to the terminal and running the following c
 
 Now, let’s build a Workbook inside the Space for next time.
 
-Add your `config.ts` file, and place the following code in it. After you have done so, import the configuration to `app.component.ts`, and update `spaceProps` to have the value of `config` under `workbook`. This config file has the configuration settings for your workbook, so feel free to edit however necessary to meet your needs.
+Add your `config.ts` file, and place the following code in it. After you have
+done so, import the configuration to `app.component.ts`, and update `spaceProps`
+to have the value of `config` under `workbook`. This config file has the
+configuration settings for your workbook, so feel free to edit however necessary
+to meet your needs.
 
 <CodeGroup>
 
@@ -172,8 +180,7 @@ spaceProps: ISpace = {
     displayAsModal: true,
     workbook: config,
   };
-  ```
-
+```
 
 </CodeGroup>
 
@@ -184,7 +191,10 @@ Next, we'll listen for data changes and respond using an event listener.
 1. Add a `src/listeners/listener.ts` file with this simple `recordHook`.
 2. Update `app.component.ts` to import the listener.
 
-Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](/guides/handling-data)
+Once you add this code, when a change occurs, we'll log the entered first name
+and update the last name to "Rock." You'll immediately see this begin to work
+when you add or update any records. Learn more about
+[Handling Data](/guides/handling-data)
 
 <CodeGroup>
 
@@ -284,7 +294,9 @@ export class AppComponent {
 
 ### 5. Match your brand
 
-By attaching a `themeConfig` to `spaceProps`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](/guides/theming).
+By attaching a `themeConfig` to `spaceProps`, we will now override colors in
+your Space to match your brand. See all of the options here in the
+[Theming Reference](/guides/theming).
 
 ```typescript
   themeConfig: {
@@ -298,7 +310,8 @@ By attaching a `themeConfig` to `spaceProps`, we will now override colors in you
 
 ### 6. Add customizations
 
-You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+You can stop here or you can [view our full reference](../reference/common) to
+see all the ways you can customize your importer.
 
 ## Example Project
 

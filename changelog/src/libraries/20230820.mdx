@@ -4,7 +4,8 @@
 
 `@flatfile/api@1.5.21`
 
-The response type for the `getRecordsAsCSV` endpoint was incorrectly typed as a string instead of a file. This fixes downloading a sheet as a CSV via SDk.
+The response type for the `getRecordsAsCSV` endpoint was incorrectly typed as a
+string instead of a file. This fixes downloading a sheet as a CSV via SDk.
 
 ## core
 
@@ -12,27 +13,35 @@ The response type for the `getRecordsAsCSV` endpoint was incorrectly typed as a 
 
 This version has four great updates:
 
-- Previously, you had to fake-out TypeScript because the event time was not exposed (it was a private class variable) for FlatfileEvents. We have now added `createdAt` to the FlatfileEvent.
+- Previously, you had to fake-out TypeScript because the event time was not
+  exposed (it was a private class variable) for FlatfileEvents. We have now
+  added `createdAt` to the FlatfileEvent.
 - Axios responses 200-399 now no longer throw Errors.
 - Created a secrets cache based on `spaceId`.
-- Previously, if your listener fetched secrets for multiple environments, those maps would entirely override each other.
-- If your listener fetched `spaceId` overrides first, and then environment -- you would get the space id overrides.
-- We now make sure that the fetch URL in the listener is formatted properly whether or not the user puts a trailing slash in the environment variable.
+- Previously, if your listener fetched secrets for multiple environments, those
+  maps would entirely override each other.
+- If your listener fetched `spaceId` overrides first, and then environment --
+  you would get the space id overrides.
+- We now make sure that the fetch URL in the listener is formatted properly
+  whether or not the user puts a trailing slash in the environment variable.
 
 ## core
 
 `@flatfile/listener@0.3.14`
 
-`event.secrets` now defaults to `spaceId`. It will throw if no `environmentId` is available for secrets retrieval.
+`event.secrets` now defaults to `spaceId`. It will throw if no `environmentId`
+is available for secrets retrieval.
 
 ## wrappers
 
 `@flatfile/react@7.2.15`
 
-You can now pass in a spacebody. This will allowyou to send more than any already-defined parameters allowed on space creation.
+You can now pass in a spacebody. This will allowyou to send more than any
+already-defined parameters allowed on space creation.
 
 ## wrappers
 
 `@flatfile/react@7.2.14`
 
-The close button and iframe now have a proper class name to allow for CSS overrides.
+The close button and iframe now have a proper class name to allow for CSS
+overrides.

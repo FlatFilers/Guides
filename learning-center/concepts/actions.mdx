@@ -4,7 +4,10 @@ description: "The anatomy of Actions"
 icon: "bolt"
 ---
 
-An Action is a code-based operation that runs where that Action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile. Additional Actions can be mounted on a Sheet, a Workbook, or a file by a developer.
+An Action is a code-based operation that runs where that Action is mounted.
+Actions run when a user clicks the corresponding user prompt in Flatfile.
+Additional Actions can be mounted on a Sheet, a Workbook, or a file by a
+developer.
 
 ## Types of Actions
 
@@ -12,25 +15,33 @@ An Action is a code-based operation that runs where that Action is mounted. Acti
 
 Workbooks, Sheets and files come with five default built-in actions:
 
-1. Mapping data from one workbook to another (moving data from a workbook to a Workbook)
+1. Mapping data from one workbook to another (moving data from a workbook to a
+   Workbook)
 2. Deleting data from a Workbook (or the entire file)
 3. Exporting (downloading) data from a Workbook (or a file)
 4. Find and Replacing data in a Sheet
 5. Applying a Mutate function to data in a Sheet
 
-When these built-in actions are clicked, they create Jobs. You can listen for these events and take appropriate actions if required. Learn more about [Jobs](../orchestration/jobs).
+When these built-in actions are clicked, they create Jobs. You can listen for
+these events and take appropriate actions if required. Learn more about
+[Jobs](../orchestration/jobs).
 
 ### Developer-Created Actions
 
-Additional Actions can be mounted on a Sheet, a Workbook, or a file. When an action is clicked, it will create a job `operation` on the `domain` it is mounted.
+Additional Actions can be mounted on a Sheet, a Workbook, or a file. When an
+action is clicked, it will create a job `operation` on the `domain` it is
+mounted.
 
-For example, an Action with the property `operation: 'my-action'` placed on a Workbook would spawn a job called: `workbook:my-action`. This is the job you'd listen for to respond accordingly.
+For example, an Action with the property `operation: 'my-action'` placed on a
+Workbook would spawn a job called: `workbook:my-action`. This is the job you'd
+listen for to respond accordingly.
 
 ## The Anatomy of an Action
 
 ### Required Parameters
 
-All Actions contain the the information needed to let a user run the Action. This includes:
+All Actions contain the the information needed to let a user run the Action.
+This includes:
 
 <ParamField path="operation" type="string" required>
   A unique identifier for the Action that is used by the listener to determine
@@ -75,9 +86,9 @@ UI. These include:
 
 <ParamField path="messages" type="array[{}]">
   Setting this will display text on disabled actions [based on the state of the action] in the UI for
-  both buttons and list items as a tooltip on hover. 
+  both buttons and list items as a tooltip on hover.
 
-`[{ type: 'error' }]` 
+`[{ type: 'error' }]`
 
 `[{ type: 'info' }]`
 
@@ -89,7 +100,8 @@ UI. These include:
   
   `[{ type: 'hasSelection' }]`: Adding this constraint will disable a Sheet or Workbook Action when no records are selected.
 
-`[{ type: 'hasData' }]`: Adding this constraint will disable a Sheet or Workbook Action when there are no records.
+`[{ type: 'hasData' }]`: Adding this constraint will disable a Sheet or Workbook
+Action when there are no records.
 
 </ParamField>
 
@@ -119,9 +131,15 @@ An Action with all of the above properties would look like this:
 
 ## inputForm
 
-When initiating an action, there may be instances where additional information is required from the end user to successfully complete the intended task. For example, you might want to enable users to specify the name of the file they intend to export.
+When initiating an action, there may be instances where additional information
+is required from the end user to successfully complete the intended task. For
+example, you might want to enable users to specify the name of the file they
+intend to export.
 
-In such cases, if you configure input fields for your action, a secondary dialog will be presented to the end user, prompting them to provide the necessary information. Once the user has entered the required details, they can proceed with the action seamlessly
+In such cases, if you configure input fields for your action, a secondary dialog
+will be presented to the end user, prompting them to provide the necessary
+information. Once the user has entered the required details, they can proceed
+with the action seamlessly
 
 <ParamField path="inputForm" type="object">
   An object representing the input form configuration for the action.
@@ -197,7 +215,10 @@ In such cases, if you configure input fields for your action, a secondary dialog
 
 ### Usage
 
-An Action that requests input from the end user using `inputForm` would look like this. Your listener would then grab this data from the Job and take action on it. Learn more about [Using Actions with Inputs](../guides/actions#actions-with-input-forms).
+An Action that requests input from the end user using `inputForm` would look
+like this. Your listener would then grab this data from the Job and take action
+on it. Learn more about
+[Using Actions with Inputs](../guides/actions#actions-with-input-forms).
 
 <Snippet file="shared/workbook_submit_pt4.mdx" />
 

@@ -3,11 +3,15 @@ title: "Reuseable Spaces"
 description: "reuse a Space when Flatfile is opened"
 ---
 
-For applications meant to use the same space consistently, open an existing space each time Flatfile is opened. This suits situations where consistently editing a dataset is preferred.
+For applications meant to use the same space consistently, open an existing
+space each time Flatfile is opened. This suits situations where consistently
+editing a dataset is preferred.
 
 ## Before you begin
 
-If you have already tried our [Embed a New Space](./new_space) guide you will notice this guide departs heavily, so you will want to create this in a new directory, as translation would be more difficult than creating from scratch.
+If you have already tried our [Embed a New Space](./new_space) guide you will
+notice this guide departs heavily, so you will want to create this in a new
+directory, as translation would be more difficult than creating from scratch.
 
 <Snippet file="shared/sk_needed.mdx" />
 
@@ -33,7 +37,8 @@ npm i @flatfile/api @flatfile/listener @flatfile/plugin-record-hook @flatfile/an
 
 #### 1. Set up Configuration Files
 
-This app has some configuration files that must be set up before you can get started with development. Set them up as shown below.
+This app has some configuration files that must be set up before you can get
+started with development. Set them up as shown below.
 
 <CodeGroup>
 ```JSON nodemon.json
@@ -46,7 +51,8 @@ This app has some configuration files that must be set up before you can get sta
 ```
 </CodeGroup>
 
-You will also want to add some scripts to your `package.json` to start the app. Add the following scripts:
+You will also want to add some scripts to your `package.json` to start the app.
+Add the following scripts:
 
 ```JSON pacakge.json (snippet)
 "scripts": {
@@ -58,7 +64,10 @@ You will also want to add some scripts to your `package.json` to start the app. 
 
 #### 2. Create the Server
 
-Lets create the server that will act as the backend of the application. This will be necessary to serve the pages as well as get the existing space, as due to security reasons the Secret Key cannot be exposed to the browser at any time. You'll want to replace the token value with your secret key or api token.
+Lets create the server that will act as the backend of the application. This
+will be necessary to serve the pages as well as get the existing space, as due
+to security reasons the Secret Key cannot be exposed to the browser at any time.
+You'll want to replace the token value with your secret key or api token.
 
 ```TypeScript server/index.ts
 import express from "express";
@@ -157,7 +166,8 @@ export class AppComponent {
 }
 ```
 
-You'll need to update your `app.component.html` to include the existing space component. It should end up looking like the below:
+You'll need to update your `app.component.html` to include the existing space
+component. It should end up looking like the below:
 
 ```html src/app/app.component.html
 <main class="main">
@@ -174,17 +184,20 @@ You'll need to update your `app.component.html` to include the existing space co
 
 #### 6. Start your client
 
-Now you should be able to start your app. To load it in dev mode and ensure everything works proprly, run:
+Now you should be able to start your app. To load it in dev mode and ensure
+everything works proprly, run:
 
 ```bash
 npm run dev
 ```
 
-If you have any errors, now is your time to fix them up, else you're ready to deploy!
+If you have any errors, now is your time to fix them up, else you're ready to
+deploy!
 
 #### 7. Customize
 
-You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+You can stop here or you can [view our full reference](../reference/common) to
+see all the ways you can customize your importer.
 
 ## Example Project
 

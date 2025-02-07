@@ -3,7 +3,8 @@ title: "Common"
 description: "commonly used embedded properties"
 ---
 
-All wrapper SDKs take the following shared properties. It's recommended to start with the defaults in the Guides, then come back here to make customizations.
+All wrapper SDKs take the following shared properties. It's recommended to start
+with the defaults in the Guides, then come back here to make customizations.
 
 ## Authenticate
 
@@ -22,7 +23,9 @@ const flatfileOptions = {
 
 ## Identify
 
-While setting up embedded Flatfile, you have the option to either establish a fresh Space during each initialization or reuse an existing Space. These properties specifically apply when creating a new Space.
+While setting up embedded Flatfile, you have the option to either establish a
+fresh Space during each initialization or reuse an existing Space. These
+properties specifically apply when creating a new Space.
 
 ### userInfo
 
@@ -66,7 +69,9 @@ const flatfileOptions = {
   Theme values for the Space, sidebar and data table.
 </ParamField>
 
-Theme your Space to create a custom look and feel to match your brand using the actual CSS variables referenced in the app. See all options in our [Theming Reference](../../../guides/theming).
+Theme your Space to create a custom look and feel to match your brand using the
+actual CSS variables referenced in the app. See all options in our
+[Theming Reference](../../../guides/theming).
 
 ```typescript src/client.js
 const theme = {
@@ -108,7 +113,8 @@ const flatfileOptions = {
   Sidebar config values to toggle UI elements
 </ParamField>
 
-Within the sidebar, you can set the default page, hide or show the sidebar, and hide or show the data checklist.
+Within the sidebar, you can set the default page, hide or show the sidebar, and
+hide or show the data checklist.
 
 <Note>
   If multiple values are provided for defaultPage, it with prioritize in the
@@ -146,9 +152,9 @@ const flatfileOptions = {
   Document to pass to space
 </ParamField>
 
-[Documents](../../../guides/documents), written in Markdown, provide extra clarification and instructions to users of
-a Space. Each Document will appear in the sidebar of a Space. Standard syntax is
-supported.
+[Documents](../../../guides/documents), written in Markdown, provide extra
+clarification and instructions to users of a Space. Each Document will appear in
+the sidebar of a Space. Standard syntax is supported.
 
 <CodeGroup>
 
@@ -233,7 +239,8 @@ const flatfileOptions = {
 
 ## Configuration
 
-These properties allow you to configure how the importer is mounted, displayed, and closed.
+These properties allow you to configure how the importer is mounted, displayed,
+and closed.
 
 ### closeSpace
 
@@ -256,7 +263,10 @@ const flatfileOptions = {
 };
 ```
 
-This `onClose` callback function is called when the 'operation' defined in the Action is complete and closes the iframe. It can also be used to perform cleanup actions, such as resetting the state of the parent application or updating the UI.
+This `onClose` callback function is called when the 'operation' defined in the
+Action is complete and closes the iframe. It can also be used to perform cleanup
+actions, such as resetting the state of the parent application or updating the
+UI.
 
 ### displayAsModal
 
@@ -264,7 +274,9 @@ This `onClose` callback function is called when the 'operation' defined in the A
   Display Flatfile as a full screen modal or inline on the page.
 </ParamField>
 
-Toggling off this property will update the wrapper css to make the iframe fully inline thereby hiding the close button. All of the child divs will no longer include: `.flatfile_displayAsModal` which removes all the dialog styling.
+Toggling off this property will update the wrapper css to make the iframe fully
+inline thereby hiding the close button. All of the child divs will no longer
+include: `.flatfile_displayAsModal` which removes all the dialog styling.
 
 The default width and height of the container can be overriden in `style.css`.
 

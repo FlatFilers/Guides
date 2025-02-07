@@ -6,22 +6,30 @@ icon: "circle-2"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-Flatfile Spaces are micro-applications, each having their own database, filestore, and auth. A Space is comprised of Workbooks, Files and Users. It can also include Documents, Themes and Metadata.
+Flatfile Spaces are micro-applications, each having their own database,
+filestore, and auth. A Space is comprised of Workbooks, Files and Users. It can
+also include Documents, Themes and Metadata.
 
-In this example, we'll create a simple Space with a Workbook and a Document. We'll also theme the Space to be red.
+In this example, we'll create a simple Space with a Workbook and a Document.
+We'll also theme the Space to be red.
 
 ## Dynamically build your Space
 
-When the "Create New Space" button is clicked from within your App in the dashboard, it triggers a [job `event`](../../orchestration/events) within the **space** `domain` that initiates a **configure** `operation`.
+When the "Create New Space" button is clicked from within your App in the
+dashboard, it triggers a [job `event`](../../orchestration/events) within the
+**space** `domain` that initiates a **configure** `operation`.
 
-This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://reference.flatfile.com/api-reference/spaces/create) with the parameter `autoconfigure` set to true.
+This operation is analogous to performing a POST request to the endpoint
+[/api/v1/spaces](https://reference.flatfile.com/api-reference/spaces/create)
+with the parameter `autoconfigure` set to true.
 
 #### Usage
 
 In the following code, we will:
 
 1. Filter on the `red` namespace. (Or replace this with your namespace.)
-2. Filter for a job by the `domain` (space) and the `operation` (configure) it was created.
+2. Filter for a job by the `domain` (space) and the `operation` (configure) it
+   was created.
 3. Listen for a [`job:ready`](../../orchestration/events#job-ready) event.
 4. Acknowledge the Job and mark the progress.
 5. Add the contents of the Space, including one Workbook and a simple Document.
@@ -133,7 +141,7 @@ export default function flatfileEventListener(listener) {
             },
           });
         }
-      }
+      },
     );
   });
 }
@@ -263,7 +271,8 @@ export default function flatfileEventListener(listener: FlatfileListener) {
 
 ## Run your listener locally and create a new Space
 
-To allow this listener to run, you'll want to run it locally using the same "develop" command you used when initially setting up the listener.
+To allow this listener to run, you'll want to run it locally using the same
+"develop" command you used when initially setting up the listener.
 
 As a reminder, that command is:
 
@@ -287,7 +296,13 @@ So what did that just do?
 
 In your Flatfile account you should now be able to see your Space.
 
-As you can see, this Space has a Workbook with a sheet and fields. A <Tooltip tip="Analogous to a database...">[Workbook](https://flatfileinc.mintlify.dev/docs/orchestration/workbooks)</Tooltip> is like a template, its definition includes a profile of the data it expects to hold. We call that profile a Blueprint.
+As you can see, this Space has a Workbook with a sheet and fields. A
+
+<Tooltip tip="Analogous to a database...">
+  [Workbook](https://flatfileinc.mintlify.dev/docs/orchestration/workbooks)
+</Tooltip>
+is like a template, its definition includes a profile of the data it expects to
+hold. We call that profile a Blueprint.
 
 <Note>
   [Blueprint](../../blueprint/overview) is Flatfile's robust data definition
@@ -297,9 +312,11 @@ As you can see, this Space has a Workbook with a sheet and fields. A <Tooltip ti
 
 ## Watch your Events
 
-Because your listener was running, it logged your activity as the Space was being built. You should see several events that took place.
+Because your listener was running, it logged your activity as the Space was
+being built. You should see several events that took place.
 
-Now, to watch your listener receive another event, make a few changes in the Workbook. For example, try typing text into a cell.
+Now, to watch your listener receive another event, make a few changes in the
+Workbook. For example, try typing text into a cell.
 
 Typing in a cell (editing a Record) triggers an Event!
 

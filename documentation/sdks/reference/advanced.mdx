@@ -5,7 +5,9 @@ description: "less commonly used embedded properties"
 
 ## Reusing Spaces
 
-During the configuration of embedded Flatfile, you have the flexibility to either reuse an existing Space or generate a new one. These properties come into play when you're working with an already established Space.
+During the configuration of embedded Flatfile, you have the flexibility to
+either reuse an existing Space or generate a new one. These properties come into
+play when you're working with an already established Space.
 
 ### space
 
@@ -77,7 +79,8 @@ const flatfileOptions = {
 <ParamField path="exitText" type="string" default="See below">
   The text on the dialog that appears when exiting out of Flatfile.
 
-Default: "Are you sure you would like to close this window? This will end your current data import session."
+Default: "Are you sure you would like to close this window? This will end your
+current data import session."
 
 ```jsx src/client.js
 const flatfileOptions = {
@@ -141,7 +144,10 @@ const flatfileOptions = {
   Theming within the Flatfile application is done in an event listener.
 </Note>
 
-The CSS here is for styling how you want things to look outside of the Flatfile iframe, like the exit dialog, the error container, and the dialog wrapper. This css can go in your `style.css` in your `public` folder. Remember to use `!important` to override values.
+The CSS here is for styling how you want things to look outside of the Flatfile
+iframe, like the exit dialog, the error container, and the dialog wrapper. This
+css can go in your `style.css` in your `public` folder. Remember to use
+`!important` to override values.
 
 <Snippet file="shared/iframeStyles.mdx" />
 
@@ -169,7 +175,11 @@ const flatfileOptions = {
 
 ### spaceUrl
 
-<ParamField path="spaceUrl" type="string" default="https://platform.flatfile.com/s">
+<ParamField
+  path="spaceUrl"
+  type="string"
+  default="https://platform.flatfile.com/s"
+>
   The URL for accessing the Flatfile Spaces API.
 </ParamField>
 

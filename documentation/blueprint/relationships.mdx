@@ -5,15 +5,16 @@ description: "referencing data in other Sheets"
 
 The relationship defines a reference to another Sheet, similar to a Foreign Key.
 Links should be established automatically by the mapping engine (the logic that
-creates a mapping plan automatically when a user maps their data into a workbook)
-or similar upon an evaluation of unique or similar columns between datasets.
+creates a mapping plan automatically when a user maps their data into a
+workbook) or similar upon an evaluation of unique or similar columns between
+datasets.
 
 ## Options
 
 - **ref** - Full path reference to another Sheet/table configuration. Must be in
-the same Workbook
+  the same Workbook
 - **relationship** - The type of relationship this defines. Currently, only
-`has-one` is supported
+  `has-one` is supported
 
 ## Inheritance
 
@@ -22,30 +23,29 @@ respective email addresses of the father and mother from another Sheet.
 
 ```json workbooks.create
 // in the context of create Workbook API call
-  {
-    "fields": [
-      {
-        "key": "father",
-        "type": "reference",
-        "config": {
-          "ref": "parents",
-          "key": "email",
-          "relationship": "has-one"
-        }
-      },
-      {
-        "key": "mother",
-        "type": "reference",
-        "config": {
-          "ref": "parents",
-          "key": "email",
-          "relationship": "has-one"
-        }
+{
+  "fields": [
+    {
+      "key": "father",
+      "type": "reference",
+      "config": {
+        "ref": "parents",
+        "key": "email",
+        "relationship": "has-one"
       }
-    ]
-  }
+    },
+    {
+      "key": "mother",
+      "type": "reference",
+      "config": {
+        "ref": "parents",
+        "key": "email",
+        "relationship": "has-one"
+      }
+    }
+  ]
+}
 ```
-
 
 ## Lookups
 
@@ -80,30 +80,30 @@ the retrieved value.
 
 ```jsx
 // in the context of listener.use(recordHook){}
-  export const vlookup = (
-    record,
-    referenceFieldKey,
-    lookupFieldKey,
-    targetFieldKey
-  ) => {
-    console.log("Initial Record: " + JSON.stringify(record));
-    const links = record.getLinks(referenceFieldKey);
-    console.log("Linked Record: " + JSON.stringify(links));
-    const lookupValue = links?.[0]?.[lookupFieldKey];
-    console.log(
-      "Reference Fields Key: " +
-        referenceFieldKey +
-        " : " +
-        "LookUpValue: " +
-        lookupValue
-    );
+export const vlookup = (
+  record,
+  referenceFieldKey,
+  lookupFieldKey,
+  targetFieldKey,
+) => {
+  console.log("Initial Record: " + JSON.stringify(record));
+  const links = record.getLinks(referenceFieldKey);
+  console.log("Linked Record: " + JSON.stringify(links));
+  const lookupValue = links?.[0]?.[lookupFieldKey];
+  console.log(
+    "Reference Fields Key: " +
+      referenceFieldKey +
+      " : " +
+      "LookUpValue: " +
+      lookupValue,
+  );
 
-    if (isNotNil(lookupValue)) {
-      record.set(targetFieldKey, lookupValue);
-      record.addInfo(
-        targetFieldKey,
-        `${targetFieldKey} set based on ${referenceFieldKey}.`
-      );
-    }
-  };
+  if (isNotNil(lookupValue)) {
+    record.set(targetFieldKey, lookupValue);
+    record.addInfo(
+      targetFieldKey,
+      `${targetFieldKey} set based on ${referenceFieldKey}.`,
+    );
+  }
+};
 ```

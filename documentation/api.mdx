@@ -3,48 +3,50 @@ title: "Polyglot API"
 description: "choose your language"
 ---
 
-Our [API SDK](https://github.com/FlatFilers/flatfile-api) is available in multiple languages, making it easy to integrate Flatfile regardless of your tech stack. Each library gives you the full power of our platform in patterns you'll feel right at home with.
+Our [API SDK](https://github.com/FlatFilers/flatfile-api) is available in
+multiple languages, making it easy to integrate Flatfile regardless of your tech
+stack. Each library gives you the full power of our platform in patterns you'll
+feel right at home with.
 
 <CardGroup cols={2}>
-  <Card 
-  title="Node" 
-  icon="js"
-  href="https://www.npmjs.com/package/@flatfile/api"
+  <Card
+    title="Node"
+    icon="js"
+    href="https://www.npmjs.com/package/@flatfile/api"
   >
     A JavaScript client for Flatfile.
   </Card>
-  <Card 
-  title="Go" 
-  icon="golang"
-  href="https://github.com/FlatFilers/flatfile-go"
+  <Card
+    title="Go"
+    icon="golang"
+    href="https://github.com/FlatFilers/flatfile-go"
   >
     A Go client for Flatfile.
   </Card>
-  <Card 
-  title="Python" 
-  icon="python"
-    href="https://pypi.org/project/flatfile/"
-  >
+  <Card title="Python" icon="python" href="https://pypi.org/project/flatfile/">
     A Python client for Flatfile.
   </Card>
-    <Card 
-  title="Java" 
-  icon="java"
-  href="https://github.com/FlatFilers/flatfile-java"
+  <Card
+    title="Java"
+    icon="java"
+    href="https://github.com/FlatFilers/flatfile-java"
   >
-    A Java client for Flatfile.<br/>Coming Soon.
+    A Java client for Flatfile.
+    <br />
+    Coming Soon.
   </Card>
 </CardGroup>
 
 ### Setup
 
-After installing the package, import the `FlatfileClient` and instantiate it by passing in your secret key as the token.
+After installing the package, import the `FlatfileClient` and instantiate it by
+passing in your secret key as the token.
 
 ```ts
-import { FlatfileClient } from '@flatfile/api'
+import { FlatfileClient } from "@flatfile/api";
 
-const token = 'sk_your_secret_key'
-const api = new FlatfileClient({ token })
+const token = "sk_your_secret_key";
+const api = new FlatfileClient({ token });
 ```
 
 <Warning>
@@ -54,8 +56,8 @@ const api = new FlatfileClient({ token })
 
 ### Making API Calls
 
-Make API calls by calling the appropriate method on the `api` object. <br/>
-Note that responses are promises, so you'll need to handle them accordingly.
+Make API calls by calling the appropriate method on the `api` object. <br/> Note
+that responses are promises, so you'll need to handle them accordingly.
 
 ## Core API Methods
 
@@ -1011,4 +1013,3 @@ Note that responses are promises, so you'll need to handle them accordingly.
   </a>
   </Accordion>
 </AccordionGroup>
-

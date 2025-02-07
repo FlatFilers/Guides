@@ -6,9 +6,11 @@
 
 ![image](../changelog/images/hasAllValid.gif)
 
-Previously, developers faced challenges in determining when all rows were valid, essential for preventing unintended data egress.
+Previously, developers faced challenges in determining when all rows were valid,
+essential for preventing unintended data egress.
 
-Now, developers can now add an optional flag to Actions, preventing users from initiating Actions when Sheets or Workbooks contain invalid records.
+Now, developers can now add an optional flag to Actions, preventing users from
+initiating Actions when Sheets or Workbooks contain invalid records.
 
 ```jsx
 actions: [{
@@ -18,13 +20,17 @@ actions: [{
 }]
 ```
 
-Add a `constraints` parameter in your Action that includes `type: hasAllValid,` to disable actions when there are invalid records.
+Add a `constraints` parameter in your Action that includes `type: hasAllValid,`
+to disable actions when there are invalid records.
 
 [Learn more](../guides/actions#usage)
 
 ## spaces
 
-We made an enhancement to bulk cell pasting. Previously, locking the cell occurred prematurely, causing values to flash after pasting. Now, locking is effectively executed later, resulting in a smoother and more stable pasting experience.
+We made an enhancement to bulk cell pasting. Previously, locking the cell
+occurred prematurely, causing values to flash after pasting. Now, locking is
+effectively executed later, resulting in a smoother and more stable pasting
+experience.
 
 ## spaces
 
@@ -32,4 +38,6 @@ We made an enhancement to bulk cell pasting. Previously, locking the cell occurr
 
 ![image](../changelog/images/search_spaces.gif)
 
-We've added a new feature that allows you to search for spaces using their Space ID in the Spaces table. This enhancement simplifies the process of locating specific spaces quickly and efficiently.
+We've added a new feature that allows you to search for spaces using their Space
+ID in the Spaces table. This enhancement simplifies the process of locating
+specific spaces quickly and efficiently.

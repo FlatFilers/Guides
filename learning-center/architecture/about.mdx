@@ -4,16 +4,21 @@ description: "the anatomy of an Flatfile"
 mode: "wide"
 ---
 
-Whether you're handling customer data imports, migrating between systems, or building data transformation workflows, Flatfile provides the tools and flexibility to make data exchange seamless and reliable.
+Whether you're handling customer data imports, migrating between systems, or
+building data transformation workflows, Flatfile provides the tools and
+flexibility to make data exchange seamless and reliable.
 
-Flatfile is a powerful data exchange platform that simplifies the complex process of importing, validating, and transforming data. Built for developers, it provides a flexible and robust infrastructure to handle data onboarding workflows at scale.
+Flatfile is a powerful data exchange platform that simplifies the complex
+process of importing, validating, and transforming data. Built for developers,
+it provides a flexible and robust infrastructure to handle data onboarding
+workflows at scale.
 
 ```mermaid
 flowchart TD
     %% Node definitions
     App[App]
     Env[Environment]
-    
+
     subgraph ENV[" "]
         style ENV fill:none,stroke-width:2px
         subgraph SPACE[" "]
@@ -24,9 +29,9 @@ flowchart TD
             File[File]
             Sheet[Sheet]
         end
-        
+
         Secret[Secret]
-        
+
         subgraph AGENT[" "]
             style AGENT fill:none,stroke-width:2px
             Agent[Agent]
@@ -44,7 +49,7 @@ flowchart TD
     Space --> Document
     Space --> Workbook
     Workbook --> Sheet
-    
+
     %% Job relationships
     Agent --> Job
 
@@ -55,13 +60,18 @@ flowchart TD
     style AGENT fill:none,stroke:#333
 ```
 
-
 ## Core Features
 
-- **Workbook-Based Architecture**: Organize your data imports into workbooks containing multiple sheets, providing a familiar spreadsheet-like interface for end users while maintaining powerful programmatic control.
+- **Workbook-Based Architecture**: Organize your data imports into workbooks
+  containing multiple sheets, providing a familiar spreadsheet-like interface
+  for end users while maintaining powerful programmatic control.
 
-- **Validation & Transformation**: Define custom constraints and transformations to ensure data quality and consistency before it reaches your systems.
+- **Validation & Transformation**: Define custom constraints and transformations
+  to ensure data quality and consistency before it reaches your systems.
 
-- **Real-Time Collaboration**: Enable multiple users to work simultaneously on data imports with built-in collaboration features and role-based access control.
+- **Real-Time Collaboration**: Enable multiple users to work simultaneously on
+  data imports with built-in collaboration features and role-based access
+  control.
 
-- **Extensible API**: Access all platform functionality through a comprehensive REST API, with official SDKs available for multiple languages.
+- **Extensible API**: Access all platform functionality through a comprehensive
+  REST API, with official SDKs available for multiple languages.

@@ -5,35 +5,35 @@ description: "npx flatfile develop"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
+The Flatfile CLI provides a suite of tools to help you develop and deploy
+[Listeners](/orchestration/listeners) to Flatfile.
 
-The Flatfile CLI provides a suite of tools to help you develop and deploy [Listeners](/orchestration/listeners) to Flatfile.
-
-Listeners are at the core of the Flatfile ecosystem, they are responsible for picking up on [Events](/orchestration/events) and responding to them accordingly.
-
+Listeners are at the core of the Flatfile ecosystem, they are responsible for
+picking up on [Events](/orchestration/events) and responding to them
+accordingly.
 
 <Note>
   Agents are listeners deployed server-side on Flatfile's secure cloud.
 </Note>
 
-
-When developing with Flatfile, listeners can [deployed](../deploying) to Flatfile on every change, or they can run directly on your machine.
+When developing with Flatfile, listeners can [deployed](../deploying) to
+Flatfile on every change, or they can run directly on your machine.
 
 ### Commands
 
 The Flatfile CLI provides the following commands:
 
-
-| Command | Description                             | 
+| Command | Description                             |
 | ------- | --------------------------------------- |
 | develop | Run your project as a local listener    |
 | deploy  | Deploy your project as a Flatfile Agent |
 | list    | List deployed Agents in an environment  |
 | delete  | Delete an Agent                         |
 
-
 ### Before you begin
 
-You can add a `.env` file to bypass having to enter your API Key when running the develop command.
+You can add a `.env` file to bypass having to enter your API Key when running
+the develop command.
 
 ```json
 FLATFILE_API_KEY=sk_123456
@@ -41,17 +41,22 @@ FLATFILE_API_KEY=sk_123456
 
 ### Develop
 
-Run `npx flatfile develop` from terminal to launch a local listener. As your code changes, file changes are detected and will be reflected
-immediately.
+Run `npx flatfile develop` from terminal to launch a local listener. As your
+code changes, file changes are detected and will be reflected immediately.
 
 <Warning>
   Add the file name to the command: `npx flatfile develop path-to-file` if
   you're not running an index file.
 </Warning>
 
-1. In your terminal, you'll see a detailed log of each HTTP request made within a listener. It includes the request timing and status, enabling tracking and debugging of HTTP operations.
-2. A pub/sub stream system will deliver Events with a latency of approximately 10-50ms. This provides a local development experience closely resembling the production environment speed.
-3. Events that are being processed will be shown, along with their respective handlers. You can then respond to those Events accordingly.
+1. In your terminal, you'll see a detailed log of each HTTP request made within
+   a listener. It includes the request timing and status, enabling tracking and
+   debugging of HTTP operations.
+2. A pub/sub stream system will deliver Events with a latency of approximately
+   10-50ms. This provides a local development experience closely resembling the
+   production environment speed.
+3. Events that are being processed will be shown, along with their respective
+   handlers. You can then respond to those Events accordingly.
 
 ```bash
 > npx flatfile develop
@@ -71,7 +76,9 @@ ncc: Compiling file index.js into CJS
 
 ## Shared environments
 
-It is highly recommended to utilize an isolated environment when developing with the local listener. That's why the CLI is warning you when working in an environment that already has a deployed agent.
+It is highly recommended to utilize an isolated environment when developing with
+the local listener. That's why the CLI is warning you when working in an
+environment that already has a deployed agent.
 
 <CardGroup cols={2}>
   <Card
@@ -86,7 +93,9 @@ It is highly recommended to utilize an isolated environment when developing with
 
 ### More details
 
-Having deployed code running at the same time within the same development environment can lead to
-interference, potentially resulting in a recursive loop and undesirable consequences for your local listener.
-To avoid such complications, it's advisable to keep your local environment separate from any deployed code.
-This ensures optimal performance and helps maintain a stable development environment.
+Having deployed code running at the same time within the same development
+environment can lead to interference, potentially resulting in a recursive loop
+and undesirable consequences for your local listener. To avoid such
+complications, it's advisable to keep your local environment separate from any
+deployed code. This ensures optimal performance and helps maintain a stable
+development environment.

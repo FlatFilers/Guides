@@ -6,28 +6,44 @@ icon: "bolt"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-An Action is a code-based operation that runs where that Action is mounted. Actions run when a user clicks the corresponding user prompt in Flatfile.
+An Action is a code-based operation that runs where that Action is mounted.
+Actions run when a user clicks the corresponding user prompt in Flatfile.
 
 ## Overview
 
-Workbook & Sheet-mounted Actions are configured within a <Tooltip tip="A Data Definition Language...">Blueprint</Tooltip> object, while File-mounted actions are appended to the file during the upload process.
+Workbook & Sheet-mounted Actions are configured within a
 
-The executable code within an Action is compiled into a <Tooltip tip="Large asynchronous work...">Job</Tooltip> entity, providing the capability to run asynchronously or immediately.
+<Tooltip tip="A Data Definition Language...">Blueprint</Tooltip> object, while
+File-mounted actions are appended to the file during the upload process.
 
-Sheet-mounted actions can be executed on the entire Sheet, for a filtered view of the Sheet, or selectively for the chosen records.
+The executable code within an Action is compiled into a
+
+<Tooltip tip="Large asynchronous work...">Job</Tooltip> entity, providing the
+capability to run asynchronously or immediately.
+
+Sheet-mounted actions can be executed on the entire Sheet, for a filtered view
+of the Sheet, or selectively for the chosen records.
 
 ## Workbook-mounted
 
-Once a user has extracted and mapped data into a <Tooltip tip="Analogous to a database...">[Workbook](../apps/workbooks)</Tooltip>, it may be more efficient to run an operation on the entire dataset rather than making atomic transformations at the record- or field-level.
+Once a user has extracted and mapped data into a
+
+<Tooltip tip="Analogous to a database...">
+  [Workbook](../apps/workbooks)
+</Tooltip>
+, it may be more efficient to run an operation on the entire dataset rather than
+making atomic transformations at the record- or field-level.
 
 For example:
 
 - Sending a webhook that notifies your API of the data's readiness
 - Populating a Sheet with data from another source
-- Adding two different fields together after a user review's initial validation checks
+- Adding two different fields together after a user review's initial validation
+  checks
 - Moving valid data from an editable Sheet to a read-only Sheet
 
-Workbook-mounted actions are represented as buttons in the top right of the Workbook.
+Workbook-mounted actions are represented as buttons in the top right of the
+Workbook.
 ![workbook_actions_primary](https://github.com/FlatFilers/Guides/assets/19697744/c747495a-19e9-4333-88f3-e94239cfe47b)
 
 ### Usage
@@ -38,20 +54,22 @@ First, configure your action on your Blueprint.
   If you configure `primary: true` on an Action, it will be represented as the
   rightmost button in the Workbook.
 
-If you configure `trackChanges: true`, it will disable your actions
-until all commits are complete (usually data hooks).
+If you configure `trackChanges: true`, it will disable your actions until all
+commits are complete (usually data hooks).
 
 </Info>
 
 <Snippet file="shared/workbook_submit_pt1.mdx" />
 
-Next, listen for a `job:ready` and filter on the `job` you'd like to process. Be sure to complete the job when it's complete.
+Next, listen for a `job:ready` and filter on the `job` you'd like to process. Be
+sure to complete the job when it's complete.
 
 <Snippet file="shared/workbook_submit_pt2.mdx" />
 
 ## Document-mounted
 
-Document-mounted actions are similar to Workbook-mounted actions. They appear in the top right corner of your Document:
+Document-mounted actions are similar to Workbook-mounted actions. They appear in
+the top right corner of your Document:
 
 ![Document actions](../images/actions/document_actions.png)
 
@@ -59,7 +77,8 @@ Read more about Documents [here](./documents).
 
 ### Usage
 
-Define Document-mounted Actions using the `actions` parameter when you create a Document.
+Define Document-mounted Actions using the `actions` parameter when you create a
+Document.
 
 <Info>
   If you configure `primary: true` on an Action, it will be represented as the
@@ -68,7 +87,8 @@ Define Document-mounted Actions using the `actions` parameter when you create a 
 
 <Snippet file="guides/documents/document-actions.mdx" />
 
-In your listener, listen for the job's event and perform your desired operations.
+In your listener, listen for the job's event and perform your desired
+operations.
 
 <CodeGroup>
 
@@ -104,7 +124,7 @@ export default function flatfileEventListener(listener) {
           },
         });
       }
-    }
+    },
   );
 }
 ```
@@ -181,8 +201,8 @@ sheets : [
 ```
 
 Next, listen for a `job:ready` and filter on the `domain` (sheet) and the
-`operation` of where the action was placed. Be sure to complete to job when
-it's complete.
+`operation` of where the action was placed. Be sure to complete to job when it's
+complete.
 
 <CodeGroup>
 
@@ -211,7 +231,7 @@ listener.on(
         info: "This job did not work.",
       });
     }
-  }
+  },
 );
 ```
 
@@ -246,15 +266,20 @@ listener.on(
 
 </CodeGroup>
 
-Get the example in the [getting-started](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main/typescript/actions) repo
+Get the example in the
+[getting-started](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/tree/main/typescript/actions)
+repo
 
 ### Retrieving data
 
-Data from the Sheet can be retrieved either by calling the API with `records.get` or through data passed in through `event.data`. Here are some examples demonstrating how you can extract data from a Sheet-mounted action:
+Data from the Sheet can be retrieved either by calling the API with
+`records.get` or through data passed in through `event.data`. Here are some
+examples demonstrating how you can extract data from a Sheet-mounted action:
 
 #### From the entire Sheet
 
-This method allows you to access and process data from the complete Sheet, regardless of the current view or selected records.
+This method allows you to access and process data from the complete Sheet,
+regardless of the current view or selected records.
 
 ```jsx
 //inside listener.on()
@@ -270,9 +295,12 @@ console.log(response.data.records);
 
 #### From a filtered view of the Sheet
 
-By applying filters to the Sheet, you can narrow down the data based on specific criteria. This enables you to retrieve and work with a subset of records that meet the defined filter conditions.
+By applying filters to the Sheet, you can narrow down the data based on specific
+criteria. This enables you to retrieve and work with a subset of records that
+meet the defined filter conditions.
 
-`event.data` returns a promise resolving to an object with a records property so we extract the records property directly from the event.data object.
+`event.data` returns a promise resolving to an object with a records property so
+we extract the records property directly from the event.data object.
 
 <Warning>
   If rows are selected, only the corresponding records will be passed through
@@ -316,9 +344,12 @@ try {
 
 #### For chosen records
 
-When rows are selected, `event.data` will only extract information exclusively for the chosen records, providing focused data retrieval for targeted analysis or operations.
+When rows are selected, `event.data` will only extract information exclusively
+for the chosen records, providing focused data retrieval for targeted analysis
+or operations.
 
-`event.data` returns a promise resolving to an object with a records property so we extract the records property directly from the event.data object.
+`event.data` returns a promise resolving to an object with a records property so
+we extract the records property directly from the event.data object.
 
 <Note>This code is the same as the filtered view of the Sheet.</Note>
 
@@ -361,7 +392,8 @@ try {
 
 <Info>Each file has built-in actions like Delete and Download.</Info>
 
-File-mounted actions are represented as a dropdown menu for each file in the Files list. You can attach additional actions to a File.
+File-mounted actions are represented as a dropdown menu for each file in the
+Files list. You can attach additional actions to a File.
 
 ![file actions](../images/actions/file_actions.png)
 
@@ -419,7 +451,9 @@ listener.on("file:created", async ({ context: { fileId } }: FlatfileEvent) => {
 
 </CodeGroup>
 
-Next, listen for `job:ready` and filter on the `domain` (file) and the `operation` of where the Action was placed. Be sure to complete to job when it's complete.
+Next, listen for `job:ready` and filter on the `domain` (file) and the
+`operation` of where the Action was placed. Be sure to complete to job when it's
+complete.
 
 <CodeGroup>
 
@@ -572,19 +606,29 @@ async function failJob(jobId: string, message: string) {
 
 </CodeGroup>
 
-Get the example in the [flatfile-docs-kitchen-sink ts](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/shared/workbook_submit.ts) or [flatfile-docs-kitchen-sink js](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/shared/workbook_submit.js) repo
+Get the example in the
+[flatfile-docs-kitchen-sink ts](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/shared/workbook_submit.ts)
+or
+[flatfile-docs-kitchen-sink js](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/shared/workbook_submit.js)
+repo
 
 ## Actions with Input Forms
 
-If you configure input fields for your action, a secondary dialog will be presented to the end user, prompting them to provide the necessary information. Once the user has entered the required details, they can proceed with the action.
+If you configure input fields for your action, a secondary dialog will be
+presented to the end user, prompting them to provide the necessary information.
+Once the user has entered the required details, they can proceed with the
+action.
 
 ### Usage
 
-First, configure your action to have an inputForm on your Blueprint. These will appear once the action button is clicked.
+First, configure your action to have an inputForm on your Blueprint. These will
+appear once the action button is clicked.
 
 <Snippet file="shared/workbook_submit_pt4.mdx" />
 
-Next, listen for a `job:ready` and filter on the `job` you'd like to process. Grab the data entered in the form from the job itself and leverage it as required for your use case.
+Next, listen for a `job:ready` and filter on the `job` you'd like to process.
+Grab the data entered in the form from the job itself and leverage it as
+required for your use case.
 
 <CodeGroup>
 
@@ -626,7 +670,7 @@ export default async function (listener) {
         });
         return;
       }
-    }
+    },
   );
 }
 ```
@@ -670,7 +714,7 @@ export default async function (listener: FlatfileListener) {
         });
         return;
       }
-    }
+    },
   );
 }
 ```
@@ -683,10 +727,10 @@ export default async function (listener: FlatfileListener) {
 
 #### Workbook & Sheet-mounted
 
-1. Adding a `hasAllValid` constraint on an Action will
-   disable a Workbook Action when there are invalid records.
-2. Adding a `hasData` on an Action will
-   disable a Workbook Action when there are no records.
+1. Adding a `hasAllValid` constraint on an Action will disable a Workbook Action
+   when there are invalid records.
+2. Adding a `hasData` on an Action will disable a Workbook Action when there are
+   no records.
 
 ```jsx
 actions: [
@@ -704,7 +748,8 @@ actions: [
 
 #### Sheet-Mounted only
 
-Adding a constraint of `hasSelection` on an Action will disable a Sheet Action when no records in the Sheet are selected.
+Adding a constraint of `hasSelection` on an Action will disable a Sheet Action
+when no records in the Sheet are selected.
 
 ```jsx sheet.js
 sheets : [
@@ -732,11 +777,14 @@ Add custom messages to actions, tailored according to their state:
 - Error
 - Info
 
-These messages will be displayed as tooltips when users hover over an action, providing context-specific text that corresponds to the action's current state. When an error message is present on an action, the action will be disabled.
+These messages will be displayed as tooltips when users hover over an action,
+providing context-specific text that corresponds to the action's current state.
+When an error message is present on an action, the action will be disabled.
 
 ### Usage
 
-Simply add a messages property to your action configuration. This property should be an array of objects, each specifying a message type and its content.
+Simply add a messages property to your action configuration. This property
+should be an array of objects, each specifying a message type and its content.
 
 ```jsx
   actions: [

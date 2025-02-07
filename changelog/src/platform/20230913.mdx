@@ -12,12 +12,22 @@ Now, you can easily query and filter records with empty values.
 
 ## core
 
-Resolved an issue where attempting to upsert an Environment secret that was already defined within a Space was not functioning as expected. This fix ensures proper handling when upserting a secret into an Environment after specifying a Space ID.
+Resolved an issue where attempting to upsert an Environment secret that was
+already defined within a Space was not functioning as expected. This fix ensures
+proper handling when upserting a secret into an Environment after specifying a
+Space ID.
 
 ## files
 
-Resolved an issue where the import button could prematurely appear before a file was ready to be imported. This was due to an early update of the file's status with a workbook ID, which has now been adjusted to wait until the data is queriable before updating. The import process now aligns better with the file's readiness.
+Resolved an issue where the import button could prematurely appear before a file
+was ready to be imported. This was due to an early update of the file's status
+with a workbook ID, which has now been adjusted to wait until the data is
+queriable before updating. The import process now aligns better with the file's
+readiness.
 
 ## dataxp
 
-Experience improved performance (for instance, when scrolling to the bottom of the data table) with large workbooks as we've optimized query clauses and updated indexes. Plus, we've seamlessly migrated all existing workbooks to benefit from these enhancements.
+Experience improved performance (for instance, when scrolling to the bottom of
+the data table) with large workbooks as we've optimized query clauses and
+updated indexes. Plus, we've seamlessly migrated all existing workbooks to
+benefit from these enhancements.

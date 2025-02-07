@@ -6,34 +6,47 @@ icon: "object-group"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-Flatfile can support the simplest of workflows to the most nuanced & complex with Dynamic Spaces.
+Flatfile can support the simplest of workflows to the most nuanced & complex
+with Dynamic Spaces.
 
 ## Use cases
 
 The use cases for dynamic configuration are endless, here are just a few ideas:
 
-- Perhaps the user who is creating the Space informs how you want that Space to look for them
-- Or maybe someone's location defines a different type of currency in your Sheet configuration
-- Or say you need data from an external API in a precise moment in time to determine how you want your Workbook to look
+- Perhaps the user who is creating the Space informs how you want that Space to
+  look for them
+- Or maybe someone's location defines a different type of currency in your Sheet
+  configuration
+- Or say you need data from an external API in a precise moment in time to
+  determine how you want your Workbook to look
 
-Continue reading to learn how to configure a Space from scratch, and update it as things change.
+Continue reading to learn how to configure a Space from scratch, and update it
+as things change.
 
 ## Configuring a new Space
 
 ### From the dashboard
 
-When the "Create New Space" button is clicked on the platform, it triggers a [job `event`](../orchestration/events) within the **space** `domain` that initiates a **configure** `operation`. This operation is analogous to performing a POST request to the endpoint [/api/v1/spaces](https://reference.flatfile.com/api-reference/spaces/create) with the parameter `autoconfigure` set to true.
+When the "Create New Space" button is clicked on the platform, it triggers a
+[job `event`](../orchestration/events) within the **space** `domain` that
+initiates a **configure** `operation`. This operation is analogous to performing
+a POST request to the endpoint
+[/api/v1/spaces](https://reference.flatfile.com/api-reference/spaces/create)
+with the parameter `autoconfigure` set to true.
 
 1. Filter on the `domain` (space) and the `operation` (configure).
 2. Listen for a [`job:ready`](../orchestration/events#job-ready) event.
 3. Build your Space, at minimum including one Workbook.
 4. Complete the job.
-5. Optionally, listen for new events that are spawned from within your `space:configure` job.
+5. Optionally, listen for new events that are spawned from within your
+   `space:configure` job.
 
 #### Usage
 
-In the following example, we build a Workbook and our getting started guide.
-You can also follow along in the [flatfile-docs-kitchen-sink](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/dynamic-configurations/index.js) Github sandbox.
+In the following example, we build a Workbook and our getting started guide. You
+can also follow along in the
+[flatfile-docs-kitchen-sink](https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/dynamic-configurations/index.js)
+Github sandbox.
 
 <Tip>
   Be sure to complete the job when it's complete. This tells the platform that
@@ -49,7 +62,8 @@ When embedding Flatfile in your application, two things can happen:
 1. A new Space is created every time the Flatfile platform is called to open
 2. Or an existing Space can be passed in.
 
-Listeners can be set up either server-side (use this Guide) and/or client-side within the embedded wrapper SDK.
+Listeners can be set up either server-side (use this Guide) and/or client-side
+within the embedded wrapper SDK.
 
 Learn more about this [use case](../apps/embedding).
 
@@ -63,28 +77,31 @@ Learn more about this [use case](../guides/automap).
 
 ## Updating a Space in place
 
-As things are changing in a Space, sometimes you may want to adjust the configuration of your Space.
-You can do this by listening for events that take place, and performing work as a result.
+As things are changing in a Space, sometimes you may want to adjust the
+configuration of your Space. You can do this by listening for events that take
+place, and performing work as a result.
 
 Continue reading for a few common examples.
 
 ### After an action is fired
 
-When a button is clicked in the user interface, this creates a job.
-You are already listening for this job to respond and do the work of that Action;
-however, you may also want to adjust some of your configuration at the same time, too.
+When a button is clicked in the user interface, this creates a job. You are
+already listening for this job to respond and do the work of that Action;
+however, you may also want to adjust some of your configuration at the same
+time, too.
 
 #### Usage
 
-In the following example, we lock down access to the original Sheet
-and update our getting started guide to reflect the change.
+In the following example, we lock down access to the original Sheet and update
+our getting started guide to reflect the change.
 
 <Snippet file="guides/dynamic-configurations/block2.mdx" />
 
 ### After data changes
 
-As the Sheet is being updated with data, perhaps you want to change the configuration.
-In the following example, we listed for a commit created to do just that.
+As the Sheet is being updated with data, perhaps you want to change the
+configuration. In the following example, we listed for a commit created to do
+just that.
 
 #### Usage
 

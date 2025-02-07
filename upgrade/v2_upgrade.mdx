@@ -6,15 +6,26 @@ icon: "square-up"
 
 ## Overview
 
-This guide is designed to help you quickly transition from Portal 2 to the new and improved Platform. Using our [V2 Shim package](https://www.npmjs.com/package/@flatfile/v2-shims) for assistance with the transition, you can get started on the new Platform within a few hours. To help you compare and contrast between your Portal 2 implementation and the Platform implementation, we created [this Github Repository](https://github.com/FlatFilers/Upgrade-Portal) as a way to help you see the upgrade process from beginning to the end.
+This guide is designed to help you quickly transition from Portal 2 to the new
+and improved Platform. Using our
+[V2 Shim package](https://www.npmjs.com/package/@flatfile/v2-shims) for
+assistance with the transition, you can get started on the new Platform within a
+few hours. To help you compare and contrast between your Portal 2 implementation
+and the Platform implementation, we created
+[this Github Repository](https://github.com/FlatFilers/Upgrade-Portal) as a way
+to help you see the upgrade process from beginning to the end.
 
 ## Before You Begin
 
-With the new Platform, comes a brand new place to sign up for it. Before getting started on your upgrade, you'll need to [sign up](https://platform.flatfile.com) for a new account.
+With the new Platform, comes a brand new place to sign up for it. Before getting
+started on your upgrade, you'll need to [sign up](https://platform.flatfile.com)
+for a new account.
 
 ## Install the V2 Shims package
 
-Before you can start using all the wonderful tools in this guide to implement Flatfile, you'll need to install a couple of packages, the V2 Shims and Flatfile API packages.
+Before you can start using all the wonderful tools in this guide to implement
+Flatfile, you'll need to install a couple of packages, the V2 Shims and Flatfile
+API packages.
 
 <Note>
   If you are using our `@flatfile/react` package, be sure to install version
@@ -35,7 +46,8 @@ Before you can start using all the wonderful tools in this guide to implement Fl
 
 ## Convert Your Config
 
-The Portal 2 configuration is what contains your settings and fields in your Portal implementation.
+The Portal 2 configuration is what contains your settings and fields in your
+Portal implementation.
 
 <CodeGroup>
 
@@ -58,7 +70,12 @@ The Portal 2 configuration is what contains your settings and fields in your Por
 
 </CodeGroup>
 
-You'll be able to use this configuration object with the V2 Shims package to configure your new implementation. Keep in mind that the below snippets use a couple of new concepts like a [Job](/orchestration/jobs) and [Listener](/apps/custom/meet-the-listener). While you don't need to learn about these to get started, they are useful for adding new functionality onto your importer at some point in the future.
+You'll be able to use this configuration object with the V2 Shims package to
+configure your new implementation. Keep in mind that the below snippets use a
+couple of new concepts like a [Job](/orchestration/jobs) and
+[Listener](/apps/custom/meet-the-listener). While you don't need to learn about
+these to get started, they are useful for adding new functionality onto your
+importer at some point in the future.
 
 <CodeGroup>
 
@@ -223,14 +240,16 @@ You'll be able to use this configuration object with the V2 Shims package to con
 
 ## Converting your Record Hooks
 
-If you're transitioning from a V2 Record Hook to a Platform Record Hook in your code, you can make the conversion by simply extracting and wrapping your existing Record Hook code in the V2 Shim `convertHook` method.
+If you're transitioning from a V2 Record Hook to a Platform Record Hook in your
+code, you can make the conversion by simply extracting and wrapping your
+existing Record Hook code in the V2 Shim `convertHook` method.
 
 <Note>
   If you're using V2 Record Hooks `mode` to split hooks on "init" or on
   "change", Platform does not have this mode functionality. It does, however,
   have better overall hooks performance and a new [Bulk Record
-  Hook](https://flatfile.com/plugins/plugin-record-hook#additional-options) method that make
-  `mode` unnecessary.
+  Hook](https://flatfile.com/plugins/plugin-record-hook#additional-options)
+  method that make `mode` unnecessary.
 </Note>
 
 <CodeGroup>
@@ -415,5 +434,7 @@ If you're transitioning from a V2 Record Hook to a Platform Record Hook in your 
 </CodeGroup>
 
 <Note>
-  If you're using React and want more ideas on how you can implement your listener code or add plugins, check out our full React documentation [here](/apps/embedding/react/components).
+  If you're using React and want more ideas on how you can implement your
+  listener code or add plugins, check out our full React documentation
+  [here](/apps/embedding/react/components).
 </Note>

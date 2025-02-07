@@ -1,7 +1,13 @@
 ### September 18, 2024
+
 ## wrappers
 
 `@flatfile/react@7.12.4`
 
-Fixes a bug when relaunching a re-used space. Resolves an issue causing the "Maximum update depth exceeded" React error when multiple Portals are used within the same FlatfileProvider (this is not supported). 
-Introduces changes to the FlatfileContext and FlatfileProvider components to handle the onClose callback, using a mutable ref instead of state. Refactors the resetSpace function and introduces changes to handle the resetOnClose config option when re-using a space. 
+Fixes a bug when relaunching a re-used space. Resolves an issue causing the
+"Maximum update depth exceeded" React error when multiple Portals are used
+within the same FlatfileProvider (this is not supported). Introduces changes to
+the FlatfileContext and FlatfileProvider components to handle the onClose
+callback, using a mutable ref instead of state. Refactors the resetSpace
+function and introduces changes to handle the resetOnClose config option when
+re-using a space.

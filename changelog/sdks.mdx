@@ -11,13 +11,22 @@ icon: "cube"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/react@7.12.4`
-      
-      Fixes a bug when relaunching a re-used space. Resolves an issue causing the "Maximum update depth exceeded" React error when multiple Portals are used within the same FlatfileProvider (this is not supported). 
-      Introduces changes to the FlatfileContext and FlatfileProvider components to handle the onClose callback, using a mutable ref instead of state. Refactors the resetSpace function and introduces changes to handle the resetOnClose config option when re-using a space. 
-      
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/react@7.12.4` Fixes a bug when relaunching a re-used space.
+      Resolves an issue causing the "Maximum update depth exceeded" React error
+      when multiple Portals are used within the same FlatfileProvider (this is
+      not supported). Introduces changes to the FlatfileContext and
+      FlatfileProvider components to handle the onClose callback, using a
+      mutable ref instead of state. Refactors the resetSpace function and
+      introduces changes to handle the resetOnClose config option when re-using
+      a space.
     </div>
   </div>
 </div>
@@ -27,14 +36,22 @@ icon: "cube"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/react@7.12.3`
-      
-      The release notes include a fix for a bug with the Workbook onSubmit functionality. 
-      Specifically, it addresses an issue where the onSubmit action was not being correctly added or updated in the workbook actions list. 
-      The fix ensures that the onSubmit action is properly added or updated when the onSubmit prop is provided, and that duplicates are not created if the action already exists. 
-      This change is relevant for developers using the Workbook component and expecting the onSubmit callback to be triggered when the workbook is submitted.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/react@7.12.3` The release notes include a fix for a bug with
+      the Workbook onSubmit functionality. Specifically, it addresses an issue
+      where the onSubmit action was not being correctly added or updated in the
+      workbook actions list. The fix ensures that the onSubmit action is
+      properly added or updated when the onSubmit prop is provided, and that
+      duplicates are not created if the action already exists. This change is
+      relevant for developers using the Workbook component and expecting the
+      onSubmit callback to be triggered when the workbook is submitted.
     </div>
   </div>
 </div>
@@ -44,15 +61,22 @@ icon: "cube"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/javascript@1.4.2`
-      
-      The JavaScript Portal style sheet is now attached only once, instead of every time the Portal is opened. This should improve performance and avoid redundant style sheet insertions.
-      
-      A new option has been added to allow specifying submit complete options, giving more control over the behavior when submitting a job. Developers can now set the 'acknowledge' and 'message' properties when completing a job submission.
-      
-      This would result in the job being completed with 'acknowledge' set to false and 'message' set to 'Custom complete message'.
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/javascript@1.4.2` The JavaScript Portal style sheet is now
+      attached only once, instead of every time the Portal is opened. This
+      should improve performance and avoid redundant style sheet insertions. A
+      new option has been added to allow specifying submit complete options,
+      giving more control over the behavior when submitting a job. Developers
+      can now set the 'acknowledge' and 'message' properties when completing a
+      job submission. This would result in the job being completed with
+      'acknowledge' set to false and 'message' set to 'Custom complete message'.
     </div>
   </div>
 </div>
@@ -64,16 +88,18 @@ icon: "cube"
 <div style={{ display: "table", width: "auto" }}>
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/react@7.12.7`
-      
-      Added option `submitSettings.startingJobMessage` to configure the initial message displayed in the job progress modal.
-         
-      `@flatfile/react@7.12.2`
-      
-      The release includes a new `removeSheet` method to allow removing a specific sheet from the workbook by its sheet slug.
-      
+    <div
+      style={{
+        float: "left",
+        display: "table-column",
+        paddingLeft: "30px",
+        width: "calc(80% - 30px)",
+      }}
+    >
+      `@flatfile/react@7.12.7` Added option `submitSettings.startingJobMessage`
+      to configure the initial message displayed in the job progress modal.
+      `@flatfile/react@7.12.2` The release includes a new `removeSheet` method
+      to allow removing a specific sheet from the workbook by its sheet slug.
     </div>
   </div>
 </div>
@@ -82,16 +108,25 @@ icon: "cube"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/wrappers.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/react@7.12.1`
-      
-      This release updates the @flatfile/react package to version 7.12.1. The update fixes a bug where the space was not completely reset upon closing the Flatfile Portal. Specifically, the changes ensure that when the Flatfile Portal is closed, the internal session space is reset, preventing any state from persisting between sessions.
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/wrappers.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/react@7.12.1` This release updates the @flatfile/react package to
+    version 7.12.1. The update fixes a bug where the space was not completely
+    reset upon closing the Flatfile Portal. Specifically, the changes ensure
+    that when the Flatfile Portal is closed, the internal session space is
+    reset, preventing any state from persisting between sessions.
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
@@ -913,17 +948,23 @@ icon: "cube"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/wrappers.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/javascript@0.1.25`
-      
-      - Implemented UMD build type for seamless compatibility with Content Delivery Networks (CDNs).
-      - Updated dependencies: `@flatfile/listener@0.3.16`
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/wrappers.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/javascript@0.1.25` - Implemented UMD build type for seamless
+    compatibility with Content Delivery Networks (CDNs). - Updated dependencies:
+    `@flatfile/listener@0.3.16`
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
@@ -978,17 +1019,22 @@ icon: "cube"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/wrappers.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/react@7.2.28`
-      `@flatfile/javascript@0.1.21`
-      
-      - Updated dependency: `@flatfile/api@1.5.31`
-      
-    </div>
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/wrappers.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/react@7.2.28` `@flatfile/javascript@0.1.21` - Updated dependency:
+    `@flatfile/api@1.5.31`
   </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
@@ -1062,31 +1108,44 @@ icon: "cube"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/wrappers.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/javascript@0.1.13`
-      
-      You can now use `@flatfile/api` inside a client-side listener without needing a secret key. The listener will instead use the `accessToken` created from your `publishableKey`.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/wrappers.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/javascript@0.1.11`
-      `@flatfile/react@7.2.21`
-      
-      In this version, we've made two important updates:
-      
-      1. We've changed the default setting for `sidebarConfig` to hide the sidebar, providing a cleaner and more focused workspace.
-      2. Now, when no `workbook` is set, `autoConfigure` is automatically turned on for Space creation. This enables you to listen for the `space:configure` job in a server side listener.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/wrappers.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/javascript@0.1.13` You can now use `@flatfile/api` inside a
+    client-side listener without needing a secret key. The listener will instead
+    use the `accessToken` created from your `publishableKey`.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/wrappers.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/javascript@0.1.11` `@flatfile/react@7.2.21` In this version,
+    we've made two important updates: 1. We've changed the default setting for
+    `sidebarConfig` to hide the sidebar, providing a cleaner and more focused
+    workspace. 2. Now, when no `workbook` is set, `autoConfigure` is
+    automatically turned on for Space creation. This enables you to listen for
+    the `space:configure` job in a server side listener.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/core_plugin.mdx" />
@@ -1167,56 +1226,83 @@ icon: "cube"
 
 <div style={{ display: "table", width: "auto" }}>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/api@1.5.21`
-      
-      The response type for the `getRecordsAsCSV` endpoint was incorrectly typed as a string instead of a file. This fixes downloading a sheet as a CSV via SDk.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/listener@0.3.15`
-      
-      This version has four great updates:
-      
-      - Previously, you had to fake-out TypeScript because the event time was not exposed (it was a private class variable) for FlatfileEvents. We have now added `createdAt` to the FlatfileEvent.
-      - Axios responses 200-399 now no longer throw Errors.
-      - Created a secrets cache based on `spaceId`.
-      - Previously, if your listener fetched secrets for multiple environments, those maps would entirely override each other.
-      - If your listener fetched `spaceId` overrides first, and then environment -- you would get the space id overrides.
-      - We now make sure that the fetch URL in the listener is formatted properly whether or not the user puts a trailing slash in the environment variable.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/api@1.5.21` The response type for the `getRecordsAsCSV` endpoint
+    was incorrectly typed as a string instead of a file. This fixes downloading
+    a sheet as a CSV via SDk.
   </div>
+</div>
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/core.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/listener@0.3.14`
-      
-      `event.secrets` now defaults to `spaceId`. It will throw if no `environmentId` is available for secrets retrieval.
-      
-    </div>
-  </div>
+{' '}
 
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/wrappers.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      `@flatfile/react@7.2.15`
-      
-      You can now pass in a spacebody. This will allowyou to send more than any already-defined parameters allowed on space creation.
-      
-    </div>
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/listener@0.3.15` This version has four great updates: -
+    Previously, you had to fake-out TypeScript because the event time was not
+    exposed (it was a private class variable) for FlatfileEvents. We have now
+    added `createdAt` to the FlatfileEvent. - Axios responses 200-399 now no
+    longer throw Errors. - Created a secrets cache based on `spaceId`. -
+    Previously, if your listener fetched secrets for multiple environments,
+    those maps would entirely override each other. - If your listener fetched
+    `spaceId` overrides first, and then environment -- you would get the space
+    id overrides. - We now make sure that the fetch URL in the listener is
+    formatted properly whether or not the user puts a trailing slash in the
+    environment variable.
   </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/core.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/listener@0.3.14` `event.secrets` now defaults to `spaceId`. It
+    will throw if no `environmentId` is available for secrets retrieval.
+  </div>
+</div>
+
+{' '}
+
+<div style={{ display: "table-row", width: "auto" }}>
+  <Snippet file="chips/wrappers.mdx" />
+  <div
+    style={{
+      float: "left",
+      display: "table-column",
+      paddingLeft: "30px",
+      width: "calc(80% - 30px)",
+    }}
+  >
+    `@flatfile/react@7.2.15` You can now pass in a spacebody. This will allowyou
+    to send more than any already-defined parameters allowed on space creation.
+  </div>
+</div>
 
   <div style={{ display: "table-row", width: "auto" }}>
     <Snippet file="chips/wrappers.mdx" />
@@ -1229,4 +1315,3 @@ icon: "cube"
     </div>
   </div>
 </div>
-

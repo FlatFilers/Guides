@@ -5,7 +5,9 @@ Now, let's build a Workbook inside the Space for next time.
 1. Update your `workbook.js` with this simple Blueprint.
 2. Update `client.js` to import the Workbook.
 
-Next time you open Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. Your Workbook will also have a Submit action. We will configure this action in the next step.
+Next time you open Flatfile, you'll see a Workbook called "Contacts" that has
+one Sheet with three fields. Your Workbook will also have a Submit action. We
+will configure this action in the next step.
 
 <CodeGroup>
 ```js src/workbook.js
@@ -55,7 +57,7 @@ import { workbook } from "./workbook";
 window.openFlatfile = ({ publishableKey }) => {
   if (!publishableKey) {
     throw new Error(
-      "You must provide a publishable key - pass through in index.html"
+      "You must provide a publishable key - pass through in index.html",
     );
   }
 
@@ -81,7 +83,10 @@ Next, we'll listen for data changes and respond using an event listener.
 1. Update your `listener.js` with this simple `recordHook`.
 2. Update `client.js` to import the listener.
 
-Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../guides/handling-data)
+Once you add this code, when a change occurs, we'll log the entered first name
+and update the last name to "Rock." You'll immediately see this begin to work
+when you add or update any records. Learn more about
+[Handling Data](../../guides/handling-data)
 
 <CodeGroup>
 
@@ -100,7 +105,7 @@ export const listener = FlatfileListener.create((listener) => {
       console.log({ firstName });
       record.set("lastName", "Rock");
       return record;
-    })
+    }),
   );
 });
 ```
@@ -114,7 +119,7 @@ import { workbook } from "./workbook";
 window.openFlatfile = ({ publishableKey }) => {
   if (!publishableKey) {
     throw new Error(
-      "You must provide a publishable key - pass through in index.html"
+      "You must provide a publishable key - pass through in index.html",
     );
   }
 
@@ -136,7 +141,9 @@ window.openFlatfile = ({ publishableKey }) => {
 
 ### 6. Match your brand
 
-By attaching a `themeConfig` to `flatfileOptions` in `src/client.js`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../guides/theming).
+By attaching a `themeConfig` to `flatfileOptions` in `src/client.js`, we will
+now override colors in your Space to match your brand. See all of the options
+here in the [Theming Reference](../../guides/theming).
 
 ```jsx src/client.js (snippet)
 const flatfileOptions = {
@@ -163,7 +170,9 @@ Finally, let's get the data out of our system and to your destination.
 
 1. Update your `listener.js` with this simple submit action.
 
-Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](../../guides/egress)
+Once you add this code, when the submit button is clicked, this will be the
+place you can egress your data. Learn more about
+[Egress Out](../../guides/egress)
 
 ```tsx src/simple.js
 import api from "@flatfile/api";
@@ -181,7 +190,7 @@ export const listener = FlatfileListener.create((listener) => {
       console.log({ firstName });
       record.set("lastName", "Rock");
       return record;
-    })
+    }),
   );
 
   listener.on(
@@ -216,7 +225,7 @@ export const listener = FlatfileListener.create((listener) => {
           },
         });
       }
-    }
+    },
   );
 });
 ```

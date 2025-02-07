@@ -8,12 +8,15 @@ icon: "file-circle-info"
 
 ## Overview
 
-Metadata allows you to store and retrieve additional data about an Environment, Space, Record, or Field without
-exposing it to end users.
+Metadata allows you to store and retrieve additional data about an Environment,
+Space, Record, or Field without exposing it to end users.
 
 ## Environment-level
 
-On the environment level `metadata` can be configured to record details about your current enivornment state. This can be useful for developers to store information about their deployments and even aggregate information about spaces, users, and data therein.
+On the environment level `metadata` can be configured to record details about
+your current enivornment state. This can be useful for developers to store
+information about their deployments and even aggregate information about spaces,
+users, and data therein.
 
 ### Usage
 
@@ -30,8 +33,9 @@ await api.environments.update(environmentId, {
 
 ## Space-level
 
-The `metadata` object at the Space level is often used for details such as user ID, Space name, company ID, and company name.
-Metadata can be added during Space creation or at a later stage.
+The `metadata` object at the Space level is often used for details such as user
+ID, Space name, company ID, and company name. Metadata can be added during Space
+creation or at a later stage.
 
 <Info>
   Space-level metadata, while not visible in the user interface, can be utilized
@@ -55,8 +59,9 @@ Learn more about [adding metadata in React embedded
 
 ## Workbook-level
 
-The `metadata` object at the Workbook level is often used for details such as expirationDate.
-Metadata can be added during Workbook creation or at a later stage.
+The `metadata` object at the Workbook level is often used for details such as
+expirationDate. Metadata can be added during Workbook creation or at a later
+stage.
 
 <Info>
   Workbook-level metadata, while not visible in the user interface, can be
@@ -77,17 +82,18 @@ await api.workbook.update(spaceId, {
 
 ## Record-level
 
-Customers often require a way to store extra computed or generated
-information about a record that goes beyond what the data owner provides.
+Customers often require a way to store extra computed or generated information
+about a record that goes beyond what the data owner provides.
 
-The `metadata` object on the record allows you to
-include details like record IDs or reference IDs to other tables.
+The `metadata` object on the record allows you to include details like record
+IDs or reference IDs to other tables.
 
 ### Usage
 
-Using the `@flatfile/plugin-record-hook` plugin, you can access and modify record-level metadata, similar to
-how it works with normal field values. In this example, we will get the firstName from the record
-and store the length of the name in metadata. This data will now be stored on the record itself.
+Using the `@flatfile/plugin-record-hook` plugin, you can access and modify
+record-level metadata, similar to how it works with normal field values. In this
+example, we will get the firstName from the record and store the length of the
+name in metadata. This data will now be stored on the record itself.
 
 <CodeGroup>
 
@@ -101,7 +107,7 @@ listener.use(
     });
 
     return record;
-  })
+  }),
 );
 ```
 
@@ -123,8 +129,8 @@ listener.use(
 
 ## Field-level
 
-The `metadata` object on a Field allows you to
-include details like how the column of data should be transformed on egress.
+The `metadata` object on a Field allows you to include details like how the
+column of data should be transformed on egress.
 
 ### Usage
 

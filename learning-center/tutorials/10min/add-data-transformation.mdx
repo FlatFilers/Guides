@@ -8,7 +8,8 @@ icon: "circle-3"
 
 ## Before you begin
 
-To make working with event data inside a listener easy, Flatfile provides a suite of Plugins.
+To make working with event data inside a listener easy, Flatfile provides a
+suite of Plugins.
 
 <Note>
   Plugins extend the functionality of a listener. They are registered with the
@@ -16,7 +17,8 @@ To make working with event data inside a listener easy, Flatfile provides a suit
   event.
 </Note>
 
-The Record Hook Plugin fires whenever a row of data (a Record) is added or modified, allowing us to take action and perform a custom transformation.
+The Record Hook Plugin fires whenever a row of data (a Record) is added or
+modified, allowing us to take action and perform a custom transformation.
 
 ### Import the recordHook plugin
 
@@ -35,12 +37,15 @@ import { recordHook } from "@flatfile/plugin-record-hook";
 
 ## Add your first transformation
 
-Here's an example that modifies the first name value of a Record, converting it to lowercase:
+Here's an example that modifies the first name value of a Record, converting it
+to lowercase:
 
 <Snippet file="quickstart/block1.mdx" />
 
-As you can see, the `recordHook` has been configured to run on any Sheet matching
-the slug "contacts". The second parameter to the recordHook is a callback function where a Record, complete with it's own get and set methods, is the incoming value.
+As you can see, the `recordHook` has been configured to run on any Sheet
+matching the slug "contacts". The second parameter to the recordHook is a
+callback function where a Record, complete with it's own get and set methods, is
+the incoming value.
 
 <Info>Note: Unmodified rows do not trigger a Record Hook.</Info>
 
@@ -48,15 +53,18 @@ the slug "contacts". The second parameter to the recordHook is a callback functi
 
 Is your listener still running? If not, run `npx flatfile@latest develop` again.
 
-Now, in your Workbook, add a new Record. Enter a capitalized value in the First Name field, then click away so Flatfile knows you've finished your current edit.
+Now, in your Workbook, add a new Record. Enter a capitalized value in the First
+Name field, then click away so Flatfile knows you've finished your current edit.
 
-Once your focus leaves the First Name field, an Event will trigger and the `recordHook` will run the lowercase transformation you just configured.
+Once your focus leaves the First Name field, an Event will trigger and the
+`recordHook` will run the lowercase transformation you just configured.
 
 ## Add your first validation
 
 You can also use a `recordHook` to help validate data.
 
-For example, what if the first name in a Record is not a string? The current code would not transform it, so let's add an error message to flag the Record.
+For example, what if the first name in a Record is not a string? The current
+code would not transform it, so let's add an error message to flag the Record.
 
 <Snippet file="quickstart/block2.mdx" />
 
@@ -64,19 +72,28 @@ For example, what if the first name in a Record is not a string? The current cod
 
 <Tip>You can use any npm package in a plugin.</Tip>
 
-The possible customizations are endless. Flatfile has a constantly expanding library of [transformation and validation plugins](https://flatfile.com/plugins/category/transform/) that help you reshape data. You can add as many as you need to ensure your data is clean and ready to be used.
+The possible customizations are endless. Flatfile has a constantly expanding
+library of
+[transformation and validation plugins](https://flatfile.com/plugins/category/transform/)
+that help you reshape data. You can add as many as you need to ensure your data
+is clean and ready to be used.
 
 For example, you could add code to validate a Record's email field:
 
 <Snippet file="quickstart/block3.mdx" />
 
-Remember that the recordHook plugin fires once per modified record, so you should include the code for all transformations and validations you want on that Record in the same `recordHook`.
+Remember that the recordHook plugin fires once per modified record, so you
+should include the code for all transformations and validations you want on that
+Record in the same `recordHook`.
 
 ## Watch your data validate
 
-Check your listener is still running. If not, run `npx flatfile@latest develop` again.
+Check your listener is still running. If not, run `npx flatfile@latest develop`
+again.
 
-Now, in your Workbook, add or update a Record. Enter a number inside the firstName field, or an invalid email address in the email field, then click away so Flatfile knows you've finished your current edit.
+Now, in your Workbook, add or update a Record. Enter a number inside the
+firstName field, or an invalid email address in the email field, then click away
+so Flatfile knows you've finished your current edit.
 
 See that error message? That's the result of your validation.
 
@@ -84,4 +101,5 @@ See that error message? That's the result of your validation.
 
 ## Next steps
 
-Now that you've added some transformations and validations, let's egress the cleaned data: [Configure a submit Action](../custom/submit-action).
+Now that you've added some transformations and validations, let's egress the
+cleaned data: [Configure a submit Action](../custom/submit-action).

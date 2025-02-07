@@ -4,15 +4,24 @@
 
 **Introducing New Endpoint for Workbook Commit Retrieval**
 
-We're excited to announce the addition of the new GET `/workbooks/{workbookId}/commits` endpoint. This improvement streamlines the process of retrieving all commits associated with a specific workbook, offering a more efficient way to determine the completion status of all processing activities on that workbook.
+We're excited to announce the addition of the new GET
+`/workbooks/{workbookId}/commits` endpoint. This improvement streamlines the
+process of retrieving all commits associated with a specific workbook, offering
+a more efficient way to determine the completion status of all processing
+activities on that workbook.
 
-While this enhancement primarily benefits the Flatfile UI, the endpoint is fully exposed, making it a valuable tool for developers looking to optimize commit retrieval and processing status checks in their own applications.
+While this enhancement primarily benefits the Flatfile UI, the endpoint is fully
+exposed, making it a valuable tool for developers looking to optimize commit
+retrieval and processing status checks in their own applications.
 
 [See the endpoint](https://reference.flatfile.com/api-reference/workbooks/get-commits-for-a-workbook)
 
 ## dataxp
 
-We've successfully addressed and fixed the issue related to extracting/uploading files with special characters in their names. If you previously encountered difficulties with such files, this update resolves those challenges, ensuring smoother and more reliable file handling going forward.
+We've successfully addressed and fixed the issue related to extracting/uploading
+files with special characters in their names. If you previously encountered
+difficulties with such files, this update resolves those challenges, ensuring
+smoother and more reliable file handling going forward.
 
 ## dataxp
 
@@ -20,6 +29,16 @@ We've successfully addressed and fixed the issue related to extracting/uploading
 
 ![image](../changelog/images/job_failure.png)
 
-To enhance clarity and efficiency in job processing, we’ve implemented an update for managing long-running jobs. Previously, jobs that weren’t acknowledged within 5 minutes would silently fail due to a timeout by the agent, leading to confusion as these jobs never reached completion (They were left in an executing state).
+To enhance clarity and efficiency in job processing, we’ve implemented an update
+for managing long-running jobs. Previously, jobs that weren’t acknowledged
+within 5 minutes would silently fail due to a timeout by the agent, leading to
+confusion as these jobs never reached completion (They were left in an executing
+state).
 
-To address this, we’ve now added a routine check that occurs every 5 minutes. This check will automatically fail jobs that are still executing but haven’t been [acknowledged](https://reference.flatfile.com/api-reference/jobs/acknowledge-a-job) (ack’d) within this timeframe. This update ensures better transparency and control in the job execution process, reducing confusion and streamlining operations.
+To address this, we’ve now added a routine check that occurs every 5 minutes.
+This check will automatically fail jobs that are still executing but haven’t
+been
+[acknowledged](https://reference.flatfile.com/api-reference/jobs/acknowledge-a-job)
+(ack’d) within this timeframe. This update ensures better transparency and
+control in the job execution process, reducing confusion and streamlining
+operations.

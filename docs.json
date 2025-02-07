@@ -18,7 +18,7 @@
             "groups": [
               {
                 "group": "Welcome To Flatfile",
-                "pages": [ "flatfile" ]
+                "pages": ["flatfile"]
               },
               {
                 "group": "APIs",
@@ -47,7 +47,6 @@
                       "documentation/core-libraries/cli/deploy"
                     ]
                   }
-                 
                 ]
               },
               {
@@ -62,17 +61,14 @@
                       "documentation/blueprint/field-types",
                       "documentation/blueprint/relationships",
                       "documentation/blueprint/constraints",
-                      "documentation/blueprint/access"  
+                      "documentation/blueprint/access"
                     ]
                   }
-                  
                 ]
               },
               {
                 "group": "Plugins",
-                "pages": [
-                  "documentation/plugins"
-                ]
+                "pages": ["documentation/plugins"]
               },
               {
                 "group": "SDKs",
@@ -107,7 +103,7 @@
                     "pages": [
                       "documentation/sdks/angular/new_space",
                       "documentation/sdks/angular/reuse_space"
-                        ]
+                    ]
                   },
                   {
                     "group": "Reference",
@@ -200,9 +196,7 @@
             "groups": [
               {
                 "group": "Upgrade",
-                "pages": [
-                  "upgrade/overview"
-                ]
+                "pages": ["upgrade/overview"]
               },
               {
                 "group": "Portal - version 2",

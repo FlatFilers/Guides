@@ -41,7 +41,9 @@ const flatfileOptions = {
   Theme values for the Space, sidebar and data table.
 </ParamField>
 
-Theme your Space to create a custom look and feel to match your brand using the actual CSS variables referenced in the app. See all options in our [Theming Reference](../../../guides/theming).
+Theme your Space to create a custom look and feel to match your brand using the
+actual CSS variables referenced in the app. See all options in our
+[Theming Reference](../../../guides/theming).
 
 ```typescript src/client.js
 const theme = {
@@ -54,9 +56,18 @@ const theme = {
 
 ## sheet[]
 
-Configuring your sheet for Portal is telling us about the data you’re looking to receive and in what format. You can specify things like fields being required or unique so that some of the built-in validation can help expedite your data import.
+Configuring your sheet for Portal is telling us about the data you’re looking to
+receive and in what format. You can specify things like fields being required or
+unique so that some of the built-in validation can help expedite your data
+import.
 
-A sheet contains 3 elements, a `name`, `slug` and your `fields`. We go over Fields in detail in our Blueprint guide, but in the below example, you will see that each field has a `key`, `type` and `label`. Some keys also use the `constraints` property to specify things like a field needing to be `required` to have a value or be a `unique` value in the field values. You might also notice in the below example that a field type of `enum` also using an additional `config` property where the `options` in the enum list will be defined.
+A sheet contains 3 elements, a `name`, `slug` and your `fields`. We go over
+Fields in detail in our Blueprint guide, but in the below example, you will see
+that each field has a `key`, `type` and `label`. Some keys also use the
+`constraints` property to specify things like a field needing to be `required`
+to have a value or be a `unique` value in the field values. You might also
+notice in the below example that a field type of `enum` also using an additional
+`config` property where the `options` in the enum list will be defined.
 
 Example sheet:
 
@@ -111,7 +122,13 @@ const sheet = {
 
 </CodeGroup>
 
-Now that we’ve built out the sheet above, we can add it to the full example below. Notice that in addition to the above sheet being added into the script tag, we’ve also referenced the `sheet` in the `flatfileOptions`. Quick note: The `flatfileOptions` object does expect to get a `sheet` object with that name. So you can name your `sheet` whatever you like, but if your sheet is `const mySheet = {}` then you will just need your `flatfileOptions` object to look like `sheet: mySheet` instead.
+Now that we’ve built out the sheet above, we can add it to the full example
+below. Notice that in addition to the above sheet being added into the script
+tag, we’ve also referenced the `sheet` in the `flatfileOptions`. Quick note: The
+`flatfileOptions` object does expect to get a `sheet` object with that name. So
+you can name your `sheet` whatever you like, but if your sheet is
+`const mySheet = {}` then you will just need your `flatfileOptions` object to
+look like `sheet: mySheet` instead.
 
 Adding on to the Full Example:
 
@@ -198,9 +215,18 @@ Adding on to the Full Example:
 
 ## onRecordHook()
 
-Now that we have configured our Sheet, we will look at the Data Validations piece. Data Validations in the Portal setup can be written inside of the `onRecordHook` callback of the `flatfileOptions` object. This callback will run on each record at initialization and then on any subsequent changes of the data.
+Now that we have configured our Sheet, we will look at the Data Validations
+piece. Data Validations in the Portal setup can be written inside of the
+`onRecordHook` callback of the `flatfileOptions` object. This callback will run
+on each record at initialization and then on any subsequent changes of the data.
 
-The callback you write will get the `record` passed in by default and you can update that record with any updates you’d like to make and return it as the output of the callback and that will update the record in the UI. For the purposes of being super basic in this example, let’s say you like to store the `name` property in your Database as all uppercase values. To ensure that this happens, we can write a simple function using JavaScript’s `toUpperCase` method to make sure all values continually get put to all uppercase values.
+The callback you write will get the `record` passed in by default and you can
+update that record with any updates you’d like to make and return it as the
+output of the callback and that will update the record in the UI. For the
+purposes of being super basic in this example, let’s say you like to store the
+`name` property in your Database as all uppercase values. To ensure that this
+happens, we can write a simple function using JavaScript’s `toUpperCase` method
+to make sure all values continually get put to all uppercase values.
 
 <CodeGroup>
 ```js index.html
@@ -220,9 +246,20 @@ const flatfileOptions = {
 ```
 </CodeGroup>
 
-What you’ll notice from the above is that we can use a built-in `record.get()` method with the fields key value to initially get the record’s value. We can then use the `record.set()` method to set the new value for the field and then we can optionally provide some context onto the record with `record.addInfo()` to set a message on the field.
+What you’ll notice from the above is that we can use a built-in `record.get()`
+method with the fields key value to initially get the record’s value. We can
+then use the `record.set()` method to set the new value for the field and then
+we can optionally provide some context onto the record with `record.addInfo()`
+to set a message on the field.
 
-Quick note on the additional info being added: You can add additional info on a field with several different validation levels. You can use `addInfo` as a courtesy to let your end use know what transformations is happening with the data, you could use `addWarning` to provide a warning message (the main difference between the two is how noticeable a field is after running the hook in the UI) and finally, you can use `addError` which not only highlights everything in red, but changes the data’s validation state to being not valid and making the end use fix the issue.
+Quick note on the additional info being added: You can add additional info on a
+field with several different validation levels. You can use `addInfo` as a
+courtesy to let your end use know what transformations is happening with the
+data, you could use `addWarning` to provide a warning message (the main
+difference between the two is how noticeable a field is after running the hook
+in the UI) and finally, you can use `addError` which not only highlights
+everything in red, but changes the data’s validation state to being not valid
+and making the end use fix the issue.
 
 Here’s the above added to the full code snippet:
 
@@ -317,21 +354,34 @@ Here’s the above added to the full code snippet:
 
 ## onSubmit()
 
-Flatfile has many different ways to handle and process data back to you once an import has happened, but the easiest in this context is the built-in `onSubmit` callback where the data is provided to you. Using this callback will add a button labelled "Submit" in the top right of your space for users to click on to initiate the record submission process. Due to the nature of this callback and button, it cannot be used with our [action constraints](../../../orchestration/actions#optional-parameters). 
+Flatfile has many different ways to handle and process data back to you once an
+import has happened, but the easiest in this context is the built-in `onSubmit`
+callback where the data is provided to you. Using this callback will add a
+button labelled "Submit" in the top right of your space for users to click on to
+initiate the record submission process. Due to the nature of this callback and
+button, it cannot be used with our
+[action constraints](../../../orchestration/actions#optional-parameters).
 
-This `onSubmit` callback passes in an object that has the records for you to send wherever you might need to store them. For example purposes, we are going to simply log the results, but this is where you could send results to your server or pass them back to your application.
+This `onSubmit` callback passes in an object that has the records for you to
+send wherever you might need to store them. For example purposes, we are going
+to simply log the results, but this is where you could send results to your
+server or pass them back to your application.
 
-When the data is finished and available, the `onSubmit` method will provide you with a `sheet` that you can use the built-in methods like `allData()`, `validData()`, `errorData()`, `inChunks()` and `stream()` to get your data. Here’s a quick reference table for the available methods and what they do.
+When the data is finished and available, the `onSubmit` method will provide you
+with a `sheet` that you can use the built-in methods like `allData()`,
+`validData()`, `errorData()`, `inChunks()` and `stream()` to get your data.
+Here’s a quick reference table for the available methods and what they do.
 
-| Method                              | Example Usage                                                                   | Return description                                                                                                                                                                                                                                                                                                                               | Additional notes                                                                                                                                       |
-| ----------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `allData()`                         | `sheet.allData()`                                                               | This returns the data that is being imported. This uses the [GET Records](https://reference.flatfile.com/api-reference/records/get) endpoint under the hood, which has a default pageSize of 10k records. The `pageSize` and `pageNumber` parameters can be used with this method to paginate through your data or increase the records returned.| All of the data does come with a way of determining whether the individual record was valid or not, but it returns all records regardless of validity. |
-| `validData()`                       | `sheet.validData() `                                                            | This returns all records that pass are flagged as being valid and leaves off all invalid records. Like `sheet.allData()`, this has a default pageSize of 10k records.                                                                                                                                                                            |                                                                                                                                                        |
-| `errorData()`                       | `sheet.errorData()`                                                             | This will return only those records that are considered invalid and leaves off any valid records. Like `sheet.allData()`, this has a default pageSize of 10k records.                                                                                                                                                                            |                                                                                                                                                        |
-| `inChunks(cb, {chunkSize: number})` | `sheet.inChunks((data) => // do something with each chunk, { chunkSize: 100 })` | The inChunks method will run the callback function provided on each chunk of data until all chunks have been processed.                                                                                                                                                                                                                          | The default chunk size is 1000                                                                                                                         |
-| `stream(cb)`                        | `sheet.stream((data) => // do something to each chunk of the stream)`           | The stream method will run the callback on every 1000 records available until all records have been processed                                                                                                                                                                                                                                    |                                                                                                                                                        |
+| Method                              | Example Usage                                                                   | Return description                                                                                                                                                                                                                                                                                                                                | Additional notes                                                                                                                                       |
+| ----------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `allData()`                         | `sheet.allData()`                                                               | This returns the data that is being imported. This uses the [GET Records](https://reference.flatfile.com/api-reference/records/get) endpoint under the hood, which has a default pageSize of 10k records. The `pageSize` and `pageNumber` parameters can be used with this method to paginate through your data or increase the records returned. | All of the data does come with a way of determining whether the individual record was valid or not, but it returns all records regardless of validity. |
+| `validData()`                       | `sheet.validData() `                                                            | This returns all records that pass are flagged as being valid and leaves off all invalid records. Like `sheet.allData()`, this has a default pageSize of 10k records.                                                                                                                                                                             |                                                                                                                                                        |
+| `errorData()`                       | `sheet.errorData()`                                                             | This will return only those records that are considered invalid and leaves off any valid records. Like `sheet.allData()`, this has a default pageSize of 10k records.                                                                                                                                                                             |                                                                                                                                                        |
+| `inChunks(cb, {chunkSize: number})` | `sheet.inChunks((data) => // do something with each chunk, { chunkSize: 100 })` | The inChunks method will run the callback function provided on each chunk of data until all chunks have been processed.                                                                                                                                                                                                                           | The default chunk size is 1000                                                                                                                         |
+| `stream(cb)`                        | `sheet.stream((data) => // do something to each chunk of the stream)`           | The stream method will run the callback on every 1000 records available until all records have been processed                                                                                                                                                                                                                                     |                                                                                                                                                        |
 
-With all those methods brought to light, let’s simply use the `allData` method to get all the records at once and then console log them in the process.
+With all those methods brought to light, let’s simply use the `allData` method
+to get all the records at once and then console log them in the process.
 
 <CodeGroup>
 ```js index.html
@@ -447,6 +497,9 @@ Now let’s put it all together in the full example:
 ```
 </CodeGroup>
 
-The above example is a fully working example that only needs to have your publishable key changed out for it to work as expected.
+The above example is a fully working example that only needs to have your
+publishable key changed out for it to work as expected.
 
-As a quick reminder, this is just the baseline of what Flatfile is capable of doing. You can check out more resources in our [documentation here.](https://flatfile.com/docs/overview)
+As a quick reminder, this is just the baseline of what Flatfile is capable of
+doing. You can check out more resources in our
+[documentation here.](https://flatfile.com/docs/overview)

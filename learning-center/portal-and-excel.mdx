@@ -6,7 +6,13 @@ icon: "hand-wave"
 
 ## The problem
 
-If you're in the midst of a client-side only implementation, but you still need to accept Excel files, you've likely noticed the warning on the `@flatfile/plugin-xlsx-extractor` plugin that says it does not work client-side. XLS(X) files tend to have a level of complexity to them that make them hard to handle client-side. For the purposes of getting up and running, though, this is fine, because we can deploy just what we need to handle Excel files in a server-side listener, and that's just what we'll walk through now.
+If you're in the midst of a client-side only implementation, but you still need
+to accept Excel files, you've likely noticed the warning on the
+`@flatfile/plugin-xlsx-extractor` plugin that says it does not work client-side.
+XLS(X) files tend to have a level of complexity to them that make them hard to
+handle client-side. For the purposes of getting up and running, though, this is
+fine, because we can deploy just what we need to handle Excel files in a
+server-side listener, and that's just what we'll walk through now.
 
 <Note>
   One thing to note here is that when we talk about "server-side listeners," we
@@ -17,12 +23,20 @@ If you're in the midst of a client-side only implementation, but you still need 
 
 ## Before you begin
 
-There are a couple of extra steps you'll need to take in order to deploy a listener. First, you'll need somewhere to write your listener code. This can be in your current application repository or you could create a new one, but this will need a couple of extra pieces if you have a simple `index.html` file your application runs from, like in this example.
+There are a couple of extra steps you'll need to take in order to deploy a
+listener. First, you'll need somewhere to write your listener code. This can be
+in your current application repository or you could create a new one, but this
+will need a couple of extra pieces if you have a simple `index.html` file your
+application runs from, like in this example.
 
-1. You'll need to have a package.json file where you will install the `@flatfile/listener` and `@flatfile/plugin-xlsx-extractor` packages (if you haven't already installed them).
-2. You'll need a .env file that has a `FLATFILE_API_KEY` (which is labeled as your Secret Key in the dashboard).
+1. You'll need to have a package.json file where you will install the
+   `@flatfile/listener` and `@flatfile/plugin-xlsx-extractor` packages (if you
+   haven't already installed them).
+2. You'll need a .env file that has a `FLATFILE_API_KEY` (which is labeled as
+   your Secret Key in the dashboard).
 
-So for the example I am showing here, your file structure might look something like this:
+So for the example I am showing here, your file structure might look something
+like this:
 
 ```
 ├── public/
@@ -37,7 +51,8 @@ So for the example I am showing here, your file structure might look something l
 
 ## The Example Code
 
-Here's a breakdown of what each of these files from above will look like when all is said and done:
+Here's a breakdown of what each of these files from above will look like when
+all is said and done:
 
 <CodeGroup>
     ```html public/index.html
@@ -223,10 +238,16 @@ Here's a breakdown of what each of these files from above will look like when al
 
 </CodeGroup>
 
-Don't forget to put your Publishable Key in the index.html file and your Private Key into your .env file.
+Don't forget to put your Publishable Key in the index.html file and your Private
+Key into your .env file.
 
 ## Deploying to Flatfile
 
-Once you have created your server-side listener code, like in the `src/listener.js` example above, you can then deploy to Flatfile. In the package.json, we've created a script that lets you run `npm run deploy` to deploy to Flatfile, but you can also deploy directly from your terminal by using this pattern: `npx flatfile deploy path/to/file`.
+Once you have created your server-side listener code, like in the
+`src/listener.js` example above, you can then deploy to Flatfile. In the
+package.json, we've created a script that lets you run `npm run deploy` to
+deploy to Flatfile, but you can also deploy directly from your terminal by using
+this pattern: `npx flatfile deploy path/to/file`.
 
-You'll now be able to spin up your client-side implementation and see that it will accept xls(s) files via that server-side listener we deployed.
+You'll now be able to spin up your client-side implementation and see that it
+will accept xls(s) files via that server-side listener we deployed.

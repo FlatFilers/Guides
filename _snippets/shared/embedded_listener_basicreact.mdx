@@ -5,7 +5,9 @@ Now, let's build a Workbook inside the Space for next time.
 1. Add a `src/workbook.ts` file with this simple Blueprint.
 2. Update `App.tsx` to import the Workbook.
 
-Next time you open Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. Your Workbook will also have a Submit action. We will configure this action in the next step.
+Next time you open Flatfile, you'll see a Workbook called "Contacts" that has
+one Sheet with three fields. Your Workbook will also have a Submit action. We
+will configure this action in the next step.
 
 <CodeGroup>
 ```ts src/workbook.ts
@@ -113,7 +115,9 @@ Next, we'll listen for data changes and respond using an event listener.
 1. Add a `src/listener.ts` file with this simple `recordHook`.
 2. Update `App.tsx` to import the listener.
 
-Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records.
+Once you add this code, when a change occurs, we'll log the entered first name
+and update the last name to "Rock." You'll immediately see this begin to work
+when you add or update any records.
 
 <CodeGroup>
 
@@ -136,7 +140,7 @@ export const listener = FlatfileListener.create((listener) => {
       console.log({ firstName });
       record.set("lastName", "Rock");
       return record;
-    })
+    }),
   );
 });
 ```
@@ -202,7 +206,9 @@ export default function App() {
 
 ### 6. Match your brand
 
-By attaching a `themeConfig` to `flatfileOptions` in `src/App.tsx`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../guides/theming).
+By attaching a `themeConfig` to `flatfileOptions` in `src/App.tsx`, we will now
+override colors in your Space to match your brand. See all of the options here
+in the [Theming Reference](../guides/theming).
 
 ```tsx src/App.tsx (snippet)
   const space = useSpace({
@@ -235,7 +241,8 @@ Finally, let's get the data out of our system and to your destination.
 
 1. Update your `listener.ts` with this simple submit action.
 
-Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](../guides/egress)
+Once you add this code, when the submit button is clicked, this will be the
+place you can egress your data. Learn more about [Egress Out](../guides/egress)
 
 ```tsx src/listener.ts
 import { FlatfileListener } from "@flatfile/listener";
@@ -256,7 +263,7 @@ export const listener = FlatfileListener.create((listener) => {
       console.log({ firstName });
       record.set("lastName", "Rock");
       return record;
-    })
+    }),
   );
 
   listener.on(
@@ -290,7 +297,7 @@ export const listener = FlatfileListener.create((listener) => {
           },
         });
       }
-    }
+    },
   );
 });
 ```

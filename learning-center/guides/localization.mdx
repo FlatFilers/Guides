@@ -6,40 +6,42 @@ icon: "language"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-Tailor the language and text in your Flatfile Space with ease! This guide will lead you step-by-step to allow you to both translate and personalize the text in your Space in just a couple of simple steps.
+Tailor the language and text in your Flatfile Space with ease! This guide will
+lead you step-by-step to allow you to both translate and personalize the text in
+your Space in just a couple of simple steps.
 
 ## Available Languages
 
 We support translations into these languages:
 
-| Language                    | Code       |
-| --------------------------- | ---------- |
-| German                      | de         |
-| English                     | en         |
-| English - Great Britain     | en-GB      |
-| English - Canadian          | en-CA      |
-| English - South African     | en-ZA      |
-| Spanish                     | es         |
-| Spanish - Latin America     | es-419     |
-| French                      | fr         |
-| French - Canadian           | fr-CA      |
-| French - France             | fr-FR      |
-| Indonesian                  | id         |
-| Italian                     | it         |
-| Japanese                    | jp         |
-| Korean                      | kr         |
-| Malay                       | ms         |
-| Dutch                       | nl         |
-| Polish                      | pl         |
-| Portuguese                  | pt         |
-| Portuguese - Brazilian      | pt-BR      |
-| Swedish                     | sv         |
-| Thai                        | th         |
-| Turkish                     | tr         |
-| Vietnamese                  | vi         |
-| Chinese - Simplified        | zh         |
-| Chinese - Traditional       | zh-Hant    |
-| Chinese - Hong Kong         | zh-Hant-HK |
+| Language                | Code       |
+| ----------------------- | ---------- |
+| German                  | de         |
+| English                 | en         |
+| English - Great Britain | en-GB      |
+| English - Canadian      | en-CA      |
+| English - South African | en-ZA      |
+| Spanish                 | es         |
+| Spanish - Latin America | es-419     |
+| French                  | fr         |
+| French - Canadian       | fr-CA      |
+| French - France         | fr-FR      |
+| Indonesian              | id         |
+| Italian                 | it         |
+| Japanese                | jp         |
+| Korean                  | kr         |
+| Malay                   | ms         |
+| Dutch                   | nl         |
+| Polish                  | pl         |
+| Portuguese              | pt         |
+| Portuguese - Brazilian  | pt-BR      |
+| Swedish                 | sv         |
+| Thai                    | th         |
+| Turkish                 | tr         |
+| Vietnamese              | vi         |
+| Chinese - Simplified    | zh         |
+| Chinese - Traditional   | zh-Hant    |
+| Chinese - Hong Kong     | zh-Hant-HK |
 
 <Tip>
   Need more languages? Reach out to us at
@@ -48,15 +50,21 @@ We support translations into these languages:
 
 ## Setting the language on a Space
 
-Flatfile will auto-detect the user's language based on their browser settings. If the language is not detectable or is currently unsupported, the system will automatically be set to English.
+Flatfile will auto-detect the user's language based on their browser settings.
+If the language is not detectable or is currently unsupported, the system will
+automatically be set to English.
 
 ### Overriding the language
 
-You can manually set the language on a Space using the languageOverride property. This property can be set either directly on the Space or at the environment level if the Space has not yet been created.
+You can manually set the language on a Space using the languageOverride
+property. This property can be set either directly on the Space or at the
+environment level if the Space has not yet been created.
 
-All users who use the Space will only see the language set in the language override property. Browser settings will no longer be respected.
+All users who use the Space will only see the language set in the language
+override property. Browser settings will no longer be respected.
 
-To specify the language, simply assign the appropriate language code (e.g., 'en' for English, 'fr' for French, etc.) to the languageOverride property.
+To specify the language, simply assign the appropriate language code (e.g., 'en'
+for English, 'fr' for French, etc.) to the languageOverride property.
 
 ```jsx listener.ts
 listener.on("space:created", async ({ context: { spaceId } }) => {
@@ -71,25 +79,31 @@ listener.on("space:created", async ({ context: { spaceId } }) => {
 
 ### Creating your translation files
 
-All our translation files can be found in our [Platform-Translations repository](https://github.com/FlatFilers/Platform-Translations).
-You can fork the repo or simply copy paste the files in the repository to create your own translation files.
+All our translation files can be found in our
+[Platform-Translations repository](https://github.com/FlatFilers/Platform-Translations).
+You can fork the repo or simply copy paste the files in the repository to create
+your own translation files.
 
 Simply update the values in each file with the text you would like to see.
 
-Once you have created your own translation files, you need to make them available to Flatfile. This is done via the translationsPath property.
+Once you have created your own translation files, you need to make them
+available to Flatfile. This is done via the translationsPath property.
 
 <Tip>
 While creating your JSON translation files, you can opt for partial or full JSON objects:
 
-**Partial JSON Objects:** Just include those values you want to change. Be sure to maintain the same JSON structure to avoid errors.
+**Partial JSON Objects:** Just include those values you want to change. Be sure
+to maintain the same JSON structure to avoid errors.
 
-**Full JSON Objects:** Copy the translation file from our public repository and modify the values as required.
+**Full JSON Objects:** Copy the translation file from our public repository and
+modify the values as required.
 
 </Tip>
 
 ### Setting your Translations Path
 
-To provide translations and text overrides you can use the translationsPath parameter. You have the flexibility to set up translationsPaths at two levels:
+To provide translations and text overrides you can use the translationsPath
+parameter. You have the flexibility to set up translationsPaths at two levels:
 
 - **Space:** Overrides the environment level setting.
 - **Environment:** Used when no Space-level path is defined.
@@ -104,7 +118,8 @@ Don't have an english file? You can use any other language instead.
 Your `translationsPath` must meet a few requirements to work as expected:
 
 1. It must be a string.
-2. The string should be a publicly available URL that returns your JSON translation file.
+2. The string should be a publicly available URL that returns your JSON
+   translation file.
 3. It must follow this folder structure:
    ```
    yourCustomTranslationsDirectory/
@@ -115,7 +130,8 @@ Your `translationsPath` must meet a few requirements to work as expected:
            │   └── translation.json
            ...
    ```
-   where `yourCustomTranslationsDirectory` can be swapped out for any path desired.
+   where `yourCustomTranslationsDirectory` can be swapped out for any path
+   desired.
 
 <Tip>
   For our translations repository we would set our translationsPath to:
@@ -123,7 +139,8 @@ Your `translationsPath` must meet a few requirements to work as expected:
 </Tip>
 ### Implementing Translations Path
 
-Set up your translations path using our API or the listener. This can be done at both the Space and environment levels.
+Set up your translations path using our API or the listener. This can be done at
+both the Space and environment levels.
 
 ```jsx listener.ts
 listener.on("space:created", async ({ context: { spaceId } }) => {
@@ -162,7 +179,8 @@ Simply add the new keys to your translation.json file:
 }
 ```
 
-Then instead of hardcoding strings directly into your action scripts, use JSON translation keys. Refer to these keys in your script as shown below:
+Then instead of hardcoding strings directly into your action scripts, use JSON
+translation keys. Refer to these keys in your script as shown below:
 
 <CodeGroup>
 ```jsx sheet.js
@@ -212,17 +230,14 @@ await api.jobs.complete(jobId, {
 
 ## Translating Your Documents
 
-The same logic that applies to Actions also applies to your Documents. Just pass in the custom translation keys that you added to your translation files!
+The same logic that applies to Actions also applies to your Documents. Just pass
+in the custom translation keys that you added to your translation files!
 
 <CodeGroup>
 ```jsx .../locales/en/translation.json
 
-{
-"myDocument": {
-"title": "Your first Space!"
-"body": "# Welcome ### Say hello to your first Space in the new Flatfile!"
-}
-}
+{ "myDocument": { "title": "Your first Space!" "body": "# Welcome ### Say hello
+to your first Space in the new Flatfile!" } }
 
 ````
 ```jsx listener.js
@@ -238,10 +253,15 @@ The same logic that applies to Actions also applies to your Documents. Just pass
 
 When creating JSON keys, adhere to the following guidelines:
 
-- **Alphanumeric Keys**: Ensure keys consist of alphanumeric characters to prevent issues with parsing.
-- **Nested Structure**: Utilize at least one level of nesting (e.g., `key1.key2`) to organize translations effectively and maintain readability.
-- **Avoid Whitespace and Control Characters**: Refrain from using spaces, newlines, or tabs in your JSON keys to avoid potential issues.
-- **Don't End Keys with File Extensions**: Avoid using file extensions (e.g., .csv, .txt) as the terminal segment in a key. For instance, myFileAction.csv is discouraged, but myFileAction.csv.uploaded is acceptable.
+- **Alphanumeric Keys**: Ensure keys consist of alphanumeric characters to
+  prevent issues with parsing.
+- **Nested Structure**: Utilize at least one level of nesting (e.g.,
+  `key1.key2`) to organize translations effectively and maintain readability.
+- **Avoid Whitespace and Control Characters**: Refrain from using spaces,
+  newlines, or tabs in your JSON keys to avoid potential issues.
+- **Don't End Keys with File Extensions**: Avoid using file extensions (e.g.,
+  .csv, .txt) as the terminal segment in a key. For instance, myFileAction.csv
+  is discouraged, but myFileAction.csv.uploaded is acceptable.
 
 <Info>
   Always validate your `translation.json` file to ensure it follows the correct

@@ -6,11 +6,17 @@ icon: "circle-1"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-Flatfile is an event-based system. This means that an [Event](../../orchestration/events) is published on almost any interaction a user has within the Flatfile platform.
+Flatfile is an event-based system. This means that an
+[Event](../../orchestration/events) is published on almost any interaction a
+user has within the Flatfile platform.
 
-A [Listener](/orchestration/listeners) is a function that is triggered by an Event. It's a powerful building block because it can be completely customized, enabling you to respond to events precisely the way your business and workflow require.
+A [Listener](/orchestration/listeners) is a function that is triggered by an
+Event. It's a powerful building block because it can be completely customized,
+enabling you to respond to events precisely the way your business and workflow
+require.
 
-In this step of the tutorial, you'll learn how to set up a Listener to receive Events.
+In this step of the tutorial, you'll learn how to set up a Listener to receive
+Events.
 
 ## About listeners
 
@@ -35,11 +41,14 @@ export default function flatfileEventListener(listener: FlatfileListener) {
 ```
 </CodeGroup>
 
-As you can see, this function is listening on "\*\*", which is a wildcard that matches all events on all Apps. All this listener does is log an incoming Event's topic.
+As you can see, this function is listening on "\*\*", which is a wildcard that
+matches all events on all Apps. All this listener does is log an incoming
+Event's topic.
 
 ## Setup your first listener
 
-Let's walk through setting up your first listener. To do this, you'll be using some of the tools Flatfile provides for developers.
+Let's walk through setting up your first listener. To do this, you'll be using
+some of the tools Flatfile provides for developers.
 
 <Info>
   Flatfile is a Typescript/Javascript platform, so you will need to install
@@ -47,7 +56,8 @@ Let's walk through setting up your first listener. To do this, you'll be using s
   required, switch to Node.js v18 for the best experience.
 </Info>
 
-First, clone our [Getting Started](https://github.com/FlatFilers/getting-started) repository.
+First, clone our
+[Getting Started](https://github.com/FlatFilers/getting-started) repository.
 
 ```terminal
 git clone https://github.com/FlatFilers/getting-started.git
@@ -74,11 +84,14 @@ Now, update the `FLATFILE_API_KEY` value, setting it to your Secret Key.
 
 ## Run your first listener
 
-Now that you have listener code configured with credentials, you're ready to listen for Events.
+Now that you have listener code configured with credentials, you're ready to
+listen for Events.
 
-We'll run this listener locally by using the "develop" command from the Flatfile CLI.
+We'll run this listener locally by using the "develop" command from the Flatfile
+CLI.
 
-You may chose to run either a Typescript or a Javascript version of this listener:
+You may chose to run either a Typescript or a Javascript version of this
+listener:
 
 <CodeGroup>
 
@@ -112,4 +125,6 @@ ncc: Compiling file index.js into CJS
 
 ## Next steps
 
-To watch your listener receive an event, you'll need to trigger one. Let's learn how to leverage your listener to [Configure a Space](../custom/meet-the-workbook) on the fly.
+To watch your listener receive an event, you'll need to trigger one. Let's learn
+how to leverage your listener to
+[Configure a Space](../custom/meet-the-workbook) on the fly.

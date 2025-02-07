@@ -3,7 +3,9 @@ title: "Legacy"
 description: "create a new Space every time Flatfile is opened"
 ---
 
-For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+For synchronous data import/exchange completed in one session, create a new
+Space each time Flatfile is opened. This suits situations where a clean slate
+for every interaction is preferred.
 
 ## Before you begin
 
@@ -55,17 +57,23 @@ Setup your app to look something like this:
 └── package-lock.json <--- already created
 ```
 
-In this file structure, your app should have two main directories, `public` and `src.`
+In this file structure, your app should have two main directories, `public` and
+`src.`
 
-The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+The `public` directory contains the `index.html` file, which is the entry point
+of the application's front-end, and the "style.css" file for styling the iframe.
 
-The `src` directory contains the main components and logic of the application, including the `App.tsx` file, which initializes Flatfile and passes in available options.
+The `src` directory contains the main components and logic of the application,
+including the `App.tsx` file, which initializes Flatfile and passes in available
+options.
 
 ## Build your importer
 
 ### 1. Add a Flatfile button
 
-Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load. Also, add the content here to your `styles.css`.
+Add a button to your application to open Flatfile in a modal. Pass in your
+`publishableKey` and a new Space will be created on each page load. Also, add
+the content here to your `styles.css`.
 
 <CodeGroup>
 ```html public/index.html (full page)
@@ -275,7 +283,9 @@ body {
 
 ### 2. Initialize Flatfile
 
-In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey`. Also, add the content here to your `index.tsx`, `tsconfig.json`, `manifest.json`, and `config-overries.js`.
+In your `App.tsx`, at minimum, you'll need to pass in the `publishableKey`.
+Also, add the content here to your `index.tsx`, `tsconfig.json`,
+`manifest.json`, and `config-overries.js`.
 
 <CodeGroup>
 
@@ -423,7 +433,8 @@ module.exports = function override(config) {
 }
 ```
 
-2. Now, start your front end by heading to terminal and running the following command.
+2. Now, start your front end by heading to terminal and running the following
+   command.
 
 ```bash
 npm run start
@@ -434,13 +445,16 @@ npm run start
   add the defaults to your package.json? Say yes.
 </Note>
 
-3. To see that it’s running, visit: https://localhost:3000 (or the port it is running on) and you should see your page and a button. Click the button and see that an empty Space gets created.
+3. To see that it’s running, visit: https://localhost:3000 (or the port it is
+   running on) and you should see your page and a button. Click the button and
+   see that an empty Space gets created.
 
 <Snippet file="shared/embedded_listener_basicreact.mdx" />
 
 ### 8. Add customizations
 
-You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+You can stop here or you can [view our full reference](../reference/common) to
+see all the ways you can customize your importer.
 
 ## Example Project
 

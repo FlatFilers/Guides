@@ -4,14 +4,19 @@
 
 `@flatfile/plugin-extractor-___`
 
-All extractors have been fine-tuned to seamlessly handle extractions within a job, allowing the plugin more time to complete the extraction with less risk of the Agent timing out.
+All extractors have been fine-tuned to seamlessly handle extractions within a
+job, allowing the plugin more time to complete the extraction with less risk of
+the Agent timing out.
 
-Additionally, we've resolved a bug that was causing extractions to falsely indicate completion when running in parallel, ensuring extraction truly finishes before signaling completion.
+Additionally, we've resolved a bug that was causing extractions to falsely
+indicate completion when running in parallel, ensuring extraction truly finishes
+before signaling completion.
 
 ## transform
 
 `@flatfile/plugin-autocast@0.2.2`
 
-Dates that were cast to a UTC string using the autocast plugin were showing as invalid after transformation. A fix for this was added to version 0.2.2.
+Dates that were cast to a UTC string using the autocast plugin were showing as
+invalid after transformation. A fix for this was added to version 0.2.2.
 
 [Learn more](https://flatfile.com/plugins/plugin-autocast).

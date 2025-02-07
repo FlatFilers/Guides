@@ -4,8 +4,17 @@
 
 `@flatfile/javascript@1.3.8`
 
-A bug fix for issues with the `closeSpace.onClose()` function. This function is called when the Flatfile space is closed, and the bug fix ensures that it works correctly.
+A bug fix for issues with the `closeSpace.onClose()` function. This function is
+called when the Flatfile space is closed, and the bug fix ensures that it works
+correctly.
 
-An improvement to the closing behavior of the Flatfile space. Instead of removing the iframe element immediately, a new `closeSpaceNow` function is introduced, which handles removing the necessary elements and event listeners in a more organized manner.
+An improvement to the closing behavior of the Flatfile space. Instead of
+removing the iframe element immediately, a new `closeSpaceNow` function is
+introduced, which handles removing the necessary elements and event listeners in
+a more organized manner.
 
-There is also an update to the way the confirmation modal is displayed when closing the Flatfile space. Instead of using a separate event listener, the closing logic is now handled within the existing `closeFlatfileSpace` function, which listens for the `job:outcome-acknowledged` event and triggers the closing process accordingly.
+There is also an update to the way the confirmation modal is displayed when
+closing the Flatfile space. Instead of using a separate event listener, the
+closing logic is now handled within the existing `closeFlatfileSpace` function,
+which listens for the `job:outcome-acknowledged` event and triggers the closing
+process accordingly.

@@ -6,13 +6,18 @@
 
 ![image](../changelog/images/extract-status.gif)
 
-A Toast now displays intermediate states to keep you informed every step of the way during file extraction.
+A Toast now displays intermediate states to keep you informed every step of the
+way during file extraction.
 
-When uploading a file directly to the table, you’ll see statuses like “Waiting for Extraction”, “Extracting”, and “Unsupported File”, along with detailed information about the outcome of extraction jobs.
+When uploading a file directly to the table, you’ll see statuses like “Waiting
+for Extraction”, “Extracting”, and “Unsupported File”, along with detailed
+information about the outcome of extraction jobs.
 
-When uploading on the Files page, the error message is toned down to an info message, as uploading files without an extractor is a legitimate scenario.
+When uploading on the Files page, the error message is toned down to an info
+message, as uploading files without an extractor is a legitimate scenario.
 
-These updates are aimed at enhancing transparency and efficiency, ensuring you’re well-informed throughout the file extraction process.
+These updates are aimed at enhancing transparency and efficiency, ensuring
+you’re well-informed throughout the file extraction process.
 
 [See extractor plugins](https://flatfile.com/plugins/category/extractors/)
 
@@ -20,8 +25,13 @@ These updates are aimed at enhancing transparency and efficiency, ensuring you�
 
 **Improved Search Functionality for Null Values in GET Records Endpoint**
 
-We've refined the search mechanism for empty cells in the GET records endpoint. In the past, users would specify `null` in the `searchValue` parameter to locate empty cells. However, this method posed ambiguity as it didn't clearly distinguish between an exact search for null values and a partial search for the string "null".
+We've refined the search mechanism for empty cells in the GET records endpoint.
+In the past, users would specify `null` in the `searchValue` parameter to locate
+empty cells. However, this method posed ambiguity as it didn't clearly
+distinguish between an exact search for null values and a partial search for the
+string "null".
 
-Now, to accurately search for cells with null values, you should use empty double quotes `""` in the `searchValue` parameter.
+Now, to accurately search for cells with null values, you should use empty
+double quotes `""` in the `searchValue` parameter.
 
 [See the endpoint](https://reference.flatfile.com/api-reference/records/get-records)

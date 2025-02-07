@@ -1,13 +1,17 @@
 ---
-title: 'Reusable Spaces'
-description: 'reuse a Space when Flatfile is opened'
+title: "Reusable Spaces"
+description: "reuse a Space when Flatfile is opened"
 ---
 
-Reuse a Space when users might need to wait or can't finish in one go. It's great for keeping work context and letting users continue where they left off until the task is done.
+Reuse a Space when users might need to wait or can't finish in one go. It's
+great for keeping work context and letting users continue where they left off
+until the task is done.
 
 ## Before you begin
 
-To reuse an existing Space, we'll update our files to pass in a Space Id instead of a `publishableKey`. We'll then make a server-side request using our `secretKey` to get the Space and its access token.
+To reuse an existing Space, we'll update our files to pass in a Space Id instead
+of a `publishableKey`. We'll then make a server-side request using our
+`secretKey` to get the Space and its access token.
 
 <Snippet file="shared/sk_needed.mdx" />
 
@@ -63,15 +67,23 @@ Setup your app to look something like this:
 └── package-lock.json <--- already created
 ```
 
-In this file structure, your app should have two main directories, `public` and `src.`
+In this file structure, your app should have two main directories, `public` and
+`src.`
 
-The `public` directory contains the `index.html` file, which is the entry point of the application's front-end, and the "style.css" file for styling the iframe.
+The `public` directory contains the `index.html` file, which is the entry point
+of the application's front-end, and the "style.css" file for styling the iframe.
 
-The `src` directory contains the main components and logic of the application, including the `client.js` file, which initializes Flatfile and passes in available options, and the `server.mjs` file, which sets up a Node.js server using Express that listens for incoming requests and communicates with the Flatfile API to retrieve data about a specified Space.
+The `src` directory contains the main components and logic of the application,
+including the `client.js` file, which initializes Flatfile and passes in
+available options, and the `server.mjs` file, which sets up a Node.js server
+using Express that listens for incoming requests and communicates with the
+Flatfile API to retrieve data about a specified Space.
 
 ### Update your .env
 
-Update your .env. `FLATFILE_API_KEY` is your Secret Key and `SPACE_ID` is the Space you want to open in the importer. This is can be found on your Dashboard where it lists your Spaces. You shouldn't need to update the `BASE_URL`.
+Update your .env. `FLATFILE_API_KEY` is your Secret Key and `SPACE_ID` is the
+Space you want to open in the importer. This is can be found on your Dashboard
+where it lists your Spaces. You shouldn't need to update the `BASE_URL`.
 
 ```
 BASE_URL=https://platform.flatfile.com/api
@@ -83,7 +95,9 @@ SPACE_ID=us_sp_1234
 
 ### 1. Add a Flatfile button
 
-Add a button to your application to open Flatfile in a modal. Pass in your `publishableKey` and a new Space will be created on each page load. Also, add the content here to your `styles.css`.
+Add a button to your application to open Flatfile in a modal. Pass in your
+`publishableKey` and a new Space will be created on each page load. Also, add
+the content here to your `styles.css`.
 
 <CodeGroup>
 ```html public/index.html (snippet)
@@ -129,13 +143,16 @@ Add a button to your application to open Flatfile in a modal. Pass in your `publ
 
 ### 2. Create a local server
 
-This code sets up a Node.js server using Express that listens for incoming requests, enables CORS (Cross-Origin Resource Sharing), and communicates with the Flatfile API to retrieve data about a specified Space based on the provided environment variables.
+This code sets up a Node.js server using Express that listens for incoming
+requests, enables CORS (Cross-Origin Resource Sharing), and communicates with
+the Flatfile API to retrieve data about a specified Space based on the provided
+environment variables.
 
 ```jsx src/server.mjs
-import dotenv from 'dotenv';
-import express from 'express';
-import { FlatfileClient } from '@flatfile/api';
-import cors from 'cors'; // Import the cors module
+import dotenv from "dotenv";
+import express from "express";
+import { FlatfileClient } from "@flatfile/api";
+import cors from "cors"; // Import the cors module
 
 dotenv.config();
 
@@ -147,23 +164,23 @@ console.log(process.env.FLATFILE_API_KEY);
 
 const flatfile = new FlatfileClient({
   token: process.env.FLATFILE_API_KEY,
-  environment: process.env.BASE_URL + '/v1',
+  environment: process.env.BASE_URL + "/v1",
 });
 
 // Enable CORS middleware
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
+app.get("/", (req, res) => {
+  res.send("Hello, world!");
 });
 
-app.get('/space', async (req, res) => {
+app.get("/space", async (req, res) => {
   try {
     const space = await flatfile.spaces.get(process.env.SPACE_ID);
     res.json(space);
   } catch (error) {
-    console.error('Error retrieving space:', error);
-    res.status(500).json({ error: 'Failed to retrieve space' });
+    console.error("Error retrieving space:", error);
+    res.status(500).json({ error: "Failed to retrieve space" });
   }
 });
 
@@ -174,7 +191,9 @@ app.listen(port, () => {
 
 ### 3. Start your server
 
-Now, start your server by heading to terminal and running the following command. To see that it’s running, visit: https://localhost:8080 (or the port it is running on) and you should see a page that says "Hello, World".
+Now, start your server by heading to terminal and running the following command.
+To see that it’s running, visit: https://localhost:8080 (or the port it is
+running on) and you should see a page that says "Hello, World".
 
 ```bash
 npx node src/server.mjs
@@ -182,15 +201,18 @@ npx node src/server.mjs
 
 ### 4. Initialize Flatfile
 
-In your `client.js`, at minimum, you'll need to get and pass the `space` info. This code opens an existing Space in a modal by making a request to your server endpoint and initializing the Flatfile data import with specified options based on the server's response.
+In your `client.js`, at minimum, you'll need to get and pass the `space` info.
+This code opens an existing Space in a modal by making a request to your server
+endpoint and initializing the Flatfile data import with specified options based
+on the server's response.
 
 ```js src/client.js
-import { initializeFlatfile } from '@flatfile/javascript';
-const server_url = 'http://localhost:8080';
+import { initializeFlatfile } from "@flatfile/javascript";
+const server_url = "http://localhost:8080";
 
 //open existing space in modal
 window.openFlatfile = () => {
-  fetch(server_url + '/space') // Make a request to the server endpoint
+  fetch(server_url + "/space") // Make a request to the server endpoint
     .then((response) => response.json())
     .then((space) => {
       const flatfileOptions = {
@@ -206,14 +228,17 @@ window.openFlatfile = () => {
       initializeFlatfile(flatfileOptions);
     })
     .catch((error) => {
-      console.error('Error retrieving space in client:', error);
+      console.error("Error retrieving space in client:", error);
     });
 };
 ```
 
 ### 5. Start your client
 
-Now, start your front end by heading to terminal, opening a new tab, and running the following command. To see that it’s running, visit: https://localhost:1234 (or the port it is running on) and you should see your page and a button. Click the button and see that your Space loads. **That's it!**
+Now, start your front end by heading to terminal, opening a new tab, and running
+the following command. To see that it’s running, visit: https://localhost:1234
+(or the port it is running on) and you should see your page and a button. Click
+the button and see that your Space loads. **That's it!**
 
 ```bash
 npx parcel public/index.html
@@ -221,7 +246,8 @@ npx parcel public/index.html
 
 ### 6. Customize
 
-You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+You can stop here or you can [view our full reference](../reference/common) to
+see all the ways you can customize your importer.
 
 ## Example Project
 

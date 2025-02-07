@@ -1,25 +1,31 @@
 ### January 17, 2025
+
 ## dataxp
 
-api@becac6b
-The release notes include the following updates:
+api@becac6b The release notes include the following updates:
 
-An error is now thrown if attempting to clear a readonly column in a sheet. This prevents modifying data in readonly columns.
+An error is now thrown if attempting to clear a readonly column in a sheet. This
+prevents modifying data in readonly columns.
 
 Example:
+
 ```
 const field = {
   key: 'ReadonlyColumn',
-  label: 'Readonly Column', 
+  label: 'Readonly Column',
   type: 'string',
   readonly: true
 }
 ```
-Attempting to clear this column will throw an error: 'Column is readonly and cannot be cleared'.
 
-An error is also thrown if attempting to clear any column in a readonly sheet. This prevents modifying data in readonly sheets.  
+Attempting to clear this column will throw an error: 'Column is readonly and
+cannot be cleared'.
+
+An error is also thrown if attempting to clear any column in a readonly sheet.
+This prevents modifying data in readonly sheets.
 
 Example:
+
 ```
 const sheet = {
   config: {
@@ -28,6 +34,9 @@ const sheet = {
   }
 }
 ```
-Attempting to clear a column in this sheet will throw an error: 'Sheet is readonly. Column cannot be cleared'.
 
-These changes ensure data integrity by preventing unintended modification of readonly data.
+Attempting to clear a column in this sheet will throw an error: 'Sheet is
+readonly. Column cannot be cleared'.
+
+These changes ensure data integrity by preventing unintended modification of
+readonly data.

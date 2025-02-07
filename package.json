@@ -1,8 +1,12 @@
 {
-  "scripts" : {
-    "changelog" : "npm run update-platform && npm run update-plugins && npm run update-libraries",
-    "update-libraries" : "node changelog/bin/update.js libraries ./changelog/src/libraries ./changelog/sdks.mdx ",
-    "update-platform" : "node changelog/bin/update.js platform ./changelog/src/platform ./changelog/platform.mdx ",
-    "update-plugins" : "node changelog/bin/update.js plugins ./changelog/src/plugins ./changelog/sdks/plugins/highlights.mdx "
+  "scripts": {
+    "format": "prettier --write ./**/*.{js,mdx,json}",
+    "changelog": "npm run update-platform && npm run update-plugins && npm run update-libraries",
+    "update-libraries": "node changelog/bin/update.js libraries ./changelog/src/libraries ./changelog/sdks.mdx ",
+    "update-platform": "node changelog/bin/update.js platform ./changelog/src/platform ./changelog/platform.mdx ",
+    "update-plugins": "node changelog/bin/update.js plugins ./changelog/src/plugins ./changelog/sdks/plugins/highlights.mdx "
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2"
   }
 }

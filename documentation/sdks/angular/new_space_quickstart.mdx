@@ -5,7 +5,9 @@ description: "create a new Space every time Flatfile is opened"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-For synchronous data import/exchange completed in one session, create a new Space each time Flatfile is opened. This suits situations where a clean slate for every interaction is preferred.
+For synchronous data import/exchange completed in one session, create a new
+Space each time Flatfile is opened. This suits situations where a clean slate
+for every interaction is preferred.
 
 ## Before you begin
 
@@ -31,7 +33,8 @@ npm i @flatfile/angular-sdk @flatfile/plugin-record-hook @flatfile/listener
 
 ### 1. Initialize Flatfile
 
-In your `app.component.ts` you'll need to pass in a minimum of the `publishableKey`.
+In your `app.component.ts` you'll need to pass in a minimum of the
+`publishableKey`.
 
 <CodeGroup>
 
@@ -87,7 +90,9 @@ Now, let's build a Workbook inside the Space for next time.
 1. Create a file `src/app/blueprint.ts` with this simple Blueprint.
 2. Update `app.component` to import the Workbook.
 
-Next time you open Flatfile, you'll see a Workbook called "Contacts" that has one Sheet with three fields. Your Workbook will also have a Submit action. We will configure this action in the next step.
+Next time you open Flatfile, you'll see a Workbook called "Contacts" that has
+one Sheet with three fields. Your Workbook will also have a Submit action. We
+will configure this action in the next step.
 
 <CodeGroup>
 ```typescript app/blueprint.ts
@@ -134,9 +139,12 @@ spaceProps = {
 
 ### 4. Set the destination
 
-Finally, let's get the data out of our system and to your destination with `onSubmit`.
+Finally, let's get the data out of our system and to your destination with
+`onSubmit`.
 
-Once you add this code, when the submit button is clicked, this will be the place you can egress your data. Learn more about [Egress Out](../../../guides/egress)
+Once you add this code, when the submit button is clicked, this will be the
+place you can egress your data. Learn more about
+[Egress Out](../../../guides/egress)
 
 ```typescript app/app.component.ts
 spaceProps = {
@@ -162,7 +170,10 @@ spaceProps = {
 
 Next, we'll listen for data changes and respond `onRecordHook`,
 
-Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](../../../guides/handling-data)
+Once you add this code, when a change occurs, we'll log the entered first name
+and update the last name to "Rock." You'll immediately see this begin to work
+when you add or update any records. Learn more about
+[Handling Data](../../../guides/handling-data)
 
 ```typescript app/app.component.ts
 spaceProps = {
@@ -192,7 +203,9 @@ spaceProps = {
 
 ### 6. Match your brand
 
-By attaching a `themeConfig`, we will now override colors in your Space to match your brand. See all of the options here in the [Theming Reference](../../../guides/theming).
+By attaching a `themeConfig`, we will now override colors in your Space to match
+your brand. See all of the options here in the
+[Theming Reference](../../../guides/theming).
 
 ```typescript app/app.component.ts
 spaceProps = {
@@ -229,7 +242,8 @@ spaceProps = {
 
 ### 7. Customize
 
-You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+You can stop here or you can [view our full reference](../reference/common) to
+see all the ways you can customize your importer.
 
 ## Example Project
 

@@ -6,7 +6,8 @@ icon: "soap"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-Integrating Flatfile into a Bubble.io app involves embedding the provided Flatfile JavaScript code into an HTML element within Bubble.
+Integrating Flatfile into a Bubble.io app involves embedding the provided
+Flatfile JavaScript code into an HTML element within Bubble.
 
 ## Before you begin
 
@@ -16,20 +17,29 @@ Integrating Flatfile into a Bubble.io app involves embedding the provided Flatfi
 
 ### 1. Add the HTML Structure
 
-Since Bubble doesn't allow direct script tags in its HTML elements for security reasons, you'll need to use Bubble's "HTML" element to embed the HTML structure. In your Bubble editor, drag and drop an HTML element onto the page where you want the Flatfile integration.
+Since Bubble doesn't allow direct script tags in its HTML elements for security
+reasons, you'll need to use Bubble's "HTML" element to embed the HTML structure.
+In your Bubble editor, drag and drop an HTML element onto the page where you
+want the Flatfile integration.
 
 ### 2. Create a button
 
-1. From the design toolbox (usually on the left side of the screen), drag and drop a Button element onto your page.
-2. Once you've placed the button on the page, click on it to open its properties.
-3. Go to Settings > General > Check “Expose the option to set an ID attribute to HTML element”
-4. Set the ID of the button in the Properties for that button to: `startFlatfileButton`
+1. From the design toolbox (usually on the left side of the screen), drag and
+   drop a Button element onto your page.
+2. Once you've placed the button on the page, click on it to open its
+   properties.
+3. Go to Settings > General > Check “Expose the option to set an ID attribute to
+   HTML element”
+4. Set the ID of the button in the Properties for that button to:
+   `startFlatfileButton`
 
 ## Build your importer
 
 ### 1. Initialize Flatfile
 
-Initialize Flatfile to open in a modal from your Bubble.io webpage. Pass in your `publishableKey` and a new Space will be created on each page load. Optionally, you can add styles inline above your `<script>` tag.
+Initialize Flatfile to open in a modal from your Bubble.io webpage. Pass in your
+`publishableKey` and a new Space will be created on each page load. Optionally,
+you can add styles inline above your `<script>` tag.
 
 <CodeGroup>
 
@@ -44,7 +54,7 @@ Initialize Flatfile to open in a modal from your Bubble.io webpage. Pass in your
     <script>
       function initializeFlatfile() {
         const startFlatfileButton = document.getElementById(
-          "startFlatfileButton"
+          "startFlatfileButton",
         );
 
         startFlatfileButton.addEventListener("click", function () {
@@ -185,15 +195,20 @@ Initialize Flatfile to open in a modal from your Bubble.io webpage. Pass in your
 
 ### 2. Test the integration
 
-1. Look for the "Preview" button in the Bubble.io editor. This is usually located at the top right of the page, near the "Deploy" button.
-2. Click the "Preview" button. This will open a new tab or window in your browser showing how your page will look and function in a live environment.
-3. Click the button to Open Flatfile. You should see that Flatfile opens and an empty Space gets created.
+1. Look for the "Preview" button in the Bubble.io editor. This is usually
+   located at the top right of the page, near the "Deploy" button.
+2. Click the "Preview" button. This will open a new tab or window in your
+   browser showing how your page will look and function in a live environment.
+3. Click the button to Open Flatfile. You should see that Flatfile opens and an
+   empty Space gets created.
 
 <Snippet file="shared/embedded_listener_quickstart_bubble.mdx" />
 
 ### 8. Customize
 
-You can stop here or you can [view our full reference](../apps/embedding/reference/common) to see all the ways you can customize your importer.
+You can stop here or you can
+[view our full reference](../apps/embedding/reference/common) to see all the
+ways you can customize your importer.
 
 ## Example Projects
 

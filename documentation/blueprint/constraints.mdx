@@ -5,13 +5,17 @@ description: "system level validation rules"
 
 ## Field-Level
 
-Field-level constraints allow you to indicate additional validations that will be applied to fields of a Sheet. These constraints are in addition to the implicit constraints based on types of data. (eg: String, Number)
+Field-level constraints allow you to indicate additional validations that will
+be applied to fields of a Sheet. These constraints are in addition to the
+implicit constraints based on types of data. (eg: String, Number)
 
-For example, a value is required for every record (RequiredConstraint), or every record must contain a unique value for the field (UniqueConstraint).
+For example, a value is required for every record (RequiredConstraint), or every
+record must contain a unique value for the field (UniqueConstraint).
 
 ### Required
 
-Required Constraints indicate that the given field **must** be provided with a non-null value.
+Required Constraints indicate that the given field **must** be provided with a
+non-null value.
 
 <Note>A `null` value in this case constitutes an empty cell.</Note>
 
@@ -33,7 +37,8 @@ Required Constraints indicate that the given field **must** be provided with a n
 
 ### Unique
 
-Unique Constraints indicate that the given field value must only appear **once** in all the values for that field.
+Unique Constraints indicate that the given field value must only appear **once**
+in all the values for that field.
 
 <Note>
   `null` values will appear many times because they are not considered unique as
@@ -58,7 +63,8 @@ Unique Constraints indicate that the given field value must only appear **once**
 
 ### Computed
 
-The computed constraint hides the given field from the mapping process, so your users will not be able to map incoming columns to this field. 
+The computed constraint hides the given field from the mapping process, so your
+users will not be able to map incoming columns to this field.
 
 ```json
 // within the context of a create Workbook API call
@@ -81,9 +87,11 @@ The computed constraint hides the given field from the mapping process, so your 
 
 ### Composite Uniqueness
 
-Composite Uniqueness is a feature where a combination of two or more fields must be unique across an entire Sheet.
+Composite Uniqueness is a feature where a combination of two or more fields must
+be unique across an entire Sheet.
 
-To implement composite uniqueness, add the following parameters to the `constraints` property:
+To implement composite uniqueness, add the following parameters to the
+`constraints` property:
 
 - `name` _defines the name of the constraint_
 
@@ -91,13 +99,9 @@ To implement composite uniqueness, add the following parameters to the `constrai
 
 - `type` _defines the type of the constraint_
 
-- `strategy` _defines how to determine uniqueness_
-  {" "}
-  Can either be:
-  {" "}
-  `concat` _concatenates values from each field defined inside the `fields` array_
-  {" "}
-  or `hash` _creates a sha1 hash using of the values of each field_
+- `strategy` _defines how to determine uniqueness_ {" "} Can either be: {" "}
+  `concat` _concatenates values from each field defined inside the `fields`
+  array_ {" "} or `hash` _creates a sha1 hash using of the values of each field_
 
 ```json
 "sheets": [

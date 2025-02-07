@@ -7,37 +7,49 @@ description: "configure your Space in React"
 
 ### FlatfileProvider
 
-`FlatfileProvider` is a comprehensive React component designed for integrating Flatfile's import capabilities into your application.
-It can be initialized using either a `publishableKey` or an `accessToken`, providing flexibility depending on your authentication flow.
-The component allows for extensive customization of the embedded iFrame through styling parameters, ensuring that the import modal matches your application's aesthetics.
-It maintains the configuration necessary for creating and managing Spaces, Workbooks, and Documents within Flatfile.
-Additionally, `FlatfileProvider` manages a client-side listener to handle browser-based events, ensuring a seamless user interaction with the import process.
+`FlatfileProvider` is a comprehensive React component designed for integrating
+Flatfile's import capabilities into your application. It can be initialized
+using either a `publishableKey` or an `accessToken`, providing flexibility
+depending on your authentication flow. The component allows for extensive
+customization of the embedded iFrame through styling parameters, ensuring that
+the import modal matches your application's aesthetics. It maintains the
+configuration necessary for creating and managing Spaces, Workbooks, and
+Documents within Flatfile. Additionally, `FlatfileProvider` manages a
+client-side listener to handle browser-based events, ensuring a seamless user
+interaction with the import process.
 
-Learn more about the [FlatfileProvider](/apps/embedding/react/components/FlatfileProvider)
+Learn more about the
+[FlatfileProvider](/apps/embedding/react/components/FlatfileProvider)
 
 ```tsx
 <FlatfileProvider
-    publishableKey={PUBLISHABLE_KEY}
-    config={{
-        mountElement,
-        exitText,
-        exitTitle,
-        exitPrimaryButtonText,
-        exitSecondaryButtonText,
-        displayAsModal: true
-    }}
+  publishableKey={PUBLISHABLE_KEY}
+  config={{
+    mountElement,
+    exitText,
+    exitTitle,
+    exitPrimaryButtonText,
+    exitSecondaryButtonText,
+    displayAsModal: true,
+  }}
 >
-      <FFApp />
+  <FFApp />
 </FlatfileProvider>
 ```
 
 ### Space
-The `Space` component from the `@flatfile/react` package is utilized to define a collaborative environment or workspace within Flatfile's import system. It can be configured to create a new space or to reuse an existing one by providing a space ID.
+
+The `Space` component from the `@flatfile/react` package is utilized to define a
+collaborative environment or workspace within Flatfile's import system. It can
+be configured to create a new space or to reuse an existing one by providing a
+space ID.
 
 #### Main Props
 
-- `config`: Sets up the configuration for a new space, including theming and metadata.
-- `id`: An optional prop that, when provided, indicates the specific existing space to be reused instead of creating a new one.
+- `config`: Sets up the configuration for a new space, including theming and
+  metadata.
+- `id`: An optional prop that, when provided, indicates the specific existing
+  space to be reused instead of creating a new one.
 
 Learn more about the [Space](/apps/embedding/react/components/Space)
 
@@ -55,10 +67,12 @@ Example usage for creating a new space:
 />
 ```
 
-When you want to re-use a space, you'll need to pass an `accessToken` to the `FlatfileProvider`, then this is where you'll add the `id` of the Space you want to re-use.
+When you want to re-use a space, you'll need to pass an `accessToken` to the
+`FlatfileProvider`, then this is where you'll add the `id` of the Space you want
+to re-use.
 
 ```tsx
-const FFApp = () => <Space id={"us_sp_123456" } />;
+const FFApp = () => <Space id={"us_sp_123456"} />;
 const App = () => {
   return (
     <FlatfileProvider accessToken={ACCESS_TOKEN}>
@@ -70,10 +84,14 @@ const App = () => {
 
 ### Workbook
 
-Configures all Workbook Creation request data and a new onRecordHook helper function
+Configures all Workbook Creation request data and a new onRecordHook helper
+function
 
-`onSubmit` and a new `onRecordHooks` helper can be added to the Workbook. A Workbook object containing the sheets can be passed along in the `config`.
-`onRecordHooks` takes an array of record hooks. Each one can take a slug for manually setting each per sheet. Otherwise, if no slug is added, it will apply the record hook to the corresponding sheet in the Workbook index.
+`onSubmit` and a new `onRecordHooks` helper can be added to the Workbook. A
+Workbook object containing the sheets can be passed along in the `config`.
+`onRecordHooks` takes an array of record hooks. Each one can take a slug for
+manually setting each per sheet. Otherwise, if no slug is added, it will apply
+the record hook to the corresponding sheet in the Workbook index.
 
 Learn more about the [Workbook](/apps/embedding/react/components/Workbook)
 
@@ -96,20 +114,27 @@ Learn more about the [Workbook](/apps/embedding/react/components/Workbook)
 ```
 
 ### Sheet
-The `Sheet` component from the `@flatfile/react` package integrates Flatfile's data import functionality into React applications. It simplifies configuring the data import process and managing the lifecycle of data submission and record handling.
+
+The `Sheet` component from the `@flatfile/react` package integrates Flatfile's
+data import functionality into React applications. It simplifies configuring the
+data import process and managing the lifecycle of data submission and record
+handling.
 
 #### Main Props
 
 - `config`: Defines the structure and settings of the data to be imported.
-- `onSubmit`: A callback function that is triggered upon successful data submission.
-- `onRecordHook`: A function that allows for custom record manipulation during the import process.
+- `onSubmit`: A callback function that is triggered upon successful data
+  submission.
+- `onRecordHook`: A function that allows for custom record manipulation during
+  the import process.
 - `submitSettings`: Customizes the behavior of the data submission process.
 
-
-The Sheet option is similar to the [Simplified SDK Approach](apps/embedding/reference/simple)..
-Learn more about the [Sheet](/apps/embedding/react/components/Sheet)
+The Sheet option is similar to the
+[Simplified SDK Approach](apps/embedding/reference/simple).. Learn more about
+the [Sheet](/apps/embedding/react/components/Sheet)
 
 Example usage:
+
 ```tsx
 <Sheet
   config={sheet}
@@ -125,7 +150,8 @@ Example usage:
 
 ### Document
 
-Configures a Document to be added to the Space. Takes a simple `Flatfile.DocumentConfig` as a param.
+Configures a Document to be added to the Space. Takes a simple
+`Flatfile.DocumentConfig` as a param.
 
 ```tsx
 const FFApp = () => <Document config={document} />;
@@ -135,9 +161,11 @@ const FFApp = () => <Document config={document} />;
 
 ### useFlatfile
 
-This Hook exposes a few handy functions for integrating with the FlatfileProvider
+This Hook exposes a few handy functions for integrating with the
+FlatfileProvider
 
-- `openPortal()`: Opens the iFrame. This will create the underlying Space, Workbook and configure if necessary or open the Space provided.
+- `openPortal()`: Opens the iFrame. This will create the underlying Space,
+  Workbook and configure if necessary or open the Space provided.
 - `closePortal()`: Closes the iFrame.
 - `open`: current open status
 - `listener`: Current listener
@@ -145,7 +173,8 @@ This Hook exposes a few handy functions for integrating with the FlatfileProvide
 
 ### useListener
 
-This Hook exposes and adds any logic to the current listener with conditional dependencies
+This Hook exposes and adds any logic to the current listener with conditional
+dependencies
 
 ```tsx
 useListener(
@@ -155,13 +184,14 @@ useListener(
       // Handle the workbook:deleted event
     });
   },
-  [label]
+  [label],
 );
 ```
 
 ### usePlugin
 
-This Hook exposes and adds a plugin to the current listener with conditional dependencies
+This Hook exposes and adds a plugin to the current listener with conditional
+dependencies
 
 ```tsx
 usePlugin(
@@ -170,13 +200,14 @@ usePlugin(
     record.set("lastName", label);
     return record;
   }),
-  [label]
+  [label],
 );
 ```
 
 ### useEvent
 
-This Hook exposes any event coming from the iFrame to respond to with proper filtering
+This Hook exposes any event coming from the iFrame to respond to with proper
+filtering
 
 ```tsx
 useEvent("workbook:created", (event) => {

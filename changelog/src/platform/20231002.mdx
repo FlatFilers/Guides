@@ -6,7 +6,9 @@
 
 ![image](../changelog/images/event_logs.png)
 
-Our aim is to make it easy for everyone to monitor events, find problems, and help developers avoid overcomplicating their code with excessive Console logs that would need removal later.
+Our aim is to make it easy for everyone to monitor events, find problems, and
+help developers avoid overcomplicating their code with excessive Console logs
+that would need removal later.
 
 With our enhanced Event logs, you can now:
 
@@ -16,28 +18,46 @@ With our enhanced Event logs, you can now:
 4. Access events chronologically, with the most recent at the top.
 5. Dive into each event for context and review any associated console logs.
 
-As an added bonus, you have the capability to filter events, focusing solely on failures.
+As an added bonus, you have the capability to filter events, focusing solely on
+failures.
 
 See it live: [platform.flatfie.com/logs](http://platform.flatfile.com/logs)
 
 ## spaces
 
-Choosing a `namespace` on Space creation is now easier than ever. Rather than manually typing the namespaces into a free-form text field, you can simply choose from a dropdown menu of available options. The available namespaces are conveniently listed within the `namespaces` array of the Environment, providing a more efficient and accurate way to handle namespace selection.
+Choosing a `namespace` on Space creation is now easier than ever. Rather than
+manually typing the namespaces into a free-form text field, you can simply
+choose from a dropdown menu of available options. The available namespaces are
+conveniently listed within the `namespaces` array of the Environment, providing
+a more efficient and accurate way to handle namespace selection.
 
 ## transform
 
-Previously, when using the find and replace feature, only the initial batch of records had data hooks run again. Now, the find/replace operation efficiently groups records into batches of 10,000 rows, assigning a unique versionId to each batch. This improvement empowers record-hooks to process all records seamlessly within a single find/replace operation.
+Previously, when using the find and replace feature, only the initial batch of
+records had data hooks run again. Now, the find/replace operation efficiently
+groups records into batches of 10,000 rows, assigning a unique versionId to each
+batch. This improvement empowers record-hooks to process all records seamlessly
+within a single find/replace operation.
 
 ## spaces
 
-Now, you can include a free-form JSON object as `metadata` on your Workbook, providing you with a flexible way to store additional information related to it. Whether you're creating a new Workbook or updating an existing one, you have the option to enrich your Workbooks with meaningful metadata.
+Now, you can include a free-form JSON object as `metadata` on your Workbook,
+providing you with a flexible way to store additional information related to it.
+Whether you're creating a new Workbook or updating an existing one, you have the
+option to enrich your Workbooks with meaningful metadata.
 
 ## spaces
 
-Previously, when adding a secret to a space through the API, we supported spaces in secret names. However, the UI had regex logic that filtered out spaces when validating secret names.
+Previously, when adding a secret to a space through the API, we supported spaces
+in secret names. However, the UI had regex logic that filtered out spaces when
+validating secret names.
 
-In this update, we've harmonized the process by accepting space characters as valid characters for secret names in both the API and the UI. Your secret names can now include spaces without any issues.
+In this update, we've harmonized the process by accepting space characters as
+valid characters for secret names in both the API and the UI. Your secret names
+can now include spaces without any issues.
 
 ## dataxp
 
-We've resolved an issue where long messages would overflow the cell in validation messages. By implementing a straightforward `word-break` property, your validation messages will now display lengthy messages more elegantly.
+We've resolved an issue where long messages would overflow the cell in
+validation messages. By implementing a straightforward `word-break` property,
+your validation messages will now display lengthy messages more elegantly.

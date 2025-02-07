@@ -3,11 +3,15 @@ title: "Reuseable Spaces"
 description: "reuse a Space when Flatfile is opened"
 ---
 
-For applications meant to use the same space consistently, open an existing space each time Flatfile is opened. This suits situations where consistently editing a dataset is preferred.
+For applications meant to use the same space consistently, open an existing
+space each time Flatfile is opened. This suits situations where consistently
+editing a dataset is preferred.
 
 ## Before you begin
 
-If you have already tried our [Embed a New Space](./new_space) guide you will notice this guide departs heavily, so you will want to create this in a new directory, as translation would be more difficult than creating from scratch.
+If you have already tried our [Embed a New Space](./new_space) guide you will
+notice this guide departs heavily, so you will want to create this in a new
+directory, as translation would be more difficult than creating from scratch.
 
 <Snippet file="shared/sk_needed.mdx" />
 
@@ -37,7 +41,10 @@ npm i @flatfile/api @flatfile/listener @flatfile/plugin-record-hook @flatfile/vu
 
 ### Create your file structure
 
-The file structure of this application is fairly complex, as it requires a dedicated server and API. You can create an api endpoint externally if desired to keep your own application less complex, however this application is an all-in-one application server and api solution.
+The file structure of this application is fairly complex, as it requires a
+dedicated server and API. You can create an api endpoint externally if desired
+to keep your own application less complex, however this application is an
+all-in-one application server and api solution.
 
 In order to create this solution, create a file structure like the following:
 
@@ -72,13 +79,22 @@ In order to create this solution, create a file structure like the following:
 └── vite.config.js
 ```
 
-In this file structure, you will primarily work out of `/src` especially in `/src/components`. Many of thsese files are configuration files which are mostly set once and not touched again. So while there may be a lot, they won't be actively managed.
+In this file structure, you will primarily work out of `/src` especially in
+`/src/components`. Many of thsese files are configuration files which are mostly
+set once and not touched again. So while there may be a lot, they won't be
+actively managed.
 
 ### Update your .env
 
-Update your `.env`. `FLATFILE_API_KEY` is your Secret Key and `SPACE_ID` is the Space you want to open in the importer. This can be found on your Dashboard where it lists your Spaces. You may also want to include your `PUBLISHABLE_KEY` and `ENVIRONMENT_ID` if you want to have your app create new spaces as well.
+Update your `.env`. `FLATFILE_API_KEY` is your Secret Key and `SPACE_ID` is the
+Space you want to open in the importer. This can be found on your Dashboard
+where it lists your Spaces. You may also want to include your `PUBLISHABLE_KEY`
+and `ENVIRONMENT_ID` if you want to have your app create new spaces as well.
 
-Note in the below example some of the variables are prefixed with `VITE_`. This is because Vite requires the prefix to access them at runtime. The `FLATFILE_API_KEY` should never be accessible from the browser for security reasons, and should not have this prefix.
+Note in the below example some of the variables are prefixed with `VITE_`. This
+is because Vite requires the prefix to access them at runtime. The
+`FLATFILE_API_KEY` should never be accessible from the browser for security
+reasons, and should not have this prefix.
 
 ```bash
 # Required for creating new spaces
@@ -92,11 +108,15 @@ FLATFILE_API_KEY     = "sk_12345"
 
 ### Build your importer
 
-Before starting to build the application, it is important to note that there are a few moving parts, and it won't be able to start up between each update that is being made. This guide will endeavor to break out files into groups, so that after everything is updated as directed, the app should start up without errors.
+Before starting to build the application, it is important to note that there are
+a few moving parts, and it won't be able to start up between each update that is
+being made. This guide will endeavor to break out files into groups, so that
+after everything is updated as directed, the app should start up without errors.
 
 #### 1. Set up Configuration Files
 
-This app has several configuration files that must be set up before you can get started with development. Set them up as shown below.
+This app has several configuration files that must be set up before you can get
+started with development. Set them up as shown below.
 
 <CodeGroup>
 
@@ -195,7 +215,8 @@ dist-ssr
 
 </CodeGroup>
 
-You will also want to add some scripts to your `package.json` to start the app. Add the following scripts:
+You will also want to add some scripts to your `package.json` to start the app.
+Add the following scripts:
 
 ```JSON pacakge.json (snippet)
 "scripts": {
@@ -207,15 +228,23 @@ You will also want to add some scripts to your `package.json` to start the app. 
 },
 ```
 
-Please note that these scripts include files that haven't been created yet. These will be created in the following steps.
+Please note that these scripts include files that haven't been created yet.
+These will be created in the following steps.
 
 #### 2. Create the EJS HTML and Server
 
-This app has a home page to route the user to create a new space or embed an existing space. While the former choice is optional and not the focus of this guide (although instructions on how to include this function will be included), the files edited here set up functionality for embedding existing spaces, and as such is still necessary.
+This app has a home page to route the user to create a new space or embed an
+existing space. While the former choice is optional and not the focus of this
+guide (although instructions on how to include this function will be included),
+the files edited here set up functionality for embedding existing spaces, and as
+such is still necessary.
 
-This application utilizes ejs, which helps build dynamic html pages. This allows us to dynamically create both development and production environment outputs from one file. Set this up at `/views/index.html.ejs`
+This application utilizes ejs, which helps build dynamic html pages. This allows
+us to dynamically create both development and production environment outputs
+from one file. Set this up at `/views/index.html.ejs`
 
-This file wil not work before the server is functioning, but is required for the rest of the app to work.
+This file wil not work before the server is functioning, but is required for the
+rest of the app to work.
 
 ```EJS views/index.html.ejs
 <!doctype html>
@@ -241,7 +270,10 @@ This file wil not work before the server is functioning, but is required for the
 </html>
 ```
 
-Next lets create the server that will act as the backend of the application. This will be necessary to serve the pages as well as get the existing space, as due to security reasons the Secret Key cannot be exposed to the browser at any time.
+Next lets create the server that will act as the backend of the application.
+This will be necessary to serve the pages as well as get the existing space, as
+due to security reasons the Secret Key cannot be exposed to the browser at any
+time.
 
 ```TypeScript server/index.ts
 import dotenv from 'dotenv';
@@ -275,9 +307,13 @@ app.listen(port, () => {
 });
 ```
 
-In addition to the `server/index.ts`, you will need to create two routers - One for the homepage and one for the assets. This is because the frontend runs on a different port than you'll be accessing the app from, so the app will need a bit of help resolving pathing.
+In addition to the `server/index.ts`, you will need to create two routers - One
+for the homepage and one for the assets. This is because the frontend runs on a
+different port than you'll be accessing the app from, so the app will need a bit
+of help resolving pathing.
 
-Create `server/homepageRouter.ts` and `server/assetsRouter.ts` as follows, then update `server/index.ts`.
+Create `server/homepageRouter.ts` and `server/assetsRouter.ts` as follows, then
+update `server/index.ts`.
 
 <CodeGroup>
 
@@ -380,9 +416,12 @@ app.listen(port, () => {
 
 #### 3. Build the App Component
 
-Before building the components, you'll need to make a couple TypeScript Declaration files. This is so your IDE won't throw unnecessary errors at you during development.
+Before building the components, you'll need to make a couple TypeScript
+Declaration files. This is so your IDE won't throw unnecessary errors at you
+during development.
 
-You'll need a `src/vite-env.d.ts` file and a `src/shims-vue.d.ts` file in order to sort your the declarations. Create them as follows:
+You'll need a `src/vite-env.d.ts` file and a `src/shims-vue.d.ts` file in order
+to sort your the declarations. Create them as follows:
 
 <CodeGroup>
 
@@ -396,7 +435,8 @@ declare module '*.vue';
 
 </CodeGroup>
 
-Next you'll need a `src/main.ts` file to mount `src/App.vue` to your HTML. Create it and your App Component as shown below.
+Next you'll need a `src/main.ts` file to mount `src/App.vue` to your HTML.
+Create it and your App Component as shown below.
 
 <CodeGroup>
 
@@ -421,7 +461,8 @@ createApp(App).mount('#app')
 
 #### 4. Build your Home & Existing Space Component
 
-This app is built around a Home component that is loaded first and lets you navigate the app. That component is fairly basic and should look like this:
+This app is built around a Home component that is loaded first and lets you
+navigate the app. That component is fairly basic and should look like this:
 
 ```TypeScript src/components/Home.vue
 <template>
@@ -432,7 +473,8 @@ This app is built around a Home component that is loaded first and lets you navi
 </template>
 ```
 
-Now you'll need to build the component that will get your space and return it to the browser.
+Now you'll need to build the component that will get your space and return it to
+the browser.
 
 The component should end up looking something like this:
 
@@ -504,7 +546,8 @@ export default defineComponent({
 
 ```
 
-You'll need to update your `App.vue` to include the existing space component. It should end up looking like the example below:
+You'll need to update your `App.vue` to include the existing space component. It
+should end up looking like the example below:
 
 ```TypeScript src/App.vue
 <template>
@@ -544,7 +587,8 @@ const currentView = computed(() => {
 </script>
 ```
 
-It may be wise to set up your styles in `src/styles/styles.css`. These should end up looking like the example below:
+It may be wise to set up your styles in `src/styles/styles.css`. These should
+end up looking like the example below:
 
 ```CSS src/styles/styles.css
 /* Styles for home page */
@@ -715,11 +759,15 @@ nav a {
 
 ```
 
-Remember to add `import './styles/styles.css'` to your `src/App.vue` with the other imports to apply the styles.
+Remember to add `import './styles/styles.css'` to your `src/App.vue` with the
+other imports to apply the styles.
 
 #### 5. Optional - Build your New Space Component
 
-If you want to have a page to create new spaces, you can create a component to do that fairly easily. The vue code should look fairly similar to Existing Space, just with some different configuration settings. See below for the necessary changes.
+If you want to have a page to create new spaces, you can create a component to
+do that fairly easily. The vue code should look fairly similar to Existing
+Space, just with some different configuration settings. See below for the
+necessary changes.
 
 <CodeGroup>
 
@@ -834,17 +882,20 @@ const currentView = computed(() => {
 
 #### 6. Start your client
 
-Now you should be able to start your app. To load it in dev mode and ensure everything works proprly, run:
+Now you should be able to start your app. To load it in dev mode and ensure
+everything works proprly, run:
 
 ```bash
 npm run dev
 ```
 
-If you have any errors, now is your time to fix them, otherwise - you're ready to deploy!
+If you have any errors, now is your time to fix them, otherwise - you're ready
+to deploy!
 
 #### 7. Customize
 
-You can stop here or you can [view our full reference](../reference/common) to see all the ways you can customize your importer.
+You can stop here or you can [view our full reference](../reference/common) to
+see all the ways you can customize your importer.
 
 ## Example Project
 

@@ -17,7 +17,9 @@ A property that should be stored and read as a basic string.
 
 ## `number`
 
-A property that should be stored and read as either an integer or floating point number. Database engines should look at the configuration to determine ideal storage format.
+A property that should be stored and read as either an integer or floating point
+number. Database engines should look at the configuration to determine ideal
+storage format.
 
 <ParamField path="config.decimal_places" default="0" type="number">
   The number of decimal places to preserve accuracy to. Overages should be
@@ -38,7 +40,9 @@ A property that should be stored and read as either an integer or floating point
 
 ## `reference`
 
-Defines a reference to another sheet. Links should be established automatically by the matching engine or similar upon an evaluation of unique or similar columns between datasets.
+Defines a reference to another sheet. Links should be established automatically
+by the matching engine or similar upon an evaluation of unique or similar
+columns between datasets.
 
 <ParamField path="config.ref" required>
   The full path reference to another sheet/table configuration. Must be in the
@@ -50,7 +54,10 @@ Defines a reference to another sheet. Links should be established automatically 
 
 ## `enum`
 
-Defines an enumerated list of options for the user to select from. Matching tooling attempts to resolve incoming data assignment to a valid option. The maximum number of options for this list is `100`. For larger lists, users should use the `reference` or future `lookup` types.
+Defines an enumerated list of options for the user to select from. Matching
+tooling attempts to resolve incoming data assignment to a valid option. The
+maximum number of options for this list is `100`. For larger lists, users should
+use the `reference` or future `lookup` types.
 
 <ParamField path="config.allow_custom" default="false" type="boolean">
   Permit the user to create new options for this specific field.
@@ -109,7 +116,9 @@ Defines an enumerated list of options for the user to select from. Matching tool
 
 ## `boolean`
 
-A `true` or `false` value type. Matching engines should attempt to resolve all common ways of representing this value and it should usually be displayed as a checkbox.
+A `true` or `false` value type. Matching engines should attempt to resolve all
+common ways of representing this value and it should usually be displayed as a
+checkbox.
 
 ```json
 {
@@ -121,4 +130,7 @@ A `true` or `false` value type. Matching engines should attempt to resolve all c
 
 ## `date`
 
-Store a field as a GMT date. Data hooks must convert this value into a `YYYY-MM-DD` format in order for it to be considered a valid value. Datetime is not currently available, but will be a separately supported Field Type in the future, and will include timezone.
+Store a field as a GMT date. Data hooks must convert this value into a
+`YYYY-MM-DD` format in order for it to be considered a valid value. Datetime is
+not currently available, but will be a separately supported Field Type in the
+future, and will include timezone.
