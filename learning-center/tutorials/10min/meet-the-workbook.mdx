@@ -16,7 +16,7 @@ We'll also theme the Space to be red.
 ## Dynamically build your Space
 
 When the "Create New Space" button is clicked from within your App in the
-dashboard, it triggers a [job `event`](../../orchestration/events) within the
+dashboard, it triggers a [job `event`](/learning-center/concepts/events) within the
 **space** `domain` that initiates a **configure** `operation`.
 
 This operation is analogous to performing a POST request to the endpoint
@@ -30,7 +30,7 @@ In the following code, we will:
 1. Filter on the `red` namespace. (Or replace this with your namespace.)
 2. Filter for a job by the `domain` (space) and the `operation` (configure) it
    was created.
-3. Listen for a [`job:ready`](../../orchestration/events#job-ready) event.
+3. Listen for a [`job:ready`](/learning-center/concepts/events#job-ready) event.
 4. Acknowledge the Job and mark the progress.
 5. Add the contents of the Space, including one Workbook and a simple Document.
 6. Update the space theme to be the color `red`.
@@ -305,7 +305,7 @@ is like a template, its definition includes a profile of the data it expects to
 hold. We call that profile a Blueprint.
 
 <Note>
-  [Blueprint](../../blueprint/overview) is Flatfile's robust data definition
+  [Blueprint](/documentation/blueprint/about) is Flatfile's robust data definition
   language (DDL) that emphasizes validation and data preparation. Flatfile APIs
   leverage Blueprint for their create, update, and read operations.
 </Note>

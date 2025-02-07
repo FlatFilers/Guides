@@ -6,17 +6,17 @@ description: "npx flatfile develop"
 <Snippet file="shared/dxpbanner.mdx" />
 
 The Flatfile CLI provides a suite of tools to help you develop and deploy
-[Listeners](/orchestration/listeners) to Flatfile.
+[Listeners](/learning-center/concepts/listeners) to Flatfile.
 
 Listeners are at the core of the Flatfile ecosystem, they are responsible for
-picking up on [Events](/orchestration/events) and responding to them
+picking up on [Events](/learning-center/concepts/events) and responding to them
 accordingly.
 
 <Note>
   Agents are listeners deployed server-side on Flatfile's secure cloud.
 </Note>
 
-When developing with Flatfile, listeners can [deployed](../deploying) to
+When developing with Flatfile, listeners can [deployed](/documentation/core-libraries/cli/deploy) to
 Flatfile on every change, or they can run directly on your machine.
 
 ### Commands
@@ -79,17 +79,6 @@ ncc: Compiling file index.js into CJS
 It is highly recommended to utilize an isolated environment when developing with
 the local listener. That's why the CLI is warning you when working in an
 environment that already has a deployed agent.
-
-<CardGroup cols={2}>
-  <Card
-    title="Check for existing agents"
-    href="../developing/check-for-agents"
-  ></Card>
-  <Card
-    title="Create a new isolated environment in dashboard"
-    href="https://platform.flatfile.com"
-  ></Card>
-</CardGroup>
 
 ### More details
 

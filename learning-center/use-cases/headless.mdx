@@ -26,7 +26,7 @@ Within the Flatfile Platform, build a comprehensive configuration that enables
 automated extraction, mapping, validation, and transformation of your data.
 
 [Automate egress](#automate-egress) \
-Finally, leverage Flatfile's [Event](../orchestration/events) driven system to
+Finally, leverage Flatfile's [Event](/learning-center/concepts/events) driven system to
 automatically export the processed and transformed data from Flatfile to the
 designated destination system, eliminating the need for manual exporting and
 ensuring a continuous flow of data to the intended location.
@@ -43,7 +43,7 @@ First, configure an ingress destination. Our files will be contained in a Space.
 You can think of a
 
 <Tooltip tip="A micro-application...">
-  [Space](../developer-tools/spaces)
+  [Space](/learning-center/architecture/spaces)
 </Tooltip>
 as a micro-application, each has it's own database and configurations.
 
@@ -52,7 +52,7 @@ as a micro-application, each has it's own database and configurations.
 <Note>
   Our deployed agent will automatically configure a Space. For more information
   on how to configure a Space, see our [Dynamic
-  Configurations](../guides/dynamic-configurations).
+  Configurations](/learning-center/guides/dynamic-configurations).
 </Note>
 
 Next, we'll upload our file to Flatfile.
@@ -65,7 +65,7 @@ Next, we'll upload our file to Flatfile.
 
 Incoming CSV files are automatically extracted to a
 
-<Tooltip tip="A collection of data...">[Workbook](../apps/workbooks)</Tooltip>.
+<Tooltip tip="A collection of data...">[Workbook](/learning-center/architecture/workbooks)</Tooltip>.
 
 However, if you're sending a different file type, you'll need to configure a
 listener to handle extraction.
@@ -85,7 +85,7 @@ matching based on configureable options.
 Because the Automap Plugin handles all the mapping, the user does not need to be redirected to Mapping after dragging a file into a Sheet.
 
 To prevent that redirect, set `settings: {noMappingRedirect: true}` in your
-[Workbook blueprint](../apps/workbooks#settings-object).
+[Workbook blueprint](/learning-center/architecture/workbooks#settings-object).
 
 </Note>
 
@@ -93,7 +93,7 @@ To prevent that redirect, set `settings: {noMappingRedirect: true}` in your
 
 Similarly, validation and transformation operations can run immediately on
 `records:*` events with RecordHooks. See our
-[Data Handling Guide](../guides/handling-data) for more information.
+[Data Handling Guide](/learning-center/guides/handling-data) for more information.
 
 ### Automate egress
 
@@ -109,7 +109,7 @@ tasks.
   To enable the `commit:completed` event, add a settings parameter in your
   Workbook that includes `trackChanges: true`. This has the effect of disabling
   actions on both Sheets and Workbooks until any pending commits have been
-  completed. See [Blueprint](/blueprint/sheet-options) sheet settings for more
+  completed. See [Blueprint](/documentation/blueprint/sheet-options) sheet settings for more
   information.
 </Note>
 
@@ -119,11 +119,11 @@ Here's an example where we automate emailing the processed data.
 <br></br>
 <Note>
   Egress Jobs may need to leverage Flatfile Secrets as credentials for outgoing
-  connections. See our [Secrets Guide](../guides/secrets) for more information.
+  connections. See our [Secrets Guide](/learning-center/guides/secrets) for more information.
 </Note>
 
 To pull a working demo of a headless integration, check out our
-[Example Projects](../starter-projects).
+[Example Projects](/learning-center/use-cases/projects).
 
 ## Additional paths
 
@@ -134,14 +134,14 @@ business, explore our other use cases:
   <Card
     title="Embed in your app"
     icon="person-to-portal"
-    href="../apps/embedding"
+    href="/learning-center/use-cases/portal"
   >
     Securely and easily add an embedded import experience to any app.
   </Card>
   <Card
     title="Run onboarding projects"
     icon="arrow-progress"
-    href="../apps/projects"
+    href="/learning-center/use-cases/projects"
   >
     Collaborate across teams on large data onboarding projects.
   </Card>

@@ -21,7 +21,7 @@ phase of customer onboarding or other file-based data exchange processes. Unlike
 a spreadsheet, it's designed to allow your team and users to validate, correct,
 and import data with real-time feedback.
 
-<img src="../images/quickstart/workbook.png" caption="The Flatfile Workbook" />
+<img src="/images/quickstart/workbook.png" caption="The Flatfile Workbook" />
 
 With Workbooks, you can:
 
@@ -40,12 +40,12 @@ With Workbooks, you can:
 A Workbook is comprised of one or more
 
 <Tooltip tip="A collection of fields...">
-  [Sheets](../blueprint/overview#terms)
+  [Sheets](/documentation/blueprint/field-types)
 </Tooltip>
 plus any actions you want to take on those Sheets.
 
 <img
-  src="../images/concepts/workbook_anatomy.png"
+  src="/images/concepts/workbook_anatomy.png"
   caption="The anatomy of a Workbook"
 />
 
@@ -58,19 +58,19 @@ plus any actions you want to take on those Sheets.
 A schema contains Sheets. Like tables in a database or sheets in a spreadsheet,
 Sheets isolate different data schemas.
 
-[Learn more about Blueprint](../blueprint)
+[Learn more about Blueprint](/documentation/blueprint/about)
 
 #### `Fields` _array_
 
 Sheets contain
 
 <Tooltip tip="Describes an attribute of the entity...">
-  [Fields](../blueprint/overview#terms)
+  [Fields](/documentation/blueprint/field-types)
 </Tooltip>
 . Fields are defined properties of your schema (eg a first_name on a contact
 sheet.)
 
-[Learn more about Blueprint](../blueprint)
+[Learn more about Blueprint](/documentation/blueprint/about)
 
 #### `Actions` _array_
 
@@ -78,7 +78,7 @@ Workbooks and Sheets can also contain Actions. Actions are developer-defined
 operations or macros invoked by end users on selected data like Submit to API,
 Download as PDF.
 
-[Learn more about Actions](../guides/actions)
+[Learn more about Actions](/learning-center/concepts/actions)
 
 #### `Settings` _object_
 
@@ -88,9 +88,9 @@ commit that has not been completed (often when Hooks are running)
 `noMappingRedirect: true`: When the user drags a file into a Sheet in this
 Workbook, usually the user is redirected to the Mapping step. This setting
 prevents that redirect. This is especially useful when you are using the
-[automap plugin](../guides/automap).
+[automap plugin](/learning-center/guides/automap).
 
-[Learn more about Blueprint](../blueprint)
+[Learn more about Blueprint](/documentation/blueprint/about)
 
 #### `Labels` _array_
 

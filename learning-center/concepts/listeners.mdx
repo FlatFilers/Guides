@@ -8,12 +8,12 @@ icon: "ear-listen"
 
 Listeners are the core of the Flatfile Platform. All of your configurations,
 from [data transformations](https://flatfile.com/plugins/category/transform), to
-[custom styling](/guides/theming), to [data export](/guides/egress) are done in
+[custom styling](/learning-center/guides/theming), to [data export](/learning-center/guides/egress) are done in
 a Listener. They hold the logic backing your Flatfile Spaces, defining the
 functionality of your implementation.
 
 Fundamentally, a Listener is a function that listens for
-[Events](/orchestration/events) and takes action when they occur. This means
+[Events](/learning-center/concepts/events) and takes action when they occur. This means
 your configurations are implemented in response to events. To understand how to
 configure a Listener, it's important to understand the anatomy of an Event.
 
@@ -21,7 +21,7 @@ configure a Listener, it's important to understand the anatomy of an Event.
 
 Flatfile is an event-driven system, meaning interactions with Flatfile (clicking
 a button, editing a record, uploading a file, etc) trigger the publication of an
-[Event](/orchestration/events).
+[Event](/learning-center/concepts/events).
 
 Each Event contains information about its source and execution context including
 a domain, topic, context, and optionally, a payload.
@@ -39,7 +39,7 @@ A Listener is a function designed to receive Events as they occur and take
 action by executing a callback function. For example, when a file is uploaded, a
 Listener can [extract](https://flatfile.com/plugins/category/extractors) its
 data to a target sheet, or when a record is created, a Listener can
-[validate](/guides/handling-data) the data.
+[validate](/learning-center/guides/handling-data) the data.
 
 The callback function can be as simple as logging the event or as advanced as
 integrating with external systems. Here is an example that logs the topic of any
@@ -69,7 +69,7 @@ export default function flatfileEventListener(listener: FlatfileListener) {
 
 This function is listening on "\*\*", which is a wildcard that matches all
 events. For a complete list of events that can be listened to, see
-[Event Topics](../orchestration/events#event-topics).
+[Event Topics](/learning-center/concepts/events#event-topics).
 
 ### Filtering
 
@@ -175,7 +175,7 @@ listener.namespace(['space:red'], (listener: FlatfileListener) => { ... })
 
 This will scope the listener to only respond to events that match the namespace.
 
-Learn more about namespaces in the [Namespaces](/guides/namespaces) guide.
+Learn more about namespaces in the [Namespaces](/learning-center/guides/namespaces) guide.
 
 ### Listener Types
 
@@ -263,7 +263,7 @@ will be updated and given a slug of `default`.
 If more than one Agent is deployed to the same environment and no slug is
 provided the CLI will prompt you to select which Agent you would like to update.
 
-Please see [Deploying to Flatfile](/developer-tools/deploying) for more
+Please see [Deploying to Flatfile](/documentation/core-libraries/cli/deploy) for more
 information on deploying an Agent.
 
 ## Agent Logs
@@ -320,16 +320,16 @@ export default function (listener) {
 Learn more about the Flatfile Platform in our other concept guides:
 
 <CardGroup cols={2}>
-  <Card title="Events" href="/orchestration/events" icon="clock">
+  <Card title="Events" href="/learning-center/concepts/events" icon="clock">
     The building blocks that power Flatfile's event-driven system
   </Card>
-  <Card title="Actions" href="/orchestration/actions" icon="bolt">
+  <Card title="Actions" href="/learning-center/concepts/actions" icon="bolt">
     Custom code-based operations prompted by user interactions
   </Card>
-  <Card title="Jobs" href="/orchestration/jobs" icon="truck">
+  <Card title="Jobs" href="/learning-center/concepts/jobs" icon="truck">
     Handle complex or long-running processes asynchronously
   </Card>
-  <Card title="Spaces" href="/developer-tools/spaces" icon="planet-ringed">
+  <Card title="Spaces" href="/learning-center/architecture/spaces" icon="planet-ringed">
     Micro-applications with its own database, filestore, and auth
   </Card>
 </CardGroup>

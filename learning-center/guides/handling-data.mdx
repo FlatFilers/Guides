@@ -39,7 +39,7 @@ import { bulkRecordHook, FlatfileRecord } from "@flatfile/plugin-record-hook";
 
 <Info>
   In these examples, we'll reference the Workbook from the [Quickstart
-  guide](/apps/custom/meet-the-workbook#building-your-first-workbook).
+  guide](/learning-center/tutorials/10min/meet-the-workbook#building-your-first-workbook).
 </Info>
 
 ## Record Hooks
@@ -341,7 +341,7 @@ record, helping them understand any issues or actions required.
 
 ### FlatfileRecord.addInfo()
 
-![Info](../images/guides/FlatfileRecord_info.png)
+![Info](/images/guides/FlatfileRecord_info.png)
 
 This method adds an information message to one or more fields in the record.
 
@@ -372,7 +372,7 @@ if (email !== null && validEmailAddress.test(email)) {
 
 ### FlatfileRecord.addError()
 
-![Error](../images/guides/FlatfileRecord_error.png)
+![Error](/images/guides/FlatfileRecord_error.png)
 
 This method adds an error message to one or more fields in the record.
 
@@ -403,7 +403,7 @@ if (email !== null && !validEmailAddress.test(email)) {
 
 ### FlatfileRecord.addWarning()
 
-![Warning](../images/guides/FlatfileRecord_warning.png)
+![Warning](/images/guides/FlatfileRecord_warning.png)
 
 This method adds a warning message to one or more fields in the record.
 
@@ -844,7 +844,7 @@ await api.records.delete(sheetId, { ids: [...] });
 
 For clearing an entire sheet of its records, set up a bulk delete job. This task
 will comprehensively wipe out every record on the specified sheet. Check out our
-[jobs documentation](/orchestration/jobs).
+[jobs documentation](/learning-center/concepts/jobs).
 
 Example:
 

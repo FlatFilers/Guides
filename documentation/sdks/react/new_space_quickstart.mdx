@@ -175,7 +175,7 @@ Now, let's build a Workbook inside the Space for next time.
 
 When you opened Flatfile, you'll see a Workbook called "Contacts" that has one
 Sheet with three fields. You can modify that however you like according to our
-[Blueprint outlined here](/blueprint/overview), but as a simple example, we
+[Blueprint outlined here](/documentation/blueprint/about), but as a simple example, we
 added one more field here for the Contacts' Favorite Color.
 
 <CodeGroup>
@@ -215,7 +215,7 @@ export const blueprint = {
 Let's get the data out of our system and to your destination with `onSubmit`.
 
 Once you add this code, when the submit button is clicked, this will be the
-place you can egress your data. Learn more about [Egress Out](/guides/egress).
+place you can egress your data. Learn more about [Egress Out](/learning-center/guides/egress).
 Once you have your data, you can do whatever you want with it - from this step
 you can make another API call to send it where you want. Keep in mind, this is
 just a simple example. You can do much more with your data and Flatfile! We
@@ -257,7 +257,7 @@ root.render(<App />);
 
 Next, we'll listen for data changes and respond `onRecordHook`,
 
-Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](/guides/handling-data)
+Once you add this code, when a change occurs, we'll log the entered first name and update the last name to "Rock." You'll immediately see this begin to work when you add or update any records. Learn more about [Handling Data](/learning-center/guides/handling-data)
 
 ```jsx src/index.jsx
 import ReactDOM from "react-dom/client";
@@ -277,7 +277,7 @@ const FlatfilePortal = () => {
           console.log("onSubmit", data);
 
         }}
-        onRecordHook={(record) => {
+        onRecordHook={(record) => { 
           record.set("lastName", "Rock");
           // If you added a favorite-color field, you can use it here.
           // record.set("favorite-color", "blue");
@@ -303,7 +303,7 @@ root.render(<App />);
 ### 6. Match your brand
 
 By attaching a `theme`, we will now override colors in your Space to match your
-brand. See all of the options here in the [Theming Reference](/guides/theming).
+brand. See all of the options here in the [Theming Reference](/learning-center/guides/theming).
 The `Space` component can take a number of options to configure and style the
 component in the Portal instance. In this case, we're adding `theme` to the
 `metadata` object and giving the Space a `namespace` of `portal`.
@@ -362,7 +362,7 @@ root.render(<App />);
 ### 7. Customize
 
 Continue to customize your importer as needed. For more options,
-[view the full React integration reference](../reference/advanced).
+[view the full React integration reference](/documentation/sdks/reference/common).
 
 ## Example
 

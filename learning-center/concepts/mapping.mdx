@@ -15,7 +15,7 @@ Historically mapping in Flatfile has consisted of two pieces:
    corresponds to which fields in the destination worksheet. For example, maybe
    the "fname" column in the source data should be mapped to the "First Name"
    field in the destination worksheet.
-2. For every destination field of type [enum](/blueprint/field-types#enum), an
+2. For every destination field of type [enum](/documentation/blueprint/field-types#enum), an
    _enum mapping_ describing which values in the source column correspond to
    which allowable enum values in the destination column. For example, you could
    have an enum column of country codes, and you might need the source value
@@ -44,7 +44,7 @@ As of right now the only rule type supported by the Flatfile application is the
 `assign` rule, as described above.
 
 However, we have introduced a
-[Python SDK](/developer-tools/mapping-libraries/flatfile-mapping-python) that
+[Python SDK](https://pypi.org/project/flatfile-mapping/) that
 allows you to create your own mapping rules and mapping programs and apply them
 to your own datasets outside of Flatfile (e.g. in an ETL pipeline). The SDK is
 currently in extreme beta, but we would love to hear your feedback on it. It
