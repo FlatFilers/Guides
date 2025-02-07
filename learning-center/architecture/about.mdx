@@ -9,42 +9,50 @@ Whether you're handling customer data imports, migrating between systems, or bui
 Flatfile is a powerful data exchange platform that simplifies the complex process of importing, validating, and transforming data. Built for developers, it provides a flexible and robust infrastructure to handle data onboarding workflows at scale.
 
 ```mermaid
-graph TD
+flowchart TD
+    %% Node definitions
+    App[App]
+    Env[Environment]
+    
+    subgraph ENV[" "]
+        style ENV fill:none,stroke-width:2px
+        subgraph SPACE[" "]
+            style SPACE fill:none,stroke-width:2px
+            Space[Space]
+            Workbook[Workbook]
+            Document[Document]
+            File[File]
+            Sheet[Sheet]
+        end
+        
+        Secret[Secret]
+        
+        subgraph AGENT[" "]
+            style AGENT fill:none,stroke-width:2px
+            Agent[Agent]
+            Job[Job]
+        end
+    end
 
-%% Define styles
-classDef primaryNodes fill:#ffffff,stroke:#000000,color:#000000,stroke-width:2px
-classDef secondaryNodes fill:#e4e4e4,stroke:#000000,color:#000000,stroke-width:2px
-classDef specialNodes fill:#f4f4f4,stroke:#000000,color:#000000,stroke-width:2px
+    %% Relationships
+    App <--> Env
+    Env --> Space
+    Env --> Agent
+    Env --> Secret
+    Space --> Secret
+    Space --> File
+    Space --> Document
+    Space --> Workbook
+    Workbook --> Sheet
+    
+    %% Job relationships
+    Agent --> Job
 
-%% Top Level Resources with bidirectional relationship
-App <--> Environment
-
-%% Environment Resources
-Environment --> Space
-Environment --> Secret
-Environment --> Agent
-
-%% Space Resources
-Space --> Workbook
-Space --> Document
-Space --> File
-Space --> Secret
-
-%% Workbook Resources
-Workbook --> Sheet
-
-%% Jobs Relationships
-App --> Jobs
-File --> Jobs
-Workbook --> Jobs
-Sheet --> Jobs
-Space --> Jobs
-Document --> Jobs
-
-%% Apply classes
-class App,Environment,Space,Workbook,Sheet primaryNodes
-class Agent,Jobs specialNodes
-class Document,File,Secret secondaryNodes
+    %% Override default styles to remove colors
+    classDef default fill:none,stroke:#333,stroke-width:2px
+    style ENV fill:none,stroke:#333
+    style SPACE fill:none,stroke:#333
+    style AGENT fill:none,stroke:#333
 ```
 
 
