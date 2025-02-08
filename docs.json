@@ -416,6 +416,122 @@
     {
       "source": "/plugins/utils/response-rejection",
       "destination": "https://flatfile.com/plugins/util-response-rejection"
-    }
+    },
+    {
+      "source": "/orchestration/actions.mdx",
+      "destination": "/learning-center/concepts/actions.mdx"
+  },
+  {
+      "source": "/orchestration/events.mdx",
+      "destination": "/learning-center/concepts/events.mdx"
+  },
+  {
+      "source": "/orchestration/jobs.mdx",
+      "destination": "/learning-center/concepts/jobs.mdx"
+  },
+  {
+      "source": "/orchestration/listeners.mdx",
+      "destination": "/learning-center/concepts/listeners.mdx"
+  },
+  {
+      "source": "/overview.mdx",
+      "destination": "/learning-center/overview.mdx"
+  },
+  {
+      "source": "/developer-tools/ci-integration.mdx",
+      "destination": "/developer-tools/overview.mdx"
+  },
+  {
+      "source": "/developer-tools/core-libraries/api-python.mdx",
+      "destination": "/developer-tools/core-libraries/api.mdx"
+  },
+  {
+      "source": "/developer-tools/developing/check-for-agents.mdx",
+      "destination": "/developer-tools/developing/running-local.mdx"
+  },
+  {
+      "source": "/developer-tools/developing/running-local.mdx",
+      "destination": "/developer-tools/deploying.mdx"
+  },
+  {
+      "source": "/developer-tools/core-libraries/api-go.mdx",
+      "destination": "/developer-tools/core-libraries/api.mdx"
+  },
+  {
+      "source": "/developer-tools/core-libraries/api-java.mdx",
+      "destination": "/developer-tools/core-libraries/api.mdx"
+  },
+  {
+      "source": "/developer-tools/core-libraries/api.mdx",
+      "destination": "/developer-tools/core-libraries/toolkit.mdx"
+  },
+  {
+      "source": "/developer-tools/core-libraries/flatfile.mdx",
+      "destination": "/flatfile.mdx"
+  },
+  {
+      "source": "/developer-tools/core-libraries/listener.mdx",
+      "destination": "/documentation/core-libraries/listener.mdx"
+  },
+  {
+      "source": "/developer-tools/core-libraries/wrappers/angular.mdx",
+      "destination": "/documentation/sdks/angular/new_space.mdx"
+  },
+  {
+      "source": "/developer-tools/core-libraries/wrappers/react.mdx",
+      "destination": "/documentation/sdks/react/components.mdx"
+  },
+  {
+      "source": "/developer-tools/core-libraries/wrappers/vanilla.mdx",
+      "destination": "/documentation/sdks/javascript/new_space.mdx"
+  },
+  {
+      "source": "/developer-tools/core-libraries/wrappers/vuejs.mdx",
+      "destination": "/documentation/sdks/vue/new_space.mdx"
+  },
+  {
+      "source": "/developer-tools/deploying.mdx",
+      "destination": "/apps/custom/deploying.mdx"
+  },
+  {
+      "source": "/developer-tools/environment.mdx",
+      "destination": "/learning-center/architecture/environment.mdx"
+  },
+  {
+      "source": "/developer-tools/mapping-libraries/flatfile-mapping-python.mdx",
+      "destination": "/documentation/api.mdx"
+  },
+  {
+      "source": "/developer-tools/overview.mdx",
+      "destination": "/learning-center/overview.mdx"
+  },
+  {
+      "source": "/developer-tools/security/account-token.mdx",
+      "destination": "/documentation/authentication/account-token.mdx"
+  },
+  {
+      "source": "/developer-tools/security/authentication.mdx",
+      "destination": "/documentation/authentication/authentication.mdx"
+  },
+  {
+      "source": "/developer-tools/security/roles-and-permissions.mdx",
+      "destination": "/documentation/authentication/roles-and-permissions.mdx"
+  },
+  {
+      "source": "/developer-tools/spaces.mdx",
+      "destination": "/learning-center/architecture/spaces.mdx"
+  },
+  {
+      "source": "/developer-tools/versioning.mdx",
+      "destination": "/reference/versioning.mdx"
+  },
+  {
+      "source": "/concepts/jobs.mdx",
+      "destination": "/learning-center/concepts/jobs.mdx"
+  },
+  {
+      "source": "/data-experience/overview.mdx",
+      "destination": "/learning-center/overview.mdx"
+  }
   ]
 }
