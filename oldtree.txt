@@ -1,0 +1,653 @@
+.
+├── README.md
+├── _snippets
+│   ├── chips
+│   │   ├── automations.mdx
+│   │   ├── core.mdx
+│   │   ├── core_plugin.mdx
+│   │   ├── dashboard.mdx
+│   │   ├── dataxp.mdx
+│   │   ├── extractors.mdx
+│   │   ├── files.mdx
+│   │   ├── infra.mdx
+│   │   ├── schema.mdx
+│   │   ├── spaces.mdx
+│   │   ├── theming.mdx
+│   │   ├── transform.mdx
+│   │   └── wrappers.mdx
+│   ├── guides
+│   │   ├── automap
+│   │   │   ├── block1.mdx
+│   │   │   ├── block2.mdx
+│   │   │   └── block3.mdx
+│   │   ├── documents
+│   │   │   ├── create-document.mdx
+│   │   │   └── document-actions.mdx
+│   │   ├── dynamic-configurations
+│   │   │   ├── block1.mdx
+│   │   │   ├── block2.mdx
+│   │   │   └── block3.mdx
+│   │   ├── egress
+│   │   │   └── block1.mdx
+│   │   ├── guest_sidebar
+│   │   │   └── block1.mdx
+│   │   ├── multi-part_jobs
+│   │   │   ├── job_parent.mdx
+│   │   │   └── job_part.mdx
+│   │   ├── namespaces
+│   │   │   ├── block1.mdx
+│   │   │   └── block2.mdx
+│   │   ├── secrets
+│   │   │   ├── block1.mdx
+│   │   │   └── block2.mdx
+│   │   └── theming
+│   │       └── block1.mdx
+│   ├── quickstart
+│   │   ├── block1.mdx
+│   │   ├── block2.mdx
+│   │   └── block3.mdx
+│   ├── shared
+│   │   ├── dxpbanner.mdx
+│   │   ├── embed_concepts.mdx
+│   │   ├── embedded_listener.mdx
+│   │   ├── embedded_listener_basicreact.mdx
+│   │   ├── embedded_listener_quickstart.mdx
+│   │   ├── embedded_listener_quickstart_bubble.mdx
+│   │   ├── guestauth.mdx
+│   │   ├── iframeStyles.mdx
+│   │   ├── pk_needed.mdx
+│   │   ├── sk_needed.mdx
+│   │   ├── workbook_curl.mdx
+│   │   ├── workbook_submit_pt1.mdx
+│   │   ├── workbook_submit_pt2.mdx
+│   │   ├── workbook_submit_pt4.mdx
+│   │   └── workbook_submit_pt5.mdx
+│   └── use-cases
+│       └── headless
+│           ├── block1.mdx
+│           ├── block2.mdx
+│           └── block3.mdx
+├── apps
+│   ├── custom
+│   │   ├── add-data-transformation.mdx
+│   │   ├── deploying.mdx
+│   │   ├── getting-started.csv
+│   │   ├── meet-the-listener.mdx
+│   │   ├── meet-the-workbook.mdx
+│   │   ├── submit-action.mdx
+│   │   ├── tutorial-landing.mdx
+│   │   └── update-your-workbook.mdx
+│   ├── embedding
+│   │   ├── angular
+│   │   │   ├── guide.mdx
+│   │   │   ├── new_space.mdx
+│   │   │   ├── new_space_quickstart.mdx
+│   │   │   └── reuse_space.mdx
+│   │   ├── javascript
+│   │   │   ├── guide.mdx
+│   │   │   ├── new_space.mdx
+│   │   │   ├── new_space_quickstart.mdx
+│   │   │   └── reuse_space.mdx
+│   │   ├── overview.mdx
+│   │   ├── portal-and-excel.mdx
+│   │   ├── react
+│   │   │   ├── components
+│   │   │   │   ├── FlatfileProvider.mdx
+│   │   │   │   ├── Sheet.mdx
+│   │   │   │   ├── Space.mdx
+│   │   │   │   └── Workbook.mdx
+│   │   │   ├── components.mdx
+│   │   │   ├── guide.mdx
+│   │   │   ├── legacy.mdx
+│   │   │   └── new_space_quickstart.mdx
+│   │   ├── reference
+│   │   │   ├── advanced.mdx
+│   │   │   ├── common.mdx
+│   │   │   └── simple.mdx
+│   │   └── vue
+│   │       ├── guide.mdx
+│   │       ├── new_space.mdx
+│   │       └── reuse_space.mdx
+│   ├── mapping
+│   │   └── overview.mdx
+│   ├── mapping.mdx
+│   ├── overview.mdx
+│   ├── projects
+│   │   └── overview.mdx
+│   ├── workbooks
+│   │   └── overview.mdx
+│   └── workbooks.mdx
+├── blueprint
+│   ├── access.mdx
+│   ├── constraints.mdx
+│   ├── field-types.mdx
+│   ├── overview.mdx
+│   ├── properties.mdx
+│   ├── relationships.mdx
+│   └── sheet-options.mdx
+├── changelog
+│   ├── bin
+│   │   └── update.js
+│   ├── images
+│   │   ├── AI-assist.png
+│   │   ├── action_inputs.png
+│   │   ├── addl_fields.png
+│   │   ├── bulk_delete_sm.gif
+│   │   ├── column_hiding.gif
+│   │   ├── commit_completed.png
+│   │   ├── disabled_actions.png
+│   │   ├── document_actions_primary.png
+│   │   ├── documents_codeblocks.png
+│   │   ├── documents_codeblocks_sample.png
+│   │   ├── estimatedTime_actions.png
+│   │   ├── event_logs.png
+│   │   ├── extract-status.gif
+│   │   ├── fontinheader.png
+│   │   ├── foreground_facelift.png
+│   │   ├── get-started.png
+│   │   ├── hasAllValid.gif
+│   │   ├── infotooltip.png
+│   │   ├── job_failure.png
+│   │   ├── localization.png
+│   │   ├── next_link.png
+│   │   ├── outcome_fullscreen.png
+│   │   ├── outcome_modal.png
+│   │   ├── powered_by.png
+│   │   ├── primary_actions.png
+│   │   ├── rejections.png
+│   │   ├── search.gif
+│   │   ├── search_spaces.gif
+│   │   ├── sidebar-counts.gif
+│   │   ├── sidebar_collapsed.png
+│   │   ├── spacename_validation.png
+│   │   ├── theming_badges.png
+│   │   ├── theming_checkboxes.png
+│   │   ├── theming_chips.png
+│   │   ├── theming_dropdowns.png
+│   │   ├── tooltips-actions.png
+│   │   ├── tooltips-with-markdown.gif
+│   │   ├── trackChanges.gif
+│   │   └── whitelabeling.png
+│   ├── platform.mdx
+│   ├── sdks
+│   │   ├── core
+│   │   │   ├── cli.mdx
+│   │   │   └── listener.mdx
+│   │   ├── plugins
+│   │   │   ├── automations
+│   │   │   │   └── automap.mdx
+│   │   │   ├── core
+│   │   │   │   ├── job-handler.mdx
+│   │   │   │   └── space-configure.mdx
+│   │   │   ├── export
+│   │   │   │   ├── export-workbook.mdx
+│   │   │   │   └── webhook-egress.mdx
+│   │   │   ├── extractors
+│   │   │   │   ├── delimiter-extractor.mdx
+│   │   │   │   ├── json-extractor.mdx
+│   │   │   │   ├── pdf-extractor.mdx
+│   │   │   │   ├── psv-extractor.mdx
+│   │   │   │   ├── tsv-extractor.mdx
+│   │   │   │   ├── xlsx-extractor.mdx
+│   │   │   │   ├── xml-extractor.mdx
+│   │   │   │   └── zip-extractor.mdx
+│   │   │   ├── highlights.mdx
+│   │   │   ├── migrations
+│   │   │   │   └── dxp-configure.mdx
+│   │   │   ├── schemas
+│   │   │   │   ├── json-schema.mdx
+│   │   │   │   ├── openapi-schema.mdx
+│   │   │   │   ├── sql-ddl-converter.mdx
+│   │   │   │   └── yaml-schema.mdx
+│   │   │   ├── transform
+│   │   │   │   ├── autocast.mdx
+│   │   │   │   ├── dedupe.mdx
+│   │   │   │   └── record-hook.mdx
+│   │   │   └── utils
+│   │   │       ├── extractor.mdx
+│   │   │       ├── file-buffer.mdx
+│   │   │       └── response-rejection.mdx
+│   │   └── wrappers
+│   │       ├── angular.mdx
+│   │       ├── javascript.mdx
+│   │       ├── react.mdx
+│   │       └── vue.mdx
+│   ├── sdks.mdx
+│   └── src
+│       ├── libraries
+│       │   ├── 20230820.mdx
+│       │   ├── 20230824.mdx
+│       │   ├── 20230830.mdx
+│       │   ├── 20230912.mdx
+│       │   ├── 20230920.mdx
+│       │   ├── 20230929.mdx
+│       │   ├── 20231012.mdx
+│       │   ├── 20231016.mdx
+│       │   ├── 20231019.mdx
+│       │   ├── 20231029.mdx
+│       │   ├── 20231101.mdx
+│       │   ├── 20231106.mdx
+│       │   ├── 20231108.mdx
+│       │   ├── 20231109.mdx
+│       │   ├── 20231110.mdx
+│       │   ├── 20231115.mdx
+│       │   ├── 20231127.mdx
+│       │   ├── 20231128.mdx
+│       │   ├── 20231201.mdx
+│       │   ├── 20231213.mdx
+│       │   ├── 20231219.mdx
+│       │   ├── 20231221.mdx
+│       │   ├── 20240103.mdx
+│       │   ├── 20240105.mdx
+│       │   ├── 20240108.mdx
+│       │   ├── 20240109.mdx
+│       │   ├── 20240110.mdx
+│       │   ├── 20240119.mdx
+│       │   ├── 20240124.mdx
+│       │   ├── 20240126.mdx
+│       │   ├── 20240130.mdx
+│       │   ├── 20240131.mdx
+│       │   ├── 20240201.mdx
+│       │   ├── 20240206.mdx
+│       │   ├── 20240207.mdx
+│       │   ├── 20240220.mdx
+│       │   ├── 20240226.mdx
+│       │   ├── 20240228.mdx
+│       │   ├── 20240229.mdx
+│       │   ├── 20240308.mdx
+│       │   ├── 20240315.mdx
+│       │   ├── 20240322.mdx
+│       │   ├── 20240403.mdx
+│       │   ├── 20240405.mdx
+│       │   ├── 20240410.mdx
+│       │   ├── 20240417.mdx
+│       │   ├── 20240427.mdx
+│       │   ├── 20240501.mdx
+│       │   ├── 20240521.mdx
+│       │   ├── 20240522.mdx
+│       │   ├── 20240524.mdx
+│       │   ├── 20240616.mdx
+│       │   ├── 20240625.mdx
+│       │   ├── 20240628.mdx
+│       │   ├── 20240708.mdx
+│       │   ├── 20240716.mdx
+│       │   ├── 20240717.mdx
+│       │   ├── 20240808.mdx
+│       │   ├── 20240809.mdx
+│       │   ├── 20240828.mdx
+│       │   ├── 20240913.mdx
+│       │   ├── 20240917.mdx
+│       │   └── 20240918.mdx
+│       ├── platform
+│       │   ├── 20230820.mdx
+│       │   ├── 20230824.mdx
+│       │   ├── 20230825.mdx
+│       │   ├── 20230830.mdx
+│       │   ├── 20230901.mdx
+│       │   ├── 20230906.mdx
+│       │   ├── 20230908.mdx
+│       │   ├── 20230911.mdx
+│       │   ├── 20230913.mdx
+│       │   ├── 20230915.mdx
+│       │   ├── 20230920.mdx
+│       │   ├── 20230922.mdx
+│       │   ├── 20230927.mdx
+│       │   ├── 20231002.mdx
+│       │   ├── 20231005.mdx
+│       │   ├── 20231008.mdx
+│       │   ├── 20231009.mdx
+│       │   ├── 20231011.mdx
+│       │   ├── 20231013.mdx
+│       │   ├── 20231016.mdx
+│       │   ├── 20231018.mdx
+│       │   ├── 20231025.mdx
+│       │   ├── 20231030.mdx
+│       │   ├── 20231101.mdx
+│       │   ├── 20231107.mdx
+│       │   ├── 20231113.mdx
+│       │   ├── 20231117.mdx
+│       │   ├── 20231120.mdx
+│       │   ├── 20231128.mdx
+│       │   ├── 20231201.mdx
+│       │   ├── 20231208.mdx
+│       │   ├── 20231214.mdx
+│       │   ├── 20231215.mdx
+│       │   ├── 20231221.mdx
+│       │   ├── 20240103.mdx
+│       │   ├── 20240112.mdx
+│       │   ├── 20240117.mdx
+│       │   ├── 20240118.mdx
+│       │   ├── 20240122.mdx
+│       │   ├── 20240124.mdx
+│       │   ├── 20240223.mdx
+│       │   ├── 20240227.mdx
+│       │   ├── 20240229.mdx
+│       │   ├── 20240305.mdx
+│       │   ├── 20240307.mdx
+│       │   ├── 20240308.mdx
+│       │   ├── 20240313.mdx
+│       │   ├── 20240315.mdx
+│       │   ├── 20240317.mdx
+│       │   ├── 20240321.mdx
+│       │   ├── 20240326.mdx
+│       │   ├── 20240409.mdx
+│       │   ├── 20240412.mdx
+│       │   ├── 20240417.mdx
+│       │   ├── 20240418.mdx
+│       │   ├── 20240422.mdx
+│       │   ├── 20240423.mdx
+│       │   ├── 20240425.mdx
+│       │   ├── 20240501.mdx
+│       │   ├── 20240503.mdx
+│       │   ├── 20240507.mdx
+│       │   ├── 20240514.mdx
+│       │   ├── 20240529.mdx
+│       │   ├── 20240530.mdx
+│       │   ├── 20240606.mdx
+│       │   ├── 20240607.mdx
+│       │   ├── 20240610.mdx
+│       │   ├── 20240618.mdx
+│       │   ├── 20240713.mdx
+│       │   ├── 20240716.mdx
+│       │   ├── 20240717.mdx
+│       │   ├── 20240723.mdx
+│       │   ├── 20240809.mdx
+│       │   ├── 20240814.mdx
+│       │   ├── 20240815.mdx
+│       │   ├── 20240820.mdx
+│       │   ├── 20240906.mdx
+│       │   ├── 20240910.mdx
+│       │   ├── 20240911.mdx
+│       │   ├── 20240920.mdx
+│       │   ├── 20240925.mdx
+│       │   ├── 20240927.mdx
+│       │   ├── 20241001-1727815410816.mdx
+│       │   ├── 20241003-1727979360024.mdx
+│       │   ├── 20241017-1729183441123.mdx
+│       │   ├── 20241028-1730129402949.mdx
+│       │   ├── 20241113-1731518156489.mdx
+│       │   ├── 20241202-1733157829130.mdx
+│       │   ├── 20241202-1733163435168.mdx
+│       │   ├── 20241204-1733321775927.mdx
+│       │   ├── 20241206-1733502483338.mdx
+│       │   ├── 20241209-1733775724698.mdx
+│       │   ├── 20241210-1733848758762.mdx
+│       │   ├── 20241220-1734714520318.mdx
+│       │   ├── 20241230-1735575162142.mdx
+│       │   ├── 20250106-1736185890685.mdx
+│       │   ├── 20250113-1736785000946.mdx
+│       │   ├── 20250117-1737133142021.mdx
+│       │   ├── 20250122-1737506142321.mdx
+│       │   ├── 20250122-1737588315987.mdx
+│       │   ├── 20250123-1737655009297.mdx
+│       │   ├── 20250130-1738259597784.mdx
+│       │   ├── 20250130-1738266622413.mdx
+│       │   ├── 20250131-1738339856054.mdx
+│       │   └── 20250204-1738690310496.mdx
+│       └── plugins
+│           ├── 20230820.mdx
+│           ├── 20230824.mdx
+│           ├── 20230825.mdx
+│           ├── 20230830.mdx
+│           ├── 20230831.mdx
+│           ├── 20230901.mdx
+│           ├── 20230908.mdx
+│           ├── 20230917.mdx
+│           ├── 20230920.mdx
+│           ├── 20230927.mdx
+│           ├── 20231005.mdx
+│           ├── 20231010.mdx
+│           ├── 20231011.mdx
+│           ├── 20231013.mdx
+│           ├── 20231017.mdx
+│           ├── 20231018.mdx
+│           ├── 20231019.mdx
+│           ├── 20231101.mdx
+│           ├── 20231102.mdx
+│           ├── 20231103.mdx
+│           ├── 20231109.mdx
+│           ├── 20231115.mdx
+│           ├── 20231116.mdx
+│           ├── 20240109.mdx
+│           ├── 20240119.mdx
+│           ├── 20240227.mdx
+│           ├── 20240305.mdx
+│           ├── 20240314.mdx
+│           ├── 20240315.mdx
+│           ├── 20240325.mdx
+│           ├── 20240405.mdx
+│           ├── 20240412.mdx
+│           ├── 20240413.mdx
+│           ├── 20240417.mdx
+│           ├── 20240426.mdx
+│           ├── 20240430.mdx
+│           ├── 20240520.mdx
+│           ├── 20240528.mdx
+│           ├── 20240529.mdx
+│           ├── 20240606.mdx
+│           ├── 20240710.mdx
+│           ├── 20240719.mdx
+│           ├── 20240720.mdx
+│           ├── 20240726.mdx
+│           ├── 20240827.mdx
+│           ├── 20240923.mdx
+│           ├── 20241018.mdx
+│           ├── 20241022.mdx
+│           ├── 20241028.mdx
+│           └── 20241029-1730241586715.mdx
+├── concepts
+│   └── jobs.mdx
+├── custom.css
+├── data-experience
+│   └── overview.mdx
+├── developer-tools
+│   ├── ci-integration.mdx
+│   ├── core-libraries
+│   │   ├── api-go.mdx
+│   │   ├── api-java.mdx
+│   │   ├── api-python.mdx
+│   │   ├── api.mdx
+│   │   ├── flatfile.mdx
+│   │   ├── listener.mdx
+│   │   └── wrappers
+│   │       ├── angular.mdx
+│   │       ├── react.mdx
+│   │       ├── vanilla.mdx
+│   │       └── vuejs.mdx
+│   ├── deploying.mdx
+│   ├── developing
+│   │   ├── check-for-agents.mdx
+│   │   └── running-local.mdx
+│   ├── environment.mdx
+│   ├── mapping-libraries
+│   │   └── flatfile-mapping-python.mdx
+│   ├── overview.mdx
+│   ├── security
+│   │   ├── account-token.mdx
+│   │   ├── authentication.mdx
+│   │   └── roles-and-permissions.mdx
+│   ├── spaces.mdx
+│   └── versioning.mdx
+├── favicon.jpg
+├── guides
+│   ├── actions.mdx
+│   ├── additional-fields.mdx
+│   ├── ai.mdx
+│   ├── api.mdx
+│   ├── automap.mdx
+│   ├── bubble-io.mdx
+│   ├── data-retention.mdx
+│   ├── documents.mdx
+│   ├── dynamic-configurations.mdx
+│   ├── egress.mdx
+│   ├── flatfile_query_language.mdx
+│   ├── guest_sidebar.mdx
+│   ├── handling-data.mdx
+│   ├── localization.mdx
+│   ├── metadata.mdx
+│   ├── multi-part_jobs.mdx
+│   ├── namespaces.mdx
+│   ├── secrets.mdx
+│   └── theming.mdx
+├── images
+│   ├── actions
+│   │   ├── document_actions.png
+│   │   ├── file_actions.png
+│   │   ├── sheet_actions.png
+│   │   ├── sheet_actionsOpen.png
+│   │   ├── sheet_actions_primary.png
+│   │   ├── workbook_actions.png
+│   │   └── workbook_actions_primary.png
+│   ├── background.png
+│   ├── banner.png
+│   ├── concepts
+│   │   ├── spaces_anatomy.png
+│   │   └── workbook_anatomy.png
+│   ├── conversion.png
+│   ├── customize
+│   │   ├── sidebar.png
+│   │   ├── sidebarConfig.png
+│   │   ├── theme_document.png
+│   │   ├── theme_root.png
+│   │   ├── theme_sidebar.png
+│   │   ├── theme_table.png
+│   │   ├── theme_table_boolean.png
+│   │   ├── theme_table_cell.png
+│   │   ├── theme_table_column.png
+│   │   ├── theme_table_filters.png
+│   │   ├── theme_table_indexColumn.png
+│   │   └── theme_table_inputs.png
+│   ├── data-experience
+│   │   ├── 10_AI_assist_query.png
+│   │   ├── 11_column_context_menu.png
+│   │   ├── 12_find_and_replace-categorical.png
+│   │   ├── 13_Filters_checkbox.png
+│   │   ├── 14_string.png
+│   │   ├── 15_number.png
+│   │   ├── 16_enum.png
+│   │   ├── 17_boolean.png
+│   │   ├── 1_Errors.png
+│   │   ├── 2_Record_status_filters.png
+│   │   ├── 3_Warnings.png
+│   │   ├── 4_Automatically_modified_data.png
+│   │   ├── 5_Record_status_filters.png
+│   │   ├── 6_Filter_by_error.png
+│   │   ├── 7_filtered_button_group.png
+│   │   ├── 8_FFQL.png
+│   │   └── 9_AI_assist.png
+│   ├── guides
+│   │   ├── FlatfileRecord_error.png
+│   │   ├── FlatfileRecord_info.png
+│   │   ├── FlatfileRecord_warning.png
+│   │   ├── FlatfileRecordwithAPI
+│   │   │   ├── FlatfileRecord_error.png
+│   │   │   ├── FlatfileRecord_info.png
+│   │   │   └── FlatfileRecord_warning.png
+│   │   ├── plugins
+│   │   │   └── response_rejection.png
+│   │   ├── theme
+│   │   │   ├── theme_root.png
+│   │   │   ├── theme_sidebar.png
+│   │   │   ├── theme_table.png
+│   │   │   ├── theme_table_cell.png
+│   │   │   ├── theme_table_column.png
+│   │   │   ├── theme_table_indexColumn.png
+│   │   │   └── theme_table_inputs.png
+│   │   └── upgrades
+│   │       ├── V2-platform-migrations.png
+│   │       ├── platform-expanded.png
+│   │       └── platform.png
+│   ├── homepage.png
+│   ├── jobs
+│   │   ├── estimatedtime_actions.png
+│   │   └── goto_google.png
+│   ├── light.png
+│   ├── playground.png
+│   ├── quickstart
+│   │   ├── first_workbook.png
+│   │   ├── submit_action.png
+│   │   ├── welcome_banner.png
+│   │   └── workbook.png
+│   └── search.png
+├── logo
+│   ├── dark.svg
+│   └── light.svg
+├── mint.json
+├── node_modules
+│   └── prettier
+│       ├── LICENSE
+│       ├── README.md
+│       ├── bin
+│       │   └── prettier.cjs
+│       ├── doc.d.ts
+│       ├── doc.js
+│       ├── doc.mjs
+│       ├── index.cjs
+│       ├── index.d.ts
+│       ├── index.mjs
+│       ├── internal
+│       │   └── cli.mjs
+│       ├── package.json
+│       ├── plugins
+│       │   ├── acorn.d.ts
+│       │   ├── acorn.js
+│       │   ├── acorn.mjs
+│       │   ├── angular.d.ts
+│       │   ├── angular.js
+│       │   ├── angular.mjs
+│       │   ├── babel.d.ts
+│       │   ├── babel.js
+│       │   ├── babel.mjs
+│       │   ├── estree.d.ts
+│       │   ├── estree.js
+│       │   ├── estree.mjs
+│       │   ├── flow.d.ts
+│       │   ├── flow.js
+│       │   ├── flow.mjs
+│       │   ├── glimmer.d.ts
+│       │   ├── glimmer.js
+│       │   ├── glimmer.mjs
+│       │   ├── graphql.d.ts
+│       │   ├── graphql.js
+│       │   ├── graphql.mjs
+│       │   ├── html.d.ts
+│       │   ├── html.js
+│       │   ├── html.mjs
+│       │   ├── markdown.d.ts
+│       │   ├── markdown.js
+│       │   ├── markdown.mjs
+│       │   ├── meriyah.d.ts
+│       │   ├── meriyah.js
+│       │   ├── meriyah.mjs
+│       │   ├── postcss.d.ts
+│       │   ├── postcss.js
+│       │   ├── postcss.mjs
+│       │   ├── typescript.d.ts
+│       │   ├── typescript.js
+│       │   ├── typescript.mjs
+│       │   ├── yaml.d.ts
+│       │   ├── yaml.js
+│       │   └── yaml.mjs
+│       ├── standalone.d.ts
+│       ├── standalone.js
+│       └── standalone.mjs
+├── orchestration
+│   ├── actions.mdx
+│   ├── events.mdx
+│   ├── jobs.mdx
+│   └── listeners.mdx
+├── overview.mdx
+├── package.json
+├── reference
+│   └── icons.mdx
+├── rss.json
+├── script.js
+├── starter-projects.mdx
+└── upgrade
+    ├── overview.mdx
+    ├── v2_repo.mdx
+    ├── v2_upgrade.mdx
+    ├── v2_upgrade_concepts.mdx
+    ├── v3_dxp_configure.mdx
+    ├── v3_repo.mdx
+    └── v3_upgrade.mdx
