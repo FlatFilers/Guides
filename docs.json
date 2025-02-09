@@ -50,23 +50,6 @@
                 ]
               },
               {
-                "group": "Blueprint",
-                "pages": [
-                  "documentation/blueprint/about",
-                  {
-                    "group": "Schema",
-                    "pages": [
-                      "documentation/blueprint/sheet-options",
-                      "documentation/blueprint/field-options",
-                      "documentation/blueprint/field-types",
-                      "documentation/blueprint/relationships",
-                      "documentation/blueprint/constraints",
-                      "documentation/blueprint/access"
-                    ]
-                  }
-                ]
-              },
-              {
                 "group": "Plugins",
                 "pages": ["documentation/plugins"]
               },
@@ -132,18 +115,45 @@
                 ]
               },
               {
+                "group": "Blueprint",
+                "pages": [
+                  "learning-center/blueprint/about",
+                  {
+                    "group": "Schema",
+                    "pages": [
+                      "learning-center/blueprint/sheet-options",
+                      "learning-center/blueprint/field-options",
+                      "learning-center/blueprint/field-types",
+                      "learning-center/blueprint/relationships",
+                      "learning-center/blueprint/constraints",
+                      "learning-center/blueprint/access"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Concepts",
+                "pages": [
+                  "learning-center/concepts/actions",
+                  "learning-center/concepts/events",
+                  "learning-center/concepts/jobs",
+                  "learning-center/concepts/listeners",
+                  "learning-center/concepts/mapping"
+                ]
+              },
+              {
                 "group": "Tutorials",
                 "pages": [
-                  "learning-center/tutorials/quickstart",
+                  "learning-center/tutorials/portal",
                   {
-                    "group": "10 Minutes",
+                    "group": "Projects",
                     "pages": [
-                      "learning-center/tutorials/10min/tutorial-landing",
-                      "learning-center/tutorials/10min/meet-the-listener",
-                      "learning-center/tutorials/10min/meet-the-workbook",
-                      "learning-center/tutorials/10min/add-data-transformation",
-                      "learning-center/tutorials/10min/submit-action",
-                      "learning-center/tutorials/10min/deploying"
+                      "learning-center/tutorials/projects/getting-started",
+                      "learning-center/tutorials/projects/meet-the-listener",
+                      "learning-center/tutorials/projects/meet-the-workbook",
+                      "learning-center/tutorials/projects/add-data-transformation",
+                      "learning-center/tutorials/projects/submit-action",
+                      "learning-center/tutorials/projects/deploying"
                     ]
                   }
                 ]
@@ -367,7 +377,7 @@
     },
     {
       "source": "/plugins/automations/automap",
-      "destination": "/https://flatfile.com/plugins/plugin-automap"
+      "destination": "https://flatfile.com/plugins/plugin-automap/"
     },
     {
       "source": "/plugins/export/workbook",
@@ -418,120 +428,328 @@
       "destination": "https://flatfile.com/plugins/util-response-rejection"
     },
     {
-      "source": "/orchestration/actions.mdx",
-      "destination": "/learning-center/concepts/actions.mdx"
+      "source": "/orchestration/actions",
+      "destination": "/learning-center/concepts/actions"
   },
   {
-      "source": "/orchestration/events.mdx",
-      "destination": "/learning-center/concepts/events.mdx"
+      "source": "/orchestration/events",
+      "destination": "/learning-center/concepts/events"
   },
   {
-      "source": "/orchestration/jobs.mdx",
-      "destination": "/learning-center/concepts/jobs.mdx"
+      "source": "/orchestration/jobs",
+      "destination": "/learning-center/concepts/jobs"
   },
   {
-      "source": "/orchestration/listeners.mdx",
-      "destination": "/learning-center/concepts/listeners.mdx"
+      "source": "/orchestration/listeners",
+      "destination": "/learning-center/concepts/listeners"
   },
   {
-      "source": "/overview.mdx",
-      "destination": "/learning-center/overview.mdx"
+      "source": "/overview",
+      "destination": "/learning-center/overview"
   },
   {
-      "source": "/developer-tools/ci-integration.mdx",
-      "destination": "/developer-tools/overview.mdx"
+      "source": "/developer-tools/ci-integration",
+      "destination": "/developer-tools/overview"
   },
   {
-      "source": "/developer-tools/core-libraries/api-python.mdx",
-      "destination": "/developer-tools/core-libraries/api.mdx"
+      "source": "/developer-tools/core-libraries/api-python",
+      "destination": "/developer-tools/core-libraries/api"
   },
   {
-      "source": "/developer-tools/developing/check-for-agents.mdx",
-      "destination": "/developer-tools/developing/running-local.mdx"
+      "source": "/developer-tools/developing/check-for-agents",
+      "destination": "/documentation/core-libraries/cli/deploy"
   },
   {
-      "source": "/developer-tools/developing/running-local.mdx",
-      "destination": "/developer-tools/deploying.mdx"
+      "source": "/developer-tools/developing/running-local",
+      "destination": "/documentation/core-libraries/cli/develop"
   },
   {
-      "source": "/developer-tools/core-libraries/api-go.mdx",
-      "destination": "/developer-tools/core-libraries/api.mdx"
+      "source": "/developer-tools/core-libraries/api-go",
+      "destination": "/developer-tools/core-libraries/api"
   },
   {
-      "source": "/developer-tools/core-libraries/api-java.mdx",
-      "destination": "/developer-tools/core-libraries/api.mdx"
+      "source": "/developer-tools/core-libraries/api-java",
+      "destination": "/developer-tools/core-libraries/api"
   },
   {
-      "source": "/developer-tools/core-libraries/api.mdx",
-      "destination": "/developer-tools/core-libraries/toolkit.mdx"
+      "source": "/developer-tools/core-libraries/api",
+      "destination": "/documentation/api"
   },
   {
-      "source": "/developer-tools/core-libraries/flatfile.mdx",
-      "destination": "/flatfile.mdx"
+      "source": "/developer-tools/core-libraries/flatfile",
+      "destination": "/documentation/core-libraries/toolkit"
   },
   {
-      "source": "/developer-tools/core-libraries/listener.mdx",
-      "destination": "/documentation/core-libraries/listener.mdx"
+      "source": "/developer-tools/core-libraries/listener",
+      "destination": "/documentation/core-libraries/listener"
   },
   {
-      "source": "/developer-tools/core-libraries/wrappers/angular.mdx",
-      "destination": "/documentation/sdks/angular/new_space.mdx"
+      "source": "/developer-tools/core-libraries/wrappers/angular",
+      "destination": "/documentation/sdks/angular/new_space"
   },
   {
-      "source": "/developer-tools/core-libraries/wrappers/react.mdx",
-      "destination": "/documentation/sdks/react/components.mdx"
+      "source": "/developer-tools/core-libraries/wrappers/react",
+      "destination": "/documentation/sdks/react/components"
   },
   {
-      "source": "/developer-tools/core-libraries/wrappers/vanilla.mdx",
-      "destination": "/documentation/sdks/javascript/new_space.mdx"
+      "source": "/developer-tools/core-libraries/wrappers/vanilla",
+      "destination": "/documentation/sdks/javascript/new_space"
   },
   {
-      "source": "/developer-tools/core-libraries/wrappers/vuejs.mdx",
-      "destination": "/documentation/sdks/vue/new_space.mdx"
+      "source": "/developer-tools/core-libraries/wrappers/vuejs",
+      "destination": "/documentation/sdks/vue/new_space"
   },
   {
-      "source": "/developer-tools/deploying.mdx",
-      "destination": "/apps/custom/deploying.mdx"
+      "source": "/developer-tools/deploying",
+      "destination": "/documentation/core-libraries/cli/deploy"
   },
   {
-      "source": "/developer-tools/environment.mdx",
-      "destination": "/learning-center/architecture/environment.mdx"
+      "source": "/developer-tools/environment",
+      "destination": "/learning-center/architecture/environment"
   },
   {
-      "source": "/developer-tools/mapping-libraries/flatfile-mapping-python.mdx",
-      "destination": "/documentation/api.mdx"
+      "source": "/developer-tools/overview",
+      "destination": "/learning-center/overview"
   },
   {
-      "source": "/developer-tools/overview.mdx",
-      "destination": "/learning-center/overview.mdx"
+      "source": "/developer-tools/security/account-token",
+      "destination": "/documentation/authentication/account-token"
   },
   {
-      "source": "/developer-tools/security/account-token.mdx",
-      "destination": "/documentation/authentication/account-token.mdx"
+      "source": "/developer-tools/security/authentication",
+      "destination": "/documentation/authentication/authentication"
   },
   {
-      "source": "/developer-tools/security/authentication.mdx",
-      "destination": "/documentation/authentication/authentication.mdx"
+      "source": "/developer-tools/security/roles-and-permissions",
+      "destination": "/documentation/authentication/roles-and-permissions"
   },
   {
-      "source": "/developer-tools/security/roles-and-permissions.mdx",
-      "destination": "/documentation/authentication/roles-and-permissions.mdx"
+      "source": "/developer-tools/spaces",
+      "destination": "/learning-center/architecture/spaces"
   },
   {
-      "source": "/developer-tools/spaces.mdx",
-      "destination": "/learning-center/architecture/spaces.mdx"
+      "source": "/developer-tools/versioning",
+      "destination": "/reference/versioning"
   },
   {
-      "source": "/developer-tools/versioning.mdx",
-      "destination": "/reference/versioning.mdx"
+      "source": "/concepts/jobs",
+      "destination": "/learning-center/concepts/jobs"
   },
   {
-      "source": "/concepts/jobs.mdx",
-      "destination": "/learning-center/concepts/jobs.mdx"
+      "source": "/data-experience/overview",
+      "destination": "/learning-center/overview"
   },
   {
-      "source": "/data-experience/overview.mdx",
-      "destination": "/learning-center/overview.mdx"
+    "source": "/guides/handling-data",
+    "destination": "/learning-center/guides/handling-data"
+  },
+  {
+    "source": "/guides/actions",
+    "destination": "/learning-center/guides/actions"
+  },
+  {
+    "source": "/guides/dynamic-configurations",
+    "destination": "/learning-center/guides/dynamic-configurations"
+  },
+  {
+    "source": "/guides/namespaces",
+    "destination": "/learning-center/guides/namespaces"
+  },
+  {
+    "source": "/guides/metadata",
+    "destination": "/learning-center/guides/metadata"
+  },
+  {
+    "source": "/guides/egress",
+    "destination": "/learning-center/guides/egress"
+  },
+  {
+    "source": "/guides/theming",
+    "destination": "/learning-center/guides/theming"
+  },
+  {
+    "source": "/guides/guest_sidebar",
+    "destination": "/learning-center/guides/guest_sidebar"
+  },
+  {
+    "source": "/guides/documents",
+    "destination": "/learning-center/guides/documents"
+  },
+  {
+    "source": "/guides/secrets",
+    "destination": "/learning-center/guides/secrets"
+  },
+  {
+    "source": "/guides/automap",
+    "destination": "/learning-center/guides/automap"
+  },
+  {
+    "source": "/guides/localization",
+    "destination": "/learning-center/guides/localization"
+  },
+  {
+    "source": "/guides/additional-fields",
+    "destination": "/learning-center/guides/additional-fields"
+  },
+  {
+    "source": "/guides/flatfile_query_language",
+    "destination": "/learning-center/guides/flatfile_query_language"
+  },
+  {
+    "source": "/guides/data-retention",
+    "destination": "/learning-center/guides/data-retention"
+  },
+  {
+    "source": "/guides/api",
+    "destination": "/documentation/api"
+  },
+  {
+    "source": "/guides/multi-part_jobs",
+    "destination": "/learning-center/guides/multi-part_jobs"
+  },
+  {
+    "source": "/guides/ai",
+    "destination": "/learning-center/guides/ai"
+  },
+  {
+    "source": "/guides/bubble-io",
+    "destination": "/learning-center/guides/bubble-io"
+  },
+  {
+    "source": "/blueprint/overview",
+    "destination": "/learning-center/blueprint/about"
+  },
+  {
+    "source": "/blueprint/sheet-options",
+    "destination": "/learning-center/blueprint/sheet-options"
+  },
+  {
+    "source": "/blueprint/field-options",
+    "destination": "/learning-center/blueprint/field-options"
+  },
+  {
+    "source": "/blueprint/field-types",
+    "destination": "/learning-center/blueprint/field-types"
+  },
+  {
+    "source": "/blueprint/relationships",
+    "destination": "/learning-center/blueprint/relationships"
+  },
+  {
+    "source": "/blueprint/constraints",
+    "destination": "/learning-center/blueprint/constraints"
+  },
+  {
+    "source": "/blueprint/access",
+    "destination": "/learning-center/blueprint/access"
+  },
+  {
+    "source": "/apps/embedding/overview",
+    "destination": "/learning-center/tutorials/projects"
+  },
+  {
+    "source": "/apps/embedding/javascript/guide",
+    "destination": "/learning-center/tutorials/portal"
+  },
+  {
+    "source": "/apps/embedding/javascript/new_space_quickstart",
+    "destination": "/documentation/sdks/javascript/new_space_quickstart"
+  },
+  {
+    "source": "/apps/embedding/javascript/new_space",
+    "destination": "/documentation/sdks/javascript/new_space"
+  },
+  {
+    "source": "/apps/embedding/javascript/reuse_space",
+    "destination": "/documentation/sdks/javascript/reuse_space"
+  },
+  {
+    "source": "/apps/embedding/react/guide",
+    "destination": "/learning-center/tutorials/portal"
+  },
+  {
+    "source": "/apps/embedding/react/new_space_quickstart",
+    "destination": "/documentation/sdks/react/new_space_quickstart"
+  },
+  {
+    "source": "/apps/embedding/react/components",
+    "destination": "/documentation/sdks/react/components"
+  },
+  {
+    "source": "/apps/embedding/react/legacy",
+    "destination": "/documentation/sdks/react/legacy"
+  },
+  {
+    "source": "/apps/embedding/vue/guide",
+    "destination": "/learning-center/tutorials/portal"
+  },
+  {
+    "source": "/apps/embedding/vue/new_space",
+    "destination": "/documentation/sdks/vue/new_space"
+  },
+  {
+    "source": "/apps/embedding/vue/reuse_space",
+    "destination": "/documentation/sdks/vue/reuse_space"
+  },
+  {
+    "source": "/apps/embedding/angular/guide",
+    "destination": "/learning-center/tutorials/portal"
+  },
+  {
+    "source": "/apps/embedding/angular/new_space_quickstart",
+    "destination": "/documentation/sdks/angular/new_space_quickstart"
+  },
+  {
+    "source": "/apps/embedding/angular/new_space",
+    "destination": "/documentation/sdks/angular/new_space"
+  },
+  {
+    "source": "/apps/embedding/angular/reuse_space",
+    "destination": "/documentation/sdks/angular/reuse_space"
+  },
+  {
+    "source": "/apps/embedding/reference/simple",
+    "destination": "/documentation/sdks/reference/simple"
+  },
+  {
+    "source": "/apps/embedding/reference/common",
+    "destination": "/documentation/sdks/reference/common"
+  },
+  {
+    "source": "/apps/embedding/reference/advanced",
+    "destination": "/documentation/sdks/reference/advanced"
+  },
+  {
+    "source": "/apps/projects/overview",
+    "destination": "/learning-center/tutorials/projects/getting-started"
+  },
+  {
+    "source": "/apps/workbooks",
+    "destination": "/learning-center/architecture/workbooks"
+  },
+  {
+    "source": "/apps/custom/tutorial-landing",
+    "destination": "/learning-center/tutorials/projects/getting-started"
+  },
+  {
+    "source": "/apps/custom/meet-the-listener",
+    "destination": "/learning-center/tutorials/projects/meet-the-listener"  
+  },
+  {
+    "source": "/apps/custom/meet-the-workbook",
+    "destination": "/learning-center/tutorials/projects/meet-the-workbook"
+  },
+  {
+    "source": "/apps/custom/add-data-transformation",
+    "destination": "/learning-center/tutorials/projects/add-data-transformation"
+  },
+  {
+    "source": "/apps/custom/submit-action",
+    "destination": "/learning-center/tutorials/projects/submit-action"
+  },
+  {
+    "source": "/apps/custom/deploying",
+    "destination": "/learning-center/tutorials/projects/deploying"
   }
   ]
 }

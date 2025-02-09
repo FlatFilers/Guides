@@ -3,13 +3,13 @@ const websitePaths = [
     "/upgrade/v2_repo",
     "/developer-tools/mapping-libraries/flatfile-mapping-python",
     "/plugins",
-    "/plugins/extractors/xlsx-extractor",
+    "/plugins/extractors/xlsx-extractor", // FIX
     "/plugins/extractors/json-extractor",
     "/plugins/extractors/xml-extractor",
     "/plugins/extractors/zip-extractor",
     "/plugins/extractors/delimiter-extractor",
     "/plugins/extractors/pdf-extractor",
-    "/plugins/transform/record-hook",
+    "/plugins/transform/record-hook", // FIX
     "/plugins/transform/autocast",
     "/plugins/transform/dedupe",
     "/plugins/automations/automap",
@@ -26,7 +26,7 @@ const websitePaths = [
     "/plugins/utils/file-buffer",
     "/plugins/utils/response-rejection",
     "/overview",
-    "/starter-projects",
+    "/starter-projects", // FIX
     "/changelog/platform",
     "/changelog/sdks",
     "/changelog/sdks/plugins/highlights",
@@ -58,33 +58,33 @@ const websitePaths = [
     "/changelog/sdks/plugins/utils/extractor",
     "/changelog/sdks/plugins/utils/file-buffer",
     "/changelog/sdks/plugins/utils/response-rejection",
-    "/apps/embedding/overview",
-    "/apps/embedding/javascript/guide",
-    "/apps/embedding/javascript/new_space_quickstart",
-    "/apps/embedding/javascript/new_space",
-    "/apps/embedding/javascript/reuse_space",
-    "/apps/embedding/react/guide",
-    "/apps/embedding/react/new_space_quickstart",
-    "/apps/embedding/react/components",
-    "/apps/embedding/react/legacy",
-    "/apps/embedding/vue/guide",
-    "/apps/embedding/vue/new_space",
-    "/apps/embedding/vue/reuse_space",
-    "/apps/embedding/angular/guide",
-    "/apps/embedding/angular/new_space_quickstart",
-    "/apps/embedding/angular/new_space",
-    "/apps/embedding/angular/reuse_space",
-    "/apps/embedding/reference/simple",
-    "/apps/embedding/reference/common",
-    "/apps/embedding/reference/advanced",
-    "/apps/projects/overview",
-    "/apps/workbooks",
-    "/apps/custom/tutorial-landing",
-    "/apps/custom/meet-the-listener",
-    "/apps/custom/meet-the-workbook",
-    "/apps/custom/add-data-transformation",
-    "/apps/custom/submit-action",
-    "/apps/custom/deploying",
+    "/apps/embedding/overview", // FIX
+    "/apps/embedding/javascript/guide", // FIX
+    "/apps/embedding/javascript/new_space_quickstart", // FIX
+    "/apps/embedding/javascript/new_space", // FIX  
+    "/apps/embedding/javascript/reuse_space", // FIX
+    "/apps/embedding/react/guide", // FIX
+    "/apps/embedding/react/new_space_quickstart", // FIX
+    "/apps/embedding/react/components", // FIX
+    "/apps/embedding/react/legacy", // FIX
+    "/apps/embedding/vue/guide", // FIX
+    "/apps/embedding/vue/new_space", // FIX
+    "/apps/embedding/vue/reuse_space", // FIX
+    "/apps/embedding/angular/guide", // FIX
+    "/apps/embedding/angular/new_space_quickstart", // FIX
+    "/apps/embedding/angular/new_space", // FIX
+    "/apps/embedding/angular/reuse_space", // FIX
+    "/apps/embedding/reference/simple", // FIX  
+    "/apps/embedding/reference/common", // FIX
+    "/apps/embedding/reference/advanced", // FIX
+    "/apps/projects/overview", // FIX
+    "/apps/workbooks", // FIX
+    "/apps/custom/tutorial-landing", // FIX
+    "/apps/custom/meet-the-listener", // FIX
+    "/apps/custom/meet-the-workbook", // FIX
+    "/apps/custom/add-data-transformation", // FIX
+    "/apps/custom/submit-action", // FIX
+    "/apps/custom/deploying", // FIX
     "/guides/handling-data",
     "/guides/actions",
     "/guides/dynamic-configurations",
@@ -143,3 +143,38 @@ const websitePaths = [
     "/developer-tools/core-libraries/wrappers/vuejs",
     "/developer-tools/mapping-libraries/flatfile-mapping-python"
 ];
+
+// Define the base URL
+const baseURL = 'http://localhost:3000';
+
+(async () => {
+const [open, { default: readline }] = await Promise.all([
+    import('open').then(module => module.default || module),
+    import('readline')
+]);
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Function to open paths one by one
+async function openPaths(paths) {
+    for (const path of paths) {
+        // Open the current path in the default browser
+        await open(`${baseURL}${path}`);
+        
+        // Wait for user input to proceed to the next path
+        await new Promise(resolve => {
+            console.log(`Opening ${path}`);
+            rl.question('Next? (Press Enter to continue)', () => {
+                resolve();
+            });
+        });
+    }
+    rl.close();
+}
+
+// Start the process
+await openPaths(websitePaths);
+})().catch(console.error);

@@ -1,38 +1,35 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 /**
  * Create Changelog File Script
- *
+ * 
  * This script combines multiple MDX files from a specified input directory into a single output file.
  * It also inserts monthly headers based on the filenames and includes a provided header file at the top.
- *
+ * 
  * Usage: node update.js <inputDir> <outputFile> <type>
- *
+ * 
  * Parameters:
  *   <type> - The type of header to use ('platform', 'libraries', or 'plugins').
  *   <inputDir>  - The directory containing the input .mdx files. Files should be named in YYYYMMDD.mdx format.
  *   <outputFile> - The path to the output .mdx file where the combined content will be written.
- *
+ * 
  * Example:
  *   node update.js ./input ./output/combined.mdx libraries
- *
+ * 
  */
+
+function formatDate(year, month, day) {
+  // Ensure month and day are padded with leading zeros
+  const paddedMonth = month.toString().padStart(2, '0');
+  const paddedDay = day.toString().padStart(2, '0');
+  return `${year}-${paddedMonth}-${paddedDay}`;
+}
 
 function getMonthName(month) {
   const monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
   const monthIndex = parseInt(month, 10) - 1;
@@ -41,29 +38,29 @@ function getMonthName(month) {
 
 function getHeader(type) {
   switch (type) {
-    case "libraries":
+    case 'libraries':
       return {
         title: "SDKs",
         description: "Notable additions and updates to Flatfile core libraries",
-        icon: "cube",
+        icon: "cube"
       };
-    case "platform":
+    case 'platform':
       return {
         title: "Platform",
         description: "Notable additions and updates to the Flatfile platform",
-        icon: "layer-group",
+        icon: "layer-group"
       };
-    case "plugins":
+    case 'plugins':
       return {
         title: "Plugins",
         description: "Notable additions and updates to Flatfile plugins",
-        icon: "plug",
+        icon: "plug"
       };
-    case "misc":
+    case 'misc':
       return {
         title: "General Updates",
         description: "All other updates and changes",
-        icon: "check-circle",
+        icon: "check-circle"
       };
     default:
       throw new Error("Invalid type");
@@ -71,102 +68,101 @@ function getHeader(type) {
 }
 
 function readMdxFiles(dir) {
-  return fs.readdirSync(dir).filter((file) => file.endsWith(".mdx"));
+  return fs.readdirSync(dir).filter(file => file.endsWith('.mdx'));
 }
 
-function transformMdToMdx(file) {
-  const rawUpdates = file.split("\n## ");
+function transformMdToMdx(date, file) {
+  const cleanedDate = date.replace(/^### /, '').trim()
+  const rawUpdates = file.split('\n## ')
 
   const formattedUpdates = rawUpdates.map((section) => {
-    const splitSection = section.split("\n");
-    const chip = splitSection.shift().replace("## ", "").trim();
-    const text = splitSection.join("\n");
+      const splitSection = section.split('\n')
+      const chip = splitSection.shift().replace('## ', '').trim()
+      const text = splitSection.join('\n').trim()
 
-    return text.length > 30
-      ? `
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/${chip}.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      ${text.replace(/\n/g, "\n      ")}
-    </div>
-  </div>`
-      : "";
-  });
+      return text.length > 30 ? `<Update label="${cleanedDate}" description="${chip}">\n${text}\n</Update>` : ''
+  })
 
-  return `<div style={{ display: "table", width: "auto" }}>${formattedUpdates.join("\n")}\n</div>`;
+  return formattedUpdates.filter(Boolean).join('\n\n')
+}
+
+function extractDateFromFilename(filename) {
+  const match = filename.match(/^(\d{8})/);
+  if (!match) {
+    console.warn(`Could not extract date from filename: ${filename}`);
+    return null;
+  }
+  return match[1];
 }
 
 function aggregateFilesByMonthAndYear(dir, files) {
+  // Sort files by date in reverse chronological order
+  const sortedFiles = files.sort((a, b) => {
+    const dateA = extractDateFromFilename(a);
+    const dateB = extractDateFromFilename(b);
+    
+    if (!dateA || !dateB) return 0;
+    return dateB.localeCompare(dateA);
+  });
+
   const aggregatedData = {};
 
-  files.forEach((file) => {
+  sortedFiles.forEach(file => {
+    const dateStr = extractDateFromFilename(file);
+    if (!dateStr) return;
+    
+    const year = dateStr.slice(0, 4);
+    const month = dateStr.slice(4, 6);
+    const day = dateStr.slice(6, 8);
+    const formattedDate = formatDate(year, month, day);
+    const monthYear = `${year}-${month}`; // Changed to YYYY-MM format for sorting
+
     const filePath = path.join(dir, file);
-    const content = fs.readFileSync(filePath, "utf8");
-    const lines = content.split("\n");
+    const content = fs.readFileSync(filePath, 'utf8');
+    const lines = content.split('\n');
     const date = lines.shift();
-    const transformedContent = transformMdToMdx(lines.join("\n"));
-
-    const dateMatch = file.match(/^(\d{4})(\d{2})(\d{2})/);
-    if (!dateMatch) {
-      console.warn(`Skipping file with invalid name format: ${file}`);
-      return;
-    }
-
-    const [, year, month, day] = dateMatch;
-    const monthYear = `${getMonthName(month)} ${year}`;
+    const transformedContent = transformMdToMdx(date, lines.join('\n'));
+    
 
     if (!aggregatedData[monthYear]) {
       aggregatedData[monthYear] = [];
     }
 
-    let dayEntry = aggregatedData[monthYear].find((entry) => entry.day === day);
+    let dayEntry = aggregatedData[monthYear].find(entry => entry.day === day);
     if (!dayEntry) {
-      dayEntry = { day, content: date };
+      dayEntry = { 
+        day, 
+        content: `### ${formattedDate}`, // Changed to YYYY-MM-DD format
+        timestamp: dateStr // Store full timestamp for sorting
+      };
       aggregatedData[monthYear].push(dayEntry);
     }
 
-    dayEntry.content += "\n\n" + transformedContent;
+    dayEntry.content += '\n\n' + transformedContent;
+  });
+
+  // Sort entries within each month in reverse chronological order
+  Object.values(aggregatedData).forEach(monthEntries => {
+    monthEntries.sort((a, b) => b.timestamp.localeCompare(a.timestamp));
   });
 
   return aggregatedData;
 }
 
-function adjustHeaderLevels(content, additionalHashes) {
-  return content.replace(/(### )/g, `${additionalHashes}$1`);
-}
-
 function writeAggregatedFile(type, aggregatedData, outputFile) {
-  let outputContent = "";
-
-  // Sort the keys in reverse chronological order
-  const sortedKeys = Object.keys(aggregatedData).sort((a, b) => {
-    const [monthA, yearA] = a.split(" ");
-    const [monthB, yearB] = b.split(" ");
-    const dateA = new Date(`${yearA}-${monthA}-01`);
-    const dateB = new Date(`${yearB}-${monthB}-01`);
-    return dateB - dateA;
-  });
-
-  sortedKeys.forEach((monthYear, index) => {
-    const entryCount = aggregatedData[monthYear].length;
-    const header = index < 3 ? monthYear : `${monthYear} (${entryCount})`;
-
-    outputContent += `## ${header}\n\n`;
-
-    // Sort entries within the month in reverse chronological order
-    const sortedEntries = aggregatedData[monthYear].sort(
-      (a, b) => b.day - a.day,
-    );
-
-    if (index >= 3) {
-      sortedEntries.forEach((entry) => {
-        entry.content = adjustHeaderLevels(entry.content, "##");
-      });
-    }
-
-    outputContent += sortedEntries.map((entry) => entry.content).join("\n\n");
-    outputContent += "\n\n";
-  });
+  // Get all entries in reverse chronological order, flattened
+  const allEntries = Object.values(aggregatedData)
+    .flat()
+    .sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+  
+  // Extract just the update content without the date headers
+  const outputContent = allEntries
+    .map(entry => {
+      const parts = entry.content.split('\n\n');
+      return parts.slice(1).join('\n\n'); // Skip the date header
+    })
+    .filter(Boolean)
+    .join('\n\n');
 
   const header = getHeader(type);
   const headerContent = `---
@@ -175,13 +171,13 @@ description: "${header.description}"
 icon: "${header.icon}"
 ---`;
 
-  fs.writeFileSync(outputFile, `${headerContent}\n\n${outputContent}`, "utf8");
+  fs.writeFileSync(outputFile, `${headerContent}\n\n${outputContent}`, 'utf8');
 }
 
 function main() {
   const args = process.argv.slice(2);
   if (args.length < 3) {
-    console.error("Usage: node update.js <type> <inputDir> <outputFile>");
+    console.error('Usage: node update.js <type> <inputDir> <outputFile>');
     process.exit(1);
   }
 
