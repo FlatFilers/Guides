@@ -246,10 +246,67 @@
               {
                 "group": "Plugins",
                 "pages": [
-                  "changelog/sdks/plugins/highlights"
+                  "changelog/sdks/plugins/highlights",
+                  {
+                    "group": "Extractors",
+                    "pages": [
+                      "changelog/sdks/plugins/extractors/xlsx-extractor",
+                      "changelog/sdks/plugins/extractors/json-extractor",
+                      "changelog/sdks/plugins/extractors/xml-extractor",
+                      "changelog/sdks/plugins/extractors/zip-extractor",
+                      "changelog/sdks/plugins/extractors/delimiter-extractor",
+                      "changelog/sdks/plugins/extractors/pdf-extractor"
+                    ]
+                  },
+                  {
+                    "group": "Transform",
+                    "pages": [
+                      "changelog/sdks/plugins/transform/record-hook",
+                      "changelog/sdks/plugins/transform/autocast",
+                      "changelog/sdks/plugins/transform/dedupe"
+                    ]
+                  },
+                  {
+                    "group": "Automation",
+                    "pages": ["changelog/sdks/plugins/automations/automap"]
+                  },
+                  {
+                    "group": "Export",
+                    "pages": [
+                      "changelog/sdks/plugins/export/export-workbook",
+                      "changelog/sdks/plugins/export/webhook-egress"
+                    ]
+                  },
+                  {
+                    "group": "Schemas",
+                    "pages": [
+                      "changelog/sdks/plugins/schemas/json-schema",
+                      "changelog/sdks/plugins/schemas/yaml-schema",
+                      "changelog/sdks/plugins/schemas/sql-ddl-converter",
+                      "changelog/sdks/plugins/schemas/openapi-schema"
+                    ]
+                  },
+                  {
+                    "group": "Migrations",
+                    "pages": ["changelog/sdks/plugins/migrations/dxp-configure"]
+                  },
+                  {
+                    "group": "Core",
+                    "pages": [
+                      "changelog/sdks/plugins/core/job-handler",
+                      "changelog/sdks/plugins/core/space-configure"
+                    ]
+                  },
+                  {
+                    "group": "Utils",
+                    "pages": [
+                      "changelog/sdks/plugins/utils/extractor",
+                      "changelog/sdks/plugins/utils/file-buffer",
+                      "changelog/sdks/plugins/utils/response-rejection"
+                    ]
+                  }
                 ]
               },
-
               {
                 "group": "SDKs",
                 "pages": [
