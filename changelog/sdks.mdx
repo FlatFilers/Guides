@@ -4,7 +4,7 @@ description: "Notable additions and updates to Flatfile core libraries"
 icon: "cube"
 ---
 
-<Update label="September 18, 2024" description="wrappers">
+<Update label="09-18-2024" description="wrappers">
 `@flatfile/react@7.12.4`
 
 Fixes a bug when relaunching a re-used space. Resolves an issue causing the
@@ -16,7 +16,7 @@ function and introduces changes to handle the resetOnClose config option when
 re-using a space.
 </Update>
 
-<Update label="September 17, 2024" description="wrappers">
+<Update label="09-17-2024" description="wrappers">
 `@flatfile/react@7.12.3`
 
 The release notes include a fix for a bug with the Workbook onSubmit
@@ -28,7 +28,7 @@ exists. This change is relevant for developers using the Workbook component and
 expecting the onSubmit callback to be triggered when the workbook is submitted.
 </Update>
 
-<Update label="September 13, 2024" description="wrappers">
+<Update label="09-13-2024" description="wrappers">
 `@flatfile/javascript@1.4.2`
 
 The JavaScript Portal style sheet is now attached only once, instead of every
@@ -43,7 +43,7 @@ This would result in the job being completed with 'acknowledge' set to false and
 'message' set to 'Custom complete message'.
 </Update>
 
-<Update label="August 28, 2024" description="wrappers">
+<Update label="08-28-2024" description="wrappers">
 `@flatfile/react@7.12.7`
 
 Added option `submitSettings.startingJobMessage` to configure the initial
@@ -55,7 +55,7 @@ The release includes a new `removeSheet` method to allow removing a specific
 sheet from the workbook by its sheet slug.
 </Update>
 
-<Update label="August 09, 2024" description="wrappers">
+<Update label="08-09-2024" description="wrappers">
 `@flatfile/react@7.12.1`
 
 This release updates the @flatfile/react package to version 7.12.1. The update
@@ -65,7 +65,7 @@ closed, the internal session space is reset, preventing any state from
 persisting between sessions.
 </Update>
 
-<Update label="August 09, 2024" description="wrappers">
+<Update label="08-09-2024" description="wrappers">
 `@flatfile/javascript@1.4.1`
 
 The startFlatfile function has been exported from the package, allowing
@@ -74,7 +74,7 @@ exported from the @flatfile/api package, providing developers with access to
 this type when using the @flatfile/javascript package.
 </Update>
 
-<Update label="August 08, 2024" description="wrappers">
+<Update label="08-08-2024" description="wrappers">
 `@flatfile/react@7.12.0`
 
 This release includes the following changes:
@@ -93,7 +93,7 @@ Additionally, a bug that prevented server-side configuration of Spaces has been
 fixed.
 </Update>
 
-<Update label="July 17, 2024" description="wrappers">
+<Update label="07-17-2024" description="wrappers">
 `@flatfile/react@7.11.0`
 
 The CSS variable `--ff-color-text` has been renamed to `--ff-text-color` to be
@@ -101,7 +101,7 @@ consistent with other variable names. This change affects the text color used
 throughout the Flatfile React components.
 </Update>
 
-<Update label="July 16, 2024" description="wrappers">
+<Update label="07-16-2024" description="wrappers">
 `@flatfile/javascript@1.4.0`
 
 This exciting release adds internationalization support to the Flatfile
@@ -121,7 +121,7 @@ actions (exit or stay) and text string providers for the modal's title, message,
 and button labels.
 </Update>
 
-<Update label="July 08, 2024" description="wrappers">
+<Update label="07-08-2024" description="wrappers">
 `@flatfile/react@7.10.0`
 
 The `FlatfileProvider` component now accepts a new `styleSheetOptions` prop
@@ -133,7 +133,7 @@ to dynamically inject the stylesheet into the DOM at runtime. This replaces the
 previous import of the stylesheet directly.
 </Update>
 
-<Update label="June 28, 2024" description="wrappers">
+<Update label="06-28-2024" description="wrappers">
 `@flatfile/javascript@1.3.9`
 
 The createlistener function now takes an additional `onClose` parameter. This
@@ -144,7 +144,7 @@ use the new `closeSpaceNow` function, which simplifies the process of closing
 the Flatfile space.
 </Update>
 
-<Update label="June 25, 2024" description="wrappers">
+<Update label="06-25-2024" description="wrappers">
 `@flatfile/javascript@1.3.8`
 
 A bug fix for issues with the `closeSpace.onClose()` function. This function is
@@ -163,7 +163,7 @@ which listens for the `job:outcome-acknowledged` event and triggers the closing
 process accordingly.
 </Update>
 
-<Update label="June 16, 2024" description="core">
+<Update label="06-16-2024" description="core">
 `flatfile@3.7.0`
 
 The latest release of the flatfile package includes improvements for handling
@@ -175,7 +175,7 @@ This release also includes a fix for handling file uploads with updated event
 `flatfile.upload`
 </Update>
 
-<Update label="May 24, 2024" description="wrappers">
+<Update label="05-24-2024" description="wrappers">
 `@flatfile/react@7.9.9`
 
 This release includes a fix to address instances where the iframe wasn't ready
@@ -192,7 +192,7 @@ sent only when the iframe has finished loading, ensuring a reliable
 initialization process.
 </Update>
 
-<Update label="May 22, 2024" description="wrappers">
+<Update label="05-22-2024" description="wrappers">
 `@flatfile/javascript@1.3.7`
 
 This release adds the ability to set the default page when preloading the
@@ -200,7 +200,7 @@ Flatfile Portal embed. Use `updateDefaultPageInSpace` and `findDefaultPage` to
 specify which workbook, sheet, or document page should display initially.
 </Update>
 
-<Update label="May 21, 2024" description="core">
+<Update label="05-21-2024" description="core">
 `@flatfile/listener@1.0.5`
 
 The `unmount()` method has been added, allowing developers to cleanly disconnect
@@ -209,7 +209,7 @@ the event listener from the event driver. The `EventDriver` class now includes
 control over event listeners.
 </Update>
 
-<Update label="May 01, 2024" description="wrappers">
+<Update label="05-01-2024" description="wrappers">
 `@flatfile/javascript@1.3.4`, `@flatfile/javascript@1.3.6`,
 `@flatfile/listener@1.0.4`, `@flatfile/react@7.9.3`
 
@@ -221,7 +221,7 @@ to version 1.2.1, simplifying event listener setup with `handlePostMessage`.
 improving compatibility and performance.
 </Update>
 
-<Update label="April 27, 2024" description="wrappers">
+<Update label="04-27-2024" description="wrappers">
 `@flatfile/javascript@1.3.3`, `@flatfile/react@7.9.2`
 
 This release enables clipboard read and write functionality within the embedded
@@ -229,14 +229,14 @@ Flatfile iframe component. Also, `@flatfile/embedded-utils` is updated to
 version 1.2.0.
 </Update>
 
-<Update label="April 17, 2024" description="wrappers">
+<Update label="04-17-2024" description="wrappers">
 `@flatfile/react@7.9.1`
 
 This release improves the submission process. After data upload, the `onSubmit`
 action handlers now acknowledge the job automatically, enhancing user feedback.
 </Update>
 
-<Update label="April 10, 2024" description="core">
+<Update label="04-10-2024" description="core">
 `@flatfile/listener@1.0.2`, `@flatfile/react@7.9.0`
 
 `@flatfile/listener` now supports removing event listeners with `off()` and
@@ -244,49 +244,49 @@ action handlers now acknowledge the job automatically, enhancing user feedback.
 with configurations for `Space`, `Workbook`, `Document`, and event handlers.
 </Update>
 
-<Update label="April 05, 2024" description="wrappers">
+<Update label="04-05-2024" description="wrappers">
 `@flatfile/javascript@1.3.2`, `@flatfile/react@7.8.12`
 
 Updates to dependencies and improvements in performance for both packages.
 `@flatfile/embedded-utils` dependency updated to 1.1.14.
 </Update>
 
-<Update label="April 03, 2024" description="wrappers">
+<Update label="04-03-2024" description="wrappers">
 `@flatfile/javascript@1.3.1`, `@flatfile/react@7.8.11`
 
 Updated `@flatfile/embedded-utils` to version 1.1.13. Simplified logic for
 setting `sidebarConfig` when initializing a new Flatfile import space.
 </Update>
 
-<Update label="March 22, 2024" description="wrappers">
+<Update label="03-22-2024" description="wrappers">
 `@flatfile/react@7.8.10`
 
 Fixed a bug in the `usePortal` hook related to the `onSubmit` function, ensuring
 reliable unmounting of the iframe.
 </Update>
 
-<Update label="March 15, 2024" description="wrappers">
+<Update label="03-15-2024" description="wrappers">
 `@flatfile/javascript@1.3.0`, `@flatfile/react@7.8.9`
 
 Added `initNewSpace` utility to create a new space, workbook, and document in a
 single API request. The `environmentId` parameter is now optional.
 </Update>
 
-<Update label="March 08, 2024" description="wrappers">
+<Update label="03-08-2024" description="wrappers">
 `@flatfile/react@7.8.8`
 
 Fixed an issue where the embedded Flatfile iframe would not be removed properly
 if there was an error during initialization.
 </Update>
 
-<Update label="February 29, 2024" description="wrappers">
+<Update label="02-29-2024" description="wrappers">
 `@flatfile/javascript@1.2.6` `@flatfile/react@7.8.7`
 
 Updated the space creation request to only include defined parameters. Improved
 reliability and efficiency of data import experience.
 </Update>
 
-<Update label="February 28, 2024" description="wrappers">
+<Update label="02-28-2024" description="wrappers">
 `@flatfile/javascript@1.2.5` `@flatfile/react@7.8.6`
 
 `startFlatfile` function now accepts new optional parameters, including
@@ -294,7 +294,7 @@ namespace, metadata, labels, translation path, and language override, providing
 more customization.
 </Update>
 
-<Update label="February 26, 2024" description="wrappers">
+<Update label="02-26-2024" description="wrappers">
 `@flatfile/javascript@1.2.3` `@flatfile/javascript@1.2.4`
 `@flatfile/react@7.8.4` `@flatfile/react@7.8.5`
 
@@ -302,21 +302,21 @@ Updated default spaces URL to avoid unnecessary preflight requests. Improved
 support for nested entrypoints in `package.json`.
 </Update>
 
-<Update label="February 20, 2024" description="wrappers">
+<Update label="02-20-2024" description="wrappers">
 `@flatfile/react@7.8.3`
 
 Fixed bug related to updating the authentication token for the
 `@flatfile/listener` package, ensuring secure and authorized communication.
 </Update>
 
-<Update label="February 07, 2024" description="wrappers">
+<Update label="02-07-2024" description="wrappers">
 `@flatfile/javascript@1.2.2` `@flatfile/listener@1.0.1` `@flatfile/react@7.8.2`
 
 Added exports and browser fields in `package.json` for better module resolution
 and compatibility. Updated dependencies for improved stability.
 </Update>
 
-<Update label="February 06, 2024" description="wrappers">
+<Update label="02-06-2024" description="wrappers">
 `@flatfile/javascript@1.1.7` `@flatfile/javascript@1.2.0`
 `@flatfile/javascript@1.2.1` `@flatfile/react@7.8.0` `@flatfile/react@7.8.1`
 
@@ -324,14 +324,14 @@ Removed global style overrides from SDKs, improving compatibility. Updated
 dependencies and improved type support for better integration experience.
 </Update>
 
-<Update label="February 01, 2024" description="wrappers">
+<Update label="02-01-2024" description="wrappers">
 `@flatfile/javascript@1.1.6`
 
 Added functionality to remove the event listener after submit and close actions,
 improving memory management.
 </Update>
 
-<Update label="January 31, 2024" description="wrappers">
+<Update label="01-31-2024" description="wrappers">
 `@flatfile/javascript@1.1.5` `@flatfile/listener@0.4.2`
 
 The `@flatfile/javascript` package update includes a better-organized
@@ -341,14 +341,14 @@ ensure a smoother development experience and easier integration. The
 improves type compatibility.
 </Update>
 
-<Update label="January 30, 2024" description="wrappers">
+<Update label="01-30-2024" description="wrappers">
 `@flatfile/javascript@1.1.4`
 
 The confirmation modal's close action is now independent of user parameters,
 ensuring the modal is consistently removed from the DOM when closed.
 </Update>
 
-<Update label="January 26, 2024" description="wrappers">
+<Update label="01-26-2024" description="wrappers">
 `@flatfile/javascript@1.1.3` `@flatfile/listener@0.4.1`
 
 The `@flatfile/javascript` package consolidates source code, generates type
@@ -357,14 +357,14 @@ package update enhances exports and adds dotenv dependency for better
 environment variable management.
 </Update>
 
-<Update label="January 24, 2024" description="wrappers">
+<Update label="01-24-2024" description="wrappers">
 `@flatfile/javascript@1.1.2`
 
 This release fixes an issue when reusing an existing Flatfile space and adds
 support for passing an existing space object to `startFlatfile`.
 </Update>
 
-<Update label="January 19, 2024" description="wrappers">
+<Update label="01-19-2024" description="wrappers">
 `@flatfile/javascript@1.1.0`
 
 The new release introduces preloading the Flatfile embed iFrame, initializing
@@ -375,14 +375,14 @@ Updated to version 1.1.1 with a bug fix and dependency updates for improved
 reliability.
 </Update>
 
-<Update label="January 10, 2024" description="wrappers">
+<Update label="01-10-2024" description="wrappers">
 `@flatfile/react@7.5.4` `@flatfile/react@7.6.0`
 
 The `@flatfile/react` update bundles `@flatfile/api` and removes the pubnub
 dependency. The package now listens for window message events directly.
 </Update>
 
-<Update label="January 09, 2024" description="wrappers">
+<Update label="01-09-2024" description="wrappers">
 `@flatfile/javascript@0.3.2` `@flatfile/listener@0.4.0` `@flatfile/react@7.5.3`
 
 Updates include better browser compatibility, gzipping request bodies, and using
@@ -390,14 +390,14 @@ Rollup for bundling. Dependencies for `@flatfile/react` are also updated for
 better performance and reliability.
 </Update>
 
-<Update label="January 08, 2024" description="wrappers">
+<Update label="01-08-2024" description="wrappers">
 `@flatfile/react@7.5.2`
 
 The `@flatfile/react` package removes the styled-components dependency,
 migrating styles to SCSS for improved performance and maintainability.
 </Update>
 
-<Update label="January 05, 2024" description="core">
+<Update label="01-05-2024" description="core">
 `@flatfile/listener@0.3.19`
 
 The `@flatfile/listener` package now compresses the request body using pako
@@ -405,7 +405,7 @@ compression by default when calling the `update()` method. This reduces network
 bandwidth usage and transfer times.
 </Update>
 
-<Update label="January 03, 2024" description="core">
+<Update label="01-03-2024" description="core">
 `@flatfile/listener@0.3.18`
 
 The `EventCallback` type now expects a Promise to be returned, allowing
@@ -413,7 +413,7 @@ developers to use async/await for greater flexibility and control over
 asynchronous operations.
 </Update>
 
-<Update label="December 21, 2023" description="wrappers">
+<Update label="12-21-2023" description="wrappers">
 `@flatfile/javascript@0.3.1` `@flatfile/react@7.5.1`
 
 The UMD build file for the `@flatfile/javascript` package is renamed to
@@ -421,7 +421,7 @@ The UMD build file for the `@flatfile/javascript` package is renamed to
 process by using `dist/index.js` for browser environments.
 </Update>
 
-<Update label="December 19, 2023" description="wrappers">
+<Update label="12-19-2023" description="wrappers">
 `@flatfile/javascript@0.3.0` `@flatfile/react@7.5.0`
 
 The `@flatfile/javascript` package includes bundle optimizations and a new
@@ -430,7 +430,7 @@ improves accessibility with the close button's `type="button"` attribute and
 adds the option to keep the space active after submission.
 </Update>
 
-<Update label="December 13, 2023" description="wrappers">
+<Update label="12-13-2023" description="wrappers">
 `@flatfile/javascript@0.2.2` `@flatfile/react@7.4.0`
 
 The `@flatfile/javascript` package introduces a new Simplified React Flow and
@@ -438,21 +438,21 @@ updates dependencies. The `@flatfile/react` package adds a `usePortal` hook for
 a smoother integration experience.
 </Update>
 
-<Update label="December 01, 2023" description="wrappers">
+<Update label="12-01-2023" description="wrappers">
 `@flatfile/react@7.3.1`
 
 The `useSpaceTrigger` hook has been renamed to `initializeFlatfile`, and
 `createOrUseSpace` has been renamed to `OpenEmbed` for better clarity.
 </Update>
 
-<Update label="November 28, 2023" description="wrappers">
+<Update label="11-28-2023" description="wrappers">
 `@flatfile/javascript@0.2.1`
 
 Re-introduces the `initializeFlatfile` method, fixing issues with the submit
 action and simplifying the user experience.
 </Update>
 
-<Update label="November 27, 2023" description="wrappers">
+<Update label="11-27-2023" description="wrappers">
 `@flatfile/javascript@0.2.0`
 
 Simplifies the integration flow by allowing developers to provide sheet
@@ -460,35 +460,35 @@ configurations directly and introducing new utilities for record-level hooks and
 job submissions.
 </Update>
 
-<Update label="November 15, 2023" description="wrappers">
+<Update label="11-15-2023" description="wrappers">
 `@flatfile/react@7.3.0`
 
 The new `useSpaceTrigger` hook allows developers to control when the Flatfile
 import experience is triggered.
 </Update>
 
-<Update label="November 10, 2023" description="wrappers">
+<Update label="11-10-2023" description="wrappers">
 `@flatfile/javascript@0.1.27` `@flatfile/react@7.2.34`
 
 All parameters are now seamlessly passed to the API when creating a Workbook
 client-side.
 </Update>
 
-<Update label="November 9, 2023" description="wrappers">
+<Update label="11-09-2023" description="wrappers">
 `@flatfile/react@7.2.32` `@flatfile/react@7.2.33`
 
 Removed `styled-components` from peer dependencies and resolving an issue with
 the change.
 </Update>
 
-<Update label="November 8, 2023" description="wrappers">
+<Update label="11-08-2023" description="wrappers">
 `@flatfile/listener@0.3.17`
 
 Resolved an issue where `axios` and its associated HTTP methods were
 unavailable.
 </Update>
 
-<Update label="November 6, 2023" description="wrappers">
+<Update label="11-06-2023" description="wrappers">
 `@flatfile/javascript@0.1.25`
 
 - Implemented UMD build type for seamless compatibility with Content Delivery
@@ -496,13 +496,13 @@ unavailable.
 - Updated dependencies: `@flatfile/listener@0.3.16`
 </Update>
 
-<Update label="November 6, 2023" description="wrappers">
+<Update label="11-06-2023" description="wrappers">
 `@flatfile/listener@0.3.16`
 
 Adds UMD build type for working with CDNs.
 </Update>
 
-<Update label="November 1, 2023" description="wrappers">
+<Update label="11-01-2023" description="wrappers">
 `@flatfile/react@7.2.31` `@flatfile/javascript@0.1.24`
 
 - Enhanced performance by updating package versions and removing unused
@@ -510,27 +510,27 @@ Adds UMD build type for working with CDNs.
 - Updated dependencies: `@flatfile/embedded-utils@1.0.7`
 </Update>
 
-<Update label="October 29, 2023" description="wrappers">
+<Update label="10-29-2023" description="wrappers">
 `@flatfile/react@7.2.29-30` `@flatfile/javascript@0.1.22-3`
 
 Implemented the use of `rollup.js` for bundling purposes, enhancing the
 project's build process.
 </Update>
 
-<Update label="October 19, 2023" description="wrappers">
+<Update label="10-19-2023" description="wrappers">
 `@flatfile/react@7.2.28` `@flatfile/javascript@0.1.21`
 
 - Updated dependency: `@flatfile/api@1.5.31`
 </Update>
 
-<Update label="October 19, 2023" description="wrappers">
+<Update label="10-19-2023" description="wrappers">
 `@flatfile/javascript@0.1.20`
 
 Streamlined the project by removing the unnecessary `dotenv` dependency,
 resulting in a cleaner and more efficient codebase.
 </Update>
 
-<Update label="October 16, 2023" description="wrappers">
+<Update label="10-16-2023" description="wrappers">
 `@flatfile/javascript@0.1.19` `@flatfile/react@7.2.27`
 
 When creating a Space, you may like to receive the `spaceId` that was created to
@@ -538,7 +538,7 @@ tie it back to something in your platform. You can now receive this in the
 Javascript SDK. This functionality is coming soon for the React SDK.
 </Update>
 
-<Update label="October 12, 2023" description="wrappers">
+<Update label="10-12-2023" description="wrappers">
 `@flatfile/javascript@0.1.18`
 
 When creating a Space, you may like to receive the `spaceId` that was created to
@@ -546,7 +546,7 @@ tie it back to something in your platform. You can now receive this in the
 Javascript SDK. This functionality is coming soon for the React SDK.
 </Update>
 
-<Update label="September 29, 2023" description="wrappers">
+<Update label="09-29-2023" description="wrappers">
 `@flatfile/javascript@0.1.17` `@flatfile/react@7.2.24`
 
 In this version, we've made two important updates:
@@ -560,7 +560,7 @@ allowing you to listen for workbook creation events within your listener for
 more streamlined and effective integration in client-side listeners.
 </Update>
 
-<Update label="September 20, 2023" description="wrappers">
+<Update label="09-20-2023" description="wrappers">
 `@flatfile/javascript@0.1.13`
 
 You can now use `@flatfile/api` inside a client-side listener without needing a
@@ -568,7 +568,7 @@ secret key. The listener will instead use the `accessToken` created from your
 `publishableKey`.
 </Update>
 
-<Update label="September 20, 2023" description="wrappers">
+<Update label="09-20-2023" description="wrappers">
 `@flatfile/javascript@0.1.11` `@flatfile/react@7.2.21`
 
 In this version, we've made two important updates:
@@ -580,7 +580,7 @@ In this version, we've made two important updates:
    in a server side listener.
 </Update>
 
-<Update label="September 20, 2023" description="core_plugin">
+<Update label="09-20-2023" description="core_plugin">
 `@flatfile/plugin-record-hook@1.1.2`
 
 In this update, we've resolved a pesky bug that caused the message generated by
@@ -590,7 +590,7 @@ Our solution? We've introduced caching, ensuring that both messages can coexist
 harmoniously.
 </Update>
 
-<Update label="September 12, 2023" description="wrappers">
+<Update label="09-12-2023" description="wrappers">
 `@flatfile/react@7.2.20` `@flatfile/javascript@0.1.8`
 
 @flatfile/react@7.2.20 & @flatfile/javascript@0.1.8
@@ -602,7 +602,7 @@ See all classes that can be overridden in CSS in the
 [Reference](/apps/embedding/reference/advanced#iframe-styles).
 </Update>
 
-<Update label="August 30, 2023" description="wrappers">
+<Update label="08-30-2023" description="wrappers">
 `@flatfile/react@7.2.18`
 
 This version introduces the following notable updates:
@@ -622,21 +622,21 @@ This version introduces the following notable updates:
   lightweight integration.
 </Update>
 
-<Update label="August 24, 2023" description="wrappers">
+<Update label="08-24-2023" description="wrappers">
 `@flatfile/react@7.2.17`
 
 An improvement was made to add the `userInfo` param on `metadata` in a more
 comprehensible way.
 </Update>
 
-<Update label="August 20, 2023" description="core">
+<Update label="08-20-2023" description="core">
 `@flatfile/api@1.5.21`
 
 The response type for the `getRecordsAsCSV` endpoint was incorrectly typed as a
 string instead of a file. This fixes downloading a sheet as a CSV via SDk.
 </Update>
 
-<Update label="August 20, 2023" description="core">
+<Update label="08-20-2023" description="core">
 `@flatfile/listener@0.3.15`
 
 This version has four great updates:
@@ -654,21 +654,21 @@ This version has four great updates:
   whether or not the user puts a trailing slash in the environment variable.
 </Update>
 
-<Update label="August 20, 2023" description="core">
+<Update label="08-20-2023" description="core">
 `@flatfile/listener@0.3.14`
 
 `event.secrets` now defaults to `spaceId`. It will throw if no `environmentId`
 is available for secrets retrieval.
 </Update>
 
-<Update label="August 20, 2023" description="wrappers">
+<Update label="08-20-2023" description="wrappers">
 `@flatfile/react@7.2.15`
 
 You can now pass in a spacebody. This will allowyou to send more than any
 already-defined parameters allowed on space creation.
 </Update>
 
-<Update label="August 20, 2023" description="wrappers">
+<Update label="08-20-2023" description="wrappers">
 `@flatfile/react@7.2.14`
 
 The close button and iframe now have a proper class name to allow for CSS

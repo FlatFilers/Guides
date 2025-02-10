@@ -20,20 +20,9 @@ const path = require('path');
  */
 
 function formatDate(year, month, day) {
-  // Ensure month and day are padded with leading zeros
   const paddedMonth = month.toString().padStart(2, '0');
   const paddedDay = day.toString().padStart(2, '0');
-  return `${year}-${paddedMonth}-${paddedDay}`;
-}
-
-function getMonthName(month) {
-  const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ];
-
-  const monthIndex = parseInt(month, 10) - 1;
-  return monthNames[monthIndex];
+  return `${paddedMonth}-${paddedDay}-${year}`;
 }
 
 function getHeader(type) {
@@ -121,7 +110,7 @@ function aggregateFilesByMonthAndYear(dir, files) {
     const content = fs.readFileSync(filePath, 'utf8');
     const lines = content.split('\n');
     const date = lines.shift();
-    const transformedContent = transformMdToMdx(date, lines.join('\n'));
+    const transformedContent = transformMdToMdx(formattedDate, lines.join('\n'));
     
 
     if (!aggregatedData[monthYear]) {

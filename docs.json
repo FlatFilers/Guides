@@ -21,7 +21,7 @@
                 "pages": ["flatfile"]
               },
               {
-                "group": "APIs",
+                "group": "API",
                 "pages": [
                   "documentation/api",
                   {
@@ -231,23 +231,29 @@
             "tab": "Changelog",
             "groups": [
               {
-                "group": "Highlights",
+                "group": "API",
                 "pages": [
-                  "changelog/platform",
-                  "changelog/sdks",
-                  "changelog/sdks/plugins/highlights"
+                  "changelog/platform"
                 ]
               },
               {
                 "group": "Core Libraries",
                 "pages": [
-                  "changelog/sdks/core/cli",
-                  "changelog/sdks/core/listener"
+                  "changelog/sdks/core/listener",
+                  "changelog/sdks/core/cli"
                 ]
               },
               {
-                "group": "Embedded Wrappers",
+                "group": "Plugins",
                 "pages": [
+                  "changelog/sdks/plugins/highlights"
+                ]
+              },
+
+              {
+                "group": "SDKs",
+                "pages": [
+                  "changelog/sdks",
                   "changelog/sdks/wrappers/javascript",
                   "changelog/sdks/wrappers/react",
                   "changelog/sdks/wrappers/angular",
