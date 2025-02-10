@@ -272,5 +272,7 @@ button[aria-label="Toggle dark mode"] {
   display: none;
 }
 
-
-
+.pl-4 {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
