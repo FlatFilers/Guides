@@ -105,22 +105,32 @@
             "tab": "Learning Center",
             "groups": [
               {
-                "group": "Core Architecture",
+                "group": "Core",
                 "pages": [
-                  "learning-center/architecture/about",
-                  "learning-center/architecture/apps",
-                  "learning-center/architecture/environment",
-                  "learning-center/architecture/spaces",
-                  "learning-center/architecture/workbooks"
-                ]
-              },
-              {
-                "group": "Blueprint",
-                "pages": [
-                  "learning-center/blueprint/about",
                   {
-                    "group": "Schema",
+                    "group": "Architecture",
                     "pages": [
+                      "learning-center/architecture/about",
+                      "learning-center/architecture/apps",
+                      "learning-center/architecture/environment",
+                      "learning-center/architecture/spaces",
+                      "learning-center/architecture/workbooks"
+                    ]
+                  },
+                  {
+                    "group": "Concepts",
+                    "pages": [
+                      "learning-center/concepts/actions",
+                      "learning-center/concepts/events",
+                      "learning-center/concepts/jobs",
+                      "learning-center/concepts/listeners",
+                      "learning-center/concepts/mapping"
+                    ]
+                  },
+                  {
+                    "group": "Blueprint",
+                    "pages": [
+                      "learning-center/blueprint/about",
                       "learning-center/blueprint/sheet-options",
                       "learning-center/blueprint/field-options",
                       "learning-center/blueprint/field-types",
@@ -131,16 +141,7 @@
                   }
                 ]
               },
-              {
-                "group": "Concepts",
-                "pages": [
-                  "learning-center/concepts/actions",
-                  "learning-center/concepts/events",
-                  "learning-center/concepts/jobs",
-                  "learning-center/concepts/listeners",
-                  "learning-center/concepts/mapping"
-                ]
-              },
+
               {
                 "group": "Tutorials",
                 "pages": [
