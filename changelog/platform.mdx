@@ -85,6 +85,14 @@ Additionally, the code now handles read-only fields correctly. If a field is mar
 These changes improve the functionality, performance, and messaging of the `clearColumn` logic without introducing any breaking changes to the external interface.
 </Update>
 
+<Update label="01-24-2025" description="dataxp">
+The unique validation and record/cell validity handling has been improved to:
+
+- properly escape field keys containing special characters like periods
+- correctly apply the `error` state and appropriate error messages when duplicate values are encountered for fields with a unique constraint
+- handle cases where all initially added records have invalid (duplicate) values for fields with a unique constraint
+</Update>
+
 <Update label="01-23-2025" description="dataxp">
 When clearing a column in a job operation, a snapshot of the sheet will be taken
 before the column is cleared. This snapshot will be labeled with the specific

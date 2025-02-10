@@ -1,0 +1,8 @@
+### January 24, 2025
+## dataxp
+
+The unique validation and record/cell validity handling has been improved to:
+
+- properly escape field keys containing special characters like periods
+- correctly apply the `error` state and appropriate error messages when duplicate values are encountered for fields with a unique constraint
+- handle cases where all initially added records have invalid (duplicate) values for fields with a unique constraint
