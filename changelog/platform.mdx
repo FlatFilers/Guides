@@ -5,8 +5,6 @@ icon: "layer-group"
 ---
 
 <Update label="February 04, 2025" description="dataxp">
-api@a372b5a The release includes the following updates:
-
 Records with readonly configurations are now handled differently in the
 replaceRecords operation. A new option called excludeReadOnly has been
 introduced to control whether readonly records or fields should be skipped or
@@ -54,9 +52,15 @@ const records = await wb.op.replaceRecords({
 </Update>
 
 <Update label="January 31, 2025" description="spaces">
-spaces-ui@b006b25 Added support for: - Spanish (es-419) - Malay (ms) - Dutch
-(nl) - Polish (pl) - Swedish (sv) - Thai (th) - Chinese Traditional (zh-hant) -
-Chinese Traditional Hong Kong (zh-hant-HK)
+Added language support for: 
+- Spanish (es-419) 
+- Malay (ms) 
+- Dutch (nl) 
+- Polish (pl) 
+- Swedish (sv) 
+- Thai (th) 
+- Chinese Traditional (zh-hant) 
+- Chinese Traditional Hong Kong (zh-hant-HK)
 </Update>
 
 <Update label="January 30, 2025" description="dataxp">
@@ -66,14 +70,10 @@ post-creation.
 </Update>
 
 <Update label="January 30, 2025" description="spaces">
-spaces-ui@00a7eba The release notes include the following changes:
-
 Fixes bug where long document titles would overlap the page header.
 </Update>
 
 <Update label="January 23, 2025" description="dataxp">
-api@6186151 The release notes now include the following updates:
-
 When clearing a column in a job operation, a snapshot of the sheet will be taken
 before the column is cleared. This snapshot will be labeled with the specific
 column key that is being cleared, providing a record of the sheet state before
@@ -105,8 +105,6 @@ will be returned.
 </Update>
 
 <Update label="January 17, 2025" description="dataxp">
-api@becac6b The release notes include the following updates:
-
 An error is now thrown if attempting to clear a readonly column in a sheet. This
 prevents modifying data in readonly columns.
 
@@ -146,7 +144,6 @@ readonly data.
 </Update>
 
 <Update label="January 13, 2025" description="dataxp">
-api@70e1e81
 The `clearColumnAction` now has a constraint added that checks if the column is enabled before allowing the action to be executed. This ensures that the action can only be performed on columns that are currently enabled, preventing any potential issues or errors that could arise from attempting to clear a disabled column.
 </Update>
 
