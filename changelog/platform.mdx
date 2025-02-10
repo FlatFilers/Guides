@@ -13,34 +13,9 @@ fields marked as readonly will not be replaced during the replaceRecords
 operation. If excludeReadOnly is false or not provided, readonly records and
 fields will be replaced as before.
 
-<<<<<<< HEAD
 The findAndReplaceRecords method in the WorkbooksService now checks if the field
 being replaced is readonly and throws an error if excludeReadOnly is set to
 true, preventing modification of readonly fields.
-=======
-### January 27, 2025
-
-<div style={{ display: "table", width: "auto" }}>
-  <div style={{ display: "table-row", width: "auto" }}>
-    <Snippet file="chips/dataxp.mdx" />
-    <div style={{ float: "left", display: "table-column", paddingLeft: "30px", width: "calc(80% - 30px)" }}>
-      
-      The order of imports from the `@flatfile/api` module has been updated. The `RecordUpdates` and `Success` types are now imported in a different order.
-      
-      The implementation of the `clearColumn` method has been refactored. Instead of using the `map` and `filter` array methods, it now uses the `reduce` method to generate the `recordsUpdates` array. The new implementation checks if the field value exists and if the field is not read-only before clearing it. This change likely improves performance and readability.
-      
-      The wording of the `info` and `outcome.message` properties in the `transitionJob` call has been updated from "Column was removed" to "Column was cleared". This change provides more accurate messaging about the action performed.
-      
-      Additionally, the code now handles read-only fields correctly. If a field is marked as read-only in the `RecordConfig`, its value will not be cleared.
-      
-      These changes improve the functionality, performance, and messaging of the `clearColumn` logic without introducing any breaking changes to the external interface.
-      
-    </div>
-  </div>
-</div>
-
-### January 22, 2025
->>>>>>> 1a54cd6 (Update changelog)
 
 Several new tests have been added to validate the behavior of the replaceRecords
 operation with readonly records and fields, covering scenarios with
@@ -96,6 +71,18 @@ post-creation.
 
 <Update label="01-30-2025" description="spaces">
 Fixes bug where long document titles would overlap the page header.
+</Update>
+
+<Update label="01-27-2025" description="dataxp">
+The order of imports from the `@flatfile/api` module has been updated. The `RecordUpdates` and `Success` types are now imported in a different order.
+
+The implementation of the `clearColumn` method has been refactored. Instead of using the `map` and `filter` array methods, it now uses the `reduce` method to generate the `recordsUpdates` array. The new implementation checks if the field value exists and if the field is not read-only before clearing it. This change likely improves performance and readability.
+
+The wording of the `info` and `outcome.message` properties in the `transitionJob` call has been updated from "Column was removed" to "Column was cleared". This change provides more accurate messaging about the action performed.
+
+Additionally, the code now handles read-only fields correctly. If a field is marked as read-only in the `RecordConfig`, its value will not be cleared.
+
+These changes improve the functionality, performance, and messaging of the `clearColumn` logic without introducing any breaking changes to the external interface.
 </Update>
 
 <Update label="01-23-2025" description="dataxp">
