@@ -52,28 +52,28 @@ flowchart TD
     style SPACE fill:none,stroke:#333
     style AGENT fill:none,stroke:#333
 ```
+<br/>
 
-### App
+Learn more about Flatfile by understanding our core elements.
 
-Apps are a concept for organizing Spaces. They exist across environments, supporting a a development pipeline moving from development, to staging to production.
+<CardGroup cols={3}>
+  <Card title="Apps" icon="grid" href='/learning-center/architecture/apps'>
+    Manage and coordinate data import workflows across environments.
+  </Card>
+  <Card title="Environments" icon="seedling"  href='/learning-center/architecture/environments'>
+    Secure, isolated contexts for data import workflows.
+  </Card>
+  <Card title="Spaces" icon="planet-ringed"  href='/learning-center/architecture/spaces'>
+    Micro-applications for content and data storage.
+  </Card>
+  <Card title="Workbooks" icon="books"  href='/learning-center/architecture/workbooks'>
+    Containers data Sheets with defined schemas.
+  </Card>
+  <Card title="Agents" icon="server"  href='/learning-center/concepts/listeners'>
+    Event-driven functions for automating workflows.
+  </Card>
+  <Card title="Jobs" icon="truck"  href='/learning-center/concepts/jobs'>
+    Discrete tasks executed by Agents in response to events.
+  </Card>
+</CardGroup>
 
-### Environment
-An Environment serves as a container that encompasses three main component groups:
-
-- **Spaces**: Micro-applications that handle content and data storage
-- **Agents**: Listeners securely deployed on the Flatfile Cloud that manage automation and job execution
-- **Secrets**: Provide secure credential management
-
-### Spaces
-A space is a micro-applications, each with their own database, filestore, and auth.
-
-- **Files**: Basic file storage
-- **Documents**: Structured document storage
-- **Workbooks**: Contain one or more Sheets
-- **Sheets**: Individual data sheets within Workbooks
-
-### Agents
-Agents are functions customized by you to listen for events and execute jobs. Manage agents with our [CLI](/documentation/core-libraries/cli) and deploy them to the Flatfile Cloud for secure handling of your jobs and events.
-
-- **Agents**: Main automation workers
-- **Jobs**: Individual tasks executed by Agents

@@ -2,17 +2,33 @@
 title: "Apps"
 description: "the anatomy of an App"
 icon: "grid"
+mode: "wide"
 ---
 
-## What is an App?
+## Apps
 
-Listeners are the core of the Flatfile Platform. All of your configurations,
-from [data transformations](https://flatfile.com/plugins/transform), to
-[custom styling](/learning-center/guides/theming), to [data export](/learning-center/guides/egress) are done in
-a Listener. They hold the logic backing your Flatfile Spaces, defining the
-functionality of your implementation.
+Apps are the highest-level organizational unit in Flatfile, designed to manage and coordinate data import workflows across different environments. They serve as containers for organizing related Spaces and provide a consistent configuration that can be deployed across your development pipeline.
 
-Fundamentally, a Listener is a function that listens for
-[Events](/learning-center/concepts/events) and takes action when they occur. This means
-your configurations are implemented in response to events. To understand how to
-configure a Listener, it's important to understand the anatomy of an Event.
+<Steps>
+  <Step title="Development Pipeline Support" icon="check">
+    - Deploy configurations from development to staging to production
+    - Maintain consistent behavior across environments
+    - Test and validate changes before production deployment
+  </Step>
+  <Step title="Template System" icon="check">
+    - Create reusable templates for common import scenarios.
+    - Define standard configurations that can be instantiated multiple times
+    - Share best practices across implementations
+  </Step>
+  <Step title="Namespace Organization" icon="check">
+    - Group related Spaces under a common namespace
+    - Manage access control at the namespace level
+    - Organize workspaces by team, department, or function
+  </Step>
+  <Step title="Configuration Management" icon="check">
+    - Define standard field mappings and validations
+    - Configure data transformation rules
+    - Set up automated workflows using Agents
+    - Manage custom constraints and validations
+  </Step>
+</Steps>
