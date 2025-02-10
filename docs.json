@@ -112,7 +112,7 @@
                     "pages": [
                       "learning-center/architecture/about",
                       "learning-center/architecture/apps",
-                      "learning-center/architecture/environment",
+                      "learning-center/architecture/environments",
                       "learning-center/architecture/spaces",
                       "learning-center/architecture/workbooks"
                     ]
@@ -512,7 +512,7 @@
   },
   {
       "source": "/developer-tools/environment",
-      "destination": "/learning-center/architecture/environment"
+      "destination": "/learning-center/architecture/environments"
   },
   {
       "source": "/developer-tools/overview",

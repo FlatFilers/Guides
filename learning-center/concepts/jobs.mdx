@@ -5,15 +5,15 @@ icon: "truck"
 ---
 
 In Flatfile, a Job represents a large unit of work performed asynchronously on a resource
-such as a file, <Tooltip tip="Analogous to a database...">[Workbook](../apps/workbooks)</Tooltip>,
-or <Tooltip tip="A collection of fields...">[Sheet](../blueprint/overview#terms)</Tooltip>.
+such as a file, <Tooltip tip="Analogous to a database...">[Workbook](/learning-center/architecture/workbooks)</Tooltip>,
+or <Tooltip tip="A collection of fields...">[Sheet](/learning-center/blueprint/about#terms)</Tooltip>.
 The Jobs workflow provides visibility into the status and progress of your Jobs,
 allowing you to monitor and troubleshoot the data processing pipeline.
 
 ## Types of Jobs
 
 Jobs can be triggered in a number of ways, most commonly in response to user activity.
-Jobs are then managed via [Listeners](/orchestration/listeners), which receive [Events](/orchestration/events) published by Flatfile in response to activity.
+Jobs are then managed via [Listeners](/learning-center/concepts/listeners), which receive [Events](/learning-center/concepts/events) published by Flatfile in response to activity.
 
 There are three types of Jobs on the Flatfile Platform:
 
@@ -21,14 +21,14 @@ There are three types of Jobs on the Flatfile Platform:
   <Card
     title="Action Jobs"
     icon="bolt"
-    href="/orchestration/jobs#action-based-jobs"
+    href="/learning-center/concepts/jobs#action-based-jobs"
   >
     Attached to custom actions
   </Card>
-  <Card title="Custom Jobs" icon="code" href="/orchestration/jobs#custom-jobs">
+  <Card title="Custom Jobs" icon="code" href="/learning-center/concepts/jobs#custom-jobs">
     Created dynamically in your listener
   </Card>
-  <Card title="System Jobs" icon="gears" href="/orchestration/jobs#system-jobs">
+  <Card title="System Jobs" icon="gears" href="/learning-center/concepts/jobs#system-jobs">
     Flatfile system jobs
   </Card>
 </CardGroup>
@@ -41,13 +41,13 @@ That operation can then be triggered by a user event (clicking a button or selec
 
 <Note>
   When an Action is triggered a `job:ready` Event for a Job named
-  `[domain]:[operation]` is published. Your [Listener](/orchestration/listeners)
+  `[domain]:[operation]` is published. Your [Listener](/learning-center/concepts/listeners)
   can then be configured to respond to that Action via it's Event.
 </Note>
 
 To run an Action based job, two configurations are necessary.
 
-First, create an [Action](/orchestration/actions) on a domain. Here's an example of a Workbook containing an Action:
+First, create an [Action](/learning-center/concepts/actions) on a domain. Here's an example of a Workbook containing an Action:
 
 ```jsx javascript
 api.workbook.create({
@@ -63,7 +63,7 @@ api.workbook.create({
 });
 ```
 
-Then, create a [Listener](/orchestration/listeners) to respond to the Action:
+Then, create a [Listener](/learning-center/concepts/listeners) to respond to the Action:
 
 ```jsx javascript
 listener.on(
@@ -179,7 +179,7 @@ Here are some examples of Jobs that the Flatfile Platform creates and manages on
   The`space:configure` Job is the only system-level Job published for developer
   consumption. This is a special Job that allows developers to configure their
   Spaces dynamically. See our [Space
-  Configuration](/guides/dynamic-configurations) documentation for more
+  Configuration](/learning-center/guides/dynamic-configurations) documentation for more
   information.
 </Note>
 
@@ -197,7 +197,7 @@ Jobs fire the following Events during their lifecycle. In chronological order, t
 | `job:completed` OR `job:failed` | `job:completed` fires when a Job is completed successfully, `job:failed` fires if a Job is completed but fails. One of these events will fire upon Job completion, but never both. |
 | `job:outcome-acknowledged`      | Fires when a user acknowledges the completion of a Job through a UI popup.                                                                                                         |
 
-You can listen on any of these events in your [Listener](/orchestration/listeners), but the most common event to listen for is `job:ready`.
+You can listen on any of these events in your [Listener](/learning-center/concepts/listeners), but the most common event to listen for is `job:ready`.
 For more on managing your Job see [Working with Jobs](#working-with-jobs).
 
 ### Required Parameters
@@ -338,7 +338,7 @@ await api.jobs.update(jobId, {
 You may also provide an `estimatedCompletionAt` value which will display your estimate of the remaining processing time in the foreground Job overlay.
 Additionally, the Jobs Panel will share visibility into the estimated remaining time for acknowledged jobs.
 
-<img src="../images/jobs/estimatedtime_actions.png" caption="estimated time" />
+<img src="/images/jobs/estimatedtime_actions.png" caption="estimated time" />
 
 Finally, when your Job is complete, update the Job's status to `complete`. This status update includes an optional outcome message which will be displayed to the user.
 Use this to provide detail on the outcome of the Job.
@@ -360,7 +360,7 @@ await api.jobs.complete(jobId, {
 
 Optionally, you can add a button to the outcome dialog to control the next step in the workflow once job has finished.
 
-<img src="../images/jobs/goto_google.png" caption="go to google" />
+<img src="/images/jobs/goto_google.png" caption="go to google" />
 
 ##### Internal Link
 
