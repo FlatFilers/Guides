@@ -209,7 +209,7 @@
                 "pages": ["upgrade/overview"]
               },
               {
-                "group": "Portal - version 2",
+                "group": "Portal Version 2",
                 "pages": [
                   "upgrade/v2_upgrade",
                   "upgrade/v2_upgrade_concepts",
@@ -217,7 +217,7 @@
                 ]
               },
               {
-                "group": "Portal - version 3",
+                "group": "Portal Version 3",
                 "pages": [
                   "upgrade/v3_upgrade",
                   "upgrade/v3_dxp_configure",

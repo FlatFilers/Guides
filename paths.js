@@ -145,7 +145,7 @@ const websitePaths = [
 ];
 
 // Define the base URL
-const baseURL = 'http://localhost:3000';
+const baseURL = 'http://localhost:3001';
 
 (async () => {
 const [open, { default: readline }] = await Promise.all([
