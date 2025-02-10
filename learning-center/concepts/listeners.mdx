@@ -1,0 +1,335 @@
+---
+title: "Listeners"
+description: "The anatomy of Listeners"
+icon: "ear-listen"
+---
+
+## What is a Listener?
+
+Listeners are the core of the Flatfile Platform. All of your configurations,
+from [data transformations](https://flatfile.com/plugins/category/transform), to
+[custom styling](/learning-center/guides/theming), to [data export](/learning-center/guides/egress) are done in
+a Listener. They hold the logic backing your Flatfile Spaces, defining the
+functionality of your implementation.
+
+Fundamentally, a Listener is a function that listens for
+[Events](/learning-center/concepts/events) and takes action when they occur. This means
+your configurations are implemented in response to events. To understand how to
+configure a Listener, it's important to understand the anatomy of an Event.
+
+## An Event-Driven System
+
+Flatfile is an event-driven system, meaning interactions with Flatfile (clicking
+a button, editing a record, uploading a file, etc) trigger the publication of an
+[Event](/learning-center/concepts/events).
+
+Each Event contains information about its source and execution context including
+a domain, topic, context, and optionally, a payload.
+
+| Component          | Description                                       | Example                                                            |
+| ------------------ | ------------------------------------------------- | ------------------------------------------------------------------ |
+| Domain             | the jurisdiction of the event                     | record, sheet, workbook, space, file, job, agent                   |
+| Topic              | a combination of a domain and an action           | `workbook:created` `workbook:updated` `workbook:deleted`           |
+| Context            | detailed information about context of the event   | <pre>`{ spaceId: "us_sp_1234", fileId: "us_fl_1234", ... }`</pre>  |
+| Payload (optional) | detailed information about execution of the event | <pre>`{ status: "complete", workbookId: "us_wb_1234", ... }`</pre> |
+
+# Anatomy of a Listener
+
+A Listener is a function designed to receive Events as they occur and take
+action by executing a callback function. For example, when a file is uploaded, a
+Listener can [extract](https://flatfile.com/plugins/category/extractors) its
+data to a target sheet, or when a record is created, a Listener can
+[validate](/learning-center/guides/handling-data) the data.
+
+The callback function can be as simple as logging the event or as advanced as
+integrating with external systems. Here is an example that logs the topic of any
+incoming event:
+
+<CodeGroup>
+
+```jsx javascript
+export default function (listener) {
+  listener.on("**", (event) => {
+    console.log(`Received event: ${event.topic}`);
+  });
+}
+```
+
+```jsx typescript
+import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
+
+export default function flatfileEventListener(listener: FlatfileListener) {
+  listener.on("**", (event: FlatfileEvent) => {
+    console.log(`Received event: ${event.topic}`);
+  });
+}
+```
+
+</CodeGroup>
+
+This function is listening on "\*\*", which is a wildcard that matches all
+events. For a complete list of events that can be listened to, see
+[Event Topics](/learning-center/concepts/events#event-topics).
+
+### Filtering
+
+Listeners may be notified of every event on your Environment, but the Events
+that a Listener responds to are configurable. You can target which events your
+code responds to in a few ways.
+
+One way is to use a filter. A filter is a string that matches the topic of an
+event. For example, the filter "commit:created" will match any event of that
+topic.
+
+A simple way to filter events is to use the shorthand syntax `listener.on`:
+
+<CodeGroup>
+
+```jsx javascript
+listener.on("commit:created", { sheet: "contacts" }, async (event) => {
+  // Custom action responding to the commit
+});
+```
+
+```jsx typescript
+listener.on(
+  "commit:created",
+  { sheet: "contacts" },
+  async (event: FlatfileEvent) => {
+    // Custom action responding to the commit
+  }
+);
+```
+
+</CodeGroup>
+
+This is equivalent to:
+
+<CodeGroup>
+
+```jsx javascript
+listener.filter({ sheet: "contacts" }).on("commit:created", async (event) => {
+  // Custom action responding to the commit
+});
+```
+
+```jsx typescript
+listener
+  .filter({ sheet: "contacts" })
+  .on("commit:created", async (event: FlatfileEvent) => {
+    // Custom action responding to the commit
+  });
+```
+
+</CodeGroup>
+
+For cases when you want to use multiple listeners under one filter, this syntax
+may be useful:
+
+<CodeGroup>
+
+```jsx javascript
+export default function flatfileEventListener(listener) {
+  listener.filter({ sheet: "contacts" }, (configure) => {
+    configure.on("commit:created", async (event) => {
+      // Custom action responding to the commit
+    })
+  })
+});
+```
+
+```jsx typescript
+export default function flatfileEventListener(listener: FlatfileListener) {
+  listener.filter({ sheet: "contacts" }, (configure) => {
+    configure.on("commit:created", async (event) => {
+      // Custom action responding to the commit
+    })
+  })
+});
+```
+
+</CodeGroup>
+
+### Namespaces
+
+Namespaces are another way to organize Listener configurations and target
+specific Events. If you have two different workflows, for example, you can
+assign them to different namespaces to keep them separate.
+
+To configure a listener to only act on events for a given namespace, simply use
+the `listener.namespace` method.
+
+<CodeGroup>
+
+```jsx javascript
+listener.namespace(['space:green'], (listener) => { ... })
+listener.namespace(['space:red'], (listener) => { ... })
+```
+
+```jsx typescript
+listener.namespace(['space:green'], (listener: FlatfileListener) => { ... })
+listener.namespace(['space:red'], (listener: FlatfileListener) => { ... })
+```
+
+</CodeGroup>
+
+This will scope the listener to only respond to events that match the namespace.
+
+Learn more about namespaces in the [Namespaces](/learning-center/guides/namespaces) guide.
+
+### Listener Types
+
+Listeners can be hosted everywhere from your local machine to Flatfile's secure
+cloud. The location of your listener determines the type of listener it is.
+
+| Listener    | Location              | Description                          |
+| ----------- | --------------------- | ------------------------------------ |
+| development | developer machine     | local listener for development       |
+| client-side | user machine          | browser embedded listener            |
+| Agent       | Flatfile secure cloud | Flatfile hosted server-side listener |
+| server-side | your secure server    | self-hosted server-side listener     |
+
+Flatfile Listeners can be either client-side or server-side.
+
+Client-side listeners run in the end user's web browser and respond to user
+interactions. Client-side listeners are perfect for scenarios that need to tap
+into values available in the browser, such as the current user's session or the
+current page URL.
+
+Server-side listeners run where deployed, either on your own servers or on
+Flatfile's secure cloud, and can perform more complex tasks like running
+intensive calculations or using secured credentials to integrate with external
+systems.
+
+Server-side listeners can leverage packages that need the capabilities of a
+server environment.
+
+## Agent
+
+In Flatfile, an Agent refers to a server-side listener bundled and deployed to
+Flatfile to be hosted in our secure cloud. You may deploy multiple Agents to a
+single Environment, each with its own configurations and codebase. But be
+careful, as multiple Agents can interfere with each other if not properly
+managed.
+
+### Managing Multiple Agents
+
+With the capability to deploy multiple Agents within the same Environment, it is
+crucial to manage them carefully to avoid race conditions and conflicts. When
+multiple Agents are listening to the same event topics, they can interfere with
+each other, leading to unpredictable outcomes.
+
+### Strategies for Conflict Avoidance
+
+1. **Event Filtering:** Ensure each Agent is configured to listen for specific
+   events or topics. Properly defining the scope of events an Agent should
+   handle can prevent overlap and reduce the chance of race conditions.
+
+2. **Use of Namespaces:** Utilize namespaces to segment the operational scope of
+   each Agent. This method ensures that Agents only respond to Events within
+   their designated namespaces, effectively isolating their operations and
+   minimizing conflict.
+
+3. **Unique Topic Handling:** Design Agents so that no two Agents act on the
+   same event topic without coordination. Establish protocols for event handling
+   that specify which Agent should handle particular events or topics.
+
+### Agent Configuration
+
+When deploying an Agent, the CLI will automatically reduce the topic scope your
+Agent listens to by examining your listener code and registering itself to
+listen to only the topics your listener is configured to act on.
+
+For example if your listener code only listens to `commit:created` events, the
+CLI will automatically configure the Agent to only listen to `commit:created`
+events. If your listener has a wildcard listener `**`, the CLI will configure
+the Agent to listen to all events.
+
+### Agent Deployment
+
+To deploy an Agent, run the following command in your terminal from the root
+directory containing your entry file:
+
+```bash
+npx flatfile@latest deploy
+```
+
+Please note that the -s flag can be used to give your Agent a unique slug. This
+slug is useful when managing multiple Agents in the same Environment.
+
+If no slug is provided and you already have a single Agent deployed, your Agent
+will be updated and given a slug of `default`.
+
+If more than one Agent is deployed to the same environment and no slug is
+provided the CLI will prompt you to select which Agent you would like to update.
+
+Please see [Deploying to Flatfile](/documentation/core-libraries/cli/deploy) for more
+information on deploying an Agent.
+
+## Agent Logs
+
+When using Flatfile's secure cloud to host your listener, you can view the
+executions of your Agent in the "Event Logs" tab of your dashboard. **Note:** If
+you are running your Agent locally using the `develop` command to test, these
+logs will not be recorded in your dashboard.
+
+Event logs are useful in monitoring and troubleshooting your listener. Each
+execution of your agent is recorded here, including any custom console logs you
+have configured in your listener code.
+
+### Failures
+
+Failures occur when an Agent fails to execute properly. That means either an
+uncaught error is thrown, or the execution times out.
+
+If you are catching and handling errors within your code, those executions will
+not be marked as failures. If you would prefer to see them marked this way,
+re-throw your error after handling to bubble it up to the execution handler.
+
+<CodeGroup>
+```jsx javascript
+export default function (listener) {
+  listener.on("**", (event) => {
+    try {
+      // do something
+    } catch (error) {
+      // handle error
+      throw error; // re-throw error to mark execution as failure
+    }
+  });
+}
+```
+
+```jsx typescript
+export default function (listener) {
+  listener.on("**", (event: FlatfileEvent) => {
+    try {
+      // do something
+    } catch (error) {
+      // handle error
+      throw error; // re-throw error to mark execution as failure
+    }
+  });
+}
+```
+
+</CodeGroup>
+
+## Learn More
+
+Learn more about the Flatfile Platform in our other concept guides:
+
+<CardGroup cols={2}>
+  <Card title="Events" href="/learning-center/concepts/events" icon="clock">
+    The building blocks that power Flatfile's event-driven system
+  </Card>
+  <Card title="Actions" href="/learning-center/concepts/actions" icon="bolt">
+    Custom code-based operations prompted by user interactions
+  </Card>
+  <Card title="Jobs" href="/learning-center/concepts/jobs" icon="truck">
+    Handle complex or long-running processes asynchronously
+  </Card>
+  <Card title="Spaces" href="/learning-center/architecture/spaces" icon="planet-ringed">
+    Micro-applications with its own database, filestore, and auth
+  </Card>
+</CardGroup>

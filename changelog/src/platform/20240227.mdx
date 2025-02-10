@@ -4,18 +4,31 @@
 
 **Optimized Space Loading Series: Reduced Requests for Translations**
 
-We've streamlined the loading process for Spaces by eliminating an unnecessary request for translations that previously triggered an additional getSpaceById call. This refinement reduces the load time, ensuring Spaces are displayed more promptly for a smoother user experience.
+We've streamlined the loading process for Spaces by eliminating an unnecessary
+request for translations that previously triggered an additional getSpaceById
+call. This refinement reduces the load time, ensuring Spaces are displayed more
+promptly for a smoother user experience.
 
 ## spaces
 
-**Enhanced Filtering on `GET /spaces` Endpoint with Namespace Parameter Support**
+**Enhanced Filtering on `GET /spaces` Endpoint with Namespace Parameter
+Support**
 
-We've upgraded the `GET /spaces` endpoint to support an empty value for the `namespace` query parameter. This update allows for more nuanced filtering, specifically enabling the identification of spaces without a namespace. When the namespace parameter is omitted entirely, the endpoint now returns spaces across all namespaces, providing greater flexibility in data retrieval and management.
+We've upgraded the `GET /spaces` endpoint to support an empty value for the
+`namespace` query parameter. This update allows for more nuanced filtering,
+specifically enabling the identification of spaces without a namespace. When the
+namespace parameter is omitted entirely, the endpoint now returns spaces across
+all namespaces, providing greater flexibility in data retrieval and management.
 
 ## spaces
 
 **Optimized Space Loading Performance Series: Deferring Blocking Requests**
 
-By strategically eliminating or deferring five key blocking requests, we've streamlined the data fetching process. Key improvements include the removal of non-essential data fetches, optimizing the placement of the i18n context for more efficient rendering, and introducing a new utility for pre-processing date formats.
+By strategically eliminating or deferring five key blocking requests, we've
+streamlined the data fetching process. Key improvements include the removal of
+non-essential data fetches, optimizing the placement of the i18n context for
+more efficient rendering, and introducing a new utility for pre-processing date
+formats.
 
-These updates collectively result in a smoother, faster user experience, reinforcing our commitment to efficiency and performance.
+These updates collectively result in a smoother, faster user experience,
+reinforcing our commitment to efficiency and performance.

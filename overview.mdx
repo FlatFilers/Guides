@@ -1,111 +1,70 @@
 ---
-title: Flatfile Developer Docs
-description: "Explore our guides and examples to implement Flatfile."
+title: Developer Docs
+description: "resources for developers"
 mode: "wide"
-icon: "hand-wave"
+icon: "codepen"
 ---
 
-<Info>
-  We've fine-tuned ChatGPT 4 specifically on our API and SDKs. Simply type your
-  query into the search bar, and you'll receive precise answers that align with
-  your needs.
-</Info>
+Flatfile makes data onboarding simple. Our developer tools and AI-powered
+platform help you collect, clean, and transform your business data -- all in one
+place.
 
-## Core concepts
+## Learning Paths
 
-Discover the 3 core pillars of Flatfile: Spaces, Workbooks, and Events. Experience their seamless efficiency and collaboration as they power your data workflow in Flatfile.
+Ready to explore Flatfile? Choose the learning path that works best for you.
+Whether you prefer diving into concepts first, following hands-on tutorials, or
+jumping straight into the technical docs, we've got you covered.
+
+{' '}
 
 <CardGroup cols={3}>
-  <Card title="Spaces" href="./developer-tools/spaces" icon="circle-1">
-    Where the workflow unfolds, encompassing user invitations, data loading, and
-    data egress.
+  <Card
+    title="Conceptual Overview"
+    href="./learning-center/architecture/about"
+    icon="thought-bubble"
+  >
+    Use Our Learning Center to familiarize yourself with Flatfile's building
+    blocks.
   </Card>
-  <Card title="Workbooks" href="./apps/workbooks" icon="circle-2">
-    The basis for data normalization, including mapping, transformation,
-    validation, and collaboration.
+  <Card
+    title="Guides & Tutorials"
+    href="./learning-center/guides/list"
+    icon="chalkboard-user"
+  >
+    From embedding to setting up automated feeds we'll walk you through it.
   </Card>
-  <Card title="Events" href="./orchestration/events" icon="circle-3">
-    The mechanism for orchestrating workflows, enabling bulk task execution and
-    experience automation.
+  <Card title="Reference" href="./documentation/api" icon="file-lines">
+    Explore our APIs, SDKs, Plugins, and libraries.
   </Card>
 </CardGroup>
 
----
+## Build with Flatfile
 
-## Beginner Tutorials
+Build your own data onboarding solution with Flatfile.
 
-Once you have a handle on the core concepts that make up the Flatfile Platform, follow one of our tutorials to see how these concepts translate to your use case.
-
-{" "}
-
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card
-    title="Embed in your App"
-    href="./apps/embedding/overview"
-    icon="person-to-portal"
-  >
-    Easily add an embedded import experience to any app.
-  </Card>
-  <Card
-    title="Projects"
-    href="./apps/custom/tutorial-landing"
+    title="Onboarding Projects"
     icon="arrow-progress"
+    href="./learning-center/use-cases/projects"
   >
-    Build a Workbook and apply a data transformation and a validation.
-  </Card>
-</CardGroup>
-
----
-
-## Explore our plugins
-
-Flatfile offers a number of ways to expand your implementation past our base offerings, like a plugin that adds in the ability to extract Excel documents. Check out our plugins to see how you can further enhance your Platform implementation.
-
-<CardGroup cols={3}>
-  <Card title="record-hook" href="https://flatfile.com/plugins/plugin-record-hook" icon="npm">
-    A concise syntax for running custom logic on individual data records.
-  </Card>
-    <Card title="autocast" href="https://flatfile.com/plugins/plugin-autocast" icon="npm">
-    Automatically convert user-inputted data to the correct type so it can be
-    processed
+    Collaborate with your team to smoothly migrate customer data into your
+    system.
   </Card>
   <Card
-    title="json-schema"
-    href="https://flatfile.com/plugins/plugin-convert-json-schema"
-    icon="clock"
+    title="Automated File Feeds"
+    icon="files"
+    href="./learning-center/use-cases/headless"
   >
-    Use your schema to infer Flatfile Blueprint, a powerful DDL with a focus on
-    validation and data preparation.
+    Set up automated pipelines to process data files without manual
+    intervention.
   </Card>
-
-</CardGroup>
-
-[View all plugins](https://flatfile.com/plugins/)
-
----
-
-## Browse by use case
-
-<CardGroup cols={3}>
   <Card
-    title="Embed in your app"
+    title="In-App Experience"
     icon="person-to-portal"
-    href="/apps/embedding"
+    href="./learning-center/use-cases/portal"
   >
-    Securely and easily add an embedded import experience to any app.
-  </Card>
-  <Card
-    title="Setup headless file feeds"
-    icon="bolt-auto"
-    href="/guides/automap"
-  >
-    Automatically collect data files from any source.
-  </Card>
-  <Card
-    title="Run onboarding projects"
-    icon="arrow-progress"
-    href="/apps/projects"
-  >
-    Collaborate across teams on large data onboarding projects.
+    Give your users a seamless data import experience right inside your
+    application.
   </Card>
 </CardGroup>

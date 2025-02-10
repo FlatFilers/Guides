@@ -6,7 +6,10 @@ const simpleMarkdownToHtml = (markdown) => {
 const applyBasicFormatting = (markdown) => {
   return markdown
     .replace(/\b[0-9a-f]{7}:\s/gim, "")
-    .replace(/^## (.*$)/gim, "<h2 id='version_$1'><br/><a href='#version_$1'>$1</a></h2>")
+    .replace(
+      /^## (.*$)/gim,
+      "<h2 id='version_$1'><br/><a href='#version_$1'>$1</a></h2>",
+    )
     .replace(/^### (.*$)/gim, "<h3 style='margin-top: 15px'>$1</h3>")
     .replace(/^#### (.*$)/gim, "<code>$1</code>")
     .replace(/^# (.*$)/gim, "")
@@ -22,8 +25,18 @@ const processLists = (htmlContent) => {
   let listLevel = 0;
 
   return htmlContent.map((line, index, array) => {
-    const { processedLine, newInList, newListLevel } = processListItem(line, inList, listLevel);
-    const closingTags = getClosingTags(inList, listLevel, newInList, newListLevel, index === array.length - 1);
+    const { processedLine, newInList, newListLevel } = processListItem(
+      line,
+      inList,
+      listLevel,
+    );
+    const closingTags = getClosingTags(
+      inList,
+      listLevel,
+      newInList,
+      newListLevel,
+      index === array.length - 1,
+    );
 
     inList = newInList;
     listLevel = newListLevel;
@@ -38,17 +51,35 @@ const processListItem = (line, inList, listLevel) => {
 
   if (/^- /.test(trimmedLine)) {
     if (trimmedLine.includes("Updated dependencies")) {
-      return { processedLine: "<strong>Updated dependencies</strong>", newInList: false, newListLevel: 0 };
+      return {
+        processedLine: "<strong>Updated dependencies</strong>",
+        newInList: false,
+        newListLevel: 0,
+      };
     }
     if (!inList) {
-      return { processedLine: "<ul><li>" + trimmedLine.substring(2) + "</li>", newInList: true, newListLevel: currentLevel };
+      return {
+        processedLine: "<ul><li>" + trimmedLine.substring(2) + "</li>",
+        newInList: true,
+        newListLevel: currentLevel,
+      };
     }
-    return { processedLine: "<li>" + trimmedLine.substring(2) + "</li>", newInList: true, newListLevel: currentLevel };
+    return {
+      processedLine: "<li>" + trimmedLine.substring(2) + "</li>",
+      newInList: true,
+      newListLevel: currentLevel,
+    };
   }
   return { processedLine: line, newInList: false, newListLevel: 0 };
 };
 
-const getClosingTags = (inList, listLevel, newInList, newListLevel, isLastLine) => {
+const getClosingTags = (
+  inList,
+  listLevel,
+  newInList,
+  newListLevel,
+  isLastLine,
+) => {
   if (inList && (!newInList || isLastLine)) {
     return "</li></ul>".repeat(listLevel + 1);
   }
@@ -73,11 +104,11 @@ const handleRouteChange = (path) => {
         (path.includes("utils")
           ? "utils"
           : path.includes("plugins")
-          ? "plugins"
-          : "packages") +
+            ? "plugins"
+            : "packages") +
         "/" +
         lastSegment +
-        "/CHANGELOG.md"
+        "/CHANGELOG.md",
     )
       .then((response) => {
         if (!response.ok) {
@@ -88,9 +119,8 @@ const handleRouteChange = (path) => {
       .then((markdown) => {
         const htmlContent = simpleMarkdownToHtml(markdown);
         // Wrapping the converted HTML content in a div
-        document.getElementById(
-          "dynamic-content"
-        ).innerHTML = `<div class='mt-8 relative prose prose-gray dark:prose-invert'>${htmlContent}</div>`;
+        document.getElementById("dynamic-content").innerHTML =
+          `<div class='mt-8 relative prose prose-gray dark:prose-invert'>${htmlContent}</div>`;
       })
       .catch((error) => {
         console.error("Fetching Markdown file failed:", error);
@@ -110,11 +140,10 @@ setInterval(() => {
   }
 }, 1000); // Check every second
 
-
 const addIubendaScripts = () => {
   // Create and add the main script
-  const mainScript = document.createElement('script');
-  mainScript.type = 'text/javascript';
+  const mainScript = document.createElement("script");
+  mainScript.type = "text/javascript";
   const scriptContent = `
     var _iub = _iub || [];
   _iub.csConfiguration = {
@@ -202,14 +231,14 @@ const addIubendaScripts = () => {
       }
     }
   };
-  `
+  `;
   mainScript.textContent = scriptContent;
   document.head.appendChild(mainScript);
 
   const addScriptIfNotExists = (src, options = {}) => {
     if (!document.querySelector(`script[src="${src}"]`)) {
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
+      const script = document.createElement("script");
+      script.type = "text/javascript";
       script.src = src;
       Object.assign(script, options);
       document.head.appendChild(script);
@@ -217,15 +246,15 @@ const addIubendaScripts = () => {
   };
 
   // Add sync script
-  addScriptIfNotExists('//cs.iubenda.com/sync/1225976.js');
+  addScriptIfNotExists("//cs.iubenda.com/sync/1225976.js");
 
   // Add stub script
-  addScriptIfNotExists('//cdn.iubenda.com/cs/gpp/stub.js');
+  addScriptIfNotExists("//cdn.iubenda.com/cs/gpp/stub.js");
 
   // Add iubenda_cs script
-  addScriptIfNotExists('//cdn.iubenda.com/cs/iubenda_cs.js', {
-    charset: 'UTF-8',
-    async: true
+  addScriptIfNotExists("//cdn.iubenda.com/cs/iubenda_cs.js", {
+    charset: "UTF-8",
+    async: true,
   });
 };
 

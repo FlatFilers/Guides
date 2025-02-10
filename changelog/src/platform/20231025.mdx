@@ -6,15 +6,23 @@
 
 ![image](../changelog/images/trackChanges.gif)
 
-Previously, developers faced challenges in determining when all hooks had finished running, essential for ensuring data transformation completion and preventing unintended data egress. As a workaround, they resorted to creating placeholder fields that defaulted to invalid states. When a hook completed processing for a record, it marked the field as valid, allowing submission only when there were no errors in this field.
+Previously, developers faced challenges in determining when all hooks had
+finished running, essential for ensuring data transformation completion and
+preventing unintended data egress. As a workaround, they resorted to creating
+placeholder fields that defaulted to invalid states. When a hook completed
+processing for a record, it marked the field as valid, allowing submission only
+when there were no errors in this field.
 
-Now, we're thrilled to introduce a solution to simplify this process—an all-new event: `commit:completed`. This event signals the end of all processing tasks.
+Now, we're thrilled to introduce a solution to simplify this process—an all-new
+event: `commit:completed`. This event signals the end of all processing tasks.
 
 ```jsx
 settings: [{ trackChanges: true }];
 ```
 
-Add a `settings` parameter in your sheet that includes `trackChanges: true,` to disable actions on both Sheets and Workbooks until any pending commits have been completed.
+Add a `settings` parameter in your sheet that includes `trackChanges: true,` to
+disable actions on both Sheets and Workbooks until any pending commits have been
+completed.
 
 [Learn more](../blueprint/sheet-options#settings)
 
@@ -22,6 +30,9 @@ Add a `settings` parameter in your sheet that includes `trackChanges: true,` to 
 
 **New Job Mode: `toolbar-blocking`**
 
-We're excited to introduce a third job mode called `toolbarBlocking` alongside the existing `foreground` and `background` modes. With this new mode, `toolbarBlocking`, you have the flexibility to disable the Sheet Toolbar and Column Header Menus while still allowing users to enter records manually.
+We're excited to introduce a third job mode called `toolbarBlocking` alongside
+the existing `foreground` and `background` modes. With this new mode,
+`toolbarBlocking`, you have the flexibility to disable the Sheet Toolbar and
+Column Header Menus while still allowing users to enter records manually.
 
 [Learn more](../orchestration/actions#optional-parameters)

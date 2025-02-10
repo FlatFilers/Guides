@@ -1,0 +1,1016 @@
+---
+title: "Polyglot API"
+description: "choose your language"
+icon: "layer-group"
+---
+
+Our [API SDK](https://github.com/FlatFilers/flatfile-api) is available in
+multiple languages, making it easy to integrate Flatfile regardless of your tech
+stack. Each library gives you the full power of our platform in patterns you'll
+feel right at home with.
+
+<CardGroup cols={2}>
+  <Card
+    title="Node"
+    icon="js"
+    href="https://www.npmjs.com/package/@flatfile/api"
+  >
+    A JavaScript client for Flatfile.
+  </Card>
+  <Card
+    title="Go"
+    icon="golang"
+    href="https://github.com/FlatFilers/flatfile-go"
+  >
+    A Go client for Flatfile.
+  </Card>
+  <Card title="Python" icon="python" href="https://pypi.org/project/flatfile/">
+    A Python client for Flatfile.
+  </Card>
+  <Card
+    title="Java"
+    icon="java"
+    href="https://github.com/FlatFilers/flatfile-java"
+  >
+    A Java client for Flatfile.
+    <br />
+    Coming Soon.
+  </Card>
+</CardGroup>
+
+### Setup
+
+After installing the package, import the `FlatfileClient` and instantiate it by
+passing in your secret key as the token.
+
+```ts
+import { FlatfileClient } from "@flatfile/api";
+
+const token = "sk_your_secret_key";
+const api = new FlatfileClient({ token });
+```
+
+<Warning>
+  Make sure to keep your secret key safe, as it can be used to access
+  potentially sensitive information.
+</Warning>
+
+### Making API Calls
+
+Make API calls by calling the appropriate method on the `api` object. <br/> Note
+that responses are promises, so you'll need to handle them accordingly.
+
+## Core API Methods
+
+<AccordionGroup>
+  <Accordion title="actions.create">
+  ```ts
+  await api.actions.create({
+    spaceId: "us_sp_your_space_id",
+    workbookId: "us_wb_your_workbook_id",
+    actionConfig: { ... },
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/actions/create">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="actions.get">
+  ```ts
+  await api.actions.get({
+    actionId: "us_ac_your_action_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/actions/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="actions.list">
+  ```ts
+  await api.actions.list({
+    spaceId: "us_sp_your_space_id",
+    workbookId: "us_wb_your_workbook_id",
+    filter: { ... },
+    page: 1,
+    pageSize: 10
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/actions/get-all">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="actions.cancel">
+  ```ts
+  await api.actions.cancel({
+    actionId: "us_ac_your_action_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/actions/cancel">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="actions.retry">
+  ```ts
+  await api.actions.retry({
+    actionId: "us_ac_your_action_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/actions/retry">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="agents.create">
+  ```ts
+  await api.agents.create({
+    environmentId: "us_env_your_environment_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/agents/create">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="agents.get">
+  ```ts
+  await api.agents.get({
+    agentId: "us_ag_your_agent_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/agents/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="agents.update">
+  ```ts
+  await api.agents.update({
+    agentId: "us_ag_your_agent_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/agents/update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="agents.delete">
+  ```ts
+  await api.agents.delete({
+    agentId: "us_ag_your_agent_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/agents/delete">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="agents.list">
+  ```ts
+  await api.agents.list({
+    environmentId: "us_env_your_environment_id",
+    filter: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/agents/get-all">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="agents.deploy">
+  ```ts
+  await api.agents.deploy({
+    agentId: "us_ag_your_agent_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/agents/deploy">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="agents.logs">
+  ```ts
+  await api.agents.logs({
+    agentId: "us_ag_your_agent_id",
+    filter: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/agents/logs">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="documents.create">
+  ```ts
+  await api.documents.create({
+    spaceId: "us_sp_your_space_id",
+    content: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/documents/create">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="documents.get">
+  ```ts
+  await api.documents.get({
+    documentId: "us_doc_your_document_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/documents/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="documents.update">
+  ```ts
+  await api.documents.update({
+    documentId: "us_doc_your_document_id",
+    content: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/documents/update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="documents.delete">
+  ```ts
+  await api.documents.delete({
+    documentId: "us_doc_your_document_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/documents/delete">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="documents.list">
+  ```ts
+  await api.documents.list({
+    spaceId: "us_sp_your_space_id",
+    filter: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/documents/list">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="documents.share">
+  ```ts
+  await api.documents.share({
+    documentId: "us_doc_your_document_id",
+    recipients: ["user@example.com"]
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/documents/share">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="environments.create">
+  ```ts
+  await api.environments.create({
+    name: "Production",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/environments/create">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="environments.get">
+  ```ts
+  await api.environments.get({
+    environmentId: "us_env_your_environment_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/environments/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="environments.update">
+  ```ts
+  await api.environments.update({
+    environmentId: "us_env_your_environment_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/environments/update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="environments.delete">
+  ```ts
+  await api.environments.delete({
+    environmentId: "us_env_your_environment_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/environments/delete">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="environments.list">
+  ```ts
+  await api.environments.list()
+  ```
+  <a href="https://reference.flatfile.com/api-reference/environments/get-all">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="environments.getSecrets">
+  ```ts
+  await api.environments.getSecrets({
+    environmentId: "us_env_your_environment_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/environments/get-secrets">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="environments.updateSecrets">
+  ```ts
+  await api.environments.updateSecrets({
+    environmentId: "us_env_your_environment_id",
+    secrets: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/environments/update-secrets">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="files.upload">
+  ```ts
+  await api.files.upload({
+    data: fileData,
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/files/upload">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="files.download">
+  ```ts
+  await api.files.download({
+    fileId: "us_fl_your_file_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/files/download">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="files.get">
+  ```ts
+  await api.files.get({
+    fileId: "us_fl_your_file_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/files/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="files.delete">
+  ```ts
+  await api.files.delete({
+    fileId: "us_fl_your_file_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/files/delete">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="files.list">
+  ```ts
+  await api.files.list({
+    filter: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/files/get-all">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="files.validate">
+  ```ts
+  await api.files.validate({
+    fileId: "us_fl_your_file_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/files/validate">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="jobs.create">
+  ```ts
+  await api.jobs.create({
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/jobs/create">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="jobs.get">
+  ```ts
+  await api.jobs.get({
+    jobId: "us_job_your_job_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/jobs/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="jobs.update">
+  ```ts
+  await api.jobs.update({
+    jobId: "us_job_your_job_id",
+    status: "completed"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/jobs/update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="jobs.cancel">
+  ```ts
+  await api.jobs.cancel({
+    jobId: "us_job_your_job_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/jobs/cancel">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="jobs.list">
+  ```ts
+  await api.jobs.list({
+    filter: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/jobs/get-all">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="jobs.logs">
+  ```ts
+  await api.jobs.logs({
+    jobId: "us_job_your_job_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/jobs/logs">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="records.create">
+  ```ts
+  await api.records.create({
+    sheetId: "us_sh_your_sheet_id",
+    records: [ ... ]
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/records/create">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="records.get">
+  ```ts
+  await api.records.get({
+    recordId: "us_rec_your_record_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/records/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="records.update">
+  ```ts
+  await api.records.update({
+    recordId: "us_rec_your_record_id",
+    data: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/records/update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="records.delete">
+  ```ts
+  await api.records.delete({
+    recordId: "us_rec_your_record_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/records/delete">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="records.list">
+  ```ts
+  await api.records.list({
+    sheetId: "us_sh_your_sheet_id",
+    filter: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/records/get-all">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="records.search">
+  ```ts
+  await api.records.search({
+    sheetId: "us_sh_your_sheet_id",
+    query: "search term"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/records/search">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="records.validate">
+  ```ts
+  await api.records.validate({
+    records: [ ... ]
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/records/validate">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="records.bulk.create">
+  ```ts
+  await api.records.bulk.create({
+    sheetId: "us_sh_your_sheet_id",
+    records: [ ... ]
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/records/bulk-create">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="records.bulk.update">
+  ```ts
+  await api.records.bulk.update({
+    sheetId: "us_sh_your_sheet_id",
+    records: [ ... ]
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/records/bulk-update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="records.bulk.delete">
+  ```ts
+  await api.records.bulk.delete({
+    sheetId: "us_sh_your_sheet_id",
+    recordIds: ["us_rec_id1", "us_rec_id2"]
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/records/bulk-delete">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="sheets.create">
+  ```ts
+  await api.sheets.create({
+    workbookId: "us_wb_your_workbook_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/sheets/create">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="sheets.get">
+  ```ts
+  await api.sheets.get({
+    sheetId: "us_sh_your_sheet_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/sheets/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="sheets.update">
+  ```ts
+  await api.sheets.update({
+    sheetId: "us_sh_your_sheet_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/sheets/update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="sheets.delete">
+  ```ts
+  await api.sheets.delete({
+    sheetId: "us_sh_your_sheet_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/sheets/delete">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="sheets.list">
+  ```ts
+  await api.sheets.list({
+    workbookId: "us_wb_your_workbook_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/sheets/get-all">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="sheets.configure">
+  ```ts
+  await api.sheets.configure({
+    sheetId: "us_sh_your_sheet_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/sheets/configure">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="sheets.getSchema">
+  ```ts
+  await api.sheets.getSchema({
+    sheetId: "us_sh_your_sheet_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/sheets/get-schema">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="sheets.updateSchema">
+  ```ts
+  await api.sheets.updateSchema({
+    sheetId: "us_sh_your_sheet_id",
+    schema: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/sheets/update-schema">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="sheets.commit">
+  ```ts
+  await api.sheets.commit({
+    sheetId: "us_sh_your_sheet_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/sheets/commit">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="spaces.create">
+  ```ts
+  await api.spaces.create({
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/spaces/create">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="spaces.get">
+  ```ts
+  await api.spaces.get({
+    spaceId: "us_sp_your_space_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/spaces/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="spaces.update">
+  ```ts
+  await api.spaces.update({
+    spaceId: "us_sp_your_space_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/spaces/update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="spaces.delete">
+  ```ts
+  await api.spaces.delete({
+    spaceId: "us_sp_your_space_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/spaces/delete">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="spaces.list">
+  ```ts
+  await api.spaces.list()
+  ```
+  <a href="https://reference.flatfile.com/api-reference/spaces/get-all">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="spaces.getMetadata">
+  ```ts
+  await api.spaces.getMetadata({
+    spaceId: "us_sp_your_space_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/spaces/get-metadata">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="spaces.updateMetadata">
+  ```ts
+  await api.spaces.updateMetadata({
+    spaceId: "us_sp_your_space_id",
+    metadata: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/spaces/update-metadata">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="spaces.getMembers">
+  ```ts
+  await api.spaces.getMembers({
+    spaceId: "us_sp_your_space_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/spaces/get-members">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="spaces.addMember">
+  ```ts
+  await api.spaces.addMember({
+    spaceId: "us_sp_your_space_id",
+    userId: "us_usr_your_user_id",
+    role: "admin"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/spaces/add-member">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="spaces.removeMember">
+  ```ts
+  await api.spaces.removeMember({
+    spaceId: "us_sp_your_space_id",
+    userId: "us_usr_your_user_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/spaces/remove-member">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="users.get">
+  ```ts
+  await api.users.get({
+    userId: "us_usr_your_user_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/users/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="users.update">
+  ```ts
+  await api.users.update({
+    userId: "us_usr_your_user_id",
+    data: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/users/update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="users.delete">
+  ```ts
+  await api.users.delete({
+    userId: "us_usr_your_user_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/users/delete">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="users.list">
+  ```ts
+  await api.users.list({
+    filter: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/users/get-all">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="users.invite">
+  ```ts
+  await api.users.invite({
+    email: "user@example.com",
+    role: "member"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/users/invite">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="users.getApiKeys">
+  ```ts
+  await api.users.getApiKeys({
+    userId: "us_usr_your_user_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/users/get-api-keys">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="users.createApiKey">
+  ```ts
+  await api.users.createApiKey({
+    userId: "us_usr_your_user_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/users/create-api-key">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="users.revokeApiKey">
+  ```ts
+  await api.users.revokeApiKey({
+    keyId: "us_key_your_key_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/users/revoke-api-key">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="workbooks.create">
+  ```ts
+  await api.workbooks.create({
+    spaceId: "us_sp_your_space_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/workbooks/create">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="workbooks.get">
+  ```ts
+  await api.workbooks.get({
+    workbookId: "us_wb_your_workbook_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/workbooks/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="workbooks.update">
+  ```ts
+  await api.workbooks.update({
+    workbookId: "us_wb_your_workbook_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/workbooks/update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="workbooks.delete">
+  ```ts
+  await api.workbooks.delete({
+    workbookId: "us_wb_your_workbook_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/workbooks/delete">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="workbooks.list">
+  ```ts
+  await api.workbooks.list({
+    spaceId: "us_sp_your_space_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/workbooks/get-all">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="workbooks.configure">
+  ```ts
+  await api.workbooks.configure({
+    workbookId: "us_wb_your_workbook_id",
+    config: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/workbooks">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="workbooks.getSchema">
+  ```ts
+  await api.workbooks.getSchema({
+    workbookId: "us_wb_your_workbook_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/workbooks/get">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="workbooks.updateSchema">
+  ```ts
+  await api.workbooks.updateSchema({
+    workbookId: "us_wb_your_workbook_id",
+    schema: { ... }
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/workbooks/update">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+
+  <Accordion title="workbooks.commit">
+  ```ts
+  await api.workbooks.commit({
+    workbookId: "us_wb_your_workbook_id"
+  })
+  ```
+  <a href="https://reference.flatfile.com/api-reference/workbooks/get-workbook-commits">
+    \< API Reference \/>
+  </a>
+  </Accordion>
+</AccordionGroup>

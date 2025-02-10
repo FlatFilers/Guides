@@ -1,0 +1,181 @@
+---
+title: "Build Documents"
+description: "build pages in your sidebar with Documents"
+icon: "file-code"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+Documents are standalone webpages for your Flatfile
+
+<Tooltip tip="Are micro-applications...">
+  [Spaces](/learning-center/architecture/spaces)
+</Tooltip>
+. They can be rendered from
+<Tooltip tip="View syntax">
+  [Markdown syntax](https://www.markdownguide.org/basic-syntax/)
+</Tooltip>
+.
+
+Often used for getting started guides, Documents become extremely powerful with
+dynamically generated content that stays updated as Events occur.
+
+<Info>
+  Flatfile also allows you to use HTML tags in your Markdown-formatted text.
+  This is helpful if you prefer certain HTML tags rather than Markdown syntax.
+</Info>
+
+## Create a Document
+
+You can create Documents using the API:
+
+<Snippet file="guides/documents/create-document.mdx" />
+
+This Document will now appear in the sidebar of your Space.
+
+In this example, we create a Document when a file is uploaded, but you can also
+create Documents in response to any other Event.
+[Read more](/learning-center/concepts/events) about the different Events you can respond
+to.
+
+## Document Actions
+
+Actions are optional and allow you to run custom operations in response to a
+user-triggered event from within a Document.
+
+Define Actions on a Document using the `actions` parameter when a document is
+created:
+
+<Snippet file="guides/documents/document-actions.mdx" />
+
+Then configure your listener to handle this Action, and define what should
+happen in response. Read more about Actions and how to handle them
+[here](/learning-center/guides/actions#document-mounted).
+
+Actions appear as buttons in the top right corner of your Document:
+
+![Document actions](/images/actions/document_actions.png)
+
+## Document treatments
+
+Documents have an optional `treatments` parameter which takes an array of
+treatments for your Document. Treatments can be used to categorize your
+Document. Certain treatments will cause your Document to look or behave
+differently.
+
+### Ephemeral documents
+
+Giving your Document a treatment of `"ephemeral"` will cause the Document to
+appear as a full-screen takeover, and it will not appear in the sidebar of your
+Space like other Documents. You can use ephemeral Documents to create a more
+focused experience for your end users.
+
+```ts
+const ephemeralDoc = await api.documents.create(spaceId, {
+  title: "Getting started",
+  body: "# Welcome ...",
+  treatments: ["ephemeral"],
+});
+```
+
+<Info>
+  Currently, `"ephemeral"` is the only treatment that will change the behavior
+  of your Document. Other treatments will not affect how your Document behaves,
+  but can be used for your own purposes to categorize and describe your
+  Documents in code.
+</Info>
+
+## Adding Blocks to Documents
+
+Blocks are dynamic, embedded entities that you can use to display data inside a
+Document. You can add a Block to a Document using the `<embed>` HTML entity in
+your markdown and specifying which Block type you want to show using the `type`
+attribute on the entity. Two Block types are currently supported: Embedded Sheet
+and Embedded Diff.
+
+### Embedded Sheet
+
+Use this Block to render a Sheet along with all its data inside of a Document.
+You can embed a Sheet into your Document by passing a sheet ID, workbook ID, and
+name. You can also specify whether the embedded Sheet is expanded or collapsed
+when the document is loaded.
+
+<Info>
+  You can include as many embedded Sheets in your Document as you like, but end
+  users will only be able to expand a maximum of 10 embedded Sheets at once.
+</Info>
+
+```ts
+const doc = await api.documents.create(spaceId, {
+  title: "Getting started",
+  body:
+    "# Welcome\n" +
+    "\n" +
+    "Here is an embedded Sheet:\n" +
+    "\n" +
+    "<embed type='embedded-sheet' name='Contacts' defaultExpanded='true' sheetId='your_sheet_id' workbookId='your_workbook_id'>\n" +
+    "\n" +
+    "Here is another embedded Sheet:\n" +
+    "\n" +
+    "<embed type='embedded-sheet' name='Countries' sheetId='us_sh_TVW95224' workbookId='us_wb_8e0z52gI'>",
+});
+```
+
+### Embedded Diff
+
+Use this Block to show a side-by-side comparison of the data in a Sheet now
+versus at a previous point in time as captured by a Snapshot. Pass a Sheet ID,
+Workbook ID, and Snapshot ID. You can optionally pass a `direction` attribute
+which specified whether the changes are displayed with the Snapshot as the end
+state (`sheet_to_snapshot`) or the Sheet as the end state (`snapshot_to_sheet`).
+The default value for direction is `sheet_to_snapshot`.
+
+<Info>
+  Use `direction="sheet_to_snapshot"` if you want to show changes that have been
+  made since the time the Snapshot was taken, i.e. to review past changes. Use
+  `direction="snapshot_to_sheet"` if to preview the changes that would occur if
+  you were to revert your Sheet back to the state it was in when the Snapshot
+  was taken.
+</Info>
+
+```ts
+const doc = await api.documents.create(spaceId, {
+  title: 'Getting started',
+  body:
+    "# Welcome\n" +
+    "\n" +
+    "Here is an embedded Diff:\n" +
+    "\n" +
+    "<embed type='embedded-diff' sheetId='your_sheet_id' workbookId='your_workbook_id' snapshot_id='your_snapshot_id" direction="snapshot_to_sheet">"
+  ,
+})
+```
+
+---
+
+## Markdown reference
+
+Documents support Github-flavored Markdown. Check out
+[this guide](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+for a full reference on the entities you can use.
+
+## Example Project
+
+Find the documents example in the Flatfile GitHub repository.
+
+<CardGroup cols={2}>
+  <Card
+    title="typescript"
+    icon="code-merge"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/typescript/documents/index.ts"
+  >
+    Clone the documents example in Typescript
+  </Card>
+  <Card
+    title="javascript"
+    icon="js"
+    href="https://github.com/FlatFilers/flatfile-docs-kitchen-sink/blob/main/javascript/documents/index.js"
+  >
+    Clone the documents example in Javascript
+  </Card>
+</CardGroup>

@@ -1,7 +1,6 @@
 ---
-title: "Upgrade with @flatfile/configure"
+title: "Upgrade Via @flatfile/configure"
 description: "Upgrade to Platform using DXP Configure"
-icon: "circle-up"
 ---
 
 <Warning>
@@ -13,13 +12,25 @@ icon: "circle-up"
 
 ## Before you begin
 
-Before you get started, there are both some new and redesigned terms to learn. Check out our Portal 3 Upgrade Guide's [before you begin section](/upgrade/v3_upgrade#before-you-begin) to learn about these concepts.
+Before you get started, there are both some new and redesigned terms to learn.
+Check out our Portal 3 Upgrade Guide's
+[before you begin section](/upgrade/v3_upgrade#before-you-begin) to learn about
+these concepts.
 
 ## Using the plugin
 
-If you're using the [Portal 3 class-based syntax](https://flatfile.com/versioned-docs/3.0/guides/workbooks/) for creating your Workbooks, Sheets, etc., the `dxpConfigure` method lets you pass in those classes and create your new Platform setup without having to move away from the classes for now.
+If you're using the
+[Portal 3 class-based syntax](https://flatfile.com/versioned-docs/3.0/guides/workbooks/)
+for creating your Workbooks, Sheets, etc., the `dxpConfigure` method lets you
+pass in those classes and create your new Platform setup without having to move
+away from the classes for now.
 
-In the below example, there is a Workbook that is being created with the class-based syntax like `new Workbook()`, `new Sheet()` and `TextField()`. The new Platform has moved away from this syntax to an object-based approach. While you won't need to convert to this syntax, it is good to [learn about it here](/upgrade/v3_upgrade#fields-data-types-and-the-new-way-to-create-them) for any future use cases you might have.
+In the below example, there is a Workbook that is being created with the
+class-based syntax like `new Workbook()`, `new Sheet()` and `TextField()`. The
+new Platform has moved away from this syntax to an object-based approach. While
+you won't need to convert to this syntax, it is good to
+[learn about it here](/upgrade/v3_upgrade#fields-data-types-and-the-new-way-to-create-them)
+for any future use cases you might have.
 
 ```js my-dxp-workbook.js
 import { Sheet, TextField, Workbook } from "@flatfile/configure";
@@ -41,7 +52,9 @@ export const MyWorkbook = new Workbook({
 });
 ```
 
-With the `dxpConfigure` method, we can now plug this into a [Listener](/apps/custom/meet-the-listener) to create a new Workbook from the v3 class-based syntax.
+With the `dxpConfigure` method, we can now plug this into a
+[Listener](/learning-center/tutorials/projects/meet-the-listener) to create a new Workbook from the v3
+class-based syntax.
 
 ```js listener.js
 import { MyWorkbook } from "./my-dxp-workbook.js";

@@ -1,0 +1,912 @@
+---
+title: "Reuseable Spaces"
+description: "reuse a Space when Flatfile is opened"
+---
+
+For applications meant to use the same space consistently, open an existing
+space each time Flatfile is opened. This suits situations where consistently
+editing a dataset is preferred.
+
+## Before you begin
+
+If you have already tried our [Embed a New Space](./new_space) guide you will
+notice this guide departs heavily, so you will want to create this in a new
+directory, as translation would be more difficult than creating from scratch.
+
+<Snippet file="shared/sk_needed.mdx" />
+
+Make a new Directory.
+
+```bash
+mkdir example-flatfile-vuejs-embed
+```
+
+Go into that directory.
+
+```bash
+cd example-flatfile-vuejs-embed
+```
+
+Follow prompts from the `init` command.
+
+```bash
+npm init
+```
+
+Install Packages
+
+```bash
+npm i @flatfile/api @flatfile/listener @flatfile/plugin-record-hook @flatfile/vue dotenv ejs express vue && npm i --save-dev @types/express @types/node @vitejs/plugin-vue concurrently nodemon ts-node typescript vite vue-tsc
+```
+
+### Create your file structure
+
+The file structure of this application is fairly complex, as it requires a
+dedicated server and API. You can create an api endpoint externally if desired
+to keep your own application less complex, however this application is an
+all-in-one application server and api solution.
+
+In order to create this solution, create a file structure like the following:
+
+```text
+├── server/
+   ├── assetsRouter.ts
+   ├── homepageRouter.ts
+   └── index.ts
+├── src/
+   ├── components/
+       ├── ExistingSpace.vue
+       ├── Home.vue
+       └── NewSpace.vue <--- optional, requires listener.ts and config.ts
+   ├── listeners/
+       └── listener.ts <--- optional depending on if NewSpace.vue is included
+   ├── styles/
+       └── styles.css
+   ├── workbooks/
+       └── config.ts <--- optional depending on if NewSpace.vue is included
+   ├── App.vue
+   ├── main.ts
+   ├── shims-vue.d.ts <--- may be optional
+   └── vite-env.d.ts
+├── views/
+   └── index.html.ejs
+├── .env
+├── .gitignore
+├── nodemon.json
+├── package.json <--- already created
+├── package-lock.json <--- already created
+├── tsconfig.json
+└── vite.config.js
+```
+
+In this file structure, you will primarily work out of `/src` especially in
+`/src/components`. Many of thsese files are configuration files which are mostly
+set once and not touched again. So while there may be a lot, they won't be
+actively managed.
+
+### Update your .env
+
+Update your `.env`. `FLATFILE_API_KEY` is your Secret Key and `SPACE_ID` is the
+Space you want to open in the importer. This can be found on your Dashboard
+where it lists your Spaces. You may also want to include your `PUBLISHABLE_KEY`
+and `ENVIRONMENT_ID` if you want to have your app create new spaces as well.
+
+Note in the below example some of the variables are prefixed with `VITE_`. This
+is because Vite requires the prefix to access them at runtime. The
+`FLATFILE_API_KEY` should never be accessible from the browser for security
+reasons, and should not have this prefix.
+
+```bash
+# Required for creating new spaces
+VITE_PUBLISHABLE_KEY = "pk_12345"
+VITE_ENVIRONMENT_ID  = "us_env_12345"
+
+# Required for embedding existing spaces
+VITE_SPACE_ID        = "us_sp_12345"
+FLATFILE_API_KEY     = "sk_12345"
+```
+
+### Build your importer
+
+Before starting to build the application, it is important to note that there are
+a few moving parts, and it won't be able to start up between each update that is
+being made. This guide will endeavor to break out files into groups, so that
+after everything is updated as directed, the app should start up without errors.
+
+#### 1. Set up Configuration Files
+
+This app has several configuration files that must be set up before you can get
+started with development. Set them up as shown below.
+
+<CodeGroup>
+
+```JavaScript vite.config.js
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [vue()],
+    build: {
+      manifest: true,
+      rollupOptions: {
+        input: './src/main.ts',
+      },
+    },
+})
+```
+
+```JSON tsconfig.json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "module": "es6",
+    "target": "es2016",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2020"
+    ],
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.tsx",
+    "src/**/*.vue"
+  ],
+}
+```
+
+```JSON nodemon.json
+{
+  "watch": ["server"],
+  "ext": "ts,json",
+  "ignore": ["src/**/*.spec.ts"],
+  "exec": "ts-node ./server/index.ts"
+}
+```
+
+```gitignore .gitignore
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+.env
+```
+
+</CodeGroup>
+
+You will also want to add some scripts to your `package.json` to start the app.
+Add the following scripts:
+
+```JSON pacakge.json (snippet)
+"scripts": {
+  "dev:frontend": "vite",
+  "dev:backend": "nodemon",
+  "dev": "concurrently 'npx tsc --watch' 'npm:dev:frontend' 'npm:dev:backend'",
+  "start": "NODE_ENV=production ts-node server/index.ts",
+  "build": "vite build"
+},
+```
+
+Please note that these scripts include files that haven't been created yet.
+These will be created in the following steps.
+
+#### 2. Create the EJS HTML and Server
+
+This app has a home page to route the user to create a new space or embed an
+existing space. While the former choice is optional and not the focus of this
+guide (although instructions on how to include this function will be included),
+the files edited here set up functionality for embedding existing spaces, and as
+such is still necessary.
+
+This application utilizes ejs, which helps build dynamic html pages. This allows
+us to dynamically create both development and production environment outputs
+from one file. Set this up at `/views/index.html.ejs`
+
+This file wil not work before the server is functioning, but is required for the
+rest of the app to work.
+
+```EJS views/index.html.ejs
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svgxml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite  Vue</title>
+    <% if (environment === 'production') { %>
+      <link rel="stylesheet" href="<%= manifest['src/main.css'].file %>" />
+    <% } %>
+  </head>
+  <body>
+    <div id="app"></div>
+    <% if (environment === 'production') { %>
+      <script type="module" src="<%= manifest['src/main.ts'].file %>"></script>
+    <% } else { %>
+      <script type="module" src="http://localhost:5173/@vite/client"></script>
+      <script type="module" src="http://localhost:5173/src/main.ts"></script>
+    <% } %>
+  </body>
+</html>
+```
+
+Next lets create the server that will act as the backend of the application.
+This will be necessary to serve the pages as well as get the existing space, as
+due to security reasons the Secret Key cannot be exposed to the browser at any
+time.
+
+```TypeScript server/index.ts
+import dotenv from 'dotenv';
+import express from "express";
+import path from "path";
+import { FlatfileClient } from "@flatfile/api";
+
+dotenv.config();
+
+const port = process.env.PORT || 3000;
+const publicPath = path.join(path.resolve(), "public"); //If your project doesn't require a public path this may not be necessary
+const distPath = path.join(path.resolve(), "dist");
+
+app.get('/api/spaces/:id', async (_req, res)=>{
+  const {id} = _req.params;
+  const flatfile = new FlatfileClient({
+    token: process.env.FLATFILE_API_KEY,
+    environment: 'https://platform.flatfile.com/v1/',
+  });
+  try {
+    const space = await flatfile.spaces.get(id);
+    res.json({ space });
+  } catch (error) {
+    console.error("Error retrieving space:", error);
+    res.status(500).json({ error: "Failed to retrieve space" });
+  }
+})
+
+app.listen(port, () => {
+  console.log("Server listening on port", port);
+});
+```
+
+In addition to the `server/index.ts`, you will need to create two routers - One
+for the homepage and one for the assets. This is because the frontend runs on a
+different port than you'll be accessing the app from, so the app will need a bit
+of help resolving pathing.
+
+Create `server/homepageRouter.ts` and `server/assetsRouter.ts` as follows, then
+update `server/index.ts`.
+
+<CodeGroup>
+
+```TypeScript server/homepageRouter.ts
+import express from "express";
+import fs from 'fs/promises';
+import path from "path";
+
+const router = express.Router();
+const environment = process.env.NODE_ENV;
+
+router.get('/*', async (_req, res)=>{
+  const data = {
+    environment,
+    manifest: await parseManifest()
+  };
+
+  res.render('index.html.ejs', data);
+});
+
+const parseManifest = async () => {
+  if(environment !== "production") return {};
+
+  const manifestPath = path.join(path.resolve(), 'dist', "manifest.json");
+  const manifestFile = await fs.readFile(manifestPath, 'utf8');
+
+  return JSON.parse(manifestFile);
+}
+
+export default router;
+```
+
+```TypeScript server/assetsRouter.ts
+import express from "express";
+
+const router = express.Router();
+
+const supportedAssets = ["svg", "png", "jpg", "png", "jpeg", "mp4", "ogv"];
+
+const assetExtensionRegex = () => {
+  const formattedExtensionList = supportedAssets.join("|");
+
+  return new RegExp(`/.+\.(${formattedExtensionList})$`);
+};
+
+router.get(assetExtensionRegex(), (req, res) => {
+  res.redirect(303, `http://localhost:5173/src${req.path}`);
+});
+
+export default router;
+```
+
+```TypeScript server/index.ts
+import dotenv from 'dotenv';
+import express from "express";
+import path from "path";
+import assetsRouter from "./assetsRouter";
+import homepageRouter from './homepageRouter';
+
+import { FlatfileClient } from "@flatfile/api";
+
+dotenv.config();
+
+const port = process.env.PORT || 3000;
+const publicPath = path.join(path.resolve(), "public");
+const distPath = path.join(path.resolve(), "dist");
+
+const app = express();
+
+app.get('/api/spaces/:id', async (_req, res)=>{
+  const {id} = _req.params;
+  const flatfile = new FlatfileClient({
+    token: process.env.FLATFILE_API_KEY,
+    environment: 'https://platform.flatfile.com/v1/',
+  });
+  try {
+    const space = await flatfile.spaces.get(id);
+    res.json({ space });
+  } catch (error) {
+    console.error("Error retrieving space:", error);
+    res.status(500).json({ error: "Failed to retrieve space" });
+  }
+})
+
+if (process.env.NODE_ENV === "production") {
+  app.use("/", express.static(distPath));
+} else {
+  app.use("/", express.static(publicPath));
+  app.use("/src", assetsRouter);
+}
+
+app.use(homepageRouter);
+
+app.listen(port, () => {
+  console.log("Server listening on port", port);
+});
+```
+
+</CodeGroup>
+
+#### 3. Build the App Component
+
+Before building the components, you'll need to make a couple TypeScript
+Declaration files. This is so your IDE won't throw unnecessary errors at you
+during development.
+
+You'll need a `src/vite-env.d.ts` file and a `src/shims-vue.d.ts` file in order
+to sort your the declarations. Create them as follows:
+
+<CodeGroup>
+
+```TypeScript src/vite-env.d.ts
+/// <reference types="vite/client" />
+```
+
+```TypeScript src/shims-vue.d.ts
+declare module '*.vue';
+```
+
+</CodeGroup>
+
+Next you'll need a `src/main.ts` file to mount `src/App.vue` to your HTML.
+Create it and your App Component as shown below.
+
+<CodeGroup>
+
+```TSX src/App.vue
+<template>
+  <div class="main">
+    <h2>
+      <code>&lt;Flatfile /&gt;</code>
+    </h2>
+  </div>
+</template>
+```
+
+```TypeScript src/main.ts
+import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App).mount('#app')
+```
+
+</CodeGroup>
+
+#### 4. Build your Home & Existing Space Component
+
+This app is built around a Home component that is loaded first and lets you
+navigate the app. That component is fairly basic and should look like this:
+
+```TypeScript src/components/Home.vue
+<template>
+  <h3>Choose what you want to do!</h3>
+  <div class="button-container">
+    <a href="#/existing-space">Embed a Existing Space</a>
+  </div>
+</template>
+```
+
+Now you'll need to build the component that will get your space and return it to
+the browser.
+
+The component should end up looking something like this:
+
+```TypeScript src/components/ExistingSpace.vue
+
+<script lang="jsx">
+import { ref, onMounted, h, defineComponent } from 'vue';
+import { initializeFlatfile } from '@flatfile/vue';
+import { workbook } from "./config";
+import { listener } from './listener'
+
+export default defineComponent({
+  setup() {
+    const showSpace = ref(false);
+
+    const spaceProps = ref({
+      space: {
+        id: 'us_sp_1234',
+        accessToken: 'sk_1234',
+      },
+      closeSpace: {
+        operation: "submitActionFg",
+        onClose: () => {
+          showSpace.value = false;
+        },
+      },
+      themeConfig: {
+        root: {
+          primaryColor: "red",
+          textColor: "white",
+          logo: "https://images.ctfassets.net/hjneo4qi4goj/gL6Blz3kTPdZXWknuIDVx/7bb7c73d93b111ed542d2ed426b42fd5/flatfile.svg",
+        },
+      },
+      displayAsModal: true,
+    });
+
+
+    const { Space, OpenEmbed } = initializeFlatfile(spaceProps.value);
+
+    const toggleSpace = async () => {
+      showSpace.value = !showSpace.value;
+
+      OpenEmbed();
+    };
+
+    return {
+      toggleSpace,
+      showSpace,
+      Space
+    }
+  },
+  render(props, ctx) {
+    const Space = props.Space
+
+    return (
+      <div>
+        <div class="description">
+          <button onClick={props.toggleSpace}>{ props.showSpace ? 'Close' : 'Open' } space</button>
+        </div>
+
+        {props.showSpace && <div class="space-wrapper">
+          <Space />
+        </div>}
+      </div>
+    )
+  },
+});
+</script>
+
+```
+
+You'll need to update your `App.vue` to include the existing space component. It
+should end up looking like the example below:
+
+```TypeScript src/App.vue
+<template>
+  <div class="main">
+    <h2>
+      <code>&lt;Flatfile /&gt;</code>
+    </h2>
+    <p>Embed Flatfile in just a few lines of code.</p>
+    <nav class="navbar">
+      <a href="#/">Home</a>
+      <a href="#/existing-space">Embed a Existing Space</a>
+      <component :is="currentView" />
+    </nav>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import Home from './components/Home.vue'
+import ExistingSpace from './components/ExistingSpace.vue'
+
+const routes = {
+  '/': Home,
+  '/existing-space': ExistingSpace,
+}
+
+const currentPath = ref(window.location.hash);
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+});
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/'] || NotFound
+});
+
+</script>
+```
+
+It may be wise to set up your styles in `src/styles/styles.css`. These should
+end up looking like the example below:
+
+```CSS src/styles/styles.css
+/* Styles for home page */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: #090b2b;
+  color: #fff;
+}
+
+#app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* End of styles for home page */
+
+:root {
+  --ff-primary-color: #4c48ef !important;
+  --ff-secondary-color: #616a7d !important;
+  --ff-text-color: #090b2b !important;
+  --ff-dialog-border-radius: 4px !important;
+  --ff-border-radius: 5px !important;
+  --ff-bg-fade: rgba(0, 0, 0, 0.2) !important;
+}
+
+nav {
+}
+
+nav a {
+  color: white;
+  margin: 1em;
+}
+
+.button-container a {
+  border: rgb(101, 201, 101) 1px solid;
+  border-radius: 15px;
+  padding: 0.5em;
+  background-color: rgb(101, 201, 101);
+  text-decoration: none;
+  transition: 0.25s;
+}
+
+.button-container a:hover {
+  border: rgb(56, 139, 56) 1px solid;
+  border-radius: 15px;
+  padding: 0.5em;
+  background-color: rgb(56, 139, 56);
+  text-decoration: none;
+}
+
+.new-space-button-container {
+  margin-top: 1em;
+}
+
+/* The default mount element */
+/* #flatfile_iFrameContainer {
+} */
+
+/* A div around the iframe that contains Flatfile */
+/* .flatfile_iframe-wrapper {
+} */
+
+/* The actual iframe that contains Flatfile */
+/* #flatfile_iframe {
+} */
+
+.flatfile-close-button {
+  display: none !important;
+}
+
+/* Begin style overrides for when Flatfile is displayed as a modal */
+
+/* This class gets appended to the flatfile_iframe-wrapper div */
+.flatfile_displayAsModal {
+  padding: 50px !important;
+  width: calc(100% - 100px) !important;
+  height: calc(100vh - 100px) !important;
+}
+
+.flatfile_iframe-wrapper.flatfile_displayAsModal {
+  background: var(--ff-bg-fade) !important;
+}
+
+/* The close button in top right to close modal */
+.flatfile_displayAsModal .flatfile-close-button {
+  display: block !important;
+  margin: 20px !important;
+}
+
+/* The icon for the close button in top right to close modal */
+.flatfile_displayAsModal .flatfile-close-button svg {
+  fill: var(--ff-secondary-color) !important;
+}
+
+/* The actual iframe that contains Flatfile */
+.flatfile_displayAsModal #flatfile_iframe {
+  border-radius: var(--ff-border-radius);
+}
+
+/* Begin style overrides for when you cancel out of the Flatfile modal */
+
+/* The outer container of the modal that opens when you cancel out of Flatfile */
+.flatfile_outer-shell {
+  background-color: var(--ff-bg-fade) !important;
+  border-radius: var(--ff-border-radius) !important;
+}
+
+/* The inner container of the modal that opens when you cancel out of Flatfile */
+/* .flatfile_inner-shell {
+} */
+
+/* The white box inside the modal that opens when you cancel out of Flatfile */
+.flatfile_modal {
+  border-radius: var(--ff-dialog-border-radius) !important;
+}
+
+/* The container for the buttons you see in the close modal */
+/* .flatfile_button-group {
+} */
+
+/* Style the buttons you see in the close modal */
+/* .flatfile_button {
+} */
+
+/* The "yes, cancel" button you see in the close modal */
+.flatfile_primary {
+  border: 1px solid var(--ff-primary-color) !important;
+  background-color: var(--ff-primary-color) !important;
+  color: #fff;
+}
+
+/* The "no, stay" button you see in the close modal */
+.flatfile_secondary {
+  color: var(--ff-secondary-color) !important;
+}
+
+/* The heading text you see in the close modal */
+.flatfile_modal-heading {
+  color: var(--ff-text-color) !important;
+}
+
+/* The description text you see in the close modal */
+.flatfile_modal-text {
+  color: var(--ff-secondary-color) !important;
+}
+
+/* End style overrides for when you cancel out of the Flatfile modal */
+
+/* End style overrides for when Flatfile is displayed as a modal */
+
+/* The container of the error component */
+/* .ff_error_container {
+}*/
+
+/* The heading text you see in the error component */
+/* .ff_error_heading {
+}*/
+
+/* The description text you see in the error component */
+/* .ff_error_text {
+}*/
+
+```
+
+Remember to add `import './styles/styles.css'` to your `src/App.vue` with the
+other imports to apply the styles.
+
+#### 5. Optional - Build your New Space Component
+
+If you want to have a page to create new spaces, you can create a component to
+do that fairly easily. The vue code should look fairly similar to Existing
+Space, just with some different configuration settings. See below for the
+necessary changes.
+
+<CodeGroup>
+
+```TypeScript src/components/NewSpace.vue
+
+<script lang="jsx">
+import { ref, defineComponent } from 'vue';
+import { initializeFlatfile } from '@flatfile/vue';
+import { config as workbook } from "/src/workbooks/config";
+import { listener } from '/src/listeners/listener';
+
+
+export default defineComponent({
+  setup() {
+    const showSpace = ref(false);
+
+    const spaceProps = ref({
+      name: 'Vue Space',
+      publishableKey: 'pk_1234',
+      closeSpace: {
+        operation: 'submitActionFg',
+        onClose: () => { showSpace.value = false; },
+      },
+      workbook,
+      listener
+    });
+
+    const { Space, OpenEmbed } = initializeFlatfile(spaceProps.value);
+
+    const toggleSpace = () => {
+      showSpace.value = !showSpace.value;
+      OpenEmbed()
+    };
+
+    return {
+      toggleSpace,
+      showSpace,
+      Space
+    }
+  },
+  render(props, ctx) {
+    const Space = props.Space
+
+    return (
+      <div>
+        <div class="description">
+          <button onClick={props.toggleSpace}>{ props.showSpace ? 'Close' : 'Open' } space</button>
+        </div>
+
+        {props.showSpace && <div class="space-wrapper">
+          <Space />
+        </div>}
+      </div>
+    )
+  },
+});
+</script>
+```
+
+```TypeScript src/App.vue
+<template>
+  <div class="main">
+    <h2>
+      <code>&lt;Flatfile /&gt;</code>
+    </h2>
+    <p>Embed Flatfile in just a few lines of code.</p>
+    <nav class="navbar">
+      <a href="#/">Home</a>
+      <a href="#/new-space">Embed a New Space</a>
+      <a href="#/existing-space">Embed a Existing Space</a>
+      <component :is="currentView" />
+    </nav>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue'
+import Home from './components/Home.vue'
+import NewSpace from './components/NewSpace.vue'
+import ExistingSpace from './components/ExistingSpace.vue'
+import './styles/styles.css'
+
+const routes = {
+  '/': Home,
+  '/new-space': NewSpace,
+  '/existing-space': ExistingSpace,
+}
+
+const currentPath = ref(window.location.hash);
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+});
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/'] || NotFound
+});
+</script>
+```
+
+```TypeScript src/components/Home.vue
+<template>
+  <h3>Choose what you want to do!</h3>
+  <div class="button-container">
+    <a href="#/new-space">Embed a New Space</a>
+    <a href="#/existing-space">Embed a Existing Space</a>
+  </div>
+</template>
+```
+
+</CodeGroup>
+
+#### 6. Start your client
+
+Now you should be able to start your app. To load it in dev mode and ensure
+everything works proprly, run:
+
+```bash
+npm run dev
+```
+
+If you have any errors, now is your time to fix them, otherwise - you're ready
+to deploy!
+
+#### 7. Customize
+
+You can stop here or you can [view our full reference](../reference/common) to
+see all the ways you can customize your importer.
+
+## Example Project
+
+Find this Vue.js example project in the Flatfile GitHub repository.
+
+<CardGroup cols={1}>
+  <Card
+    title="create-flatfile-vuejs"
+    icon="vuejs"
+    href="https://github.com/FlatFilers/create-flatfile-vuejs/blob/main/src/components/ExistingSpace.vue"
+  >
+    Clone the Full Flatfile VueJs tutorial here.
+  </Card>
+</CardGroup>

@@ -6,28 +6,46 @@
 
 ![image](../changelog/images/estimatedTime_actions.png)
 
-When acknowledging a job from a Workbook or Sheet action, you now have the option to set the `estimatedCompletionAt` parameter. Setting the estimated time of completion for the job leads to more informative and interactive features in the UI.
+When acknowledging a job from a Workbook or Sheet action, you now have the
+option to set the `estimatedCompletionAt` parameter. Setting the estimated time
+of completion for the job leads to more informative and interactive features in
+the UI.
 
-1. In the Foreground Job overlay, you'll see real-time progress displayed as a percentage, along with an estimate of the remaining time.
+1. In the Foreground Job overlay, you'll see real-time progress displayed as a
+   percentage, along with an estimate of the remaining time.
 
-2. Additionally, the Jobs Panel will share visibility into the estimated remaining time for acknowledged jobs.
+2. Additionally, the Jobs Panel will share visibility into the estimated
+   remaining time for acknowledged jobs.
 
 [Learn more about using Actions](../guides/actions).
 
 ## files
 
-Previously, when uploading a file, actions could only be added to it after the file was uploaded (by calling a file update via a listener). Now, with our latest update, you can now include actions during file upload allowing actions to be applied to the file immediately upon creation.
+Previously, when uploading a file, actions could only be added to it after the
+file was uploaded (by calling a file update via a listener). Now, with our
+latest update, you can now include actions during file upload allowing actions
+to be applied to the file immediately upon creation.
 
-See the [API Reference](https://reference.flatfile.com/api-reference/files/upload-a-file).
+See the
+[API Reference](https://reference.flatfile.com/api-reference/files/upload-a-file).
 
 ## dataxp
 
-The find/replace operation is now able to handle large datasets. Now, records are batched into groups of 10,000 rows, and a unique versionId is assigned to each batch. Additionally, the workbook service will emit events for each batch processed.
+The find/replace operation is now able to handle large datasets. Now, records
+are batched into groups of 10,000 rows, and a unique versionId is assigned to
+each batch. Additionally, the workbook service will emit events for each batch
+processed.
 
-This improvement is particularly beneficial for @flatfile/plugin-record-hook, which can now retrieve and respond to all records in a single find/replace operation, thanks to the 10,000-row batching.
+This improvement is particularly beneficial for @flatfile/plugin-record-hook,
+which can now retrieve and respond to all records in a single find/replace
+operation, thanks to the 10,000-row batching.
 
 ## core
 
-When adding a secret to a space via the API, we have expanded the flexibility of secret names. While the API allows spaces within secret names, the UI previously restricted them by filtering spaces in the regex validation logic for Secret Names. With this update, space characters are now considered valid and accepted characters in secret names, aligning the behavior between the API and the UI.
+When adding a secret to a space via the API, we have expanded the flexibility of
+secret names. While the API allows spaces within secret names, the UI previously
+restricted them by filtering spaces in the regex validation logic for Secret
+Names. With this update, space characters are now considered valid and accepted
+characters in secret names, aligning the behavior between the API and the UI.
 
 Learn more about [sharing secrets](../guides/secrets).

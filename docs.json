@@ -1,0 +1,761 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple",
+  "name": "flatfile.com",
+  "colors": {
+    "primary": "#000",
+    "light": "#fff",
+    "dark": "#000"
+  },
+  "favicon": "/favicon.jpg",
+  "navigation": {
+    "versions": [
+      {
+        "version": "latest",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "Documentation",
+                "pages": ["overview"]
+              },
+              {
+                "group": "API",
+                "pages": [
+                  "documentation/api",
+                  {
+                    "group": "Authentication",
+                    "icon": "shield",
+                    "pages": [
+                      "documentation/authentication/authentication",
+                      "documentation/authentication/account-token",
+                      "documentation/authentication/roles-and-permissions"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Core Libraries",
+                "pages": [
+                  "documentation/core-libraries/listener",
+                  {
+                    "group": "CLI",
+                    "icon": "square-terminal",
+                    "pages": [
+                      "documentation/core-libraries/cli/develop",
+                      "documentation/core-libraries/cli/deploy"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Plugins",
+                "pages": ["documentation/plugins"]
+              },
+              {
+                "group": "SDKs",
+                "pages": [
+                  {
+                    "group": "React",
+                    "icon": "react",
+                    "pages": [
+                      "documentation/sdks/react/components",
+                      "documentation/sdks/react/legacy"
+                    ]
+                  },
+                  {
+                    "group": "Javascript",
+                    "icon": "js",
+                    "pages": [
+                      "documentation/sdks/javascript/new_space",
+                      "documentation/sdks/javascript/reuse_space"
+                    ]
+                  },
+                  {
+                    "group": "Vue.js",
+                    "icon": "vuejs",
+                    "pages": [
+                      "documentation/sdks/vue/new_space",
+                      "documentation/sdks/vue/reuse_space"
+                    ]
+                  },
+                  {
+                    "group": "Angular",
+                    "icon": "angular",
+                    "pages": [
+                      "documentation/sdks/angular/new_space",
+                      "documentation/sdks/angular/reuse_space"
+                    ]
+                  },
+                  {
+                    "group": "Reference",
+                    "icon": "asterisk",
+                    "pages": [
+                      "documentation/sdks/reference/simple",
+                      "documentation/sdks/reference/common",
+                      "documentation/sdks/reference/advanced"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Learning Center",
+            "groups": [
+              {
+                "group": "Core",
+                "pages": [
+                  "learning-center/architecture/about",
+                  {
+                    "group": "Architecture",
+                    "pages": [
+                      "learning-center/architecture/apps",
+                      "learning-center/architecture/environments",
+                      "learning-center/architecture/spaces",
+                      "learning-center/architecture/workbooks"
+                    ]
+                  },
+                  {
+                    "group": "Concepts",
+                    "pages": [
+                      "learning-center/concepts/actions",
+                      "learning-center/concepts/events",
+                      "learning-center/concepts/jobs",
+                      "learning-center/concepts/listeners",
+                      "learning-center/concepts/mapping"
+                    ]
+                  },
+                  {
+                    "group": "Blueprint",
+                    "pages": [
+                      "learning-center/blueprint/about",
+                      "learning-center/blueprint/sheet-options",
+                      "learning-center/blueprint/field-options",
+                      "learning-center/blueprint/field-types",
+                      "learning-center/blueprint/relationships",
+                      "learning-center/blueprint/constraints",
+                      "learning-center/blueprint/access"
+                    ]
+                  }
+                ]
+              },
+
+              {
+                "group": "Tutorials",
+                "pages": [
+                  "learning-center/tutorials/portal",
+                  {
+                    "group": "Projects",
+                    "pages": [
+                      "learning-center/tutorials/projects/getting-started",
+                      "learning-center/tutorials/projects/meet-the-listener",
+                      "learning-center/tutorials/projects/meet-the-workbook",
+                      "learning-center/tutorials/projects/add-data-transformation",
+                      "learning-center/tutorials/projects/submit-action",
+                      "learning-center/tutorials/projects/deploying"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Guides",
+                "pages": [
+                  "learning-center/guides/list",
+                  {
+                    "group": "By Feature",
+                    "pages": [
+                      "learning-center/guides/handling-data",
+                      "learning-center/guides/actions",
+                      "learning-center/guides/dynamic-configurations",
+                      "learning-center/guides/namespaces",
+                      "learning-center/guides/metadata",
+                      "learning-center/guides/egress",
+                      "learning-center/guides/theming"
+                    ]
+                  },
+                  {
+                    "group": "Advanced Topics",
+                    "pages": [
+                      "learning-center/guides/guest_sidebar",
+                      "learning-center/guides/documents",
+                      "learning-center/guides/secrets",
+                      "learning-center/guides/automap",
+                      "learning-center/guides/localization",
+                      "learning-center/guides/additional-fields",
+                      "learning-center/guides/flatfile_query_language",
+                      "learning-center/guides/data-retention",
+                      "learning-center/guides/multi-part_jobs",
+                      "learning-center/guides/ai"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Use Cases",
+                "pages": [
+                  "learning-center/use-cases/portal",
+                  "learning-center/use-cases/headless",
+                  "learning-center/use-cases/projects"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Upgrade",
+            "groups": [
+              {
+                "group": "Upgrade",
+                "pages": ["upgrade/overview"]
+              },
+              {
+                "group": "Portal Version 2",
+                "pages": [
+                  "upgrade/v2_upgrade",
+                  "upgrade/v2_upgrade_concepts",
+                  "upgrade/v2_repo"
+                ]
+              },
+              {
+                "group": "Portal Version 3",
+                "pages": [
+                  "upgrade/v3_upgrade",
+                  "upgrade/v3_dxp_configure",
+                  "upgrade/v3_repo"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Changelog",
+            "groups": [
+              {
+                "group": "API",
+                "pages": [
+                  "changelog/platform"
+                ]
+              },
+              {
+                "group": "Core Libraries",
+                "pages": [
+                  "changelog/sdks/core/listener",
+                  "changelog/sdks/core/cli"
+                ]
+              },
+              {
+                "group": "Plugins",
+                "pages": [
+                  "changelog/sdks/plugins/highlights"
+                ]
+              },
+              {
+                "group": "SDKs",
+                "pages": [
+                  "changelog/sdks",
+                  "changelog/sdks/wrappers/javascript",
+                  "changelog/sdks/wrappers/react",
+                  "changelog/sdks/wrappers/angular",
+                  "changelog/sdks/wrappers/vue"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "version": "v3",
+        "href": "https://flatfile.com/versioned-docs/3.0"
+      },
+      {
+        "version": "v2",
+        "href": "https://flatfile.com/versioned-docs/2.0"
+      }
+    ]
+  },
+  "styling": {
+    "codeblocks": "system"
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://flatfile.com"
+  },
+  "api": {
+    "mdx": {
+      "server": "https://platform.flatfile.com/api",
+      "auth": {
+        "method": "bearer"
+      }
+    }
+  },
+  "appearance": {
+    "default": "dark"
+  },
+  "background": {
+    "color": {
+      "light": "#fff",
+      "dark": "#000"
+    }
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Sign In",
+        "href": "https://platform.flatfile.com/oauth/dashboard"
+      },
+      {
+        "label": "Create Account",
+        "href": "https://flatfile.com/account/sign-up/"
+      },
+      {
+        "label": "Join Our Community",
+        "href": "https://flatfile.com/join-slack/"
+      }
+    ]
+  },
+  "search": {
+    "prompt": "Ask any question"
+  },
+  "footer": {
+    "socials": {
+      "website": "https://flatfile.com",
+      "github": "https://github.com/FlatFilers",
+      "slack": "https://flatfile.com/join-slack/"
+    }
+  },
+  "integrations": {
+    "gtm": {
+      "tagId": "GTM-W673X2W"
+    },
+    "intercom": {
+      "appId": "q8ccrv3f"
+    }
+  },
+  "redirects": [
+    {
+      "source": "/guides/upgrade/v2_upgrade",
+      "destination": "/upgrade/v2_upgrade"
+    },
+    {
+      "source": "/developer-tools/mapping-libraries/flatfile-mapping-python",
+      "destination": "https://pypi.org/project/flatfile-mapping/"
+    },
+    {
+      "source": "/plugins",
+      "destination": "https://flatfile.com/plugins/"
+    },
+    {
+      "source": "/plugins/extractors/xlsx-extractor",
+      "destination": "https://flatfile.com/plugins/xlsx-extractor"
+    },
+    {
+      "source": "/plugins/extractors/json-extractor",
+      "destination": "https://flatfile.com/plugins/plugin-json-extractor"
+    },
+    {
+      "source": "/plugins/extractors/xml-extractor",
+      "destination": "https://flatfile.com/plugins/plugin-xml-extractor"
+    },
+    {
+      "source": "/plugins/extractors/zip-extractor",
+      "destination": "https://flatfile.com/plugins/plugin-zip-extractor"
+    },
+    {
+      "source": "/plugins/extractors/delimiter-extractor",
+      "destination": "https://flatfile.com/plugins/plugin-delimiter-extractor"
+    },
+    {
+      "source": "/plugins/extractors/pdf-extractor",
+      "destination": "https://flatfile.com/plugins/plugin-pdf-extractor"
+    },
+    {
+      "source": "/plugins/transform/record-hook",
+      "destination": "https://flatfile.com/plugins/record-hook"
+    },
+    {
+      "source": "/plugins/transform/autocast",
+      "destination": "https://flatfile.com/plugins/plugin-autocast"
+    },
+    {
+      "source": "/plugins/transform/dedupe",
+      "destination": "https://flatfile.com/plugins/plugin-dedupe"
+    },
+    {
+      "source": "/plugins/automations/automap",
+      "destination": "https://flatfile.com/plugins/plugin-automap/"
+    },
+    {
+      "source": "/plugins/export/workbook",
+      "destination": "https://flatfile.com/plugins/plugin-export-workbook"
+    },
+    {
+      "source": "/plugins/export/webhook",
+      "destination": "https://flatfile.com/plugins/plugin-webhook-egress"
+    },
+    {
+      "source": "/plugins/schemas/convert-json-schema",
+      "destination": "https://flatfile.com/plugins/plugin-convert-json-schema"
+    },
+    {
+      "source": "/plugins/schemas/convert-yaml-schema",
+      "destination": "https://flatfile.com/plugins/plugin-convert-yaml-schema"
+    },
+    {
+      "source": "/plugins/schemas/convert-sql-ddl",
+      "destination": "https://flatfile.com/plugins/plugin-convert-sql-ddl"
+    },
+    {
+      "source": "/plugins/schemas/convert-openapi",
+      "destination": "https://flatfile.com/plugins/plugin-convert-openapi-schema"
+    },
+    {
+      "source": "/plugins/migrations/dxp-configure",
+      "destination": "https://flatfile.com/plugins/plugin-dxp-configure"
+    },
+    {
+      "source": "/plugins/core/job-handler",
+      "destination": "https://flatfile.com/plugins/plugin-job-handler"
+    },
+    {
+      "source": "/plugins/core/space-configure",
+      "destination": "https://flatfile.com/plugins/plugin-space-configure"
+    },
+    {
+      "source": "/plugins/utils/extractor",
+      "destination": "https://flatfile.com/plugins/util-extractor"
+    },
+    {
+      "source": "/plugins/utils/file-buffer",
+      "destination": "https://flatfile.com/plugins/util-file-buffer"
+    },
+    {
+      "source": "/plugins/utils/response-rejection",
+      "destination": "https://flatfile.com/plugins/util-response-rejection"
+    },
+    {
+      "source": "/orchestration/actions",
+      "destination": "/learning-center/concepts/actions"
+  },
+  {
+      "source": "/orchestration/events",
+      "destination": "/learning-center/concepts/events"
+  },
+  {
+      "source": "/orchestration/jobs",
+      "destination": "/learning-center/concepts/jobs"
+  },
+  {
+      "source": "/orchestration/listeners",
+      "destination": "/learning-center/concepts/listeners"
+  },
+  {
+      "source": "/developer-tools/ci-integration",
+      "destination": "/developer-tools/overview"
+  },
+  {
+      "source": "/developer-tools/core-libraries/api-python",
+      "destination": "/developer-tools/core-libraries/api"
+  },
+  {
+      "source": "/developer-tools/developing/check-for-agents",
+      "destination": "/documentation/core-libraries/cli/deploy"
+  },
+  {
+      "source": "/developer-tools/developing/running-local",
+      "destination": "/documentation/core-libraries/cli/develop"
+  },
+  {
+      "source": "/developer-tools/core-libraries/api-go",
+      "destination": "/developer-tools/core-libraries/api"
+  },
+  {
+      "source": "/developer-tools/core-libraries/api-java",
+      "destination": "/developer-tools/core-libraries/api"
+  },
+  {
+      "source": "/developer-tools/core-libraries/api",
+      "destination": "/documentation/api"
+  },
+  {
+      "source": "/developer-tools/core-libraries/flatfile",
+      "destination": "/documentation/core-libraries/toolkit"
+  },
+  {
+      "source": "/developer-tools/core-libraries/listener",
+      "destination": "/documentation/core-libraries/listener"
+  },
+  {
+      "source": "/developer-tools/core-libraries/wrappers/angular",
+      "destination": "/documentation/sdks/angular/new_space"
+  },
+  {
+      "source": "/developer-tools/core-libraries/wrappers/react",
+      "destination": "/documentation/sdks/react/components"
+  },
+  {
+      "source": "/developer-tools/core-libraries/wrappers/vanilla",
+      "destination": "/documentation/sdks/javascript/new_space"
+  },
+  {
+      "source": "/developer-tools/core-libraries/wrappers/vuejs",
+      "destination": "/documentation/sdks/vue/new_space"
+  },
+  {
+      "source": "/developer-tools/deploying",
+      "destination": "/documentation/core-libraries/cli/deploy"
+  },
+  {
+      "source": "/developer-tools/environment",
+      "destination": "/learning-center/architecture/environments"
+  },
+  {
+      "source": "/developer-tools/overview",
+      "destination": "/learning-center/overview"
+  },
+  {
+      "source": "/developer-tools/security/account-token",
+      "destination": "/documentation/authentication/account-token"
+  },
+  {
+      "source": "/developer-tools/security/authentication",
+      "destination": "/documentation/authentication/authentication"
+  },
+  {
+      "source": "/developer-tools/security/roles-and-permissions",
+      "destination": "/documentation/authentication/roles-and-permissions"
+  },
+  {
+      "source": "/developer-tools/spaces",
+      "destination": "/learning-center/architecture/spaces"
+  },
+  {
+      "source": "/developer-tools/versioning",
+      "destination": "/reference/versioning"
+  },
+  {
+      "source": "/concepts/jobs",
+      "destination": "/learning-center/concepts/jobs"
+  },
+  {
+      "source": "/data-experience/overview",
+      "destination": "/learning-center/overview"
+  },
+  {
+    "source": "/guides/handling-data",
+    "destination": "/learning-center/guides/handling-data"
+  },
+  {
+    "source": "/guides/actions",
+    "destination": "/learning-center/guides/actions"
+  },
+  {
+    "source": "/guides/dynamic-configurations",
+    "destination": "/learning-center/guides/dynamic-configurations"
+  },
+  {
+    "source": "/guides/namespaces",
+    "destination": "/learning-center/guides/namespaces"
+  },
+  {
+    "source": "/guides/metadata",
+    "destination": "/learning-center/guides/metadata"
+  },
+  {
+    "source": "/guides/egress",
+    "destination": "/learning-center/guides/egress"
+  },
+  {
+    "source": "/guides/theming",
+    "destination": "/learning-center/guides/theming"
+  },
+  {
+    "source": "/guides/guest_sidebar",
+    "destination": "/learning-center/guides/guest_sidebar"
+  },
+  {
+    "source": "/guides/documents",
+    "destination": "/learning-center/guides/documents"
+  },
+  {
+    "source": "/guides/secrets",
+    "destination": "/learning-center/guides/secrets"
+  },
+  {
+    "source": "/guides/automap",
+    "destination": "/learning-center/guides/automap"
+  },
+  {
+    "source": "/guides/localization",
+    "destination": "/learning-center/guides/localization"
+  },
+  {
+    "source": "/guides/additional-fields",
+    "destination": "/learning-center/guides/additional-fields"
+  },
+  {
+    "source": "/guides/flatfile_query_language",
+    "destination": "/learning-center/guides/flatfile_query_language"
+  },
+  {
+    "source": "/guides/data-retention",
+    "destination": "/learning-center/guides/data-retention"
+  },
+  {
+    "source": "/guides/api",
+    "destination": "/documentation/api"
+  },
+  {
+    "source": "/guides/multi-part_jobs",
+    "destination": "/learning-center/guides/multi-part_jobs"
+  },
+  {
+    "source": "/guides/ai",
+    "destination": "/learning-center/guides/ai"
+  },
+  {
+    "source": "/guides/bubble-io",
+    "destination": "/learning-center/guides/bubble-io"
+  },
+  {
+    "source": "/blueprint/overview",
+    "destination": "/learning-center/blueprint/about"
+  },
+  {
+    "source": "/blueprint/sheet-options",
+    "destination": "/learning-center/blueprint/sheet-options"
+  },
+  {
+    "source": "/blueprint/field-options",
+    "destination": "/learning-center/blueprint/field-options"
+  },
+  {
+    "source": "/blueprint/field-types",
+    "destination": "/learning-center/blueprint/field-types"
+  },
+  {
+    "source": "/blueprint/relationships",
+    "destination": "/learning-center/blueprint/relationships"
+  },
+  {
+    "source": "/blueprint/constraints",
+    "destination": "/learning-center/blueprint/constraints"
+  },
+  {
+    "source": "/blueprint/access",
+    "destination": "/learning-center/blueprint/access"
+  },
+  {
+    "source": "/apps/embedding/overview",
+    "destination": "/learning-center/tutorials/projects"
+  },
+  {
+    "source": "/apps/embedding/javascript/guide",
+    "destination": "/learning-center/tutorials/portal"
+  },
+  {
+    "source": "/apps/embedding/javascript/new_space_quickstart",
+    "destination": "/documentation/sdks/javascript/new_space_quickstart"
+  },
+  {
+    "source": "/apps/embedding/javascript/new_space",
+    "destination": "/documentation/sdks/javascript/new_space"
+  },
+  {
+    "source": "/apps/embedding/javascript/reuse_space",
+    "destination": "/documentation/sdks/javascript/reuse_space"
+  },
+  {
+    "source": "/apps/embedding/react/guide",
+    "destination": "/learning-center/tutorials/portal"
+  },
+  {
+    "source": "/apps/embedding/react/new_space_quickstart",
+    "destination": "/documentation/sdks/react/new_space_quickstart"
+  },
+  {
+    "source": "/apps/embedding/react/components",
+    "destination": "/documentation/sdks/react/components"
+  },
+  {
+    "source": "/apps/embedding/react/legacy",
+    "destination": "/documentation/sdks/react/legacy"
+  },
+  {
+    "source": "/apps/embedding/vue/guide",
+    "destination": "/learning-center/tutorials/portal"
+  },
+  {
+    "source": "/apps/embedding/vue/new_space",
+    "destination": "/documentation/sdks/vue/new_space"
+  },
+  {
+    "source": "/apps/embedding/vue/reuse_space",
+    "destination": "/documentation/sdks/vue/reuse_space"
+  },
+  {
+    "source": "/apps/embedding/angular/guide",
+    "destination": "/learning-center/tutorials/portal"
+  },
+  {
+    "source": "/apps/embedding/angular/new_space_quickstart",
+    "destination": "/documentation/sdks/angular/new_space_quickstart"
+  },
+  {
+    "source": "/apps/embedding/angular/new_space",
+    "destination": "/documentation/sdks/angular/new_space"
+  },
+  {
+    "source": "/apps/embedding/angular/reuse_space",
+    "destination": "/documentation/sdks/angular/reuse_space"
+  },
+  {
+    "source": "/apps/embedding/reference/simple",
+    "destination": "/documentation/sdks/reference/simple"
+  },
+  {
+    "source": "/apps/embedding/reference/common",
+    "destination": "/documentation/sdks/reference/common"
+  },
+  {
+    "source": "/apps/embedding/reference/advanced",
+    "destination": "/documentation/sdks/reference/advanced"
+  },
+  {
+    "source": "/apps/projects/overview",
+    "destination": "/learning-center/tutorials/projects/getting-started"
+  },
+  {
+    "source": "/apps/workbooks",
+    "destination": "/learning-center/architecture/workbooks"
+  },
+  {
+    "source": "/apps/custom/tutorial-landing",
+    "destination": "/learning-center/tutorials/projects/getting-started"
+  },
+  {
+    "source": "/apps/custom/meet-the-listener",
+    "destination": "/learning-center/tutorials/projects/meet-the-listener"  
+  },
+  {
+    "source": "/apps/custom/meet-the-workbook",
+    "destination": "/learning-center/tutorials/projects/meet-the-workbook"
+  },
+  {
+    "source": "/apps/custom/add-data-transformation",
+    "destination": "/learning-center/tutorials/projects/add-data-transformation"
+  },
+  {
+    "source": "/apps/custom/submit-action",
+    "destination": "/learning-center/tutorials/projects/submit-action"
+  },
+  {
+    "source": "/apps/custom/deploying",
+    "destination": "/learning-center/tutorials/projects/deploying"
+  },
+  {
+    "source": "/starter-projects",
+    "destination": "/learning-center/tutorials/starter-projects"
+  }
+  ]
+}

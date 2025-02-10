@@ -1,0 +1,26 @@
+---
+title: Space Component Overview
+---
+
+# Space Component Overview
+
+The `Space` component within the `@flatfile/react` package is used to define a
+workspace in Flatfile's import system. It encapsulates `Workbook` components and
+provides a context for the entire import process.
+
+## Main Props
+
+- `config`: Sets up the configuration for a new space, including theming and
+  metadata.
+- `id`: An optional prop that, when provided, indicates the specific existing
+  space to be reused instead of creating a new one.
+- `children`: React nodes for nested components, typically `Workbook`, `Sheet`,
+  or `Document` components.
+
+Example usage:
+
+```tsx
+<Space config={spaceConfig}>
+  <Workbook config={workbookConfig} />
+</Space>
+```

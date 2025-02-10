@@ -1,0 +1,65 @@
+---
+title: "Roles & Permissions"
+description: "grant your team and customers access"
+icon: "user"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+## Administrator Roles
+
+Administrator roles have full access to your accounts, including inviting
+additional admins and seeing developer keys.
+
+<Note>
+  The `accessToken` provided will remain valid for a duration of 24 hours.
+</Note>
+
+| Role          | Details                                                                                                                                                                                                |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Administrator | This role is meant for any member of your team who requires full access to the Account.<br/> <br/>&#x2713; Can add other administrators <br/>&#x2713; Can view secret keys <br/>&#x2713; Can view logs |
+
+## Guest Roles
+
+Guest roles receive access via a magic link or a shared link depending on the
+[Environment](https://platform.flatfile.com/dashboard) `guestAuthentication`
+type. Guests roles can invite other Guests unless you turn off this setting in
+the [Guest Sidebar](/learning-center/guides/guest_sidebar).
+
+<Note>
+  The `accessToken` provided will remain valid for a duration of 1 hour.
+</Note>
+
+### Space Grant
+
+| Role                    | Details                                                                                                                                                        |
+| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Single-Space&nbsp;Guest | This role is meant for a guest who has access to only one Space. Such guests can be invited to additional Spaces at any time.                                  |
+| Multi-Space&nbsp;Guest  | This role is meant for a guest who has access to multiple Spaces. They will see a drop-down next to the Space name that enables them to switch between Spaces. |
+
+### Workbook Grant
+
+| Role                       | Details                                                                                    |
+| -------------------------- | ------------------------------------------------------------------------------------------ |
+| Single-Workbook&nbsp;Guest | This role is meant for a guest who should have access to only one Workbook within a Space. |
+| Multi-Workbook&nbsp;Guest  | This role is intended for a guest who has access to multiple Workbooks within a Space.     |
+
+<Info>This role can only be configured using code. See code example.</Info>
+
+```js
+const createGuest = await api.guests.create({
+  environmentId: "us_env_hVXkXs0b",
+  email: "guest@example.com",
+  name: "Mr. Guest",
+  spaces: [
+    {
+      id: "us_sp_DrdXetPN",
+      workbooks: [
+        {
+          id: "us_wb_qGZbKwDW",
+        },
+      ],
+    },
+  ],
+});
+```

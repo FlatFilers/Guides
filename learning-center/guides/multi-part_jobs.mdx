@@ -1,0 +1,43 @@
+---
+title: "Multi-Part Jobs"
+description: "split up Jobs into Parts"
+icon: "puzzle"
+---
+
+## What the hell is a Job Part?
+
+A Job can be split up into multiple parts depending on the intended
+functionality. This can help spread out large data sets or long tasks across
+many separate listeners. When a job is split up into parts, the original part is
+considered the "parent" part and it's children are considered "parts". Each Part
+is considered it's own separate Job and has the full ecosystem of events
+attached to it. When all Job Parts have been completed, a new event
+`job:parts-completed` is emitted, so that you can listen for that event to
+complete the Parent Job. This event has a payload that has summary statistics
+about the parts.
+
+```json
+{
+  "payload": {
+    "parts": {
+      "total": 10,
+      "completed": 10,
+      "failed": 0,
+      "canceled": 0
+    }
+  }
+}
+```
+
+By inspecting this payload, you can determine if the all have completed
+successfully or not. Based on that information, you are expected to complete or
+fail the parent Job.
+
+Here's an example of a listener that creates parts and waits for the
+`job:parts-completed` event:
+
+<Snippet file="guides/multi-part_jobs/job_parent.mdx" />
+
+Here's an example of a listener that does logic on each Part:
+
+<Snippet file="guides/multi-part_jobs/job_part.mdx" />

@@ -1,7 +1,6 @@
 ---
 title: "Portal 2 <-> Platform Concepts"
 description: "Key terms and concepts for your upgrade"
-icon: "book-open"
 ---
 
 ## Overview
@@ -14,11 +13,23 @@ icon: "book-open"
   that uses the shim to cut down your time to upgrade.
 </Note>
 
-As you transition from Portal 2.0 to Platform, you'll come across many familiar elements that resemble what you've known. However, there might be instances where certain components are no longer present, have been rearranged, or sport a fresh appearance. To ensure a seamless transition, this guide is designed to teach you those differences and how to convert. It will highlight both the similarities and differences between the two versions, enabling you to switch over with minimal effort. Want to see what it might look like to upgrade? Check out our [upgrade repository here](https://github.com/FlatFilers/Upgrade-Portal) to compare the beginning and end of upgrading.
+As you transition from Portal 2.0 to Platform, you'll come across many familiar
+elements that resemble what you've known. However, there might be instances
+where certain components are no longer present, have been rearranged, or sport a
+fresh appearance. To ensure a seamless transition, this guide is designed to
+teach you those differences and how to convert. It will highlight both the
+similarities and differences between the two versions, enabling you to switch
+over with minimal effort. Want to see what it might look like to upgrade? Check
+out our [upgrade repository here](https://github.com/FlatFilers/Upgrade-Portal)
+to compare the beginning and end of upgrading.
 
 ## A comparison
 
-Explore this illustrative diagram that lays out the distinctions between the two products. While Platform introduces a range of additional and novel concepts compared to Portal, rest assured, you're not obligated to embrace every new element to transition your existing importer to Platform. Flexibility remains key in making the switch.
+Explore this illustrative diagram that lays out the distinctions between the two
+products. While Platform introduces a range of additional and novel concepts
+compared to Portal, rest assured, you're not obligated to embrace every new
+element to transition your existing importer to Platform. Flexibility remains
+key in making the switch.
 
 ### Review V2 Portal
 
@@ -34,23 +45,36 @@ Explore this illustrative diagram that lays out the distinctions between the two
 
 #### Meet the Environment
 
-In Portal, setting `devMode: true` flagged imports as “dev” imports, but in Platform, there are true Environments.
+In Portal, setting `devMode: true` flagged imports as “dev” imports, but in
+Platform, there are true Environments.
 
-You can have many custom Environments, but upon signup, you will have a Development, Production, and Demo Environment configured.
+You can have many custom Environments, but upon signup, you will have a
+Development, Production, and Demo Environment configured.
 
-All of the other entities (like Spaces, Workbooks, and Sheets) will live in those Environments.
+All of the other entities (like Spaces, Workbooks, and Sheets) will live in
+those Environments.
 
 #### Meet the Space
 
-A Space and its UI constitute the new data importer that has replaced Portal. The Space is what holds all the Files and Workbooks that are needed to import data. You can learn more about Spaces and all that they do in our [Spaces documentation](/developer-tools/spaces).
+A Space and its UI constitute the new data importer that has replaced Portal.
+The Space is what holds all the Files and Workbooks that are needed to import
+data. You can learn more about Spaces and all that they do in our
+[Spaces documentation](/learning-center/architecture/spaces).
 
 #### Meet the Workbook
 
-For Platform, it's a good idea to get to know the [concept of a Workbook](/apps/custom/meet-the-workbook). When you're upgrading, you can think of a Workbook as the place where your import data hangs out.
+For Platform, it's a good idea to get to know the
+[concept of a Workbook](/learning-center/architecture/workbooks). When you're upgrading,
+you can think of a Workbook as the place where your import data hangs out.
 
-Unlike Portal, where all the editing and fixing of data happens right in the browser, Platform also has an option to perform these actions on the server side. The data gets saved in one or more Workbooks as you go along.
+Unlike Portal, where all the editing and fixing of data happens right in the
+browser, Platform also has an option to perform these actions on the server
+side. The data gets saved in one or more Workbooks as you go along.
 
-Inside these Workbooks, you'll find one or more Sheets, which are similar to schemas in Portal. Other than some basic names and settings, the sheet has something called a "fields array," which is pretty similar to what you know from Portal.
+Inside these Workbooks, you'll find one or more Sheets, which are similar to
+schemas in Portal. Other than some basic names and settings, the sheet has
+something called a "fields array," which is pretty similar to what you know from
+Portal.
 
 <Note>
   Keep in mind that if you had multiple importers to handle different data sets
@@ -62,7 +86,14 @@ Inside these Workbooks, you'll find one or more Sheets, which are similar to sch
 
 #### Meet the Blueprint
 
-Back in Portal, when you received diverse data from the same users and wished to merge it afterward, you had to establish distinct Portal configurations and display the appropriate one for each file. However, leveraging Blueprints offers a more streamlined approach. You can employ a collection of Sheets (akin to the schemas you constructed in Portal) within a Workbook. This simplifies the process of centralizing all your data structures and collating the information cohesively. The added advantage is that you're no longer burdened with managing multiple uploads from various schemas.
+Back in Portal, when you received diverse data from the same users and wished to
+merge it afterward, you had to establish distinct Portal configurations and
+display the appropriate one for each file. However, leveraging Blueprints offers
+a more streamlined approach. You can employ a collection of Sheets (akin to the
+schemas you constructed in Portal) within a Workbook. This simplifies the
+process of centralizing all your data structures and collating the information
+cohesively. The added advantage is that you're no longer burdened with managing
+multiple uploads from various schemas.
 
 ```json Blueprint Example
 {
@@ -118,11 +149,15 @@ Back in Portal, when you received diverse data from the same users and wished to
 
 ## Upgrade your importer
 
-Now we will do a side-by-side look at how we will go about upgrading your importer. This guide will show some simple snippets that will compare the different parts and how they are converted. You can follow along with the full example in our [Upgrade Repo](https://github.com/FlatFilers/Upgrade-Portal).
+Now we will do a side-by-side look at how we will go about upgrading your
+importer. This guide will show some simple snippets that will compare the
+different parts and how they are converted. You can follow along with the full
+example in our [Upgrade Repo](https://github.com/FlatFilers/Upgrade-Portal).
 
 ### 1. Update your Flatfile button
 
-The skeleton of your application should remain mostly the same. You'll see here that we can use the same updated UI element when integrating Platform.
+The skeleton of your application should remain mostly the same. You'll see here
+that we can use the same updated UI element when integrating Platform.
 
 <CodeGroup>
 
@@ -201,21 +236,36 @@ The skeleton of your application should remain mostly the same. You'll see here 
 
 ### 3. Build a Workbook
 
-This is where you will convert your Schema(s) into a Workbook. This is the point where you can combine multiple importers into one by having multiple Sheets on the Workbook. Your end users would then be able to select which data model they are uploading into during the import process.
+This is where you will convert your Schema(s) into a Workbook. This is the point
+where you can combine multiple importers into one by having multiple Sheets on
+the Workbook. Your end users would then be able to select which data model they
+are uploading into during the import process.
 
 #### Compare and contrast
 
-The workbook consists of three crucial components: the `name` and the `sheets` properties.
+The workbook consists of three crucial components: the `name` and the `sheets`
+properties.
 
-Sheets will share many properties with those found in the Portal schema. You'll encounter a `name` property (akin to the `type` property in a Portal schema) and `fields` (which closely resembles your Portal `fields` array).
+Sheets will share many properties with those found in the Portal schema. You'll
+encounter a `name` property (akin to the `type` property in a Portal schema) and
+`fields` (which closely resembles your Portal `fields` array).
 
-When it comes to the `fields` array, you'll find quite a few familiar elements like `key`, `label`, and `description`, which all transition directly from Portal.
+When it comes to the `fields` array, you'll find quite a few familiar elements
+like `key`, `label`, and `description`, which all transition directly from
+Portal.
 
 #### About field types
 
-Let's delve deeper into the Portal and Platform `type` property for fields. When you don't specify this field, both Portal and Platform will assume a default `string` type. In Portal, the `type: "checkbox"` is now `"type": "boolean"`, and the `type: "select"` is now `"type": "enum"` in Platform.
+Let's delve deeper into the Portal and Platform `type` property for fields. When
+you don't specify this field, both Portal and Platform will assume a default
+`string` type. In Portal, the `type: "checkbox"` is now `"type": "boolean"`, and
+the `type: "select"` is now `"type": "enum"` in Platform.
 
-Furthermore, keep in mind that while Portal only had three types, Platform has broadened its range to include `number`, `date`, and `reference` types. To get more details about these new field types, you can check out our [documentation](/blueprint/field-types). Also, we've prepared a handy reference table below, outlining all the new types and how they were handled in Portal.
+Furthermore, keep in mind that while Portal only had three types, Platform has
+broadened its range to include `number`, `date`, and `reference` types. To get
+more details about these new field types, you can check out our
+[documentation](/learning-center/blueprint/field-types). Also, we've prepared a handy reference
+table below, outlining all the new types and how they were handled in Portal.
 
 | Portal Type | Platform Type |
 | ----------- | ------------- |
@@ -270,9 +320,17 @@ Furthermore, keep in mind that while Portal only had three types, Platform has b
 
 #### Set up validations
 
-The final aspect of converting your Portal fields into Platform fields will be to handle the `validators` from Portal. While Portal offered many different kinds of validators, only two have been converted in the fields themselves, and those are `required` and `unique`. All other validations can still be handled, but are now handled in code instead of a setting. Check out the [other validators section](#other-validators) for examples.
+The final aspect of converting your Portal fields into Platform fields will be
+to handle the `validators` from Portal. While Portal offered many different
+kinds of validators, only two have been converted in the fields themselves, and
+those are `required` and `unique`. All other validations can still be handled,
+but are now handled in code instead of a setting. Check out the
+[other validators section](#other-validators) for examples.
 
-The `validators` property will now be called `constraints` which is still an array of objects. The object for each validator has traded in the `validate` property for a `type` property, but the `unique` and `required` values remain the same.
+The `validators` property will now be called `constraints` which is still an
+array of objects. The object for each validator has traded in the `validate`
+property for a `type` property, but the `unique` and `required` values remain
+the same.
 
 <CodeGroup>
 
@@ -444,7 +502,12 @@ The `validators` property will now be called `constraints` which is still an arr
 
 ### 4. Transform Data
 
-Coming from Portal, you are likely familiar with the concept of Data Hooks. The same sort of functionality can be obtained in Platform, but they have moved into Listeners and use plugins like the [record hook plugin](https://flatfile.com/plugins/plugin-record-hook). You can read more about [Listeners here](/apps/custom/meet-the-listener) and more about all of our [Plugins here](https://flatfile.com/plugins/).
+Coming from Portal, you are likely familiar with the concept of Data Hooks. The
+same sort of functionality can be obtained in Platform, but they have moved into
+Listeners and use plugins like the
+[record hook plugin](https://flatfile.com/plugins/plugin-record-hook). You can
+read more about [Listeners here](/learning-center/tutorials/projects/meet-the-listener) and more about
+all of our [Plugins here](https://flatfile.com/plugins/).
 
 <CodeGroup>
     ```js Start-Portal-2/src/index.js
@@ -612,7 +675,9 @@ Coming from Portal, you are likely familiar with the concept of Data Hooks. The 
 
 #### Other Validators
 
-In the [set up validations](#set-up-validations) section above, we talked about converting the `required` and `unique` validators, but validators like `regex` or `required_with` are now handled in code in a Listener.
+In the [set up validations](#set-up-validations) section above, we talked about
+converting the `required` and `unique` validators, but validators like `regex`
+or `required_with` are now handled in code in a Listener.
 
 _Regex Validation Example:_
 
@@ -679,11 +744,17 @@ _`required_with` Validation Example:_
 
 ### 5. Match your brand
 
-Custom theming in Portal was a crucial part of making the importer like a part of your application. Platform also has custom theming that you can use to do the same. Check out our [theming guide](/guides/theming) to see what all is configurable in Platform.
+Custom theming in Portal was a crucial part of making the importer like a part
+of your application. Platform also has custom theming that you can use to do the
+same. Check out our [theming guide](/learning-center/guides/theming) to see what all is
+configurable in Platform.
 
 ### 6. Set the destination
 
-In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR- use the returned data within the Promise to do whatever needed to be done with your data. With Platform, we use the Listeners to wait for the submit action to happen and then act on it.
+In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR-
+use the returned data within the Promise to do whatever needed to be done with
+your data. With Platform, we use the Listeners to wait for the submit action to
+happen and then act on it.
 
 <CodeGroup>
     ```js Start-Portal-2/src/index.js
@@ -731,23 +802,26 @@ In Portal, you were able to specify a webhook endpoint using `webhookUrl` -OR- u
 
 ### 7. Customize
 
-While everything above gives you all sort of great information about how your Portal implementation will convert to Platform, it's just the beginning of all the amazing new things you can do with the Platform. Below we are going to share some links that can help make your already great workflow even better.
+While everything above gives you all sort of great information about how your
+Portal implementation will convert to Platform, it's just the beginning of all
+the amazing new things you can do with the Platform. Below we are going to share
+some links that can help make your already great workflow even better.
 
 <CardGroup cols={4}>
   <Card
     title="Make it more dynamic"
     icon="circle-1"
-    href="/guides/dynamic-configurations"
-  ></Card>
-  <Card title="Make it headless" icon="circle-2" href="/guides/automap"></Card>
+    href="/learning-center/guides/dynamic-configurations"
+  />
+  <Card title="Make it headless" icon="circle-2" href="/learning-center/guides/automap" />
   <Card
     title="Top Secret - Seriously, don't click this"
     icon="circle-3"
-    href="/guides/secrets"
-  ></Card>
+    href="/learning-center/guides/secrets"
+  />
   <Card
     title="Document things for end users"
     icon="circle-4"
-    href="/guides/documents"
-  ></Card>
+    href="/learning-center/guides/documents"
+  />
 </CardGroup>

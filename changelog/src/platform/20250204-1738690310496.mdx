@@ -1,16 +1,25 @@
 ### February 04, 2025
+
 ## dataxp
 
-api@a372b5a
-The release includes the following updates:
+Records with readonly configurations are now handled differently in the
+replaceRecords operation. A new option called excludeReadOnly has been
+introduced to control whether readonly records or fields should be skipped or
+replaced. If excludeReadOnly is set to true, records with a readonly config or
+fields marked as readonly will not be replaced during the replaceRecords
+operation. If excludeReadOnly is false or not provided, readonly records and
+fields will be replaced as before.
 
-Records with readonly configurations are now handled differently in the replaceRecords operation. A new option called excludeReadOnly has been introduced to control whether readonly records or fields should be skipped or replaced. If excludeReadOnly is set to true, records with a readonly config or fields marked as readonly will not be replaced during the replaceRecords operation. If excludeReadOnly is false or not provided, readonly records and fields will be replaced as before.
+The findAndReplaceRecords method in the WorkbooksService now checks if the field
+being replaced is readonly and throws an error if excludeReadOnly is set to
+true, preventing modification of readonly fields.
 
-The findAndReplaceRecords method in the WorkbooksService now checks if the field being replaced is readonly and throws an error if excludeReadOnly is set to true, preventing modification of readonly fields.
+Several new tests have been added to validate the behavior of the replaceRecords
+operation with readonly records and fields, covering scenarios with
+excludeReadOnly set to true and false.
 
-Several new tests have been added to validate the behavior of the replaceRecords operation with readonly records and fields, covering scenarios with excludeReadOnly set to true and false.
-
-The SearchRecordsOptions and GetCellValuesOptions interfaces have been updated to include the new excludeReadOnly option.
+The SearchRecordsOptions and GetCellValuesOptions interfaces have been updated
+to include the new excludeReadOnly option.
 
 Example usage:
 
@@ -19,21 +28,21 @@ Example usage:
 const records = await wb.op.replaceRecords({
   sheetId: wb.contacts.id,
   options: {},
-  find: 'John',
-  replace: 'Jonathan',
-  field: { key: 'firstName' },
+  find: "John",
+  replace: "Jonathan",
+  field: { key: "firstName" },
   legacyReplace: false,
   actorId: UserId.make(),
-})
+});
 
 // Skip readonly records or fields
 const records = await wb.op.replaceRecords({
   sheetId: wb.contacts.id,
   options: { excludeReadOnly: true },
-  find: 'John',
-  replace: 'Jonathan',
-  field: { key: 'firstName' },
+  find: "John",
+  replace: "Jonathan",
+  field: { key: "firstName" },
   legacyReplace: false,
   actorId: UserId.make(),
-})
+});
 ```
