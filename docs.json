@@ -26,6 +26,7 @@
                   "documentation/api",
                   {
                     "group": "Authentication",
+                    "icon": "shield",
                     "pages": [
                       "documentation/authentication/authentication",
                       "documentation/authentication/account-token",
@@ -37,7 +38,6 @@
               {
                 "group": "Core Libraries",
                 "pages": [
-                  "documentation/core-libraries/toolkit",
                   "documentation/core-libraries/listener",
                   {
                     "group": "CLI",
@@ -336,10 +336,6 @@
     {
       "source": "/guides/upgrade/v2_upgrade",
       "destination": "/upgrade/v2_upgrade"
-    },
-    {
-      "source": "/upgrade/v2_repo",
-      "destination": "https://github.com/FlatFilers/Upgrade-Portal"
     },
     {
       "source": "/developer-tools/mapping-libraries/flatfile-mapping-python",
