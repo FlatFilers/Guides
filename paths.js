@@ -26,7 +26,7 @@ const websitePaths = [
     "/plugins/utils/file-buffer",
     "/plugins/utils/response-rejection",
     "/overview",
-    "/starter-projects", // FIX
+    "/starter-projects",
     "/changelog/platform",
     "/changelog/sdks",
     "/changelog/sdks/plugins/highlights",
@@ -58,33 +58,33 @@ const websitePaths = [
     "/changelog/sdks/plugins/utils/extractor",
     "/changelog/sdks/plugins/utils/file-buffer",
     "/changelog/sdks/plugins/utils/response-rejection",
-    "/apps/embedding/overview", // FIX
-    "/apps/embedding/javascript/guide", // FIX
-    "/apps/embedding/javascript/new_space_quickstart", // FIX
-    "/apps/embedding/javascript/new_space", // FIX  
-    "/apps/embedding/javascript/reuse_space", // FIX
-    "/apps/embedding/react/guide", // FIX
-    "/apps/embedding/react/new_space_quickstart", // FIX
-    "/apps/embedding/react/components", // FIX
-    "/apps/embedding/react/legacy", // FIX
-    "/apps/embedding/vue/guide", // FIX
-    "/apps/embedding/vue/new_space", // FIX
-    "/apps/embedding/vue/reuse_space", // FIX
-    "/apps/embedding/angular/guide", // FIX
-    "/apps/embedding/angular/new_space_quickstart", // FIX
-    "/apps/embedding/angular/new_space", // FIX
-    "/apps/embedding/angular/reuse_space", // FIX
-    "/apps/embedding/reference/simple", // FIX  
-    "/apps/embedding/reference/common", // FIX
-    "/apps/embedding/reference/advanced", // FIX
-    "/apps/projects/overview", // FIX
-    "/apps/workbooks", // FIX
-    "/apps/custom/tutorial-landing", // FIX
-    "/apps/custom/meet-the-listener", // FIX
-    "/apps/custom/meet-the-workbook", // FIX
-    "/apps/custom/add-data-transformation", // FIX
-    "/apps/custom/submit-action", // FIX
-    "/apps/custom/deploying", // FIX
+    "/apps/embedding/overview",
+    "/apps/embedding/javascript/guide",
+    "/apps/embedding/javascript/new_space_quickstart",
+    "/apps/embedding/javascript/new_space",  
+    "/apps/embedding/javascript/reuse_space",
+    "/apps/embedding/react/guide",
+    "/apps/embedding/react/new_space_quickstart",
+    "/apps/embedding/react/components",
+    "/apps/embedding/react/legacy",
+    "/apps/embedding/vue/guide",
+    "/apps/embedding/vue/new_space",
+    "/apps/embedding/vue/reuse_space",
+    "/apps/embedding/angular/guide",
+    "/apps/embedding/angular/new_space_quickstart",
+    "/apps/embedding/angular/new_space",
+    "/apps/embedding/angular/reuse_space",
+    "/apps/embedding/reference/simple",  
+    "/apps/embedding/reference/common",
+    "/apps/embedding/reference/advanced",
+    "/apps/projects/overview",
+    "/apps/workbooks",
+    "/apps/custom/tutorial-landing",
+    "/apps/custom/meet-the-listener",
+    "/apps/custom/meet-the-workbook",
+    "/apps/custom/add-data-transformation",
+    "/apps/custom/submit-action",
+    "/apps/custom/deploying",
     "/guides/handling-data",
     "/guides/actions",
     "/guides/dynamic-configurations",
@@ -141,11 +141,41 @@ const websitePaths = [
     "/developer-tools/core-libraries/wrappers/react",
     "/developer-tools/core-libraries/wrappers/angular",
     "/developer-tools/core-libraries/wrappers/vuejs",
-    "/developer-tools/mapping-libraries/flatfile-mapping-python"
-];
+    "/developer-tools/mapping-libraries/flatfile-mapping-python",
+    "/changelog/platform",
+    "/changelog/sdks",
+    "/changelog/sdks/plugins/highlights",
+    "/changelog/sdks/core/cli",
+    "/changelog/sdks/core/listener",
+    "/changelog/sdks/wrappers/javascript",
+    "/changelog/sdks/wrappers/react",
+    "/changelog/sdks/wrappers/angular",
+    "/changelog/sdks/wrappers/vue",
+    "/changelog/sdks/plugins/extractors/xlsx-extractor",
+    "/changelog/sdks/plugins/extractors/json-extractor",
+    "/changelog/sdks/plugins/extractors/xml-extractor",
+    "/changelog/sdks/plugins/extractors/zip-extractor",
+    "/changelog/sdks/plugins/extractors/delimiter-extractor",
+    "/changelog/sdks/plugins/extractors/pdf-extractor",
+    "/changelog/sdks/plugins/transform/record-hook",
+    "/changelog/sdks/plugins/transform/autocast",
+    "/changelog/sdks/plugins/transform/dedupe",
+    "/changelog/sdks/plugins/automations/automap",
+    "/changelog/sdks/plugins/export/export-workbook",
+    "/changelog/sdks/plugins/export/webhook-egress",
+    "/changelog/sdks/plugins/schemas/json-schema",
+    "/changelog/sdks/plugins/schemas/yaml-schema",
+    "/changelog/sdks/plugins/schemas/sql-ddl-converter",
+    "/changelog/sdks/plugins/schemas/openapi-schema",
+    "/changelog/sdks/plugins/migrations/dxp-configure",
+    "/changelog/sdks/plugins/core/job-handler",
+    "/changelog/sdks/plugins/core/space-configure",
+    "/changelog/sdks/plugins/utils/extractor",
+    "/changelog/sdks/plugins/utils/file-buffer"    
+]
 
 // Define the base URL
-const baseURL = 'http://localhost:3001';
+const baseURL = 'http://localhost:3000';
 
 (async () => {
 const [open, { default: readline }] = await Promise.all([

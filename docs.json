@@ -757,6 +757,10 @@
   {
     "source": "/apps/custom/deploying",
     "destination": "/learning-center/tutorials/projects/deploying"
+  },
+  {
+    "source": "/starter-projects",
+    "destination": "/learning-center/tutorials/starter-projects"
   }
   ]
 }
