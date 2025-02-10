@@ -107,10 +107,10 @@
               {
                 "group": "Core",
                 "pages": [
+                  "learning-center/architecture/about",
                   {
                     "group": "Architecture",
                     "pages": [
-                      "learning-center/architecture/about",
                       "learning-center/architecture/apps",
                       "learning-center/architecture/environments",
                       "learning-center/architecture/spaces",
