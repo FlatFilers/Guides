@@ -1,6 +1,6 @@
 ---
 title: "Using Flatfile query language"
-description: "filter data in Sheets with FFQL"
+description: "Learn how to filter data in Sheets with FFQL."
 icon: "rectangle-terminal"
 ---
 
@@ -8,20 +8,14 @@ icon: "rectangle-terminal"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-FFQL (Flatfile Query Language) is Flatfile's custom query language used for
-filtering data in
-
-<Tooltip tip="A collection of fields...">
-  [Sheets](/learning-center/blueprint/about)
-</Tooltip>
-. It's logical, composable, and human-readable.
+FFQL (Flatfile Query Language) is Flatfile's custom query language used for filtering data in <Tooltip tip="A collection of fields...">[Sheets](/learning-center/blueprint/about)</Tooltip>.
+It's logical, composable, and human-readable.
 
 ## Overview
 
 ### Search by value
 
-Here's an example request for searching for rows where the First Name column is
-"Bender" and the Last Name column is "Rodriguez".
+Here's an example request for searching for rows where the First Name column is "Bender" and the Last Name column is "Rodriguez".
 
 ```sql GET sheets/<sheetId>/records request
 GET sheets/<sheetId>/records?q=first_name eq Bender and last_name eq Rodriguez
@@ -33,8 +27,7 @@ first_name eq Bender and last_name eq Rodriguez
 
 ### Search for null
 
-Here's an example request for searching for rows where the First Name column is
-null.
+Here's an example request for searching for rows where the First Name column is null.
 
 ```sql GET sheets/<sheetId>/records request
 GET sheets/<sheetId>/records?q=first_name eq ""
@@ -56,12 +49,10 @@ The basic syntax of FFQL is:
 
 ### Field Name
 
-`field name` is optional and excluding a field name will search across all
-fields. For example: `eq "Planet Express"` will search across all fields for
-that value. `field name` can be the field key or the field label.
+`field name` is optional and excluding a field name will search across all fields. For example: `eq "Planet Express"` will search across all fields for that value.
+`field name` can be the field key or the field label.
 
-Labels or values with spaces should be wrapped in quotes. For example:
-`name eq "Bender Rodriguez"`, or `"First Name" eq Bender`.
+Labels or values with spaces should be wrapped in quotes. For example: `name eq "Bender Rodriguez"`, or `"First Name" eq Bender`.
 
 ### Operators
 
@@ -82,8 +73,7 @@ Both `like` and `ilike` support the following wildcards:
 - `%` - Matches any number of characters
 - `_` - Matches a single character
 
-So, for instance, `like "Bender%"` would match "Bender Rodriguez" and "Bender
-Bending Rodriguez".
+So, for instance, `like "Bender%"` would match "Bender Rodriguez" and "Bender Bending Rodriguez".
 
 ### Logical Operators
 
@@ -94,10 +84,7 @@ FFQL supports two logical operators:
 
 ### The `is` Operator
 
-You can query for message statuses by using the `is` operator. For example:
-`is error` returns all the rows in an `error` state. `is valid` returns all the
-rows in a `valid` state. `first_name is error` returns the rows where First Name
-is in an `error` state.
+You can query for message statuses by using the `is` operator. For example: `is error` returns all the rows in an `error` state. `is valid` returns all the rows in a `valid` state. `first_name is error` returns the rows where First Name is in an `error` state.
 
 ---
 
@@ -139,15 +126,9 @@ filter: first_name eq Bender and last_name eq Rodriguez
 
 ### Via API
 
-FFQL queries can be passed to any
+FFQL queries can be passed to any <Tooltip tip="View API reference">[REST API](https://reference.flatfile.com/overview/welcome)</Tooltip> endpoint that supports the `q` parameter.
 
-<Tooltip tip="View API reference">
-  [REST API](https://reference.flatfile.com/overview/welcome)
-</Tooltip>
-endpoint that supports the `q` parameter.
-
-Here's an example **cURL** request using the `sheets/<sheetId>/records`
-endpoint:
+Here's an example **cURL** request using the `sheets/<sheetId>/records` endpoint:
 
 ```shell Shell / cURL
 curl --location 'https://platform.flatfile.com/api/sheets/us_sh_12345678/records?q="Subscription Status" eq "On-Hold" or "Subscription Status" eq "Pending"' \
@@ -155,5 +136,4 @@ curl --location 'https://platform.flatfile.com/api/sheets/us_sh_12345678/records
     --header 'Authorization: Bearer <bearer token>'
 ```
 
-Make sure to [encode](https://en.wikipedia.org/wiki/URL_encoding) percent
-characters if you use them.
+Make sure to [encode](https://en.wikipedia.org/wiki/URL_encoding) percent characters if you use them.
