@@ -1,6 +1,6 @@
 ---
 title: "Customize the guest sidebar"
-description: "limit what Guests see in their sidebar"
+description: "Learn how to limit what Guests see in their sidebar."
 icon: "sidebar"
 ---
 
@@ -11,12 +11,7 @@ icon: "sidebar"
   access](/documentation/authentication/roles-and-permissions).
 </Info>
 
-Flatfile allows you to update your sidebar to hide/show certain elements via the
-
-<Tooltip tip="A micro-application...">
-  [Space](/learning-center/architecture/spaces)
-</Tooltip>
-endpoint.
+Flatfile allows you to update your sidebar to hide/show certain elements via the <Tooltip tip="A micro-application...">[Space](/learning-center/architecture/spaces)</Tooltip> endpoint.
 
 Simply update `metadata.sidebarConfig` when calling `spaces.update()`.
 
@@ -24,8 +19,7 @@ Simply update `metadata.sidebarConfig` when calling `spaces.update()`.
 
 ### Building a guest sidebar
 
-Learn how to create a sidebar configuration, and update a sidebar configuration
-from an event listener.
+Learn how to create a sidebar configuration, and update a sidebar configuration from an event listener.
 
 <Snippet file="guides/guest_sidebar/block1.mdx" />
 
@@ -43,9 +37,9 @@ from an event listener.
 </ParamField>
 <ParamField path="showSidebar" type="boolean">
   {" "}
-  Determines if a guest can see the sidebar. If the sidebar is hidden and there
-  are multiple Workbooks in your Space, please specify the desired Workbook ID
-  as your defaultPage.{" "}
+  Determines if a guest can see the sidebar. If the sidebar is hidden and there are
+  multiple Workbooks in your Space, please specify the desired Workbook ID as your
+  defaultPage.{" "}
 </ParamField>
 
 ## Example Project
