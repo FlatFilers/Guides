@@ -11,6 +11,7 @@ icon: "file-import"
 During an SFTP file upload, our system initiates a secure, automated workflow. The file is first transferred to our SFTP server using industry-standard encryption protocols, then seamlessly moved into your destination Space, and finally removed from the SFTP server once the transfer is confirmed successful.
 
 <br/>
+<div class="dark:hidden">
 ```mermaid
 %%{
     init: {
@@ -18,15 +19,10 @@ During an SFTP file upload, our system initiates a secure, automated workflow. T
         'themeVariables': {
             'primaryColor': '#ffffff',
             'primaryTextColor': '#333',
-            'primaryBorderColor': '#333',
-            'lineColor': '#333',
-            'secondaryColor': '#ffffff',
-            'tertiaryColor': '#ffffff',
-            'actorLineColor': '#333',
-            'noteBkgColor': '#ffffff',
+            'primaryBorderColor': '#333',   
             'noteBorderColor': '#333',
-            'messageTextColor': '#333'
-        }
+            'noteBkgColor': '#f1f1f1'
+         }
     }
 }%%
 
@@ -46,6 +42,40 @@ sequenceDiagram
     
     Note over Client,Space: File transfer complete ✓
 ```
+</div>
+<div class="hidden dark:block">
+```mermaid
+%%{
+    init: {
+        'theme': 'base',
+        'themeVariables': {
+            'primaryColor': '#000',
+            'primaryTextColor': '#fff',
+            'primaryBorderColor': '#fff',   
+            'noteBorderColor': '#fff',
+            'noteBkgColor': '#000',
+            'noteTextColor': '#fff'
+         }
+    }
+}%%
+
+sequenceDiagram
+    participant Client
+    participant SFTP Server
+    participant Space
+
+    Client->>SFTP Server: Upload file using SFTP protocol
+    Note over Client,SFTP Server: Secure file transfer using<br/>industry-standard encryption
+    
+    SFTP Server->>Space: Automatically import file
+    Note over Space: File imported to<br/>destination Space
+    
+    Space-->>SFTP Server: Confirm successful import
+    SFTP Server->>SFTP Server: Remove file from server
+    
+    Note over Client,Space: File transfer complete ✓
+```
+</div>
 <br/>
 
 ## Obtaining Credentials
