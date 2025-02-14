@@ -1,7 +1,7 @@
 /*
- * Legal Disclaimer for Web licence
+ * Legal Disclaimer for Web license
  *
- * Licence to use self-hosted webfonts for displaying dynamic text on specified website domains. Our package includes WOFF and WOFF2 font formats.
+ * License to use self-hosted webfonts for displaying dynamic text on specified website domains. Our package includes WOFF and WOFF2 font formats.
  *
  * Should the license page views limit be exceeded the license holder will be required to contact Lineto.com for an upgrade.
  *
@@ -272,9 +272,16 @@ button[aria-label="Toggle dark mode"] {
   display: none;
 }
 
+/* Uppercase and add letter spacing to left nav headers */
 .pl-4 {
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
+}
+
+/* Remove text transform and letter spacing for table of contents */
+#table-of-contents-content .pl-4 {
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 /* Dark mode hover background buttons lighter shades */
@@ -282,3 +289,14 @@ button.relative:not(.dark):hover {
   background-color: rgba(250, 250, 250, 0.1); 
 }
 
+/* Remove hover background on buttons */
+html [class*="group-hover:bg-gray-200/50"],
+html [class*="dark:group-hover:bg-gray-700/60"],
+html .group:hover {
+  background-color: transparent !important;
+  transition: none !important;
+  animation: none !important;
+  -webkit-animation: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}

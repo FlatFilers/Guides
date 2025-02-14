@@ -1,0 +1,200 @@
+---
+title: "SFTP File Upload"
+description: "upload files securely and efficiently to your Space"
+icon: "file-import"
+---
+
+<Snippet file="shared/projects_only.mdx" />
+
+## SFTP Process
+
+Flatfile's SFTP upload process allows you to transfer files directly into your Flatfile space using the industry-standard SFTP protocol. SFTP uploads are ideal for automated processes or handling very large files.
+
+When you upload a file to Flatfile using SFTP, our system initiates a secure, automated workflow. The file is first transferred to our SFTP server using industry-standard encryption protocols, then seamlessly moved into your destination Space, and finally removed from the SFTP server once the transfer is confirmed successful.
+
+<br/>
+<div class="dark:hidden">
+```mermaid
+%%{
+    init: {
+        'theme': 'base',
+        'themeVariables': {
+            'primaryColor': '#ffffff',
+            'primaryTextColor': '#333',
+            'primaryBorderColor': '#333',   
+            'noteBorderColor': '#333',
+            'noteBkgColor': '#f1f1f1'
+         }
+    }
+}%%
+
+sequenceDiagram
+    participant Client
+    participant SFTP Server
+    participant Space
+
+    Client->>SFTP Server: Upload file using SFTP protocol
+    Note over Client,SFTP Server: Secure file transfer using<br/>industry-standard encryption
+    
+    SFTP Server->>Space: Automatically import file
+    Note over Space: File imported to<br/>destination Space
+    
+    Space-->>SFTP Server: Confirm successful import
+    SFTP Server->>SFTP Server: Remove file from server
+    
+    Note over Client,Space: File transfer complete ✓
+```
+</div>
+<div class="hidden dark:block">
+```mermaid
+%%{
+    init: {
+        'theme': 'base',
+        'themeVariables': {
+            'primaryColor': '#000',
+            'primaryTextColor': '#fff',
+            'primaryBorderColor': '#fff',   
+            'noteBorderColor': '#fff',
+            'noteBkgColor': '#000',
+            'noteTextColor': '#fff'
+         }
+    }
+}%%
+
+sequenceDiagram
+    participant Client
+    participant SFTP Server
+    participant Space
+
+    Client->>SFTP Server: Upload file using SFTP protocol
+    Note over Client,SFTP Server: Secure file transfer using<br/>industry-standard encryption
+    
+    SFTP Server->>Space: Automatically import file
+    Note over Space: File imported to<br/>destination Space
+    
+    Space-->>SFTP Server: Confirm successful import
+    SFTP Server->>SFTP Server: Remove file from server
+    
+    Note over Client,Space: File transfer complete ✓
+```
+</div>
+<br/>
+
+## Obtaining Credentials
+
+Uploading files via SFTP requires credentials. You can obtain these credentials from the Files tab in your destination Space or from the API.
+
+<Warning>
+   Each space has its own unique set of credentials that cannot be shared or used with other spaces.
+   Keep these credentials secure and never share them in public forums or repositories.
+</Warning>
+
+### From Your Files Page
+
+1. In the destination Space, navigate to the Files tab.
+
+2. Click <b>Get SFTP Credentials</b>.
+
+<img src="/images/sftp/sftp_credentials.png" alt="SFTP Credentials" width="75%" style={{ margin: '0 auto' }} />
+<Info>
+   If <b>Get SFTP Credentials</b> is not visible, please reach out to Support to enable Projects. 
+</Info>
+
+3. Save your credentials to a secure location.
+
+### From the API
+
+1. Obtain your Secret Key from the [API Keys](https://platform.flatfile.com/dashboard/keys-and-secrets) page.
+2. Obtain your Space ID from the Spaces list or the url of your Space.
+3. Make an authenticated request to the sftp-credentials endpoint.
+
+<CodeGroup>
+```terminal request
+curl -G https://api.x.flatfile.com/v1/auth/sftp-credentials \
+   -H "Authorization: Bearer sk_123" \
+   -d spaceId="us_sp_123"
+```
+
+```terminal response
+{
+  "data": {
+    "username": "us_sp_123",
+    "password": <secret_sftp_password>,
+    "host": "sftp.flatfile.com",
+    "port": "22"
+  }
+}
+```
+
+</CodeGroup>
+<br/>
+4. Save your credentials to a secure location.
+
+
+## SFTP Connection
+
+The command line provides a direct way to facilitate SFTP transfers, though other free and open source SFTP clients are available.
+
+<Expandable title="Reference: Basic SFTP Commands">
+   <ParamField path="sftp" type="<username>@<hostname>">
+      Connect to the SFTP server
+      Example: sftp us_sp_123@sftp.flatfile.com
+   </ParamField>
+   <ParamField path="put" type="<file>">
+      Upload a file
+      Example: put myfile.csv
+   </ParamField>
+   <ParamField path="exit">
+      Close the SFTP connection
+      Example: exit
+   </ParamField>
+</Expandable>
+
+### Uploading Files
+
+1. Navigate to the directory containing the file you want to upload.
+
+2. From that directory, connect to the SFTP server.
+
+<Note>
+   On your first connection you will be prompted to verify the host key.
+</Note>
+
+<CodeGroup>
+```bash connect
+sftp us_sp_123@sftp.flatfile.com
+```   
+
+```bash verify host key
+sftp us_sp_123@sftp.flatfile.com
+The authenticity of host 'sftp.flatfile.com' can't be verified...
+Are you sure you want to continue connecting (yes/no)?
+```   
+</CodeGroup>
+
+3. When prompted, enter your password.
+
+
+
+```bash password
+us_sp_123@sftp.flatfile.com's password:
+```   
+
+4. Upload a file.
+
+```bash upload
+sftp> put myfile.csv
+```
+
+As the file uploads, your terminal will display the progress of the upload.
+
+
+5. Close the connection.
+
+```bash exit
+sftp> exit
+```
+
+<Tip>
+   For operational efficiency, this process can be automated through scripting to minimize manual intervention.
+</Tip>
