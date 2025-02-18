@@ -118,7 +118,7 @@ curl -G https://api.x.flatfile.com/v1/auth/sftp-credentials \
 ```terminal response
 {
   "data": {
-    "username": "us_sp_123",
+    "username": <us_sp_123>,
     "password": <secret_sftp_password>,
     "host": "sftp.flatfile.com",
     "port": "22"
@@ -133,19 +133,19 @@ curl -G https://api.x.flatfile.com/v1/auth/sftp-credentials \
 
 ## SFTP Connection
 
-The command line provides a direct way to facilitate SFTP transfers, though other free and open source SFTP clients are available.
+The command line provides a direct way to facilitate SFTP transfers, though other free and open-source SFTP clients are available.
 
 <Expandable title="Reference: Basic SFTP Commands">
    <ParamField path="sftp" type="<username>@<hostname>">
-      Connect to the SFTP server
+      Connect to the SFTP server <br/>
       Example: sftp us_sp_123@sftp.flatfile.com
    </ParamField>
    <ParamField path="put" type="<file>">
-      Upload a file
+      Upload a file <br/>
       Example: put myfile.csv
    </ParamField>
    <ParamField path="exit">
-      Close the SFTP connection
+      Close the SFTP connection <br/>
       Example: exit
    </ParamField>
 </Expandable>
@@ -188,12 +188,26 @@ sftp> put myfile.csv
 
 As the file uploads, your terminal will display the progress of the upload.
 
+<Note>
+   Flatfile accepts files up to 100 MB. If you need to upload larger files, please reach out to Support.
+</Note>
 
 5. Close the connection.
 
 ```bash exit
 sftp> exit
 ```
+
+### Troubleshooting
+
+If you encounter issues while connecting to the SFTP Server, here are some common error messages and their solutions.
+
+| Error Message| Solution                                                                                    |
+|-------------------------------|----------------------------------------------------------------------------|
+| `Connection refused`          | Check your firewall settings and ensure port 22 is open.                   |
+| `Authentication failed`       | Verify your credentials haven't expired, refetch credentials if necessary. |
+| `Permission denied`           | Confirm you're using the correct credentials for the destination Space.    |
+| `Host key verification failed`| Confirm the host key when prompted to verify.                              |
 
 <Tip>
    For operational efficiency, this process can be automated through scripting to minimize manual intervention.
