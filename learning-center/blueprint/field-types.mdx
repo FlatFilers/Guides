@@ -77,14 +77,6 @@ use the `reference` or future `lookup` types.
   A visual label for this option, defaults to value if not provided
 </ParamField>
 
-<ParamField path="color" type="string">
-  An optional color to assign this option
-</ParamField>
-
-<ParamField path="icon" type="string">
-  A reference pointer to a previously registered icon
-</ParamField>
-
 <ParamField path="meta" type="object">
   An arbitrary JSON object to be associated with this option and made available to hooks
 </ParamField>
@@ -103,8 +95,6 @@ use the `reference` or future `lookup` types.
       {
         "value": "inactive",
         "label": "Disabled",
-        "color": "#ff0000",
-        "icon": "fa fa-ban",
         "meta": {
           "foo": "bar"
         }
