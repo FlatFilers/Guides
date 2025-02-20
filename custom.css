@@ -300,3 +300,12 @@ html .group:hover {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
+
+/* Light mode card border color should be black */
+.card.block.not-prose {
+  border-color: black; /* Light mode */
+}
+/* Dark mode card border color should be white */
+:root.dark .card.block.not-prose {
+  border-color: white; /* Dark mode */
+}
