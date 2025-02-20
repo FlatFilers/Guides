@@ -46,7 +46,7 @@ You can restore marked records at any time before merging. After merging, these 
 
 ### Conflict Resolution
 
-If the same record has been modified in both the Data clip and the main sheet, a conflict 
+If the same record has been modified in both the Data Clip and the main sheet, a conflict 
 resolution interface ensures that users can make an informed decision on which version to keep.
 
 <img src="/images/data-clips/conflict_resolution.png" alt="Conflict Resolution" width="75%" style={{ margin: '0 auto' }} />
@@ -58,15 +58,15 @@ Once changes are finalized, they can be merged back into the main sheet, ensurin
 When merging a Data Clip, a visual diff of all changes allows users to confirm updates before they are applied. 
 
 <Note>
-Only the creator of a Data clip has the authority to merge changes back into the main sheet, maintaining control over the final updates.
+Only the creator of a Data Clip has the authority to merge changes back into the main sheet, maintaining control over the final updates.
 </Note>
 
 
 ## Data Clip Library
 
-Multiple Data clips can be created from a single sheet, enabling different teams or individuals to work in parallel without interfering with each other's workflows.
+Multiple Data Clips can be created from a single sheet, enabling different teams or individuals to work in parallel without interfering with each other's workflows.
 
-The Data clip Library provides an organized way to find and manage Data Clips. Users can search for Data Clips by name, creator or source SheetId. The library also supports filtering by status, making it easy to locate specific clips. 
+The Data Clip Library provides an organized way to find and manage Data Clips. Users can search for Data Clips by name, creator or source SheetId. The library also supports filtering by status, making it easy to locate specific clips. 
 
 
 <Expandable title="Reference: Data Clip States">
@@ -89,8 +89,9 @@ If you encounter issues with Data Clips, here are some common problems and their
 
 | Issue                        | Solution                                                                 |
 |------------------------------|--------------------------------------------------------------------------|
-| Creation Failures            | Check sheet permissions, verify record selection, and ensure unique naming |
+| Creation Failures            | Check sheet permissions, and verify record selection |
 | Merge Conflicts              | Refresh source data, review all conflicts systematically, and resolve conflicts field by field |
+| Unable to merge Data Clip    | Ensure you are the creator of the Data Clip. |
 | Performance Optimization     | Use batch processing, implement incremental updates, perform regular cleanup, and monitor system resources |
 
 

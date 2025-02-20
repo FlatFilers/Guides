@@ -895,7 +895,7 @@ outcome or plan subsequent actions accordingly.
 
 #### `data-clip:updated`
 
-<ParamField path="secret:updated" type="readonly">
+<ParamField path="data-clip:updated" type="readonly">
   Called when a data clip's details are updated.
 </ParamField>
 
@@ -919,30 +919,6 @@ outcome or plan subsequent actions accordingly.
     "stauts": "OPEN",
   }
 }
-
-#### `data-clip:deleted`
-
-<ParamField path="data-clip:deleted" type="readonly">
-  Called when a data clip is deleted.
-</ParamField>
-
-```json
-{
-  "domain": "data-clip",
-  "topic": "data-clip:created",
-  "context": {
-    "accountId": "us_acc_1234",
-    "environmentId": "us_env_1234",
-    "spaceId": "us_sp_1234",
-    "actorId": "us_usr_1234"
-  },
-  "payload": {
-    "accountId": "us_acc_1234",
-    "dataClipId": "us_acc_1234",
-    "stauts": "OPEN",
-  }
-}
-```
 
 #### `data-clip:deleted`
 
