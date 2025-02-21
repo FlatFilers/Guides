@@ -1,0 +1,338 @@
+---
+title: "Guides and Guidance"
+description: "provide contextual help to user within your data import experience"
+icon: "square-info"
+---
+
+Flatfile's Guide system enables you to create and manage contextual help content within your data import experience. The system consists of two main components: Guides (content) and Guidance (display configuration). This separation allows for flexible, targeted help delivery that adapts to different user roles and contexts.
+
+When you implement guides in your space, the system manages content delivery based on user interactions and predetermined triggers, ensuring users receive help exactly when they need it.
+
+## Creating Guides
+
+Guides are content blocks that contain help text, instructions, or documentation. Each guide is versioned and can contain multiple content blocks.
+
+### Guide Structure
+
+A guide consists of a metadata section and content blocks:
+
+<CodeGroup>
+```typescript Structure
+interface Guide {
+  slug: string;         // Unique identifier
+  title: string;        // Display title
+  description: string;  // Brief description
+  blocks: Block[];      // Content blocks
+  metadata: Record<string, any>;  // Additional metadata
+}
+
+interface Block {
+  type: "markdown" | "html";  // Content type
+  content: string;           // Actual content
+}
+```
+
+```typescript Example
+{
+  "slug": "data-import-guide",
+  "title": "Data Import Guide",
+  "description": "Learn how to import your data",
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": "# Getting Started\nFollow these steps..."
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "lastUpdated": "2024-02-20"
+  }
+}
+```
+</CodeGroup>
+
+<Warning>
+   Guide slugs must be unique within your space and cannot be changed after creation.
+   Choose them carefully as they serve as permanent identifiers.
+</Warning>
+
+### Creating via API
+
+1. Obtain your Secret Key from the [API Keys](https://platform.flatfile.com/dashboard/keys-and-secrets) page.
+2. Make an authenticated request to create a guide:
+
+<CodeGroup>
+```bash Request
+curl -X POST https://api.x.flatfile.com/v1/environments/{{flatfile_environment_id}}/guides \
+   -H "Authorization: Bearer sk_123" \
+   -H "Content-Type: application/json" \
+   -d '{
+     "slug": "data-import-guide",
+     "title": "Data Import Guide",
+     "description": "Learn how to import your data",
+     "blocks": [
+       {
+         "type": "markdown",
+         "content": "# Getting Started\nFollow these steps..."
+       }
+     ]
+   }'
+```
+
+```json Response
+{
+  "data": {
+    "id": "guide_123",
+    "slug": "data-import-guide",
+    "title": "Data Import Guide",
+    "status": "active"
+  }
+}
+```
+</CodeGroup>
+
+## Configuring Guidance
+
+Guidance determines how and when guides are presented to users. It includes display type, trigger conditions, and targeting rules.
+
+### Display Types
+
+Flatfile offers three display types for guides:
+
+1. **Tooltip**
+   - Lightweight popups that appear on hover
+   - Best for quick tips and short explanations
+   - Automatically positioned relative to target
+   ```typescript
+   {
+     type: "tooltip",
+     target: "workbook:primary_action",
+     trigger: "hover"
+   }
+   ```
+
+2. **Sidebar**
+   - Full-height panel on the right side
+   - Ideal for detailed documentation
+   - Can contain multiple sections
+   ```typescript
+   {
+     type: "sidebar",
+     target: "sheet:manage_columns",
+     trigger: "manual"
+   }
+   ```
+
+3. **Popout**
+   - Modal-style window in center of screen
+   - Good for medium-length content
+   - Can include rich media
+   ```typescript
+   {
+     type: "popout",
+     target: "workbook:job_panel",
+     trigger: "first"
+   }
+   ```
+
+<Note>
+   Choose your display type based on content length and importance.
+   Tooltips work best for simple hints, while sidebars are better for comprehensive documentation.
+</Note>
+
+### Target Locations
+
+Guides can be attached to specific UI elements using static or dynamic targets:
+
+#### Static Targets
+Pre-defined locations in the UI:
+
+```typescript
+type StaticTarget =
+  | "workbook:primary_action"    // Main action button
+  | "workbook:secondary_action"  // Secondary actions
+  | "workbook:job_panel"        // Job status panel
+  | "workbook:version_panel"    // Version history
+  | "workbook:data_clips"       // Data clips section
+  | "sidebar:files_tab"         // Files tab
+  | "sidebar:secrets_tab"       // Secrets management
+  | "sidebar:guests_tab"        // Guest access
+  | "sidebar:documents_tab"     // Documents section
+  | "sidebar:workbooks_tab"     // Workbooks list
+  | "sheet:manage_columns"      // Column management
+  | "sheet:search"             // Search interface
+  | "sheet:valid_filters"      // Valid record filters
+  | "sheet:filter_by_error"    // Error filtering
+  | "sheet:data_clips"         // Sheet data clips
+  | "sheet:ai_transform"       // AI transformations
+  | "sheet:download"          // Download options
+  | "sheet:delete";           // Delete functionality
+```
+
+#### Dynamic Targets
+Generated targets for specific instances:
+
+```typescript
+type DynamicTarget = 
+  | `dynamic:sheet:${string}`              // Specific sheet
+  | `dynamic:document:${string}`           // Specific document
+  | `dynamic:workbook:sheet:${string}`     // Workbook sheet
+  | `dynamic:sheet:action:${string}`;      // Sheet action
+```
+
+### Role-Based Display
+
+Configure different guidance for different user roles:
+
+<CodeGroup>
+```typescript Configuration
+interface GuidanceOptions {
+  role?: "admin" | "guest" | undefined;  // undefined = regular user
+  target: StaticTarget | DynamicTarget;
+  type: "tooltip" | "sidebar" | "popout";
+  trigger: "hover" | "first" | "manual";
+}
+```
+
+```typescript Example
+{
+  "role": "admin",
+  "target": "sidebar:secrets_tab",
+  "type": "sidebar",
+  "trigger": "first"
+}
+```
+</CodeGroup>
+
+
+### Creating Guidance via API
+
+To create guidance using the API, follow these steps:
+
+1. Obtain your Secret Key from the [API Keys](https://platform.flatfile.com/dashboard/keys-and-secrets) page.
+2. Make an authenticated request to create guidance:
+
+<CodeGroup>
+```bash Request
+curl -X POST {{flatfile_base_url}}/v1/spaces/{{flatfile_space_id}}/guidance \
+   -H "Authorization: Bearer sk_123" \
+   -H "Content-Type: application/json" \
+   -d '{
+     "target": "workbook:primary_action",
+     "type": "popout",
+     "trigger": "first",
+     "role": "admin"
+   }'
+```
+
+```json Response
+{
+  "data": {
+    "id": "guidance_456",
+    "target": "workbook:primary_action",
+    "type": "popout",
+    "status": "active"
+  }
+}
+```
+</CodeGroup>
+
+
+## Implementation Examples
+
+### 1. Onboarding Guide
+
+Create a guide for new users:
+
+```typescript
+const onboardingGuide = {
+  slug: "getting-started",
+  title: "Welcome to Flatfile",
+  description: "Learn the basics of data importing",
+  blocks: [
+    {
+      type: "markdown",
+      content: "# Welcome!\nLet's walk through the key features..."
+    }
+  ]
+};
+
+const onboardingGuidance = {
+  target: "workbook:primary_action",
+  type: "popout",
+  trigger: "first"
+};
+```
+
+### 2. Feature Tour
+
+Create a sequence of guides for a feature tour:
+
+```typescript
+const featureTourGuides = [
+  {
+    slug: "upload-guide",
+    title: "Uploading Files",
+    blocks: [
+      {
+        type: "markdown",
+        content: "# File Upload\nDrag and drop your files here..."
+      }
+    ]
+  },
+  {
+    slug: "mapping-guide",
+    title: "Column Mapping",
+    blocks: [
+      {
+        type: "markdown",
+        content: "# Column Mapping\nMatch your columns to our template..."
+      }
+    ]
+  }
+];
+```
+
+### 3. Role-Specific Documentation
+
+Create different guides for different user roles:
+
+```typescript
+const adminGuide = {
+  slug: "admin-settings",
+  title: "Administrator Settings",
+  role: "admin",
+  blocks: [
+    {
+      type: "markdown",
+      content: "# Admin Settings\nManage your space configuration..."
+    }
+  ]
+};
+
+const guestGuide = {
+  slug: "guest-guide",
+  title: "Guest User Guide",
+  role: "guest",
+  blocks: [
+    {
+      type: "markdown",
+      content: "# Guest Access\nLearn what you can do as a guest..."
+    }
+  ]
+};
+```
+
+<Tip>
+   For optimal user experience, consider implementing progressive disclosure - showing more complex guides only after users have mastered the basics.
+</Tip>
+
+### Troubleshooting
+
+Common issues and their solutions:
+
+| Issue | Solution |
+|-------|----------|
+| Guide not appearing | Check role permissions and trigger conditions |
+| Content not updating | Ensure guide version is current |
+| Display issues | Confirm content length suits chosen display type |
