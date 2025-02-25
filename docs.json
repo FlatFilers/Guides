@@ -272,7 +272,16 @@
         "version": "v2",
         "href": "https://flatfile.com/versioned-docs/2.0"
       }
-    ]
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "API Reference",
+          "href": "https://reference.flatfile.com/overview/welcome",
+          "icon": "globe-pointer"
+        }
+      ]
+    }
   },
   "styling": {
     "codeblocks": "system"
