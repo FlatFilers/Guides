@@ -1,6 +1,6 @@
 ---
 title: "Projects"
-description: "a collaborative data onboarding project between teams"
+description: "Use Flatfile in a collaborative data onboarding project with your customer."
 icon: "arrow-progress"
 ---
 
@@ -10,81 +10,39 @@ icon: "arrow-progress"
   [Connect with a product expert.](https://flatfile.com/contact-sales/consult/)
 </Tip>
 
-Each Flatfile
-
-<Tooltip tip="A micro-application...">
-  [Space](/learning-center/architecture/spaces)
-</Tooltip>
-is an independent micro-application. This allows you to leverage Spaces in a
-collaborative onboarding project between your services team and your customers.
-This guide covers how to configure and use Flatfile to run consistent,
-high-quality data onboarding.
+Each Flatfile <Tooltip tip="A micro-application...">[Space](/learning-center/architecture/spaces)</Tooltip> is an independent micro-application. 
+This allows you to leverage Spaces in a collaborative onboarding project between your services team and your customers.
+This guide covers how to configure and use Flatfile to run consistent, high-quality data onboarding.
 
 ## How it works
 
-Flatfile maintains and enforces your definition of quality data, and each Space
-acts like an escrow for data before you import that data. With these two
-fundamental concepts, you can design a data onboarding experience that your
-customers - and your services teammates - love.
+Flatfile maintains and enforces your definition of quality data, and each Space acts like an escrow for data before you import that data.
+With these two fundamental concepts, you can design a data onboarding experience that your customers - and your services teammates - love.
 
 ### Enforce data quality with Blueprint
 
-Using
-
-<Tooltip tip="A Data Definition Language...">
-  [Blueprint](/learning-center/blueprint/about)
-</Tooltip>
-, you can design a schema and rules for each onboarding project. Blueprints are
-reusable across Workbooks, meaning that if you have a strict target schema,
-you'll only need to create the Blueprint once to use it across your entire
-customer base. Additionally, you can modify a Blueprint upon the `space:created`
-Event if your customers have some customization ability in your application.
-Finally, you may want to create a onboarding project Space with a bespoke
-Blueprint. In that case, simply pass the Blueprint to the Space once it is
-created using the
-<Tooltip tip="Listening and responding to Events">
-  [Listener SDK](/learning-center/concepts/events#building-with-events)
-</Tooltip>
-.
+Using <Tooltip tip="A Data Definition Language...">[Blueprint](/learning-center/blueprint/about)</Tooltip>, you can design a schema and rules for each onboarding project.
+Blueprints are reusable across Workbooks, meaning that if you have a strict target schema, you'll only need to create the Blueprint once to use it across your entire customer base.
+Additionally, you can modify a Blueprint upon the `space:created` Event if your customers have some customization ability in your application.
+Finally, you may want to create a onboarding project Space with a bespoke Blueprint. 
+In that case, simply pass the Blueprint to the Space once it is created using the <Tooltip tip="Listening and responding to Events">[Listener SDK](/learning-center/concepts/events#building-with-events)</Tooltip>.
 
 ### Configure your Space and Blueprint for collaboration
 
-You will want to create an
-
-<Tooltip tip="Isolated entities to create and test configurations">
-  [Environment](/learning-center/architecture/environments)
-</Tooltip>
-with `magic_link` authorization, which will allow members of your services team
-and your customers to invite others to a Flatfile Space created in that
-Environment. You can also
-<Tooltip tip="Learn how to customize your Space">
-  [Theme](/learning-center/guides/theming)
-</Tooltip>
-your Space to match your brand's look and feel, creating a seamless experience
-for your customers. Finally, you may also wish to control how members of the
-Space interact with Workbooks. This can be done via Workbook-specific
-<Tooltip tip="Guest permissions">
-  [grants](/documentation/authentication/roles-and-permissions#guest-roles)
-</Tooltip>
-, as well as via setting
-<Tooltip tip="Restricting access to a sheet">
-  [Sheet-level access controls](/learning-center/blueprint/access)
-</Tooltip>
-.
+You will want to create an <Tooltip tip="Isolated entities to create and test configurations">[Environment](/learning-center/concepts/events#building-with-events)</Tooltip> with `magic_link` authorization, which will allow members of your services team and your customers to invite others to a Flatfile Space created in that Environment.
+You can also <Tooltip tip="Learn how to customize your Space">[Theme](/learning-center/guides/theming)</Tooltip> your Space to match your brand's look and feel, creating a seamless experience for your customers.
+Finally, you may also wish to control how members of the Space interact with Workbooks. 
+This can be done via Workbook-specific <Tooltip tip="Guest permissions">[grants](/documentation/authentication/roles-and-permissions#guest-roles)</Tooltip>, as well as via setting <Tooltip tip="Restricting access to a sheet">[Sheet-level access controls](/learning-center/blueprint/access)</Tooltip>.
 
 ### Launch onboarding projects
 
-Once you've configured the appropriate Blueprint(s) and Space, you'll simply
-need to create a Space with those configurations to begin running data
-onboarding projects. This can happen directly from the appropriate Environment
-in the Flatfile dashboard by clicking "Add Space" in the top-left. Additionally,
-you could choose to create Spaces directly via the Flatfile API and invite
-Guests to those Spaces (also via API).
+Once you've configured the appropriate Blueprint(s) and Space, you'll simply need to create a Space with those configurations to begin running data onboarding projects.
+This can happen directly from the appropriate Environment in the Flatfile dashboard by clicking "Add Space" in the top-left.
+Additionally, you could choose to create Spaces directly via the Flatfile API and invite Guests to those Spaces (also via API).
 
 ## Additional paths
 
-To find the additional Flatfile integration paths that may work better for your
-business, explore our other use cases:
+To find the additional Flatfile integration paths that may work better for your business, explore our other use cases:
 
 <CardGroup cols={2}>
   <Card title="Embed in your app" icon="person-to-portal" href="/learning-center/use-cases/portal">
