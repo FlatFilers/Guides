@@ -4,6 +4,8 @@ description: 'isolate, edit, collaborate-on, and re-integrate subsets of Sheet d
 icon: 'scissors'
 ---
 
+Data Clips is a powerful, built-in feature in Flatfile that makes data collaboration and issue resolution fast, secure, and incredibly easy.
+
 <Snippet file="shared/projects_only.mdx" />
 
 <Note>
@@ -26,6 +28,11 @@ To create a Data Clip, go to the source Sheet and select which Records you would
 Use the built in sheet action to create the clip, giving it a title, optional comment, and collaborators.
 
 <img src="/images/data-clips/create_dc.png" alt="Create Data Clip" width="75%" style={{ margin: '0 auto' }} />
+
+<Info>
+  Adding Records to Data Clips is allowed only when the Data Clip is in an Open and Ready state.
+  See [Data Clip States](#reference) for more information.
+</Info>
 
 ## Using Data Clips
 
@@ -69,6 +76,8 @@ Multiple Data Clips can be created from a single sheet, enabling different teams
 The Data Clip Library provides an organized way to find and manage Data Clips. Users can search for Data Clips by name, creator or source SheetId. The library also supports filtering by status, making it easy to locate specific clips. 
 
 
+## Reference
+
 <Expandable title="Reference: Data Clip States">
 | State   | Description                                                                 |
 |---------|-----------------------------------------------------------------------------|
@@ -77,8 +86,6 @@ The Data Clip Library provides an organized way to find and manage Data Clips. U
 | **Merged**  | Changes are accepted, data is merged back to source, historical record is maintained |
 </Expandable>
 
-
-## Reference
 
 For detailed API documentation, please refer to our [API Reference](https://reference.flatfile.com).  
 To learn about the events emitted for Data Clips, refer to [Events](/learning-center/concepts/events#data-clips).
@@ -91,9 +98,4 @@ If you encounter issues with Data Clips, here are some common problems and their
 |------------------------------|--------------------------------------------------------------------------|
 | Creation Failures            | Check sheet permissions, and verify record selection |
 | Merge Conflicts              | Refresh source data, review all conflicts systematically, and resolve conflicts field by field |
-| Unable to merge Data Clip    | Ensure you are the creator of the Data Clip. |
-| Performance Optimization     | Use batch processing, implement incremental updates, perform regular cleanup, and monitor system resources |
-
-
-
-
+| Unable to merge Data Clip    | Ensure you are the creator of the Data Clip |
