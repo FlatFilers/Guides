@@ -1,0 +1,101 @@
+---
+title: 'Data Clips (Beta)'
+description: 'isolate, edit, collaborate-on, and re-integrate subsets of Sheet data'
+icon: 'scissors'
+---
+
+Data Clips is a powerful, built-in feature in Flatfile that makes data collaboration and issue resolution fast, secure, and incredibly easy.
+
+<Snippet file="shared/projects_only.mdx" />
+
+<Note>
+  Data Clips is currently in Beta and may have some limitations and unexpected behavior. 
+</Note>
+
+## What are Data Clips?
+
+Data Clips are subsets of Sheet data where users can edit and collaborate without affecting the original dataset. Data Clips were developed to enable teams to:
+
+* Create isolated working environments for data modifications
+* Enable parallel workflows across different teams
+* Maintain data integrity through controlled update processes
+* Share specific data segments with collaborators
+* Implement robust conflict resolution mechanisms
+
+## Creating A Data Clip
+
+To create a Data Clip, go to the source Sheet and select which Records you would like to work on. 
+Use the built in sheet action to create the clip, giving it a title, optional comment, and collaborators.
+
+<img src="/images/data-clips/create_dc.png" alt="Create Data Clip" width="75%" style={{ margin: '0 auto' }} />
+
+<Info>
+  Adding Records to Data Clips is allowed only when the Data Clip is in an Open and Ready state.
+  See [Data Clip States](#reference) for more information.
+</Info>
+
+## Using Data Clips
+
+### Collaborating
+
+Data Clips are a collaborative feature. Any guest of your Space may be invited to collaborate on a Data Clip. 
+Once added, collaborators can edit, leave comments, and review changes before the Data Clip is merged back into the source Sheet.
+
+### Adding Records
+
+Record management within Data Clips is designed to be flexible and intuitive.
+Users can add records to existing clips as needed. From the source Sheet, selecting the Records you wish to add, then select the `Add Records to Data Clip` Sheet action.
+
+### Deleting Records
+
+Users may flag records for deletion in a Data Clip. While working in the clip, these records will appear with a strikethrough to show they'll be deleted.
+You can restore marked records at any time before merging. After merging, these records will be removed from the main sheet.
+
+### Conflict Resolution
+
+If the same record has been modified in both the Data Clip and the main sheet, a conflict 
+resolution interface ensures that users can make an informed decision on which version to keep.
+
+<img src="/images/data-clips/conflict_resolution.png" alt="Conflict Resolution" width="75%" style={{ margin: '0 auto' }} />
+
+### Merging Changes
+
+Once changes are finalized, they can be merged back into the main sheet, ensuring controlled updates while preserving the original dataset's integrity.
+
+When merging a Data Clip, a visual diff of all changes allows users to confirm updates before they are applied. 
+
+<Note>
+Only the creator of a Data Clip has the authority to merge changes back into the main sheet, maintaining control over the final updates.
+</Note>
+
+
+## Data Clip Library
+
+Multiple Data Clips can be created from a single sheet, enabling different teams or individuals to work in parallel without interfering with each other's workflows.
+
+The Data Clip Library provides an organized way to find and manage Data Clips. Users can search for Data Clips by name, creator or source SheetId. The library also supports filtering by status, making it easy to locate specific clips. 
+
+
+## Reference
+
+<Expandable title="Reference: Data Clip States">
+| State   | Description                                                                 |
+|---------|-----------------------------------------------------------------------------|
+| **Open**  | Newly created, allows record addition/removal, enables data modifications |
+| **Ready**  | Changes are locked, conflicts are identified, available for review/resolution |
+| **Merged**  | Changes are accepted, data is merged back to source, historical record is maintained |
+</Expandable>
+
+
+For detailed API documentation, please refer to our [API Reference](https://reference.flatfile.com).  
+To learn about the events emitted for Data Clips, refer to [Events](/learning-center/concepts/events#data-clips).
+
+## Troubleshooting
+
+If you encounter issues with Data Clips, here are some common problems and their solutions.
+
+| Issue                        | Solution                                                                 |
+|------------------------------|--------------------------------------------------------------------------|
+| Creation Failures            | Check sheet permissions, and verify record selection |
+| Merge Conflicts              | Refresh source data, review all conflicts systematically, and resolve conflicts field by field |
+| Unable to merge Data Clip    | Ensure you are the creator of the Data Clip |
