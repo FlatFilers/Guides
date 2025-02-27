@@ -1,0 +1,264 @@
+---
+title: "Autobuild & Build Mode"
+description: "configure your data import experience with AI assistance and no-code tools"
+icon: "keyboard"
+---
+
+<Snippet file="shared/projects_only.mdx" />
+
+## Overview
+
+Flatfile's Autobuild and Build Mode features provide powerful tools to configure your data import experience without writing code. These features allow you to:
+
+- **Autobuild**: Automatically generate a data model from sample files or AI prompts
+- **Build Mode**: Fine-tune your configuration with a visual interface
+- **Build Mode Chat**: Get AI assistance to modify your configuration through natural language
+
+These tools work together to streamline the process of creating and refining your data import experience, making it accessible to both technical and non-technical users.
+
+## Autobuild
+
+Autobuild is a feature that automatically generates a data model for your Flatfile space based on sample files or AI prompts. This is an excellent starting point for creating your data import experience.
+
+### Starting Autobuild
+
+You can initiate Autobuild from the dashboard or via the API.
+
+#### From the Dashboard
+
+1. Navigate to your application in the dashboard.
+2. Select "Create from Template" or "Autobuild" option.
+3. Choose one of the following input methods:
+   - **Upload a sample file**: Provide a CSV, Excel, or other supported file format
+   - **Enter field names**: Manually specify the fields you need
+   - **Use AI prompt**: Describe your data model in natural language
+   - **Start empty**: Begin with a blank configuration
+
+<img src="/images/autobuild/autobuild_start.png" alt="Starting Autobuild" width="75%" style={{ margin: '0 auto' }} />
+
+#### From the API
+
+1. Obtain your Secret Key from the [API Keys](https://platform.flatfile.com/dashboard/keys-and-secrets) page.
+2. Make an authenticated request to the autobuild endpoint.
+
+<CodeGroup>
+```terminal file upload
+curl -X POST https://api.x.flatfile.com/v1/apps/{appId}/autobuild?environmentId={environmentId} \
+  -H "Authorization: Bearer sk_123" \
+  -F "file=@sample.csv"
+```
+
+```terminal field names
+curl -X POST https://api.x.flatfile.com/v1/apps/{appId}/autobuild?environmentId={environmentId} \
+  -H "Authorization: Bearer sk_123" \
+  -d '{"fields": "name, email, phone, address"}'
+```
+
+```terminal AI prompt
+curl -X POST https://api.x.flatfile.com/v1/apps/{appId}/autobuild?environmentId={environmentId} \
+  -H "Authorization: Bearer sk_123" \
+  -d '{"prompt": "Create a customer database with contact information and purchase history"}'
+```
+
+```terminal empty
+curl -X POST https://api.x.flatfile.com/v1/apps/{appId}/autobuild?environmentId={environmentId}&empty=true \
+  -H "Authorization: Bearer sk_123"
+```
+</CodeGroup>
+
+### Autobuild Process
+
+When you initiate Autobuild, Flatfile performs the following steps:
+
+1. **Analysis**: Examines your input (file, fields, or prompt) to understand the data structure
+2. **Model Generation**: Creates a data model with appropriate fields, types, and validations
+3. **Space Creation**: Sets up a working space with the generated model
+4. **Agent Deployment**: Deploys a constraints agent to handle validation rules
+5. **Transition to Build Mode**: Opens the working space in Build Mode for further refinement
+
+<Note>
+   The Autobuild process typically takes a few seconds to complete, depending on the complexity of your input.
+</Note>
+
+## Build Mode
+
+Build Mode is a visual interface for configuring your Flatfile space. It allows you to modify workbooks, sheets, fields, and other aspects of your data model without writing code.
+
+### Accessing Build Mode
+
+You can access Build Mode in two ways:
+
+1. **After Autobuild**: Build Mode opens automatically after Autobuild completes
+2. **From an existing Space**: Click the "Enter Build Mode" toggle in the sidebar
+
+<img src="/images/buildmode/build_mode_toggle.png" alt="Build Mode Toggle" width="75%" style={{ margin: '0 auto' }} />
+
+### Build Mode Interface
+
+The Build Mode interface consists of several components:
+
+#### Header
+
+The header provides navigation and context for your current Build Mode session:
+
+- **Mode Selector**: Switch between Configuration and Assistant modes
+- **View Selector**: Toggle between Blueprint and Data Preview views
+- **Done Button**: Exit Build Mode when finished
+
+#### Blueprint View
+
+The Blueprint view displays a hierarchical representation of your data model:
+
+- **Workbooks**: Collections of related sheets
+- **Sheets**: Individual data tables
+- **Fields**: Columns within sheets, including their types and properties
+
+<img src="/images/buildmode/blueprint_view.png" alt="Blueprint View" width="75%" style={{ margin: '0 auto' }} />
+
+#### Data Preview
+
+The Data Preview shows how your data will appear to users, allowing you to:
+
+- View sample data in your configured sheets
+- Test field validations and transformations
+- Verify the overall user experience
+
+### Configuration Sidebar
+
+The Configuration sidebar provides tools for modifying your data model:
+
+#### Blueprint Configuration
+
+The Blueprint tab allows you to:
+
+- Add, edit, or remove workbooks, sheets, and fields
+- Configure field types, validations, and transformations
+- Set up relationships between sheets
+- Define custom actions and hooks
+
+<Expandable title="Field Configuration Options">
+   <ParamField path="type" type="string">
+      The data type for the field (e.g., string, number, date)
+   </ParamField>
+   <ParamField path="label" type="string">
+      Display name for the field
+   </ParamField>
+   <ParamField path="description" type="string">
+      Helpful text explaining the field's purpose
+   </ParamField>
+   <ParamField path="required" type="boolean">
+      Whether the field must have a value
+   </ParamField>
+   <ParamField path="unique" type="boolean">
+      Whether values must be unique across records
+   </ParamField>
+   <ParamField path="constraints" type="array">
+      Validation rules for the field
+   </ParamField>
+</Expandable>
+
+#### Theme Configuration
+
+The Theme tab lets you customize the visual appearance of your space:
+
+- Set primary and accent colors
+- Configure typography and spacing
+- Customize component styles
+- Preview changes in real-time
+
+#### Sidebar Configuration
+
+The Sidebar tab allows you to configure the sidebar that users see in your space:
+
+- Add or remove sidebar sections
+- Configure custom links and actions
+- Set up document sections
+- Arrange the order of sidebar elements
+
+## Build Mode Chat
+
+Build Mode Chat provides AI assistance for configuring your Flatfile space through natural language. This feature makes it easy to make complex changes without understanding the underlying technical details.
+
+<Warning>
+   Build Mode Chat requires the `buildModeChat` entitlement. If you don't see this feature, contact your account administrator.
+</Warning>
+
+### Accessing Build Mode Chat
+
+To access Build Mode Chat:
+
+1. Enter Build Mode for your space
+2. Select "Assistant" from the mode dropdown in the header
+
+<img src="/images/buildmode/chat_mode_select.png" alt="Chat Mode Selection" width="75%" style={{ margin: '0 auto' }} />
+
+### Using Build Mode Chat
+
+The Build Mode Chat interface provides a conversational way to modify your configuration:
+
+1. **Ask Questions**: Inquire about your current configuration or how to make changes
+2. **Request Changes**: Ask the assistant to modify workbooks, sheets, fields, or other elements
+3. **Get Explanations**: Learn about best practices and configuration options
+4. **Preview Changes**: See the effects of your changes in real-time
+
+<Expandable title="Example Chat Interactions">
+   <ParamField path="Add a field" type="request">
+      "Add a phone number field to the Contacts sheet with proper validation"
+   </ParamField>
+   <ParamField path="Modify validation" type="request">
+      "Make the email field required and ensure it's properly validated"
+   </ParamField>
+   <ParamField path="Create relationships" type="request">
+      "Set up a relationship between the Orders sheet and the Customers sheet"
+   </ParamField>
+   <ParamField path="Theme changes" type="request">
+      "Change the primary color to match my brand (#3366FF)"
+   </ParamField>
+</Expandable>
+
+### Chat Sessions
+
+Each chat session is associated with a unique thread ID, allowing you to:
+
+- Start new conversations for different tasks
+- Maintain context within a conversation
+- Reference previous changes and discussions
+
+To start a new chat session, click the "New Chat" button in the header.
+
+## Publishing Your Configuration
+
+After configuring your space in Build Mode, you can publish your configuration to make it available for production use:
+
+1. Click the "Done" button in the Build Mode header
+2. Review your changes in the summary view
+3. Click "Publish" to finalize your configuration
+
+<Note>
+   Publishing creates a snapshot of your configuration that can be used as a template for creating new spaces.
+</Note>
+
+## Tips & Best Practices
+
+1. **Start with a representative sample file** that includes all the fields and data types you need
+2. **Use descriptive field names and labels** to make your configuration more intuitive
+3. **Add field descriptions** to provide context for users
+4. **Test your configuration** with sample data before publishing
+5. **Use Build Mode Chat** for complex changes or when you're unsure how to implement something
+6. **Create a consistent theme** that matches your brand identity
+7. **Configure appropriate validations** to ensure data quality
+8. **Organize related fields** into logical sheets and workbooks
+
+<Tip>
+   For complex configurations, consider breaking down your changes into smaller steps and testing each change incrementally.
+</Tip>
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Autobuild fails to analyze file | Verify your file is in a supported format (CSV, Excel, etc.) and contains valid data |
+| Field types are incorrectly detected | Manually adjust field types in Build Mode Blueprint configuration |
+| Build Mode Chat doesn't appear | Reach out to Support to enable Projects on your account |
+| Changes aren't reflected in preview | Refresh the Data Preview view or toggle between Blueprint and Data Preview |
+| Configuration can't be published | Ensure all required fields and validations are properly configured |
