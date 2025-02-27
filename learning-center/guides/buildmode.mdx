@@ -226,6 +226,136 @@ Each chat session is associated with a unique thread ID, allowing you to:
 
 To start a new chat session, click the "New Chat" button in the header.
 
+## Advanced Capabilities
+
+### Workbook Management
+
+Workbooks are the primary containers for your data model in Flatfile. The Build Mode Chat provides powerful capabilities for managing workbooks:
+
+#### Workbook Structure
+
+- **Create and Modify Workbooks**: Define new workbooks or modify existing ones through natural language
+- **Sheet Organization**: Arrange sheets within workbooks in a logical order
+- **Metadata Configuration**: Add custom metadata to workbooks for integration with external systems
+- **Sheet Relationships**: Establish relationships between sheets for data integrity
+
+#### Workbook Operations
+
+- **Update Workbook Properties**: Change workbook names, slugs, and descriptions
+- **Sheet Ordering**: Rearrange the order of sheets within a workbook
+- **Composite Unique Constraints**: Create multi-field unique constraints across sheets
+- **Toggle Field Properties**: Make fields required or unique with simple commands
+
+### Sheet Management
+
+Sheets represent individual data tables within workbooks. Build Mode Chat provides comprehensive tools for sheet management:
+
+#### Sheet Operations
+
+- **Create and Delete Sheets**: Add new sheets or remove existing ones
+- **Update Sheet Properties**: Modify sheet names, slugs, and metadata
+- **Field Management**: Add, remove, or modify fields within sheets
+- **Data Validation**: Configure validation rules at the sheet level
+
+#### Sheet Configuration
+
+- **Field Ordering**: Arrange fields in a logical sequence
+- **Sheet Metadata**: Add custom metadata for integration purposes
+- **Sheet-level Actions**: Configure actions that operate on entire sheets
+- **Sheet Visibility**: Control which sheets are visible to users
+
+### Field Management
+
+Fields are the individual data elements within sheets. Build Mode Chat provides detailed control over field configuration:
+
+#### Field Types and Properties
+
+- **Data Types**: Configure appropriate data types (string, number, date, boolean, etc.)
+- **Field Labels**: Set user-friendly display names for fields
+- **Field Descriptions**: Add helpful descriptions for users
+- **Required Fields**: Mark fields as required or optional
+- **Unique Fields**: Enforce uniqueness constraints on field values
+- **Default Values**: Set default values for fields
+
+#### Field Validation
+
+- **Validation Rules**: Create custom validation rules for fields
+- **Format Validation**: Enforce specific formats (email, phone, etc.)
+- **Range Validation**: Set minimum and maximum values for numeric fields
+- **Pattern Matching**: Use regular expressions for advanced validation
+- **Custom Error Messages**: Define user-friendly error messages for validation failures
+
+### Custom Actions
+
+Actions allow users to perform operations on data within Flatfile. Build Mode Chat provides tools for creating and managing actions:
+
+#### Action Types
+
+- **Workbook Actions**: Actions that operate on entire workbooks
+- **Sheet Actions**: Actions that operate on specific sheets
+- **Field Actions**: Actions that operate on individual fields
+- **Document Actions**: Actions that operate on documents
+
+#### Action Configuration
+
+- **Operation Definition**: Define what the action does
+- **Action Triggers**: Configure when actions are available (button click, automatic, etc.)
+- **Confirmation Requirements**: Set whether actions require user confirmation
+- **Action Modes**: Configure how actions behave (primary, secondary, etc.)
+- **Custom Icons**: Set custom icons for actions
+- **Action Descriptions**: Add helpful descriptions for users
+
+#### Action Listeners
+
+- **Custom Logic**: Implement custom business logic for actions
+- **Data Transformation**: Transform data during action execution
+- **External Integration**: Connect actions to external systems
+- **Progress Updates**: Provide feedback during long-running actions
+- **Error Handling**: Implement robust error handling for actions
+
+### Data Transformation
+
+Build Mode Chat provides tools for configuring data transformation capabilities:
+
+#### Extractors
+
+- **Data Extraction**: Configure extractors to pull data from specific sources
+- **Format Conversion**: Transform data between different formats
+- **Data Cleaning**: Remove unwanted characters or formatting
+- **Value Normalization**: Standardize data values for consistency
+
+#### Automapping
+
+- **Field Mapping**: Automatically map source fields to destination fields
+- **Value Transformation**: Transform values during mapping
+- **Default Values**: Set default values for unmapped fields
+- **Mapping Rules**: Create custom rules for complex mapping scenarios
+
+#### Autocasting
+
+- **Data Type Conversion**: Automatically convert data types
+- **Format Standardization**: Standardize date formats, number formats, etc.
+- **Value Normalization**: Normalize values to a standard format
+- **Error Handling**: Configure how type conversion errors are handled
+
+### Document Management
+
+Documents provide additional context and guidance for users. Build Mode Chat offers tools for document management:
+
+#### Document Types
+
+- **Guides**: Step-by-step instructions for users
+- **Reference Materials**: Additional information about data requirements
+- **Help Documentation**: Assistance for common tasks
+- **Custom Documents**: Any additional documentation needed for your use case
+
+#### Document Operations
+
+- **Create Documents**: Add new documents to your space
+- **Update Documents**: Modify existing documents
+- **Delete Documents**: Remove unnecessary documents
+- **Document Actions**: Configure actions that operate on documents
+
 ## Publishing Your Configuration
 
 After configuring your space in Build Mode, you can publish your configuration to make it available for production use:
@@ -238,6 +368,50 @@ After configuring your space in Build Mode, you can publish your configuration t
    Publishing creates a snapshot of your configuration that can be used as a template for creating new spaces.
 </Note>
 
+## Technical Architecture
+
+The Build Mode Chat system is powered by a sophisticated orchestration layer that manages interactions between the user interface and the underlying Flatfile API:
+
+### Component Architecture
+
+- **Chat Interface**: Provides a natural language interface for users
+- **Orchestrator Agent**: Processes user requests and coordinates tool execution
+- **Tool System**: Provides specialized tools for different operations
+- **Language Models**: Powers the natural language understanding and generation
+- **Flatfile API Client**: Communicates with the Flatfile API to make changes
+
+### Tool Categories
+
+- **Reference Tools**: Provide information without making changes
+  - `loadBlueprint`: Retrieves the current configuration
+  - `getRecords`: Retrieves data from sheets
+  - `getRules`: Retrieves validation rules
+  - `listDocuments`: Lists available documents
+  - `flatfileAPIDocumentation`: Provides API documentation
+  - `flatfileGeneralDocumentation`: Provides general documentation
+  - `tavilySearch`: Searches for relevant information
+  - `currentDatetime`: Provides the current date and time
+  - `customerKBAssistant`: Provides customer-specific knowledge
+
+- **Action Tools**: Make changes to the configuration
+  - `updateWorkbook`: Updates workbook properties
+  - `updateSheet`: Updates sheet properties
+  - `deleteSheet`: Removes a sheet
+  - `renameField`: Renames a field
+  - `generateRule`: Creates validation rules
+  - `addExtractor`: Adds data extractors
+  - `deployActionListener`: Deploys custom action handlers
+  - `deployAutomap`: Configures field mapping
+  - `deployAutocast`: Configures data type conversion
+  - `deployWebhookEgress`: Sets up webhook integrations
+  - `generateActionConfig`: Creates action configurations
+  - `generateGuide`: Creates user guides
+  - `createDocument`: Adds new documents
+  - `updateDocument`: Modifies existing documents
+  - `deleteDocument`: Removes documents
+  - `deleteRecords`: Removes data records
+  - `deleteRule`: Removes validation rules
+
 ## Tips & Best Practices
 
 1. **Start with a representative sample file** that includes all the fields and data types you need
@@ -248,6 +422,13 @@ After configuring your space in Build Mode, you can publish your configuration t
 6. **Create a consistent theme** that matches your brand identity
 7. **Configure appropriate validations** to ensure data quality
 8. **Organize related fields** into logical sheets and workbooks
+9. **Implement custom actions** for common operations to improve user efficiency
+10. **Create comprehensive documentation** to guide users through the data import process
+11. **Use composite unique constraints** for complex uniqueness requirements
+12. **Configure field relationships** to maintain data integrity
+13. **Implement data transformations** to standardize incoming data
+14. **Set up webhooks** for integration with external systems
+15. **Use action listeners** to implement custom business logic
 
 <Tip>
    For complex configurations, consider breaking down your changes into smaller steps and testing each change incrementally.
@@ -262,3 +443,21 @@ After configuring your space in Build Mode, you can publish your configuration t
 | Build Mode Chat doesn't appear | Reach out to Support to enable Projects on your account |
 | Changes aren't reflected in preview | Refresh the Data Preview view or toggle between Blueprint and Data Preview |
 | Configuration can't be published | Ensure all required fields and validations are properly configured |
+
+### Common Issues
+
+1. **Action Deployment Failures**: Ensure your action code is valid and follows the required format
+2. **Validation Rule Errors**: Check that your validation rules use the correct syntax and field references
+3. **Field Type Mismatches**: Verify that field types are appropriate for the data being imported
+4. **Relationship Configuration Issues**: Ensure that related fields have compatible types
+5. **Performance Problems**: Optimize complex validation rules and action handlers
+
+### Getting Help
+
+If you encounter issues with Build Mode or Build Mode Chat:
+
+1. **Check Documentation**: Review the Flatfile documentation for guidance
+2. **Ask the Assistant**: Use Build Mode Chat to ask for help with specific issues
+3. **Contact Support**: Reach out to Flatfile support for assistance with complex problems
+4. **Community Forums**: Engage with the Flatfile community for advice and best practices
+
