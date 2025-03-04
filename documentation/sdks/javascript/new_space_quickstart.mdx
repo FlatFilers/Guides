@@ -63,6 +63,7 @@ Space will be created on each page load. Also, add the content here to your
         FlatFileJavaScript.startFlatfile({
           publishableKey: "pk_1234",
           namespace: "portal",
+          externalActorId: "test-1",
           onSubmit: async ({ sheet }) => {
             const data = await sheet.allData();
             console.log("onSubmit", data);
