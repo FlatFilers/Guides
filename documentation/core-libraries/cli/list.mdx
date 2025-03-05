@@ -1,0 +1,46 @@
+---
+title: "List Agents"
+description: "npx flatfile list"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+The `list` command allows you to view all deployed agents in your Flatfile environment. This is useful for managing your agents and understanding what's currently deployed.
+
+## Usage
+
+To list all deployed agents, use the following command:
+
+
+
+### Options
+
+| Option | Description |
+| ------ | ----------- |
+| `--token` or `-t` | Your Flatfile secret key (not required if stored in .env file) |
+| `--environment` or `-e` | The environment ID to list agents from (defaults to the environment associated with your secret key) |
+
+## Example
+
+
+
+Example output:
+
+
+
+## Using environment variables
+
+You can also store your Flatfile secret key in a `.env` file:
+
+
+
+Then run the command without the token parameter:
+
+
+
+## Related Commands
+
+- [deploy](/documentation/core-libraries/cli/deploy) - Deploy an agent to your Flatfile environment
+- [develop](/documentation/core-libraries/cli/develop) - Run a local listener for development
+- [download-agent](/documentation/core-libraries/cli/download-agent) - Download an agent from your environment
+- [delete](/documentation/core-libraries/cli/delete) - Delete an agent from your environment
