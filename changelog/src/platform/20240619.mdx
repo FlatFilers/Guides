@@ -1,0 +1,28 @@
+### February 21, 2025
+
+## dataxp
+
+New Field Types for Complex Data Structures
+
+Three new field types have been added to enhance Flatfile's data modeling capabilities:
+
+1. `embedded-record`
+   - Allows storing nested records within a single field
+   - Supports complex data structures with their own schema
+   - Useful for storing structured data like addresses or contact details
+
+2. `embedded-record-list`
+   - Enables storing arrays of nested records
+   - Each record in the list follows a defined schema
+   - Perfect for managing lists of related data (e.g., multiple contacts or addresses)
+
+3. `reference-query`
+   - Extends the reference field type with filtering capabilities
+   - Allows querying referenced data based on specific field values
+   - Includes configuration for reference key and filter value
+
+Example Configuration:
+
+
+
+These new field types provide more flexibility in handling complex data structures and relationships within Flatfile workbooks.
