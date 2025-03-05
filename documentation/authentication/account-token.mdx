@@ -18,24 +18,6 @@ Personal Access Tokens:
 
 This opens up possibilities for various use cases, including building audit logs, managing Spaces, and monitoring agents across environments.
 
-PATs follow this format: `pat_xKoBgIYU.OFiv8RpFijALvauOE0QdmEJAr2sjv9K8` where:
-- `pat_` is the prefix identifying it as a Personal Access Token
-- `xKoBgIYU` is the access token ID
-- `.` is the separator
-- `OFiv8RpFijALvauOE0QdmEJAr2sjv9K8` is the secret token part
-
-<Note>
-  The `accessToken` provided will remain valid for a duration of 24 hours.
-</Note>
-
-## Security Considerations
-
-- PATs are only shown once at the time of generation and cannot be retrieved afterward
-- The token is securely hashed using argon2 before being stored in the database
-- PATs have specific exclusions and cannot be used to:
-  - Create more PATs
-  - Retrieve environment API keys
-
 ## Managing Personal Access Tokens
 
 ### Creating a Token
