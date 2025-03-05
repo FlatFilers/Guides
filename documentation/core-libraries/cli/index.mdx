@@ -1,0 +1,53 @@
+---
+title: "CLI"
+description: "Flatfile Command Line Interface"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+The Flatfile Command Line Interface (CLI) provides a set of tools to help you develop, deploy, and manage [Listeners](/learning-center/concepts/listeners) and Agents in your Flatfile environment.
+
+## Installation
+
+The Flatfile CLI is available as an npm package and can be installed globally or used with npx:
+
+
+
+## Authentication
+
+Most CLI commands require authentication with your Flatfile API key. You can provide this in two ways:
+
+1. Using the `--token` or `-t` option with each command:
+   
+
+2. Creating a `.env` file in your project directory:
+   
+
+## Available Commands
+
+| Command | Description |
+| ------- | ----------- |
+| [develop](/documentation/core-libraries/cli/develop) | Run your project as a local listener for development |
+| [deploy](/documentation/core-libraries/cli/deploy) | Deploy your project as a Flatfile Agent |
+| [list](/documentation/core-libraries/cli/list) | List all deployed Agents in your environment |
+| [download-agent](/documentation/core-libraries/cli/download-agent) | Download an agent from your environment |
+| [delete](/documentation/core-libraries/cli/delete) | Delete an Agent from your environment |
+
+## Development Workflow
+
+A typical development workflow with the Flatfile CLI looks like this:
+
+1. **Develop locally**: Use `npx flatfile develop` to run your listener locally and test changes in real-time
+2. **Deploy to Flatfile**: When ready, use `npx flatfile deploy` to deploy your listener as an Agent
+3. **Manage Agents**: Use `npx flatfile list` to view deployed Agents and `npx flatfile delete` to remove them when needed
+4. **Download Agents**: Use `npx flatfile download-agent` to retrieve the code of a deployed Agent for inspection or modification
+
+## Environment Isolation
+
+It's recommended to use an isolated environment for development to avoid conflicts with deployed Agents. The CLI will warn you if you're working in an environment that already has deployed Agents.
+
+## Next Steps
+
+- Learn more about [Listeners](/learning-center/concepts/listeners)
+- Understand [Events](/learning-center/concepts/events) in Flatfile
+- Explore [Workbooks](/learning-center/architecture/workbooks) and [Spaces](/learning-center/architecture/spaces)
