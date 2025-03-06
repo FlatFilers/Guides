@@ -132,5 +132,3 @@ Store a field as a GMT date. Data hooks must convert this value into a
 `YYYY-MM-DD` format in order for it to be considered a valid value. Date fields interpret incoming dates with Month (MM) preceding the Day (DD) in all formats. Datetime is
 not currently available, but will be a separately supported Field Type in the
 future, and will include timezone.
-
-> **Warning**: In order to use "European" dates, formatted as DD-MM-YYYY, where the Day precedes the Month, we recommend using a string field and a Record Hook to interpret the date appropriately.
