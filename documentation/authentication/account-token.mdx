@@ -1,24 +1,41 @@
 ---
-title: "Personal Access Token"
-description: "authenticate above the Environment level"
+title: "Personal Access Tokens"
+description: "Create and manage user-scoped tokens for API authentication"
 icon: "key-skeleton-left-right"
 ---
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-You can leverage your admin API key (personal access token) to query items
-outside of specific environments. This opens up possibilities for various use
-cases, including building audit logs, managing Spaces, and monitoring agents
-across environments.
+## Overview
+
+Personal Access Tokens (PATs) provide a secure way to authenticate with the Flatfile API. Unlike environment-specific API keys, PATs are user-scoped tokens that inherit the permissions of the user who created them.
+
+Personal Access Tokens:
+- Are user-scoped authentication tokens
+- Have the same auth scope as the user who created them
+- Can be used in place of a JWT for API authentication
+- Are ideal for scripts, automation, and integrations that need to act on behalf of a user
+
+This opens up possibilities for various use cases, including building audit logs, managing Spaces, and monitoring agents across environments.
+
+## Managing Personal Access Tokens
+
+### Creating a Token
+
+1. Log in to your Flatfile account
+2. Click on your user profile dropdown in the top-right corner
+3. Select "Personal Access Tokens"
+4. Click "Create Token"
+5. Enter a descriptive name for your token
+6. Copy the generated token immediately - it will only be shown once
 
 <Note>
-  The `accessToken` provided will remain valid for a duration of 24 hours.
+  Make sure to copy your token when it's first created. For security reasons, you won't be able to view the token again after leaving the page.
 </Note>
 
-## Retrieving a Personal Access Token
+### Retrieving a Personal Access Token (Legacy Method)
 
-Your `publishableKey` and `secretKey` are specific to an environment therefore,
-to interact at a higher level, you'll have to use a personal access token.
+Your `publishableKey` and `secretKey` are specific to an environment. Therefore, to interact at a higher level, you can use a personal access token.
 
 1. From the dashboard, open **Settings**
 2. Click to **Personal Tokens**
@@ -30,35 +47,60 @@ to interact at a higher level, you'll have to use a personal access token.
 curl -X POST https://platform.flatfile.com/api/v1/auth -H 'Content-Type: application/json' -d '{"clientId":"1234-1234", "secret":"1234-1234"}'
 ```
 
-5. The response will include an `accessToken`. Present that as your **Bearer
-   `token`** in place of the `secretKey`.
+5. The response will include an `accessToken`. Present that as your **Bearer `token`** in place of the `secretKey`.
+
+### Using a Token
+
+Use your Personal Access Token in API requests by including it in the Authorization header.
+
+### Listing Tokens
+
+You can view all your active tokens in the Personal Access Tokens page. For each token, you can see:
+- Name
+- Creation date
+- Last used date (if applicable)
+
+### Deleting Tokens
+
+To delete a token:
+1. Navigate to the Personal Access Tokens page
+2. Find the token you want to delete
+3. Click the menu icon (three dots) next to the token
+4. Select "Delete"
+5. Confirm the deletion
+
+<Warning>
+  Deleting a token immediately revokes access for any applications or scripts using it. Make sure you update any dependent systems before deleting a token.
+</Warning>
 
 ## Retrieving Account-Level Objects
 
-With the obtained `accessToken`, you can use it as a Bearer token in place of
-the `secretKey` to perform account-level queries. This allows you to access to
-every object across the Account.
+With the obtained Personal Access Token, you can use it as a Bearer token in place of the `secretKey` to perform account-level queries. This allows you access to every object across the Account.
 
-By using the admin API key, you can query for all events across all
-environments, list all users and guests, determine the number of Spaces and
-their presence in different environments, and identify environments with agents
-deployed.
+By using the personal access token, you can query for all events across all environments, list all users and guests, determine the number of Spaces and their presence in different environments, and identify environments with agents deployed.
 
 ## Example Use Cases
 
 ### Building an Audit Log
 
-Query for all events across all environments and combine them with user and
-guest data to create a comprehensive audit log, providing a detailed history of
-actions within the application.
+Query for all events across all environments and combine them with user and guest data to create a comprehensive audit log, providing a detailed history of actions within the application.
 
 ### Managing Spaces Across Environments
 
-Determine the number of Spaces available and identify which Spaces exist in
-different environments, allowing you to efficiently manage and organize your
-data.
+Determine the number of Spaces available and identify which Spaces exist in different environments, allowing you to efficiently manage and organize your data.
 
 ### Monitoring Agents Across Environments
 
-Keep track of agents deployed to various environments by retrieving information
-about their presence, ensuring smooth and efficient data import processes.
+Keep track of agents deployed to various environments by retrieving information about their presence, ensuring smooth and efficient data import processes.
+
+## Best Practices
+
+- Create separate tokens for different applications or use cases
+- Use descriptive names that identify where the token will be used
+- Regularly review and delete unused tokens
+- Rotate tokens periodically for enhanced security
+- Never share your tokens with others - each user should create their own tokens
+
+## API Reference
+
+For programmatic management of Personal Access Tokens, see the [Personal Access Tokens API Reference](/api-reference/auth/personal-access-tokens).
