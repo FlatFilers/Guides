@@ -1,0 +1,25 @@
+### February 19, 2025
+
+## automations
+
+A new Data Checlist Document type has been added to the `@flatfile/plugin-space-configure` package, providing an automated way to include a Data-Checklist document in your space.
+To create a Data Checklist Document simply add the `data-checklist` treatment to your document.
+
+```ts
+import { configureSpace } from "@flatfile/plugin-space-configure"
+
+export default function (listener) {
+  listener.use(
+    configureSpace({
+      workbooks: [...]],
+      documents: [
+        {
+          title: "Data Quality Checklist",
+          body: "# Data Quality Requirements\n\nBelow is the current status of your data:",
+          treatments: ["data-checklist"]
+        }
+      ]
+    })
+  )
+}
+```
