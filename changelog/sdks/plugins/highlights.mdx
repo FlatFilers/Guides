@@ -4,6 +4,30 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+<Update label="02-19-2025" description="automations">
+A new Data Checlist Document type has been added to the `@flatfile/plugin-space-configure` package, providing an automated way to include a Data-Checklist document in your space.
+To create a Data Checklist Document simply add the `data-checklist` treatment to your document.
+
+```ts
+import { configureSpace } from "@flatfile/plugin-space-configure"
+
+export default function (listener) {
+  listener.use(
+    configureSpace({
+      workbooks: [...]],
+      documents: [
+        {
+          title: "Data Quality Checklist",
+          body: "# Data Quality Requirements\n\nBelow is the current status of your data:",
+          treatments: ["data-checklist"]
+        }
+      ]
+    })
+  )
+}
+```
+</Update>
+
 <Update label="10-29-2024" description="automations">
 `@flatfile/plugin-automap@0.7.0` The release updates the
 @flatfile/plugin-automap package to version 0.7.0. The bundler for the package
@@ -18,9 +42,7 @@ developers using this package, the import paths may need to be updated based on
 the new module entry points.
 </Update>
 
-<Update label="10-28-2024" description="">
-##schema
-
+<Update label="10-28-2024" description="schema">
 @flatfile/plugin-convert-openapi-schema@0.3.2 Updated the plugin to version
 0.3.2. This release fixes an async/await bug in the plugin. The plugin now
 properly handles asynchronous operations related to configuring the space with
@@ -55,9 +77,7 @@ handle cases where the data or data.properties is undefined, and the
 partialSheetConfig.source property is no longer deleted.
 </Update>
 
-<Update label="10-22-2024" description="">
-##automations
-
+<Update label="10-22-2024" description="automations">
 @flatfile/plugin-automap@0.6.0 This release removes the remeda dependency and
 adds the modern-async dependency. It also introduces a new option
 disableFileNameUpdate which disables updating the file name with automatic
