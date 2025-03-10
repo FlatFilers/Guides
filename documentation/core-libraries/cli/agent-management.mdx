@@ -1,0 +1,50 @@
+---
+title: "Agent Management"
+description: "manage your agents with the Flatfile CLI"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+## Listing Agents
+
+To view all agents in your environment, use the following command:
+
+```bash
+npx flatfile agents list
+```
+
+<Tip>
+  Use the `list` command to get the slug or id of the agent you want to manage.
+</Tip>
+
+
+## Downloading Agents
+
+To `download`command allowed you to download a copy of the agent's source code to your local machine. This is useful when you need to:
+- Examine the code of a deployed agent
+- Make modifications to an existing agent
+- Back up your agent code
+- Debug issues with a deployed agent
+
+
+To download an agent, use the following command:
+
+```bash
+npx flatfile agents download
+```
+
+## Delete An Agent
+
+The `delete` command allows you to remove a deployed agent from your Flatfile environment. This is useful when you no longer need an agent or want to clean up your environment.
+
+
+To delete an agent, use the following command:
+
+`npx flatfile delete <slug>`
+
+### Options
+
+| Option | Description |
+| ------ | ----------- |
+| `--slug` or `-s` | The slug of the agent to delete  |
+| `--agentId` or `-ag` | The ID of the agent to delete |
