@@ -333,3 +333,8 @@ html .group:hover {
   color: white !important; /* White text */
   border: 1px solid white !important; /* White border */
 }
+
+/* Fix hover state in light mode */
+#changelog-filters-content button:hover {
+  color: white !important; /* Ensure text is white on hover */
+}
