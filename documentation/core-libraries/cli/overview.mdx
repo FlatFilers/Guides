@@ -5,42 +5,61 @@ description: "Flatfile Command Line Interface"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
-The Flatfile Command Line Interface (CLI) provides a set of tools to help you develop, deploy, and manage [Listeners](/learning-center/concepts/listeners) and Agents in your Flatfile environment.
+The Flatfile Command Line Interface (CLI) provides a set of tools to help you develop, deploy, and manage [Listeners](/learning-center/concepts/listeners) in your Flatfile environment.
+
+<Note>
+    Once listeners deployed are and hosted on Flatfile's secure cloud, they are called Agents.
+</Note>
 
 ## Installation
 
-The Flatfile CLI is available as an npm package and can be installed globally or used with npx:
+The Flatfile CLI is available as an npm package and can be invoked with npx.
 
-
+```
+npx flatfile@latest <command>
+```
 
 ## Authentication
 
-Most CLI commands require authentication with your Flatfile API key. You can provide this in two ways:
+To interact with the agents in your environment, you must authenticate with your Flatfile API key. You may do so in two ways:
 
-1. Using the `--token` or `-t` option with each command:
+1. Pass your credentials with your command via the the `--token` and `--env` flags
+2. Making the `FLATFILE_API_KEY` and `FLATFILE_ENVIRONMENT_ID` variables available in your environment, via `.env` file in your project directory or other configurations
    
-
-2. Creating a `.env` file in your project directory:
-   
-
 ## Available Commands
 
 | Command | Description |
 | ------- | ----------- |
 | [develop](/documentation/core-libraries/cli/develop) | Run your project as a local listener for development |
 | [deploy](/documentation/core-libraries/cli/deploy) | Deploy your project as a Flatfile Agent |
-| [list](/documentation/core-libraries/cli/agent-management) | List all deployed Agents in your environment |
-| [download](/documentation/core-libraries/cli/agent-management) | Download an agent from your environment |
-| [delete](/documentation/core-libraries/cli/agent-management) | Delete an Agent from your environment |
+| [list](/documentation/core-libraries/cli/agent-management#listing-agents) | List all deployed Agents in your environment |
+| [download](/documentation/core-libraries/cli/agent-management#downloading-agents) | Download an agent from your environment |
+| [delete](/documentation/core-libraries/cli/agent-management#delete-an-agent) | Delete an Agent from your environment |
 
 ## Development Workflow
 
 A typical development workflow with the Flatfile CLI looks like this:
 
-1. **Develop locally**: Use `npx flatfile develop` to run your listener locally and test changes in real-time
-2. **Deploy to Flatfile**: When ready, use `npx flatfile deploy` to deploy your listener as an Agent
-3. **Manage Agents**: Use `npx flatfile list` to view deployed Agents and `npx flatfile delete` to remove them when needed
-4. **Download Agents**: Use `npx flatfile download-agent` to retrieve the code of a deployed Agent for inspection or modification
+<Steps>
+  <Step title="develop locally">
+    Configure your listener in local development using the develop command. 
+
+    This command runs your listener locally. 
+    It will respond to events in your configured environment just as it would once deployed, 
+    but changes to your listener will be watched so you can test changes in real-time.
+  </Step>
+  <Step title="deploy to the flatfile cloud">
+    When ready, use the deploy command to deploy your listener as an Agent.
+
+    To facilitate easy management, name your listener via the `--slug/-s` flag.
+  </Step>
+  <Step title="managing agents">
+    Use the list command to view deployed Agents and the delete command to remove them when needed.
+  </Step>
+  <Step title="download deployed agents">
+    Use the download to retrieve the code of a deployed Agent for inspection or modification.
+  </Step>
+</Steps>
 
 ## Environment Isolation
 

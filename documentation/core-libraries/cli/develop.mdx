@@ -23,15 +23,15 @@ Flatfile on every change, or they can run directly on your machine.
 
 The Flatfile CLI provides the following commands:
 
-| Command | Description                             |
-| ------- | --------------------------------------- |
-| develop | Run your project as a local listener    |
-| deploy  | Deploy your project as a Flatfile Agent |
-| list    | List deployed Agents in an environment  |
-| download-agent | Download an agent from your environment |
-| delete  | Delete an Agent                         |
+| Command  | Description                             |
+| -------- | --------------------------------------- |
+| develop  | Run your project as a local listener    |
+| deploy   | Deploy your project as a Flatfile Agent |
+| list     | List deployed Agents in an environment  |
+| download | Download an agent from your environment |
+| delete   | Delete an Agent                         |
 
-### Before you begin
+### Before You Begin
 
 You can add a `.env` file to bypass having to enter your API Key when running
 the develop command.
@@ -75,17 +75,16 @@ ncc: Compiling file index.js into CJS
 
 ```
 
-## Shared environments
+## Shared Environments
 
 It is highly recommended to utilize an isolated environment when developing with
 the local listener. That's why the CLI is warning you when working in an
 environment that already has a deployed agent.
 
-### More details
-
 Having deployed code running at the same time within the same development
 environment can lead to interference, potentially resulting in a recursive loop
-and undesirable consequences for your local listener. To avoid such
-complications, it's advisable to keep your local environment separate from any
-deployed code. This ensures optimal performance and helps maintain a stable
-development environment.
+and undesirable consequences for your local listener. 
+
+To avoid such complications, it's advisable to keep your local environment 
+separate from any deployed code. This ensures optimal performance and helps 
+maintain a stable development environment.

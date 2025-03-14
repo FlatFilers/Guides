@@ -8,122 +8,119 @@ description: "npx flatfile deploy"
 For a production deployment, listeners can be hosted either in your cloud or
 directly on the Flatfile platform.
 
-## Hosting on the Flatfile platform (recommended)
+## Flatfile-Hosted Agents  (Recommended)
 
 While your own cloud provides the maximum level of control over listener code,
 qualities such as availability and network performance are the responsibility of
-the hosting provider. Listeners may be securely deployed and run in the Flatfile
-platform cloud giving you a more consistent, low-latency, high-availability
+the hosting provider. Flatfile offers tooling to deploy and manage Listeners securely hosted
+and run in the Flatfile cloud giving you a more consistent, low-latency, high-availability
 experience.
 
-### Deploying a Workbook to Flatfile from terminal
+### Deploying An Agent
 
-Once you have configured your Workbook, you can deploy your Workbook to your
-account at any time by opening the terminal in the root directory and entering
-this command:
+Once you have configured your a local configuration running, bundling and deploying 
+your listener to the flatfile cloud can be done in a single command.
 
-<Warning>
-  Add the file name to the command: `npx flatfile deploy path-to-file` if you're
-  not running an index file.
-</Warning>
-
-<CodeGroup>
-
-```npm terminal
-npx flatfile@latest deploy --token=YOUR_SECRET_KEY
+```
+npx flatfile deploy
 ```
 
-```npm .env (optional)
-# --token isn't required in deploy command if your secret key is in a .env file
-FLATFILE_API_KEY="sk_****"
+The CLI will attempt to locate the entrypoint of your listener in the following order:
+  - `./index.js,` 
+  - `./index.ts`
+  - `./src/index.js`
+  - `./src/index.ts`
+
+If your listener is in another location you can provide the path as an argument:
+
+```
+npx flatfile deploy ./path-to/listener.ts
 ```
 
-</CodeGroup>
-
-The CLI will give you prompts and updates as it's deploying:
+The CLI will provide updates as it's deploying:
 
 ```terminal
-> npx flatfile@latest deploy --token=sk_123456
-
+> npx flatfile deploy
 ✔  Code package compiled to .flatfile/build.js
 ✔  Code package passed validation
-✔  Environment "Default" selected
-✔  Event listener deployed and running on your environment "Default". us_ag_1234
+✔  Environment "production" selected
+✔  Event listener deployed and running on your environment "production". us_ag_1234
 ```
 
-#### See it in your Dashboard
+<Tip>
+  Set your target environment `FLATFILE_ENVIRONMENT_ID` and API token `FLATFILE_API_KEY` in your .env file to avoid entering them when prompted.
+</Tip>
 
-Once your Workbook has been deployed, you’ll be able to see a new Space in your
-[Dashboard](https://platform.flatfile.com). Your Workbook will be added to every
-Space you create.
+### Dashboard Management
 
-<Note>
-  You can also configure your code to build different Workbooks as a Space is
-  created depending on various factors. Learn about [Dynamic
-  Configurations](/learning-center/guides/dynamic-configurations).
-</Note>
+You can view and manage agents via the Flatfile Dashboard. The dashboard provides a simple interface for monitoring and controlling your deployed agents with the following capabilities:
 
-### Redeploying
+| Feature | Description |
+|---------|-------------|
+| View Agent | Access details about your deployed agents including their latest deployment and last received event |
+| View Logs | Monitor agent activity and troubleshoot issues by examining execution logs |
+| Download Agent Code | Retrieve the deployed code for reference, backup, or refactoring purposes |
+| Delete Agent | Remove agents that are no longer needed from your environment |
+| Revert Agent | Roll back to a previous version if issues arise with newer deployments |
+| Deploy Library Agents | Deploy pre-built agents from the Flatfile Agent Library | 
 
-You can deploy any change to your code at any time.
+### Re-Deploying
 
-For example, if you need to add a Sheet to an already existing Workbook, simply
-deploy again with the added Sheet and everything will update.
+To update the code in your listener simply make the update your desire re-deploy. 
+Agents are versioned and you may revert to a previous version at any time via the dashboard.
 
-### Deploying multiple agents
+### Multiple Agents
 
-To deploy a second Agent without overwriting the first, you can specify a slug
-for the Agent:
+To deploy a second Agent without overwriting the first, specify a unique slug:
 
 ```terminal
-npx flatfile@latest deploy -s my-second-agent
+npx flatfile deploy -s pink
 ```
 
-When you deploy with a slug, the CLI will create a new Agent with the specified
+When you pass a slug, the CLI will create a new Agent with the specified
 slug. This allows you to deploy multiple Agents to the same environment.
 
 To update an existing Agent, you can specify the slug of the Agent you want to
 update by running the same command, including the slug.
 
-If you do not specify a slug and have only one or no deployed Agents the CLI
-will update your existing Agent, or create your first Agent. The slug for this
-agent will be `default`.
+<Note>
+  If you do not specify a slug and have only one or no deployed Agents the CLI
+  will update your existing Agent, or create your first Agent. The slug for this
+  agent will be `default`.
+</Note>
 
 ## Hosting on Regional Servers
 
+<Tip>
+  To deploy on a regional server, please contact our support team.
+</Tip>
+
 Regional servers are available upon request for those needing to host their
 applications closer to their user base, ensuring faster access and compliance
-with local data regulations. To deploy on a regional server, please contact our
-support team.
+with local data regulations. 
 
 ### URL References
 
-| Region | URL                               | API URL                              | SPACE URL                         |
-| ------ | --------------------------------- | ------------------------------------ | --------------------------------- |
-| UK     | https://platform.uk.flatfile.com/ | https://platform.uk.flatfile.com/api | https://platform.uk.flatfile.com/ |
-| EU     | https://platform.eu.flatfile.com/ | https://platform.eu.flatfile.com/api | https://platform.eu.flatfile.com/ |
-| AU     | https://platform.au.flatfile.com/ | https://platform.au.flatfile.com/api | https://platform.au.flatfile.com/ |
-| CA     | https://platform.ca.flatfile.com/ | https://platform.ca.flatfile.com/api | https://platform.ca.flatfile.com/ |
+| Region | URL / SPACE_URL          | API URL                      | 
+| ------ | ------------------------ | ---------------------------- | 
+| UK     | platform.uk.flatfile.com | platform.uk.flatfile.com/api |
+| EU     | platform.eu.flatfile.com | platform.eu.flatfile.com/api |
+| AU     | platform.au.flatfile.com | platform.au.flatfile.com/api |
+| CA     | platform.ca.flatfile.com | platform.ca.flatfile.com/api |
 
-### Configuring the API URL for Deployment
+### Configuring API URL
 
 When deploying, you can specify the `FLATFILE_API_URL` either in your project's
 `.env` file or as an environment variable.
 
 <CodeGroup>
-
-```sh Deploy command example
-npx flatfile@latest deploy
+```bash .env
+FLATFILE_API_URL=platform.eu.flatfile.com
 ```
-
-```npm .env file example (optional)
-FLATFILE_API_KEY="sk_****"
-FLATFILE_API_URL="Your Regional API URL here"
-```
-
 </CodeGroup>
 
-### Embedding with a Specific API URL
+
+### Embedding Via Space URL
 
 To embed Flatfile in your application, include both apiUrl and spaceUrl in your
 FlatfileImporter configuration to specify your regional server:
@@ -140,7 +137,7 @@ const spaceProps: ISpace = {
 };
 ```
 
-### API Interaction with a Specified Environment
+### Configure API Client Environment 
 
 For direct API interactions, the FlatfileClient needs the environment parameter
 set to your selected regional API URL:
@@ -153,7 +150,7 @@ const api = new FlatfileClient({
 });
 ```
 
-## Hosting in your own cloud
+## Self-Hosting
 
 Hosting listener code in your own cloud works similarly to how we run the
 `develop` command in that:
@@ -167,6 +164,6 @@ Reach out to support for learning how about hosting in your own cloud.
 ## Related Commands
 
 - [develop](/documentation/core-libraries/cli/develop) - Run a local listener for development
-- [list](/documentation/core-libraries/cli/list) - List all deployed agents in your environment
-- [download-agent](/documentation/core-libraries/cli/download-agent) - Download an agent from your environment
-- [delete](/documentation/core-libraries/cli/delete) - Delete an agent from your environment
+- [list](/documentation/core-libraries/cli/agent-management#listing-agents) - List all deployed agents in your environment
+- [download-agent](/documentation/core-libraries/cli/agent-management#downloading-agents) - Download an agent from your environment
+- [delete](/documentation/core-libraries/cli/agent-management#delete-an-agent) - Delete an agent from your environment
