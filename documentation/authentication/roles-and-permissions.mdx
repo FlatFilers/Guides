@@ -68,7 +68,6 @@ const createGuest = await api.guests.create({
 
 When a guest user is deleted, all their space connections are automatically removed to ensure security. This means:
 - The guest loses access to all previously connected spaces
-- Their space connections array is cleared
 - They cannot regain access to these spaces without being explicitly re-invited
 
 This automatic cleanup ensures that deleted guests cannot retain any access to spaces, even if they are later recreated with the same email address.
