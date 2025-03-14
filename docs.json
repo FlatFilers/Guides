@@ -43,8 +43,10 @@
                     "group": "CLI",
                     "icon": "square-terminal",
                     "pages": [
+                      "documentation/core-libraries/cli/overview",
                       "documentation/core-libraries/cli/develop",
-                      "documentation/core-libraries/cli/deploy"
+                      "documentation/core-libraries/cli/deploy",
+                      "documentation/core-libraries/cli/agent-management"
                     ]
                   }
                 ]
