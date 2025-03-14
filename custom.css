@@ -309,3 +309,27 @@ html .group:hover {
 :root.dark .card.block.not-prose {
   border-color: white; /* Dark mode */
 }
+
+/* Make filter tags text more visible in dark mode */
+.dark .dark\:text-gray-300 {
+  color: rgba(255, 255, 255, 0.9) !important; /* Brighter white for better visibility */
+}
+
+/* Increase contrast for filter tag backgrounds in dark mode */
+.dark .dark\:bg-gray-900 {
+  background-color: rgba(30, 30, 30, 0.8) !important; /* Slightly lighter background */
+}
+
+/* Improve hover state visibility in dark mode */
+.dark .dark\:text-gray-300:hover {
+  color: white !important;
+  background-color: rgba(50, 50, 50, 0.9) !important;
+}
+
+/* ONLY fix selected filter tags in dark mode */
+.dark #changelog-filters button:not(.dark\:bg-gray-900),
+.dark #changelog-filters-content button:not(.dark\:bg-gray-900) {
+  background-color: #444 !important; /* Dark gray background */
+  color: white !important; /* White text */
+  border: 1px solid white !important; /* White border */
+}

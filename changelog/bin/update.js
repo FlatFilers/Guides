@@ -69,7 +69,7 @@ function transformMdToMdx(date, file) {
       const chip = splitSection.shift().replace('## ', '').trim()
       const text = splitSection.join('\n').trim()
 
-      return text.length > 30 ? `<Update label="${cleanedDate}" description="${chip}">\n${text}\n</Update>` : ''
+      return text.length > 30 ? `<Update label="${cleanedDate}" tags={["${chip}"]}>\n${text}\n</Update>` : ''
   })
 
   return formattedUpdates.filter(Boolean).join('\n\n')
