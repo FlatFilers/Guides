@@ -1,0 +1,54 @@
+---
+title: "Space Restore"
+description: "Restore a space to a previous point in time"
+icon: "clock-rotate-left"
+---
+
+Flatfile's Space Restore feature allows you to restore a space to a previous point in time. This is particularly useful when you need to:
+- Recover from unintended data changes
+- Roll back problematic data transformations
+- Return to a known good state
+
+## How It Works
+
+The restore process involves two steps:
+1. First, you can preview what changes would be made by the restore operation
+2. Then, you can execute the restore operation if the proposed changes look correct
+
+## Viewing Restore Operations
+
+To see what changes would be made when restoring a space to a specific point in time, use the following endpoint:
+
+
+
+The `dateTime` parameter should be a valid ISO 8601 timestamp. The response will include a list of operations that would be performed to restore the space to that point in time.
+
+## Executing the Restore
+
+Once you've reviewed the proposed changes, you can execute the restore operation using:
+
+
+
+This will restore the space to its state at the specified point in time. The operation affects various components within the space, including:
+- Workbooks and their configurations
+- Sheets and their data
+- Documents
+- Actions
+- Other space-specific settings
+
+## Best Practices
+
+1. Always review the proposed changes using the GET endpoint before executing a restore
+2. Choose a restore point that represents a known good state of your data
+3. Consider creating a snapshot of the current state before performing a restore
+4. Communicate with users who might be actively working in the space before initiating a restore
+
+## Limitations
+
+- You cannot restore to a point before the space was created
+- The restore operation affects the entire space; you cannot selectively restore individual components
+- Active jobs or operations in the space should be completed or canceled before performing a restore
+
+## API Reference
+
+For detailed API specifications, see the [Space Restore API Reference](https://reference.flatfile.com/api-reference/spaces/restore).
