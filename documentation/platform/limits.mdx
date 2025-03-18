@@ -1,0 +1,97 @@
+# Platform Limits and Constraints
+
+This document outlines the key limits and constraints within the Flatfile platform. Understanding these limits is crucial for planning your implementation and ensuring optimal performance.
+
+## API Limits
+
+### Records
+- Maximum 1,000 records per GET request
+- Maximum 100 records per DELETE request (use jobs for larger deletions)
+- Maximum 10,000 records per bulk update operation
+
+### Pagination
+- Default page size: 10 items
+- Maximum page size: 1,000 items
+
+### Files
+- Maximum file size: 100 MB
+- Maximum number of files per Space: No hard limit, but performance may degrade with very large numbers
+
+## Data Structure Limits
+
+### Workbooks
+- Maximum number of Sheets per Workbook: No hard limit, but performance may degrade with very large numbers
+- Maximum number of fields per Sheet: No hard limit, but performance may degrade with very large numbers
+
+### Fields
+- Enum fields: Maximum 100 options per field
+- String fields: No character limit, but very long strings may impact performance
+- Number fields: Supports standard JavaScript number precision
+- Date fields: Must be in YYYY-MM-DD format (datetime support planned for future release)
+
+### Documents
+- Maximum number of embedded Sheets: 10 simultaneously expanded Sheets per Document
+
+## UI/Display Limits
+
+### Sheet Display
+- Maximum viewable records: 500,000 simultaneously
+- Additional records accessible through search and filtering
+
+### Mapping
+- Mapping confidence threshold: Configurable between 0 and 1
+- Default mapping confidence: 0.99 for AI suggestions
+
+## Authentication & Security
+
+### Access Tokens
+- Administrator tokens: 24-hour validity
+- Guest tokens: 1-hour validity
+- API key tokens: No expiration
+
+### Rate Limits
+- Standard rate limits apply to API endpoints
+- Contact support for specific limits based on your plan
+
+## Job Processing
+
+### Timeouts
+- Job acknowledgment timeout: 5 minutes
+- Workbook build timeout: 120 seconds
+- File extraction timeout: 10 minutes
+
+### Batch Processing
+- Default chunk size for extractors: 3,000 records
+- Maximum batch size for record processing: 10,000 records
+
+## Best Practices
+
+To work within these limits effectively:
+
+1. For large record sets:
+   - Use pagination for GET requests
+   - Implement jobs for bulk operations
+   - Consider batching updates in smaller chunks
+
+2. For file handling:
+   - Split large files before upload
+   - Use CSV format for very large datasets instead of Excel
+   - Monitor file upload progress for large files
+
+3. For performance optimization:
+   - Keep enum option counts reasonable
+   - Monitor Sheet and Workbook sizes
+   - Use filtering and search for large record sets
+
+4. For job processing:
+   - Implement proper error handling for timeouts
+   - Use multi-part jobs for large operations
+   - Monitor job progress and status
+
+## Notes
+
+- Some limits may vary based on your plan level
+- Performance may degrade as you approach certain limits
+- Contact support for specific limit adjustments or custom solutions
+- Regular monitoring of system usage is recommended
+- These limits are subject to change as the platform evolves
