@@ -44,9 +44,15 @@ the [Guest Sidebar](/learning-center/guides/guest_sidebar).
 | Single-Workbook&nbsp;Guest | This role is meant for a guest who should have access to only one Workbook within a Space. |
 | Multi-Workbook&nbsp;Guest  | This role is intended for a guest who has access to multiple Workbooks within a Space.     |
 
-<Info>This role can only be configured using code. See code example.</Info>
+<Info>Workbook grants can only be configured using code. See code example below.</Info>
+
+When creating a guest with workbook access, you can:
+- Grant access to specific workbooks within a space
+- Grant access to workbooks across multiple spaces
+- Reuse the same guest credentials for additional workbook access later
 
 ```js
+// Example: Creating a guest with access to specific workbooks in multiple spaces
 const createGuest = await api.guests.create({
   environmentId: "us_env_hVXkXs0b",
   email: "guest@example.com",
@@ -60,14 +66,38 @@ const createGuest = await api.guests.create({
         },
       ],
     },
+    {
+      id: "us_sp_Another",
+      workbooks: [
+        {
+          id: "us_wb_AnotherWB",
+        },
+      ],
+    },
+  ],
+});
+
+// Example: Adding additional workbook access for an existing guest
+const addAccess = await api.guests.create({
+  environmentId: "us_env_hVXkXs0b",
+  email: "guest@example.com",  // Using same email maintains single guest
+  name: "Mr. Guest",
+  spaces: [
+    {
+      id: "us_sp_DrdXetPN",
+      workbooks: [
+        {
+          id: "us_wb_NewAccess",
+        },
+      ],
+    },
   ],
 });
 ```
 
-### Guest Lifecycle
-
-When a guest user is deleted, all their space connections are automatically removed to ensure security. This means:
-- The guest loses access to all previously connected spaces
-- They cannot regain access to these spaces without being explicitly re-invited
-
-This automatic cleanup ensures that deleted guests cannot retain any access to spaces, even if they are later recreated with the same email address.
+<Note>
+When granting a guest access to multiple workbooks:
+- The same guest credentials can be reused to add access to new workbooks
+- A guest can have access to workbooks across different spaces
+- Each workbook grant is additive - new grants don't remove existing access
+</Note>
