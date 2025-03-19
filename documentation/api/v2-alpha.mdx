@@ -1,0 +1,56 @@
+# V2-Alpha API Endpoints
+
+The v2-alpha API endpoints provide enhanced functionality for retrieving records from Flatfile. While these endpoints are in alpha, they are being actively used by customers and provide valuable features for data retrieval.
+
+## GET /api/v2-alpha/records.jsonl
+
+This endpoint allows you to retrieve records from a Workbook or specific Sheet with various configuration options.
+
+### Parameters
+
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| workbookId | string | * | - | The ID of the Workbook to retrieve records from. Required if sheetId is not provided. |
+| sheetId | string | * | - | The ID of the Sheet to retrieve records from. Required if workbookId is not provided. |
+| stream | boolean | Yes | - | Must be set to true for the current version. |
+| includeLinks | boolean | No | false | When true, includes linked record information. |
+| includeMessages | boolean | No | false | When true, includes any messages associated with records. |
+| includeMetadata | boolean | No | false | When true, includes record metadata. |
+| includeSheet | boolean | No | true | When true, includes sheet information with each record. |
+| includeSheetSlug | boolean | No | true | When true, includes the sheet slug with each record. |
+| includeConfig | boolean | No | false | When true, includes configuration information. |
+| fields | string[] | No | - | Specify which fields to return. This optimizes the query by only retrieving requested fields. |
+| noContext | boolean | No | false | When true, returns only key/values from your schema without any special Flatfile keys. |
+
+### Example Request
+
+```bash
+curl -X GET "https://platform.flatfile.com/api/v2-alpha/records.jsonl?workbookId=us_wk_123&stream=true&includeLinks=true" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Response Format
+
+The response is returned in JSONL (JSON Lines) format, where each line is a valid JSON object representing a record. This format is particularly efficient for streaming large datasets.
+
+Example response:
+```jsonl
+{"id":"us_rc_123","values":{"firstName":"John","lastName":"Doe"},"valid":true}
+{"id":"us_rc_124","values":{"firstName":"Jane","lastName":"Smith"},"valid":true}
+```
+
+### Notes
+
+- Either `workbookId` or `sheetId` must be provided, but not both.
+- The `stream=true` parameter is currently required for all requests.
+- Using the `fields` parameter can significantly improve performance when you only need specific fields.
+- The `noContext` parameter is useful when you want to receive only the data without any Flatfile-specific metadata.
+
+### Error Responses
+
+| Status Code | Description |
+|-------------|-------------|
+| 400 | Bad Request - Check the required parameters |
+| 401 | Unauthorized - Invalid or missing API key |
+| 404 | Not Found - Workbook or Sheet not found |
+| 500 | Internal Server Error |
