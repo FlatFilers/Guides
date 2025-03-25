@@ -7,12 +7,37 @@ description: "supported field types"
 
 A property that should be stored and read as a basic string.
 
+<ParamField path="config.appearance" type="object">
+  Controls the visual presentation of the string field in the interface.
+</ParamField>
+
+<ParamField path="config.appearance.width" type="number">
+  The width of the column in pixels.
+</ParamField>
+
 ```json
 {
   "key": "currency",
   "label": "Product Code",
-  "type": "string"
+  "type": "string",
+  "config": {
+    "appearance": {
+      "width": 200
+    }
+  }
 },
+```
+
+## `string-list`
+
+A property that stores an array of strings. This is useful for fields that need to contain multiple text values.
+
+```json
+{
+  "key": "tags",
+  "label": "Tags",
+  "type": "string-list"
+}
 ```
 
 ## `number`
@@ -48,9 +73,23 @@ columns between datasets.
   The full path reference to another sheet/table configuration. Must be in the
   same workbook.
 </ParamField>
+
 <ParamField path="config.relationship" required>
-  The type of relationship this defines. Can be `has-one`
+  The type of relationship this defines. Currently supports `has-one`.
 </ParamField>
+
+
+```json
+{
+  "key": "parent_id",
+  "type": "reference",
+  "config": {
+    "ref": "parents",
+    "relationship": "has-one",
+    "key": "id"
+  }
+}
+```
 
 ## `enum`
 
@@ -112,6 +151,30 @@ use the `reference` or future `lookup` types.
 },
 ```
 
+## `enum-list`
+
+Similar to `enum` type but allows multiple selections from the options list. The values are stored as an array.
+
+```json
+{
+  "key": "categories",
+  "label": "Categories",
+  "type": "enum-list",
+  "config": {
+    "options": [
+      {
+        "value": "electronics",
+        "label": "Electronics"
+      },
+      {
+        "value": "clothing",
+        "label": "Clothing"
+      }
+    ]
+  }
+}
+```
+
 ## `boolean`
 
 A `true` or `false` value type. Matching engines should attempt to resolve all
@@ -133,3 +196,10 @@ Store a field as a GMT date. Data hooks must convert this value into a
 not currently available, but will be a separately supported Field Type in the
 future, and will include timezone.
 
+```json
+{
+  "key": "start_date",
+  "label": "Start Date",
+  "type": "date"
+}
+```
