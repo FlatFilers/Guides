@@ -68,29 +68,54 @@ storage format.
 
 ## `reference`
 
-Defines a reference to another sheet. Links should be established automatically
-by the matching engine or similar upon an evaluation of unique or similar
-columns between datasets.
+Defines a singular one-to-one reference to a field another sheet.
 
 <ParamField path="config.ref" required>
-  The full path reference to another sheet/table configuration. Must be in the
-  same workbook.
-</ParamField>
-
-## `reference-list`
-
-Defines a reference to another sheet. Links should be established automatically
-by the matching engine or similar upon an evaluation of unique or similar
-columns between datasets.
-
-<ParamField path="config.ref" required>
-  The full path reference to another sheet/table configuration. Must be in the
+  The sheet slug and field key of the referenced field. Must be in the
   same workbook.
 </ParamField>
 
 <ParamField path="config.key" default="id" type="string">
-  The key of the property to use as the reference key. Defaults to `id`.
+  The key of the property to use as the reference key.
 </ParamField>
+
+```json
+ {
+        "key": "author",
+        "type": "reference",
+        "label": "Authors",
+        "config": {
+          "ref": "authors",
+          "key": "name"
+        }
+      },
+```
+
+## `reference-list`
+
+Defines a reference list referencing a column in another sheet. Enables including 
+multiple values from the given data field.
+
+<ParamField path="config.ref" required>
+  The sheet slug and field key of the referenced field. Must be in the
+  same workbook.
+</ParamField>
+
+<ParamField path="config.key" default="id" type="string">
+  The key of the property to use as the reference key.
+</ParamField>
+
+```json
+ {
+    "key": "author",
+    "type": "reference-list",
+    "label": "Authors",
+    "config": {
+      "ref": "authors",
+      "key": "name"
+    }
+  },
+```
 
 ## `enum`
 
@@ -206,3 +231,10 @@ Store a field as a GMT date. Data hooks must convert this value into a
 not currently available, but will be a separately supported Field Type in the
 future, and will include timezone.
 
+```json
+{
+  "key": "start_date",
+  "label": "Start Date",
+  "type": "date"
+}
+```
