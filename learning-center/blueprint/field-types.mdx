@@ -66,6 +66,17 @@ storage format.
   },
 ```
 
+## `reference`
+
+Defines a reference to another sheet. Links should be established automatically
+by the matching engine or similar upon an evaluation of unique or similar
+columns between datasets.
+
+<ParamField path="config.ref" required>
+  The full path reference to another sheet/table configuration. Must be in the
+  same workbook.
+</ParamField>
+
 ## `reference-list`
 
 Defines a reference to another sheet. Links should be established automatically
@@ -80,17 +91,6 @@ columns between datasets.
 <ParamField path="config.key" default="id" type="string">
   The key of the property to use as the reference key. Defaults to `id`.
 </ParamField>
-
-```json
-{
-  "key": "parent_ids",
-  "type": "reference-list",
-  "config": {
-    "ref": "parents",
-    "key": "id"
-  }
-}
-```
 
 ## `enum`
 
@@ -206,10 +206,3 @@ Store a field as a GMT date. Data hooks must convert this value into a
 not currently available, but will be a separately supported Field Type in the
 future, and will include timezone.
 
-```json
-{
-  "key": "start_date",
-  "label": "Start Date",
-  "type": "date"
-}
-```
