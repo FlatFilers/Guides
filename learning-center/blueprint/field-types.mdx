@@ -30,6 +30,8 @@ A property that should be stored and read as a basic string.
 
 ## `string-list`
 
+<Snippet file="shared/advanced_mapping_required.mdx" />
+
 A property that stores an array of strings. This is useful for fields that need to contain multiple text values.
 
 ```json
@@ -46,10 +48,11 @@ A property that should be stored and read as either an integer or floating point
 number. Database engines should look at the configuration to determine ideal
 storage format.
 
-<ParamField path="config.decimal_places" default="0" type="number">
+<ParamField path="config.decimalPlaces" type="number">
   The number of decimal places to preserve accuracy to. Overages should be
   automatically rounded with a warning. A hook can pre-format to accomplish
   floor or ceiling.
+  @deprecated Use data hooks for decimal place formatting instead.
 </ParamField>
 
 ```json
@@ -58,12 +61,12 @@ storage format.
     "label": "Retail Price",
     "type": "number",
     "config": {
-      "decimal_places": 2
+      "decimalPlaces": 2
     }
   },
 ```
 
-## `reference`
+## `reference-list`
 
 Defines a reference to another sheet. Links should be established automatically
 by the matching engine or similar upon an evaluation of unique or similar
@@ -74,18 +77,16 @@ columns between datasets.
   same workbook.
 </ParamField>
 
-<ParamField path="config.relationship" required>
-  The type of relationship this defines. Currently supports `has-one`.
+<ParamField path="config.key" default="id" type="string">
+  The key of the property to use as the reference key. Defaults to `id`.
 </ParamField>
-
 
 ```json
 {
-  "key": "parent_id",
-  "type": "reference",
+  "key": "parent_ids",
+  "type": "reference-list",
   "config": {
     "ref": "parents",
-    "relationship": "has-one",
     "key": "id"
   }
 }
@@ -96,7 +97,7 @@ columns between datasets.
 Defines an enumerated list of options for the user to select from. Matching
 tooling attempts to resolve incoming data assignment to a valid option. The
 maximum number of options for this list is `100`. For larger lists, users should
-use the `reference` or future `lookup` types.
+use the `reference-list` type.
 
 <ParamField path="config.allow_custom" default="false" type="boolean">
   Permit the user to create new options for this specific field.
@@ -153,6 +154,8 @@ use the `reference` or future `lookup` types.
 
 ## `enum-list`
 
+<Snippet file="shared/advanced_mapping_required.mdx" />
+
 Similar to `enum` type but allows multiple selections from the options list. The values are stored as an array.
 
 ```json
@@ -181,11 +184,18 @@ A `true` or `false` value type. Matching engines should attempt to resolve all
 common ways of representing this value and it should usually be displayed as a
 checkbox.
 
+<ParamField path="config.allowIndeterminate" default="false" type="boolean">
+  Allow a neither true or false state to be stored as `null`.
+</ParamField>
+
 ```json
 {
   "key": "is_active",
   "label": "Active",
-  "type": "boolean"
+  "type": "boolean",
+  "config": {
+    "allowIndeterminate": true
+  }
 }
 ```
 
