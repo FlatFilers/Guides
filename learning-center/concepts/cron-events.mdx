@@ -1,0 +1,183 @@
+# Cron Events
+
+Cron events in Flatfile are scheduled events that occur at specified intervals, enabling automated, time-based operations within the platform. These events follow the standard cron syntax for scheduling and are particularly useful for automating recurring tasks.
+
+## Understanding Cron Events
+
+Cron events are system-generated events that trigger based on a defined schedule. They follow the same event structure as other Flatfile events but are initiated by the system's scheduling mechanism rather than user actions.
+
+A cron event includes:
+- Event type: `cron:triggered`
+- Schedule information in the payload
+- Context about the environment and space where it was triggered
+
+## Cron Syntax
+
+Flatfile uses standard cron syntax for scheduling events:
+
+```
+* * * * *
+│ │ │ │ │
+│ │ │ │ └─ day of week (0 - 6) (Sunday=0)
+│ │ │ └─── month (1 - 12)
+│ │ └───── day of month (1 - 31)
+│ └─────── hour (0 - 23)
+└───────── minute (0 - 59)
+```
+
+Common patterns:
+- `* * * * *` - Every minute
+- `0 * * * *` - Every hour
+- `0 0 * * *` - Every day at midnight
+- `0 0 * * 0` - Every Sunday at midnight
+- `0 0 1 * *` - First day of every month at midnight
+
+## Implementing Cron Events
+
+Cron events are handled through listeners like other Flatfile events. Here's a basic implementation:
+
+```typescript
+import { Listener } from "@flatfile/listener";
+
+export default (listener: Listener) => {
+  listener.on("cron:triggered", async (event) => {
+    // Handle the cron event
+    console.log("Cron event triggered:", event.payload.schedule);
+    
+    // Implement your scheduled task logic here
+    // For example, cleaning up old data:
+    const api = event.api;
+    try {
+      // Get spaces older than 30 days
+      const oldSpaces = await api.spaces.list({
+        filter: {
+          createdAt: {
+            lt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000)
+          }
+        }
+      });
+      
+      // Archive old spaces
+      for (const space of oldSpaces.data) {
+        await api.spaces.update(space.id, {
+          archived: true
+        });
+      }
+      
+      console.log("Successfully archived old spaces");
+    } catch (error) {
+      console.error("Error in cron job:", error);
+    }
+  });
+};
+```
+
+## Common Use Cases
+
+Cron events are particularly useful for:
+
+1. Data Cleanup
+   - Archiving old spaces
+   - Removing expired files
+   - Cleaning up temporary data
+
+2. Scheduled Updates
+   - Refreshing cached data
+   - Updating reference data
+   - Syncing external systems
+
+3. Automated Reporting
+   - Generating usage reports
+   - Monitoring system health
+   - Tracking data quality metrics
+
+4. Maintenance Tasks
+   - Database optimization
+   - Log rotation
+   - System checks
+
+## Best Practices
+
+When working with cron events:
+
+1. **Error Handling**
+   - Implement robust error handling
+   - Log errors appropriately
+   - Consider retry mechanisms for failed tasks
+
+2. **Performance**
+   - Keep tasks lightweight
+   - Avoid long-running operations
+   - Consider using batch processing for large datasets
+
+3. **Monitoring**
+   - Log important operations
+   - Track task completion
+   - Monitor execution time
+
+4. **Testing**
+   - Test cron jobs in development environment
+   - Verify timing accuracy
+   - Validate error handling
+
+## Example: Scheduled Data Export
+
+Here's an example of using cron events to automatically export data on a schedule:
+
+```typescript
+import { Listener } from "@flatfile/listener";
+import { FlatfileClient } from "@flatfile/api";
+
+export default (listener: Listener) => {
+  listener.on("cron:triggered", { schedule: "0 0 * * *" }, async (event) => {
+    // This will run daily at midnight
+    
+    const api = event.api;
+    try {
+      // Get all workbooks
+      const workbooks = await api.workbooks.list();
+      
+      for (const workbook of workbooks.data) {
+        // Create an export job for each workbook
+        await api.jobs.create({
+          type: "workbook:export",
+          operation: "export",
+          source: workbook.id,
+          config: {
+            format: "csv",
+            includeMetadata: true
+          }
+        });
+      }
+      
+      console.log("Successfully scheduled exports for all workbooks");
+    } catch (error) {
+      console.error("Error scheduling exports:", error);
+    }
+  });
+};
+```
+
+## Limitations and Considerations
+
+When implementing cron events, keep in mind:
+
+1. **Timing Accuracy**
+   - Events may not trigger exactly on schedule
+   - Plan for slight delays in execution
+   - Don't rely on precise timing for critical operations
+
+2. **Resource Usage**
+   - Consider system load during peak times
+   - Avoid scheduling resource-intensive tasks during high-traffic periods
+   - Monitor resource consumption
+
+3. **Concurrency**
+   - Handle multiple concurrent cron events appropriately
+   - Implement locking mechanisms if needed
+   - Consider using job queues for task management
+
+4. **Environment Specifics**
+   - Test cron jobs in development environment
+   - Be aware of timezone differences
+   - Consider environment-specific scheduling needs
