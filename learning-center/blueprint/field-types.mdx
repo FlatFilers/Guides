@@ -3,6 +3,8 @@ title: "Field Types"
 description: "supported field types"
 ---
 
+All fields in Flatfile are internally treated as strings regardless of their specified type. The type specification determines how the value should be validated, transformed, and displayed, but the underlying storage is always string-based.
+
 ## `string` _(default)_
 
 A property that should be stored and read as a basic string.
