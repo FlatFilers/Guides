@@ -1,0 +1,100 @@
+---
+title: 'Agents'
+description: 'Event-driven functions that automate workflows in Flatfile'
+icon: 'robot'
+---
+
+# Agents
+
+Agents are event-driven functions that automate workflows in Flatfile. They act as listeners for specific events and execute predefined actions in response, enabling you to create powerful automation within your data import processes.
+
+## Understanding Agents
+
+Agents serve as the backbone of Flatfile's event-driven architecture. They:
+
+- Listen for specific events across your Flatfile environment
+- Execute code in response to those events
+- Automate repetitive tasks and workflows
+- Process data transformations and validations
+- Handle integrations with external systems
+
+Each agent is deployed to a specific environment and can be configured to respond to particular event types or patterns.
+
+## Managing Agents
+
+Agents can be managed through both the Flatfile dashboard and the API. The dashboard provides a user-friendly interface for viewing, searching, and managing your agents.
+
+### Listing Agents
+
+You can view all agents in your environment through the Agents page in the dashboard. This page displays:
+
+- Agent ID
+- Agent slug (a human-readable identifier)
+- Creation date
+- Status
+- Associated environment
+
+### Searching Agents
+
+<Note>
+The search functionality allows you to quickly find specific agents in your environment.
+</Note>
+
+You can search for agents by:
+
+1. Agent ID - Search for a specific agent using its unique identifier
+2. Agent slug - Find agents with matching slug names
+3. Partial text - Search for agents containing specific text in their ID or slug
+
+The search is case-insensitive and will match partial text within the agent ID or slug.
+
+## Creating and Deploying Agents
+
+Agents are typically created and deployed using the Flatfile CLI. The basic workflow involves:
+
+1. Creating a listener file that defines the agent's behavior
+2. Deploying the listener to your Flatfile environment
+
+### Example: Creating a Basic Agent
+
+```javascript
+// agent.js
+import { FlatfileListener } from '@flatfile/listener';
+
+export default function(listener) {
+  // Listen for all events
+  listener.on("**", (event) => {
+    console.log(`Event received: ${event.topic}`);
+  });
+  
+  // Listen for a specific event
+  listener.on("job:ready", { job: "workbook:submitAction" }, async (event) => {
+    // Handle the event
+    console.log("Workbook submit action received");
+  });
+}
+bash
+npx flatfile deploy agent.js
+```
+
+This will create a new agent in your environment, or update an existing one if you're using the same slug.
+
+## Agent Versions
+
+Agents maintain version history, allowing you to track changes and revert to previous versions if needed. Each time you deploy an agent, a new version is created.
+
+## Best Practices
+
+When working with agents, consider these best practices:
+
+1. **Use descriptive slugs** - Choose clear, descriptive slugs for your agents to make them easier to identify and search for
+2. **Limit event scope** - Configure your agents to listen only for the specific events they need to process
+3. **Handle errors gracefully** - Implement proper error handling to ensure your agents are resilient
+4. **Monitor agent logs** - Regularly check agent logs to ensure they're functioning as expected
+5. **Use namespaces** - Organize related agents using consistent naming conventions
+
+## Related Resources
+
+- [Listeners](/learning-center/concepts/listeners) - Learn more about the listener system that powers agents
+- [Events](/learning-center/concepts/events) - Understand the event system that agents interact with
+- [CLI](/documentation/core-libraries/cli/deploy) - Explore the CLI tools for deploying agents
