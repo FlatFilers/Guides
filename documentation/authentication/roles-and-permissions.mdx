@@ -6,10 +6,14 @@ icon: "user"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
+Permissions in Flatfile are determined by a combination of:
+- The user's role (Administrator or Guest)
+- The specific access grants assigned to guests (Space-level or Workbook-level)
+- Sheet-level access controls configured in the Blueprint
+
 ## Administrator Roles
 
-Administrator roles have full access to your accounts, including inviting
-additional admins and seeing developer keys.
+Administrator roles have full access to your accounts, including inviting additional admins and seeing developer keys.
 
 <Note>
   The `accessToken` provided will remain valid for a duration of 24 hours.
@@ -19,12 +23,44 @@ additional admins and seeing developer keys.
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Administrator | This role is meant for any member of your team who requires full access to the Account.<br/> <br/>&#x2713; Can add other administrators <br/>&#x2713; Can view secret keys <br/>&#x2713; Can view logs |
 
+### Administrator Permissions
+
+Administrators have full access to all features within a Space:
+
+#### Space Management
+- Create and configure new Spaces
+- Archive or delete Spaces
+- Modify Space settings and metadata
+- Update Space themes and branding
+- Configure sidebar visibility and options
+
+#### User Management
+- Invite new guests to the Space
+- Remove guests from the Space
+- View all guest activity
+- Configure guest permissions
+
+#### Data Management
+- Create and configure Workbooks
+- Add, edit, or delete Sheets
+- Upload files of any supported type
+- Access all data within all Workbooks
+- Execute any available Actions
+- Create and modify Documents
+- Access and modify all records
+- Configure field mappings
+- Set up data validation rules
+
+#### Configuration
+- Modify Blueprint configurations
+- Set up Actions and event handlers
+- Configure data transformations
+- Manage Space secrets
+- Set up webhooks and integrations
+
 ## Guest Roles
 
-Guest roles receive access via a magic link or a shared link depending on the
-[Environment](https://platform.flatfile.com/dashboard) `guestAuthentication`
-type. Guests roles can invite other Guests unless you turn off this setting in
-the [Guest Sidebar](/learning-center/guides/guest_sidebar).
+Guest roles receive access via a magic link or a shared link depending on the [Environment](https://platform.flatfile.com/dashboard) `guestAuthentication` type. Guests roles can invite other Guests unless you turn off this setting in the [Guest Sidebar](/learning-center/guides/guest_sidebar).
 
 <Note>
   The `accessToken` provided will remain valid for a duration of 1 hour.
@@ -64,6 +100,59 @@ const createGuest = await api.guests.create({
 });
 ```
 
+### Guest Permissions
+
+Guest permissions can be configured at different levels:
+
+#### Space-Level Guest
+A guest with Space-level access can:
+- View and access the Space
+- See all Workbooks they have been granted access to
+- View the Space sidebar (if enabled)
+- Access the data checklist (if enabled)
+- Upload files (if permitted)
+- View Documents (if accessible)
+
+#### Workbook-Level Guest
+A guest with Workbook-level access can only:
+- Access specific Workbooks they've been granted access to
+- View and interact with Sheets within those Workbooks
+- Execute allowed Actions within those Workbooks
+
+### Sheet-Level Access Controls
+
+Within Sheets, guests can be granted specific permissions through the Blueprint configuration:
+
+```json
+{
+  "sheets": [{
+    "name": "Contacts",
+    "access": ["add", "edit", "delete", "import"]
+  }]
+}
+```
+
+Available Sheet permissions:
+- `"add"`: Create new records
+- `"edit"`: Modify existing records
+- `"delete"`: Remove records
+- `"import"`: Import data from files
+- Empty array (`[]`): Read-only access
+
+### Field-Level Access
+
+Individual fields can be marked as read-only using the `readonly` property:
+
+```json
+{
+  "fields": [{
+    "key": "email",
+    "type": "string",
+    "readonly": true
+  }]
+}
+```
+
 ### Guest Lifecycle
 
 When a guest user is deleted, all their space connections are automatically removed to ensure security. This means:
@@ -71,3 +160,45 @@ When a guest user is deleted, all their space connections are automatically remo
 - They cannot regain access to these spaces without being explicitly re-invited
 
 This automatic cleanup ensures that deleted guests cannot retain any access to spaces, even if they are later recreated with the same email address.
+
+## Common Guest Restrictions
+
+Guests typically cannot:
+- Modify Space configurations
+- Change Blueprint settings
+- Access or modify Space secrets
+- View or modify other guests' permissions
+- Access Spaces or Workbooks they haven't been explicitly granted access to
+- Modify read-only fields
+- Execute restricted Actions
+
+## Best Practices
+
+1. **Principle of Least Privilege**
+   - Grant only the permissions necessary for the task
+   - Use read-only fields for sensitive data
+   - Restrict unnecessary Actions
+
+2. **Clear Access Patterns**
+   - Group related permissions logically
+   - Document permission changes
+   - Maintain consistent access patterns across similar Spaces
+
+3. **Regular Audits**
+   - Review guest access periodically
+   - Remove unnecessary permissions
+   - Update access controls as needs change
+
+## Checking Permissions
+
+To check a user's permissions within a Space:
+1. Verify their role (Administrator or Guest)
+2. Check their access grants (Space or Workbook level)
+3. Review Sheet-level access controls in the Blueprint
+4. Check for any read-only field restrictions
+
+## Related Resources
+
+- [Roles & Permissions Overview](/authentication/roles-and-permissions)
+- [Blueprint Access Controls](/learning-center/blueprint/access)
+- [Sheet Options](/learning-center/blueprint/sheet-options)
