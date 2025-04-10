@@ -207,6 +207,8 @@ import { recordHook } from "@flatfile/plugin-record-hook";
  * Example Listener
  */
 export const listener = FlatfileListener.create((listener) => {
+  //note: listening to all events with a wildcard can be used while testing but is not
+  //recommended for production, as it will capture all events and may cause performance issues
   listener.on("**", (event) => {
     console.log(`Received event:`, event);
   });
