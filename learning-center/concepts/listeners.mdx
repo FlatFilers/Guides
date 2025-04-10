@@ -289,6 +289,8 @@ re-throw your error after handling to bubble it up to the execution handler.
 <CodeGroup>
 ```jsx javascript
 export default function (listener) {
+  //note: listening to all events with a wildcard can be used while testing but is not 
+  //recommended for production, as it will capture all events and may cause performance issues
   listener.on("**", (event) => {
     try {
       // do something
@@ -302,6 +304,8 @@ export default function (listener) {
 
 ```jsx typescript
 export default function (listener) {
+  //note: listening to all events with a wildcard can be used while testing but is not
+  //recommended for production, as it will capture all events and may cause performance issues
   listener.on("**", (event: FlatfileEvent) => {
     try {
       // do something
@@ -329,7 +333,11 @@ Learn more about the Flatfile Platform in our other concept guides:
   <Card title="Jobs" href="/learning-center/concepts/jobs" icon="truck">
     Handle complex or long-running processes asynchronously
   </Card>
-  <Card title="Spaces" href="/learning-center/architecture/spaces" icon="planet-ringed">
+  <Card
+    title="Spaces"
+    href="/learning-center/architecture/spaces"
+    icon="planet-ringed"
+  >
     Micro-applications with its own database, filestore, and auth
   </Card>
 </CardGroup>

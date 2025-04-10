@@ -25,6 +25,8 @@ Let's take a look at a basic listener.
 <CodeGroup>
 ```js javascript
 export default function (listener) {
+  //note: listening to all events with a wildcard can be used while testing but is not 
+  //recommended for production, as it will capture all events and may cause performance issues
   listener.on("**", (event) => {
     console.log(`Received event: ${event.topic}`);
   });
@@ -34,6 +36,8 @@ export default function (listener) {
 import { FlatfileEvent, FlatfileListener } from "@flatfile/listener";
 
 export default function flatfileEventListener(listener: FlatfileListener) {
+  //note: listening to all events with a wildcard can be used while testing but is not 
+  //recommended for production, as it will capture all events and may cause performance issues
   listener.on("**", (event: FlatfileEvent) => {
     console.log(`Received event: ${event.topic}`);
   });

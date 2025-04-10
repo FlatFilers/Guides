@@ -57,7 +57,7 @@ import { workbook } from "./workbook";
 window.openFlatfile = ({ publishableKey }) => {
   if (!publishableKey) {
     throw new Error(
-      "You must provide a publishable key - pass through in index.html",
+      "You must provide a publishable key - pass through in index.html"
     );
   }
 
@@ -95,6 +95,8 @@ import { FlatfileListener } from "@flatfile/listener";
 import { recordHook } from "@flatfile/plugin-record-hook";
 
 export const listener = FlatfileListener.create((listener) => {
+  //note: listening to all events with a wildcard can be used while testing but is not
+  //recommended for production, as it will capture all events and may cause performance issues
   listener.on("**", (event) => {
     console.log("Event =>", event);
   });
@@ -105,7 +107,7 @@ export const listener = FlatfileListener.create((listener) => {
       console.log({ firstName });
       record.set("lastName", "Rock");
       return record;
-    }),
+    })
   );
 });
 ```
@@ -119,7 +121,7 @@ import { workbook } from "./workbook";
 window.openFlatfile = ({ publishableKey }) => {
   if (!publishableKey) {
     throw new Error(
-      "You must provide a publishable key - pass through in index.html",
+      "You must provide a publishable key - pass through in index.html"
     );
   }
 
@@ -181,6 +183,8 @@ import { recordHook } from "@flatfile/plugin-record-hook";
 
 export const listener = FlatfileListener.create((listener) => {
   listener.on("**", (event) => {
+    //note: listening to all events with a wildcard can be used while testing but is not
+    //recommended for production, as it will capture all events and may cause performance issues
     console.log("Event =>", event.topic);
   });
 
@@ -190,7 +194,7 @@ export const listener = FlatfileListener.create((listener) => {
       console.log({ firstName });
       record.set("lastName", "Rock");
       return record;
-    }),
+    })
   );
 
   listener.on(
@@ -225,7 +229,7 @@ export const listener = FlatfileListener.create((listener) => {
           },
         });
       }
-    },
+    }
   );
 });
 ```
