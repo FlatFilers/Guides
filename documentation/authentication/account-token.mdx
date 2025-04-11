@@ -33,6 +33,22 @@ This opens up possibilities for various use cases, including building audit logs
   Make sure to copy your token when it's first created. For security reasons, you won't be able to view the token again after leaving the page.
 </Note>
 
+### Exchanging Credentials for an Access Token
+
+You can exchange your email and password credentials for an access token using the auth endpoint:
+
+```bash
+curl --location 'api.x.flatfile.com/api/v1/auth' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "test@test.com",
+    "password": "password!"
+}'
+```
+
+The response will include an access token that you can use for API authentication.
+
 ### Retrieving a Personal Access Token (Legacy Method)
 
 Your `publishableKey` and `secretKey` are specific to an environment. Therefore, to interact at a higher level, you can use a personal access token.
