@@ -1,0 +1,47 @@
+---
+title: "Data Processing"
+description: "understanding Flatfile's data processing and storage"
+icon: "database"
+---
+
+<Note>
+All Spaces are built on a hybrid client-server architecture to ensure secure and efficient data processing. 
+</Note>
+
+Flatfile employs a hybrid system for data processing. While the client-side handles user interactions and basic validations, the server side manages the core processing and storage operations. 
+This architecture is essential for maintaining security and enabling complex data operations that cannot be performed solely on the client side.
+
+## Storage
+
+When you upload data to Flatfile, it flows through several storage locations:
+
+Your data begins as file storage, where uploaded files are securely stored and encrypted at rest. The processed data resides in Flatfile's database system, where each Space maintains its own isolated storage environment. All data in this permanent storage is encrypted and regularly backed up to ensure data safety and availability.
+
+
+<Tip>
+[Data Retention](/learning-center/guides/data-retention) policies are available to Pro and Enterprise customers.
+</Tip>
+
+
+## Security
+
+Security is prioritized in every layer of Flatfile's data handling and processing. All data transmission occurs over HTTPS, with API Keys and access tokens securing communications. 
+
+The system implements [role-based access controls](/documentation/authentication/roles-and-permissions) within isolated Spaces, allowing you to precisely manage who can access specific Workbooks and Records.
+
+Data protection measures include encryption both at rest and in transit, regular security audits, and compliance with data protection standards. The system employs secure key management practices to maintain the highest level of data security.
+
+## Processing
+
+Flatfile optimizes data processing for an efficient and secure experience.
+
+- <b>Schema Organization</b> Apps, Spaces, and Workbooks are used for organizing related data, with configurable validation rules and transformation capabilities. 
+Each Workbook can contain multiple Sheets, each with its own [schema](/learning-center/blueprint/about#terms) and field-level configurations.
+
+- <b>Batch Processing</b>
+Large datasets are processed in batches with streaming support to ensure memory efficiency. The system manages database connections through connection pooling, with separate read/write connections to optimize performance.
+
+- <b>Point-In-Time Restoration</b>
+[Snapshots](https://reference.flatfile.com/api-reference/snapshots/) are used to capture point-in-time states of your Sheets, enabling version restoration when needed. 
+This feature proves particularly valuable for audit purposes and data recovery scenarios.
+
