@@ -1,0 +1,120 @@
+---
+title: "Smart Extraction"
+description: "Extract structured data from files using AI-powered extraction"
+icon: "microchip-ai"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+## Overview
+
+Smart Extraction is an AI-powered feature in Flatfile that automatically extracts structured data from files. It analyzes the file content and intelligently identifies tables, fields, and records, making it easier to import data into your workbooks.
+
+Smart Extraction is particularly useful when dealing with:
+
+- Files with complex structures
+- Data that doesn't fit neatly into predefined templates
+- Files where the schema isn't known in advance
+
+## How It Works
+
+Smart Extraction uses AI to:
+
+1. Analyze the file content
+2. Identify tables and their structures
+3. Extract data into a structured format
+4. Create workbooks and sheets based on the extracted data
+
+The process happens in two main steps:
+
+1. **Preview Extraction**: Analyzes the file and provides a preview of the extracted data
+2. **Complete Extraction**: Creates workbooks and sheets with the extracted data
+
+## Using Smart Extraction API
+
+### Get Smart Extraction Preview
+
+To get a preview of the extracted data without creating workbooks and sheets:
+
+```javascript
+const preview = await api.files.getSmartExtractionPreview({
+  fileId: "us_fl_your_file_id"
+});
+```
+
+This returns a preview of the extracted data, including the tables and fields identified in the file.
+
+### Complete Smart Extraction
+
+To complete the extraction process and create workbooks and sheets with the extracted data:
+
+```javascript
+const result = await api.files.completeSmartExtraction({
+  fileId: "us_fl_your_file_id"
+});
+```
+
+This endpoint:
+
+1. Extracts the file using the custom extractor
+2. Creates a workbook with sheets based on the extracted data
+3. Populates the sheets with the extracted records
+4. Updates the file status to "Complete" and links it to the created workbook
+
+The response includes the created workbook with its sheets, allowing you to immediately access the extracted data.
+
+## Smart Extraction Response
+
+The smart extraction response includes:
+
+- **extractorResponse**: Contains the function used to process the data
+- **tables**: The tables identified in the file, with their fields and records
+
+Example response structure:
+
+```json
+{
+  "extractorResponse": {
+    "function": "function processTabularData(data) { ... }"
+  },
+  "tables": {
+    "Contacts": [
+      {
+        "values": {
+          "firstName": "John",
+          "lastName": "Doe",
+          "email": "john.doe@example.com"
+        }
+      },
+      // More records...
+    ],
+    // More tables...
+  }
+}
+```
+
+## Error Handling
+
+If the smart extraction process encounters an error, it will throw an exception with a descriptive message. Common errors include:
+
+- File not found
+- File expired
+- No smart extraction function found (run extraction to get a function)
+- Error during extraction process
+
+Make sure to handle these errors appropriately in your application.
+
+## Limitations
+
+- Smart Extraction works best with structured or semi-structured data
+- Very large files may take longer to process
+- The quality of extraction depends on the clarity and consistency of the data in the file
+
+## Next Steps
+
+After completing smart extraction, you can:
+
+- Access the created workbook and sheets to view the extracted data
+- Modify the schema if needed
+- Process the data using [record hooks](../guides/handling-data.mdx)
+- Export the data to your destination systems
