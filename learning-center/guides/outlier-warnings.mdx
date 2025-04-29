@@ -1,0 +1,92 @@
+---
+title: "Outlier Warning Messages"
+description: "Understanding mapping issues with detailed warning messages"
+icon: "triangle-exclamation"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+## Overview
+
+When mapping data in Flatfile, you may encounter situations where the system detects potential issues with how source fields map to destination fields. The outlier warning system provides detailed feedback about these mapping issues, helping you understand and resolve them more effectively.
+
+Outlier warnings appear as yellow triangles in the mapping interface, indicating that while a mapping is possible, there may be issues that could affect data quality or completeness.
+
+## Warning Types
+
+Flatfile's outlier warning system categorizes mapping issues into four specific types:
+
+### UNMAPPED_FIELD
+
+This warning appears when a source field has no mapped destination fields. This could mean that important data from your source is not being captured in your destination schema.
+
+**Example message:** `No destination fields for 'Email'`
+
+### TOO_MANY_FIELDS
+
+This warning indicates that there are too many destination fields for efficient permutation checking. This typically occurs when a source field is being mapped to an excessive number of destination fields, which can lead to performance issues and potentially incorrect mappings.
+
+**Example message:** `'Full Name' value "John Smith" is being split into too many fields (12 fields)`
+
+### CONTENT_MISMATCH
+
+This warning appears when there's a character length mismatch between source and destination values. This could indicate that data is being lost or incorrectly transformed during mapping.
+
+Content mismatch warnings include detailed diagnostic information about what content is missing or extra:
+
+**Example messages:**
+- `'Full Name' has missing content "Robert" when split`
+- `'Full Name' has extra content "Jr." when split`
+- `'Full Name' has 10 missing characters when split (15/25 chars)`
+
+### ORDER_MISMATCH
+
+This warning indicates field order issues that prevent successful mapping. This occurs when the order of values in the source doesn't match the expected order in the destination fields.
+
+**Example message:** `'Full Name' value "John Smith" doesn't match the expected order in fields First Name, Last Name (got "Smith John")`
+
+## How Warnings Are Displayed
+
+When you hover over a field with a warning indicator (yellow triangle), you'll see a tooltip displaying the specific warning message. If multiple warnings exist for a single mapping, they will be displayed as a bulleted list, helping you understand all potential issues at once.
+
+![Outlier Warning Example](/images/guides/outlier-warning-example.png)
+
+## Benefits of Detailed Warnings
+
+The structured warning system provides several advantages:
+
+1. **Precise Problem Identification**: Instead of generic "this might be an outlier" messages, you get specific information about what type of issue exists.
+
+2. **Multiple Issue Detection**: The system can identify and report multiple issues with a single mapping, giving you a comprehensive view of potential problems.
+
+3. **Detailed Diagnostic Data**: Each warning includes specific details about the source and destination fields, normalized values, content comparisons, and more.
+
+4. **User-Friendly Messaging**: Simple, consistent message format makes it easy to understand the issue at a glance.
+
+## Using Warnings to Improve Mapping
+
+When you encounter outlier warnings, consider the following approaches:
+
+1. **For UNMAPPED_FIELD warnings**: Determine if the source field contains important data that should be mapped to a destination field. If so, create or select an appropriate destination field.
+
+2. **For TOO_MANY_FIELDS warnings**: Simplify your mapping by reducing the number of destination fields or consider using a more structured approach to handle complex data.
+
+3. **For CONTENT_MISMATCH warnings**: Review the specific content differences to understand what data might be lost or added during mapping. Adjust your mapping strategy accordingly.
+
+4. **For ORDER_MISMATCH warnings**: Check if the order of values in your source data matches the expected order in your destination fields. You might need to reorder your mapping or transform your data.
+
+## Technical Implementation
+
+The outlier warning system is implemented through several key functions:
+
+- `getOutlierWarnings`: Analyzes source and destination fields to detect potential issues
+- `getOutlierMessage`: Generates user-friendly messages based on detected issues
+- `getPrimaryOutlierMessage`: Prioritizes multiple warnings to show the most critical one first
+
+These functions work together to provide a comprehensive warning system that helps users understand and resolve mapping issues effectively.
+
+## Conclusion
+
+Outlier warnings are a powerful tool for ensuring data quality during the mapping process. By providing detailed, specific information about potential issues, they help you make informed decisions about how to map your data effectively.
+
+When you see a warning indicator, take the time to understand the specific issue being reported. This will help you create more accurate, reliable mappings and ensure that your data is transferred correctly.

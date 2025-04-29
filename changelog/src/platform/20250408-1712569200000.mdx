@@ -1,0 +1,33 @@
+---
+title: "Enhanced Outlier Warning Messages"
+description: "Improved feedback for mapping issues with structured warning types"
+---
+
+## Warning messages on outliers
+
+We've enhanced the outlier detection system with structured warning messages that provide clearer, more actionable feedback when mapping issues are detected.
+
+### Key Features
+
+- **Structured Warning Types** - Four specific categories of mapping issues:
+  - `UNMAPPED_FIELD` - Source field has no mapped destination fields
+  - `TOO_MANY_FIELDS` - Too many destination fields for efficient permutation checking
+  - `CONTENT_MISMATCH` - Character length mismatch between source and destinations
+  - `ORDER_MISMATCH` - Field order issues preventing successful mapping
+
+- **Multiple Warning Detection** - System can detect and report multiple issues with a single mapping.
+
+- **Detailed Diagnostic Data** - Each warning includes:
+  - Source field name and value
+  - Destination field names and values
+  - Normalized values for comparison
+  - Field counts and limits
+  - Content comparison metrics
+
+- **User-Friendly Messaging** - Simple, consistent message format for each warning type
+
+When hovering over a field with a warning indicator (yellow triangle), you'll now see specific information about what type of issue exists, making it easier to understand and resolve mapping problems.
+
+![Outlier Warning Example](https://github.com/user-attachments/assets/16ddf551-950d-4aaf-b85f-5f00d8508b09)
+
+For more information, see our [Outlier Warnings guide](/learning-center/guides/outlier-warnings).
