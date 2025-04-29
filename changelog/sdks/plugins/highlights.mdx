@@ -4,7 +4,7 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
-<Update label="02-19-2025" description="automations">
+<Update label="02-19-2025" tags={["automations"]}>
 A new Data Checlist Document type has been added to the `@flatfile/plugin-space-configure` package, providing an automated way to include a Data-Checklist document in your space.
 To create a Data Checklist Document simply add the `data-checklist` treatment to your document.
 
@@ -28,7 +28,7 @@ export default function (listener) {
 ```
 </Update>
 
-<Update label="10-29-2024" description="automations">
+<Update label="10-29-2024" tags={["automations"]}>
 `@flatfile/plugin-automap@0.7.0` The release updates the
 @flatfile/plugin-automap package to version 0.7.0. The bundler for the package
 has been swapped from Parcel to tsup. The @flatfile/util-common dependency has
@@ -42,7 +42,7 @@ developers using this package, the import paths may need to be updated based on
 the new module entry points.
 </Update>
 
-<Update label="10-28-2024" description="schema">
+<Update label="10-28-2024" tags={["schema"]}>
 @flatfile/plugin-convert-openapi-schema@0.3.2 Updated the plugin to version
 0.3.2. This release fixes an async/await bug in the plugin. The plugin now
 properly handles asynchronous operations related to configuring the space with
@@ -77,7 +77,7 @@ handle cases where the data or data.properties is undefined, and the
 partialSheetConfig.source property is no longer deleted.
 </Update>
 
-<Update label="10-22-2024" description="automations">
+<Update label="10-22-2024" tags={["automations"]}>
 @flatfile/plugin-automap@0.6.0 This release removes the remeda dependency and
 adds the modern-async dependency. It also introduces a new option
 disableFileNameUpdate which disables updating the file name with automatic
@@ -86,13 +86,13 @@ unconditionally, but now can be controlled via this new option. There are no
 changes to the external interface beyond the addition of this new option.
 </Update>
 
-<Update label="10-18-2024" description="extractors">
+<Update label="10-18-2024" tags={["extractors"]}>
 `@flatfile/plugin-delimiter-extractor@2.2.3`
 
 This release corrects the DelimiterOption import.
 </Update>
 
-<Update label="09-23-2024" description="extractors">
+<Update label="09-23-2024" tags={["extractors"]}>
 `@flatfile/plugin-xlsx-extractor@3.1.5`
 
 This release fixes an issue in header row logic that erred when the header row
@@ -100,7 +100,7 @@ contained non-string values and the `raw` or `rawNumbers` params were set to
 true.
 </Update>
 
-<Update label="08-27-2024" description="automations">
+<Update label="08-27-2024" tags={["automations"]}>
 `@flatfile/plugin-automap@0.4.0`
 
 Updated listener to job:updated from job:created to account for the mapping plan
@@ -108,7 +108,7 @@ now being run asynchronously. Updated the verfiyConfidentMatching from every to
 some to enable more concice autoMapping
 </Update>
 
-<Update label="07-26-2024" description="extractors">
+<Update label="07-26-2024" tags={["extractors"]}>
 `@flatfile/plugin-xlsx-extractor@3.1.2`
 `@flatfile/plugin-delimiter-extractor@2.1.1`
 `@flatfile/plugin-xml-extractor@0.6.1` `@flatfile/plugin-json-extractor@0.8.1`
@@ -116,14 +116,14 @@ some to enable more concice autoMapping
 Extractor plugins now escape keys with special characters.
 </Update>
 
-<Update label="07-20-2024" description="transform">
+<Update label="07-20-2024" tags={["transform"]}>
 `@flatfile/util-response-rejection@1.3.4`
 
 An adjusment has been made to ensure proper order when response rejection is
 used with a Record Hook.
 </Update>
 
-<Update label="07-19-2024" description="extractors">
+<Update label="07-19-2024" tags={["extractors"]}>
 `@flatfile/plugin-xlsx-extractor@3.1.0`
 `@flatfile/plugin-delimiter-extractor@2.1.0`
 `@flatfile/plugin-xml-extractor@0.6.0` `@flatfile/plugin-json-extractor@0.8.0`
@@ -132,7 +132,7 @@ A small change has been made in the extractors to ensure the normalization of
 extracted column keys.
 </Update>
 
-<Update label="07-10-2024" description="extractors">
+<Update label="07-10-2024" tags={["extractors"]}>
 `@flatfile/plugin-xlsx-extractor@3.0.0`
 
 A major change has been made where the 'required' field check from extractors
@@ -144,7 +144,7 @@ can use a listener to add the `field.constraints.required` to the specific
 fields you need.
 </Update>
 
-<Update label="06-06-2024" description="extractors">
+<Update label="06-06-2024" tags={["extractors"]}>
 `@flatfile/plugin-delimiter-extractor@1.0.0`
 `@flatfile/plugin-xml-extractor@0.5.17` `@flatfile/plugin-xlsx-extractor@2.0.0`
 `@flatfile/plugin-json-extractor@0.7.6`
@@ -160,7 +160,7 @@ This powerful new header selection capability streamlines working with
 delimiter-separated data files lacking explicit column headers.
 </Update>
 
-<Update label="05-29-2024" description="core">
+<Update label="05-29-2024" tags={["core"]}>
 `@flatfile/plugin-job-handler@0.5.4`
 
 In this release, the @flatfile/plugin-job-handler package introduces improved
@@ -199,7 +199,7 @@ seamless and reliable experience when working with the
 @flatfile/plugin-job-handler package.
 </Update>
 
-<Update label="05-29-2024" description="transform">
+<Update label="05-29-2024" tags={["transform"]}>
 The latest release of the @flatfile/plugin-dedupe package introduces an improved
 error message when the dedupe plugin is incorrectly called from a workbook-level
 action instead of a sheet-level action. This helpful error message provides a
@@ -207,7 +207,7 @@ clearer indication to developers using the package, guiding them to correctly
 configure the dedupe plugin as a sheet-level action.
 </Update>
 
-<Update label="05-28-2024" description="core">
+<Update label="05-28-2024" tags={["core"]}>
 `@flatfile/plugin-constraints@2.0.0` `@flatfile/plugin-record-hook@1.6.0`
 `@flatfile/plugin-autocast@1.0.0`
 
@@ -220,7 +220,7 @@ new capability streamlines the development workflow and ensures data integrity
 across various use cases.
 </Update>
 
-<Update label="05-28-2024" description="core">
+<Update label="05-28-2024" tags={["core"]}>
 `@flatfile/plugin-job-handler@0.5.3`
 
 In this release of the @flatfile/plugin-job-handler package, the starting
@@ -231,7 +231,7 @@ start at 1% instead of 10%, allowing for a smoother and more intuitive user
 experience when handling jobs with this package.
 </Update>
 
-<Update label="05-20-2024" description="export">
+<Update label="05-20-2024" tags={["export"]}>
 `@flatfile/plugin-export-workbook@0.3.0`
 
 This release adds a new optional parameter `autoDownload` to the
@@ -248,7 +248,7 @@ listener.use(exportWorkbookPlugin({ autoDownload: true }));
 This gives developers more flexibility in how they handle the exported file.
 </Update>
 
-<Update label="04-30-2024" description="transform">
+<Update label="04-30-2024" tags={["transform"]}>
 `@flatfile/plugin-constraints@1.2.1`
 
 In this release, the @flatfile/plugin-constraints package has been updated to
@@ -280,7 +280,7 @@ Unlock the full potential of your Flatfile applications with this improved and
 streamlined constraints plugin!
 </Update>
 
-<Update label="04-26-2024" description="core">
+<Update label="04-26-2024" tags={["core"]}>
 `@flatfile/plugin-space-configure@0.5.0`
 
 In this release of the @flatfile/plugin-space-configure package, we've added a
@@ -294,7 +294,7 @@ you greater control over the Space UI, allowing you to tailor it to your
 specific needs and provide a seamless user experience.
 </Update>
 
-<Update label="04-17-2024" description="schemas">
+<Update label="04-17-2024" tags={["schemas"]}>
 `@flatfile/plugin-graphql-schema@1.1.1`
 
 This release enhances the @flatfile/plugin-graphql-schema package with a new
@@ -318,7 +318,7 @@ powerful, offering developers a streamlined experience when working with GraphQL
 schemas and Flatfile blueprints.
 </Update>
 
-<Update label="04-13-2024" description="transform">
+<Update label="04-13-2024" tags={["transform"]}>
 `@flatfile/plugin-record-hook@1.5.0`
 
 RecordHooks now include readonly configurations. This new feature gives you more
@@ -341,7 +341,7 @@ build even more robust applications with Flatfile's powerful data management
 tools.
 </Update>
 
-<Update label="04-12-2024" description="extractors">
+<Update label="04-12-2024" tags={["extractors"]}>
 `@flatfile/plugin-xlsx-extractor@1.11.6`
 
 This release enhances the xlsx extractor plugin with improved debug messaging
@@ -356,7 +356,7 @@ these changes provide better visibility into the extraction process and more
 flexibility for handling diverse Excel data sources.
 </Update>
 
-<Update label="04-12-2024" description="transform">
+<Update label="04-12-2024" tags={["transform"]}>
 **🚀 GraphQL to Flatfile Blueprint is now available with
 @flatfile/plugin-graphql-schema@1.0.0 🚀**
 
@@ -380,7 +380,7 @@ and adaptability.
 See the [docs](https://www.npmjs.com/package/@flatfile/plugin-graphql-schema).
 </Update>
 
-<Update label="04-05-2024" description="transform">
+<Update label="04-05-2024" tags={["transform"]}>
 `@flatfile/util-common@1.1.1`
 
 The common utils now include a new `deleteRecords` utility. This streamlines the
@@ -388,7 +388,7 @@ creation of the delete records job, which is a common use case and more
 appropriate for bulk deletion of records.
 </Update>
 
-<Update label="03-25-2024" description="transform">
+<Update label="03-25-2024" tags={["transform"]}>
 `@flatfile/plugin-dedupe@1.0.0`
 
 The deduplication capability of @flatfile/plugin-dedupe has been expanded beyond
@@ -398,14 +398,14 @@ the latest update, @flatfile/plugin-dedupe can create bulk record deletion jobs,
 streamlining the process of removing duplicates and optimizing performance.
 </Update>
 
-<Update label="03-15-2024" description="transform">
+<Update label="03-15-2024" tags={["transform"]}>
 `@flatfile/util-common@1.0.1`
 
 This release replaces the `api.records.get` on @flatfile/api with a fetch to the
 GET records endpoint. This significantly improves large response times.
 </Update>
 
-<Update label="03-15-2024" description="transform">
+<Update label="03-15-2024" tags={["transform"]}>
 `@flatfile/xlsx-extractor@1.11.2`
 
 This update addresses an issue with how columns were managed when encountering
@@ -415,7 +415,7 @@ removed, ensuring more accurate data representation and integrity in your
 workflows.
 </Update>
 
-<Update label="03-14-2024" description="transform">
+<Update label="03-14-2024" tags={["transform"]}>
 `@flatfile/plugin-foreign-db-extractor@0.0.2`
 
 - Improved Error Handling: This release enhances the error management
@@ -432,7 +432,7 @@ workflows.
   fully available, enhancing the reliability of data interactions.
 </Update>
 
-<Update label="03-05-2024" description="transform">
+<Update label="03-05-2024" tags={["transform"]}>
 `@flatfile/plugin-record-hook@1.4.5`
 
 This release brings improvements and optimizations to enhance performance and
@@ -461,7 +461,7 @@ workflows.
 [Learn more in the docs](https://flatfile.com/plugins/plugin-record-hook).
 </Update>
 
-<Update label="03-05-2024" description="automations">
+<Update label="03-05-2024" tags={["automations"]}>
 `@flatfile/plugin-export-workbook@0.1.6`
 
 This update introduces several enhancements to improve your data export
@@ -486,7 +486,7 @@ and tailored to your specific needs.
 exporting workbooks with @flatfile/plugin-export-workbook
 </Update>
 
-<Update label="02-27-2024" description="automations">
+<Update label="02-27-2024" tags={["automations"]}>
 `@flatfile/plugin-webhook-egress@1.2.3`
 
 The latest version introduces key improvements for enhanced functionality and
@@ -511,7 +511,7 @@ your data workflow.
 [Learn more in the docs](https://flatfile.com/plugins/plugin-webhook-egress/)
 </Update>
 
-<Update label="02-27-2024" description="transform">
+<Update label="02-27-2024" tags={["transform"]}>
 `@flatfile/plugin-autocast@0.7.6`
 
 0.7.6 introduces string casting capabilities to the autocast plugin. With this
@@ -526,7 +526,7 @@ consistency and ease of use.
 [Learn more](https://flatfile.com/plugins/plugin-autocast)
 </Update>
 
-<Update label="01-19-2024" description="extractors">
+<Update label="01-19-2024" tags={["extractors"]}>
 `@flatfile/plugin-delimiter-extractor@0.9.1` &
 `@flatfile/plugin-xlsx-extractor@v1.11.3`
 
@@ -544,7 +544,7 @@ enhanced header detection options and how they can streamline your data import
 processes.
 </Update>
 
-<Update label="01-09-2024" description="extractors">
+<Update label="01-09-2024" tags={["extractors"]}>
 `@flatfile/plugin-xlsx-extractor@1.11.3`
 
 This release brings essential updates and improvements to enhance your
@@ -568,7 +568,7 @@ extraction process.
 [Learn more about the improvements](https://flatfile.com/plugins/plugin-xlsx-extractor)
 </Update>
 
-<Update label="11-16-2023" description="schema">
+<Update label="11-16-2023" tags={["schema"]}>
 **🚀 Introducing @flatfile/plugin-convert-yaml-schema 🚀**
 
 `@flatfile/plugin-convert-yaml-schema` automates the process of converting YAML
@@ -600,7 +600,7 @@ conversion process—all in one powerful package.
 Check out the [docs](https://flatfile.com/plugins/plugin-convert-yaml-schema).
 </Update>
 
-<Update label="11-15-2023" description="schema">
+<Update label="11-15-2023" tags={["schema"]}>
 **🚀 Introducing @flatfile/plugin-convert-json-schema 🚀**
 
 `@flatfile/plugin-convert-json-schema` automates the process of converting JSON
@@ -634,7 +634,7 @@ conversion process—all in one powerful package.
 Check out the [docs](https://flatfile.com/plugins/plugin-convert-json-schema).
 </Update>
 
-<Update label="11-09-2023" description="extractors">
+<Update label="11-09-2023" tags={["extractors"]}>
 `@flatfile/plugin-json-extractor@0.1.1`
 
 The JSON extractor now intelligently flattens nested objects, combining their
@@ -642,7 +642,7 @@ field keys into a single, structured format until it reaches a primitive type,
 making data extraction more comprehensive and user-friendly.
 </Update>
 
-<Update label="11-03-2023" description="core_plugin">
+<Update label="11-03-2023" tags={["core_plugin"]}>
 `@flatfile/plugin-record-hook@1.1.11`
 
 In a recent update, we introduced a comparison mechanism to track changes
@@ -657,7 +657,7 @@ there were changes in the value or message fields. Your records are now more
 comprehensively managed and updated.
 </Update>
 
-<Update label="11-02-2023" description="core_plugin">
+<Update label="11-02-2023" tags={["core_plugin"]}>
 `@flatfile/plugin-record-hook@1.1.10`
 
 Previously, there was an issue with completing commits while using the
@@ -667,7 +667,7 @@ swift and effective transition to using fetch. Soon, we plan a more
 comprehensive solution.
 </Update>
 
-<Update label="11-01-2023" description="core_plugin">
+<Update label="11-01-2023" tags={["core_plugin"]}>
 `@flatfile/plugin-record-hook@1.1.9`
 
 - Previously, an issue arose when attempting to complete a commit with the
@@ -682,7 +682,7 @@ comprehensive solution.
   resulting in a notably more efficient and precise data update process.
 </Update>
 
-<Update label="10-19-2023" description="automations">
+<Update label="10-19-2023" tags={["automations"]}>
 `@flatfile/plugin-export-workbook@0.0.8`
 
 When exporting a workbook, a job completion message is now available with an
@@ -690,7 +690,7 @@ added feature. You can now include a "Next" URL within the job completion
 message, providing a seamless transition to the next step in your workflow.
 </Update>
 
-<Update label="10-18-2023" description="automations">
+<Update label="10-18-2023" tags={["automations"]}>
 `@flatfile/plugin-export-workbook@0.0.7`
 
 In this update, we've made several valuable improvements to enhance your
@@ -717,7 +717,7 @@ These updates collectively contribute to a smoother and more efficient workflow
 for your tasks.
 </Update>
 
-<Update label="10-17-2023" description="extractors">
+<Update label="10-17-2023" tags={["extractors"]}>
 `@flatfile/plugin-extractor-xlsx@1.8.0`
 
 In this version, we've added a valuable enhancement to the Excel Extractor by
@@ -726,7 +726,7 @@ formatted text by default. When `raw` is set to true, the extractor will return
 the raw value, offering greater flexibility and control over extracted data.
 </Update>
 
-<Update label="10-13-2023" description="automations">
+<Update label="10-13-2023" tags={["automations"]}>
 `@flatfile/plugin-automap@0.1.1`
 
 Previously, initiating the "import" process, whether by dropping a file into a
@@ -741,7 +741,7 @@ plugin will gracefully exit, ensuring a more streamlined and error-free
 workflow.
 </Update>
 
-<Update label="10-11-2023" description="automations">
+<Update label="10-11-2023" tags={["automations"]}>
 `@flatfile/plugin-automap@0.1.1`
 
 Previously, when initiating the "import" process, which could be triggered by
@@ -756,7 +756,7 @@ without processing the job, thereby resolving the issue of duplicate entries in
 the sheet.
 </Update>
 
-<Update label="10-10-2023" description="automations">
+<Update label="10-10-2023" tags={["automations"]}>
 `@flatfile/plugin-automap@0.1.0`
 
 Previously, the Automap plugin exclusively matched the `defaultTargetSheet` with
@@ -768,7 +768,7 @@ something like the sheet name + filename dynamically, making the mapping process
 even more versatile.
 </Update>
 
-<Update label="10-05-2023" description="extractors">
+<Update label="10-05-2023" tags={["extractors"]}>
 `@flatfile/util-extractor@0.4.5`
 
 `util-extractor` is a crucial dependency used in all extractor plugins. We've
@@ -781,13 +781,13 @@ Module not found: Error: Can't resolve '@flatfile/api/api'
 ```
 </Update>
 
-<Update label="10-05-2023" description="extractors">
+<Update label="10-05-2023" tags={["extractors"]}>
 `@flatfile/plugin-space-configure@0.1.4`
 
 An improvement was made to allow for configuring Spaces with no Workbooks.
 </Update>
 
-<Update label="09-27-2023" description="extractors">
+<Update label="09-27-2023" tags={["extractors"]}>
 **Major (Agent) Plugin-based Extraction Speed Improvements Just Went Live**
 
 We noticed the record insert portion of extraction taking far longer in plugins
@@ -811,7 +811,7 @@ Upgrade your extractor(s) to the latest to enjoy this optimization:
 - `@flatfile/plugin-zip-extractor@0.3.7`
 </Update>
 
-<Update label="09-20-2023" description="extractors">
+<Update label="09-20-2023" tags={["extractors"]}>
 `@flatfile/plugin-psv-extractor@1.6.0` & `@flatfile/plugin-tsv-extractor@1.5.0`
 
 We're excited to announce that PSV and TSV file types, previously reliant on
@@ -822,7 +822,7 @@ Developers will receive a friendly console log notification, making it clear
 that these plugins are no longer needed. Enjoy the streamlined experience!
 </Update>
 
-<Update label="09-17-2023" description="core_plugin">
+<Update label="09-17-2023" tags={["core_plugin"]}>
 🚀 **Introducing `@flatfile/util-response-rejection`**
 
 ![image](../../../changelog/images/outcome_modal.png)
@@ -844,7 +844,7 @@ You can also utilize this utility directly with any listener.
 Learn more in the [docs](https://flatfile.com/plugins/util-response-rejection/).
 </Update>
 
-<Update label="09-08-2023" description="extractors">
+<Update label="09-08-2023" tags={["extractors"]}>
 `@flatfile/plugin-extractor-___`
 
 All extractors have been fine-tuned to seamlessly handle extractions within a
@@ -856,7 +856,7 @@ indicate completion when running in parallel, ensuring extraction truly finishes
 before signaling completion.
 </Update>
 
-<Update label="09-08-2023" description="transform">
+<Update label="09-08-2023" tags={["transform"]}>
 `@flatfile/plugin-autocast@0.2.2`
 
 Dates that were cast to a UTC string using the autocast plugin were showing as
@@ -865,7 +865,7 @@ invalid after transformation. A fix for this was added to version 0.2.2.
 [Learn more](https://flatfile.com/plugins/plugin-autocast).
 </Update>
 
-<Update label="09-01-2023" description="transform">
+<Update label="09-01-2023" tags={["transform"]}>
 `@flatfile/plugin-autocast`
 
 In the most recent update, we’ve introduced some exciting enhancements. You can
@@ -881,7 +881,7 @@ listener.use(autocast({ sheetSlug: "bar" }, ["numberField", "dateField"]));
 [Learn more](https://flatfile.com/plugins/plugin-autocast).
 </Update>
 
-<Update label="08-31-2023" description="extractors">
+<Update label="08-31-2023" tags={["extractors"]}>
 🚀 **Introducing `@flatfile/plugin-autocast`**
 
 Effortlessly transform data in your Sheets to align with the field types
@@ -915,7 +915,7 @@ listener.
 Check out the [docs](https://flatfile.com/plugins/plugin-autocast).
 </Update>
 
-<Update label="08-30-2023" description="extractors">
+<Update label="08-30-2023" tags={["extractors"]}>
 🚀 **Introducing `@flatfile/plugin-jobs-handler`**
 
 Our latest plugin, `@flatfile/plugin-jobs-handler`, streamlines handling
@@ -932,7 +932,7 @@ To get started simplifying the management of your Jobs, explore the
 [README](https://flatfile.com/plugins/plugin-job-handler/).
 </Update>
 
-<Update label="08-30-2023" description="extractors">
+<Update label="08-30-2023" tags={["extractors"]}>
 🚀 **Introducing `@flatfile/plugin-space-configure`**
 
 Streamline the dynamic setup of new Flatfile Spaces with
@@ -953,7 +953,7 @@ To simplify auto-configuring your Spaces, explore the
 [README](https://flatfile.com/plugins/plugin-space-configure/).
 </Update>
 
-<Update label="08-30-2023" description="extractors">
+<Update label="08-30-2023" tags={["extractors"]}>
 **All extractors now support `chunkSize` and `parallel`**
 
 A new version of an underlying utility (`@flatfile/util-extractor`) introduces 2
@@ -979,7 +979,7 @@ If you update your extractor plugin to the latest, you will receive these new
 options.
 </Update>
 
-<Update label="08-25-2023" description="extractors">
+<Update label="08-25-2023" tags={["extractors"]}>
 `@flatfile/plugin-delimiter-extractor`
 
 Now that the platform includes native support for TSV and PSV files, developers
@@ -993,7 +993,7 @@ occur twice, resulting in a "extraction complete" status being displayed twice,
 the process remains functional and intact.
 </Update>
 
-<Update label="08-24-2023" description="extractors">
+<Update label="08-24-2023" tags={["extractors"]}>
 **🚀 Introducing `@flatfile/plugin-pdf-extractor`**
 
 Our latest plugin, @flatfile/plugin-pdf-extractor, introduces the power of
@@ -1014,14 +1014,14 @@ Tech Behind the Scenes:
 [See the docs](https://flatfile.com/plugins/plugin-pdf-extractor)
 </Update>
 
-<Update label="08-24-2023" description="extractors">
+<Update label="08-24-2023" tags={["extractors"]}>
 `@flatfile/plugin-dedupe@0.0.2`
 
 Includes fixes to properly job ack on failure and use a new instance of listener
 after a filter operation. It also adds server errors to logging.
 </Update>
 
-<Update label="08-24-2023" description="extractors">
+<Update label="08-24-2023" tags={["extractors"]}>
 `@flatfile/util-file-buffer@0.0.3`
 
 A fix was made to only run `fileBuffer` on uploaded files. This fixes an issue
@@ -1036,7 +1036,7 @@ buffer.
 </Info>
 </Update>
 
-<Update label="08-20-2023" description="transform">
+<Update label="08-20-2023" tags={["transform"]}>
 **🚀 Introducing `@flatfile/@flatfile/plugin-dedupe`**
 
 @flatfile/plugin-dedupe adds a touch of magic by seamlessly removing duplicate
@@ -1056,7 +1056,7 @@ Tech:
 [See the docs](https://flatfile.com/plugins/plugin-dedupe)
 </Update>
 
-<Update label="08-20-2023" description="extractors">
+<Update label="08-20-2023" tags={["extractors"]}>
 **🚀 Introducing `@flatfile/plugin-delimiter-extractor`**
 
 Introducing the latest addition to our extractor
@@ -1081,28 +1081,28 @@ Parameters and Options:
 [See the docs](https://flatfile.com/plugins/plugin-delimiter-extractor)
 </Update>
 
-<Update label="08-20-2023" description="extractors">
+<Update label="08-20-2023" tags={["extractors"]}>
 `@flatfile/plugin-xlsx-extractor@1.4.0`
 
 Includes a fix for ghost rows in Excel files (happened if there was formatting
 on a cell but no data)
 </Update>
 
-<Update label="08-20-2023" description="extractors">
+<Update label="08-20-2023" tags={["extractors"]}>
 `@flatfile/plugin-delimiter-extractor@0.4.0` &
 `@flatfile/plugin-xlsx-extractor@1.5.0`
 
 Adds ability to support duplicate headers with non-unique header keys.
 </Update>
 
-<Update label="08-20-2023" description="extractors">
+<Update label="08-20-2023" tags={["extractors"]}>
 `@flatfile/plugin-delimiter-extractor@0.3.0` &
 `@flatfile/plugin-xlsx-extractor@1.3.2`
 
 Adds header row auto-detection (the same function used for CSVs in platform)
 </Update>
 
-<Update label="08-20-2023" description="extractors">
+<Update label="08-20-2023" tags={["extractors"]}>
 `@flatfile/plugin-zip-extractor@0.3.2`
 
 Includes a fix to exclude unwanted dir (MACOSX) and it now checks file name not

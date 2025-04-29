@@ -4,13 +4,24 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
-<Update label="03-07-2025" description="dataxp">
+<Update label="03-17-2025" tags={["spaces"]}>
+New row insertion feature in Flatfile's data tables.
+
+- Users can now add new rows by hovering over row dividers in the index column
+- An "Insert row" button appears when hovering between rows
+- Clicking the button adds a new row at the selected position
+- The feature provides a more intuitive way to add data at specific positions in a table
+
+This enhancement improves the user experience by making row insertion more discoverable and allowing precise control over where new rows are added in the dataset.
+</Update>
+
+<Update label="03-07-2025" tags={["dataxp"]}>
 Enhanced agent discovery with new search capabilities. Users can now search for agents by either agent slug or agent ID directly from both the agents list view and the agents detail page.
 
 Optimized performance of the getAgents endpoint through pagination implementation. This significantly improving response times and scalability when working with large collections of agents.
 </Update>
 
-<Update label="02-04-2025" description="dataxp">
+<Update label="02-04-2025" tags={["dataxp"]}>
 Records with readonly configurations are now handled differently in the
 replaceRecords operation. A new option called excludeReadOnly has been
 introduced to control whether readonly records or fields should be skipped or
@@ -57,7 +68,7 @@ const records = await wb.op.replaceRecords({
 ```
 </Update>
 
-<Update label="01-31-2025" description="spaces">
+<Update label="01-31-2025" tags={["spaces"]}>
 Added language support for: 
 - Spanish (es-419) 
 - Malay (ms) 
@@ -69,17 +80,17 @@ Added language support for:
 - Chinese Traditional Hong Kong (zh-hant-HK)
 </Update>
 
-<Update label="01-30-2025" description="dataxp">
+<Update label="01-30-2025" tags={["dataxp"]}>
 Namespace modification is now supported via API only. Other app fields remain
 editable via the UI but the ability to edit a namespace has been removed
 post-creation.
 </Update>
 
-<Update label="01-30-2025" description="spaces">
+<Update label="01-30-2025" tags={["spaces"]}>
 Fixes bug where long document titles would overlap the page header.
 </Update>
 
-<Update label="01-27-2025" description="dataxp">
+<Update label="01-27-2025" tags={["dataxp"]}>
 The order of imports from the `@flatfile/api` module has been updated. The `RecordUpdates` and `Success` types are now imported in a different order.
 
 The implementation of the `clearColumn` method has been refactored. Instead of using the `map` and `filter` array methods, it now uses the `reduce` method to generate the `recordsUpdates` array. The new implementation checks if the field value exists and if the field is not read-only before clearing it. This change likely improves performance and readability.
@@ -91,7 +102,7 @@ Additionally, the code now handles read-only fields correctly. If a field is mar
 These changes improve the functionality, performance, and messaging of the `clearColumn` logic without introducing any breaking changes to the external interface.
 </Update>
 
-<Update label="01-24-2025" description="dataxp">
+<Update label="01-24-2025" tags={["dataxp"]}>
 The unique validation and record/cell validity handling has been improved to:
 
 - properly escape field keys containing special characters like periods
@@ -99,7 +110,7 @@ The unique validation and record/cell validity handling has been improved to:
 - handle cases where all initially added records have invalid (duplicate) values for fields with a unique constraint
 </Update>
 
-<Update label="01-23-2025" description="dataxp">
+<Update label="01-23-2025" tags={["dataxp"]}>
 When clearing a column in a job operation, a snapshot of the sheet will be taken
 before the column is cleared. This snapshot will be labeled with the specific
 column key that is being cleared, providing a record of the sheet state before
@@ -109,7 +120,7 @@ based on the job, sheet, and column details. This allows developers to review
 the sheet state prior to the column clearing if needed.
 </Update>
 
-<Update label="01-22-2025" description="dataxp">
+<Update label="01-22-2025" tags={["dataxp"]}>
 The release adds the ability to mark a space as an app template and filter
 spaces based on whether they are app templates or not.
 
@@ -120,11 +131,11 @@ When using Autobuild for a new App, the space generated during Autobuild will
 automatically be tagged as the template for that App.
 </Update>
 
-<Update label="01-22-2025" description="dataxp">
+<Update label="01-22-2025" tags={["dataxp"]}>
 We added the ability to sort enum fields by label, value, or ordinal within the enum field config. This will ensure that enums will be displayed in the chosen order in mapping and review table. The default sortBy is label.
 </Update>
 
-<Update label="01-22-2025" description="dataxp">
+<Update label="01-22-2025" tags={["dataxp"]}>
 The release introduces the ability to filter spaces by the associated app ID
 when retrieving a list of spaces. A new query parameter `appId` has been added
 to the `/v1/spaces` endpoint. Developers can now pass the `appId` query
@@ -134,7 +145,7 @@ example, `?appId=us_app_123` will return only spaces linked to the app with ID
 will be returned.
 </Update>
 
-<Update label="01-17-2025" description="dataxp">
+<Update label="01-17-2025" tags={["dataxp"]}>
 An error is now thrown if attempting to clear a readonly column in a sheet. This
 prevents modifying data in readonly columns.
 
@@ -173,42 +184,42 @@ These changes ensure data integrity by preventing unintended modification of
 readonly data.
 </Update>
 
-<Update label="01-13-2025" description="dataxp">
+<Update label="01-13-2025" tags={["dataxp"]}>
 The `clearColumnAction` now has a constraint added that checks if the column is enabled before allowing the action to be executed. This ensures that the action can only be performed on columns that are currently enabled, preventing any potential issues or errors that could arise from attempting to clear a disabled column.
 </Update>
 
-<Update label="01-06-2025" description="spaces">
+<Update label="01-06-2025" tags={["spaces"]}>
 The manual entry and file upload button shown when the workbook is empty have
 has their max width updated so they can support more text.
 </Update>
 
-<Update label="12-30-2024" description="dataxp">
+<Update label="12-30-2024" tags={["dataxp"]}>
 Trailing empty records in CSV files will now be trimmed during file extraction.
 Empty records in-between records with values will continue to be kept.
 </Update>
 
-<Update label="12-20-2024" description="dataxp">
+<Update label="12-20-2024" tags={["dataxp"]}>
 - Record order is now maintained when inserting records
 - When using the Flatfile API to add records, the order of those records will
   now be preserved keeping the original sequence as provided
 </Update>
 
-<Update label="12-10-2024" description="spaces">
+<Update label="12-10-2024" tags={["spaces"]}>
 Fixes a bug where AI assist would crash when ‘config’ object or the ‘options’
 array is undefined.
 </Update>
 
-<Update label="12-09-2024" description="dataxp">
+<Update label="12-09-2024" tags={["dataxp"]}>
 Fixes a bug where an error would be thrown when config options was undefined
 during sheet upsert operations.
 </Update>
 
-<Update label="12-06-2024" description="dataxp">
+<Update label="12-06-2024" tags={["dataxp"]}>
 There was a bug causing the name of environment secrets not to update when
 edited. This fixes the bug ensuring environment secret names are updated.
 </Update>
 
-<Update label="12-04-2024" description="spaces">
+<Update label="12-04-2024" tags={["spaces"]}>
 The `viewMapped` functionality has been updated to include new text strings for
 messaging related to updating a table to only view mapped fields. The messages
 include "Updating the table to only view mapped fields", "Halfway there, hang
@@ -220,7 +231,7 @@ change enhances the user experience by providing clear communication during this
 operation.
 </Update>
 
-<Update label="12-02-2024" description="dataxp">
+<Update label="12-02-2024" tags={["dataxp"]}>
 A bug fix was made to the handling of enum field options when updating a sheet.
 Previously, if the `config.options` property was undefined, an error would
 occur. Now, if `config.options` is undefined, it defaults to an empty array.
@@ -230,7 +241,7 @@ an enum field that did not previously have any options defined, the update can
 now proceed without errors.
 </Update>
 
-<Update label="12-02-2024" description="spaces">
+<Update label="12-02-2024" tags={["spaces"]}>
 Added three keys: `addColumn`, `clearColumn`, and `removeColumn` with their
 respective translations for adding, clearing, and removing columns.
 
@@ -238,12 +249,12 @@ In the English translation file, the title of the “mapValues” section has be
 updated from “Map values” to “Map Fields”.
 </Update>
 
-<Update label="11-13-2024" description="spaces">
+<Update label="11-13-2024" tags={["spaces"]}>
 Updates to the mapping flow to prevent a user from accidentally navigating
 "back" into a mapping flow after it has already been completed.
 </Update>
 
-<Update label="10-28-2024" description="dataxp">
+<Update label="10-28-2024" tags={["dataxp"]}>
 **Bug Fixes in Edit and Create App Forms**
 
 We've resolved several issues affecting the Edit and Create App forms:
@@ -253,7 +264,7 @@ We've resolved several issues affecting the Edit and Create App forms:
 - Enhanced user feedback
 </Update>
 
-<Update label="10-17-2024" description="dataxp">
+<Update label="10-17-2024" tags={["dataxp"]}>
 Updated the AutoBuild flow to allow editing the working space name during the
 build process. The name can now be edited by clicking an icon next to the space
 name, which reveals an input field to enter a new name. The name change is saved
@@ -267,13 +278,13 @@ Updated the BlueprintTab component to display a bottom border and align the
 blueprint view action icons to the right.
 </Update>
 
-<Update label="10-03-2024" description="spaces">
+<Update label="10-03-2024" tags={["spaces"]}>
 Implemented sheet ordering functionality in the sidebar. Sheets are now
 displayed in the order specified by the `sheetSidebarOrder` setting in the
 workbook. Any sheets not included in the order are appended to the end.
 </Update>
 
-<Update label="10-01-2024" description="dataxp">
+<Update label="10-01-2024" tags={["dataxp"]}>
 The getDataDiff function has been updated to handle array values correctly when
 comparing proposed changes with existing source (src) and artifact data.
 
@@ -295,7 +306,7 @@ when working with array values, reducing noise and improving the accuracy of the
 changeset calculation.
 </Update>
 
-<Update label="09-27-2024" description="dataxp">
+<Update label="09-27-2024" tags={["dataxp"]}>
 `@flatfile/api@1.9.17`
 
 Secrets have been updated to introduce new optional fields for filtering.
@@ -305,7 +316,7 @@ A new optional `actorId` field of type `ActorId` has been added to the
 filtering secrets by the associated actor (user, guest, agent, or api key).
 </Update>
 
-<Update label="09-25-2024" description="dataxp">
+<Update label="09-25-2024" tags={["dataxp"]}>
 `@flatfile/api@1.9.16`
 
 Added new methods to for managing stored sheet constraints: `getConstraints`,
@@ -313,7 +324,7 @@ Added new methods to for managing stored sheet constraints: `getConstraints`,
 `deleteConstraint`.
 </Update>
 
-<Update label="09-20-2024" description="dataxp">
+<Update label="09-20-2024" tags={["dataxp"]}>
 `@flatfile/api@1.9.15`
 
 With the addition of archived spaces there is now an ability to `unarchiveSpace`
@@ -323,7 +334,7 @@ Deprecated use of metadata field at the cell value level, recommending use of
 record level metadata instead.
 </Update>
 
-<Update label="09-11-2024" description="spaces-ui">
+<Update label="09-11-2024" tags={["spaces-ui"]}>
 `spaces-ui`
 
 Updates to Snapshots resource to track changes to a sheet's schema (i.e. added
@@ -331,7 +342,7 @@ and removed columns). A more robust Snapshot will enable more complex features
 when comparing 2 different snapshots.
 </Update>
 
-<Update label="09-10-2024" description="dataxp">
+<Update label="09-10-2024" tags={["dataxp"]}>
 `@flatfile/api@1.9.14`
 
 #### Actions Resource
@@ -360,7 +371,7 @@ Metadta is now available on the `JobConfig` type, allowing additional data to be
 associated with jobs.
 </Update>
 
-<Update label="09-06-2024" description="dashboard">
+<Update label="09-06-2024" tags={["dashboard"]}>
 Session name validation has been introduced to the dashboard, preventing the
 creation of new sessions with the same name.
 
@@ -370,7 +381,7 @@ Note that sessions created via embedded or the api will not be constrained, this
 is a dashboard only validation.
 </Update>
 
-<Update label="08-20-2024" description="spaces-ui">
+<Update label="08-20-2024" tags={["spaces-ui"]}>
 `@flatfile/api@1.9.13` `spaces-ui`
 
 New fields 'guide' and 'guardrail' have been added to Actions. These options
@@ -407,7 +418,7 @@ This can be useful for actions that have critical consequences or require user
 acknowledgment before proceeding.
 </Update>
 
-<Update label="08-15-2024" description="spaces-ui">
+<Update label="08-15-2024" tags={["spaces-ui"]}>
 `spaces-ui`
 
 The "requireAllValidTotal" option has been added for custom actions in the Sheet
@@ -422,14 +433,14 @@ validation errors in the selected rows, the custom action will be disabled with
 the corresponding tooltip message.
 </Update>
 
-<Update label="08-14-2024" description="spaces-ui">
+<Update label="08-14-2024" tags={["spaces-ui"]}>
 `spaces-ui`
 
 Introduces support for handling locked sheets (indicated by the locked icon),
 and improves the handling of import files.
 </Update>
 
-<Update label="08-09-2024" description="dataxp">
+<Update label="08-09-2024" tags={["dataxp"]}>
 `@flatfile/api@1.9.8`
 
 A new `reference-list` property type has been added to allow defining an array
@@ -441,7 +452,7 @@ The `ReferencePropertyConfig` has been updated to make the `relationship`
 property optional, allowing it to be omitted.
 </Update>
 
-<Update label="07-23-2024" description="dataxp">
+<Update label="07-23-2024" tags={["dataxp"]}>
 `@flatfile/api@1.9.7`
 
 New options have been added to the ListWorkbooksRequest to allow filtering
@@ -452,14 +463,14 @@ filter workbooks by name, or a `treatment` parameter to filter by treatment. The
 response.
 </Update>
 
-<Update label="07-17-2024" description="dataxp">
+<Update label="07-17-2024" tags={["dataxp"]}>
 `@flatfile/api@1.9.6`
 
 In AgentConfig type, a new optional property `sourceMap` of type string has been
 added. This allows including a source map for the agent code.
 </Update>
 
-<Update label="07-16-2024" description="dataxp">
+<Update label="07-16-2024" tags={["dataxp"]}>
 `@flatfile/api@1.9.5`
 
 A new property `treatments` of type `Flatfile.WorkbookTreatments[]` has been
@@ -481,14 +492,14 @@ const workbookConfig: Flatfile.CreateWorkbookConfig = {
 ```
 </Update>
 
-<Update label="07-13-2024" description="dataxp">
+<Update label="07-13-2024" tags={["dataxp"]}>
 `@flatfile/api@1.9.3`
 
 A new `JobOutcomeTrigger` type has been introduced to specify whether a job
 outcome's effect should be triggered automatically or manually.
 </Update>
 
-<Update label="06-18-2024" description="spaces">
+<Update label="06-18-2024" tags={["spaces"]}>
 **Auto-Expanding Cell Input in Editor Component**
 
 We have enhanced the cell editing experience with an auto-expanding cell input
@@ -497,7 +508,7 @@ can view and edit their data without constraints, enhancing the overall editing
 experience.
 </Update>
 
-<Update label="06-10-2024" description="spaces-ui">
+<Update label="06-10-2024" tags={["spaces-ui"]}>
 `spaces-ui`
 
 Improvements have been made to error handling and user feedback in the file
@@ -506,7 +517,7 @@ user with the error message, providing clearer feedback on failures during the
 import process.
 </Update>
 
-<Update label="06-07-2024" description="dataxp">
+<Update label="06-07-2024" tags={["dataxp"]}>
 **Select Header Row**
 
 We've added a new feature that allows users to select the header row in the data
@@ -515,7 +526,7 @@ contains column headers, as it enables you to specify the header row for
 accurate data mapping.
 </Update>
 
-<Update label="06-07-2024" description="dataxp">
+<Update label="06-07-2024" tags={["dataxp"]}>
 **Search for Users**
 
 You can now search for users in the manager users page. This feature allows you
@@ -525,14 +536,14 @@ user base.
 ![image](../changelog/images/search.gif)
 </Update>
 
-<Update label="06-06-2024" description="dataxp">
+<Update label="06-06-2024" tags={["dataxp"]}>
 **Resend User Invite**
 
 There is now a `/users/:userId/resend-invite` endpoint enabling admins to resend
 an invitation to a user who has not yet accepted it.
 </Update>
 
-<Update label="05-30-2024" description="dataxp">
+<Update label="05-30-2024" tags={["dataxp"]}>
 **Bulk Deletion of Mapping Rules**
 
 We added a method to delete multiple mapping rules from a program. This new
@@ -541,13 +552,13 @@ allowing bulk deletions. The `DeleteMultipleRulesRequest` type represents the
 request payload, detailing the array of rule IDs to be deleted.
 </Update>
 
-<Update label="05-30-2024" description="dataxp">
+<Update label="05-30-2024" tags={["dataxp"]}>
 **New Method to Delete Apps**
 
 We have introduced a new `delete` method that allows you to delete an app.
 </Update>
 
-<Update label="05-30-2024" description="spaces">
+<Update label="05-30-2024" tags={["spaces"]}>
 **Enhanced Validation Messages for Records**
 
 The `ValidationMessage` type has been enhanced with two new optional properties:
@@ -557,7 +568,7 @@ specifies the JSONPath for the validation message. These enhancements provide
 more context and precision in validation feedback.
 </Update>
 
-<Update label="05-30-2024" description="dataxp">
+<Update label="05-30-2024" tags={["dataxp"]}>
 **Enhanced Job Outcomes with Custom Views**
 
 The `JobOutcomeNext` type now includes a new `view` option, allowing jobs to
@@ -566,7 +577,7 @@ we introduced the `JobOutcomeNextView` type, which provides details for the
 custom view, including the sheet ID, hidden columns, and an optional label.
 </Update>
 
-<Update label="05-30-2024" description="dataxp">
+<Update label="05-30-2024" tags={["dataxp"]}>
 **New Method to Update Sheets**
 
 We introduced a new `updateSheet` method that allows you to update a sheet's
@@ -577,7 +588,7 @@ Additionally, an optional `metadata` property has been added to the `Sheet` and
 the sheet.
 </Update>
 
-<Update label="05-29-2024" description="spaces-ui">
+<Update label="05-29-2024" tags={["spaces-ui"]}>
 `spaces-ui`
 
 A new "Update View" button can now be found in the job outcome modal for jobs
@@ -594,7 +605,7 @@ There are 2 new capabilities to the next property of Job Outcomes:
   browser on completion of the job
 </Update>
 
-<Update label="05-14-2024" description="dataxp">
+<Update label="05-14-2024" tags={["dataxp"]}>
 **New Environment Lifecycle Events**
 
 We've added new domain `Environment` events expanding the scope of domains our
@@ -603,7 +614,7 @@ topics: The corresponding event topics are `environment:created`,
 `environment:updated`, and `environment:deleted`.
 </Update>
 
-<Update label="05-14-2024" description="dataxp">
+<Update label="05-14-2024" tags={["dataxp"]}>
 **Enhanced Job Configuration Descriptions**
 
 We have added descriptions for the DeleteRecordsJobConfig properties to provide
@@ -616,7 +627,7 @@ We corrected a typo in the `JobOutcomeNextFiles` type by renaming the file
 property to files to accurately represent an array of file objects.
 </Update>
 
-<Update label="05-07-2024" description="spaces-ui">
+<Update label="05-07-2024" tags={["spaces-ui"]}>
 `spaces-ui`
 
 #### Saving and Sharing Custom Views
@@ -634,7 +645,7 @@ save those settings as a reusable view. Key changes include:
 - Updated translations for the new UI elements related to saved views.
 </Update>
 
-<Update label="05-03-2024" description="dataxp">
+<Update label="05-03-2024" tags={["dataxp"]}>
 **Updated `ListDocumentsResponse`**
 
 The `data` property now returns an array of `Document` objects instead of the
@@ -642,7 +653,7 @@ previous `DocumentResponse`. This change standardizes the format and improves
 consistency in how document data is handled.
 </Update>
 
-<Update label="05-03-2024" description="dataxp">
+<Update label="05-03-2024" tags={["dataxp"]}>
 **Enhanced Job Configuration**
 
 We added a new `predecessorIds` property to `JobConfig`. This property allows
@@ -662,7 +673,7 @@ We also added a waiting value to the JobStatus enum to indicate when a job is
 paused or pending, improving job processing workflows.
 </Update>
 
-<Update label="05-03-2024" description="spaces">
+<Update label="05-03-2024" tags={["spaces"]}>
 **Enhanced Views Request and Response**
 
 We updated `ListViewsRequest` to include optional `pageSize` and `pageNumber`
@@ -671,7 +682,7 @@ properties, allowing for pagination when retrieving views. We've also added a
 view.
 </Update>
 
-<Update label="05-01-2024" description="spaces">
+<Update label="05-01-2024" tags={["spaces"]}>
 **Improved event emission logic for workbook creation and update**
 
 Previously, the `workbook:created` event was emitted even when the workbook was
@@ -680,7 +691,7 @@ necessary. Additionally, the `POST /:workbookId/rebuild` endpoint now handles
 eventing properly.
 </Update>
 
-<Update label="05-01-2024" description="spaces">
+<Update label="05-01-2024" tags={["spaces"]}>
 **Enhanced Date Parsing Capabilities**
 
 **Expanded Support for Date Formats**:
@@ -704,7 +715,7 @@ uploading. Flatfile automatically interprets and processes diverse date inputs,
 simplifying workflows and reducing manual data preprocessing.
 </Update>
 
-<Update label="04-25-2024" description="spaces">
+<Update label="04-25-2024" tags={["spaces"]}>
 **Sorted Workbooks in Mapping**
 
 Selecting a Sheet in the mapping flow has been updated to apply the same sort
@@ -712,14 +723,14 @@ order consideration as the sidebar. This enhancement ensures consistency in
 workbook sorting for improved user navigation.
 </Update>
 
-<Update label="04-23-2024" description="spaces">
+<Update label="04-23-2024" tags={["spaces"]}>
 **Origin info now exists in Files table**
 
 Now, origin tracking is available for file uploads, supporting sources like
 Google Drive, File System, Box, and OneDrive.
 </Update>
 
-<Update label="04-22-2024" description="spaces">
+<Update label="04-22-2024" tags={["spaces"]}>
 **Improved Duplicate Field Key Validation in Workbook Sheets**
 
 **Case-Insensitive Checking**:
@@ -736,12 +747,12 @@ letter casing, we enhance the accuracy and reliability of data processing within
 our application.
 </Update>
 
-<Update label="04-22-2024" description="spaces">
+<Update label="04-22-2024" tags={["spaces"]}>
 When uploading a file, you'll now see upload speeds in a user-friendly format
 (KB/s, MB/s, GB/s).
 </Update>
 
-<Update label="04-18-2024" description="spaces">
+<Update label="04-18-2024" tags={["spaces"]}>
 **Introducing customizable column sizes in the Flatfile Blueprint**
 
 A new new sizing options has been added for string fields to enhance visual
@@ -751,7 +762,7 @@ See the new
 [property](https://reference.flatfile.com/api-reference/workbooks/create#request.body.sheets.fields.string.appearance).
 </Update>
 
-<Update label="04-17-2024" description="spaces">
+<Update label="04-17-2024" tags={["spaces"]}>
 **Enhanced Workbook Build Process and Diagnostic Logging**
 
 **Extended Wait Time for Workbook Readiness**:
@@ -775,7 +786,7 @@ offering deeper insights into the workbook building process and helping identify
 and resolve issues more efficiently.
 </Update>
 
-<Update label="04-12-2024" description="spaces">
+<Update label="04-12-2024" tags={["spaces"]}>
 **Enhanced Cell-Level Control in Records**
 
 We've introduced a new configuration property that allows users to set
@@ -788,7 +799,7 @@ See the
 [reference](https://reference.flatfile.com/api-reference/records/update#request.body.config.readonly).
 </Update>
 
-<Update label="04-09-2024" description="spaces">
+<Update label="04-09-2024" tags={["spaces"]}>
 **Support continuing to the next row on enter key press**
 
 Users can now seamlessly move to the next row in the cell by hitting the enter
@@ -796,28 +807,28 @@ key. This enhancement improves the user experience and streamlines data entry in
 the Flatfile platform.
 </Update>
 
-<Update label="04-09-2024" description="spaces">
+<Update label="04-09-2024" tags={["spaces"]}>
 **Multiline cell editing**
 
 Users can now edit text in multi-line mode, enhancing the editing experience
 within the platform.
 </Update>
 
-<Update label="03-26-2024" description="spaces">
+<Update label="03-26-2024" tags={["spaces"]}>
 **Introducing: Box Integration**
 
 You can now upload a file from Box. Once you've connected your Box account, you
 can select a file to upload directly into Flatfile.
 </Update>
 
-<Update label="03-21-2024" description="spaces">
+<Update label="03-21-2024" tags={["spaces"]}>
 **Introducing: Default Apps**
 
 You can now set the default App for your Account. This App will be your default
 landing page. Additionally, any unlinked Spaces will appear here.
 </Update>
 
-<Update label="03-17-2024" description="spaces">
+<Update label="03-17-2024" tags={["spaces"]}>
 **Refined AI Mapping Precision**
 
 We’ve fine-tuned the interplay between AI-generated mapping suggestions and
@@ -829,7 +840,7 @@ change guarantees that high-confidence user history takes precedence, fostering
 a more reliable and user-centric mapping experience.
 </Update>
 
-<Update label="03-15-2024" description="spaces">
+<Update label="03-15-2024" tags={["spaces"]}>
 **Streamlined User Invitation Process**
 
 We've enhanced our user invitation system for improved clarity and data
@@ -838,7 +849,7 @@ Any new invitation issued to a user will automatically replace the previous one.
 This measure is designed to maintain data accuracy and eliminate user confusion.
 </Update>
 
-<Update label="03-13-2024" description="spaces">
+<Update label="03-13-2024" tags={["spaces"]}>
 **Intuitive Column Management in Real-Time**
 
 We've refined our column management experience to align with your expectations
@@ -858,7 +869,7 @@ efficient and user-friendly, allowing for seamless adjustments to your viewing
 preferences on the fly.
 </Update>
 
-<Update label="03-08-2024" description="spaces">
+<Update label="03-08-2024" tags={["spaces"]}>
 **Introducing `lastActivityAt` - Your Insight into Space Dynamics**
 
 `lastActivityAt` is designed to provide you with comprehensive insights into the
@@ -883,7 +894,7 @@ support your needs better.
 [Learn more](https://reference.flatfile.com/api-reference/spaces/get#response.body.data.lastActivityAt)
 </Update>
 
-<Update label="03-07-2024" description="spaces">
+<Update label="03-07-2024" tags={["spaces"]}>
 **Resolved Document Auto-Update Issue**
 
 We fixed an issue where Documents weren't automatically updating in response to
@@ -892,7 +903,7 @@ fix ensures that document changes are now promptly reflected in the UI, keeping
 your Space synchronized with all recent activities.
 </Update>
 
-<Update label="03-05-2024" description="spaces">
+<Update label="03-05-2024" tags={["spaces"]}>
 **Enhanced Metadata Management in `@flatfile/plugin-record-hook`**
 
 We've resolved a critical bug in the RecordHook functionality, where `metadata`
@@ -901,7 +912,7 @@ setting and clearing metadata across various scenarios, we've can ensure
 accurate and consistent metadata management.
 </Update>
 
-<Update label="02-29-2024" description="spaces">
+<Update label="02-29-2024" tags={["spaces"]}>
 **Introducing Email Theming for Pro Plan Customers**
 
 Users can now update their space metadata object with a theme configuration to
@@ -925,7 +936,7 @@ enjoy custom theming in their email communications.
 Learn more about [Theming](../guides/theming.mdx).
 </Update>
 
-<Update label="02-29-2024" description="spaces">
+<Update label="02-29-2024" tags={["spaces"]}>
 **Enhanced Enum Mapping Logic for Datasets with No Values**
 
 We’ve addressed a nuanced issue concerning enum mapping and rule application in
@@ -941,13 +952,13 @@ those without any values. This update aims to provide a more reliable and
 logical framework for data processing and rule application.
 </Update>
 
-<Update label="02-29-2024" description="spaces">
+<Update label="02-29-2024" tags={["spaces"]}>
 **Dashboard authentication now lasts 24 hours**
 
 Enjoy longer, uninterrupted sessions when working with your Flatfile Dashboard.
 </Update>
 
-<Update label="02-29-2024" description="spaces">
+<Update label="02-29-2024" tags={["spaces"]}>
 **Enhanced File Upload Experience: Multi-Selection and Drag-and-Drop Support**
 
 We've upgraded the Files View with new capabilities to improve your file
@@ -963,7 +974,7 @@ View. This update is designed to enhance productivity and simplify your data
 management tasks.
 </Update>
 
-<Update label="02-27-2024" description="spaces">
+<Update label="02-27-2024" tags={["spaces"]}>
 **Optimized Space Loading Series: Reduced Requests for Translations**
 
 We've streamlined the loading process for Spaces by eliminating an unnecessary
@@ -972,7 +983,7 @@ call. This refinement reduces the load time, ensuring Spaces are displayed more
 promptly for a smoother user experience.
 </Update>
 
-<Update label="02-27-2024" description="spaces">
+<Update label="02-27-2024" tags={["spaces"]}>
 **Enhanced Filtering on `GET /spaces` Endpoint with Namespace Parameter
 Support**
 
@@ -983,7 +994,7 @@ namespace parameter is omitted entirely, the endpoint now returns spaces across
 all namespaces, providing greater flexibility in data retrieval and management.
 </Update>
 
-<Update label="02-27-2024" description="spaces">
+<Update label="02-27-2024" tags={["spaces"]}>
 **Optimized Space Loading Performance Series: Deferring Blocking Requests**
 
 By strategically eliminating or deferring five key blocking requests, we've
@@ -996,7 +1007,7 @@ These updates collectively result in a smoother, faster user experience,
 reinforcing our commitment to efficiency and performance.
 </Update>
 
-<Update label="02-23-2024" description="spaces">
+<Update label="02-23-2024" tags={["spaces"]}>
 **Optimized Space Loading Series: Reduced Requests for Translations**
 
 We've streamlined the loading process for Spaces by eliminating an unnecessary
@@ -1005,7 +1016,7 @@ call. This refinement reduces the load time, ensuring Spaces are displayed more
 promptly for a smoother user experience.
 </Update>
 
-<Update label="02-23-2024" description="spaces">
+<Update label="02-23-2024" tags={["spaces"]}>
 **New: Advanced Column Filtering Feature**
 
 Beyond the existing functionalities of sorting, replacing empty values, and
@@ -1016,7 +1027,7 @@ seeking. Streamline your data analysis and management with this robust filtering
 capability.
 </Update>
 
-<Update label="02-23-2024" description="spaces">
+<Update label="02-23-2024" tags={["spaces"]}>
 **Enhanced Data Mapping Consistency with user created custom fields**
 
 In our continuous efforts to streamline data import processes, we've implemented
@@ -1030,7 +1041,7 @@ blueprint, maintaining consistency and accuracy in your data integration
 efforts.
 </Update>
 
-<Update label="01-24-2024" description="spaces">
+<Update label="01-24-2024" tags={["spaces"]}>
 **Introducing the Flatfile Dedicated Mapping APIs**
 
 We’re excited to announce the launch of the Flatfile Dedicated Mapping API, a
@@ -1055,7 +1066,7 @@ To get started, refer to the
 [README](https://github.com/FlatFilers/flatfile-mapping).
 </Update>
 
-<Update label="01-22-2024" description="spaces">
+<Update label="01-22-2024" tags={["spaces"]}>
 **Expanding Global Reach with Additional Languages**
 
 We've added an expansion of our language support to include a variety of new
@@ -1076,7 +1087,7 @@ Our goal is to continuously add languages that resonate with our diverse user
 base. If there's a language you need that we haven't yet included, let us know!
 </Update>
 
-<Update label="01-22-2024" description="dataxp">
+<Update label="01-22-2024" tags={["dataxp"]}>
 **New Feature Added: Disabling Actions for Empty Records in Workbook &
 Sheet-Mounted Actions**
 
@@ -1096,7 +1107,7 @@ Sheet and Workbook Actions. or
 [See the Guide](../guides/actions#workbook-and-sheet-mounted) to see it in use.
 </Update>
 
-<Update label="01-22-2024" description="dataxp">
+<Update label="01-22-2024" tags={["dataxp"]}>
 **Introducing Composite Uniqueness for Enhanced Data Integrity**
 
 We’re delighted to introduce a new constraint in Sheets aimed at bolstering data
@@ -1109,7 +1120,7 @@ constraints property in your Sheet configuration.
 necessary parameters to effectively implement composite uniqueness.
 </Update>
 
-<Update label="01-18-2024" description="theming">
+<Update label="01-18-2024" tags={["theming"]}>
 **Powered by Flatfile looks a little different now**
 
 ![image](../changelog/images/powered_by.png)
@@ -1125,7 +1136,7 @@ interface for clarity.
 </Note>
 </Update>
 
-<Update label="01-18-2024" description="dataxp">
+<Update label="01-18-2024" tags={["dataxp"]}>
 **Improvements for `trackChanges` functionality**
 
 For users utilizing the `trackChanges` on their Workbooks (disables your actions
@@ -1142,7 +1153,7 @@ This adjustment is handled out of the box with `@flatfile/plugin-record-hook`
 and ensures a more streamlined and reliable change tracking experience.
 </Update>
 
-<Update label="01-17-2024" description="spaces">
+<Update label="01-17-2024" tags={["spaces"]}>
 **New: At-a-glance Insights are now available in the Sidebar**
 
 ![image](../changelog/images/sidebar-counts.gif)
@@ -1155,14 +1166,14 @@ for invalid—directly within the Sheet summary. This allows for quick
 identification and management of data accuracy.
 </Update>
 
-<Update label="01-17-2024" description="dataxp">
+<Update label="01-17-2024" tags={["dataxp"]}>
 #
 
 We've optimized the file deletion process for large files. The next time you
 remove a sizable file, expect to experience a noticeably faster removal speed.
 </Update>
 
-<Update label="01-12-2024" description="dataxp">
+<Update label="01-12-2024" tags={["dataxp"]}>
 **Toolbar blocking jobs Extended to Workbook-Mounted Actions**
 
 We've extended the functionality of the `toolbarBlocking` job mode beyond
@@ -1178,7 +1189,7 @@ interference or unintended navigation.
 [Learn more](../orchestration/actions#optional-parameters)
 </Update>
 
-<Update label="01-12-2024" description="dataxp">
+<Update label="01-12-2024" tags={["dataxp"]}>
 **State-Based Messaging on Actions via Tooltips**
 
 We've introduced an exciting new capability to enhance user interaction and
@@ -1194,7 +1205,7 @@ providing context-specific text that corresponds to the action's current state.
 [Follow the guide](../guides/actions#usage-7)
 </Update>
 
-<Update label="01-12-2024" description="dataxp">
+<Update label="01-12-2024" tags={["dataxp"]}>
 **Decoupling Actions Updates from the Workbook's Schema**
 
 Previously, using workbook update endpoint necessitated submitting all the
@@ -1208,14 +1219,14 @@ you intend to make.
 [See the endpoint](https://reference.flatfile.com/api-reference/workbooks/update-a-workbook)
 </Update>
 
-<Update label="01-12-2024" description="dataxp">
+<Update label="01-12-2024" tags={["dataxp"]}>
 Previously, users experienced difficulties in adjusting column sizes correctly
 when other columns were either hidden or pinned. This fix ensures seamless and
 accurate resizing of columns, regardless of the visibility or status of adjacent
 columns, enhancing the overall usability and functionality of the data table.
 </Update>
 
-<Update label="01-03-2024" description="dataxp">
+<Update label="01-03-2024" tags={["dataxp"]}>
 **Enhanced Visibility with Status Updates During File Extraction**
 
 ![image](../changelog/images/extract-status.gif)
@@ -1236,7 +1247,7 @@ you’re well-informed throughout the file extraction process.
 [See extractor plugins](https://flatfile.com/plugins/category/extractors/)
 </Update>
 
-<Update label="01-03-2024" description="dataxp">
+<Update label="01-03-2024" tags={["dataxp"]}>
 **Improved Search Functionality for Null Values in GET Records Endpoint**
 
 We've refined the search mechanism for empty cells in the GET records endpoint.
@@ -1251,7 +1262,7 @@ double quotes `""` in the `searchValue` parameter.
 [See the endpoint](https://reference.flatfile.com/api-reference/records/get-records)
 </Update>
 
-<Update label="12-21-2023" description="theming">
+<Update label="12-21-2023" tags={["theming"]}>
 **Enhanced Theming Tabs, Tooltips, and Popovers**
 
 We're excited to announce a broad range of new theming capabilities that enhance
@@ -1299,7 +1310,7 @@ consistent application design.
 [Learn more](../guides/theming).
 </Update>
 
-<Update label="12-15-2023" description="dataxp">
+<Update label="12-15-2023" tags={["dataxp"]}>
 **Field Descriptions now have Markdown Support**
 
 ![image](../changelog/images/tooltips-with-markdown.gif)
@@ -1339,7 +1350,7 @@ comprehension.
 Learn more about [Blueprint](../blueprint) and Fields.
 </Update>
 
-<Update label="12-15-2023" description="dataxp">
+<Update label="12-15-2023" tags={["dataxp"]}>
 **Default Value Added to `inputForm` fields**
 
 We've enhanced the `inputForm` feature in Actions by supporting `defaultValue`
@@ -1368,7 +1379,7 @@ values can be pre-filled in these fields, streamlining the user experience.
 Learn more about [Actions and Input Forms](../orchestration/actions#inputForm).
 </Update>
 
-<Update label="12-15-2023" description="theming">
+<Update label="12-15-2023" tags={["theming"]}>
 **Enhanced Theming Interactive options**
 
 ![image](../changelog/images/theming_dropdowns.png)
@@ -1436,7 +1447,7 @@ consistency and branding alignment across our platform.
 [Learn more](../guides/theming).
 </Update>
 
-<Update label="12-14-2023" description="theming">
+<Update label="12-14-2023" tags={["theming"]}>
 **Enhanced Theming options for Checkboxes**
 
 ![image](../changelog/images/theming_checkboxes.png)
@@ -1484,7 +1495,7 @@ their unique branding and design preferences.
 [Learn more](../guides/theming).
 </Update>
 
-<Update label="12-08-2023" description="theming">
+<Update label="12-08-2023" tags={["theming"]}>
 **Enhanced Theming options for Badges+**
 
 ![image](../changelog/images/theming_badges.png)
@@ -1534,7 +1545,7 @@ and user-friendly platform that caters to your unique theming requirements.
 [Learn more](../guides/theming).
 </Update>
 
-<Update label="12-01-2023" description="dataxp">
+<Update label="12-01-2023" tags={["dataxp"]}>
 **Revamped UI for Foreground Jobs**
 
 ![image](../changelog/images/foreground_facelift.png)
@@ -1555,7 +1566,7 @@ These updates are designed to offer a more intuitive and streamlined user
 experience in tracking and managing foreground jobs.
 </Update>
 
-<Update label="12-01-2023" description="dataxp">
+<Update label="12-01-2023" tags={["dataxp"]}>
 **Next Action Links in Job Outcome Dialogs Now Support Linking to internal
 resources**
 
@@ -1595,7 +1606,7 @@ enhancing user interaction and experience.
 [Learn more](../orchestration/jobs#next-links).
 </Update>
 
-<Update label="12-01-2023" description="dataxp">
+<Update label="12-01-2023" tags={["dataxp"]}>
 **Next Action Links in Job Outcome Dialogs Now Support Retrying**
 
 You can now also display links to retry a job upon job completion or failure.
@@ -1624,7 +1635,7 @@ enhancing user interaction and experience.
 [Learn more](../orchestration/jobs#next-links).
 </Update>
 
-<Update label="12-01-2023" description="theming">
+<Update label="12-01-2023" tags={["theming"]}>
 **Enhanced Theming options for Filters**
 
 ![image](../changelog/images/theming_chips.png)
@@ -1661,7 +1672,7 @@ filters, enabling a seamless and integrated visual experience.
 [Learn more](../guides/theming).
 </Update>
 
-<Update label="11-28-2023" description="dataxp">
+<Update label="11-28-2023" tags={["dataxp"]}>
 **Introducing New Endpoint for Workbook Commit Retrieval**
 
 We're excited to announce the addition of the new GET
@@ -1677,14 +1688,14 @@ retrieval and processing status checks in their own applications.
 [See the endpoint](https://reference.flatfile.com/api-reference/workbooks/get-commits-for-a-workbook)
 </Update>
 
-<Update label="11-28-2023" description="dataxp">
+<Update label="11-28-2023" tags={["dataxp"]}>
 We've successfully addressed and fixed the issue related to extracting/uploading
 files with special characters in their names. If you previously encountered
 difficulties with such files, this update resolves those challenges, ensuring
 smoother and more reliable file handling going forward.
 </Update>
 
-<Update label="11-28-2023" description="dataxp">
+<Update label="11-28-2023" tags={["dataxp"]}>
 **Improved Handling of Long-Running Jobs with New Timeout Feature**
 
 ![image](../changelog/images/job_failure.png)
@@ -1704,7 +1715,7 @@ control in the job execution process, reducing confusion and streamlining
 operations.
 </Update>
 
-<Update label="11-20-2023" description="dataxp">
+<Update label="11-20-2023" tags={["dataxp"]}>
 **You can now disable Actions when there are invalid records**
 
 ![image](../changelog/images/hasAllValid.gif)
@@ -1729,14 +1740,14 @@ to disable actions when there are invalid records.
 [Learn more](../guides/actions#usage)
 </Update>
 
-<Update label="11-20-2023" description="spaces">
+<Update label="11-20-2023" tags={["spaces"]}>
 We made an enhancement to bulk cell pasting. Previously, locking the cell
 occurred prematurely, causing values to flash after pasting. Now, locking is
 effectively executed later, resulting in a smoother and more stable pasting
 experience.
 </Update>
 
-<Update label="11-20-2023" description="spaces">
+<Update label="11-20-2023" tags={["spaces"]}>
 **Space ID Search is now available in the Spaces Table**
 
 ![image](../changelog/images/search_spaces.gif)
@@ -1746,7 +1757,7 @@ ID in the Spaces table. This enhancement simplifies the process of locating
 specific spaces quickly and efficiently.
 </Update>
 
-<Update label="11-17-2023" description="files">
+<Update label="11-17-2023" tags={["files"]}>
 **Enhanced Weighting Mechanism for User History in Enum Mapping**
 
 We assign an 80% value to other users' history compared to the current user's
@@ -1762,7 +1773,7 @@ inputs from different users, ensuring smoother and more equitable enum mapping
 automation.
 </Update>
 
-<Update label="11-17-2023" description="spaces">
+<Update label="11-17-2023" tags={["spaces"]}>
 _It's the little things_: Bulk delete in Spaces is now available\*\*\*
 
 ![image](../changelog/images/bulk_delete_sm.gif)
@@ -1773,7 +1784,7 @@ managing numerous Spaces, as it eliminates the need to delete each Space
 individually, streamlining the process and saving time. Enjoy!
 </Update>
 
-<Update label="11-17-2023" description="spaces">
+<Update label="11-17-2023" tags={["spaces"]}>
 **New: Column Visibility Control with Local Storage Memory**
 
 ![image](../changelog/images/column_hiding.gif)
@@ -1786,7 +1797,7 @@ future sessions. This update aims to enhance user efficiency by allowing you to
 tailor the interface to your specific needs and workflow.
 </Update>
 
-<Update label="11-17-2023" description="spaces">
+<Update label="11-17-2023" tags={["spaces"]}>
 **Guests can now be named in a Spaces URL**
 
 Previously, accessing Flatfile either directly through a URL or via an iframe
@@ -1804,7 +1815,7 @@ user recognition and auditing.
 [See the endpoint](https://reference.flatfile.com/api-reference/guests/get-guest-token).
 </Update>
 
-<Update label="11-17-2023" description="files">
+<Update label="11-17-2023" tags={["files"]}>
 **Speed Optimization for Large Enum Lists**
 
 When either the source (file) or destination (Blueprint) list contains more than
@@ -1816,7 +1827,7 @@ be faster, ensuring a more efficient and responsive experience for clients with
 large datasets.
 </Update>
 
-<Update label="11-17-2023" description="files">
+<Update label="11-17-2023" tags={["files"]}>
 **Fixed File Extraction for Workbook-Only Guests**
 
 We’ve fixed an issue where guests with
@@ -1825,7 +1836,7 @@ could upload files but couldn’t extract them due to access restrictions. Guest
 can now upload and extract files smoothly in workbooks they have access to.
 </Update>
 
-<Update label="11-13-2023" description="spaces">
+<Update label="11-13-2023" tags={["spaces"]}>
 **Full Whitelabeling now available in Pro+**
 
 ![image](../changelog/images/whitelabeling.png)
@@ -1842,7 +1853,7 @@ touch with us at [support@flatfile.com](mailto:support@flatfile.com) to discuss
 the possibilities of a fully whitelabeled experience tailored to your needs.
 </Update>
 
-<Update label="11-13-2023" description="spaces">
+<Update label="11-13-2023" tags={["spaces"]}>
 **Hide the info Tooltip**
 
 ![image](../changelog/images/infotooltip.png)
@@ -1864,7 +1875,7 @@ metadata: {
 ```
 </Update>
 
-<Update label="11-13-2023" description="core">
+<Update label="11-13-2023" tags={["core"]}>
 In this update, we've implemented a crucial enhancement by unifying the casing
 in our API. We've resolved issues where certain properties were inconsistently
 cased, which had previously hindered their proper setting and retrieval.
@@ -1873,7 +1884,7 @@ With this unification, you can now seamlessly interact with our API, ensuring a
 smoother and more reliable experience.
 </Update>
 
-<Update label="11-13-2023" description="dataxp">
+<Update label="11-13-2023" tags={["dataxp"]}>
 Previously, if an existing value was present in the enum field, you couldn't
 select a different value from the dropdown. Additionally, when a dropdown field
 was empty, you were unable to use the dropdown to select a valid option, and
@@ -1881,7 +1892,7 @@ typing out an option wasn't possible either. Both of these limitations have now
 been resolved.
 </Update>
 
-<Update label="11-07-2023" description="dataxp">
+<Update label="11-07-2023" tags={["dataxp"]}>
 **Control your mapping accuracy**
 
 We're excited to announce a new parameter within Sheet configuration, aptly
@@ -1909,7 +1920,7 @@ control over the mapping process:
 [Learn more](../blueprint/sheet-options#mappingConfidenceThreshold)
 </Update>
 
-<Update label="11-07-2023" description="dataxp">
+<Update label="11-07-2023" tags={["dataxp"]}>
 **More Precise Filtering is now Available**
 
 Now, FFQL queries made via filter: in the the search bar can be seamlessly
@@ -1923,7 +1934,7 @@ filtered results will be spot on, making it easier than ever to find the
 information you need with pinpoint accuracy.
 </Update>
 
-<Update label="11-07-2023" description="theming">
+<Update label="11-07-2023" tags={["theming"]}>
 **Theming Column Headers**
 
 ![image](../changelog/images/fontinheader.png)
@@ -1934,7 +1945,7 @@ You can now control the font of the headers in a table using the
 [Learn more](../guides/theming#theme-table)
 </Update>
 
-<Update label="11-01-2023" description="dataxp">
+<Update label="11-01-2023" tags={["dataxp"]}>
 **Enhanced Cell Copying with Multi-line Preservation**
 
 We've improved the functionality for copying cells from external spreadsheets
@@ -1949,7 +1960,7 @@ This update ensures better data integrity and consistency when transferring
 content with complex formatting.
 </Update>
 
-<Update label="10-30-2023" description="spaces">
+<Update label="10-30-2023" tags={["spaces"]}>
 **Removed Character Limit on Mappings, Jobs, and Enum Mappings**
 
 We have lifted the previous 255-character limit for mappings, jobs, and enum
@@ -1957,7 +1968,7 @@ mappings. This update allows for greater flexibility and more detailed entries
 in these areas.
 </Update>
 
-<Update label="10-30-2023" description="spaces">
+<Update label="10-30-2023" tags={["spaces"]}>
 **New API Feature to Restore Archived Spaces**
 
 API users now have the capability to restore an archived space. This can be done
@@ -1965,7 +1976,7 @@ by setting the `archivedAt` property of the space to null via the
 `PATCH /spaces/:spaceId` endpoint.
 </Update>
 
-<Update label="10-30-2023" description="spaces">
+<Update label="10-30-2023" tags={["spaces"]}>
 **Improved Cascade Deletion for Spaces, Workbooks, and Sheets**
 
 We've enhanced the deletion process for Spaces. In the past, deleting a Space
@@ -1979,7 +1990,7 @@ active workbooks are displayed. This update is helpful for Spaces deleted before
 this improvement was implemented.
 </Update>
 
-<Update label="10-30-2023" description="spaces">
+<Update label="10-30-2023" tags={["spaces"]}>
 **Enhanced Display of Enum Options in Turntable**
 
 We've addressed an issue in the table where enum options without a label were
@@ -1990,7 +2001,7 @@ value instead.
 This ensures a more accurate and user-friendly display of data.
 </Update>
 
-<Update label="10-25-2023" description="spaces">
+<Update label="10-25-2023" tags={["spaces"]}>
 **Disable Actions while Hooks are Running**
 
 ![image](../changelog/images/trackChanges.gif)
@@ -2016,7 +2027,7 @@ completed.
 [Learn more](../blueprint/sheet-options#settings)
 </Update>
 
-<Update label="10-25-2023" description="spaces">
+<Update label="10-25-2023" tags={["spaces"]}>
 **New Job Mode: `toolbar-blocking`**
 
 We're excited to introduce a third job mode called `toolbarBlocking` alongside
@@ -2027,7 +2038,7 @@ Column Header Menus while still allowing users to enter records manually.
 [Learn more](../orchestration/actions#optional-parameters)
 </Update>
 
-<Update label="10-18-2023" description="spaces">
+<Update label="10-18-2023" tags={["spaces"]}>
 **Improved copy-paste experience while bulk selecting cells**
 
 We've enhanced the bulk selection experience by enabling paste functionality.
@@ -2036,14 +2047,14 @@ when editing. Note: if you paste without selecting any cells, the operation will
 automatically apply to the bulk-selected rows.
 </Update>
 
-<Update label="10-16-2023" description="dataxp">
+<Update label="10-16-2023" tags={["dataxp"]}>
 In the past, when your Space took more than 10 seconds to build, an "empty space
 created" message would appear. With our latest update, as long as you
 acknowledge the space:configure job, you can rest assured this dialog will no
 longer appear.
 </Update>
 
-<Update label="10-16-2023" description="spaces">
+<Update label="10-16-2023" tags={["spaces"]}>
 **New: Embed Sheets inside Documents**
 
 Now, by simply incorporating the `embed` HTML entity into your markdown body and
@@ -2068,7 +2079,7 @@ precisely to your needs.
 [Learn more](../guides/documents#embedding-sheets-in-documents)
 </Update>
 
-<Update label="10-13-2023" description="dataxp">
+<Update label="10-13-2023" tags={["dataxp"]}>
 **Actions are now available on Documents.**
 
 ![image](../changelog/images/document_actions_primary.png)
@@ -2099,7 +2110,7 @@ actions: [
 [Learn more](../guides/actions#document-mounted)
 </Update>
 
-<Update label="10-11-2023" description="spaces">
+<Update label="10-11-2023" tags={["spaces"]}>
 **The API now supports two new actions: `sheets.lock` and `sheets.unlock`.**
 
 With the introduction of these API actions, you gain the ability to manage sheet
@@ -2114,7 +2125,7 @@ managing sheet access and data integrity.
 [See the endpoint](https://reference.flatfile.com/api-reference/sheets/lock-a-sheet)
 </Update>
 
-<Update label="10-11-2023" description="spaces">
+<Update label="10-11-2023" tags={["spaces"]}>
 **New: Full-screen Documents!**
 
 Documents have gained a new capability, allowing them to seamlessly transition
@@ -2141,7 +2152,7 @@ await api.documents.create(spaceId, {
 [Learn more](../guides/documents#ephemeral-documents)
 </Update>
 
-<Update label="10-11-2023" description="spaces">
+<Update label="10-11-2023" tags={["spaces"]}>
 **We’ve added Indonesia (ID) translations!**
 
 Building upon our existing language support (based on your customers’ browser
@@ -2152,7 +2163,7 @@ audience.
 Need another language? Let us know and we’ll prioritize getting it added.
 </Update>
 
-<Update label="10-09-2023" description="dataxp">
+<Update label="10-09-2023" tags={["dataxp"]}>
 **Now Available: Set estimated time of completion on Jobs**
 
 ![image](../changelog/images/estimatedTime_actions.png)
@@ -2171,7 +2182,7 @@ the UI.
 [Learn more about using Actions](../guides/actions).
 </Update>
 
-<Update label="10-09-2023" description="files">
+<Update label="10-09-2023" tags={["files"]}>
 Previously, when uploading a file, actions could only be added to it after the
 file was uploaded (by calling a file update via a listener). Now, with our
 latest update, you can now include actions during file upload allowing actions
@@ -2181,7 +2192,7 @@ See the
 [API Reference](https://reference.flatfile.com/api-reference/files/upload-a-file).
 </Update>
 
-<Update label="10-09-2023" description="dataxp">
+<Update label="10-09-2023" tags={["dataxp"]}>
 The find/replace operation is now able to handle large datasets. Now, records
 are batched into groups of 10,000 rows, and a unique versionId is assigned to
 each batch. Additionally, the workbook service will emit events for each batch
@@ -2192,7 +2203,7 @@ which can now retrieve and respond to all records in a single find/replace
 operation, thanks to the 10,000-row batching.
 </Update>
 
-<Update label="10-09-2023" description="core">
+<Update label="10-09-2023" tags={["core"]}>
 When adding a secret to a space via the API, we have expanded the flexibility of
 secret names. While the API allows spaces within secret names, the UI previously
 restricted them by filtering spaces in the regex validation logic for Secret
@@ -2202,7 +2213,7 @@ characters in secret names, aligning the behavior between the API and the UI.
 Learn more about [sharing secrets](../guides/secrets).
 </Update>
 
-<Update label="10-08-2023" description="dataxp">
+<Update label="10-08-2023" tags={["dataxp"]}>
 **Now Available: Accept Dynamic Inputs on Actions**
 
 ![image](../changelog/images/action_inputs.png)
@@ -2234,7 +2245,7 @@ provide the necessary information.
   to quickly see it in action in your code.
 </Update>
 
-<Update label="10-05-2023" description="dataxp">
+<Update label="10-05-2023" tags={["dataxp"]}>
 **Exciting Update: Additional Fields**
 
 ![image](../changelog/images/addl_fields.png)
@@ -2259,7 +2270,7 @@ Here’s how it works:
 [See the docs](../blueprint/sheet-options).
 </Update>
 
-<Update label="10-02-2023" description="spaces">
+<Update label="10-02-2023" tags={["spaces"]}>
 **Introducing New and Enhanced Event Logs**
 
 ![image](../changelog/images/event_logs.png)
@@ -2282,7 +2293,7 @@ failures.
 See it live: [platform.flatfie.com/logs](http://platform.flatfile.com/logs)
 </Update>
 
-<Update label="10-02-2023" description="spaces">
+<Update label="10-02-2023" tags={["spaces"]}>
 Choosing a `namespace` on Space creation is now easier than ever. Rather than
 manually typing the namespaces into a free-form text field, you can simply
 choose from a dropdown menu of available options. The available namespaces are
@@ -2290,7 +2301,7 @@ conveniently listed within the `namespaces` array of the Environment, providing
 a more efficient and accurate way to handle namespace selection.
 </Update>
 
-<Update label="10-02-2023" description="transform">
+<Update label="10-02-2023" tags={["transform"]}>
 Previously, when using the find and replace feature, only the initial batch of
 records had data hooks run again. Now, the find/replace operation efficiently
 groups records into batches of 10,000 rows, assigning a unique versionId to each
@@ -2298,14 +2309,14 @@ batch. This improvement empowers record-hooks to process all records seamlessly
 within a single find/replace operation.
 </Update>
 
-<Update label="10-02-2023" description="spaces">
+<Update label="10-02-2023" tags={["spaces"]}>
 Now, you can include a free-form JSON object as `metadata` on your Workbook,
 providing you with a flexible way to store additional information related to it.
 Whether you're creating a new Workbook or updating an existing one, you have the
 option to enrich your Workbooks with meaningful metadata.
 </Update>
 
-<Update label="10-02-2023" description="spaces">
+<Update label="10-02-2023" tags={["spaces"]}>
 Previously, when adding a secret to a space through the API, we supported spaces
 in secret names. However, the UI had regex logic that filtered out spaces when
 validating secret names.
@@ -2315,13 +2326,13 @@ valid characters for secret names in both the API and the UI. Your secret names
 can now include spaces without any issues.
 </Update>
 
-<Update label="10-02-2023" description="dataxp">
+<Update label="10-02-2023" tags={["dataxp"]}>
 We've resolved an issue where long messages would overflow the cell in
 validation messages. By implementing a straightforward `word-break` property,
 your validation messages will now display lengthy messages more elegantly.
 </Update>
 
-<Update label="09-27-2023" description="spaces">
+<Update label="09-27-2023" tags={["spaces"]}>
 **We’ve added Portuguese (Brazilian) translations!**
 
 Building upon our existing language support (based on your customers’ browser
@@ -2331,7 +2342,7 @@ expanded our capabilities to cater to an even broader audience.
 Need another language? Let us know and we’ll prioritize getting it added.
 </Update>
 
-<Update label="09-27-2023" description="spaces">
+<Update label="09-27-2023" tags={["spaces"]}>
 **Enhanced Document Customization with Markdown & HTML Support**
 
 Until now, you could only utilize Markdown for your Documents. However, we're
@@ -2339,7 +2350,7 @@ excited to inform you that HTML support has been seamlessly integrated, offering
 you even more versatility to tailor your Documents exactly to your liking.
 </Update>
 
-<Update label="09-22-2023" description="dataxp">
+<Update label="09-22-2023" tags={["dataxp"]}>
 We've revamped the way partial replaces work, enhancing your data editing
 experience for maximum smoothness and intuitiveness. In the past, when you
 attempted to replace specific characters with an empty string (""), it
@@ -2354,7 +2365,7 @@ We value your feedback. Now, you can confidently perform partial replacements
 without the hassle of unexpected null values.
 </Update>
 
-<Update label="09-22-2023" description="files">
+<Update label="09-22-2023" tags={["files"]}>
 We've made improvements behind the scenes to ensure that your data gets mapped
 with more precision. Previously, some data could be missed during mapping, but
 now, we're considering both the option labels and values, making sure nothing is
@@ -2362,7 +2373,7 @@ left behind. This means you'll have a smoother and more reliable experience when
 mapping your data, ensuring that everything is captured correctly.
 </Update>
 
-<Update label="09-20-2023" description="spaces">
+<Update label="09-20-2023" tags={["spaces"]}>
 **Localization is Now Available**
 
 ![image](../changelog/images/localization.png)
@@ -2385,7 +2396,7 @@ Key Features:
 started.
 </Update>
 
-<Update label="09-20-2023" description="dataxp">
+<Update label="09-20-2023" tags={["dataxp"]}>
 **New: Promote Sheet Actions**
 
 ![image](../changelog/images/primary_actions.png)
@@ -2396,7 +2407,7 @@ true will showcase these actions right in the Sheet toolbar, as buttons with
 clear, user-friendly text.
 </Update>
 
-<Update label="09-20-2023" description="dataxp">
+<Update label="09-20-2023" tags={["dataxp"]}>
 You can now effortlessly view up to 500k records at once. When you reach the end
 of the table, a helpful message will appear, reminding you that there's more
 data waiting. Simply search or filter to reduce the size of your dataset and
@@ -2404,7 +2415,7 @@ access it all. This change was added due to browser limitations that restrict
 maximum height in the DOM.
 </Update>
 
-<Update label="09-15-2023" description="spaces">
+<Update label="09-15-2023" tags={["spaces"]}>
 **Introducing: Code Blocks for Documents**
 
 ![image](../changelog/images/documents_codeblocks.png)
@@ -2418,14 +2429,14 @@ Your code will be formatted accordingly, enhancing the clarity and presentation
 of your content.
 </Update>
 
-<Update label="09-15-2023" description="spaces">
+<Update label="09-15-2023" tags={["spaces"]}>
 Previously, guests without access to the specific workbook would encounter a
 "Workbook Not Found" error. Now, a fallback mechanism has been implemented to
 validate access to the `primaryWorkbook`, ensuring a smoother experience for
 users.
 </Update>
 
-<Update label="09-13-2023" description="dataxp">
+<Update label="09-13-2023" tags={["dataxp"]}>
 Introducing support for finding empty fields in ffql using the syntax:
 
 ```jsx
@@ -2435,14 +2446,14 @@ filter: first_name eq ""
 Now, you can easily query and filter records with empty values.
 </Update>
 
-<Update label="09-13-2023" description="core">
+<Update label="09-13-2023" tags={["core"]}>
 Resolved an issue where attempting to upsert an Environment secret that was
 already defined within a Space was not functioning as expected. This fix ensures
 proper handling when upserting a secret into an Environment after specifying a
 Space ID.
 </Update>
 
-<Update label="09-13-2023" description="files">
+<Update label="09-13-2023" tags={["files"]}>
 Resolved an issue where the import button could prematurely appear before a file
 was ready to be imported. This was due to an early update of the file's status
 with a workbook ID, which has now been adjusted to wait until the data is
@@ -2450,38 +2461,38 @@ queriable before updating. The import process now aligns better with the file's
 readiness.
 </Update>
 
-<Update label="09-13-2023" description="dataxp">
+<Update label="09-13-2023" tags={["dataxp"]}>
 Experience improved performance (for instance, when scrolling to the bottom of
 the data table) with large workbooks as we've optimized query clauses and
 updated indexes. Plus, we've seamlessly migrated all existing workbooks to
 benefit from these enhancements.
 </Update>
 
-<Update label="09-11-2023" description="files">
+<Update label="09-11-2023" tags={["files"]}>
 When a file stream becomes unreadable due to file malformation, improvements
 were made to ensure that any errors are correctly communicated to the UI.
 </Update>
 
-<Update label="09-11-2023" description="files">
+<Update label="09-11-2023" tags={["files"]}>
 Experience improved performance (for instance, when scrolling to the bottom of
 the data table) with large workbooks as we've optimized query clauses and
 updated indexes. Plus, we've seamlessly migrated all existing workbooks to
 benefit from these enhancements.
 </Update>
 
-<Update label="09-08-2023" description="dataxp">
+<Update label="09-08-2023" tags={["dataxp"]}>
 Documents in the sidebar are now organized based on their creation date. This
 enhancement helps developers have more control the order of their Documents.
 </Update>
 
-<Update label="09-08-2023" description="spaces">
+<Update label="09-08-2023" tags={["spaces"]}>
 If you have access to multiple Spaces, you'll notice a dropdown menu at the top
 left corner of each Space. Previously, there was an issue where all the data
 within the Space would update correctly, except for Workbooks/Sheets in the
 sidebar. This issue has been successfully resolved.
 </Update>
 
-<Update label="09-08-2023" description="dataxp">
+<Update label="09-08-2023" tags={["dataxp"]}>
 2 new Demo spaces were added: Documents & Theming. In these demo Spaces, you'll
 learn how to:
 
@@ -2489,13 +2500,13 @@ learn how to:
 2. Customize the look and feel of Flatfile to match your brand
 </Update>
 
-<Update label="09-08-2023" description="dataxp">
+<Update label="09-08-2023" tags={["dataxp"]}>
 We've extended the `job:ready` timeout to 10 minutes, aligning it with the
 extractor timeout. This adjustment provides more time for all jobs running
 within an Agent.
 </Update>
 
-<Update label="09-06-2023" description="dataxp">
+<Update label="09-06-2023" tags={["dataxp"]}>
 **New Job Outcome Acknowledgements**
 
 **`acknowledge: false`**
@@ -2530,7 +2541,7 @@ This enhancement provides flexibility in how you choose to inform users about
 job outcomes. [Learn more](../guides/actions#usage).
 </Update>
 
-<Update label="09-06-2023" description="dataxp">
+<Update label="09-06-2023" tags={["dataxp"]}>
 **Enhanced Job Outcomes with Next Action Links**
 
 Job outcomes have been upgraded to support `next` action links. Now, you can
@@ -2554,7 +2565,7 @@ enhancing user interaction and experience.
 [Learn more](../orchestration/jobs#next-links).
 </Update>
 
-<Update label="09-06-2023" description="dataxp">
+<Update label="09-06-2023" tags={["dataxp"]}>
 **Enhanced Action Button Behavior**
 
 ![image](../changelog/images/hasAllValid.gif)
@@ -2582,7 +2593,7 @@ constraints: [ { type: 'hasSelection' }],
 [Learn more](../orchestration/actions#optional-parameters).
 </Update>
 
-<Update label="09-01-2023" description="dataxp">
+<Update label="09-01-2023" tags={["dataxp"]}>
 **Improved FFQL handling of dates and number comparisons**
 
 **Enhanced Number Field Queries:**
@@ -2612,19 +2623,19 @@ These updates contribute to improved query handling, better data integrity, and
 a more seamless experience when working with number and date fields.
 </Update>
 
-<Update label="09-01-2023" description="core">
+<Update label="09-01-2023" tags={["core"]}>
 Introducing caching for record counts, resulting in improved performance for API
 requests.
 </Update>
 
-<Update label="09-01-2023" description="core">
+<Update label="09-01-2023" tags={["core"]}>
 The `PATCH /sheets` endpoint has been upgraded to accept both an array of
 SheetUpdates and an array of SheetConfigs (backwards compatible). This expanded
 capability empowers users with more flexible and efficient options when updating
 Sheets.
 </Update>
 
-<Update label="09-01-2023" description="dataxp">
+<Update label="09-01-2023" tags={["dataxp"]}>
 # ![image](../changelog/images/tooltips-actions.png)
 
 We've introduced a new parameter: `tooltip` to Actions, allowing the addition of
@@ -2634,14 +2645,14 @@ provides users with clear and context-aware explanations for enabled Actions,
 contributing to an improved overall user experience.
 </Update>
 
-<Update label="09-01-2023" description="dataxp">
+<Update label="09-01-2023" tags={["dataxp"]}>
 Fixed a cosmetic issue with scrolling through Workbooks. The problem stemmed
 from the outer container scrolling based on the inner content's height. By
 applying overflow properties to the inner component, which holds a list of items
 within a flex container, we have resolved this issue.
 </Update>
 
-<Update label="08-30-2023" description="spaces">
+<Update label="08-30-2023" tags={["spaces"]}>
 **🚀 4 New Example Spaces**
 
 Visit the **Getting Started** page on your Dashboard to discover four new
@@ -2657,7 +2668,7 @@ Space, simplifying the process of breaking down and comprehending the elements
 on display.
 </Update>
 
-<Update label="08-30-2023" description="core">
+<Update label="08-30-2023" tags={["core"]}>
 **Authentication Query Enhancement**
 
 The authentication query has been streamlined for optimized performance.
@@ -2666,12 +2677,12 @@ reduction of approximately 20 milliseconds for each request. This enhancement
 results in faster overall processing and improved response times.
 </Update>
 
-<Update label="08-30-2023" description="dataxp">
+<Update label="08-30-2023" tags={["dataxp"]}>
 The **Data Checklist** now includes data types that correspond to each field.
 Additionally, the searchable dropdowns are now more user friendly.
 </Update>
 
-<Update label="08-30-2023" description="core">
+<Update label="08-30-2023" tags={["core"]}>
 A pagination logic issue concerning **Environments** has been resolved. The
 correction ensures accurate calculation of the number of pages and consistent
 delivery of valid responses in accordance with the
@@ -2682,14 +2693,14 @@ Furthermore, the default page size for **Spaces** has been set to 10, aligning
 it with the specifications outlined in the API documentation.
 </Update>
 
-<Update label="08-30-2023" description="dataxp">
+<Update label="08-30-2023" tags={["dataxp"]}>
 Previously, attempting to navigate into a dropdown using the keyboard's tab key
 was unresponsive. This issue has been addressed, and tabbing via keyboard now
 smoothly activates dropdowns, accompanied by a focus outline for the custom
 trigger.
 </Update>
 
-<Update label="08-30-2023" description="core">
+<Update label="08-30-2023" tags={["core"]}>
 The API specification has been updated to facilitate the mapping of `enum`
 values of various types such as `string`, `integer`, or `boolean`. This
 modification effectively resolves a server error response that was previously
@@ -2701,7 +2712,7 @@ user experience by providing more graceful handling of unexpected issues during
 the process.
 </Update>
 
-<Update label="08-25-2023" description="spaces">
+<Update label="08-25-2023" tags={["spaces"]}>
 **🚀 Instant Extraction for CSV/TSV/PSV Files**
 
 With the removal of the extraction step for CSV/TSV/PSV files, the import
@@ -2724,7 +2735,7 @@ database, reducing the likelihood of encountering resource limits.
 In essence, it’s a win-win for both efficiency and user experience.
 </Update>
 
-<Update label="08-24-2023" description="spaces">
+<Update label="08-24-2023" tags={["spaces"]}>
 **🚀 A Revamped Starting Point**
 
 ![image](../changelog/images/get-started.png)
@@ -2735,7 +2746,7 @@ underlying code for each Space, making it straightforward to deconstruct and
 understand what you're seeing.
 </Update>
 
-<Update label="08-24-2023" description="infra">
+<Update label="08-24-2023" tags={["infra"]}>
 **🚀 Major improvements to our queue system**
 
 We’ve implemented a state-of-the-art technology to substantially enhance the
@@ -2743,59 +2754,59 @@ reliability and performance of our queue system. This improvement has a profound
 impact on the execution of asynchronous tasks, like data validation.
 </Update>
 
-<Update label="08-24-2023" description="files">
+<Update label="08-24-2023" tags={["files"]}>
 Now, you can set a description for each Option Field value via API. End users
 can then view this description as a tooltip during mapping.
 </Update>
 
-<Update label="08-24-2023" description="dataxp">
+<Update label="08-24-2023" tags={["dataxp"]}>
 We've added new API routes to capture up to 5 snapshots of a Sheet, with the
 flexibility to restore any of them using the API at your convenience. Stay tuned
 as we prepare to bring this functionality to the UI as well.
 </Update>
 
-<Update label="08-24-2023" description="dataxp">
+<Update label="08-24-2023" tags={["dataxp"]}>
 A Sheet with no access enabled (`access:[]`) now shows a lock icon on the Sheet
 tab.
 </Update>
 
-<Update label="08-24-2023" description="files">
+<Update label="08-24-2023" tags={["files"]}>
 We opted to hide the files count on the Files page if there are no files.
 </Update>
 
-<Update label="08-24-2023" description="files">
+<Update label="08-24-2023" tags={["files"]}>
 A shrimp size update to the colors of the sidebar toggle so it looks good with
 all themes.
 </Update>
 
-<Update label="08-24-2023" description="spaces">
+<Update label="08-24-2023" tags={["spaces"]}>
 Info inside `metadata` > `userInfo` will now display in the Spaces list.
 </Update>
 
-<Update label="08-24-2023" description="spaces">
+<Update label="08-24-2023" tags={["spaces"]}>
 Metadata allows you to store and retrieve additional data about a Space, Record,
 or Field without exposing it to end users. Now, Environments also have a
 `metadata` string array.
 </Update>
 
-<Update label="08-24-2023" description="spaces">
+<Update label="08-24-2023" tags={["spaces"]}>
 We made a small fix to allow better vertical scrolling in the Dashboard sidebar.
 </Update>
 
-<Update label="08-24-2023" description="dataxp">
+<Update label="08-24-2023" tags={["dataxp"]}>
 CTRL + Z wasn't working for a minute. This is now fixed.
 </Update>
 
-<Update label="08-24-2023" description="dataxp">
+<Update label="08-24-2023" tags={["dataxp"]}>
 If a boolean cell is empty, we only show the toggle on hover now.
 </Update>
 
-<Update label="08-24-2023" description="files">
+<Update label="08-24-2023" tags={["files"]}>
 We were seeing issues where corrupt files that ran through extraction did not
 fail but simply skipped over the lines affected. This is now resolved.
 </Update>
 
-<Update label="08-20-2023" description="dataxp">
+<Update label="08-20-2023" tags={["dataxp"]}>
 **🚀 Introducing Command+k Triggered Search and Transformation (Early Access)**
 
 ![image](../changelog/images/AI-assist.png)
@@ -2816,12 +2827,12 @@ Chat with us or email [support@flatfile.com](mailto:support@flatfile.com) to
 have this feature flagged on in your Account today!
 </Update>
 
-<Update label="08-20-2023" description="dataxp">
+<Update label="08-20-2023" tags={["dataxp"]}>
 There is now a count at the top of the files list that shows the total number of
 files.
 </Update>
 
-<Update label="08-20-2023" description="spaces">
+<Update label="08-20-2023" tags={["spaces"]}>
 ![image](../changelog/images/sidebar_collapsed.png)
 
 The Sidebar now has three different states:
@@ -2834,7 +2845,7 @@ Additionally, the Sidebar will now automatically collapse itself on smaller
 screens.
 </Update>
 
-<Update label="08-20-2023" description="spaces">
+<Update label="08-20-2023" tags={["spaces"]}>
 We now handle overflowing space name(s) by:
 
 - Breaking the word
@@ -2844,28 +2855,28 @@ We now handle overflowing space name(s) by:
   them hard to read. This is also fixed.
 </Update>
 
-<Update label="08-20-2023" description="theming">
+<Update label="08-20-2023" tags={["theming"]}>
 When determining the lighter shades of each main theme colors, i.e. primary,
 danger, warning and success, there are now checks to ensure no colors end up as
 white.
 </Update>
 
-<Update label="08-20-2023" description="files">
+<Update label="08-20-2023" tags={["files"]}>
 The filename was added to the mapping scene so users can now see which file they
 are currently mapping.
 </Update>
 
-<Update label="08-20-2023" description="files">
+<Update label="08-20-2023" tags={["files"]}>
 Cells with no data can now be unmapped using “Do not import”, if previously
 mapped to a value.
 </Update>
 
-<Update label="08-20-2023" description="dataxp">
+<Update label="08-20-2023" tags={["dataxp"]}>
 Filter: "Last Name" like A% will now retrieve all records where Last Name starts
 with “A”. Previously, it was retrieving records that contained “A”.
 </Update>
 
-<Update label="08-20-2023" description="dataxp">
+<Update label="08-20-2023" tags={["dataxp"]}>
 The continue button is now disabled on mapping scene while mappings are loading.
 This ensures user can only advance to review scene after mappings are saved.
 </Update>

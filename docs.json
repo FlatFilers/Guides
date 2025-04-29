@@ -43,8 +43,10 @@
                     "group": "CLI",
                     "icon": "square-terminal",
                     "pages": [
+                      "documentation/core-libraries/cli/overview",
                       "documentation/core-libraries/cli/develop",
-                      "documentation/core-libraries/cli/deploy"
+                      "documentation/core-libraries/cli/deploy",
+                      "documentation/core-libraries/cli/agent-management"
                     ]
                   }
                 ]
@@ -124,7 +126,8 @@
                       "learning-center/concepts/events",
                       "learning-center/concepts/jobs",
                       "learning-center/concepts/listeners",
-                      "learning-center/concepts/mapping"
+                      "learning-center/concepts/mapping",
+                      "learning-center/concepts/data-processing"
                     ]
                   },
                   {

@@ -43,6 +43,8 @@ import api from "@flatfile/api";
 
 export default function flatfileEventListener(listener) {
   // Part 1: Setup a listener (https://flatfile.com/docs/apps/custom/meet-the-listener)
+  //note: listening to all events with a wildcard can be used while testing but is not
+  //recommended for production, as it will capture all events and may cause performance issues
   listener.on("**", (event) => {
     // Log all events
     console.log(`Received event: ${event.topic}`);
@@ -141,7 +143,7 @@ export default function flatfileEventListener(listener) {
             },
           });
         }
-      },
+      }
     );
   });
 }
@@ -162,6 +164,8 @@ import api from "@flatfile/api";
 
 export default function flatfileEventListener(listener: FlatfileListener) {
   // Part 1: Setup a listener (https://flatfile.com/docs/quickstart/meet-the-listener)
+  //note: listening to all events with a wildcard can be used while testing but is not
+  //recommended for production, as it will capture all events and may cause performance issues
   listener.on("**", (event: FlatfileEvent) => {
     // Log all events
     console.log(`Received event: ${event.topic}`);
@@ -305,9 +309,10 @@ is like a template, its definition includes a profile of the data it expects to
 hold. We call that profile a Blueprint.
 
 <Note>
-  [Blueprint](/learning-center/blueprint/about) is Flatfile's robust data definition
-  language (DDL) that emphasizes validation and data preparation. Flatfile APIs
-  leverage Blueprint for their create, update, and read operations.
+  [Blueprint](/learning-center/blueprint/about) is Flatfile's robust data
+  definition language (DDL) that emphasizes validation and data preparation.
+  Flatfile APIs leverage Blueprint for their create, update, and read
+  operations.
 </Note>
 
 ## Watch your Events

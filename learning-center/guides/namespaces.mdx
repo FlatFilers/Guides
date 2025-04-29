@@ -25,7 +25,7 @@ Namespaces enable you to have:
 
 ```jsx
 // Create a global listener
-listener.on("**", event => { ... });
+listener.on("space:created", event => { ... });
 
 // Create a filter scoped for a specific namespace
 listener.namespace(['space:green'], (green) => { ... });
