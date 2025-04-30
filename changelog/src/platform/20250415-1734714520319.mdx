@@ -1,0 +1,8 @@
+---
+title: "Improved Dataclip Merge Process"
+description: "Enhanced dataclip record metadata handling during merges"
+---
+
+When merging records from a Data Clip back to the main sheet, any internal metadata specific to the Data Clip is now automatically stripped. This ensures that the main sheet maintains clean data without carrying over temporary tracking information from the clip.
+
+Previously, record metadata from dataclips was preserved during merges, which could potentially lead to unnecessary data being carried over to the main sheet. With this update, the merge process now explicitly removes metadata from records before they are added or updated in the main sheet, resulting in cleaner data and more predictable behavior.
