@@ -4,6 +4,89 @@ description: "Notable additions and updates to the Flatfile platform"
 icon: "layer-group"
 ---
 
+<Update label="04-08-2025" tags={["spaces-ui"]}>
+**Improved Data Clips Collaborator Experience**
+
+We've enhanced the user experience in Data Clips by hiding the collaborator input when no space guests exist:
+
+- The collaborator input is now automatically hidden in the Data Clip create modal when there are no space guests
+- Similarly, the collaborator section is hidden in the share modal when no guests are available
+- This provides a cleaner interface by only showing relevant options based on the current space context
+
+This improvement streamlines the Data Clips creation and sharing workflow by removing unnecessary UI elements when they're not applicable.
+</Update>
+
+<Update label="04-08-2025" tags={["spaces"]}>
+**Advanced Filters with Field Validation Status**
+
+We've enhanced our filtering capabilities with a new Advanced Filters feature that supports querying by field validation status. This powerful addition allows you to build dynamic filters that combine field selection with validation checks.
+
+Key improvements include:
+
+- Support for the FFQL `is` operator with values of `error` and `valid`
+- Ability to create complex filters targeting specific fields with validation issues
+- User-friendly interface for building advanced filter queries
+- Seamless integration with existing filtering capabilities
+
+For example, you can now easily find all records where a specific field (like "email") has validation errors, or combine this with other conditions to create precise filters for your data cleanup workflows.
+
+This feature is particularly useful for data quality management, allowing you to quickly identify and address problematic fields across your datasets.
+
+![Advanced Filters Demo](https://github.com/user-attachments/assets/4f7b1043-aba4-45c3-8557-bfa8e2a878b3)
+</Update>
+
+<Update label="04-07-2025" tags={["spaces"]}>
+The guest URL functionality for DataClips has been enhanced with a more streamlined approach to URL generation and storage:
+
+- The `guestAuthentication` array field has been replaced with a new `guestLinkUrl` string field in the DataClip model
+- When updating a DataClip with `sharedLink` set to "unrestricted", a guest link with a permanent access token is generated
+- When updating a DataClip with `sharedLink` set to "restricted", a direct sheet URL is generated without a token
+- The system now properly handles existing guest links to prevent unnecessary regeneration
+- The URL format has been improved for better usability and security
+
+This change provides a more consistent and reliable way to share DataClips with guests, with clearer distinction between restricted and unrestricted access modes.
+</Update>
+
+<Update label="04-03-2025" tags={["dataxp"]}>
+**Preserve Record IDs During Transformations**
+
+We've added a new `keepRecordIds` flag to maintain record IDs during transformations. This enhancement provides greater control over how records are processed during transformation operations.
+
+**Key Benefits:**
+- Maintains data consistency across transformation previews
+- Preserves record relationships and references
+- Improves transformation accuracy by maintaining original record IDs
+
+**Technical Details:**
+When `keepRecordIds` is set to `true`, the system uses `updateRecords` instead of the previous add/delete approach, ensuring that record IDs remain unchanged throughout the transformation process. This is particularly valuable when:
+- Working with data that has established relationships between records
+- Performing multiple transformations where maintaining record identity is important
+- Integrating with systems that rely on consistent record identifiers
+
+**Usage:**
+The `keepRecordIds` flag can be included in transformation job configurations:
+
+```javascript
+// Example of creating a transformation job with keepRecordIds
+const transformationJobResponse = await HTTPService.createJob({
+  type: "workbook",
+  operation: "transform",
+  source: workbookId,
+  destination: destinationWorkbookId,
+  config: {
+    destinationSheetId: destinationSheetId,
+  },
+  input: {
+    programId: "your-program-id",
+    version: "v2",
+    keepRecordIds: true, // Set to true to preserve record IDs
+  },
+});
+```
+
+This feature is backward compatible - `keepRecordIds` defaults to `false`, maintaining the existing behavior for current implementations.
+</Update>
+
 <Update label="03-17-2025" tags={["spaces"]}>
 New row insertion feature in Flatfile's data tables.
 
