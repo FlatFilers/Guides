@@ -1,0 +1,22 @@
+### April 9, 2025
+
+## export
+
+`@flatfile/plugin-export-workbook`
+
+This release adds a new optional parameter `excludeMessages` to the `@flatfile/plugin-export-workbook` package. When set to `true`, this parameter will omit record hook messages from the generated file during export.
+
+For example:
+
+```js
+// Include messages (default behavior)
+listener.use(exportWorkbookPlugin());
+
+// Exclude messages from the exported file
+listener.use(exportWorkbookPlugin({ excludeMessages: true }));
+
+// Explicitly include messages
+listener.use(exportWorkbookPlugin({ excludeMessages: false }));
+```
+
+This enhancement gives developers more control over the content of exported files, allowing for cleaner exports without validation messages when needed.
