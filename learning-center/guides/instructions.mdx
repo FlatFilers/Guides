@@ -1,0 +1,321 @@
+---
+title: "Instructions"
+description: "Add contextual instructions to guide users during data mapping"
+icon: "lightbulb"
+---
+
+# Instructions
+
+Instructions provide a way to add contextual guidance to users during the data mapping process. They allow you to store and retrieve instructions associated with specific field sets, helping users understand how to map and transform their data correctly.
+
+## Overview
+
+Instructions are stored at the mapping family level, which means they're associated with specific sets of fields. When a user is mapping data with a similar field structure, the appropriate instructions can be retrieved and displayed to guide them through the process.
+
+Key features of Instructions:
+
+- Store instructions for specific field sets
+- Retrieve instructions based on field similarity
+- Associate metadata with instructions for additional context
+- Manage instructions through a RESTful API
+
+## How Instructions Work
+
+Instructions are tied to mapping families, which are collections of fields that share a common structure. When a user uploads a file with a similar field structure, Flatfile can retrieve the relevant instructions to help guide the mapping process.
+
+The system uses a confidence threshold to determine which instructions to display, ensuring that users only see guidance that's relevant to their current data.
+
+## Using the Instructions API
+
+### Creating Instructions
+
+To create instructions for a specific set of fields, use the following endpoint:
+
+```bash
+POST /v1/instructions
+```
+
+**Request Body:**
+
+```json
+{
+  "instructions": "Map the 'email' field to the customer's primary email address. The 'first' and 'last' fields should be mapped to the customer's first and last name.",
+  "fieldKeys": ["first", "last", "email", "subscribed", "phone"],
+  "metadata": {
+    "category": "customer-data",
+    "importance": "high"
+  }
+}
+```
+
+**Query Parameters:**
+
+- `environmentId` (required): The environment ID
+- `scope` (required): The account ID
+- `namespace` (optional): The namespace for the instructions
+
+**Response:**
+
+```json
+{
+  "data": {
+    "id": "us_ins_abc123",
+    "instructions": "Map the 'email' field to the customer's primary email address. The 'first' and 'last' fields should be mapped to the customer's first and last name.",
+    "metadata": {
+      "category": "customer-data",
+      "importance": "high"
+    },
+    "familyId": "us_mf_xyz789",
+    "createdAt": "2025-04-15T10:30:00Z",
+    "updatedAt": "2025-04-15T10:30:00Z",
+    "createdBy": "us_usr_123456",
+    "updatedBy": "us_usr_123456",
+    "deletedBy": null,
+    "deletedAt": null
+  }
+}
+```
+
+### Retrieving Instructions by Sheet ID
+
+To retrieve instructions for a specific sheet, use the following endpoint:
+
+```bash
+GET /v1/instructions/sheet/:sheetId
+```
+
+**Query Parameters:**
+
+- `environmentId` (required): The environment ID
+- `scope` (required): The account ID
+- `namespace` (optional): The namespace for the instructions
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": "us_ins_abc123",
+      "instructions": "Map the 'email' field to the customer's primary email address. The 'first' and 'last' fields should be mapped to the customer's first and last name.",
+      "metadata": {
+        "category": "customer-data",
+        "importance": "high"
+      },
+      "familyId": "us_mf_xyz789",
+      "createdAt": "2025-04-15T10:30:00Z",
+      "updatedAt": "2025-04-15T10:30:00Z",
+      "createdBy": "us_usr_123456",
+      "updatedBy": "us_usr_123456",
+      "deletedBy": null,
+      "deletedAt": null
+    }
+  ]
+}
+```
+
+### Updating Instructions
+
+To update existing instructions, use the following endpoint:
+
+```bash
+PATCH /v1/instructions/:instructionId
+```
+
+**Request Body:**
+
+```json
+{
+  "instructions": "Updated instructions for mapping customer data fields.",
+  "fieldKeys": ["first", "last", "email", "subscribed", "phone", "country"]
+}
+```
+
+**Query Parameters:**
+
+- `environmentId` (required): The environment ID
+- `scope` (required): The account ID
+- `namespace` (optional): The namespace for the instructions
+
+**Response:**
+
+```json
+{
+  "data": {
+    "id": "us_ins_abc123",
+    "instructions": "Updated instructions for mapping customer data fields.",
+    "metadata": {
+      "category": "customer-data",
+      "importance": "high"
+    },
+    "familyId": "us_mf_xyz789",
+    "createdAt": "2025-04-15T10:30:00Z",
+    "updatedAt": "2025-04-15T11:15:00Z",
+    "createdBy": "us_usr_123456",
+    "updatedBy": "us_usr_123456",
+    "deletedBy": null,
+    "deletedAt": null
+  }
+}
+```
+
+### Deleting Instructions
+
+To delete instructions, use the following endpoint:
+
+```bash
+DELETE /v1/instructions/:instructionId
+```
+
+**Query Parameters:**
+
+- `environmentId` (required): The environment ID
+- `scope` (required): The account ID
+- `namespace` (optional): The namespace for the instructions
+
+**Request Body:**
+
+```json
+{
+  "fieldKeys": ["first", "last", "email", "subscribed", "phone", "country"]
+}
+```
+
+**Response:**
+
+```json
+{
+  "data": {
+    "success": true
+  }
+}
+```
+
+## Integrating Instructions in Your Application
+
+### JavaScript Example
+
+Here's an example of how to create and retrieve instructions using the Flatfile JavaScript SDK:
+
+```javascript
+import { FlatfileClient } from '@flatfile/api';
+
+// Initialize the client
+const client = new FlatfileClient({
+  token: 'your_secret_key'
+});
+
+// Create instructions
+async function createInstructions() {
+  try {
+    const response = await fetch('https://api.flatfile.com/v1/instructions?environmentId=us_env_123&scope=us_acc_456', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${client.token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        instructions: "Map the 'email' field to the customer's primary email address. The 'first' and 'last' fields should be mapped to the customer's first and last name.",
+        fieldKeys: ["first", "last", "email", "subscribed", "phone"],
+        metadata: {
+          category: "customer-data",
+          importance: "high"
+        }
+      })
+    });
+    
+    const data = await response.json();
+    console.log('Instructions created:', data);
+    return data;
+  } catch (error) {
+    console.error('Error creating instructions:', error);
+  }
+}
+
+// Get instructions for a sheet
+async function getInstructionsForSheet(sheetId) {
+  try {
+    const response = await fetch(`https://api.flatfile.com/v1/instructions/sheet/${sheetId}?environmentId=us_env_123&scope=us_acc_456`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${client.token}`
+      }
+    });
+    
+    const data = await response.json();
+    console.log('Instructions for sheet:', data);
+    return data;
+  } catch (error) {
+    console.error('Error getting instructions:', error);
+  }
+}
+```
+
+### Displaying Instructions in the UI
+
+You can use the retrieved instructions to display guidance to users in your application. For example:
+
+```jsx
+import React, { useEffect, useState } from 'react';
+
+function MappingInstructions({ sheetId }) {
+  const [instructions, setInstructions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchInstructions() {
+      try {
+        setLoading(true);
+        const response = await getInstructionsForSheet(sheetId);
+        setInstructions(response.data || []);
+      } catch (error) {
+        console.error('Error fetching instructions:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchInstructions();
+  }, [sheetId]);
+
+  if (loading) {
+    return <div>Loading instructions...</div>;
+  }
+
+  if (instructions.length === 0) {
+    return <div>No instructions available for this sheet.</div>;
+  }
+
+  return (
+    <div className="mapping-instructions">
+      <h3>Mapping Instructions</h3>
+      {instructions.map((instruction) => (
+        <div key={instruction.id} className="instruction-card">
+          <p>{instruction.instructions}</p>
+          {instruction.metadata && instruction.metadata.importance === 'high' && (
+            <span className="high-importance-badge">High Importance</span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default MappingInstructions;
+```
+
+## Best Practices
+
+1. **Be specific**: Write clear, concise instructions that address specific mapping scenarios.
+
+2. **Use metadata**: Add metadata to categorize and prioritize instructions, making them easier to manage.
+
+3. **Update regularly**: Keep instructions up-to-date as your data requirements evolve.
+
+4. **Target specific field sets**: Create instructions for common field combinations that users are likely to encounter.
+
+5. **Provide examples**: Include examples of correct mappings to help users understand the expected outcome.
+
+## Conclusion
+
+Instructions provide a powerful way to guide users through the data mapping process, reducing errors and improving the overall user experience. By leveraging the Instructions API, you can create a more intuitive and user-friendly data import workflow in your application.

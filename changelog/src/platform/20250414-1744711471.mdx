@@ -1,0 +1,79 @@
+### April 14, 2025
+
+## dataxp
+
+We're excited to introduce the new Instructions API, which allows you to store and retrieve contextual instructions for guiding users during the data mapping process.
+
+
+The Instructions API provides a way to associate helpful guidance with specific field sets. When a user is mapping data with a similar field structure, the appropriate instructions can be retrieved and displayed to guide them through the process.
+
+Key features include:
+
+- **Field-specific instructions**: Store instructions for specific combinations of fields
+- **Automatic matching**: Instructions are automatically matched to sheets with similar field structures
+- **Metadata support**: Add custom metadata to instructions for additional context
+- **Full CRUD operations**: Create, read, update, and delete instructions through a RESTful API
+
+#### Create Instructions
+
+```bash
+POST /v1/instructions
+```
+
+**Request Body:**
+```json
+{
+  "instructions": "Map the 'email' field to the customer's primary email address.",
+  "fieldKeys": ["first", "last", "email", "subscribed", "phone"],
+  "metadata": {
+    "category": "customer-data"
+  }
+}
+```
+
+#### Get Instructions by Sheet ID
+
+```bash
+GET /v1/instructions/sheet/:sheetId
+```
+
+#### Update Instructions
+
+```bash
+PATCH /v1/instructions/:instructionId
+```
+
+#### Delete Instructions
+
+```bash
+DELETE /v1/instructions/:instructionId
+```
+
+#### How It Works
+
+Instructions are tied to mapping families, which are collections of fields that share a common structure. The system uses a confidence threshold to determine which instructions to display, ensuring that users only see guidance that's relevant to their current data.
+
+#### Example Usage
+
+Here's a simple example of how to create instructions using the API:
+
+```javascript
+// Create instructions for customer data fields
+fetch('https://api.flatfile.com/v1/instructions?environmentId=us_env_123&scope=us_acc_456', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer your_secret_key',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    instructions: "Map the 'email' field to the customer's primary email address. The 'first' and 'last' fields should be mapped to the customer's first and last name.",
+    fieldKeys: ["first", "last", "email", "subscribed", "phone"],
+    metadata: {
+      category: "customer-data",
+      importance: "high"
+    }
+  })
+})
+.then(response => response.json())
+.then(data => console.log('Instructions created:', data));
+```
