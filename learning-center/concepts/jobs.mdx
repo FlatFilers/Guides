@@ -4,6 +4,55 @@ description: "The anatomy of Jobs"
 icon: "truck"
 ---
 
+```mermaid
+sequenceDiagram
+    title Flatfile Job Lifecycle
+    
+    participant Client as Your App
+    participant API as Flatfile API
+    participant EventBus as Flatfile Event Service
+    participant Listener as Your Listener
+    
+    Note over Client,Listener: Job Creation Phase
+    
+    alt Action-Based Job
+        Client->>API: Trigger Action (e.g., click "Export Data")
+        API->>EventBus: Emit job:created Event
+    else Custom Job
+        Listener->>API: api.jobs.create()
+        API->>EventBus: Emit job:created Event
+    else System Job
+        API->>EventBus: Emit job:created Event
+    end
+    
+    EventBus->>Listener: job:created
+    
+    Note over Client,Listener: Job Execution Phase
+    
+    EventBus->>Listener: job:ready
+    
+    Listener->>API: api.jobs.ack(jobId, { info, progress })
+    
+    loop Job Processing
+        Listener->>API: api.jobs.update(jobId, { progress, estimatedCompletionAt })
+        API->>EventBus: Emit job:updated Event
+        EventBus->>Listener: job:updated
+    end
+    
+    Note over Client,Listener: Job Completion Phase
+    
+    alt Successful Completion
+        Listener->>API: api.jobs.complete(jobId, { outcome })
+        API->>EventBus: Emit job:completed Event
+        EventBus->>Listener: job:completed
+    else Failed Completion
+        Listener->>API: api.jobs.fail(jobId, { outcome })
+        API->>EventBus: Emit job:failed Event
+        EventBus->>Listener: job:failed
+    end
+```
+
+
 In Flatfile, a Job represents a large unit of work performed asynchronously on a resource
 such as a file, <Tooltip tip="Analogous to a database...">[Workbook](/learning-center/architecture/workbooks)</Tooltip>,
 or <Tooltip tip="A collection of fields...">[Sheet](/learning-center/blueprint/about#terms)</Tooltip>.
