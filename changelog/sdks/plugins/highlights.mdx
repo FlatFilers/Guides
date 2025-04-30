@@ -4,6 +4,23 @@ description: "Notable additions and updates to Flatfile plugins"
 icon: "plug"
 ---
 
+<Update label="05-16-2024" tags={["export"]}>
+`@flatfile/plugin-export-workbook@5.1.0`
+
+The export workbook plugin now includes an option to export workbook data without record messages. This feature gives you more control over the exported data format by allowing you to exclude validation messages and other record-level annotations from the export.
+
+To use this feature, set the `includeRecordMessages` option to `false` when configuring the plugin:
+
+```javascript
+exportWorkbookPlugin({
+  includeRecordMessages: false,
+  // other options...
+})
+```
+
+This is particularly useful when you need cleaner exports or when sending data to systems that don't need the validation message information.
+</Update>
+
 <Update label="02-19-2025" tags={["automations"]}>
 A new Data Checlist Document type has been added to the `@flatfile/plugin-space-configure` package, providing an automated way to include a Data-Checklist document in your space.
 To create a Data Checklist Document simply add the `data-checklist` treatment to your document.

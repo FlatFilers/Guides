@@ -1,0 +1,35 @@
+---
+title: "Added option to export workbook without record messages"
+description: "The @flatfile/plugin-export-workbook plugin now supports exporting workbooks without including record messages."
+---
+
+# Added option to export workbook without record messages
+
+The `@flatfile/plugin-export-workbook` plugin version 5.1.0 introduces a new option that allows you to export workbook data without including record messages. This feature gives you more control over the exported data format.
+
+## Usage
+
+When configuring the export workbook plugin, you can now specify the `includeRecordMessages` option:
+
+```javascript
+import { exportWorkbookPlugin } from "@flatfile/plugin-export-workbook";
+
+listener.use(
+  exportWorkbookPlugin({
+    includeRecordMessages: false, // Set to false to exclude record messages
+    // other options...
+  })
+);
+```
+
+By default, `includeRecordMessages` is set to `true`, maintaining backward compatibility with previous versions.
+
+## Benefits
+
+This enhancement is particularly useful when:
+
+- You want cleaner exports without validation messages
+- You're exporting data to systems that don't need or can't process the message data
+- You want to reduce the size of exported files
+
+The option gives you more flexibility in controlling exactly what data is included in your workbook exports.
