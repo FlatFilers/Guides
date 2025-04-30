@@ -1,0 +1,113 @@
+---
+title: Advanced Filters
+description: Learn how to use Flatfile's Advanced Filters to efficiently filter and search through your data
+---
+
+# Advanced Filters
+
+Advanced Filters in Flatfile provide a powerful way to filter and search through your data with complex conditions. This feature allows you to create sophisticated filter combinations to quickly find the exact records you need.
+
+## Overview
+
+The Advanced Filters feature enables you to:
+
+- Create multiple filter conditions with different fields
+- Combine conditions using logical operators (AND/OR)
+- Filter by various data types with appropriate operators
+- Save and reuse filter combinations
+- Apply filters to large datasets efficiently
+
+## Using Advanced Filters
+
+### Accessing Advanced Filters
+
+You can access Advanced Filters in the Flatfile interface through the Filter button in the sheet toolbar:
+
+1. Navigate to any sheet in your workbook
+2. Click the "Filter" button in the toolbar
+3. Select a field to filter by, or click "Advanced filter" to create a complex filter
+
+### Creating Filter Conditions
+
+Each filter condition consists of three parts:
+
+1. **Field** - The column you want to filter on
+2. **Operator** - The comparison type (equals, contains, greater than, etc.)
+3. **Value** - The specific value to filter by
+
+For example, you might create a filter like: `firstName is "John"` or `age > 30`.
+
+### Combining Multiple Filters
+
+Advanced Filters allow you to combine multiple conditions:
+
+1. Create your first filter condition
+2. Click the "Add condition" button
+3. Select whether to join with "AND" or "OR" logic
+4. Add your next condition
+
+This allows for complex queries like: `firstName is "John" AND age > 30` or `status is "pending" OR status is "review"`.
+
+### Available Operators
+
+Different field types support different operators:
+
+| Field Type | Available Operators |
+|------------|---------------------|
+| String     | is, is not, like, is empty, not empty |
+| Number     | is, is not, >, <, >=, <=, is empty, not empty |
+| Boolean    | is true, is false, is empty, not empty |
+| Date       | is, is not, >, <, >=, <=, is empty, not empty |
+| Enum       | is, is not, is empty, not empty |
+
+### Horizontal Scrolling
+
+When you add multiple filter conditions that extend beyond the available width of the screen, the filter area will automatically enable horizontal scrolling. This allows you to create complex filter combinations without being limited by screen space.
+
+Simply scroll horizontally to see all your filter conditions when they extend beyond the visible area.
+
+## Advanced Filter Examples
+
+Here are some examples of how you might use Advanced Filters:
+
+### Example 1: Finding Specific Customer Records
+
+```
+firstName is "Sarah" AND status is "active" AND lastPurchase > "2023-01-01"
+```
+
+This filter would show all active customers named Sarah who made a purchase after January 1, 2023.
+
+### Example 2: Identifying Records Needing Attention
+
+```
+(status is "pending" OR status is "review") AND createdDate < "2023-06-01"
+```
+
+This filter would show all records that are either pending or in review, and were created before June 1, 2023.
+
+### Example 3: Finding Missing Data
+
+```
+email is not empty AND phone is empty
+```
+
+This filter would show all records that have an email address but are missing a phone number.
+
+## Best Practices
+
+- **Start simple**: Begin with a single filter condition and add more as needed
+- **Use AND/OR strategically**: "AND" narrows results (both conditions must be true), while "OR" broadens results (either condition can be true)
+- **Consider performance**: Very complex filters on large datasets may take longer to process
+- **Save common filters**: If you frequently use the same filter combinations, consider saving them as views
+
+## Troubleshooting
+
+If you encounter issues with Advanced Filters:
+
+- Ensure your filter values match the expected format for the field type
+- Check that you're using appropriate operators for each field type
+- For complex filters, try breaking them down into simpler components to identify issues
+- Verify that the data you're filtering actually exists in your dataset
+
+Advanced Filters provide a powerful way to work with your data in Flatfile, allowing you to quickly find and focus on the records that matter most to your workflow.
