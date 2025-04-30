@@ -8,7 +8,7 @@ icon: "server"
 
 # Flatfile MCP Server
 
-The Flatfile MCP Server creates a bridge between AI assistants and your Flatfile data, enabling powerful natural language interactions with your data management workflows.
+The [Flatfile MCP Server](https://github.com/flatfilers/mcp-server-flatfile?tab=readme-ov-file#flatfile-mcp-server) creates a bridge between AI assistants and your Flatfile data, enabling powerful natural language interactions with your data management workflows.
 
 ## Features
 
@@ -98,7 +98,7 @@ Add the following to your `claude_desktop_config.json`:
 ```
 
 <Info>
-The `FLATFILE_API_URL` parameter is optional and only needed for non-US regions or self-hosting.
+The `"FLATFILE_API_URL": "https://platform.flatfile.com/api/v1"` environment variable is optional and only needed for non-US regions or self-hosting.
 </Info>
 
 ### Claude Code Setup
@@ -111,6 +111,10 @@ To configure Claude Code with the Flatfile MCP Server:
 ```bash
 claude mcp add mcp-server-flatfile -e FLATFILE_API_URL=https://platform.flatfile.com/api/v1 -e FLATFILE_BEARER_TOKEN=pat_your_token_here -- npx -y @flatfile/mcp-server --enabled-tools getRecords,updateRecords
 ```
+
+<Info>
+The `-e FLATFILE_API_URL=...` environment variable is optional and only needed for non-US regions or self-hosting.
+</Info>
 
 3. Verify the installation by checking Claude Code's configuration
 
@@ -134,6 +138,10 @@ Add the following to your `.cursor/mcp.json`:
   }
 }
 ```
+
+<Info>
+The `FLATFILE_API_URL` environment variable is optional and only needed for non-US regions or self-hosting.
+</Info>
 
 ## Example Use Cases
 
@@ -169,7 +177,7 @@ Visit our [Community Forum](https://community.flatfile.com) or contact [support@
 
 ## Available Tools
 
-The Flatfile MCP Server provides access to a comprehensive set of tools for interacting with your Flatfile data. Here's a selection of the most commonly used tools:
+The Flatfile MCP Server provides access to a comprehensive set of tools for the Flatfile API. Here's a selection of the most commonly used tools:
 
 | Category | Tools |
 |----------|-------|
@@ -177,17 +185,8 @@ The Flatfile MCP Server provides access to a comprehensive set of tools for inte
 | **Workbooks** | getWorkbook, createWorkbook, deleteWorkbook, listWorkbooks |
 | **Sheets** | getSheet, createSheet, deleteSheet, listSheets |
 | **Spaces** | getSpace, createSpace, deleteSpace, listSpaces |
-| **Files** | uploadFile, downloadFile, deleteFile, listFiles |
 
-For a complete list of all 100+ available tools, refer to the [Flatfile API Documentation](https://flatfile.com/docs/api).
-
-## Advanced Configuration
-
-For advanced use cases, you can:
-
-- Configure tool-specific parameters
-- Set up environment-specific configurations
-- Create custom workflows using the MCP Server API
+For a complete list of all 190+ available tools, refer to the [Flatfile MCP Server repo](https://github.com/flatfilers/mcp-server-flatfile?tab=readme-ov-file#flatfile-mcp-server).
 
 <Info>
 Refer to the [Flatfile Developer Documentation](https://flatfile.com/docs) for detailed information on advanced configurations.
