@@ -1,0 +1,103 @@
+---
+title: "Advanced Filters"
+description: "Learn how to use Advanced Filters to create complex queries in Flatfile Spaces"
+icon: "filter"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+## Overview
+
+Advanced Filters is a powerful feature in Flatfile that allows you to create complex, multi-field queries to filter your data. This feature enables you to build sophisticated filter combinations with multiple conditions across different fields, giving you precise control over which records are displayed.
+
+## Key Concepts
+
+Advanced Filters introduces several new concepts:
+
+- **Query Collection**: A set of queries that are combined together to create a grouped FFQL string
+  - **Atomic Collection**: A collection with exactly one query for a single field
+  - **Advanced Collection**: A collection of multiple queries across many fields
+
+- **Query**: A definition of search criteria that, when assembled, creates a qualified FFQL string
+  - **queryField**: The key of the column being queried
+  - **queryOperation**: The clause for the query (e.g., is, is not, empty, etc.)
+  - **queryValues**: The specific value(s) being searched for
+  - **joinPrefix**: The clause used for combining this query with its predecessor (i.e., "and", "or")
+
+## Using Advanced Filters
+
+### In the User Interface
+
+1. **Access the Filter Menu**: Click the "Filter" button in the sheet toolbar
+2. **Create a Simple Filter**: Select a field from the dropdown to create an atomic filter
+3. **Create an Advanced Filter**: Click the "Advanced filter" option in the dropdown menu
+4. **Build Your Query**:
+   - Select fields to filter on
+   - Choose operations (is, is not, contains, etc.)
+   - Enter values to filter by
+   - Use "AND" or "OR" operators to combine conditions
+
+### Filter Operations
+
+Advanced Filters supports the following operations:
+
+- **is**: Exact match
+- **is not**: Excludes exact matches
+- **is empty**: Field has no value
+- **not empty**: Field has any value
+- **>**: Greater than (for numeric fields)
+- **<**: Less than (for numeric fields)
+- **>=**: Greater than or equal to (for numeric fields)
+- **<=**: Less than or equal to (for numeric fields)
+
+## Examples
+
+### Simple Filter (Atomic Collection)
+
+Filter records where the "firstName" field equals "John":
+
+```
+firstName is "John"
+```
+
+### Advanced Filter (Multiple Fields)
+
+Filter records where the "firstName" is "John" AND the "age" is greater than 30:
+
+```
+firstName is "John" AND age > 30
+```
+
+### Complex Filter (Multiple Conditions)
+
+Filter records where the "firstName" is "John" OR "Jane" AND the "status" is not "Inactive":
+
+```
+(firstName is "John" OR firstName is "Jane") AND status is not "Inactive"
+```
+
+## Enabling Advanced Filters
+
+### Prepare Application
+
+Advanced Filters is enabled by default in the Prepare application.
+
+### Spaces-UI Application
+
+To enable Advanced Filters in Spaces-UI:
+
+1. Apply the `advancedFilters` feature flag via Brewster for your environment
+2. The feature will then be available in your Spaces-UI application
+
+## Technical Implementation
+
+Advanced Filters leverages Flatfile Query Language (FFQL) behind the scenes, but provides a more user-friendly interface for building complex queries. The feature stores filter parameters in local storage for continued retrieval across sessions.
+
+For more information on the underlying query language, see the [Flatfile Query Language (FFQL)](/learning-center/guides/flatfile_query_language) documentation.
+
+## Best Practices
+
+- Start with simple filters and gradually add complexity
+- Use parentheses to group logical conditions for clarity
+- Consider performance implications when filtering very large datasets with multiple conditions
+- Save commonly used filters as Views for quick access (if Views feature is enabled)
