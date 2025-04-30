@@ -1,113 +1,86 @@
 ---
-title: Advanced Filters
-description: Learn how to use Flatfile's Advanced Filters to efficiently filter and search through your data
+title: "Advanced Filters"
+description: "Learn how to use Advanced Filters to select, delete, and download specific rows in your data"
+icon: "filter"
 ---
 
 # Advanced Filters
 
-Advanced Filters in Flatfile provide a powerful way to filter and search through your data with complex conditions. This feature allows you to create sophisticated filter combinations to quickly find the exact records you need.
+Advanced Filters provide powerful capabilities for selecting, filtering, and taking actions on specific rows in your data sheets. When enabled, this feature allows you to select rows based on complex criteria and perform bulk operations like deletion and download on the selected data.
 
-## Overview
+## Enabling Advanced Filters
 
-The Advanced Filters feature enables you to:
+Advanced Filters can be enabled through the `advancedFilters` feature flag in your environment. When enabled, users will have access to enhanced filtering capabilities and a row selection toolbar that appears when rows are selected.
 
-- Create multiple filter conditions with different fields
-- Combine conditions using logical operators (AND/OR)
-- Filter by various data types with appropriate operators
-- Save and reuse filter combinations
-- Apply filters to large datasets efficiently
-
-## Using Advanced Filters
-
-### Accessing Advanced Filters
-
-You can access Advanced Filters in the Flatfile interface through the Filter button in the sheet toolbar:
-
-1. Navigate to any sheet in your workbook
-2. Click the "Filter" button in the toolbar
-3. Select a field to filter by, or click "Advanced filter" to create a complex filter
-
-### Creating Filter Conditions
-
-Each filter condition consists of three parts:
-
-1. **Field** - The column you want to filter on
-2. **Operator** - The comparison type (equals, contains, greater than, etc.)
-3. **Value** - The specific value to filter by
-
-For example, you might create a filter like: `firstName is "John"` or `age > 30`.
-
-### Combining Multiple Filters
-
-Advanced Filters allow you to combine multiple conditions:
-
-1. Create your first filter condition
-2. Click the "Add condition" button
-3. Select whether to join with "AND" or "OR" logic
-4. Add your next condition
-
-This allows for complex queries like: `firstName is "John" AND age > 30` or `status is "pending" OR status is "review"`.
-
-### Available Operators
-
-Different field types support different operators:
-
-| Field Type | Available Operators |
-|------------|---------------------|
-| String     | `is`, `is not`, `like`, `is empty`, `not empty` |
-| Number     | `is`, `is not`, `>`, `<`, `>=`, `<=`, `is empty`, `not empty` |
-| Boolean    | `is true`, `is false`, `is empty`, `not empty` |
-| Date       | `is`, `is not`, `>`, `<`, `>=`, `<=`, `is empty`, `not empty` |
-| Enum       | `is`, `is not`, `is empty`, `not empty` |
-
-### Horizontal Scrolling
-
-When you add multiple filter conditions that extend beyond the available width of the screen, the filter area will automatically enable horizontal scrolling. This allows you to create complex filter combinations without being limited by screen space.
-
-Simply scroll horizontally to see all your filter conditions when they extend beyond the visible area.
-
-## Advanced Filter Examples
-
-Here are some examples of how you might use Advanced Filters:
-
-### Example 1: Finding Specific Customer Records
-
-```
-firstName is "Sarah" AND status is "active" AND lastPurchase > "2023-01-01"
+```javascript
+// Example of enabling advanced filters in your environment
+const { features } = useContext(EnvironmentsContext);
+const advancedFiltersEnabled = features?.advancedFilters;
 ```
 
-This filter would show all active customers named Sarah who made a purchase after January 1, 2023.
+## Row Selection Tools
 
-### Example 2: Identifying Records Needing Attention
+When Advanced Filters are enabled and rows are selected, a selection toolbar appears at the bottom of the sheet. This toolbar provides:
 
-```
-(status is "pending" OR status is "review") AND createdDate < "2023-06-01"
-```
+1. A count of how many rows are currently selected
+2. Action buttons for common operations on the selected rows
 
-This filter would show all records that are either pending or in review, and were created before June 1, 2023.
+![Row Selection Tools](https://github.com/user-attachments/assets/04a6a6c6-d97b-46eb-b312-d3dee168dbbc)
 
-### Example 3: Finding Missing Data
+### Available Actions
 
-```
-email is not empty AND phone is empty
-```
+The Row Selection Tools bar provides quick access to common actions for your selected rows:
 
-This filter would show all records that have an email address but are missing a phone number.
+#### Delete Selected Rows
+
+The delete action allows you to remove all selected rows from your sheet. When clicked:
+
+1. A confirmation modal appears to prevent accidental deletion
+2. Upon confirmation, all selected rows are removed from the sheet
+3. A toast notification confirms the successful deletion
+
+#### Download Selected Rows
+
+The download action exports only the selected rows to a CSV file. When clicked:
+
+1. A modal appears with download options
+2. Upon confirmation, a CSV file containing only the selected rows is generated
+3. The file is automatically downloaded to your device
+
+## Selection Methods
+
+Advanced Filters support multiple ways to select rows:
+
+1. **Individual Selection**: Click the checkbox at the beginning of a row to select it
+2. **Range Selection**: Select a row, hold Shift, and select another row to select all rows in between
+3. **Filter-Based Selection**: Apply filters and then select all filtered rows
+4. **Select All**: Use the checkbox in the header to select all rows (or all filtered rows)
+
+## Working with Selections
+
+The selection state is maintained as you navigate through your data, allowing you to:
+
+1. Select rows across multiple pages
+2. Apply filters to narrow down your selection
+3. See a running count of selected rows
+4. Perform bulk actions on your selection
+
+## Combining with Other Features
+
+Advanced Filters work seamlessly with other Flatfile features:
+
+- **Standard Filters**: Apply standard filters first, then select rows from the filtered results
+- **Search**: Search for specific data, then select from the search results
+- **Sorting**: Sort your data to identify patterns, then select relevant rows
+- **Validation**: Select rows with errors to quickly identify and fix issues
 
 ## Best Practices
 
-- **Start simple**: Begin with a single filter condition and add more as needed
-- **Use AND/OR strategically**: "AND" narrows results (both conditions must be true), while "OR" broadens results (either condition can be true)
-- **Consider performance**: Very complex filters on large datasets may take longer to process
-- **Save common filters**: If you frequently use the same filter combinations, consider saving them as views
+For the most effective use of Advanced Filters:
 
-## Troubleshooting
+1. Use filters first to narrow down your dataset before making selections
+2. Verify your selection count before performing bulk actions
+3. For very large datasets, consider working with smaller filtered subsets
+4. Use the download feature to analyze selected data in external tools
 
-If you encounter issues with Advanced Filters:
-
-- Ensure your filter values match the expected format for the field type
-- Check that you're using appropriate operators for each field type
-- For complex filters, try breaking them down into simpler components to identify issues
-- Verify that the data you're filtering actually exists in your dataset
-
-Advanced Filters provide a powerful way to work with your data in Flatfile, allowing you to quickly find and focus on the records that matter most to your workflow.
+Advanced Filters provide a powerful way to work with specific subsets of your data, making it easier to clean, analyze, and transform your information efficiently.

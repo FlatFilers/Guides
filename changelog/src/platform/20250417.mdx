@@ -1,0 +1,26 @@
+---
+title: "Delete and Download Record Actions for Advanced Filters"
+description: "New row selection tools for advanced filtering capabilities"
+---
+
+# Delete and Download Record Actions for Advanced Filters
+
+We've enhanced our advanced filtering capabilities by adding a new "RowSelectionTools" bar that appears when rows are selected in a Sheet with `advancedFilters` enabled.
+
+## Key Features
+
+- **Row Selection Indicator**: Displays the count of currently selected rows
+- **Delete Action**: Quickly remove selected rows from your sheet
+- **Download Action**: Export only the selected rows to a CSV file
+
+## How It Works
+
+When `advancedFilters` are enabled and rows are selected in a sheet, a toolbar appears at the bottom of the screen showing how many rows are selected and providing quick access to delete and download actions.
+
+These actions use the existing `delete` and `download` bulk row actions, maintaining the same workflow with modal confirmations and toast notifications on completion to ensure consistency with the current user experience.
+
+![Row Selection Tools](https://github.com/user-attachments/assets/04a6a6c6-d97b-46eb-b312-d3dee168dbbc)
+
+This enhancement makes it easier to work with filtered subsets of your data, allowing for more efficient data cleaning and management workflows.
+
+To learn more about using Advanced Filters, check out our [Advanced Filters guide](/learning-center/guides/advanced-filters).
