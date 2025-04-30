@@ -1,9 +1,7 @@
----
-title: "Preserve Record IDs During Transformations"
-description: "New flag to maintain record IDs during data transformations"
----
+### April 3, 2025
 
-<Update label="04-03-2025" tags={["dataxp"]}>
+## dataxp
+
 **Preserve Record IDs During Transformations**
 
 We've added a new `keepRecordIds` flag to maintain record IDs during transformations. This enhancement provides greater control over how records are processed during transformation operations.
@@ -41,4 +39,3 @@ const transformationJobResponse = await HTTPService.createJob({
 ```
 
 This feature is backward compatible - `keepRecordIds` defaults to `false`, maintaining the existing behavior for current implementations.
-</Update>
