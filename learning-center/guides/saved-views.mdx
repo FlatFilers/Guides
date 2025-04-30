@@ -1,0 +1,134 @@
+---
+title: "Saved Views"
+description: "Save, manage, and share custom views with filters, sorting, and search queries"
+icon: "eye"
+---
+
+# Saved Views
+
+Saved Views is a powerful feature in Flatfile that allows users to create, save, and share custom views of their data. These views can include specific filters, sorting criteria, and search queries, making it easier to quickly access frequently used data perspectives.
+
+## Overview
+
+The Saved Views feature enables users to:
+
+- Save the current state of filters, sorting, and search queries as a named view
+- Apply saved views with a single click
+- Share views with other users via shareable links
+- Organize views into personal and shared categories
+- Quickly switch between different data perspectives
+
+This functionality is particularly useful for teams that frequently need to analyze data from different angles or focus on specific subsets of records.
+
+## Using Saved Views
+
+### Creating a Saved View
+
+To create a saved view:
+
+1. Apply the desired filters, sorting, and search queries to your data
+2. Click the "Views" dropdown in the Sheet toolbar
+3. Select "Save current view"
+4. Enter a name for your view
+5. Click "Save"
+
+<Frame>
+  ![Save View Dialog](../images/save-view-dialog.png)
+</Frame>
+
+### Applying a Saved View
+
+To apply a saved view:
+
+1. Click the "Views" dropdown in the Sheet toolbar
+2. Select the desired view from the list
+
+The view will be applied immediately, showing the data with the saved filters, sorting, and search criteria.
+
+### Sharing a View
+
+To share a view with others:
+
+1. Apply the saved view
+2. Click the "Share" button next to the view name
+3. Copy the generated link
+4. Share the link with others
+
+When recipients open the link, they will see the data with the same filters, sorting, and search criteria applied.
+
+### Managing Views
+
+The Views dropdown organizes saved views into two categories:
+
+- **My Views**: Views created by the current user
+- **All Views**: Views created by all users with access to the sheet
+
+Each view in the dropdown includes options to:
+- Apply the view
+- Delete the view (for views you created)
+- Share the view
+
+## Implementation Details
+
+### View Storage
+
+Saved views are stored at the account level and are associated with specific sheets. This means:
+
+- Views are persistent across sessions
+- Views are accessible to all users with appropriate permissions
+- Views are specific to the sheet they were created for
+
+### View Components
+
+The Saved Views feature includes several UI components:
+
+- **Views Dropdown**: Located in the Sheet toolbar, provides access to all saved views
+- **Save View Modal**: Dialog for naming and saving a new view
+- **View Management**: Interface for organizing and managing saved views
+
+## Technical Implementation
+
+For developers integrating with Flatfile, the Saved Views feature is automatically available in the spaces-ui component. The feature leverages the existing filtering, sorting, and search capabilities of Flatfile sheets.
+
+### API Endpoints
+
+The following API endpoints are available for programmatic interaction with saved views:
+
+- `GET /v1/views`: Retrieve all views for the current user
+- `POST /v1/views`: Create a new view
+- `GET /v1/views/{viewId}`: Get a specific view
+- `DELETE /v1/views/{viewId}`: Delete a view
+
+### View Configuration
+
+A view configuration includes:
+
+```typescript
+interface ViewConfig {
+  filter?: Filter;
+  filterField?: string;
+  q?: string;
+  searchField?: string;
+  searchValue?: string;
+  sortDirection?: SortDirection;
+  sortField?: string;
+}
+```
+
+This configuration captures all the parameters needed to recreate a specific view of the data.
+
+## Best Practices
+
+- **Use descriptive names**: Choose clear, descriptive names for your views to make them easily identifiable
+- **Create focused views**: Design views that address specific use cases or data analysis needs
+- **Organize views**: Delete outdated views to keep the dropdown menu manageable
+- **Share views strategically**: Share views with team members who need access to the same data perspective
+
+## Conclusion
+
+Saved Views is a powerful feature that enhances the data management experience in Flatfile by allowing users to save and share specific data perspectives. By leveraging this feature, teams can work more efficiently with their data and ensure consistent analysis across users.
+
+For more information on related features, check out:
+- [FFQL (Flatfile Query Language)](./flatfile_query_language)
+- [Handling Data](./handling-data)
+- [Actions](./actions)

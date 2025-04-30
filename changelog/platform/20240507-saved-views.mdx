@@ -1,0 +1,96 @@
+---
+title: "Saved Views"
+description: "Save, manage, and share custom views with filters, sorting, and search queries"
+---
+
+# Saved Views
+
+We're excited to introduce Saved Views, a powerful new feature that allows users to save, manage, and share custom views of their data. This feature enhances the user experience by making it easier to quickly access frequently used data perspectives.
+
+## Feature Overview
+
+With Saved Views, users can:
+
+- Apply filters, sorting, and search queries to the Sheet data and save those settings as a reusable view
+- Name and organize views for easy reference
+- Share views with other users via shareable links
+- Switch between different data perspectives with a single click
+
+## Key Components
+
+### Views Dropdown
+
+A new "Views" dropdown has been added to the Sheet toolbar, providing access to all saved views. Views are organized into "My Views" (created by the current user) and "All Views" (created by all users with access to the sheet).
+
+![Views Dropdown](../images/views-dropdown.png)
+
+### Save View Modal
+
+The "Save View" modal allows users to name and save the current Sheet filters, sorting, and search queries as a view.
+
+![Save View Modal](../images/save-view-modal.png)
+
+### Shareable Links
+
+Users can generate and share links that include the view settings, allowing others to see the same data perspective.
+
+## Technical Implementation
+
+### Backend APIs
+
+New backend APIs have been added to support the Saved Views functionality:
+
+- Create, update, and delete saved views
+- Retrieve views for a specific user or sheet
+- Apply view settings to a sheet
+
+### React Components
+
+New React hooks and components have been added to the spaces-ui package to support the Saved Views functionality:
+
+- `useSavedViews` hook for managing saved views
+- Views dropdown component
+- Save View modal component
+
+### Data Structure
+
+A view includes the following configuration:
+
+```typescript
+interface ViewConfig {
+  filter?: Filter;
+  filterField?: string;
+  q?: string;
+  searchField?: string;
+  searchValue?: string;
+  sortDirection?: SortDirection;
+  sortField?: string;
+}
+```
+
+This configuration captures all the parameters needed to recreate a specific view of the data.
+
+## Benefits
+
+Saved Views offers several benefits for users:
+
+- **Efficiency**: Quickly switch between different data perspectives without having to recreate filters and sorting
+- **Consistency**: Ensure that all users are looking at the same data perspective when collaborating
+- **Organization**: Save and organize frequently used data views for easy access
+- **Collaboration**: Share specific data perspectives with team members
+
+## Getting Started
+
+To start using Saved Views, simply:
+
+1. Apply filters, sorting, or search queries to your data
+2. Click the "Views" dropdown in the Sheet toolbar
+3. Select "Save current view"
+4. Enter a name for your view
+5. Click "Save"
+
+For more detailed information, check out our [Saved Views guide](../../learning-center/guides/saved-views).
+
+## Feedback
+
+We're excited to hear your feedback on this new feature. Please let us know how Saved Views is working for you and if you have any suggestions for improvements.
