@@ -1,0 +1,123 @@
+---
+title: "Generate Compute Functions"
+description: "Use AI to automatically generate compute functions for data transformation"
+icon: "microchip-ai"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+Flatfile's AI-powered compute function generation enables you to automatically create JavaScript transformation functions based on natural language prompts. This feature helps you quickly implement complex data transformations without writing code manually.
+
+## What are Compute Functions?
+
+Compute functions are JavaScript functions that transform source data fields into destination fields. They can perform operations like:
+
+- Combining multiple fields
+- Extracting parts of strings
+- Formatting dates
+- Performing calculations
+- Conditional transformations
+
+## How Generate Compute Works
+
+The generate compute feature uses AI to:
+
+1. Analyze your source data schema
+2. Understand sample data
+3. Interpret your natural language prompt
+4. Generate optimized JavaScript code that performs the requested transformation
+
+## Using Generate Compute
+
+When you need to transform data between fields, you can provide:
+
+1. A schema definition of your source and destination fields
+2. Sample data to demonstrate the transformation
+3. A natural language prompt describing the transformation
+
+The system will then generate a JavaScript function that performs the transformation.
+
+### Example
+
+Let's say you want to combine first name and last name fields into a full name field:
+
+```javascript
+// Schema definition
+const schema = {
+  sourceFields: [
+    { key: "firstName", type: "string" },
+    { key: "lastName", type: "string" }
+  ],
+  destinationFields: [
+    { key: "fullName", type: "string" }
+  ]
+};
+
+// Sample data
+const samples = [
+  { firstName: "John", lastName: "Doe" },
+  { firstName: "Jane", lastName: "Smith" }
+];
+
+// Natural language prompt
+const prompt = "Combine first name and last name to create a full name with a space between them";
+
+// Generate the compute function
+const result = await generateCompute({ 
+  schema, 
+  samples, 
+  prompt 
+});
+```
+
+The system will generate a function like:
+
+```javascript
+function transform(source) {
+  return {
+    fullName: `${source.firstName} ${source.lastName}`
+  };
+}
+```
+
+## Best Practices
+
+For optimal results with generate compute:
+
+1. **Be specific in your prompts** - Clearly describe the transformation you want
+2. **Provide diverse sample data** - Include edge cases and different data patterns
+3. **Include all relevant fields** - Make sure your schema includes all fields needed for the transformation
+4. **Review generated code** - Always check the generated code for correctness and edge cases
+
+## Implementation Details
+
+Behind the scenes, generate compute:
+
+1. Formats your schema and sample data into a structured format
+2. Sends this information along with your prompt to an AI model
+3. Processes the response to extract the transformation function
+4. Returns the function along with metadata about the transformation
+
+The generated functions are designed to be efficient, handle edge cases, and follow JavaScript best practices.
+
+## Error Handling
+
+Generated compute functions include error handling for common issues like:
+
+- Missing or null input values
+- Type conversion errors
+- Edge cases in data formatting
+
+This ensures that your transformations are robust and can handle real-world data.
+
+## Use Cases
+
+Generate compute is particularly useful for:
+
+- **Data normalization** - Standardizing formats across fields
+- **Field combination** - Merging multiple fields into one
+- **Data extraction** - Pulling specific information from complex fields
+- **Format conversion** - Changing date formats, number formats, etc.
+- **Conditional transformations** - Applying different logic based on field values
+
+By leveraging AI to generate these functions, you can save development time and implement complex transformations with minimal effort.
