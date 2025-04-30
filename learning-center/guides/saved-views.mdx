@@ -1,0 +1,143 @@
+---
+title: "Saved Views"
+description: "Save, manage and share custom Sheet views with filters, sorting, and search queries"
+icon: "bookmark"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+Saved Views allow users to create, manage, and share custom views of Sheet data, preserving filter configurations, sorting preferences, and search queries for future use.
+
+## Overview
+
+The Saved Views feature enables users to:
+
+1. Save the current state of filters, sorting, and search queries as a named view
+2. Switch between different views quickly
+3. Share views with other users via shareable links
+4. Organize and manage multiple views for the same dataset
+
+This functionality is particularly useful for:
+- Creating different perspectives on the same dataset
+- Saving frequently used filter combinations
+- Sharing specific data views with team members
+- Maintaining consistent data analysis workflows
+
+![Saved Views Dropdown](/images/saved-views/saved-views-dropdown.png)
+
+## Using Saved Views
+
+### Creating a View
+
+To create a new saved view:
+
+1. Apply the desired filters, sorting, and search queries to your Sheet
+2. Click the "Saved views" dropdown in the toolbar
+3. Select "Create new saved view"
+4. Enter a name for your view
+5. Click "Save"
+
+![Create Saved View](/images/saved-views/create-saved-view.png)
+
+### Switching Between Views
+
+To switch to a different saved view:
+
+1. Click the "Saved views" dropdown in the toolbar
+2. Select the desired view from the list
+
+When a view is active, its name will be displayed in the toolbar with an option to clear it.
+
+### Clearing a View
+
+To clear the current view and return to the default state:
+
+1. Click the view name in the toolbar
+2. Confirm that you want to clear the view and all current filters
+
+### Deleting a View
+
+To delete a saved view:
+
+1. Click the "Saved views" dropdown in the toolbar
+2. Locate the view you want to delete
+3. Click the trash icon next to the view name
+4. Confirm the deletion
+
+![Delete Saved View](/images/saved-views/delete-saved-view.png)
+
+## Sharing Views
+
+Saved Views can be shared with other users who have access to the same Space. When a view is activated, the URL is updated with the view's filter parameters, which can be copied and shared.
+
+Recipients who open the shared URL will see the Sheet with the same filters, sorting, and search queries applied.
+
+## Integration with Advanced Filters
+
+Saved Views work seamlessly with [Advanced Filters](/learning-center/guides/advanced-filters), storing complex query configurations created through the Advanced Filters interface.
+
+When Advanced Filters are enabled:
+- Views can include complex query combinations
+- The query toolbar state is preserved in the view
+- Column-specific filters are stored as queries
+
+## Technical Implementation
+
+Saved Views are stored as resources in the Flatfile platform and are associated with specific Sheets. Each view contains:
+
+- A name for identification
+- The creator's information
+- A configuration object with filter parameters
+- Timestamps for creation and updates
+
+### View Configuration
+
+A view configuration can include:
+
+- Filter parameters (q, filter, filterField)
+- Search parameters (searchValue, searchField)
+- Sorting parameters (sortField, sortDirection)
+- Advanced query collections
+
+### API Access
+
+Views can be managed programmatically through the Flatfile API:
+
+```javascript
+// Create a new view
+const newView = await api.views.create({
+  name: "High Priority Items",
+  sheetId: "us_sh_123",
+  config: {
+    q: "priority eq 'high'",
+    sortField: "dueDate",
+    sortDirection: "asc"
+  }
+});
+
+// Get all views for a sheet
+const views = await api.views.list({
+  sheetId: "us_sh_123"
+});
+
+// Delete a view
+await api.views.delete("us_vw_123");
+```
+
+## Best Practices
+
+- Use descriptive names for views to make their purpose clear
+- Create separate views for different analysis scenarios
+- Regularly review and clean up unused views
+- Use views to standardize reporting perspectives across teams
+
+## Limitations
+
+- Views are specific to individual Sheets and cannot span multiple Sheets
+- View permissions follow the same access controls as the Sheet they belong to
+- There may be a limit to the number of views that can be created per Sheet
+
+## Related Features
+
+- [Advanced Filters](/learning-center/guides/advanced-filters)
+- [Flatfile Query Language (FFQL)](/learning-center/guides/flatfile_query_language)

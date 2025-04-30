@@ -1,0 +1,28 @@
+---
+title: "Advanced Filters and Column Actions"
+description: "Enhanced filtering experience with a consistent query-based interface"
+---
+
+We've updated how column filtering works to provide a more consistent and powerful experience:
+
+### Column Action Filters
+
+The legacy "Filter by Value" and "Search in Field" functions in the UI previously launched separate modals or popovers, creating an inconsistent experience compared to the Advanced Filters interface. This update ensures that invoking these column actions creates proper QUERIES in the toolbar rather than simply updating filter parameters.
+
+**Key Changes:**
+
+- **Search in Field** via column menu now:
+  - Creates a new query in the toolbar (or updates an existing one) with an `ilike` operation
+  - Sets the query as active and focuses it for immediate editing
+
+- **Filter by Value** via column menu now:
+  - Creates a new query in the toolbar (or updates an existing one) with an `eq` operation
+  - Sets the query as active and focuses it for immediate editing
+
+This change ensures a consistent filtering experience across the platform, with all filtering operations using the same query-based interface.
+
+### Saved Views Integration
+
+The new column filtering approach integrates seamlessly with the Saved Views feature, allowing users to create, save, and share complex filter configurations that include column-specific filters.
+
+To use this feature, enable the `advancedFilters` feature flag in your environment.

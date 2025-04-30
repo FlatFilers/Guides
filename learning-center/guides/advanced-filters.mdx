@@ -1,113 +1,117 @@
 ---
-title: Advanced Filters
-description: Learn how to use Flatfile's Advanced Filters to efficiently filter and search through your data
+title: "Advanced Filters"
+description: "Filter and search data with a consistent query-based interface"
+icon: "filter"
 ---
 
-# Advanced Filters
+<Snippet file="shared/dxpbanner.mdx" />
 
-Advanced Filters in Flatfile provide a powerful way to filter and search through your data with complex conditions. This feature allows you to create sophisticated filter combinations to quickly find the exact records you need.
+Advanced Filters provide a unified, query-based approach to filtering and searching data in Flatfile, replacing the legacy modal and popover interfaces with a consistent experience across all filtering operations.
 
 ## Overview
 
-The Advanced Filters feature enables you to:
+The Advanced Filters feature enhances the data filtering experience by:
 
-- Create multiple filter conditions with different fields
-- Combine conditions using logical operators (AND/OR)
-- Filter by various data types with appropriate operators
-- Save and reuse filter combinations
-- Apply filters to large datasets efficiently
+1. Providing a consistent query-based interface for all filtering operations
+2. Replacing separate modal and popover interfaces with a unified approach
+3. Enabling more complex filtering capabilities through the query toolbar
+4. Allowing users to save and reuse filter configurations as views
 
-## Using Advanced Filters
+When enabled, column-specific filtering operations like "Filter by Value" and "Search in Field" will create or update queries in the toolbar rather than using separate UI components.
 
-### Accessing Advanced Filters
+![Advanced Filters](/images/advanced-filters/advanced-filters-overview.png)
 
-You can access Advanced Filters in the Flatfile interface through the Filter button in the sheet toolbar:
+## How It Works
 
-1. Navigate to any sheet in your workbook
-2. Click the "Filter" button in the toolbar
-3. Select a field to filter by, or click "Advanced filter" to create a complex filter
+### Legacy Behavior (Without Advanced Filters)
 
-### Creating Filter Conditions
+In the legacy filtering system:
 
-Each filter condition consists of three parts:
+- **Search in Field** via column menu would:
+  - Open a modal with a search input
+  - Update the `searchValue` and `searchField` URL parameters when a value was entered
 
-1. **Field** - The column you want to filter on
-2. **Operator** - The comparison type (equals, contains, greater than, etc.)
-3. **Value** - The specific value to filter by
+- **Filter by Value** via column menu would:
+  - Show a popover menu for selecting values
+  - Replace the `q` property in the URL parameters when selections were made
 
-For example, you might create a filter like: `firstName is "John"` or `age > 30`.
+### New Behavior (With Advanced Filters)
 
-### Combining Multiple Filters
+With Advanced Filters enabled:
 
-Advanced Filters allow you to combine multiple conditions:
+- **Search in Field** via column menu will:
+  - Create a new query in the toolbar (or update an existing one) with an `ilike` operation
+  - Set the query as active and focus it for immediate editing
 
-1. Create your first filter condition
-2. Click the "Add condition" button
-3. Select whether to join with "AND" or "OR" logic
-4. Add your next condition
+- **Filter by Value** via column menu will:
+  - Create a new query in the toolbar (or update an existing one) with an `eq` operation
+  - Set the query as active and focus it for immediate editing
 
-This allows for complex queries like: `firstName is "John" AND age > 30` or `status is "pending" OR status is "review"`.
+This approach ensures that all filtering operations use the same interface and underlying query mechanism, providing a more consistent user experience.
 
-### Available Operators
+## Saved Views
 
-Different field types support different operators:
+Advanced Filters integrates with the Saved Views feature, allowing users to:
 
-| Field Type | Available Operators |
-|------------|---------------------|
-| String     | `is`, `is not`, `like`, `is empty`, `not empty` |
-| Number     | `is`, `is not`, `>`, `<`, `>=`, `<=`, `is empty`, `not empty` |
-| Boolean    | `is true`, `is false`, `is empty`, `not empty` |
-| Date       | `is`, `is not`, `>`, `<`, `>=`, `<=`, `is empty`, `not empty` |
-| Enum       | `is`, `is not`, `is empty`, `not empty` |
+1. Create and save complex filter configurations
+2. Share filtered views with other users
+3. Quickly switch between different data perspectives
+4. Manage views through a dedicated dropdown in the toolbar
 
-### Horizontal Scrolling
+![Saved Views](/images/advanced-filters/saved-views.png)
 
-When you add multiple filter conditions that extend beyond the available width of the screen, the filter area will automatically enable horizontal scrolling. This allows you to create complex filter combinations without being limited by screen space.
+## Enabling Advanced Filters
 
-Simply scroll horizontally to see all your filter conditions when they extend beyond the visible area.
+Advanced Filters can be enabled by setting the `advancedFilters` feature flag to `true` in your environment configuration.
 
-## Advanced Filter Examples
+### Using the API
 
-Here are some examples of how you might use Advanced Filters:
-
-### Example 1: Finding Specific Customer Records
-
-```
-firstName is "Sarah" AND status is "active" AND lastPurchase > "2023-01-01"
-```
-
-This filter would show all active customers named Sarah who made a purchase after January 1, 2023.
-
-### Example 2: Identifying Records Needing Attention
-
-```
-(status is "pending" OR status is "review") AND createdDate < "2023-06-01"
+```javascript
+// Enable Advanced Filters via API
+await api.environments.update(environmentId, {
+  metadata: {
+    features: {
+      advancedFilters: true
+    }
+  }
+});
 ```
 
-This filter would show all records that are either pending or in review, and were created before June 1, 2023.
+### Using the Dashboard
 
-### Example 3: Finding Missing Data
+1. Navigate to your environment settings in the Flatfile dashboard
+2. Go to the Features section
+3. Enable the "Advanced Filters" toggle
 
-```
-email is not empty AND phone is empty
-```
+## Query Operations
 
-This filter would show all records that have an email address but are missing a phone number.
+Advanced Filters supports various query operations, including:
+
+| Operation | Description | Example |
+|-----------|-------------|---------|
+| `eq` | Equals | `firstName eq "John"` |
+| `ne` | Not equals | `firstName ne "John"` |
+| `gt` | Greater than | `age gt 30` |
+| `lt` | Less than | `age lt 30` |
+| `gte` | Greater than or equal | `age gte 30` |
+| `lte` | Less than or equal | `age lte 30` |
+| `ilike` | Contains (case insensitive) | `firstName ilike "oh"` |
+| `is error` | Has error status | `email is error` |
+| `is valid` | Has valid status | `email is valid` |
 
 ## Best Practices
 
-- **Start simple**: Begin with a single filter condition and add more as needed
-- **Use AND/OR strategically**: "AND" narrows results (both conditions must be true), while "OR" broadens results (either condition can be true)
-- **Consider performance**: Very complex filters on large datasets may take longer to process
-- **Save common filters**: If you frequently use the same filter combinations, consider saving them as views
+- Use Advanced Filters when you need consistent filtering behavior across your application
+- Leverage Saved Views for frequently used filter configurations
+- Combine multiple filters to create precise data views
+- Use the query toolbar for complex filtering scenarios
 
-## Troubleshooting
+## Limitations
 
-If you encounter issues with Advanced Filters:
+- Some legacy filtering behaviors may not be fully replicated in the Advanced Filters interface
+- Custom filtering implementations may need to be updated to work with the new query-based approach
 
-- Ensure your filter values match the expected format for the field type
-- Check that you're using appropriate operators for each field type
-- For complex filters, try breaking them down into simpler components to identify issues
-- Verify that the data you're filtering actually exists in your dataset
+## Related Features
 
-Advanced Filters provide a powerful way to work with your data in Flatfile, allowing you to quickly find and focus on the records that matter most to your workflow.
+- [Flatfile Query Language (FFQL)](/learning-center/guides/flatfile_query_language)
+- [Saved Views](/learning-center/guides/saved-views)
