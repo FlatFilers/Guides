@@ -1,0 +1,41 @@
+### April 03, 2025
+
+## dataxp
+
+**Preserve Record IDs During Transformations**
+
+We've added a new `keepRecordIds` flag to maintain record IDs during transformations. This enhancement provides greater control over how records are processed during transformation operations.
+
+**Key Benefits:**
+- Maintains data consistency across transformation previews
+- Preserves record relationships and references
+- Improves transformation accuracy by maintaining original record IDs
+
+**Technical Details:**
+When `keepRecordIds` is set to `true`, the system uses `updateRecords` instead of the previous add/delete approach, ensuring that record IDs remain unchanged throughout the transformation process. This is particularly valuable when:
+- Working with data that has established relationships between records
+- Performing multiple transformations where maintaining record identity is important
+- Integrating with systems that rely on consistent record identifiers
+
+**Usage:**
+The `keepRecordIds` flag can be included in transformation job configurations:
+
+```javascript
+// Example of creating a transformation job with keepRecordIds
+const transformationJobResponse = await HTTPService.createJob({
+  type: "workbook",
+  operation: "transform",
+  source: workbookId,
+  destination: destinationWorkbookId,
+  config: {
+    destinationSheetId: destinationSheetId,
+  },
+  input: {
+    programId: "your-program-id",
+    version: "v2",
+    keepRecordIds: true, // Set to true to preserve record IDs
+  },
+});
+```
+
+This feature is backward compatible - `keepRecordIds` defaults to `false`, maintaining the existing behavior for current implementations.

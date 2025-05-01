@@ -1,0 +1,193 @@
+---
+title: "MCP Server"
+description: "integrate AI assistants seamlessly with your Flatfile data"
+icon: "server"
+---
+
+<Snippet file="shared/dxpbanner.mdx" />
+
+# Flatfile MCP Server
+
+The [Flatfile MCP Server](https://github.com/flatfilers/mcp-server-flatfile?tab=readme-ov-file#flatfile-mcp-server) creates a bridge between AI assistants and your Flatfile data, enabling powerful natural language interactions with your data management workflows.
+
+## Features
+
+The Flatfile MCP Server allows AI assistants like Claude Desktop, Claude Code, Cursor, and others to:
+
+- Access and manage your Flatfile data using 190+ API endpoints
+- View and manipulate Sheets, Workbooks, and Spaces
+- Add, edit, and delete Records
+- Ask questions about your data
+- Generate new Sheets using natural language
+- Create Workbooks from scratch
+- And much more!
+
+## Prerequisites
+
+Before getting started, you'll need:
+
+- A Flatfile account
+- Either a Flatfile Personal Access Token or API Key
+- An AI assistant that supports the Model Context Protocol (MCP)
+
+## Getting Your Credentials
+
+### API Key
+
+To get your API Key:
+
+1. Log in to your Flatfile account
+2. Navigate to the Authentication settings
+3. Follow the instructions at [Flatfile Authentication Documentation](https://flatfile.com/docs/documentation/authentication/authentication)
+
+### Personal Access Token
+
+To create a Personal Access Token:
+
+1. Log in to your Flatfile account
+2. Navigate to your Account Settings
+3. Follow the instructions at [Personal Access Tokens](https://flatfile.com/docs/documentation/authentication/account-token#personal-access-tokens)
+
+<Warning>
+Keep your credentials secure and never share them in public forums or repositories.
+</Warning>
+
+## Setup Options
+
+The Flatfile MCP Server can be integrated with various AI assistants. Below are setup instructions for the most common platforms.
+
+### Filtering Tools
+
+Flatfile provides over 100 API endpoints. To improve performance and focus, you can filter the tools to only include those you need:
+
+```json
+{
+  "mcpServers": {
+    "mcp-server-flatfile": {
+      "command": "npx",
+      "args": ["-y", "@flatfile/mcp-server", "--enabled-tools", "getRecords,updateRecords"],
+      "env": {
+        "FLATFILE_BEARER_TOKEN": "pat_your_token_here"
+      }
+    }
+  }
+}
+```
+
+<Tip>
+For better performance and security, only enable the specific tools you need for your use case.
+</Tip>
+
+### Claude Desktop Setup
+
+Add the following to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "mcp-server-flatfile": {
+      "command": "npx",
+      "args": ["-y", "@flatfile/mcp-server", "--enabled-tools", "getRecords,updateRecords"],
+      "env": {
+        "FLATFILE_BEARER_TOKEN": "pat_your_token_here",
+        "FLATFILE_API_URL": "https://platform.flatfile.com/api/v1"
+      }
+    }
+  }
+}
+```
+
+<Info>
+The `"FLATFILE_API_URL": "https://platform.flatfile.com/api/v1"` environment variable is optional and only needed for non-US regions or self-hosting.
+</Info>
+
+### Claude Code Setup
+
+To configure Claude Code with the Flatfile MCP Server:
+
+1. Open your terminal
+2. Run the following command:
+
+```bash
+claude mcp add mcp-server-flatfile -e FLATFILE_API_URL=https://platform.flatfile.com/api/v1 -e FLATFILE_BEARER_TOKEN=pat_your_token_here -- npx -y @flatfile/mcp-server --enabled-tools getRecords,updateRecords
+```
+
+<Info>
+The `-e FLATFILE_API_URL=...` environment variable is optional and only needed for non-US regions or self-hosting.
+</Info>
+
+3. Verify the installation by checking Claude Code's configuration
+
+See [Claude Code MCP setup instructions](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/tutorials#set-up-model-context-protocol-mcp) for more details.
+
+### Cursor Setup
+
+Add the following to your `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "mcp-server-flatfile": {
+      "command": "npx",
+      "args": ["-y", "@flatfile/mcp-server", "--enabled-tools", "getRecords,updateRecords"],
+      "env": {
+        "FLATFILE_BEARER_TOKEN": "pat_your_token_here",
+        "FLATFILE_API_URL": "https://platform.flatfile.com/api/v1"
+      }
+    }
+  }
+}
+```
+
+<Info>
+The `FLATFILE_API_URL` environment variable is optional and only needed for non-US regions or self-hosting.
+</Info>
+
+## Example Use Cases
+
+Here are some powerful ways to leverage AI assistants with Flatfile:
+
+1. **Natural Language Data Queries**
+   - Ask your AI assistant questions about your data like "Show me all customers who placed orders in the last month"
+
+2. **Automated Data Analysis**
+   - Request summaries, insights, and patterns in your data
+
+3. **Data Transformation & Cleanup**
+   - Use natural language to describe data transformations you want to apply
+
+4. **Workflow Creation**
+   - Create new Workbooks and Sheets based on verbal descriptions
+
+5. **Data Validation**
+   - Have your AI assistant validate data quality and suggest improvements
+
+## Troubleshooting
+
+If you encounter issues with your Flatfile MCP Server:
+
+- Verify your token credentials are correct and have not expired
+- Ensure your MCP configuration file has the correct syntax
+- Check that your enabled tools match your requirements
+- Verify your AI assistant has the necessary permissions
+
+<Tip>
+Visit our [Community Forum](https://community.flatfile.com) or contact [support@flatfile.com](mailto:support@flatfile.com) if you need additional assistance.
+</Tip>
+
+## Available Tools
+
+The Flatfile MCP Server provides access to a comprehensive set of tools for the Flatfile API. Here's a selection of the most commonly used tools:
+
+| Category | Tools |
+|----------|-------|
+| **Records** | getRecords, updateRecords, insertRecords, deleteRecords |
+| **Workbooks** | getWorkbook, createWorkbook, deleteWorkbook, listWorkbooks |
+| **Sheets** | getSheet, createSheet, deleteSheet, listSheets |
+| **Spaces** | getSpace, createSpace, deleteSpace, listSpaces |
+
+For a complete list of all 190+ available tools, refer to the [Flatfile MCP Server repo](https://github.com/flatfilers/mcp-server-flatfile?tab=readme-ov-file#flatfile-mcp-server).
+
+<Info>
+Refer to the [Flatfile Developer Documentation](https://flatfile.com/docs) for detailed information on advanced configurations.
+</Info>

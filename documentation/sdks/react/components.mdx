@@ -31,6 +31,7 @@ Learn more about the
     exitPrimaryButtonText,
     exitSecondaryButtonText,
     displayAsModal: true,
+    externalActorId: "test-1",
   }}
 >
   <FFApp />
@@ -180,11 +181,13 @@ dependencies
 useListener(
   (listener) => {
     listener.on("**", (event) => {
+      //note: listening to all events with a wildcard can be used while testing but is not
+      //recommended for production, as it will capture all events and may cause performance issues
       console.log("initialListener Event => ", event.topic);
       // Handle the workbook:deleted event
     });
   },
-  [label],
+  [label]
 );
 ```
 
@@ -200,7 +203,7 @@ usePlugin(
     record.set("lastName", label);
     return record;
   }),
-  [label],
+  [label]
 );
 ```
 
@@ -272,6 +275,8 @@ const FFApp = () => {
   useListener(
     (listener) => {
       listener.on('**', (event) => {
+        //note: listening to all events with a wildcard can be used while testing but is not
+        //recommended for production, as it will capture all events and may cause performance issues
         console.log('initialListener Event => ', event.topic)
         // Handle the workbook:deleted event
       })

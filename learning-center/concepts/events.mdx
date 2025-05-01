@@ -866,3 +866,80 @@ outcome or plan subsequent actions accordingly.
   }
 }
 ```
+
+### Data clips
+
+#### `data-clip:created`
+
+<ParamField path="data-clip:created" type="readonly">
+  Called when a new data clip is created.
+</ParamField>
+
+```json
+{
+  "domain": "data-clip",
+  "topic": "data-clip:created",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "actorId": "us_usr_1234"
+  },
+  "payload": {
+    "accountId": "us_acc_1234",
+    "dataClipId": "us_acc_1234",
+    "stauts": "OPEN",
+  }
+}
+```
+
+#### `data-clip:updated`
+
+<ParamField path="data-clip:updated" type="readonly">
+  Called when a data clip's details are updated.
+</ParamField>
+
+<Note>
+  This is not called when records are updated in a data clip. 
+</Note>
+
+```json
+{
+  "domain": "data-clip",
+  "topic": "data-clip:created",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "actorId": "us_usr_1234"
+  },
+  "payload": {
+    "accountId": "us_acc_1234",
+    "dataClipId": "us_acc_1234",
+    "stauts": "OPEN",
+  }
+}
+
+#### `data-clip:deleted`
+
+<ParamField path="data-clip:deleted" type="readonly">
+  Called when a data clip is deleted.
+</ParamField>
+
+```json
+{
+  "domain": "data-clip",
+  "topic": "data-clip:created",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "actorId": "us_usr_1234"
+  },
+  "payload": {
+    "accountId": "us_acc_1234",
+    "dataClipId": "us_acc_1234",
+    "stauts": "OPEN",
+  }
+}
+```

@@ -7,12 +7,39 @@ description: "supported field types"
 
 A property that should be stored and read as a basic string.
 
+<ParamField path="config.appearance" type="object">
+  Controls the visual presentation of the string field in the interface.
+</ParamField>
+
+<ParamField path="config.appearance.width" type="number">
+  The width of the column in pixels.
+</ParamField>
+
 ```json
 {
   "key": "currency",
   "label": "Product Code",
-  "type": "string"
+  "type": "string",
+  "config": {
+    "appearance": {
+      "width": 200
+    }
+  }
 },
+```
+
+## `string-list`
+
+<Snippet file="shared/advanced_mapping_required.mdx" />
+
+A property that stores an array of strings. This is useful for fields that need to contain multiple text values.
+
+```json
+{
+  "key": "tags",
+  "label": "Tags",
+  "type": "string-list"
+}
 ```
 
 ## `number`
@@ -21,10 +48,11 @@ A property that should be stored and read as either an integer or floating point
 number. Database engines should look at the configuration to determine ideal
 storage format.
 
-<ParamField path="config.decimal_places" default="0" type="number">
+<ParamField path="config.decimalPlaces" type="number">
   The number of decimal places to preserve accuracy to. Overages should be
   automatically rounded with a warning. A hook can pre-format to accomplish
   floor or ceiling.
+  @deprecated Use data hooks for decimal place formatting instead.
 </ParamField>
 
 ```json
@@ -33,34 +61,77 @@ storage format.
     "label": "Retail Price",
     "type": "number",
     "config": {
-      "decimal_places": 2
+      "decimalPlaces": 2
     }
   },
 ```
 
 ## `reference`
 
-Defines a reference to another sheet. Links should be established automatically
-by the matching engine or similar upon an evaluation of unique or similar
-columns between datasets.
+Defines a singular one-to-one reference to a field another sheet.
 
 <ParamField path="config.ref" required>
-  The full path reference to another sheet/table configuration. Must be in the
+  The sheet slug of the referenced field. Must be in the
   same workbook.
 </ParamField>
-<ParamField path="config.relationship" required>
-  The type of relationship this defines. Can be `has-one`
+
+<ParamField path="config.key" default="id" type="string">
+  The key of the property to use as the reference key.
 </ParamField>
+
+```json
+ {
+        "key": "author",
+        "type": "reference",
+        "label": "Authors",
+        "config": {
+          "ref": "authors",
+          "key": "name"
+        }
+      },
+```
+
+## `reference-list`
+
+<Snippet file="shared/advanced_mapping_required.mdx" />
+
+Defines a reference list referencing a column in another sheet. Enables including 
+multiple values from the given data field.
+
+<ParamField path="config.ref" required>
+  The sheet slug of the referenced field. Must be in the
+  same workbook.
+</ParamField>
+
+<ParamField path="config.key" default="id" type="string">
+  The key of the property to use as the reference key.
+</ParamField>
+
+```json
+ {
+    "key": "author",
+    "type": "reference-list",
+    "label": "Authors",
+    "config": {
+      "ref": "authors",
+      "key": "name"
+    }
+  },
+```
 
 ## `enum`
 
 Defines an enumerated list of options for the user to select from. Matching
 tooling attempts to resolve incoming data assignment to a valid option. The
 maximum number of options for this list is `100`. For larger lists, users should
-use the `reference` or future `lookup` types.
+use the `reference-list` type.
 
 <ParamField path="config.allow_custom" default="false" type="boolean">
-  Permit the user to create new options for this specific field.
+  Permit the user to create new options for this specific field. When enabled, users will be able to import their custom value to the review table but it will not be considered a valid enum option.
+</ParamField>
+
+<ParamField path="config.sortBy" default="label" type="string">
+  The field to sort the options by (label, value, ordinal)
 </ParamField>
 
 <ParamField path="config.options" required>
@@ -79,6 +150,10 @@ use the `reference` or future `lookup` types.
 
 <ParamField path="meta" type="object">
   An arbitrary JSON object to be associated with this option and made available to hooks
+</ParamField>
+
+<ParamField path="ordinal" type="number">
+  The ordinal position of this option in the list. Only used if `sortBy` is set to `ordinal`. Options are sorted in ascending order.
 </ParamField>
 </Expandable>
 
@@ -104,17 +179,50 @@ use the `reference` or future `lookup` types.
 },
 ```
 
+## `enum-list`
+
+<Snippet file="shared/advanced_mapping_required.mdx" />
+
+Similar to `enum` type but allows multiple selections from the options list. The values are stored as an array.
+
+```json
+{
+  "key": "categories",
+  "label": "Categories",
+  "type": "enum-list",
+  "config": {
+    "options": [
+      {
+        "value": "electronics",
+        "label": "Electronics"
+      },
+      {
+        "value": "clothing",
+        "label": "Clothing"
+      }
+    ]
+  }
+}
+```
+
 ## `boolean`
 
 A `true` or `false` value type. Matching engines should attempt to resolve all
 common ways of representing this value and it should usually be displayed as a
 checkbox.
 
+<ParamField path="config.allowIndeterminate" default="false" type="boolean">
+  Allow a neither true or false state to be stored as `null`.
+</ParamField>
+
 ```json
 {
   "key": "is_active",
   "label": "Active",
-  "type": "boolean"
+  "type": "boolean",
+  "config": {
+    "allowIndeterminate": true
+  }
 }
 ```
 
@@ -125,3 +233,10 @@ Store a field as a GMT date. Data hooks must convert this value into a
 not currently available, but will be a separately supported Field Type in the
 future, and will include timezone.
 
+```json
+{
+  "key": "start_date",
+  "label": "Start Date",
+  "type": "date"
+}
+```

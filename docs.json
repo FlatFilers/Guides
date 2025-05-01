@@ -43,8 +43,10 @@
                     "group": "CLI",
                     "icon": "square-terminal",
                     "pages": [
+                      "documentation/core-libraries/cli/overview",
                       "documentation/core-libraries/cli/develop",
-                      "documentation/core-libraries/cli/deploy"
+                      "documentation/core-libraries/cli/deploy",
+                      "documentation/core-libraries/cli/agent-management"
                     ]
                   }
                 ]
@@ -124,7 +126,8 @@
                       "learning-center/concepts/events",
                       "learning-center/concepts/jobs",
                       "learning-center/concepts/listeners",
-                      "learning-center/concepts/mapping"
+                      "learning-center/concepts/mapping",
+                      "learning-center/concepts/data-processing"
                     ]
                   },
                   {
@@ -190,6 +193,8 @@
                       "learning-center/guides/ai",
                       "learning-center/guides/sftp",
                       "learning-center/guides/guides"
+                      "learning-center/guides/dataclips",
+                      "learning-center/guides/mcp"
                     ]
                   }
                 ]
@@ -273,7 +278,16 @@
         "version": "v2",
         "href": "https://flatfile.com/versioned-docs/2.0"
       }
-    ]
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "API Reference",
+          "href": "https://reference.flatfile.com/overview/welcome",
+          "icon": "globe-pointer"
+        }
+      ]
+    }
   },
   "styling": {
     "codeblocks": "system"

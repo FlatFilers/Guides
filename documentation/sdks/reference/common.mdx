@@ -48,6 +48,23 @@ const flatfileOptions = {
 };
 ```
 
+### externalActorId
+
+<ParamField path="externalActorId" type="string">
+  An optional unique identifier that enables our embedded users to be
+  associated with a specific actor in flatfile, enabling repeated through the
+  embedded experience.
+</ParamField>
+
+```typescript src/client.js
+const flatfileOptions = {
+  publishableKey,
+  config: {
+    externalActorId: "test-1",
+  },
+};
+```
+
 ## Look & Feel
 
 ### name
