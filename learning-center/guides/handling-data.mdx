@@ -823,22 +823,49 @@ and validate your data.
 
 ## Deleting records
 
-There are primarily two use cases for deleting records:
+There are primarily two approaches for deleting records:
 
-1. Deleting a subset of records
+1. Deleting specific records by ID or filter criteria
 2. Deleting all records in a sheet
 
-### Deleting a subset of records
+### Deleting records by ID
 
-To delete a subset of records first import the `@flatfile/api` package, then use
-the `api.records.delete()` helper method. This method takes in an array of
-record IDs and deletes them from the sheet.
+To delete specific records by their IDs, import the `@flatfile/api` package, then use
+the `api.records.delete()` helper method with an array of record IDs.
 
 Example:
 
 ```javascript
-await api.records.delete(sheetId, { ids: [...] });
+await api.records.delete(sheetId, { ids: ["rec_123", "rec_456", "rec_789"] });
 ```
+
+### Deleting records by filter criteria
+
+The delete records endpoint now supports filtering capabilities, allowing you to delete records that match specific criteria without needing to know their IDs. You can use various filter parameters:
+
+```javascript
+// Delete records where the searchValue matches in any field
+await api.records.delete(sheetId, { searchValue: "steve" });
+
+// Delete records where the searchValue matches in a specific field
+await api.records.delete(sheetId, { 
+  searchValue: "steve",
+  searchField: "firstName" 
+});
+
+// Delete records using a specific filter
+await api.records.delete(sheetId, { 
+  filter: "firstName eq 'Steve'",
+});
+
+// Delete records where a specific field matches a value
+await api.records.delete(sheetId, {
+  filterField: "status",
+  filter: "invalid"
+});
+```
+
+These filtering options provide a powerful way to perform targeted deletions based on data content rather than just record IDs.
 
 ### Deleting all records in a sheet
 
