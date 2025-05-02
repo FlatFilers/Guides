@@ -1,0 +1,14 @@
+---
+title: "Enhanced Function Rules with Source and Destination Field Tracking"
+---
+
+Function rules now correctly track source and destination fields when created through LLM calls. This enhancement ensures that function rules properly declare which fields they read from (`sourceFields`) and which fields they write to (`destinationFields`), providing better visibility into data transformations.
+
+The update includes:
+
+- Improved parsing of LLM responses to extract source and destination fields
+- Addition of `hasUndeclaredFields` property to indicate when a function might use fields not explicitly declared
+- Enhanced validation of field declarations in function rules
+- Better handling of field dependencies in transformation pipelines
+
+This change improves data lineage tracking and makes it easier to understand how data flows through transformation functions, particularly when using AI-assisted transformations.
