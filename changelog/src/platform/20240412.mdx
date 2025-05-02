@@ -12,3 +12,7 @@ restricting editing at the cell level, improving data integrity and compliance.
 
 See the
 [reference](https://reference.flatfile.com/api-reference/records/update#request.body.config.readonly).
+
+**Fixed Sheet Name Sanitization for Downloads**
+
+We've improved the file download process by sanitizing sheet names that contain forward slashes. Previously, when a sheet had a name with forward slashes (e.g., "people/Contacts"), downloading the sheet could cause issues with file paths. Now, forward slashes in sheet names are automatically replaced with underscores when generating download filenames, ensuring a smooth download experience regardless of the sheet naming convention used.
