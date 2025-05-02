@@ -9,7 +9,7 @@
             <link>https://flatfile.com</link>
         </image>
         <generator>Flatfile RSS Generator</generator>
-        <lastBuildDate>Fri, 02 May 2025 17:37:51 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 02 May 2025 20:15:44 GMT</lastBuildDate>
         <atom:link href="https://flatfile.com/changelog/platform/feed.xml" rel="self" type="application/rss+xml"/>
         <language><![CDATA[en]]></language>
         <ttl>60</ttl>
@@ -72,7 +72,7 @@ fetch('https://api.flatfile.com/v1/instructions?environmentId=us_env_123&amp;sco
             <link>https://flatfile.com/changelog/platform#04142025</link>
             <guid isPermaLink="false">platform-04-14-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 14 Apr 2025 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 14 Apr 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Improved Data Clips Collaborator Experience]]></title>
@@ -88,7 +88,7 @@ fetch('https://api.flatfile.com/v1/instructions?environmentId=us_env_123&amp;sco
             <link>https://flatfile.com/changelog/platform#04082025</link>
             <guid isPermaLink="false">platform-04-08-2025-spaces-ui</guid>
             <category><![CDATA[spaces-ui]]></category>
-            <pubDate>Tue, 08 Apr 2025 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 08 Apr 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Advanced Filters with Field Validation Status]]></title>
@@ -108,7 +108,7 @@ fetch('https://api.flatfile.com/v1/instructions?environmentId=us_env_123&amp;sco
             <link>https://flatfile.com/changelog/platform#04082025</link>
             <guid isPermaLink="false">platform-04-08-2025-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 08 Apr 2025 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 08 Apr 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The guest URL functionality for DataClips has been enhanced with a more streamlined approach to U...]]></title>
@@ -125,7 +125,7 @@ fetch('https://api.flatfile.com/v1/instructions?environmentId=us_env_123&amp;sco
             <link>https://flatfile.com/changelog/platform#04072025</link>
             <guid isPermaLink="false">platform-04-07-2025-spaces-ui</guid>
             <category><![CDATA[spaces-ui]]></category>
-            <pubDate>Mon, 07 Apr 2025 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 07 Apr 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[External links in Documents (both Markdown and HTML) now automatically open in a new tab (`target...]]></title>
@@ -135,7 +135,7 @@ fetch('https://api.flatfile.com/v1/instructions?environmentId=us_env_123&amp;sco
             <link>https://flatfile.com/changelog/platform#04072025</link>
             <guid isPermaLink="false">platform-04-07-2025-spaces-ui</guid>
             <category><![CDATA[spaces-ui]]></category>
-            <pubDate>Mon, 07 Apr 2025 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 07 Apr 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Preserve Record IDs During Transformations]]></title>
@@ -177,7 +177,7 @@ const transformationJobResponse = await HTTPService.createJob({
             <link>https://flatfile.com/changelog/platform#04032025</link>
             <guid isPermaLink="false">platform-04-03-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 03 Apr 2025 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 03 Apr 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New row insertion feature in Flatfile's data tables.]]></title>
@@ -193,7 +193,7 @@ const transformationJobResponse = await HTTPService.createJob({
             <link>https://flatfile.com/changelog/platform#03172025</link>
             <guid isPermaLink="false">platform-03-17-2025-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 17 Mar 2025 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 17 Mar 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced agent discovery with new search capabilities. Users can now search for agents by either ...]]></title>
@@ -203,7 +203,7 @@ const transformationJobResponse = await HTTPService.createJob({
             <link>https://flatfile.com/changelog/platform#03072025</link>
             <guid isPermaLink="false">platform-03-07-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 07 Mar 2025 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 07 Mar 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Records with readonly configurations are now handled differently in the]]></title>
@@ -249,7 +249,7 @@ const records = await wb.op.replaceRecords({
             <link>https://flatfile.com/changelog/platform#02042025</link>
             <guid isPermaLink="false">platform-02-04-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 04 Feb 2025 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 04 Feb 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Added language support for:]]></title>
@@ -268,7 +268,7 @@ const records = await wb.op.replaceRecords({
             <link>https://flatfile.com/changelog/platform#01312025</link>
             <guid isPermaLink="false">platform-01-31-2025-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 31 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 31 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Namespace modification is now supported via API only. Other app fields remain]]></title>
@@ -279,7 +279,7 @@ post-creation.</p>
             <link>https://flatfile.com/changelog/platform#01302025</link>
             <guid isPermaLink="false">platform-01-30-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 30 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Fixes bug where long document titles would overlap the page header.]]></title>
@@ -288,7 +288,7 @@ post-creation.</p>
             <link>https://flatfile.com/changelog/platform#01302025</link>
             <guid isPermaLink="false">platform-01-30-2025-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 30 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The order of imports from the `@flatfile/api` module has been updated. The `RecordUpdates` and `S...]]></title>
@@ -301,7 +301,7 @@ post-creation.</p>
             <link>https://flatfile.com/changelog/platform#01272025</link>
             <guid isPermaLink="false">platform-01-27-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 27 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 27 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The unique validation and record/cell validity handling has been improved to:]]></title>
@@ -315,7 +315,7 @@ post-creation.</p>
             <link>https://flatfile.com/changelog/platform#01242025</link>
             <guid isPermaLink="false">platform-01-24-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 24 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 24 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[When clearing a column in a job operation, a snapshot of the sheet will be taken]]></title>
@@ -330,7 +330,7 @@ the sheet state prior to the column clearing if needed.</p>
             <link>https://flatfile.com/changelog/platform#01232025</link>
             <guid isPermaLink="false">platform-01-23-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 23 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 23 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The release adds the ability to mark a space as an app template and filter]]></title>
@@ -344,7 +344,7 @@ automatically be tagged as the template for that App.</p>
             <link>https://flatfile.com/changelog/platform#01222025</link>
             <guid isPermaLink="false">platform-01-22-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 22 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 22 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We added the ability to sort enum fields by label, value, or ordinal within the enum field config...]]></title>
@@ -353,7 +353,7 @@ automatically be tagged as the template for that App.</p>
             <link>https://flatfile.com/changelog/platform#01222025</link>
             <guid isPermaLink="false">platform-01-22-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 22 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 22 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The release introduces the ability to filter spaces by the associated app ID]]></title>
@@ -368,7 +368,7 @@ will be returned.</p>
             <link>https://flatfile.com/changelog/platform#01222025</link>
             <guid isPermaLink="false">platform-01-22-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 22 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 22 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[An error is now thrown if attempting to clear a readonly column in a sheet. This]]></title>
@@ -402,7 +402,7 @@ readonly data.</p>
             <link>https://flatfile.com/changelog/platform#01172025</link>
             <guid isPermaLink="false">platform-01-17-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 17 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 17 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The `clearColumnAction` now has a constraint added that checks if the column is enabled before al...]]></title>
@@ -411,7 +411,7 @@ readonly data.</p>
             <link>https://flatfile.com/changelog/platform#01132025</link>
             <guid isPermaLink="false">platform-01-13-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 13 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 13 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The manual entry and file upload button shown when the workbook is empty have]]></title>
@@ -421,7 +421,7 @@ has their max width updated so they can support more text.</p>
             <link>https://flatfile.com/changelog/platform#01062025</link>
             <guid isPermaLink="false">platform-01-06-2025-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 06 Jan 2025 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 06 Jan 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Trailing empty records in CSV files will now be trimmed during file extraction.]]></title>
@@ -431,7 +431,7 @@ Empty records in-between records with values will continue to be kept.</p>
             <link>https://flatfile.com/changelog/platform#12302024</link>
             <guid isPermaLink="false">platform-12-30-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 30 Dec 2024 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 30 Dec 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[- Record order is now maintained when inserting records]]></title>
@@ -444,7 +444,7 @@ now be preserved keeping the original sequence as provided</li>
             <link>https://flatfile.com/changelog/platform#12202024</link>
             <guid isPermaLink="false">platform-12-20-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 20 Dec 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 20 Dec 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Fixes a bug where AI assist would crash when ‘config’ object or the ‘options’]]></title>
@@ -454,7 +454,7 @@ array is undefined.</p>
             <link>https://flatfile.com/changelog/platform#12102024</link>
             <guid isPermaLink="false">platform-12-10-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 10 Dec 2024 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 10 Dec 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Fixes a bug where an error would be thrown when config options was undefined]]></title>
@@ -464,7 +464,7 @@ during sheet upsert operations.</p>
             <link>https://flatfile.com/changelog/platform#12092024</link>
             <guid isPermaLink="false">platform-12-09-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 09 Dec 2024 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 09 Dec 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[There was a bug causing the name of environment secrets not to update when]]></title>
@@ -474,7 +474,7 @@ edited. This fixes the bug ensuring environment secret names are updated.</p>
             <link>https://flatfile.com/changelog/platform#12062024</link>
             <guid isPermaLink="false">platform-12-06-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 06 Dec 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The `viewMapped` functionality has been updated to include new text strings for]]></title>
@@ -491,7 +491,7 @@ operation.</p>
             <link>https://flatfile.com/changelog/platform#12042024</link>
             <guid isPermaLink="false">platform-12-04-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 04 Dec 2024 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 04 Dec 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[A bug fix was made to the handling of enum field options when updating a sheet.]]></title>
@@ -506,7 +506,7 @@ now proceed without errors.</p>
             <link>https://flatfile.com/changelog/platform#12022024</link>
             <guid isPermaLink="false">platform-12-02-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 02 Dec 2024 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 02 Dec 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Added three keys: `addColumn`, `clearColumn`, and `removeColumn` with their]]></title>
@@ -518,7 +518,7 @@ updated from “Map values” to “Map Fields”.</p>
             <link>https://flatfile.com/changelog/platform#12022024</link>
             <guid isPermaLink="false">platform-12-02-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 02 Dec 2024 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 02 Dec 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Updates to the mapping flow to prevent a user from accidentally navigating]]></title>
@@ -528,7 +528,7 @@ updated from “Map values” to “Map Fields”.</p>
             <link>https://flatfile.com/changelog/platform#11132024</link>
             <guid isPermaLink="false">platform-11-13-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 13 Nov 2024 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 13 Nov 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Bug Fixes in Edit and Create App Forms]]></title>
@@ -543,7 +543,7 @@ updated from “Map values” to “Map Fields”.</p>
             <link>https://flatfile.com/changelog/platform#10282024</link>
             <guid isPermaLink="false">platform-10-28-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 28 Oct 2024 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 28 Oct 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Updated the AutoBuild flow to allow editing the working space name during the]]></title>
@@ -560,7 +560,7 @@ blueprint view action icons to the right.</p>
             <link>https://flatfile.com/changelog/platform#10172024</link>
             <guid isPermaLink="false">platform-10-17-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 17 Oct 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 17 Oct 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Implemented sheet ordering functionality in the sidebar. Sheets are now]]></title>
@@ -571,7 +571,7 @@ workbook. Any sheets not included in the order are appended to the end.</p>
             <link>https://flatfile.com/changelog/platform#10032024</link>
             <guid isPermaLink="false">platform-10-03-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 03 Oct 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 03 Oct 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The getDataDiff function has been updated to handle array values correctly when]]></title>
@@ -594,7 +594,7 @@ changeset calculation.</p>
             <link>https://flatfile.com/changelog/platform#10012024</link>
             <guid isPermaLink="false">platform-10-01-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 01 Oct 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 01 Oct 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`@flatfile/api@1.9.17`]]></title>
@@ -607,7 +607,7 @@ filtering secrets by the associated actor (user, guest, agent, or api key).</p>
             <link>https://flatfile.com/changelog/platform#09272024</link>
             <guid isPermaLink="false">platform-09-27-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 27 Sep 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 27 Sep 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`@flatfile/api@1.9.16`]]></title>
@@ -619,7 +619,7 @@ filtering secrets by the associated actor (user, guest, agent, or api key).</p>
             <link>https://flatfile.com/changelog/platform#09252024</link>
             <guid isPermaLink="false">platform-09-25-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 25 Sep 2024 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 25 Sep 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`@flatfile/api@1.9.15`]]></title>
@@ -632,7 +632,7 @@ record level metadata instead.</p>
             <link>https://flatfile.com/changelog/platform#09202024</link>
             <guid isPermaLink="false">platform-09-20-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 20 Sep 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 20 Sep 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`spaces-ui`]]></title>
@@ -644,7 +644,7 @@ when comparing 2 different snapshots.</p>
             <link>https://flatfile.com/changelog/platform#09112024</link>
             <guid isPermaLink="false">platform-09-11-2024-spaces-ui</guid>
             <category><![CDATA[spaces-ui]]></category>
-            <pubDate>Wed, 11 Sep 2024 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 11 Sep 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Actions Resource]]></title>
@@ -668,7 +668,7 @@ associated with jobs.</p>
             <link>https://flatfile.com/changelog/platform#09102024</link>
             <guid isPermaLink="false">platform-09-10-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 10 Sep 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 10 Sep 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Session name validation has been introduced to the dashboard, preventing the]]></title>
@@ -681,7 +681,7 @@ is a dashboard only validation.</p>
             <link>https://flatfile.com/changelog/platform#09062024</link>
             <guid isPermaLink="false">platform-09-06-2024-dashboard</guid>
             <category><![CDATA[dashboard]]></category>
-            <pubDate>Fri, 06 Sep 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 06 Sep 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`@flatfile/api@1.9.13` `spaces-ui`]]></title>
@@ -717,7 +717,7 @@ acknowledgment before proceeding.</p>
             <link>https://flatfile.com/changelog/platform#08202024</link>
             <guid isPermaLink="false">platform-08-20-2024-spaces-ui</guid>
             <category><![CDATA[spaces-ui]]></category>
-            <pubDate>Tue, 20 Aug 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 20 Aug 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`spaces-ui`]]></title>
@@ -735,7 +735,7 @@ the corresponding tooltip message.</p>
             <link>https://flatfile.com/changelog/platform#08152024</link>
             <guid isPermaLink="false">platform-08-15-2024-spaces-ui</guid>
             <category><![CDATA[spaces-ui]]></category>
-            <pubDate>Thu, 15 Aug 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 15 Aug 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`spaces-ui`]]></title>
@@ -746,7 +746,7 @@ and improves the handling of import files.</p>
             <link>https://flatfile.com/changelog/platform#08142024</link>
             <guid isPermaLink="false">platform-08-14-2024-spaces-ui</guid>
             <category><![CDATA[spaces-ui]]></category>
-            <pubDate>Wed, 14 Aug 2024 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 14 Aug 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`@flatfile/api@1.9.8`]]></title>
@@ -761,7 +761,7 @@ property optional, allowing it to be omitted.</p>
             <link>https://flatfile.com/changelog/platform#08092024</link>
             <guid isPermaLink="false">platform-08-09-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 09 Aug 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 09 Aug 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`@flatfile/api@1.9.7`]]></title>
@@ -776,7 +776,7 @@ response.</p>
             <link>https://flatfile.com/changelog/platform#07232024</link>
             <guid isPermaLink="false">platform-07-23-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 23 Jul 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 23 Jul 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`@flatfile/api@1.9.6`]]></title>
@@ -787,7 +787,7 @@ added. This allows including a source map for the agent code.</p>
             <link>https://flatfile.com/changelog/platform#07172024</link>
             <guid isPermaLink="false">platform-07-17-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 17 Jul 2024 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 17 Jul 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`@flatfile/api@1.9.5`]]></title>
@@ -810,7 +810,7 @@ const workbookConfig: Flatfile.CreateWorkbookConfig = {
             <link>https://flatfile.com/changelog/platform#07162024</link>
             <guid isPermaLink="false">platform-07-16-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 16 Jul 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 16 Jul 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`@flatfile/api@1.9.3`]]></title>
@@ -821,7 +821,7 @@ outcome's effect should be triggered automatically or manually.</p>
             <link>https://flatfile.com/changelog/platform#07132024</link>
             <guid isPermaLink="false">platform-07-13-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Sat, 13 Jul 2024 07:00:00 GMT</pubDate>
+            <pubDate>Sat, 13 Jul 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Auto-Expanding Cell Input in Editor Component]]></title>
@@ -834,7 +834,7 @@ experience.</p>
             <link>https://flatfile.com/changelog/platform#06182024</link>
             <guid isPermaLink="false">platform-06-18-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 18 Jun 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 18 Jun 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`spaces-ui`]]></title>
@@ -847,7 +847,7 @@ import process.</p>
             <link>https://flatfile.com/changelog/platform#06102024</link>
             <guid isPermaLink="false">platform-06-10-2024-spaces-ui</guid>
             <category><![CDATA[spaces-ui]]></category>
-            <pubDate>Mon, 10 Jun 2024 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 10 Jun 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Select Header Row]]></title>
@@ -860,7 +860,7 @@ accurate data mapping.</p>
             <link>https://flatfile.com/changelog/platform#06072024</link>
             <guid isPermaLink="false">platform-06-07-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 07 Jun 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 07 Jun 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Search for Users]]></title>
@@ -873,7 +873,7 @@ user base.</p>
             <link>https://flatfile.com/changelog/platform#06072024</link>
             <guid isPermaLink="false">platform-06-07-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 07 Jun 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 07 Jun 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Resend User Invite]]></title>
@@ -884,7 +884,7 @@ an invitation to a user who has not yet accepted it.</p>
             <link>https://flatfile.com/changelog/platform#06062024</link>
             <guid isPermaLink="false">platform-06-06-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 06 Jun 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 06 Jun 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Bulk Deletion of Mapping Rules]]></title>
@@ -897,7 +897,7 @@ request payload, detailing the array of rule IDs to be deleted.</p>
             <link>https://flatfile.com/changelog/platform#05302024</link>
             <guid isPermaLink="false">platform-05-30-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 30 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 30 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New Method to Delete Apps]]></title>
@@ -907,7 +907,7 @@ request payload, detailing the array of rule IDs to be deleted.</p>
             <link>https://flatfile.com/changelog/platform#05302024</link>
             <guid isPermaLink="false">platform-05-30-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 30 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 30 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Validation Messages for Records]]></title>
@@ -921,7 +921,7 @@ more context and precision in validation feedback.</p>
             <link>https://flatfile.com/changelog/platform#05302024</link>
             <guid isPermaLink="false">platform-05-30-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 30 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 30 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Job Outcomes with Custom Views]]></title>
@@ -934,7 +934,7 @@ custom view, including the sheet ID, hidden columns, and an optional label.</p>
             <link>https://flatfile.com/changelog/platform#05302024</link>
             <guid isPermaLink="false">platform-05-30-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 30 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 30 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New Method to Update Sheets]]></title>
@@ -949,7 +949,7 @@ the sheet.</p>
             <link>https://flatfile.com/changelog/platform#05302024</link>
             <guid isPermaLink="false">platform-05-30-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 30 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 30 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[`spaces-ui`]]></title>
@@ -970,7 +970,7 @@ browser on completion of the job</li>
             <link>https://flatfile.com/changelog/platform#05292024</link>
             <guid isPermaLink="false">platform-05-29-2024-spaces-ui</guid>
             <category><![CDATA[spaces-ui]]></category>
-            <pubDate>Wed, 29 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 29 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New Environment Lifecycle Events]]></title>
@@ -983,7 +983,7 @@ topics: The corresponding event topics are <code>environment:created</code>,<br>
             <link>https://flatfile.com/changelog/platform#05142024</link>
             <guid isPermaLink="false">platform-05-14-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 14 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 14 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Job Configuration Descriptions]]></title>
@@ -999,7 +999,7 @@ property to files to accurately represent an array of file objects.</p>
             <link>https://flatfile.com/changelog/platform#05142024</link>
             <guid isPermaLink="false">platform-05-14-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 14 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 14 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Saving and Sharing Custom Views]]></title>
@@ -1021,7 +1021,7 @@ filters/sorting as a view.</li>
             <link>https://flatfile.com/changelog/platform#05072024</link>
             <guid isPermaLink="false">platform-05-07-2024-spaces-ui</guid>
             <category><![CDATA[spaces-ui]]></category>
-            <pubDate>Tue, 07 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 07 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Updated `ListDocumentsResponse`]]></title>
@@ -1033,7 +1033,7 @@ consistency in how document data is handled.</p>
             <link>https://flatfile.com/changelog/platform#05032024</link>
             <guid isPermaLink="false">platform-05-03-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 03 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 03 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Job Configuration]]></title>
@@ -1056,7 +1056,7 @@ paused or pending, improving job processing workflows.</p>
             <link>https://flatfile.com/changelog/platform#05032024</link>
             <guid isPermaLink="false">platform-05-03-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 03 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 03 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Views Request and Response]]></title>
@@ -1069,7 +1069,7 @@ view.</p>
             <link>https://flatfile.com/changelog/platform#05032024</link>
             <guid isPermaLink="false">platform-05-03-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 03 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 03 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Improved event emission logic for workbook creation and update]]></title>
@@ -1082,7 +1082,7 @@ eventing properly.</p>
             <link>https://flatfile.com/changelog/platform#05012024</link>
             <guid isPermaLink="false">platform-05-01-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 01 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 01 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Date Parsing Capabilities]]></title>
@@ -1105,7 +1105,7 @@ simplifying workflows and reducing manual data preprocessing.</p>
             <link>https://flatfile.com/changelog/platform#05012024</link>
             <guid isPermaLink="false">platform-05-01-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 01 May 2024 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 01 May 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Sorted Workbooks in Mapping]]></title>
@@ -1117,7 +1117,7 @@ workbook sorting for improved user navigation.</p>
             <link>https://flatfile.com/changelog/platform#04252024</link>
             <guid isPermaLink="false">platform-04-25-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 25 Apr 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 25 Apr 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Origin info now exists in Files table]]></title>
@@ -1128,7 +1128,7 @@ Google Drive, File System, Box, and OneDrive.</p>
             <link>https://flatfile.com/changelog/platform#04232024</link>
             <guid isPermaLink="false">platform-04-23-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 23 Apr 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 23 Apr 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Improved Duplicate Field Key Validation in Workbook Sheets]]></title>
@@ -1146,7 +1146,7 @@ our application.</p>
             <link>https://flatfile.com/changelog/platform#04222024</link>
             <guid isPermaLink="false">platform-04-22-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 22 Apr 2024 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 22 Apr 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[When uploading a file, you'll now see upload speeds in a user-friendly format]]></title>
@@ -1156,7 +1156,7 @@ our application.</p>
             <link>https://flatfile.com/changelog/platform#04222024</link>
             <guid isPermaLink="false">platform-04-22-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 22 Apr 2024 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 22 Apr 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing customizable column sizes in the Flatfile Blueprint]]></title>
@@ -1169,7 +1169,7 @@ customization and user interface consistency.</p>
             <link>https://flatfile.com/changelog/platform#04182024</link>
             <guid isPermaLink="false">platform-04-18-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 18 Apr 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 18 Apr 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Workbook Build Process and Diagnostic Logging]]></title>
@@ -1192,7 +1192,7 @@ and resolve issues more efficiently.</p>
             <link>https://flatfile.com/changelog/platform#04172024</link>
             <guid isPermaLink="false">platform-04-17-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 17 Apr 2024 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 17 Apr 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Cell-Level Control in Records]]></title>
@@ -1210,7 +1210,7 @@ restricting editing at the cell level, improving data integrity and compliance.<
             <link>https://flatfile.com/changelog/platform#04122024</link>
             <guid isPermaLink="false">platform-04-12-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 12 Apr 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 12 Apr 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Support continuing to the next row on enter key press]]></title>
@@ -1222,7 +1222,7 @@ the Flatfile platform.</p>
             <link>https://flatfile.com/changelog/platform#04092024</link>
             <guid isPermaLink="false">platform-04-09-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 09 Apr 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 09 Apr 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Multiline cell editing]]></title>
@@ -1233,7 +1233,7 @@ within the platform.</p>
             <link>https://flatfile.com/changelog/platform#04092024</link>
             <guid isPermaLink="false">platform-04-09-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 09 Apr 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 09 Apr 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing: Box Integration]]></title>
@@ -1244,7 +1244,7 @@ can select a file to upload directly into Flatfile.</p>
             <link>https://flatfile.com/changelog/platform#03262024</link>
             <guid isPermaLink="false">platform-03-26-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 26 Mar 2024 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 26 Mar 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing: Default Apps]]></title>
@@ -1255,7 +1255,7 @@ landing page. Additionally, any unlinked Spaces will appear here.</p>
             <link>https://flatfile.com/changelog/platform#03212024</link>
             <guid isPermaLink="false">platform-03-21-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 21 Mar 2024 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 21 Mar 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Refined AI Mapping Precision]]></title>
@@ -1271,7 +1271,7 @@ a more reliable and user-centric mapping experience.</p>
             <link>https://flatfile.com/changelog/platform#03172024</link>
             <guid isPermaLink="false">platform-03-17-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Sun, 17 Mar 2024 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 17 Mar 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Streamlined User Invitation Process]]></title>
@@ -1284,7 +1284,7 @@ This measure is designed to maintain data accuracy and eliminate user confusion.
             <link>https://flatfile.com/changelog/platform#03152024</link>
             <guid isPermaLink="false">platform-03-15-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 15 Mar 2024 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Intuitive Column Management in Real-Time]]></title>
@@ -1305,7 +1305,7 @@ preferences on the fly.</p>
             <link>https://flatfile.com/changelog/platform#03132024</link>
             <guid isPermaLink="false">platform-03-13-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 13 Mar 2024 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 13 Mar 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing `lastActivityAt` - Your Insight into Space Dynamics]]></title>
@@ -1328,7 +1328,7 @@ support your needs better.</p>
             <link>https://flatfile.com/changelog/platform#03082024</link>
             <guid isPermaLink="false">platform-03-08-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 08 Mar 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 08 Mar 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Resolved Document Auto-Update Issue]]></title>
@@ -1341,7 +1341,7 @@ your Space synchronized with all recent activities.</p>
             <link>https://flatfile.com/changelog/platform#03072024</link>
             <guid isPermaLink="false">platform-03-07-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 07 Mar 2024 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 07 Mar 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Metadata Management in `@flatfile/plugin-record-hook`]]></title>
@@ -1354,7 +1354,7 @@ accurate and consistent metadata management.</p>
             <link>https://flatfile.com/changelog/platform#03052024</link>
             <guid isPermaLink="false">platform-03-05-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 05 Mar 2024 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 05 Mar 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing Email Theming for Pro Plan Customers]]></title>
@@ -1379,7 +1379,7 @@ enjoy custom theming in their email communications.</p>
             <link>https://flatfile.com/changelog/platform#02292024</link>
             <guid isPermaLink="false">platform-02-29-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 29 Feb 2024 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 29 Feb 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Enum Mapping Logic for Datasets with No Values]]></title>
@@ -1398,7 +1398,7 @@ logical framework for data processing and rule application.</p>
             <link>https://flatfile.com/changelog/platform#02292024</link>
             <guid isPermaLink="false">platform-02-29-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 29 Feb 2024 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 29 Feb 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Dashboard authentication now lasts 24 hours]]></title>
@@ -1408,7 +1408,7 @@ logical framework for data processing and rule application.</p>
             <link>https://flatfile.com/changelog/platform#02292024</link>
             <guid isPermaLink="false">platform-02-29-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 29 Feb 2024 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 29 Feb 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced File Upload Experience: Multi-Selection and Drag-and-Drop Support]]></title>
@@ -1426,7 +1426,7 @@ management tasks.</p>
             <link>https://flatfile.com/changelog/platform#02292024</link>
             <guid isPermaLink="false">platform-02-29-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 29 Feb 2024 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 29 Feb 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Optimized Space Loading Series: Reduced Requests for Translations]]></title>
@@ -1439,7 +1439,7 @@ promptly for a smoother user experience.</p>
             <link>https://flatfile.com/changelog/platform#02272024</link>
             <guid isPermaLink="false">platform-02-27-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 27 Feb 2024 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 27 Feb 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Filtering on `GET /spaces` Endpoint with Namespace Parameter
@@ -1455,7 +1455,7 @@ all namespaces, providing greater flexibility in data retrieval and management.<
             <link>https://flatfile.com/changelog/platform#02272024</link>
             <guid isPermaLink="false">platform-02-27-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 27 Feb 2024 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 27 Feb 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Optimized Space Loading Performance Series: Deferring Blocking Requests]]></title>
@@ -1471,7 +1471,7 @@ reinforcing our commitment to efficiency and performance.</p>
             <link>https://flatfile.com/changelog/platform#02272024</link>
             <guid isPermaLink="false">platform-02-27-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Tue, 27 Feb 2024 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 27 Feb 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Optimized Space Loading Series: Reduced Requests for Translations]]></title>
@@ -1484,7 +1484,7 @@ promptly for a smoother user experience.</p>
             <link>https://flatfile.com/changelog/platform#02232024</link>
             <guid isPermaLink="false">platform-02-23-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 23 Feb 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 23 Feb 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New: Advanced Column Filtering Feature]]></title>
@@ -1499,7 +1499,7 @@ capability.</p>
             <link>https://flatfile.com/changelog/platform#02232024</link>
             <guid isPermaLink="false">platform-02-23-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 23 Feb 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 23 Feb 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Data Mapping Consistency with user created custom fields]]></title>
@@ -1517,7 +1517,7 @@ efforts.</p>
             <link>https://flatfile.com/changelog/platform#02232024</link>
             <guid isPermaLink="false">platform-02-23-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 23 Feb 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 23 Feb 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing the Flatfile Dedicated Mapping APIs]]></title>
@@ -1543,7 +1543,7 @@ unique needs and workflow requirements.</p>
             <link>https://flatfile.com/changelog/platform#01242024</link>
             <guid isPermaLink="false">platform-01-24-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 24 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 24 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Expanding Global Reach with Additional Languages]]></title>
@@ -1567,7 +1567,7 @@ base. If there's a language you need that we haven't yet included, let us know!<
             <link>https://flatfile.com/changelog/platform#01222024</link>
             <guid isPermaLink="false">platform-01-22-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 22 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 22 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New Feature Added: Disabling Actions for Empty Records in Workbook &
@@ -1589,7 +1589,7 @@ Sheet and Workbook Actions. or<br>
             <link>https://flatfile.com/changelog/platform#01222024</link>
             <guid isPermaLink="false">platform-01-22-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 22 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 22 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing Composite Uniqueness for Enhanced Data Integrity]]></title>
@@ -1605,7 +1605,7 @@ necessary parameters to effectively implement composite uniqueness.</p>
             <link>https://flatfile.com/changelog/platform#01222024</link>
             <guid isPermaLink="false">platform-01-22-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 22 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 22 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Powered by Flatfile looks a little different now]]></title>
@@ -1623,7 +1623,7 @@ package</a>.<br>
             <link>https://flatfile.com/changelog/platform#01182024</link>
             <guid isPermaLink="false">platform-01-18-2024-theming</guid>
             <category><![CDATA[theming]]></category>
-            <pubDate>Thu, 18 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 18 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Improvements for `trackChanges` functionality]]></title>
@@ -1641,7 +1641,7 @@ and ensures a more streamlined and reliable change tracking experience.</p>
             <link>https://flatfile.com/changelog/platform#01182024</link>
             <guid isPermaLink="false">platform-01-18-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 18 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 18 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New: At-a-glance Insights are now available in the Sidebar]]></title>
@@ -1657,7 +1657,7 @@ identification and management of data accuracy.</p>
             <link>https://flatfile.com/changelog/platform#01172024</link>
             <guid isPermaLink="false">platform-01-17-2024-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 17 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 17 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We've optimized the file deletion process for large files. The next time you]]></title>
@@ -1668,7 +1668,7 @@ remove a sizable file, expect to experience a noticeably faster removal speed.</
             <link>https://flatfile.com/changelog/platform#01172024</link>
             <guid isPermaLink="false">platform-01-17-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 17 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 17 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Toolbar blocking jobs Extended to Workbook-Mounted Actions]]></title>
@@ -1686,7 +1686,7 @@ interference or unintended navigation.</p>
             <link>https://flatfile.com/changelog/platform#01122024</link>
             <guid isPermaLink="false">platform-01-12-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 12 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 12 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[State-Based Messaging on Actions via Tooltips]]></title>
@@ -1705,7 +1705,7 @@ providing context-specific text that corresponds to the action's current state.<
             <link>https://flatfile.com/changelog/platform#01122024</link>
             <guid isPermaLink="false">platform-01-12-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 12 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 12 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Decoupling Actions Updates from the Workbook's Schema]]></title>
@@ -1721,7 +1721,7 @@ you intend to make.</p>
             <link>https://flatfile.com/changelog/platform#01122024</link>
             <guid isPermaLink="false">platform-01-12-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 12 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 12 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Previously, users experienced difficulties in adjusting column sizes correctly]]></title>
@@ -1733,7 +1733,7 @@ columns, enhancing the overall usability and functionality of the data table.</p
             <link>https://flatfile.com/changelog/platform#01122024</link>
             <guid isPermaLink="false">platform-01-12-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 12 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 12 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Visibility with Status Updates During File Extraction]]></title>
@@ -1753,7 +1753,7 @@ you’re well-informed throughout the file extraction process.</p>
             <link>https://flatfile.com/changelog/platform#01032024</link>
             <guid isPermaLink="false">platform-01-03-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 03 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 03 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Improved Search Functionality for Null Values in GET Records Endpoint]]></title>
@@ -1770,7 +1770,7 @@ double quotes <code>&quot;&quot;</code> in the <code>searchValue</code> paramete
             <link>https://flatfile.com/changelog/platform#01032024</link>
             <guid isPermaLink="false">platform-01-03-2024-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 03 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 03 Jan 2024 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Theming Tabs, Tooltips, and Popovers]]></title>
@@ -1815,7 +1815,7 @@ consistent application design.</p>
             <link>https://flatfile.com/changelog/platform#12212023</link>
             <guid isPermaLink="false">platform-12-21-2023-theming</guid>
             <category><![CDATA[theming]]></category>
-            <pubDate>Thu, 21 Dec 2023 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 21 Dec 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Field Descriptions now have Markdown Support]]></title>
@@ -1852,7 +1852,7 @@ comprehension.</p>
             <link>https://flatfile.com/changelog/platform#12152023</link>
             <guid isPermaLink="false">platform-12-15-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 15 Dec 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 15 Dec 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Default Value Added to `inputForm` fields]]></title>
@@ -1880,7 +1880,7 @@ values can be pre-filled in these fields, streamlining the user experience.</p>
             <link>https://flatfile.com/changelog/platform#12152023</link>
             <guid isPermaLink="false">platform-12-15-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 15 Dec 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 15 Dec 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Theming Interactive options]]></title>
@@ -1944,7 +1944,7 @@ consistency and branding alignment across our platform.</p>
             <link>https://flatfile.com/changelog/platform#12152023</link>
             <guid isPermaLink="false">platform-12-15-2023-theming</guid>
             <category><![CDATA[theming]]></category>
-            <pubDate>Fri, 15 Dec 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 15 Dec 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Theming options for Checkboxes]]></title>
@@ -1989,7 +1989,7 @@ their unique branding and design preferences.</p>
             <link>https://flatfile.com/changelog/platform#12142023</link>
             <guid isPermaLink="false">platform-12-14-2023-theming</guid>
             <category><![CDATA[theming]]></category>
-            <pubDate>Thu, 14 Dec 2023 08:00:00 GMT</pubDate>
+            <pubDate>Thu, 14 Dec 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Theming options for Badges+]]></title>
@@ -2035,7 +2035,7 @@ and user-friendly platform that caters to your unique theming requirements.</p>
             <link>https://flatfile.com/changelog/platform#12082023</link>
             <guid isPermaLink="false">platform-12-08-2023-theming</guid>
             <category><![CDATA[theming]]></category>
-            <pubDate>Fri, 08 Dec 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 08 Dec 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Revamped UI for Foreground Jobs]]></title>
@@ -2059,7 +2059,7 @@ experience in tracking and managing foreground jobs.</p>
             <link>https://flatfile.com/changelog/platform#12012023</link>
             <guid isPermaLink="false">platform-12-01-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 01 Dec 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 01 Dec 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Next Action Links in Job Outcome Dialogs Now Support Linking to internal
@@ -2097,7 +2097,7 @@ enhancing user interaction and experience.</p>
             <link>https://flatfile.com/changelog/platform#12012023</link>
             <guid isPermaLink="false">platform-12-01-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 01 Dec 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 01 Dec 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Next Action Links in Job Outcome Dialogs Now Support Retrying]]></title>
@@ -2125,7 +2125,7 @@ enhancing user interaction and experience.</p>
             <link>https://flatfile.com/changelog/platform#12012023</link>
             <guid isPermaLink="false">platform-12-01-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 01 Dec 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 01 Dec 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Theming options for Filters]]></title>
@@ -2160,7 +2160,7 @@ filters, enabling a seamless and integrated visual experience.</p>
             <link>https://flatfile.com/changelog/platform#12012023</link>
             <guid isPermaLink="false">platform-12-01-2023-theming</guid>
             <category><![CDATA[theming]]></category>
-            <pubDate>Fri, 01 Dec 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 01 Dec 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing New Endpoint for Workbook Commit Retrieval]]></title>
@@ -2178,7 +2178,7 @@ retrieval and processing status checks in their own applications.</p>
             <link>https://flatfile.com/changelog/platform#11282023</link>
             <guid isPermaLink="false">platform-11-28-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 28 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We've successfully addressed and fixed the issue related to extracting/uploading]]></title>
@@ -2190,7 +2190,7 @@ smoother and more reliable file handling going forward.</p>
             <link>https://flatfile.com/changelog/platform#11282023</link>
             <guid isPermaLink="false">platform-11-28-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 28 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Improved Handling of Long-Running Jobs with New Timeout Feature]]></title>
@@ -2212,7 +2212,7 @@ operations.</p>
             <link>https://flatfile.com/changelog/platform#11282023</link>
             <guid isPermaLink="false">platform-11-28-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 28 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[You can now disable Actions when there are invalid records]]></title>
@@ -2235,7 +2235,7 @@ to disable actions when there are invalid records.</p>
             <link>https://flatfile.com/changelog/platform#11202023</link>
             <guid isPermaLink="false">platform-11-20-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 20 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 20 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We made an enhancement to bulk cell pasting. Previously, locking the cell]]></title>
@@ -2247,7 +2247,7 @@ experience.</p>
             <link>https://flatfile.com/changelog/platform#11202023</link>
             <guid isPermaLink="false">platform-11-20-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 20 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 20 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Space ID Search is now available in the Spaces Table]]></title>
@@ -2260,7 +2260,7 @@ specific spaces quickly and efficiently.</p>
             <link>https://flatfile.com/changelog/platform#11202023</link>
             <guid isPermaLink="false">platform-11-20-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 20 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 20 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Weighting Mechanism for User History in Enum Mapping]]></title>
@@ -2278,7 +2278,7 @@ automation.</p>
             <link>https://flatfile.com/changelog/platform#11172023</link>
             <guid isPermaLink="false">platform-11-17-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Fri, 17 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 17 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[_It's the little things_: Bulk delete in Spaces is now available\*\*\*]]></title>
@@ -2292,7 +2292,7 @@ individually, streamlining the process and saving time. Enjoy!</p>
             <link>https://flatfile.com/changelog/platform#11172023</link>
             <guid isPermaLink="false">platform-11-17-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 17 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 17 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New: Column Visibility Control with Local Storage Memory]]></title>
@@ -2308,7 +2308,7 @@ tailor the interface to your specific needs and workflow.</p>
             <link>https://flatfile.com/changelog/platform#11172023</link>
             <guid isPermaLink="false">platform-11-17-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 17 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 17 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Guests can now be named in a Spaces URL]]></title>
@@ -2327,7 +2327,7 @@ user recognition and auditing.</p>
             <link>https://flatfile.com/changelog/platform#11172023</link>
             <guid isPermaLink="false">platform-11-17-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 17 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 17 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Speed Optimization for Large Enum Lists]]></title>
@@ -2343,7 +2343,7 @@ large datasets.</p>
             <link>https://flatfile.com/changelog/platform#11172023</link>
             <guid isPermaLink="false">platform-11-17-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Fri, 17 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 17 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Fixed File Extraction for Workbook-Only Guests]]></title>
@@ -2356,7 +2356,7 @@ can now upload and extract files smoothly in workbooks they have access to.</p>
             <link>https://flatfile.com/changelog/platform#11172023</link>
             <guid isPermaLink="false">platform-11-17-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Fri, 17 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 17 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Full Whitelabeling now available in Pro+]]></title>
@@ -2376,7 +2376,7 @@ the possibilities of a fully whitelabeled experience tailored to your needs.</p>
             <link>https://flatfile.com/changelog/platform#11132023</link>
             <guid isPermaLink="false">platform-11-13-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 13 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 13 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Hide the info Tooltip]]></title>
@@ -2398,7 +2398,7 @@ available in our<br>
             <link>https://flatfile.com/changelog/platform#11132023</link>
             <guid isPermaLink="false">platform-11-13-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 13 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 13 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[In this update, we've implemented a crucial enhancement by unifying the casing]]></title>
@@ -2411,7 +2411,7 @@ smoother and more reliable experience.</p>
             <link>https://flatfile.com/changelog/platform#11132023</link>
             <guid isPermaLink="false">platform-11-13-2023-core</guid>
             <category><![CDATA[core]]></category>
-            <pubDate>Mon, 13 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 13 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Previously, if an existing value was present in the enum field, you couldn't]]></title>
@@ -2424,7 +2424,7 @@ been resolved.</p>
             <link>https://flatfile.com/changelog/platform#11132023</link>
             <guid isPermaLink="false">platform-11-13-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 13 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 13 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Control your mapping accuracy]]></title>
@@ -2450,7 +2450,7 @@ control over the mapping process:</p>
             <link>https://flatfile.com/changelog/platform#11072023</link>
             <guid isPermaLink="false">platform-11-07-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 07 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[More Precise Filtering is now Available]]></title>
@@ -2467,7 +2467,7 @@ information you need with pinpoint accuracy.</p>
             <link>https://flatfile.com/changelog/platform#11072023</link>
             <guid isPermaLink="false">platform-11-07-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Tue, 07 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Theming Column Headers]]></title>
@@ -2480,7 +2480,7 @@ information you need with pinpoint accuracy.</p>
             <link>https://flatfile.com/changelog/platform#11072023</link>
             <guid isPermaLink="false">platform-11-07-2023-theming</guid>
             <category><![CDATA[theming]]></category>
-            <pubDate>Tue, 07 Nov 2023 08:00:00 GMT</pubDate>
+            <pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Cell Copying with Multi-line Preservation]]></title>
@@ -2497,7 +2497,7 @@ content with complex formatting.</p>
             <link>https://flatfile.com/changelog/platform#11012023</link>
             <guid isPermaLink="false">platform-11-01-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 01 Nov 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 01 Nov 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Removed Character Limit on Mappings, Jobs, and Enum Mappings]]></title>
@@ -2509,7 +2509,7 @@ in these areas.</p>
             <link>https://flatfile.com/changelog/platform#10302023</link>
             <guid isPermaLink="false">platform-10-30-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 30 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 30 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New API Feature to Restore Archived Spaces]]></title>
@@ -2521,7 +2521,7 @@ by setting the <code>archivedAt</code> property of the space to null via the<br>
             <link>https://flatfile.com/changelog/platform#10302023</link>
             <guid isPermaLink="false">platform-10-30-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 30 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 30 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Improved Cascade Deletion for Spaces, Workbooks, and Sheets]]></title>
@@ -2538,7 +2538,7 @@ this improvement was implemented.</p>
             <link>https://flatfile.com/changelog/platform#10302023</link>
             <guid isPermaLink="false">platform-10-30-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 30 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 30 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Display of Enum Options in Turntable]]></title>
@@ -2552,7 +2552,7 @@ value instead.</p>
             <link>https://flatfile.com/changelog/platform#10302023</link>
             <guid isPermaLink="false">platform-10-30-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 30 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 30 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Disable Actions while Hooks are Running]]></title>
@@ -2576,7 +2576,7 @@ completed.</p>
             <link>https://flatfile.com/changelog/platform#10252023</link>
             <guid isPermaLink="false">platform-10-25-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 25 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 25 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New Job Mode: `toolbar-blocking`]]></title>
@@ -2590,7 +2590,7 @@ Column Header Menus while still allowing users to enter records manually.</p>
             <link>https://flatfile.com/changelog/platform#10252023</link>
             <guid isPermaLink="false">platform-10-25-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 25 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 25 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Improved copy-paste experience while bulk selecting cells]]></title>
@@ -2603,7 +2603,7 @@ automatically apply to the bulk-selected rows.</p>
             <link>https://flatfile.com/changelog/platform#10182023</link>
             <guid isPermaLink="false">platform-10-18-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 18 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 18 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[In the past, when your Space took more than 10 seconds to build, an "empty space]]></title>
@@ -2615,7 +2615,7 @@ longer appear.</p>
             <link>https://flatfile.com/changelog/platform#10162023</link>
             <guid isPermaLink="false">platform-10-16-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 16 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 16 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New: Embed Sheets inside Documents]]></title>
@@ -2640,7 +2640,7 @@ precisely to your needs.</p>
             <link>https://flatfile.com/changelog/platform#10162023</link>
             <guid isPermaLink="false">platform-10-16-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 16 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 16 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Actions are now available on Documents.]]></title>
@@ -2670,7 +2670,7 @@ actions: [
             <link>https://flatfile.com/changelog/platform#10132023</link>
             <guid isPermaLink="false">platform-10-13-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 13 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 13 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The API now supports two new actions: `sheets.lock` and `sheets.unlock`.]]></title>
@@ -2687,7 +2687,7 @@ managing sheet access and data integrity.</p>
             <link>https://flatfile.com/changelog/platform#10112023</link>
             <guid isPermaLink="false">platform-10-11-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 11 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 11 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New: Full-screen Documents!]]></title>
@@ -2712,7 +2712,7 @@ document-driven interactions precisely to their needs.</p>
             <link>https://flatfile.com/changelog/platform#10112023</link>
             <guid isPermaLink="false">platform-10-11-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 11 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 11 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We’ve added Indonesia (ID) translations!]]></title>
@@ -2726,7 +2726,7 @@ audience.</p>
             <link>https://flatfile.com/changelog/platform#10112023</link>
             <guid isPermaLink="false">platform-10-11-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 11 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 11 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Now Available: Set estimated time of completion on Jobs]]></title>
@@ -2747,7 +2747,7 @@ remaining time for acknowledged jobs.</p></li>
             <link>https://flatfile.com/changelog/platform#10092023</link>
             <guid isPermaLink="false">platform-10-09-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 09 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 09 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Previously, when uploading a file, actions could only be added to it after the]]></title>
@@ -2761,7 +2761,7 @@ to be applied to the file immediately upon creation.</p>
             <link>https://flatfile.com/changelog/platform#10092023</link>
             <guid isPermaLink="false">platform-10-09-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Mon, 09 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 09 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The find/replace operation is now able to handle large datasets. Now, records]]></title>
@@ -2776,7 +2776,7 @@ operation, thanks to the 10,000-row batching.</p>
             <link>https://flatfile.com/changelog/platform#10092023</link>
             <guid isPermaLink="false">platform-10-09-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 09 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 09 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[When adding a secret to a space via the API, we have expanded the flexibility of]]></title>
@@ -2790,7 +2790,7 @@ characters in secret names, aligning the behavior between the API and the UI.</p
             <link>https://flatfile.com/changelog/platform#10092023</link>
             <guid isPermaLink="false">platform-10-09-2023-core</guid>
             <category><![CDATA[core]]></category>
-            <pubDate>Mon, 09 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 09 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Now Available: Accept Dynamic Inputs on Actions]]></title>
@@ -2823,7 +2823,7 @@ to quickly see it in action in your code.</li>
             <link>https://flatfile.com/changelog/platform#10082023</link>
             <guid isPermaLink="false">platform-10-08-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Sun, 08 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 08 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Exciting Update: Additional Fields]]></title>
@@ -2850,7 +2850,7 @@ process.</li>
             <link>https://flatfile.com/changelog/platform#10052023</link>
             <guid isPermaLink="false">platform-10-05-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 05 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 05 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing New and Enhanced Event Logs]]></title>
@@ -2874,7 +2874,7 @@ failures.</p>
             <link>https://flatfile.com/changelog/platform#10022023</link>
             <guid isPermaLink="false">platform-10-02-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 02 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 02 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Choosing a `namespace` on Space creation is now easier than ever. Rather than]]></title>
@@ -2887,7 +2887,7 @@ a more efficient and accurate way to handle namespace selection.</p>
             <link>https://flatfile.com/changelog/platform#10022023</link>
             <guid isPermaLink="false">platform-10-02-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 02 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 02 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Previously, when using the find and replace feature, only the initial batch of]]></title>
@@ -2900,7 +2900,7 @@ within a single find/replace operation.</p>
             <link>https://flatfile.com/changelog/platform#10022023</link>
             <guid isPermaLink="false">platform-10-02-2023-transform</guid>
             <category><![CDATA[transform]]></category>
-            <pubDate>Mon, 02 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 02 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Now, you can include a free-form JSON object as `metadata` on your Workbook,]]></title>
@@ -2912,7 +2912,7 @@ option to enrich your Workbooks with meaningful metadata.</p>
             <link>https://flatfile.com/changelog/platform#10022023</link>
             <guid isPermaLink="false">platform-10-02-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 02 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 02 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Previously, when adding a secret to a space through the API, we supported spaces]]></title>
@@ -2926,7 +2926,7 @@ can now include spaces without any issues.</p>
             <link>https://flatfile.com/changelog/platform#10022023</link>
             <guid isPermaLink="false">platform-10-02-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Mon, 02 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 02 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We've resolved an issue where long messages would overflow the cell in]]></title>
@@ -2937,7 +2937,7 @@ your validation messages will now display lengthy messages more elegantly.</p>
             <link>https://flatfile.com/changelog/platform#10022023</link>
             <guid isPermaLink="false">platform-10-02-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Mon, 02 Oct 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 02 Oct 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We’ve added Portuguese (Brazilian) translations!]]></title>
@@ -2950,7 +2950,7 @@ expanded our capabilities to cater to an even broader audience.</p>
             <link>https://flatfile.com/changelog/platform#09272023</link>
             <guid isPermaLink="false">platform-09-27-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 27 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 27 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Document Customization with Markdown & HTML Support]]></title>
@@ -2962,7 +2962,7 @@ you even more versatility to tailor your Documents exactly to your liking.</p>
             <link>https://flatfile.com/changelog/platform#09272023</link>
             <guid isPermaLink="false">platform-09-27-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 27 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 27 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We've revamped the way partial replaces work, enhancing your data editing]]></title>
@@ -2980,7 +2980,7 @@ without the hassle of unexpected null values.</p>
             <link>https://flatfile.com/changelog/platform#09222023</link>
             <guid isPermaLink="false">platform-09-22-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 22 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 22 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We've made improvements behind the scenes to ensure that your data gets mapped]]></title>
@@ -2993,7 +2993,7 @@ mapping your data, ensuring that everything is captured correctly.</p>
             <link>https://flatfile.com/changelog/platform#09222023</link>
             <guid isPermaLink="false">platform-09-22-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Fri, 22 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 22 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Localization is Now Available]]></title>
@@ -3018,7 +3018,7 @@ started.</p>
             <link>https://flatfile.com/changelog/platform#09202023</link>
             <guid isPermaLink="false">platform-09-20-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 20 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 20 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New: Promote Sheet Actions]]></title>
@@ -3032,7 +3032,7 @@ clear, user-friendly text.</p>
             <link>https://flatfile.com/changelog/platform#09202023</link>
             <guid isPermaLink="false">platform-09-20-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 20 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 20 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[You can now effortlessly view up to 500k records at once. When you reach the end]]></title>
@@ -3045,7 +3045,7 @@ maximum height in the DOM.</p>
             <link>https://flatfile.com/changelog/platform#09202023</link>
             <guid isPermaLink="false">platform-09-20-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 20 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 20 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing: Code Blocks for Documents]]></title>
@@ -3060,7 +3060,7 @@ of your content.</p>
             <link>https://flatfile.com/changelog/platform#09152023</link>
             <guid isPermaLink="false">platform-09-15-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 15 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 15 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Previously, guests without access to the specific workbook would encounter a]]></title>
@@ -3072,7 +3072,7 @@ users.</p>
             <link>https://flatfile.com/changelog/platform#09152023</link>
             <guid isPermaLink="false">platform-09-15-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 15 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 15 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing support for finding empty fields in ffql using the syntax:]]></title>
@@ -3084,7 +3084,7 @@ users.</p>
             <link>https://flatfile.com/changelog/platform#09132023</link>
             <guid isPermaLink="false">platform-09-13-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 13 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 13 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Resolved an issue where attempting to upsert an Environment secret that was]]></title>
@@ -3096,7 +3096,7 @@ Space ID.</p>
             <link>https://flatfile.com/changelog/platform#09132023</link>
             <guid isPermaLink="false">platform-09-13-2023-core</guid>
             <category><![CDATA[core]]></category>
-            <pubDate>Wed, 13 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 13 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Resolved an issue where the import button could prematurely appear before a file]]></title>
@@ -3109,7 +3109,7 @@ readiness.</p>
             <link>https://flatfile.com/changelog/platform#09132023</link>
             <guid isPermaLink="false">platform-09-13-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Wed, 13 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 13 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Experience improved performance (for instance, when scrolling to the bottom of]]></title>
@@ -3121,7 +3121,7 @@ benefit from these enhancements.</p>
             <link>https://flatfile.com/changelog/platform#09132023</link>
             <guid isPermaLink="false">platform-09-13-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 13 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 13 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[When a file stream becomes unreadable due to file malformation, improvements]]></title>
@@ -3131,7 +3131,7 @@ were made to ensure that any errors are correctly communicated to the UI.</p>
             <link>https://flatfile.com/changelog/platform#09112023</link>
             <guid isPermaLink="false">platform-09-11-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Mon, 11 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 11 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Experience improved performance (for instance, when scrolling to the bottom of]]></title>
@@ -3143,7 +3143,7 @@ benefit from these enhancements.</p>
             <link>https://flatfile.com/changelog/platform#09112023</link>
             <guid isPermaLink="false">platform-09-11-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Mon, 11 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 11 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Documents in the sidebar are now organized based on their creation date. This]]></title>
@@ -3153,7 +3153,7 @@ enhancement helps developers have more control the order of their Documents.</p>
             <link>https://flatfile.com/changelog/platform#09082023</link>
             <guid isPermaLink="false">platform-09-08-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 08 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 08 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[If you have access to multiple Spaces, you'll notice a dropdown menu at the top]]></title>
@@ -3165,7 +3165,7 @@ sidebar. This issue has been successfully resolved.</p>
             <link>https://flatfile.com/changelog/platform#09082023</link>
             <guid isPermaLink="false">platform-09-08-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 08 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 08 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[2 new Demo spaces were added: Documents & Theming. In these demo Spaces, you'll]]></title>
@@ -3179,7 +3179,7 @@ learn how to:</p>
             <link>https://flatfile.com/changelog/platform#09082023</link>
             <guid isPermaLink="false">platform-09-08-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 08 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 08 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We've extended the `job:ready` timeout to 10 minutes, aligning it with the]]></title>
@@ -3190,7 +3190,7 @@ within an Agent.</p>
             <link>https://flatfile.com/changelog/platform#09082023</link>
             <guid isPermaLink="false">platform-09-08-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 08 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 08 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New Job Outcome Acknowledgements]]></title>
@@ -3220,7 +3220,7 @@ job outcomes. <a href="../guides/actions#usage">Learn more</a>.</p>
             <link>https://flatfile.com/changelog/platform#09062023</link>
             <guid isPermaLink="false">platform-09-06-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 06 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 06 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Job Outcomes with Next Action Links]]></title>
@@ -3243,7 +3243,7 @@ enhancing user interaction and experience.</p>
             <link>https://flatfile.com/changelog/platform#09062023</link>
             <guid isPermaLink="false">platform-09-06-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 06 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 06 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Enhanced Action Button Behavior]]></title>
@@ -3267,7 +3267,7 @@ Actions are only triggered when relevant data is chosen.</p>
             <link>https://flatfile.com/changelog/platform#09062023</link>
             <guid isPermaLink="false">platform-09-06-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 06 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 06 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Improved FFQL handling of dates and number comparisons]]></title>
@@ -3295,7 +3295,7 @@ a more seamless experience when working with number and date fields.</p>
             <link>https://flatfile.com/changelog/platform#09012023</link>
             <guid isPermaLink="false">platform-09-01-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 01 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 01 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Introducing caching for record counts, resulting in improved performance for API]]></title>
@@ -3305,7 +3305,7 @@ requests.</p>
             <link>https://flatfile.com/changelog/platform#09012023</link>
             <guid isPermaLink="false">platform-09-01-2023-core</guid>
             <category><![CDATA[core]]></category>
-            <pubDate>Fri, 01 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 01 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The `PATCH /sheets` endpoint has been upgraded to accept both an array of]]></title>
@@ -3317,7 +3317,7 @@ Sheets.</p>
             <link>https://flatfile.com/changelog/platform#09012023</link>
             <guid isPermaLink="false">platform-09-01-2023-core</guid>
             <category><![CDATA[core]]></category>
-            <pubDate>Fri, 01 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 01 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[![image](../changelog/images/tooltips-actions.png)]]></title>
@@ -3331,7 +3331,7 @@ contributing to an improved overall user experience.</p>
             <link>https://flatfile.com/changelog/platform#09012023</link>
             <guid isPermaLink="false">platform-09-01-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 01 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 01 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Fixed a cosmetic issue with scrolling through Workbooks. The problem stemmed]]></title>
@@ -3343,7 +3343,7 @@ within a flex container, we have resolved this issue.</p>
             <link>https://flatfile.com/changelog/platform#09012023</link>
             <guid isPermaLink="false">platform-09-01-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Fri, 01 Sep 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 01 Sep 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[🚀 4 New Example Spaces]]></title>
@@ -3363,7 +3363,7 @@ on display.</p>
             <link>https://flatfile.com/changelog/platform#08302023</link>
             <guid isPermaLink="false">platform-08-30-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Wed, 30 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 30 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Authentication Query Enhancement]]></title>
@@ -3376,7 +3376,7 @@ results in faster overall processing and improved response times.</p>
             <link>https://flatfile.com/changelog/platform#08302023</link>
             <guid isPermaLink="false">platform-08-30-2023-core</guid>
             <category><![CDATA[core]]></category>
-            <pubDate>Wed, 30 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 30 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The **Data Checklist** now includes data types that correspond to each field.]]></title>
@@ -3386,7 +3386,7 @@ Additionally, the searchable dropdowns are now more user friendly.</p>
             <link>https://flatfile.com/changelog/platform#08302023</link>
             <guid isPermaLink="false">platform-08-30-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 30 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 30 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[A pagination logic issue concerning **Environments** has been resolved. The]]></title>
@@ -3401,7 +3401,7 @@ it with the specifications outlined in the API documentation.</p>
             <link>https://flatfile.com/changelog/platform#08302023</link>
             <guid isPermaLink="false">platform-08-30-2023-core</guid>
             <category><![CDATA[core]]></category>
-            <pubDate>Wed, 30 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 30 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Previously, attempting to navigate into a dropdown using the keyboard's tab key]]></title>
@@ -3413,7 +3413,7 @@ trigger.</p>
             <link>https://flatfile.com/changelog/platform#08302023</link>
             <guid isPermaLink="false">platform-08-30-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Wed, 30 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 30 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The API specification has been updated to facilitate the mapping of `enum`]]></title>
@@ -3429,7 +3429,7 @@ the process.</p>
             <link>https://flatfile.com/changelog/platform#08302023</link>
             <guid isPermaLink="false">platform-08-30-2023-core</guid>
             <category><![CDATA[core]]></category>
-            <pubDate>Wed, 30 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 30 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[🚀 Instant Extraction for CSV/TSV/PSV Files]]></title>
@@ -3452,7 +3452,7 @@ database, reducing the likelihood of encountering resource limits.</p>
             <link>https://flatfile.com/changelog/platform#08252023</link>
             <guid isPermaLink="false">platform-08-25-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Fri, 25 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 25 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[🚀 A Revamped Starting Point]]></title>
@@ -3466,7 +3466,7 @@ understand what you're seeing.</p>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[🚀 Major improvements to our queue system]]></title>
@@ -3478,7 +3478,7 @@ impact on the execution of asynchronous tasks, like data validation.</p>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-infra</guid>
             <category><![CDATA[infra]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Now, you can set a description for each Option Field value via API. End users]]></title>
@@ -3488,7 +3488,7 @@ can then view this description as a tooltip during mapping.</p>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We've added new API routes to capture up to 5 snapshots of a Sheet, with the]]></title>
@@ -3499,7 +3499,7 @@ as we prepare to bring this functionality to the UI as well.</p>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[A Sheet with no access enabled (`access:[]`) now shows a lock icon on the Sheet]]></title>
@@ -3509,7 +3509,7 @@ tab.</p>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We opted to hide the files count on the Files page if there are no files.]]></title>
@@ -3518,7 +3518,7 @@ tab.</p>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[A shrimp size update to the colors of the sidebar toggle so it looks good with]]></title>
@@ -3528,7 +3528,7 @@ all themes.</p>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Info inside `metadata` > `userInfo` will now display in the Spaces list.]]></title>
@@ -3537,7 +3537,7 @@ all themes.</p>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Metadata allows you to store and retrieve additional data about a Space, Record,]]></title>
@@ -3548,7 +3548,7 @@ or Field without exposing it to end users. Now, Environments also have a<br>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We made a small fix to allow better vertical scrolling in the Dashboard sidebar.]]></title>
@@ -3557,7 +3557,7 @@ or Field without exposing it to end users. Now, Environments also have a<br>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[CTRL + Z wasn't working for a minute. This is now fixed.]]></title>
@@ -3566,7 +3566,7 @@ or Field without exposing it to end users. Now, Environments also have a<br>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[If a boolean cell is empty, we only show the toggle on hover now.]]></title>
@@ -3575,7 +3575,7 @@ or Field without exposing it to end users. Now, Environments also have a<br>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We were seeing issues where corrupt files that ran through extraction did not]]></title>
@@ -3585,7 +3585,7 @@ fail but simply skipped over the lines affected. This is now resolved.</p>
             <link>https://flatfile.com/changelog/platform#08242023</link>
             <guid isPermaLink="false">platform-08-24-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Thu, 24 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 24 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[🚀 Introducing Command+k Triggered Search and Transformation (Early Access)]]></title>
@@ -3608,7 +3608,7 @@ have this feature flagged on in your Account today!</p>
             <link>https://flatfile.com/changelog/platform#08202023</link>
             <guid isPermaLink="false">platform-08-20-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Sun, 20 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 20 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[There is now a count at the top of the files list that shows the total number of]]></title>
@@ -3618,7 +3618,7 @@ files.</p>
             <link>https://flatfile.com/changelog/platform#08202023</link>
             <guid isPermaLink="false">platform-08-20-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Sun, 20 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 20 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[![image](../changelog/images/sidebar_collapsed.png)]]></title>
@@ -3635,7 +3635,7 @@ screens.</p>
             <link>https://flatfile.com/changelog/platform#08202023</link>
             <guid isPermaLink="false">platform-08-20-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Sun, 20 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 20 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[We now handle overflowing space name(s) by:]]></title>
@@ -3651,7 +3651,7 @@ them hard to read. This is also fixed.</li>
             <link>https://flatfile.com/changelog/platform#08202023</link>
             <guid isPermaLink="false">platform-08-20-2023-spaces</guid>
             <category><![CDATA[spaces]]></category>
-            <pubDate>Sun, 20 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 20 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[When determining the lighter shades of each main theme colors, i.e. primary,]]></title>
@@ -3662,7 +3662,7 @@ white.</p>
             <link>https://flatfile.com/changelog/platform#08202023</link>
             <guid isPermaLink="false">platform-08-20-2023-theming</guid>
             <category><![CDATA[theming]]></category>
-            <pubDate>Sun, 20 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 20 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The filename was added to the mapping scene so users can now see which file they]]></title>
@@ -3672,7 +3672,7 @@ are currently mapping.</p>
             <link>https://flatfile.com/changelog/platform#08202023</link>
             <guid isPermaLink="false">platform-08-20-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Sun, 20 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 20 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Cells with no data can now be unmapped using “Do not import”, if previously]]></title>
@@ -3682,7 +3682,7 @@ mapped to a value.</p>
             <link>https://flatfile.com/changelog/platform#08202023</link>
             <guid isPermaLink="false">platform-08-20-2023-files</guid>
             <category><![CDATA[files]]></category>
-            <pubDate>Sun, 20 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 20 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Filter: "Last Name" like A% will now retrieve all records where Last Name starts]]></title>
@@ -3692,7 +3692,7 @@ with “A”. Previously, it was retrieving records that contained “A”.</p>
             <link>https://flatfile.com/changelog/platform#08202023</link>
             <guid isPermaLink="false">platform-08-20-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Sun, 20 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 20 Aug 2023 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The continue button is now disabled on mapping scene while mappings are loading.]]></title>
@@ -3702,7 +3702,7 @@ This ensures user can only advance to review scene after mappings are saved.</p>
             <link>https://flatfile.com/changelog/platform#08202023</link>
             <guid isPermaLink="false">platform-08-20-2023-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
-            <pubDate>Sun, 20 Aug 2023 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 20 Aug 2023 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>
