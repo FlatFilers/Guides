@@ -1,4 +1,4 @@
-name: Changelog
+name: Changelog & RSS
 
 on:
   pull_request:
@@ -8,6 +8,7 @@ on:
 jobs:
   changelog-pull-request:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.head.ref != 'main'
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v2
@@ -22,6 +23,9 @@ jobs:
   
       - name: Run changelog script
         run: npm run changelog
+
+      - name: Run rss script
+        run: npm run rss
 
       - name: Commit changes
         run: |
