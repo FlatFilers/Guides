@@ -1,0 +1,132 @@
+---
+title: "Multi-Sheet Files"
+description: "Working with files containing multiple sheets"
+icon: "table-list"
+---
+
+# Multi-Sheet Files
+
+Flatfile supports importing files that contain multiple sheets, such as Excel workbooks with several worksheets. This guide explains how to work with multi-sheet files in Flatfile.
+
+## Overview
+
+When you upload a file with multiple sheets (like an Excel file with multiple worksheets), Flatfile will:
+
+1. Extract all sheets from the file
+2. Create a separate sheet in the workbook for each sheet in the file
+3. Provide a tabbed interface to navigate between sheets
+
+This feature is particularly useful when working with complex datasets that are logically separated across multiple sheets in a single file.
+
+## Sheet Navigation
+
+When working with a file that contains multiple sheets, you'll see a tab strip at the bottom of the workbook interface that allows you to switch between sheets:
+
+<img src="/images/guides/multi-sheet-files/sheet-tabs.png" caption="Sheet tabs for navigating between sheets" />
+
+Each tab represents a sheet from the original file. Clicking on a tab will switch to that sheet, allowing you to view and edit its data independently.
+
+## Sheet Order
+
+Sheets are displayed in the tab strip in the order they appear in the original file. This helps maintain the logical organization of your data as it was structured in the source file.
+
+## Working with Multi-Sheet Data
+
+When working with multi-sheet files, keep in mind:
+
+1. **Validation rules**: Each sheet can have its own validation rules based on the workbook configuration
+2. **Data transformation**: Record hooks can be applied to specific sheets using the sheet slug
+3. **Actions**: Actions can be configured to work with data from specific sheets or across multiple sheets
+
+## Example: Configuring a Listener for Multi-Sheet Files
+
+Here's an example of how to configure a listener that handles multi-sheet files:
+
+```javascript
+import { FlatfileListener } from '@flatfile/listener'
+import { xlsxExtractorPlugin } from '@flatfile/plugin-xlsx-extractor'
+
+export default new FlatfileListener({
+  namespace: 'multi-sheet-handler',
+  plugins: [
+    xlsxExtractorPlugin()
+  ],
+  recordHooks: {
+    'contacts': (record) => {
+      // Transform data in the "contacts" sheet
+      return record
+    },
+    'orders': (record) => {
+      // Transform data in the "orders" sheet
+      return record
+    }
+  }
+})
+```
+
+## Sheet-Specific Actions
+
+You can configure actions that apply to specific sheets in your multi-sheet workbook:
+
+```javascript
+const workbookConfig = {
+  name: "Multi-sheet Workbook",
+  sheets: [
+    {
+      name: "Contacts",
+      slug: "contacts",
+      fields: [
+        // Contact fields
+      ],
+      actions: [
+        {
+          operation: "contacts:export",
+          mode: "foreground",
+          label: "Export Contacts",
+          description: "Export only the contacts data"
+        }
+      ]
+    },
+    {
+      name: "Orders",
+      slug: "orders",
+      fields: [
+        // Order fields
+      ],
+      actions: [
+        {
+          operation: "orders:export",
+          mode: "foreground",
+          label: "Export Orders",
+          description: "Export only the orders data"
+        }
+      ]
+    }
+  ],
+  actions: [
+    {
+      operation: "workbook:export",
+      mode: "foreground",
+      label: "Export All",
+      description: "Export all sheets"
+    }
+  ]
+}
+```
+
+## Best Practices
+
+When working with multi-sheet files:
+
+1. **Consistent naming**: Use clear, consistent sheet names to help users understand the content of each sheet
+2. **Logical grouping**: Group related data in separate sheets to make it easier to work with
+3. **Sheet-specific validation**: Configure appropriate validation rules for each sheet based on its data requirements
+4. **Cross-sheet references**: Use reference fields to establish relationships between data in different sheets
+
+## Limitations
+
+- The maximum number of sheets that can be extracted from a file depends on the file format and size
+- Very large sheets may require additional processing time
+- Sheet names must be unique within a workbook
+
+By leveraging multi-sheet file support, you can create more sophisticated data import experiences that maintain the logical structure of your users' data.
