@@ -1,0 +1,12 @@
+---
+title: "Fixed Split Transformation Destination Fields"
+description: "Destination fields are now properly created after split transformation jobs"
+---
+
+<Update label="04-04-2025" tags={["dataxp"]}>
+Fixed an issue where destination fields weren't being created after a split transformation job. Previously, when using a transformation rule of type 'split', the system would process the transformation but fail to create the necessary destination fields to store the split data.
+
+With this fix, the system now properly creates all destination fields specified in the split transformation rule after the transformation job completes. This ensures that split data is correctly stored and accessible in the designated destination fields.
+
+This enhancement improves the reliability of data transformation workflows that utilize split operations to separate single field values into multiple destination fields.
+</Update>
