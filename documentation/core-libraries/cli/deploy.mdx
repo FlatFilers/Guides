@@ -51,6 +51,21 @@ The CLI will provide updates as it's deploying:
   Set your target environment `FLATFILE_ENVIRONMENT_ID` and API token `FLATFILE_API_KEY` in your .env file to avoid entering them when prompted.
 </Tip>
 
+### CI Mode
+
+When running deployments in CI/CD pipelines or other automated environments, you can use the `--ci` flag to disable any interactive prompts:
+
+```
+npx flatfile deploy --ci
+```
+
+In CI mode:
+- No confirmation prompts will be displayed
+- The command will fail with a clear error message if multiple agents exist and no slug is provided
+- TypeScript configuration checks will be skipped
+
+This is particularly useful for automated deployments where user interaction isn't possible.
+
 ### Dashboard Management
 
 You can view and manage agents via the Flatfile Dashboard. The dashboard provides a simple interface for monitoring and controlling your deployed agents with the following capabilities:
