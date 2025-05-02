@@ -1,0 +1,400 @@
+---
+title: "Guides and Guidance"
+description: "provide contextual help to user within your data import experience"
+icon: "square-info"
+---
+
+Flatfile's Guide system enables you to create and manage contextual help content within your data import experience. The system consists of two main components: Guides (content) and Guidance (display configuration). This separation allows for flexible, targeted help delivery that adapts to different user roles and contexts.
+
+When you implement guides in your space, the system manages content delivery based on user interactions and predetermined triggers, ensuring users receive help exactly when they need it.
+
+## Understanding the Guide Architecture
+
+Guides are **environment-level resources** that contain the actual help content. Guidance configurations are **space-level resources** that determine how and when those guides are displayed. This architecture offers several key benefits:
+
+- **Centralized content management**: Update a guide once at the environment level, and the changes propagate to all spaces using that guide
+- **Consistent messaging**: Maintain uniform help content across multiple spaces
+- **Efficient maintenance**: No need to update the same content in multiple spaces
+
+Guides and guidance are coupled by a unique slug, creating a one-to-many relationship where a single guide can be displayed in multiple spaces with different presentation settings.
+
+## Creating Guides
+
+Guides are content blocks that contain help text, instructions, or documentation. Each guide is versioned and can contain multiple content blocks.
+
+### Guide Structure
+
+A guide consists of a metadata section and content blocks:
+
+<CodeGroup>
+```typescript Structure
+interface Guide {
+  slug: string;         // Unique identifier
+  title: string;        // Display title
+  description: string;  // Brief description
+  blocks: Block[];      // Content blocks
+  metadata: Record<string, any>;  // Additional metadata
+}
+
+interface Block {
+  type: "markdown";     // Currently only markdown is supported
+  content: string;      // Actual content
+}
+```
+
+**Note:** Currently, only markdown is supported as a block type, with additional types planned for future releases.
+
+```typescript Example
+{
+  "slug": "data-import-guide",
+  "title": "Data Import Guide",
+  "description": "Learn how to import your data",
+  "blocks": [
+    {
+      "type": "markdown",
+      "content": "# Getting Started\nFollow these steps..."
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "lastUpdated": "2024-02-20"
+  }
+}
+```
+</CodeGroup>
+
+<Warning>
+   Guide slugs must be unique within your environment and cannot be changed after creation.
+   Choose them carefully as they serve as permanent identifiers that connect guides to guidance configurations.
+</Warning>
+
+### Creating via API
+
+1. Obtain your Secret Key from the [API Keys](https://platform.flatfile.com/dashboard/keys-and-secrets) page.
+2. Make an authenticated request to create a guide:
+
+<CodeGroup>
+```bash Request
+curl -X POST https://api.x.flatfile.com/v1/environments/{{flatfile_environment_id}}/guides \
+   -H "Authorization: Bearer sk_123" \
+   -H "Content-Type: application/json" \
+   -d '{
+     "slug": "data-import-guide",
+     "title": "Data Import Guide",
+     "description": "Learn how to import your data",
+     "blocks": [
+       {
+         "type": "markdown",
+         "content": "# Getting Started\nFollow these steps..."
+       }
+     ]
+   }'
+```
+
+```json Response
+{
+  "data": {
+    "id": "guide_123",
+    "slug": "data-import-guide",
+    "title": "Data Import Guide",
+    "status": "active"
+  }
+}
+```
+</CodeGroup>
+
+## Configuring Guidance
+
+Guidance determines how and when guides are presented to users. It includes display type, trigger conditions, and targeting rules. Each guidance configuration lives at the space level and references a guide by its slug.
+
+### Display Types
+
+Flatfile offers three display types for guides, each suited to different content lengths and use cases:
+
+1. **Tooltip**
+   - Lightweight popups that appear on hover
+   - Best for quick tips and short explanations (1-2 lines)
+   - Automatically positioned relative to target
+   ```typescript
+   {
+     type: "tooltip",
+     target: "workbook:primary_action",
+     trigger: "hover"
+   }
+   ```
+
+2. **Sidebar**
+   - Full-height panel on the right side
+   - Ideal for detailed documentation with multiple sections
+   - Perfect for step-by-step instructions
+   ```typescript
+   {
+     type: "sidebar",
+     target: "sheet:manage_columns",
+     trigger: "manual"
+   }
+   ```
+
+3. **Popout**
+   - Modal-style window in center of screen
+   - Good for medium-length content (2-3 sentences)
+   - Can include rich media
+   ```typescript
+   {
+     type: "popout",
+     target: "workbook:job_panel",
+     trigger: "first"
+   }
+   ```
+
+<Note>
+   Choose your display type based on content length and importance.
+   Tooltips work best for simple hints, while sidebars are better for comprehensive documentation.
+</Note>
+
+### Target Locations
+
+Guides can be attached to specific UI elements using static or dynamic targets:
+
+#### Static Targets
+Pre-defined locations in the UI:
+
+```typescript
+type StaticTarget =
+  | "workbook:primary_action"
+  | "workbook:secondary_action"
+  | "workbook:job_panel"
+  | "workbook:version_panel"
+  | "workbook:data_clips"
+  | "sidebar:files_tab"
+  | "sidebar:secrets_tab"
+  | "sidebar:guests_tab"
+  | "sidebar:documents_tab"
+  | "sidebar:workbooks_tab"
+  | "sheet:manage_columns"
+  | "sheet:search"
+  | "sheet:valid_filters"
+  | "sheet:filter_by_error"
+  | "sheet:data_clips"
+  | "sheet:ai_transform"
+  | "sheet:download"
+  | "sheet:delete"
+```
+
+#### Dynamic Targets
+Generated targets for specific instances:
+
+```typescript
+type DynamicTarget = 
+  | `dynamic:sheet:${string}`
+  | `dynamic:document:${string}`
+  | `dynamic:workbook:sheet:${string}`
+  | `dynamic:sheet:action:${string}`
+```
+
+### Trigger Types
+
+Guides can be triggered in three ways:
+
+- **First**: Displays the first time a user accesses the space
+- **Hover**: Appears when the user hovers over the target element
+- **Manual**: Triggered by a specific user action or click
+
+### Role-Based Display
+
+Configure different guidance for different user roles to ensure users only see guidance relevant to their permissions:
+
+<CodeGroup>
+```typescript Configuration
+interface GuidanceOptions {
+  role?: "admin" | "guest";
+  target: StaticTarget | DynamicTarget;
+  type: "tooltip" | "sidebar" | "popout";
+  trigger: "hover" | "first" | "manual";
+}
+```
+
+```typescript Example
+{
+  "role": "admin",
+  "target": "sidebar:secrets_tab",
+  "type": "sidebar",
+  "trigger": "first"
+}
+```
+</CodeGroup>
+
+
+### Creating Guidance via API
+
+To create guidance using the API, follow these steps:
+
+1. Obtain your Secret Key from the [API Keys](https://platform.flatfile.com/dashboard/keys-and-secrets) page.
+2. Make an authenticated request to create guidance at the space level:
+
+<CodeGroup>
+```bash Request
+curl -X POST {{flatfile_base_url}}/v1/spaces/{{flatfile_space_id}}/guidance \
+   -H "Authorization: Bearer sk_123" \
+   -H "Content-Type: application/json" \
+   -d '{
+     "guideSlug": "data-import-guide",  // References the environment-level guide
+     "target": "workbook:primary_action",
+     "type": "popout",
+     "trigger": "first",
+     "role": "admin"
+   }'
+```
+
+```json Response
+{
+  "data": {
+    "id": "guidance_456",
+    "guideSlug": "data-import-guide",
+    "target": "workbook:primary_action",
+    "type": "popout",
+    "status": "active"
+  }
+}
+```
+</CodeGroup>
+
+
+## Implementation Examples
+
+### 1. Onboarding Guide
+
+Create a guide for new users:
+
+```typescript
+// First, create the guide at the environment level
+const onboardingGuide = {
+  slug: "getting-started",
+  title: "Welcome to Flatfile",
+  description: "Learn the basics of data importing",
+  blocks: [
+    {
+      type: "markdown",
+      content: "# Welcome!\nLet's walk through the key features..."
+    }
+  ]
+};
+
+// Then, create guidance configurations for each space that should use this guide
+const onboardingGuidance = {
+  guideSlug: "getting-started",
+  target: "workbook:primary_action",
+  type: "popout",
+  trigger: "first"
+};
+```
+
+### 2. Feature Tour
+
+Create a sequence of guides for a feature tour:
+
+```typescript
+// Create guides at the environment level
+const featureTourGuides = [
+  {
+    slug: "upload-guide",
+    title: "Uploading Files",
+    blocks: [
+      {
+        type: "markdown",
+        content: "# File Upload\nDrag and drop your files here..."
+      }
+    ]
+  },
+  {
+    slug: "mapping-guide",
+    title: "Column Mapping",
+    blocks: [
+      {
+        type: "markdown",
+        content: "# Column Mapping\nMatch your columns to our template..."
+      }
+    ]
+  }
+];
+
+// Create guidance for each space
+const featureTourGuidance = [
+  {
+    guideSlug: "upload-guide",
+    target: "sidebar:files_tab",
+    type: "sidebar",
+    trigger: "first"
+  },
+  {
+    guideSlug: "mapping-guide",
+    target: "sheet:manage_columns",
+    type: "popout",
+    trigger: "first"
+  }
+];
+```
+
+### 3. Role-Specific Documentation
+
+Create different guides for different user roles:
+
+```typescript
+// Create a single guide at the environment level
+const settingsGuide = {
+  slug: "settings-guide",
+  title: "Settings Guide",
+  blocks: [
+    {
+      type: "markdown",
+      content: "# Settings\nManage your configuration..."
+    }
+  ]
+};
+
+// Then create role-specific guidance at the space level
+const adminGuidance = {
+  guideSlug: "settings-guide",
+  target: "sidebar:secrets_tab",
+  type: "sidebar",
+  trigger: "first",
+  role: "admin"
+};
+
+const guestGuidance = {
+  guideSlug: "settings-guide",
+  target: "workbook:primary_action",
+  type: "tooltip",
+  trigger: "hover",
+  role: "guest"
+};
+```
+
+<Tip>
+   For optimal user experience, consider implementing progressive disclosure - showing more complex guides only after users have mastered the basics.
+</Tip>
+
+## Best Practices for Guide Creation
+
+When creating guides, follow these principles:
+
+1. **Identify the right UI element**: Choose specific interface components that need explanation
+2. **Consider user roles**: Determine which users (admins, guests, regular users) need to see each guide
+3. **Select appropriate format**:
+   - Tooltips for quick hints (1-2 lines)
+   - Popouts for feature explanations (2-3 sentences)
+   - Sidebars for detailed instructions (longer content with sections)
+4. **Choose the right trigger**: Use "first" for onboarding, "hover" for discoverable tips, and "manual" for on-demand help
+
+This ensures your guidance appears exactly where and when needed, for the right users, in the most appropriate format.
+
+### Troubleshooting
+
+Common issues and their solutions:
+
+| Issue | Solution |
+|-------|----------|
+| Guide not appearing | Check that both guide (environment) and guidance (space) are correctly configured with matching slugs |
+| Content not updating | Ensure guide is updated at the environment level |
+| Display issues | Confirm content length suits chosen display type |
+| Role-specific guides not showing | Verify user role permissions match guidance configuration |
