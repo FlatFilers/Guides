@@ -1,0 +1,121 @@
+---
+title: "Nested Splits"
+description: "Split data into multiple fields with nested transformations"
+icon: "code-branch"
+---
+
+# Nested Splits
+
+Flatfile's split functionality allows you to transform a single field into multiple destination fields. With the introduction of nested splits, you can now create more complex transformations by referencing previewed data in agent tool calls.
+
+## Overview
+
+Nested splits enhance Flatfile's data transformation capabilities by:
+
+1. Tracking mapping rules server-side
+2. Enabling reference to previewed data in agent tool calls
+3. Supporting complex, multi-level data transformations
+4. Preserving transformation context across operations
+
+This feature is particularly useful when you need to perform sequential transformations on your data, where later transformations depend on the results of earlier ones.
+
+## How Nested Splits Work
+
+When you use the split tool in Flatfile, the system now:
+
+1. Stores the mapping rules on the server
+2. Makes these rules available to subsequent agent tool calls
+3. Allows agents to reference the transformed data
+4. Maintains the relationship between source and transformed data
+
+## Using Nested Splits
+
+Nested splits are available through the preprocessing service and can be accessed using the split tool. Here's how to implement nested splits in your data transformation workflow:
+
+### Basic Split Operation
+
+A basic split operation transforms a single source field into multiple destination fields:
+
+```javascript
+// Example of a basic split operation
+const splitResult = await generateSplit(
+  sourceField,      // The field to split
+  data,             // Sample data from the field
+  fieldNames,       // Destination field names
+  prompt            // Optional user instructions
+);
+```
+
+### Nested Split Operation
+
+With nested splits, you can now reference the results of previous splits in subsequent transformations:
+
+```javascript
+// First split operation
+const firstSplitResult = await generateSplit(
+  sourceField,
+  data,
+  initialFieldNames,
+  prompt
+);
+
+// Second split operation that references results from the first
+const secondSplitResult = await generateSplit(
+  firstSplitResult.data.rule.destinationFields[0], // Reference a field created by the first split
+  transformedData,
+  secondaryFieldNames,
+  additionalPrompt
+);
+```
+
+## Example Use Cases
+
+### Address Parsing
+
+Split a full address into components, then further split the street address:
+
+1. First split: "123 Main St, Apt 4, New York, NY 10001" → ["123 Main St, Apt 4", "New York", "NY", "10001"]
+2. Nested split: "123 Main St, Apt 4" → ["123", "Main St", "Apt 4"]
+
+### Name Parsing
+
+Split a full name, then further process components:
+
+1. First split: "Dr. John A. Smith Jr." → ["Dr.", "John A.", "Smith", "Jr."]
+2. Nested split: "John A." → ["John", "A."]
+
+### Date and Time Processing
+
+Split a datetime stamp, then further process the date:
+
+1. First split: "2025-05-01 14:30:45" → ["2025-05-01", "14:30:45"]
+2. Nested split: "2025-05-01" → ["2025", "05", "01"]
+
+## Implementation Details
+
+The nested splits functionality is implemented in the preprocessing service and leverages several key components:
+
+1. **Mapping Rules**: Rules are now tracked server-side and can be referenced in subsequent operations
+2. **Virtual Machine**: Processes the mapping rules and applies them to the data
+3. **Run Class**: Manages the application of mapping rules to the data
+4. **Split Tool**: Provides the interface for creating split operations
+
+## Best Practices
+
+When working with nested splits:
+
+1. **Plan Your Transformation Chain**: Map out the sequence of splits before implementation
+2. **Use Descriptive Field Names**: Clear naming helps track the transformation flow
+3. **Validate Intermediate Results**: Check the output of each split before proceeding
+4. **Consider Performance**: Complex nested operations may impact processing time
+5. **Test with Sample Data**: Verify transformations with representative data samples
+
+## Limitations
+
+- Deeply nested splits (more than 3-4 levels) may become difficult to manage
+- Performance may be affected with very large datasets and complex transformations
+- All splits in a chain must be defined within the same agent session
+
+## Conclusion
+
+Nested splits significantly enhance Flatfile's data transformation capabilities, allowing for more sophisticated data processing workflows. By tracking mapping rules server-side and enabling reference to previewed data, you can create powerful, multi-stage data transformations that were previously difficult to implement.
