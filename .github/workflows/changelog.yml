@@ -25,7 +25,7 @@ jobs:
         run: npm run changelog
 
       - name: Run rss script
-        run: npm run rss
+        run: npm i rss && npm run rss
 
       - name: Commit changes
         run: |
