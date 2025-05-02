@@ -9,7 +9,7 @@
             <link>https://flatfile.com</link>
         </image>
         <generator>Flatfile RSS Generator</generator>
-        <lastBuildDate>Fri, 02 May 2025 20:15:44 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 02 May 2025 20:33:18 GMT</lastBuildDate>
         <atom:link href="https://flatfile.com/changelog/platform/feed.xml" rel="self" type="application/rss+xml"/>
         <language><![CDATA[en]]></language>
         <ttl>60</ttl>
@@ -73,6 +73,17 @@ fetch('https://api.flatfile.com/v1/instructions?environmentId=us_env_123&amp;sco
             <guid isPermaLink="false">platform-04-14-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
             <pubDate>Mon, 14 Apr 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Updated Default Data Retention Period]]></title>
+            <description><![CDATA[<p><strong>Updated Default Data Retention Period</strong></p>
+<p>The default data retention period has been updated from 10 days to 365 days, providing users with a longer default timeframe for data storage. Additionally, the description text has been simplified to &quot;Keeps data for a set duration from its collection&quot; without referencing a specific policy timeframe.</p>
+<p>This change gives users more time to work with their data before it expires, while maintaining the flexibility to configure custom retention periods as needed.</p>
+]]></description>
+            <link>https://flatfile.com/changelog/platform#04112025</link>
+            <guid isPermaLink="false">platform-04-11-2025-dataxp</guid>
+            <category><![CDATA[dataxp]]></category>
+            <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Improved Data Clips Collaborator Experience]]></title>
