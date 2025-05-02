@@ -4,6 +4,10 @@ description: "Notable additions and updates to Flatfile core libraries"
 icon: "cube"
 ---
 
+<Update label="04-18-2025" tags={["cli"]}>
+As of version 3.9.0, the Flatfile CLI now includes TypeScript types (if available) and package.json in the source map when deploying an agent. This enhancement improves debugging capabilities and provides better type information in the deployed code, making it easier to troubleshoot issues in production environments.
+</Update>
+
 <Update label="04-09-2025" tags={["cli"]}>
 The Flatfile CLI v3.10.0 introduces a new `--ci` option for the `deploy` command that disables all interactive prompts, making it ideal for automated deployments in CI/CD pipelines. When using this flag:
 
@@ -12,10 +16,6 @@ The Flatfile CLI v3.10.0 introduces a new `--ci` option for the `deploy` command
 - TypeScript configuration checks will be skipped
 
 This enhancement streamlines the deployment process in automated environments where user interaction isn't possible.
-</Update>
-
-<Update label="04-18-2025" tags={["cli"]}>
-As of version 3.9.0, the Flatfile CLI now includes TypeScript types (if available) and package.json in the source map when deploying an agent. This enhancement improves debugging capabilities and provides better type information in the deployed code, making it easier to troubleshoot issues in production environments.
 </Update>
 
 <Update label="09-18-2024" tags={["wrappers"]}>
