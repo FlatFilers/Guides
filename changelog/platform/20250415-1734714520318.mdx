@@ -1,0 +1,42 @@
+---
+title: "DataClip Shared Links"
+description: "Added shared link functionality to DataClips"
+---
+
+### April 15, 2025
+
+## DataClip Shared Links
+
+DataClips now support shared links, making it easier to share your data with others. When creating a DataClip, you can now specify the `sharedLinkAccess` parameter to control how your data can be accessed:
+
+- **Restricted (default)**: Creates a guest link that requires authentication
+- **Public**: Creates an anonymous access link that can be shared with anyone
+
+The API response now includes:
+- `guestLinkUrl`: URL for accessing the DataClip
+- `accessToken`: Token for authentication (included when `sharedLinkAccess` is set to Public)
+
+This enhancement makes DataClips more versatile for collaboration and sharing scenarios.
+
+```typescript
+// Example: Creating a DataClip with public access
+const dataClip = await api.dataClips.create({
+  description: "Monthly sales data",
+  sourceSheetId: "us_sh_123",
+  sharedLinkAccess: "public"
+});
+
+// The response includes guestLinkUrl and accessToken
+console.log(dataClip.guestLinkUrl); // URL to share
+console.log(dataClip.accessToken);  // Access token for authentication
+```
+
+You can also retrieve an existing DataClip with a specific access level:
+
+```typescript
+// Get a DataClip with public access
+const dataClip = await api.dataClips.get(
+  "us_dc_123", 
+  { sharedLinkAccess: "public" }
+);
+```
