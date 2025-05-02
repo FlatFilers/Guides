@@ -6,6 +6,8 @@ icon: "rectangle-terminal"
 
 <Snippet file="shared/dxpbanner.mdx" />
 
+<Snippet file="shared/dxpbanner.mdx" />
+
 FFQL (Flatfile Query Language) is Flatfile's custom query language used for filtering data in <Tooltip tip="A collection of fields...">[Sheets](/learning-center/blueprint/about)</Tooltip>.
 It's logical, composable, and human-readable.
 
@@ -82,26 +84,27 @@ FFQL supports two logical operators:
 
 ### The `is` Operator
 
-The `is` operator allows you to query for validation status at both the record and field level:
+You can query for message statuses by using the `is` operator. For example: `is error` returns all the rows in an `error` state. `is valid` returns all the rows in a `valid` state. `first_name is error` returns the rows where First Name is in an `error` state.
 
-- `is error` - Returns all rows that have any validation errors
-- `is valid` - Returns all rows that have no validation errors
-- `first_name is error` - Returns rows where the First Name field specifically has validation errors
-- `first_name is valid` - Returns rows where the First Name field has no validation errors
+### Escaping Quotes and Backslashes
 
-This operator is particularly useful for filtering data based on validation status, allowing you to quickly identify and address problematic records.
+When you need to include quotes or backslashes within quoted values, you can escape them using a backslash (`\`). Here are examples of how escaping works:
 
-<Note>
-  The `is` operator works with Advanced Filters to create dynamic filters that combine field selection with validation status checks.
-</Note>
+| Query | Value |
+|-------|-------|
+| `"hello \" world"` | `hello " world` |
+| `'hello \' world'` | `hello ' world` |
+| `"hello world \\"` | `hello world \` |
+| `"hello \ world"` | `hello \ world` |
+| `"hello \\ world"` | `hello \ world` |
 
-Example:
+For example, to search for a field containing a quote:
 
 ```sql
-email is error and last_name eq "Smith"
+first_name eq "John \"Johnny\" Doe"
 ```
 
-This query would return all rows where the email field has validation errors and the last name is "Smith".
+This would match a first name value of: `John "Johnny" Doe`
 
 ---
 
@@ -140,19 +143,6 @@ From the search bar in a Workbook, prepend **filter:** to your FFQL query.
 ```json type in search bar
 filter: first_name eq Bender and last_name eq Rodriguez
 ```
-
-### Via Advanced Filters
-
-The Advanced Filters feature allows you to build complex FFQL queries through a user-friendly interface. You can select fields, choose operators (including the `is` operator for validation status), and specify values to create dynamic filters.
-
-To use Advanced Filters:
-
-1. Click the "Filter" button in the toolbar
-2. Select "Advanced filter" from the dropdown menu
-3. Build your query by adding conditions and selecting operators
-4. Apply the filter to see the filtered results
-
-Advanced Filters support all FFQL operators, including field-specific validation checks using the `is` operator.
 
 ### Via API
 
