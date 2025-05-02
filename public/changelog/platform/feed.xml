@@ -9,10 +9,71 @@
             <link>https://flatfile.com</link>
         </image>
         <generator>Flatfile RSS Generator</generator>
-        <lastBuildDate>Wed, 30 Apr 2025 17:30:39 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 02 May 2025 17:37:51 GMT</lastBuildDate>
         <atom:link href="https://flatfile.com/changelog/platform/feed.xml" rel="self" type="application/rss+xml"/>
         <language><![CDATA[en]]></language>
         <ttl>60</ttl>
+        <item>
+            <title><![CDATA[Create Instructions]]></title>
+            <description><![CDATA[<p>We're excited to introduce the new Instructions API, which allows you to store and retrieve contextual instructions for guiding users during the data mapping process.</p>
+<p>The Instructions API provides a way to associate helpful guidance with specific field sets. When a user is mapping data with a similar field structure, the appropriate instructions can be retrieved and displayed to guide them through the process.</p>
+<p>Key features include:</p>
+<ul>
+<li><strong>Field-specific instructions</strong>: Store instructions for specific combinations of fields</li>
+<li><strong>Automatic matching</strong>: Instructions are automatically matched to sheets with similar field structures</li>
+<li><strong>Metadata support</strong>: Add custom metadata to instructions for additional context</li>
+<li><strong>Full CRUD operations</strong>: Create, read, update, and delete instructions through a RESTful API</li>
+</ul>
+<h4>Create Instructions</h4>
+<pre><code class="language-bash">POST /v1/instructions
+</code></pre>
+<p><strong>Request Body:</strong></p>
+<pre><code class="language-json">{
+  &quot;instructions&quot;: &quot;Map the 'email' field to the customer's primary email address.&quot;,
+  &quot;fieldKeys&quot;: [&quot;first&quot;, &quot;last&quot;, &quot;email&quot;, &quot;subscribed&quot;, &quot;phone&quot;],
+  &quot;metadata&quot;: {
+    &quot;category&quot;: &quot;customer-data&quot;
+  }
+}
+</code></pre>
+<h4>Get Instructions by Sheet ID</h4>
+<pre><code class="language-bash">GET /v1/instructions/sheet/:sheetId
+</code></pre>
+<h4>Update Instructions</h4>
+<pre><code class="language-bash">PATCH /v1/instructions/:instructionId
+</code></pre>
+<h4>Delete Instructions</h4>
+<pre><code class="language-bash">DELETE /v1/instructions/:instructionId
+</code></pre>
+<h4>How It Works</h4>
+<p>Instructions are tied to mapping families, which are collections of fields that share a common structure. The system uses a confidence threshold to determine which instructions to display, ensuring that users only see guidance that's relevant to their current data.</p>
+<h4>Example Usage</h4>
+<p>Here's a simple example of how to create instructions using the API:</p>
+<pre><code class="language-javascript">// Create instructions for customer data fields
+fetch('https://api.flatfile.com/v1/instructions?environmentId=us_env_123&amp;scope=us_acc_456', {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer your_secret_key',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    instructions: &quot;Map the 'email' field to the customer's primary email address. The 'first' and 'last' fields should be mapped to the customer's first and last name.&quot;,
+    fieldKeys: [&quot;first&quot;, &quot;last&quot;, &quot;email&quot;, &quot;subscribed&quot;, &quot;phone&quot;],
+    metadata: {
+      category: &quot;customer-data&quot;,
+      importance: &quot;high&quot;
+    }
+  })
+})
+.then(response =&gt; response.json())
+.then(data =&gt; console.log('Instructions created:', data));
+</code></pre>
+]]></description>
+            <link>https://flatfile.com/changelog/platform#04142025</link>
+            <guid isPermaLink="false">platform-04-14-2025-dataxp</guid>
+            <category><![CDATA[dataxp]]></category>
+            <pubDate>Mon, 14 Apr 2025 07:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Improved Data Clips Collaborator Experience]]></title>
             <description><![CDATA[<p><strong>Improved Data Clips Collaborator Experience</strong></p>
@@ -31,8 +92,7 @@
         </item>
         <item>
             <title><![CDATA[Advanced Filters with Field Validation Status]]></title>
-            <description><![CDATA[<h2>description: &quot;New filtering capabilities to query by field validation status&quot;</h2>
-<p><strong>Advanced Filters with Field Validation Status</strong></p>
+            <description><![CDATA[<p><strong>Advanced Filters with Field Validation Status</strong></p>
 <p>We've enhanced our filtering capabilities with a new Advanced Filters feature that supports querying by field validation status. This powerful addition allows you to build dynamic filters that combine field selection with validation checks.</p>
 <p>Key improvements include:</p>
 <ul>
@@ -46,9 +106,78 @@
 <p><img src="https://github.com/user-attachments/assets/4f7b1043-aba4-45c3-8557-bfa8e2a878b3" alt="Advanced Filters Demo"></p>
 ]]></description>
             <link>https://flatfile.com/changelog/platform#04082025</link>
-            <guid isPermaLink="false">platform-04-08-2025-title: Advanced Filters with Field Validation Status</guid>
-            <category><![CDATA[title: Advanced Filters with Field Validation Status]]></category>
+            <guid isPermaLink="false">platform-04-08-2025-spaces</guid>
+            <category><![CDATA[spaces]]></category>
             <pubDate>Tue, 08 Apr 2025 07:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[The guest URL functionality for DataClips has been enhanced with a more streamlined approach to U...]]></title>
+            <description><![CDATA[<p>The guest URL functionality for DataClips has been enhanced with a more streamlined approach to URL generation and storage:</p>
+<ul>
+<li>The <code>guestAuthentication</code> array field has been replaced with a new <code>guestLinkUrl</code> string field in the DataClip model</li>
+<li>When updating a DataClip with <code>sharedLink</code> set to &quot;unrestricted&quot;, a guest link with a permanent access token is generated</li>
+<li>When updating a DataClip with <code>sharedLink</code> set to &quot;restricted&quot;, a direct sheet URL is generated without a token</li>
+<li>The system now properly handles existing guest links to prevent unnecessary regeneration</li>
+<li>The URL format has been improved for better usability and security</li>
+</ul>
+<p>This change provides a more consistent and reliable way to share DataClips with guests, with clearer distinction between restricted and unrestricted access modes.</p>
+]]></description>
+            <link>https://flatfile.com/changelog/platform#04072025</link>
+            <guid isPermaLink="false">platform-04-07-2025-spaces-ui</guid>
+            <category><![CDATA[spaces-ui]]></category>
+            <pubDate>Mon, 07 Apr 2025 07:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[External links in Documents (both Markdown and HTML) now automatically open in a new tab (`target...]]></title>
+            <description><![CDATA[<p>External links in Documents (both Markdown and HTML) now automatically open in a new tab (<code>target=&quot;_blank&quot;</code>). This improvement ensures that users don't navigate away from the Flatfile interface when clicking on links within documents, maintaining their current context and workflow.</p>
+<p>This change applies to all links in documents, whether they're created using Markdown syntax or HTML anchor tags.</p>
+]]></description>
+            <link>https://flatfile.com/changelog/platform#04072025</link>
+            <guid isPermaLink="false">platform-04-07-2025-spaces-ui</guid>
+            <category><![CDATA[spaces-ui]]></category>
+            <pubDate>Mon, 07 Apr 2025 07:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Preserve Record IDs During Transformations]]></title>
+            <description><![CDATA[<p><strong>Preserve Record IDs During Transformations</strong></p>
+<p>We've added a new <code>keepRecordIds</code> flag to maintain record IDs during transformations. This enhancement provides greater control over how records are processed during transformation operations.</p>
+<p><strong>Key Benefits:</strong></p>
+<ul>
+<li>Maintains data consistency across transformation previews</li>
+<li>Preserves record relationships and references</li>
+<li>Improves transformation accuracy by maintaining original record IDs</li>
+</ul>
+<p><strong>Technical Details:</strong><br>
+When <code>keepRecordIds</code> is set to <code>true</code>, the system uses <code>updateRecords</code> instead of the previous add/delete approach, ensuring that record IDs remain unchanged throughout the transformation process. This is particularly valuable when:</p>
+<ul>
+<li>Working with data that has established relationships between records</li>
+<li>Performing multiple transformations where maintaining record identity is important</li>
+<li>Integrating with systems that rely on consistent record identifiers</li>
+</ul>
+<p><strong>Usage:</strong><br>
+The <code>keepRecordIds</code> flag can be included in transformation job configurations:</p>
+<pre><code class="language-javascript">// Example of creating a transformation job with keepRecordIds
+const transformationJobResponse = await HTTPService.createJob({
+  type: &quot;workbook&quot;,
+  operation: &quot;transform&quot;,
+  source: workbookId,
+  destination: destinationWorkbookId,
+  config: {
+    destinationSheetId: destinationSheetId,
+  },
+  input: {
+    programId: &quot;your-program-id&quot;,
+    version: &quot;v2&quot;,
+    keepRecordIds: true, // Set to true to preserve record IDs
+  },
+});
+</code></pre>
+<p>This feature is backward compatible - <code>keepRecordIds</code> defaults to <code>false</code>, maintaining the existing behavior for current implementations.</p>
+]]></description>
+            <link>https://flatfile.com/changelog/platform#04032025</link>
+            <guid isPermaLink="false">platform-04-03-2025-dataxp</guid>
+            <category><![CDATA[dataxp]]></category>
+            <pubDate>Thu, 03 Apr 2025 07:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[New row insertion feature in Flatfile's data tables.]]></title>
@@ -1075,6 +1204,8 @@ as read-only. Now, you can apply more granular control over data manipulation by
 restricting editing at the cell level, improving data integrity and compliance.</p>
 <p>See the<br>
 <a href="https://reference.flatfile.com/api-reference/records/update#request.body.config.readonly">reference</a>.</p>
+<p><strong>Fixed Sheet Name Sanitization for Downloads</strong></p>
+<p>We've improved the file download process by sanitizing sheet names that contain forward slashes. Previously, when a sheet had a name with forward slashes (e.g., &quot;people/Contacts&quot;), downloading the sheet could cause issues with file paths. Now, forward slashes in sheet names are automatically replaced with underscores when generating download filenames, ensuring a smooth download experience regardless of the sheet naming convention used.</p>
 ]]></description>
             <link>https://flatfile.com/changelog/platform#04122024</link>
             <guid isPermaLink="false">platform-04-12-2024-spaces</guid>
