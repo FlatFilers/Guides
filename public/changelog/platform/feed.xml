@@ -9,7 +9,7 @@
             <link>https://flatfile.com</link>
         </image>
         <generator>Flatfile RSS Generator</generator>
-        <lastBuildDate>Fri, 02 May 2025 20:33:18 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 02 May 2025 20:36:35 GMT</lastBuildDate>
         <atom:link href="https://flatfile.com/changelog/platform/feed.xml" rel="self" type="application/rss+xml"/>
         <language><![CDATA[en]]></language>
         <ttl>60</ttl>
@@ -83,6 +83,25 @@ fetch('https://api.flatfile.com/v1/instructions?environmentId=us_env_123&amp;sco
             <link>https://flatfile.com/changelog/platform#04112025</link>
             <guid isPermaLink="false">platform-04-11-2025-dataxp</guid>
             <category><![CDATA[dataxp]]></category>
+            <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Improved Atomic Filter Management]]></title>
+            <description><![CDATA[<hr>
+<p><strong>Improved Atomic Filter Management</strong></p>
+<p>We've enhanced the filtering experience in the Spaces UI by preventing the creation of multiple &quot;atomic&quot; filters for the same field. Now, when a user attempts to create a filter for a field that already has an existing filter, they will be directed to that existing filter query instead of creating a new one.</p>
+<p>This improvement:</p>
+<ul>
+<li>Prevents duplicate filters that could lead to confusion</li>
+<li>Creates a cleaner filtering interface</li>
+<li>Streamlines the filter management experience</li>
+<li>Makes it easier to track and modify existing filters</li>
+</ul>
+<p>The change applies specifically to simple field-based filters, ensuring a more intuitive and organized filtering experience.</p>
+]]></description>
+            <link>https://flatfile.com/changelog/platform#04112025</link>
+            <guid isPermaLink="false">platform-04-11-2025-title: Enhanced Filter Management in Spaces UI</guid>
+            <category><![CDATA[title: Enhanced Filter Management in Spaces UI]]></category>
             <pubDate>Fri, 11 Apr 2025 00:00:00 GMT</pubDate>
         </item>
         <item>
