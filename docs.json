@@ -343,9 +343,6 @@
   "integrations": {
     "gtm": {
       "tagId": "GTM-W673X2W"
-    },
-    "intercom": {
-      "appId": "q8ccrv3f"
     }
   },
   "redirects": [
