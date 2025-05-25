@@ -1,0 +1,34 @@
+---
+title: "Nested Splits Support"
+description: "Enhanced data transformation with nested splits"
+---
+
+# Nested Splits Support
+
+> **Note:** This feature is currently for internal use only and is not customer-facing.
+
+**May 1, 2025**
+
+We're excited to announce support for nested splits in Flatfile's data transformation capabilities. This feature enhances the platform's ability to handle complex data transformations by tracking mapping rules server-side and enabling reference to previewed data in agent tool calls.
+
+## Key Improvements
+
+- **Server-side mapping rules**: Mapping rules are now tracked server-side, allowing for more complex transformations
+- **Previewed data reference**: Agent tool calls can now reference data that has been previewed through previous transformations
+- **Enhanced split functionality**: The split tool now supports nested operations where one split can build upon another
+- **Improved data transformation workflow**: Create multi-stage data transformations with preserved context
+
+## Use Cases
+
+Nested splits are particularly useful for:
+
+- Complex address parsing (splitting an address into components, then further splitting those components)
+- Name parsing with multiple levels of detail
+- Date and time processing with hierarchical transformations
+- Any scenario requiring sequential, dependent data transformations
+
+## Implementation
+
+The nested splits functionality is available through the preprocessing service and can be accessed using the split tool. For detailed implementation guidance, see our [Nested Splits guide](/learning-center/guides/nested-splits).
+
+This enhancement significantly expands Flatfile's data transformation capabilities, enabling more sophisticated data processing workflows that were previously difficult to implement.
