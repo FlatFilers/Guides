@@ -1,18 +1,19 @@
-name: Changelog
+name: Changelog & RSS
 
 on:
-  push:
-    branches:
-      - changelog/**
+  pull_request:
+    paths:
+      - 'changelog/src/**'
 
 jobs:
   changelog-pull-request:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.head.ref != 'main'
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v2
         with:
-          ref: ${{ steps.create_pr.outputs.pull_request_number }}
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
   
       - name: Set up Node.js
@@ -23,12 +24,15 @@ jobs:
       - name: Run changelog script
         run: npm run changelog
 
+      - name: Run rss script
+        run: npm i rss && npm run rss
+
       - name: Commit changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git commit -m "Update changelog"
-          git push origin HEAD:${{ github.ref_name }}
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

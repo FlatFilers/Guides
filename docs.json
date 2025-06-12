@@ -192,7 +192,9 @@
                       "learning-center/guides/multi-part_jobs",
                       "learning-center/guides/ai",
                       "learning-center/guides/sftp",
-                      "learning-center/guides/dataclips"
+                      "learning-center/guides/guides",
+                      "learning-center/guides/dataclips",
+                      "learning-center/guides/mcp"
                     ]
                   }
                 ]
@@ -341,9 +343,6 @@
   "integrations": {
     "gtm": {
       "tagId": "GTM-W673X2W"
-    },
-    "intercom": {
-      "appId": "q8ccrv3f"
     }
   },
   "redirects": [

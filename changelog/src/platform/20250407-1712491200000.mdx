@@ -1,0 +1,14 @@
+### April 7, 2025
+
+## spaces-ui
+
+
+The guest URL functionality for DataClips has been enhanced with a more streamlined approach to URL generation and storage:
+
+- The `guestAuthentication` array field has been replaced with a new `guestLinkUrl` string field in the DataClip model
+- When updating a DataClip with `sharedLink` set to "unrestricted", a guest link with a permanent access token is generated
+- When updating a DataClip with `sharedLink` set to "restricted", a direct sheet URL is generated without a token
+- The system now properly handles existing guest links to prevent unnecessary regeneration
+- The URL format has been improved for better usability and security
+
+This change provides a more consistent and reliable way to share DataClips with guests, with clearer distinction between restricted and unrestricted access modes.

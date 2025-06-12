@@ -86,6 +86,26 @@ FFQL supports two logical operators:
 
 You can query for message statuses by using the `is` operator. For example: `is error` returns all the rows in an `error` state. `is valid` returns all the rows in a `valid` state. `first_name is error` returns the rows where First Name is in an `error` state.
 
+### Escaping Quotes and Backslashes
+
+When you need to include quotes or backslashes within quoted values, you can escape them using a backslash (`\`). Here are examples of how escaping works:
+
+| Query | Value |
+|-------|-------|
+| `"hello \" world"` | `hello " world` |
+| `'hello \' world'` | `hello ' world` |
+| `"hello world \\"` | `hello world \` |
+| `"hello \ world"` | `hello \ world` |
+| `"hello \\ world"` | `hello \ world` |
+
+For example, to search for a field containing a quote:
+
+```sql
+first_name eq "John \"Johnny\" Doe"
+```
+
+This would match a first name value of: `John "Johnny" Doe`
+
 ---
 
 ## Constructing Queries
