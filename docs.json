@@ -321,12 +321,12 @@
         "href": "https://platform.flatfile.com/oauth/dashboard"
       },
       {
-        "label": "Create Account",
-        "href": "https://flatfile.com/account/sign-up/"
-      },
-      {
         "label": "Join Our Community",
         "href": "https://flatfile.com/join-slack/"
+      },
+      {
+        "label": "Contact Us",
+        "href": "mailto:support@flatfile.com"
       }
     ]
   },
