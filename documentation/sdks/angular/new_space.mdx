@@ -54,7 +54,7 @@ export class AppComponent {
   constructor(private spaceService: SpaceService) {}
 
   toggleSpace() {
-    this.spaceService.OpenEmbed();
+    this.spaceService.OpenEmbed(this.spaceProps);
     this.showSpace = !this.showSpace;
   }
 
