@@ -1,0 +1,13 @@
+### August 23, 2026
+
+## dataxp
+
+**Fixed Workbooks That Could Get Stuck While Loading**
+
+We fixed an issue where a workbook could occasionally get stuck while loading and never finish
+opening. When this happened, no error was shown and reopening the workbook didn't help — it stayed
+unavailable with no way to recover it by trying again.
+
+Going forward, workbooks no longer get stuck this way. If a load doesn't finish, it now fails
+cleanly and the workbook stays openable, so opening it again loads it successfully instead of
+leaving it permanently stuck.
