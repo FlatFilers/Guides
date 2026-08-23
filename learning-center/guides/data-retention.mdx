@@ -17,17 +17,30 @@ icon: "calendar"
 Data retention policies are crucial for managing and controlling the lifecycle
 of data within your Flatfile account. In this guide, we'll walk you through the
 process of adding and configuring data retention policies based on our two
-options `last activity` and `since created` policy types. These policies will
-help you automatically clean up outdated data within your Flatfile environment,
-ensuring optimal data hygiene.
+policy types: `last activity` and `since created`. These policies will
+help you automatically clean up outdated data within your Flatfile environment.
 
-Flatfile will expire Spaces (the Space will no longer be accessible but will
-still appear in the Spaces' response) and delete any data that was uploaded or
-added to the respective Space.
+Flatfile will expire Spaces (the Space is no longer accessible, though it
+remains listed among your Spaces). Expiring a Space drops the underlying storage
+of its non-frozen Workbooks in that Space — frozen Workbooks are retained — and
+this cannot be recovered. The safeguards described below exist to make this
+outcome predictable.
+
+When you create a policy or tighten an existing one, its retention clock starts
+at the moment of the change. Tightening means creating a new policy, changing an
+existing policy's type, or shortening its period. Rather than expiring your
+existing Spaces on the next scheduled run, the policy waits one full retention
+period from the change before the first expiry, so you have time to confirm the
+policy is correct before any Spaces are expired.
+Policies that predate this change, and that you haven't modified, keep their
+prior timing.
 
 <Note>
-  By default, data retention is set to 365 days. The execution window for data deletion
-  may vary by +/- 7 days from your defined period.
+  By default, data retention is set to 365 days. The execution window for data
+  deletion may vary by +/- 7 days from your defined period. A new policy's
+  retention period must be a whole number of at least 7 days. An existing policy
+  already below 7 days can still be updated, as long as the change does not
+  shorten it further.
 </Note>
 
 ## Prerequisites
@@ -44,23 +57,26 @@ Before you start implementing data retention policies, make sure you have:
 
 ## Understanding Data Deletion Logic
 
-Let's clarify the logic behind data deletion based on the example you provided:
+Here's how the timing works for each policy type:
 
-### Since Created Policy Example:
+### Since Created Policy Example
 
-- Space created on January 1st.
-- Policy set to 2 days.
-- If Flatfile's cron event runs on January 2nd, any Space created before January
-  1st (older than 2 days) will be expired. Any data that was uploaded to the
-  Spaces will be deleted.
+- Policy created on January 1st.
+- Policy set to 7 days.
+- Existing Spaces are not expired on the next scheduled run. Instead, one full
+  retention period after the policy is created — on January 8th — any Space
+  older than 7 days is expired and its data is deleted. From then on, Spaces
+  expire on the regular schedule once they pass 7 days since creation.
 
-### Last Activity Policy Example:
+### Last Activity Policy Example
 
-- Space last modified on January 1st.
-- Policy set to 3 days.
-- If Flatfile's cron event runs on January 4th, any Space that hasn't been
-  modified since January 1st (older than 3 days) will be expired. Any data that
-  was uploaded to the Spaces will be deleted.
+- Policy created on January 1st.
+- Policy set to 14 days.
+- Existing Spaces are not expired on the next scheduled run. Instead, one full
+  retention period after the policy is created — on January 15th — any Space
+  that hasn't been modified in more than 14 days is expired and its data is
+  deleted. Ongoing expiry then follows the 14-day period on the regular
+  schedule.
 
 ## Monitoring and Adjusting Policies
 
@@ -68,7 +84,21 @@ Regularly monitor the results of the data retention policies to ensure they
 align with your data management goals. If needed, adjust the policy time periods
 based on your evolving data requirements.
 
-## Implementing via api
+## Implementing via API
 
-If you'd like to create, update, delete your policy via API, check out our
-[API reference](https://reference.flatfile.com/)
+If you'd like to create, update, or delete your policy via API, check out our
+[API reference](https://reference.flatfile.com/).
+
+Some changes require you to confirm how many Spaces they will expire before
+Flatfile accepts them:
+
+- This applies when a change creates a policy, changes its type, or shortens it,
+  and its first run would expire 1,000 or more Spaces.
+- Set the `acknowledgedSpaceCount` field to the number of Spaces the change
+  would expire.
+- The value must match the number Flatfile calculates within a 5% tolerance, or
+  the request is rejected.
+- You don't need to calculate this in advance: submit the change, and if
+  confirmation is required, the rejection reports the exact value to send back in
+  `acknowledgedSpaceCount`.
+- Loosening a policy, or leaving it unchanged, never requires this field.

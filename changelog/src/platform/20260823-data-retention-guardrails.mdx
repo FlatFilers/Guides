@@ -1,0 +1,13 @@
+### August 23, 2026
+
+## spaces
+
+We've added new safeguards to data retention policies to make tightening a policy safer and more predictable.
+
+- **Minimum retention period**: A new policy's retention period must now be a whole number of at least 7 days. An existing policy already below that floor can still be updated, as long as the change does not shorten it further.
+- **Grace period before the first expiry**: When you create a policy or tighten an existing one, it no longer expires your existing Spaces on its next scheduled run. Instead, it waits one full retention period from the change before the first expiry, so you can review what it will affect.
+- **Confirmation for large tightening changes**: When a change made through the API would expire a large number of Spaces, the request must confirm how many Spaces the change would affect before it is accepted.
+
+Policies that predate this change, and that you haven't modified, keep their prior timing.
+
+See the [Data Retention guide](/learning-center/guides/data-retention) for details.
