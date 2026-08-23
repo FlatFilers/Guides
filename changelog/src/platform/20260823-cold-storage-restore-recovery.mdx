@@ -6,8 +6,9 @@
 
 We fixed an issue where a workbook could occasionally get stuck while loading and never finish
 opening. When this happened, no error was shown and reopening the workbook didn't help — it stayed
-unavailable with no way to recover it by trying again.
+unavailable, with no way to recover it yourself short of contacting support.
 
 Going forward, workbooks no longer get stuck this way. If a load doesn't finish, it now fails
-cleanly and the workbook stays openable, so opening it again loads it successfully instead of
-leaving it permanently stuck.
+cleanly and the workbook stays openable. Opening it again automatically recovers it — with no
+support ticket or manual step — loading it right away when its data is ready, or resuming behind the
+scenes so a later open finishes loading it.
