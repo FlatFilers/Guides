@@ -17081,6 +17081,7 @@ paths:
         schema:
           type: string
           example: 'true'
+          x-default: 'true'
       responses:
         '200':
           description: ''
