@@ -104,6 +104,443 @@
             ]
           },
           {
+            "tab": "API Reference",
+            "icon": "square-terminal",
+            "openapi": {
+              "source": "/openapi/flatfile.yaml",
+              "directory": "api-reference"
+            },
+            "groups": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "documentation/authentication/authentication",
+                  "documentation/authentication/account-token",
+                  "documentation/authentication/roles-and-permissions"
+                ]
+              },
+              {
+                "group": "Endpoints",
+                "pages": [
+                  {
+                    "group": "Accounts",
+                    "expanded": false,
+                    "pages": [
+                      "GET /accounts/current",
+                      "PATCH /accounts/current"
+                    ]
+                  },
+                  {
+                    "group": "Actions",
+                    "expanded": false,
+                    "pages": [
+                      "POST /actions",
+                      "POST /actions/bulk",
+                      "GET /actions",
+                      "GET /actions/{actionId}",
+                      "PATCH /actions/{actionId}",
+                      "DELETE /actions/{actionId}"
+                    ]
+                  },
+                  {
+                    "group": "Agent Exports",
+                    "expanded": false,
+                    "pages": [
+                      "GET /agent-exports",
+                      "GET /agent-exports/{agentExportId}",
+                      "GET /agent-exports/{agentExportId}/download",
+                      "DELETE /agent-exports/{agentExportId}"
+                    ]
+                  },
+                  {
+                    "group": "Agents",
+                    "expanded": false,
+                    "pages": [
+                      "GET /agents",
+                      "POST /agents",
+                      "GET /agents/{agentId}",
+                      "GET /agents/{agentId}/versions",
+                      "GET /agents/{agentId}/versions/{agentVersionId}/revert",
+                      "GET /agents/{agentId}/roles",
+                      "POST /agents/{agentId}/roles",
+                      "DELETE /agents/{agentId}/roles/{actorRoleId}",
+                      "GET /agents/{agentId}/logs",
+                      "GET /agents/log/{eventId}",
+                      "GET /agents/logs",
+                      "GET /agents/executions",
+                      "DELETE /agents/{agentId}"
+                    ]
+                  },
+                  {
+                    "group": "Apps",
+                    "expanded": false,
+                    "pages": [
+                      "GET /apps",
+                      "GET /apps/{appId}",
+                      "PATCH /apps/{appId}",
+                      "POST /apps",
+                      "DELETE /apps/{appId}",
+                      "GET /apps/{appId}/constraints",
+                      "POST /apps/{appId}/constraints",
+                      "GET /apps/{appId}/constraints/{constraintId}",
+                      "GET /apps/{appId}/constraints/{constraintId}/versions",
+                      "GET /apps/{appId}/constraints/{constraintId}/versions/{version}",
+                      "PATCH /apps/{appId}/constraints/{constraintId}",
+                      "DELETE /apps/{appId}/constraints/{constraintId}"
+                    ]
+                  },
+                  {
+                    "group": "Assistant",
+                    "expanded": false,
+                    "pages": [
+                      "GET /prompts",
+                      "GET /prompts/{promptId}",
+                      "PATCH /prompts/{promptId}",
+                      "POST /prompts",
+                      "DELETE /prompts/{promptId}"
+                    ]
+                  },
+                  {
+                    "group": "Auth",
+                    "expanded": false,
+                    "pages": [
+                      "GET /auth/publishable-key",
+                      "GET /auth/sftp-credentials"
+                    ]
+                  },
+                  {
+                    "group": "Canvas Areas",
+                    "expanded": false,
+                    "pages": [
+                      "GET /canvas-areas",
+                      "POST /canvas-areas",
+                      "GET /canvas-areas/{canvasAreaId}",
+                      "PATCH /canvas-areas/{canvasAreaId}",
+                      "DELETE /canvas-areas/{canvasAreaId}"
+                    ]
+                  },
+                  {
+                    "group": "Commits",
+                    "expanded": false,
+                    "pages": [
+                      "GET /commits/{commitId}",
+                      "POST /commits/{commitId}/complete",
+                      "POST /commits/{commitId}/replay"
+                    ]
+                  },
+                  {
+                    "group": "Data Clips",
+                    "expanded": false,
+                    "pages": [
+                      "POST /data-clips",
+                      "PATCH /data-clips/{dataClipId}",
+                      "DELETE /data-clips/{dataClipId}",
+                      "GET /data-clips/{dataClipId}",
+                      "POST /data-clips/{dataClipId}/add-records",
+                      "GET /data-clips",
+                      "GET /data-clips/{dataClipId}/resolutions",
+                      "GET /data-clips/{dataClipId}/resolutions/index",
+                      "PATCH /data-clips/{dataClipId}/resolutions",
+                      "PATCH /data-clips/{dataClipId}/refresh-resolutions"
+                    ]
+                  },
+                  {
+                    "group": "Data Retention Policies",
+                    "expanded": false,
+                    "pages": [
+                      "GET /data-retention-policies",
+                      "POST /data-retention-policies",
+                      "GET /data-retention-policies/{id}",
+                      "PATCH /data-retention-policies/{id}",
+                      "DELETE /data-retention-policies/{id}"
+                    ]
+                  },
+                  {
+                    "group": "Documents",
+                    "expanded": false,
+                    "pages": [
+                      "GET /spaces/{spaceId}/documents",
+                      "POST /spaces/{spaceId}/documents",
+                      "GET /spaces/{spaceId}/documents/{documentId}",
+                      "PATCH /spaces/{spaceId}/documents/{documentId}",
+                      "DELETE /spaces/{spaceId}/documents/{documentId}"
+                    ]
+                  },
+                  {
+                    "group": "Entitlements",
+                    "expanded": false,
+                    "pages": [
+                      "GET /entitlements"
+                    ]
+                  },
+                  {
+                    "group": "Environments",
+                    "expanded": false,
+                    "pages": [
+                      "GET /environments",
+                      "POST /environments",
+                      "GET /environments/subscription-token",
+                      "GET /environments/{environmentId}",
+                      "PATCH /environments/{environmentId}",
+                      "DELETE /environments/{environmentId}",
+                      "GET /environments/{environmentId}/guides",
+                      "GET /environments/{environmentId}/guides/{guideId}",
+                      "PATCH /environments/{environmentId}/guides/{guideId}",
+                      "POST /environments/{environmentId}/guides",
+                      "DELETE /environments/{environmentId}/guides/{guideId}",
+                      "GET /environments/{environmentId}/guides/{guideId}/versions/{version}"
+                    ]
+                  },
+                  {
+                    "group": "Events",
+                    "expanded": false,
+                    "pages": [
+                      "GET /events",
+                      "POST /events",
+                      "GET /events/{eventId}",
+                      "POST /events/{eventId}/ack",
+                      "GET /subscription"
+                    ]
+                  },
+                  {
+                    "group": "Files",
+                    "expanded": false,
+                    "pages": [
+                      "GET /files",
+                      "POST /files",
+                      "GET /files/{fileId}",
+                      "DELETE /files/{fileId}",
+                      "PATCH /files/{fileId}",
+                      "GET /files/{fileId}/download",
+                      "POST /files/{fileId}/clone",
+                      "POST /files/detect-header"
+                    ]
+                  },
+                  {
+                    "group": "Flags",
+                    "expanded": false,
+                    "pages": [
+                      "POST /v1/workbooks/{workbookId}/flags",
+                      "GET /v1/workbooks/{workbookId}/flags",
+                      "GET /v1/workbooks/{workbookId}/flags/{slug}",
+                      "PATCH /v1/workbooks/{workbookId}/flags/{slug}",
+                      "DELETE /v1/workbooks/{workbookId}/flags/{slug}",
+                      "POST /v1/workbooks/{workbookId}/flags/bulk-mutate"
+                    ]
+                  },
+                  {
+                    "group": "Guests",
+                    "expanded": false,
+                    "pages": [
+                      "GET /guests",
+                      "POST /guests",
+                      "GET /guests/{guestId}",
+                      "DELETE /guests/{guestId}",
+                      "PATCH /guests/{guestId}",
+                      "GET /guests/{guestId}/token",
+                      "GET /guests/{guestId}/roles",
+                      "POST /guests/{guestId}/roles",
+                      "DELETE /guests/{guestId}/roles/{actorRoleId}",
+                      "POST /invitations"
+                    ]
+                  },
+                  {
+                    "group": "Jobs",
+                    "expanded": false,
+                    "pages": [
+                      "GET /jobs",
+                      "POST /jobs",
+                      "GET /jobs/{jobId}",
+                      "PATCH /jobs/{jobId}",
+                      "DELETE /jobs/{jobId}",
+                      "POST /jobs/{jobId}/execute",
+                      "GET /jobs/{jobId}/plan",
+                      "PUT /jobs/{jobId}/plan",
+                      "PATCH /jobs/{jobId}/plan",
+                      "POST /jobs/{jobId}/ack",
+                      "POST /jobs/{jobId}/outcome/ack",
+                      "POST /jobs/{jobId}/complete",
+                      "POST /jobs/{jobId}/fail",
+                      "POST /jobs/{jobId}/cancel",
+                      "POST /jobs/{jobId}/retry",
+                      "POST /jobs/preview-mutation",
+                      "POST /jobs/{jobId}/split"
+                    ]
+                  },
+                  {
+                    "group": "Mapping",
+                    "expanded": false,
+                    "pages": [
+                      "POST /mapping",
+                      "DELETE /mapping",
+                      "GET /mapping",
+                      "GET /mapping/{programId}",
+                      "PATCH /mapping/{programId}",
+                      "DELETE /mapping/{programId}",
+                      "POST /mapping/{programId}/rules",
+                      "DELETE /mapping/{programId}/rules",
+                      "GET /mapping/{programId}/rules",
+                      "GET /mapping/{programId}/rules/{mappingId}",
+                      "PATCH /mapping/{programId}/rules/{mappingId}",
+                      "PATCH /mapping/{programId}/rules",
+                      "DELETE /mapping/{programId}/rules/{mappingId}"
+                    ]
+                  },
+                  {
+                    "group": "Records",
+                    "expanded": false,
+                    "pages": [
+                      "GET /sheets/{sheetId}/records",
+                      "GET /sheets/{sheetId}/records/indices",
+                      "PUT /sheets/{sheetId}/records",
+                      "POST /sheets/{sheetId}/records",
+                      "DELETE /sheets/{sheetId}/records",
+                      "PUT /sheets/{sheetId}/find-replace",
+                      "PATCH /sheets/{sheetId}/records/bulk-update"
+                    ]
+                  },
+                  {
+                    "group": "Roles",
+                    "expanded": false,
+                    "pages": [
+                      "GET /roles"
+                    ]
+                  },
+                  {
+                    "group": "Routines",
+                    "expanded": false,
+                    "pages": [
+                      "GET /routines",
+                      "GET /routines/{routineId}",
+                      "POST /routines",
+                      "PATCH /routines/{routineId}",
+                      "DELETE /routines/{routineId}"
+                    ]
+                  },
+                  {
+                    "group": "Runbooks",
+                    "expanded": false,
+                    "pages": [
+                      "GET /runbooks",
+                      "GET /runbooks/{runbookId}",
+                      "POST /runbooks",
+                      "PATCH /runbooks/{runbookId}",
+                      "DELETE /runbooks/{runbookId}"
+                    ]
+                  },
+                  {
+                    "group": "Secrets",
+                    "expanded": false,
+                    "pages": [
+                      "GET /secrets",
+                      "POST /secrets",
+                      "DELETE /secrets/{secretId}"
+                    ]
+                  },
+                  {
+                    "group": "Sheets",
+                    "expanded": false,
+                    "pages": [
+                      "GET /sheets",
+                      "GET /sheets/{sheetId}",
+                      "DELETE /sheets/{sheetId}",
+                      "POST /sheets/{sheetId}/duplicate",
+                      "POST /sheets/{sheetId}/validate",
+                      "GET /sheets/{sheetId}/download",
+                      "GET /sheets/{sheetId}/counts",
+                      "GET /sheets/{sheetId}/calculations",
+                      "GET /sheets/{sheetId}/commits",
+                      "POST /sheets/{sheetId}/lock",
+                      "POST /sheets/{sheetId}/unlock",
+                      "GET /sheets/{sheetId}/cells",
+                      "PATCH /sheets/{sheetId}"
+                    ]
+                  },
+                  {
+                    "group": "Snapshots",
+                    "expanded": false,
+                    "pages": [
+                      "POST /snapshots",
+                      "GET /snapshots",
+                      "GET /snapshots/{snapshotId}",
+                      "DELETE /snapshots/{snapshotId}",
+                      "POST /snapshots/{snapshotId}/restore",
+                      "GET /snapshots/{snapshotId}/records"
+                    ]
+                  },
+                  {
+                    "group": "Spaces",
+                    "expanded": false,
+                    "pages": [
+                      "GET /spaces",
+                      "POST /spaces",
+                      "GET /spaces/{spaceId}",
+                      "DELETE /spaces/{spaceId}",
+                      "DELETE /spaces",
+                      "PATCH /spaces/{spaceId}",
+                      "POST /spaces/{spaceId}/archive",
+                      "POST /spaces/{spaceId}/unarchive",
+                      "POST /spaces/{spaceId}/guidance",
+                      "GET /spaces/{spaceId}/guidance",
+                      "GET /spaces/{spaceId}/guidance/{guidanceId}",
+                      "PATCH /spaces/{spaceId}/guidance/{guidanceId}",
+                      "DELETE /spaces/{spaceId}/guidance/{guidanceId}",
+                      "POST /spaces/{spaceId}/drafts",
+                      "GET /spaces/{spaceId}/drafts",
+                      "GET /spaces/{spaceId}/drafts/{draftSpaceId}/merge",
+                      "POST /spaces/{spaceId}/drafts/{draftSpaceId}/merge"
+                    ]
+                  },
+                  {
+                    "group": "Users",
+                    "expanded": false,
+                    "pages": [
+                      "GET /users",
+                      "POST /users/invite",
+                      "POST /users/{userId}/resend-invite",
+                      "PATCH /users/{userId}",
+                      "GET /users/{userId}",
+                      "DELETE /users/{userId}",
+                      "GET /users/{userId}/roles",
+                      "POST /users/{userId}/roles",
+                      "DELETE /users/{userId}/roles/{actorRoleId}"
+                    ]
+                  },
+                  {
+                    "group": "Versions",
+                    "expanded": false,
+                    "pages": [
+                      "POST /versions"
+                    ]
+                  },
+                  {
+                    "group": "Views",
+                    "expanded": false,
+                    "pages": [
+                      "GET /views",
+                      "POST /views",
+                      "GET /views/{viewId}",
+                      "PATCH /views/{viewId}",
+                      "DELETE /views/{viewId}"
+                    ]
+                  },
+                  {
+                    "group": "Workbooks",
+                    "expanded": false,
+                    "pages": [
+                      "GET /workbooks",
+                      "POST /workbooks",
+                      "GET /workbooks/{workbookId}",
+                      "DELETE /workbooks/{workbookId}",
+                      "PATCH /workbooks/{workbookId}",
+                      "GET /workbooks/{workbookId}/commits"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "tab": "Learning Center",
             "groups": [
               {
@@ -298,6 +735,9 @@
     "href": "https://flatfile.com"
   },
   "api": {
+    "examples": {
+      "autogenerate": false
+    },
     "mdx": {
       "server": "https://platform.flatfile.com/api",
       "auth": {
