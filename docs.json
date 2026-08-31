@@ -320,12 +320,12 @@
                     "group": "Flags",
                     "expanded": false,
                     "pages": [
-                      "POST /v1/workbooks/{workbookId}/flags",
-                      "GET /v1/workbooks/{workbookId}/flags",
-                      "GET /v1/workbooks/{workbookId}/flags/{slug}",
-                      "PATCH /v1/workbooks/{workbookId}/flags/{slug}",
-                      "DELETE /v1/workbooks/{workbookId}/flags/{slug}",
-                      "POST /v1/workbooks/{workbookId}/flags/bulk-mutate"
+                      "POST /workbooks/{workbookId}/flags",
+                      "GET /workbooks/{workbookId}/flags",
+                      "GET /workbooks/{workbookId}/flags/{slug}",
+                      "PATCH /workbooks/{workbookId}/flags/{slug}",
+                      "DELETE /workbooks/{workbookId}/flags/{slug}",
+                      "POST /workbooks/{workbookId}/flags/bulk-mutate"
                     ]
                   },
                   {

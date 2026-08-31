@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: Flatfile API
   version: 2026-08-06-capture
-  description: Build your next data integration on Flatfile''s data exchange platform. This API provides access to Flatfile workbooks, and all the tools required to build a workflow out of them.'
+  description: 'Build your next data integration on Flatfile''s data exchange platform. This API provides access to Flatfile workbooks, and all the tools required to build a workflow out of them.'
 paths:
   /accounts/current:
     get:
@@ -10914,18 +10914,18 @@ paths:
                     - Paris
                     - 'No'
                     - Blue
-  /v1/workbooks/{workbookId}/flags:
+  /workbooks/{workbookId}/flags:
     post:
       description: Creates a new flag for the workbook
       operationId: flags_create
       x-codeSamples:
       - lang: bash
-        source: "curl -X POST https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\" \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n  \"slug\": \"important\",\n  \"label\": \"Important\",\n  \"colorHex\": \"#0090FF\"\n}'"
+        source: "curl -X POST https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\" \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n  \"slug\": \"important\",\n  \"label\": \"Important\",\n  \"colorHex\": \"#0090FF\"\n}'"
       - lang: csharp
         source: 'using RestSharp;
 
 
-          var client = new RestClient("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags");
+          var client = new RestClient("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags");
 
           var request = new RestRequest(Method.POST);
 
@@ -10939,20 +10939,20 @@ paths:
 
           IRestResponse response = client.Execute(request);'
       - lang: go
-        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"strings\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags\"\n\n\tpayload := strings.NewReader(\"{\\n  \\\"slug\\\": \\\"important\\\",\\n  \\\"label\\\": \\\"Important\\\",\\n  \\\"colorHex\\\": \\\"#0090FF\\\"\\n}\")\n\n\treq, _ := http.NewRequest(\"POST\", url, payload)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\treq.Header.Add(\"Content-Type\", \"application/json\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
+        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"strings\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags\"\n\n\tpayload := strings.NewReader(\"{\\n  \\\"slug\\\": \\\"important\\\",\\n  \\\"label\\\": \\\"Important\\\",\\n  \\\"colorHex\\\": \\\"#0090FF\\\"\\n}\")\n\n\treq, _ := http.NewRequest(\"POST\", url, payload)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\treq.Header.Add(\"Content-Type\", \"application/json\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
       - lang: java
-        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.post(\"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .header(\"Content-Type\", \"application/json\")\n  .body(\"{\\n  \\\"slug\\\": \\\"important\\\",\\n  \\\"label\\\": \\\"Important\\\",\\n  \\\"colorHex\\\": \\\"#0090FF\\\"\\n}\")\n  .asString();"
+        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.post(\"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .header(\"Content-Type\", \"application/json\")\n  .body(\"{\\n  \\\"slug\\\": \\\"important\\\",\\n  \\\"label\\\": \\\"Important\\\",\\n  \\\"colorHex\\\": \\\"#0090FF\\\"\\n}\")\n  .asString();"
       - lang: php
-        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('POST', 'https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags', [\n  'body' => '{\n  \"slug\": \"important\",\n  \"label\": \"Important\",\n  \"colorHex\": \"#0090FF\"\n}',\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'Content-Type' => 'application/json',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
+        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('POST', 'https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags', [\n  'body' => '{\n  \"slug\": \"important\",\n  \"label\": \"Important\",\n  \"colorHex\": \"#0090FF\"\n}',\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'Content-Type' => 'application/json',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
       - lang: python
-        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags\"\n\npayload = {\n    \"slug\": \"important\",\n    \"label\": \"Important\",\n    \"colorHex\": \"#0090FF\"\n}\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\",\n    \"Content-Type\": \"application/json\"\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\n\nprint(response.json())"
+        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags\"\n\npayload = {\n    \"slug\": \"important\",\n    \"label\": \"Important\",\n    \"colorHex\": \"#0090FF\"\n}\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\",\n    \"Content-Type\": \"application/json\"\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\n\nprint(response.json())"
       - lang: ruby
         source: 'require ''uri''
 
           require ''net/http''
 
 
-          url = URI("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags")
+          url = URI("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags")
 
 
           http = Net::HTTP.new(url.host, url.port)
@@ -10975,7 +10975,7 @@ paths:
 
           puts response.read_body'
       - lang: swift
-        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\",\n  \"Content-Type\": \"application/json\"\n]\nlet parameters = [\n  \"slug\": \"important\",\n  \"label\": \"Important\",\n  \"colorHex\": \"#0090FF\"\n] as [String : Any]\n\nlet postData = JSONSerialization.data(withJSONObject: parameters, options: [])\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"POST\"\nrequest.allHTTPHeaderFields = headers\nrequest.httpBody = postData as Data\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
+        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\",\n  \"Content-Type\": \"application/json\"\n]\nlet parameters = [\n  \"slug\": \"important\",\n  \"label\": \"Important\",\n  \"colorHex\": \"#0090FF\"\n] as [String : Any]\n\nlet postData = JSONSerialization.data(withJSONObject: parameters, options: [])\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"POST\"\nrequest.allHTTPHeaderFields = headers\nrequest.httpBody = postData as Data\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
       - lang: node
         source: "import { FlatfileClient } from \"@flatfile/api\";\n\nconst client = new FlatfileClient({ token: \"YOUR_TOKEN\" });\nawait client.flags.create(\"us_wb_YOUR_ID\", {\n    slug: \"important\",\n    label: \"Important\",\n    colorHex: \"#0090FF\"\n});\n"
       tags:
@@ -11028,12 +11028,12 @@ paths:
       operationId: flags_list
       x-codeSamples:
       - lang: bash
-        source: "curl https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\""
+        source: "curl https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\""
       - lang: csharp
         source: 'using RestSharp;
 
 
-          var client = new RestClient("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags");
+          var client = new RestClient("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags");
 
           var request = new RestRequest(Method.GET);
 
@@ -11043,20 +11043,20 @@ paths:
 
           IRestResponse response = client.Execute(request);'
       - lang: go
-        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags\"\n\n\treq, _ := http.NewRequest(\"GET\", url, nil)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
+        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags\"\n\n\treq, _ := http.NewRequest(\"GET\", url, nil)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
       - lang: java
-        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.get(\"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .asString();"
+        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.get(\"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .asString();"
       - lang: php
-        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('GET', 'https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags', [\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
+        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('GET', 'https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags', [\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
       - lang: python
-        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags\"\n\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\"\n}\n\nresponse = requests.get(url, headers=headers)\n\nprint(response.json())"
+        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags\"\n\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\"\n}\n\nresponse = requests.get(url, headers=headers)\n\nprint(response.json())"
       - lang: ruby
         source: 'require ''uri''
 
           require ''net/http''
 
 
-          url = URI("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags")
+          url = URI("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags")
 
 
           http = Net::HTTP.new(url.host, url.port)
@@ -11075,7 +11075,7 @@ paths:
 
           puts response.read_body'
       - lang: swift
-        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\"\n]\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"GET\"\nrequest.allHTTPHeaderFields = headers\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
+        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\"\n]\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"GET\"\nrequest.allHTTPHeaderFields = headers\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
       - lang: node
         source: 'import { FlatfileClient } from "@flatfile/api";
 
@@ -11120,18 +11120,18 @@ paths:
       summary: List
       security:
       - BearerAuth: []
-  /v1/workbooks/{workbookId}/flags/{slug}:
+  /workbooks/{workbookId}/flags/{slug}:
     get:
       description: Gets a specific flag by its slug
       operationId: flags_get
       x-codeSamples:
       - lang: bash
-        source: "curl https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\""
+        source: "curl https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\""
       - lang: csharp
         source: 'using RestSharp;
 
 
-          var client = new RestClient("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important");
+          var client = new RestClient("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important");
 
           var request = new RestRequest(Method.GET);
 
@@ -11141,20 +11141,20 @@ paths:
 
           IRestResponse response = client.Execute(request);'
       - lang: go
-        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\n\treq, _ := http.NewRequest(\"GET\", url, nil)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
+        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\n\treq, _ := http.NewRequest(\"GET\", url, nil)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
       - lang: java
-        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.get(\"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .asString();"
+        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.get(\"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .asString();"
       - lang: php
-        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('GET', 'https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important', [\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
+        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('GET', 'https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important', [\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
       - lang: python
-        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\"\n}\n\nresponse = requests.get(url, headers=headers)\n\nprint(response.json())"
+        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\"\n}\n\nresponse = requests.get(url, headers=headers)\n\nprint(response.json())"
       - lang: ruby
         source: 'require ''uri''
 
           require ''net/http''
 
 
-          url = URI("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important")
+          url = URI("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important")
 
 
           http = Net::HTTP.new(url.host, url.port)
@@ -11173,7 +11173,7 @@ paths:
 
           puts response.read_body'
       - lang: swift
-        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\"\n]\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"GET\"\nrequest.allHTTPHeaderFields = headers\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
+        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\"\n]\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"GET\"\nrequest.allHTTPHeaderFields = headers\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
       - lang: node
         source: 'import { FlatfileClient } from "@flatfile/api";
 
@@ -11231,12 +11231,12 @@ paths:
       operationId: flags_update
       x-codeSamples:
       - lang: bash
-        source: "curl -X PATCH https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\" \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n  \"label\": \"Updated Important\",\n  \"colorHex\": \"#30A46C\"\n}'"
+        source: "curl -X PATCH https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\" \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n  \"label\": \"Updated Important\",\n  \"colorHex\": \"#30A46C\"\n}'"
       - lang: csharp
         source: 'using RestSharp;
 
 
-          var client = new RestClient("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important");
+          var client = new RestClient("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important");
 
           var request = new RestRequest(Method.PATCH);
 
@@ -11250,20 +11250,20 @@ paths:
 
           IRestResponse response = client.Execute(request);'
       - lang: go
-        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"strings\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\n\tpayload := strings.NewReader(\"{\\n  \\\"label\\\": \\\"Updated Important\\\",\\n  \\\"colorHex\\\": \\\"#30A46C\\\"\\n}\")\n\n\treq, _ := http.NewRequest(\"PATCH\", url, payload)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\treq.Header.Add(\"Content-Type\", \"application/json\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
+        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"strings\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\n\tpayload := strings.NewReader(\"{\\n  \\\"label\\\": \\\"Updated Important\\\",\\n  \\\"colorHex\\\": \\\"#30A46C\\\"\\n}\")\n\n\treq, _ := http.NewRequest(\"PATCH\", url, payload)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\treq.Header.Add(\"Content-Type\", \"application/json\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
       - lang: java
-        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.patch(\"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .header(\"Content-Type\", \"application/json\")\n  .body(\"{\\n  \\\"label\\\": \\\"Updated Important\\\",\\n  \\\"colorHex\\\": \\\"#30A46C\\\"\\n}\")\n  .asString();"
+        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.patch(\"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .header(\"Content-Type\", \"application/json\")\n  .body(\"{\\n  \\\"label\\\": \\\"Updated Important\\\",\\n  \\\"colorHex\\\": \\\"#30A46C\\\"\\n}\")\n  .asString();"
       - lang: php
-        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('PATCH', 'https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important', [\n  'body' => '{\n  \"label\": \"Updated Important\",\n  \"colorHex\": \"#30A46C\"\n}',\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'Content-Type' => 'application/json',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
+        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('PATCH', 'https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important', [\n  'body' => '{\n  \"label\": \"Updated Important\",\n  \"colorHex\": \"#30A46C\"\n}',\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'Content-Type' => 'application/json',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
       - lang: python
-        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\npayload = {\n    \"label\": \"Updated Important\",\n    \"colorHex\": \"#30A46C\"\n}\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\",\n    \"Content-Type\": \"application/json\"\n}\n\nresponse = requests.patch(url, json=payload, headers=headers)\n\nprint(response.json())"
+        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\npayload = {\n    \"label\": \"Updated Important\",\n    \"colorHex\": \"#30A46C\"\n}\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\",\n    \"Content-Type\": \"application/json\"\n}\n\nresponse = requests.patch(url, json=payload, headers=headers)\n\nprint(response.json())"
       - lang: ruby
         source: 'require ''uri''
 
           require ''net/http''
 
 
-          url = URI("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important")
+          url = URI("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important")
 
 
           http = Net::HTTP.new(url.host, url.port)
@@ -11286,7 +11286,7 @@ paths:
 
           puts response.read_body'
       - lang: swift
-        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\",\n  \"Content-Type\": \"application/json\"\n]\nlet parameters = [\n  \"label\": \"Updated Important\",\n  \"colorHex\": \"#30A46C\"\n] as [String : Any]\n\nlet postData = JSONSerialization.data(withJSONObject: parameters, options: [])\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"PATCH\"\nrequest.allHTTPHeaderFields = headers\nrequest.httpBody = postData as Data\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
+        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\",\n  \"Content-Type\": \"application/json\"\n]\nlet parameters = [\n  \"label\": \"Updated Important\",\n  \"colorHex\": \"#30A46C\"\n] as [String : Any]\n\nlet postData = JSONSerialization.data(withJSONObject: parameters, options: [])\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"PATCH\"\nrequest.allHTTPHeaderFields = headers\nrequest.httpBody = postData as Data\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
       - lang: node
         source: "import { FlatfileClient } from \"@flatfile/api\";\n\nconst client = new FlatfileClient({ token: \"YOUR_TOKEN\" });\nawait client.flags.update(\"us_wb_YOUR_ID\", \"important\", {\n    label: \"Updated Important\",\n    colorHex: \"#30A46C\"\n});\n"
       tags:
@@ -11347,12 +11347,12 @@ paths:
       operationId: flags_delete
       x-codeSamples:
       - lang: bash
-        source: "curl -X DELETE https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\""
+        source: "curl -X DELETE https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\""
       - lang: csharp
         source: 'using RestSharp;
 
 
-          var client = new RestClient("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important");
+          var client = new RestClient("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important");
 
           var request = new RestRequest(Method.DELETE);
 
@@ -11362,20 +11362,20 @@ paths:
 
           IRestResponse response = client.Execute(request);'
       - lang: go
-        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\n\treq, _ := http.NewRequest(\"DELETE\", url, nil)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
+        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\n\treq, _ := http.NewRequest(\"DELETE\", url, nil)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
       - lang: java
-        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.delete(\"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .asString();"
+        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.delete(\"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .asString();"
       - lang: php
-        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('DELETE', 'https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important', [\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
+        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('DELETE', 'https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important', [\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
       - lang: python
-        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\"\n}\n\nresponse = requests.delete(url, headers=headers)\n\nprint(response.json())"
+        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\"\n\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\"\n}\n\nresponse = requests.delete(url, headers=headers)\n\nprint(response.json())"
       - lang: ruby
         source: 'require ''uri''
 
           require ''net/http''
 
 
-          url = URI("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important")
+          url = URI("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important")
 
 
           http = Net::HTTP.new(url.host, url.port)
@@ -11394,7 +11394,7 @@ paths:
 
           puts response.read_body'
       - lang: swift
-        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\"\n]\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/important\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"DELETE\"\nrequest.allHTTPHeaderFields = headers\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
+        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\"\n]\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/important\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"DELETE\"\nrequest.allHTTPHeaderFields = headers\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
       - lang: node
         source: 'import { FlatfileClient } from "@flatfile/api";
 
@@ -11441,18 +11441,18 @@ paths:
       summary: Delete
       security:
       - BearerAuth: []
-  /v1/workbooks/{workbookId}/flags/bulk-mutate:
+  /workbooks/{workbookId}/flags/bulk-mutate:
     post:
       description: Performs bulk flag operations on records
       operationId: flags_bulkMutate
       x-codeSamples:
       - lang: bash
-        source: "curl -X POST https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\" \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n  \"operation\": \"apply\",\n  \"slug\": \"important\",\n  \"flag\": {\n    \"label\": \"Important\",\n    \"colorHex\": \"#0090FF\"\n  },\n  \"snapshotLabel\": \"Before important flag application\"\n}'"
+        source: "curl -X POST https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate \\\n     -H \"X-Disable-Hooks: true\" \\\n     -H \"Authorization: Bearer <token>\" \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\n  \"operation\": \"apply\",\n  \"slug\": \"important\",\n  \"flag\": {\n    \"label\": \"Important\",\n    \"colorHex\": \"#0090FF\"\n  },\n  \"snapshotLabel\": \"Before important flag application\"\n}'"
       - lang: csharp
         source: 'using RestSharp;
 
 
-          var client = new RestClient("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate");
+          var client = new RestClient("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate");
 
           var request = new RestRequest(Method.POST);
 
@@ -11466,20 +11466,20 @@ paths:
 
           IRestResponse response = client.Execute(request);'
       - lang: go
-        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"strings\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate\"\n\n\tpayload := strings.NewReader(\"{\\n  \\\"operation\\\": \\\"apply\\\",\\n  \\\"slug\\\": \\\"important\\\",\\n  \\\"flag\\\": {\\n    \\\"label\\\": \\\"Important\\\",\\n    \\\"colorHex\\\": \\\"#0090FF\\\"\\n  },\\n  \\\"snapshotLabel\\\": \\\"Before important flag application\\\"\\n}\")\n\n\treq, _ := http.NewRequest(\"POST\", url, payload)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\treq.Header.Add(\"Content-Type\", \"application/json\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
+        source: "package main\n\nimport (\n\t\"fmt\"\n\t\"strings\"\n\t\"net/http\"\n\t\"io\"\n)\n\nfunc main() {\n\n\turl := \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate\"\n\n\tpayload := strings.NewReader(\"{\\n  \\\"operation\\\": \\\"apply\\\",\\n  \\\"slug\\\": \\\"important\\\",\\n  \\\"flag\\\": {\\n    \\\"label\\\": \\\"Important\\\",\\n    \\\"colorHex\\\": \\\"#0090FF\\\"\\n  },\\n  \\\"snapshotLabel\\\": \\\"Before important flag application\\\"\\n}\")\n\n\treq, _ := http.NewRequest(\"POST\", url, payload)\n\n\treq.Header.Add(\"X-Disable-Hooks\", \"true\")\n\treq.Header.Add(\"Authorization\", \"Bearer <token>\")\n\treq.Header.Add(\"Content-Type\", \"application/json\")\n\n\tres, _ := http.DefaultClient.Do(req)\n\n\tdefer res.Body.Close()\n\tbody, _ := io.ReadAll(res.Body)\n\n\tfmt.Println(res)\n\tfmt.Println(string(body))\n\n}"
       - lang: java
-        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.post(\"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .header(\"Content-Type\", \"application/json\")\n  .body(\"{\\n  \\\"operation\\\": \\\"apply\\\",\\n  \\\"slug\\\": \\\"important\\\",\\n  \\\"flag\\\": {\\n    \\\"label\\\": \\\"Important\\\",\\n    \\\"colorHex\\\": \\\"#0090FF\\\"\\n  },\\n  \\\"snapshotLabel\\\": \\\"Before important flag application\\\"\\n}\")\n  .asString();"
+        source: "import com.mashape.unirest.http.HttpResponse;\nimport com.mashape.unirest.http.Unirest;\n\nHttpResponse<String> response = Unirest.post(\"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate\")\n  .header(\"X-Disable-Hooks\", \"true\")\n  .header(\"Authorization\", \"Bearer <token>\")\n  .header(\"Content-Type\", \"application/json\")\n  .body(\"{\\n  \\\"operation\\\": \\\"apply\\\",\\n  \\\"slug\\\": \\\"important\\\",\\n  \\\"flag\\\": {\\n    \\\"label\\\": \\\"Important\\\",\\n    \\\"colorHex\\\": \\\"#0090FF\\\"\\n  },\\n  \\\"snapshotLabel\\\": \\\"Before important flag application\\\"\\n}\")\n  .asString();"
       - lang: php
-        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('POST', 'https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate', [\n  'body' => '{\n  \"operation\": \"apply\",\n  \"slug\": \"important\",\n  \"flag\": {\n    \"label\": \"Important\",\n    \"colorHex\": \"#0090FF\"\n  },\n  \"snapshotLabel\": \"Before important flag application\"\n}',\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'Content-Type' => 'application/json',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
+        source: "<?php\nrequire_once('vendor/autoload.php');\n\n$client = new \\GuzzleHttp\\Client();\n\n$response = $client->request('POST', 'https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate', [\n  'body' => '{\n  \"operation\": \"apply\",\n  \"slug\": \"important\",\n  \"flag\": {\n    \"label\": \"Important\",\n    \"colorHex\": \"#0090FF\"\n  },\n  \"snapshotLabel\": \"Before important flag application\"\n}',\n  'headers' => [\n    'Authorization' => 'Bearer <token>',\n    'Content-Type' => 'application/json',\n    'X-Disable-Hooks' => 'true',\n  ],\n]);\n\necho $response->getBody();"
       - lang: python
-        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate\"\n\npayload = {\n    \"operation\": \"apply\",\n    \"slug\": \"important\",\n    \"flag\": {\n        \"label\": \"Important\",\n        \"colorHex\": \"#0090FF\"\n    },\n    \"snapshotLabel\": \"Before important flag application\"\n}\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\",\n    \"Content-Type\": \"application/json\"\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\n\nprint(response.json())"
+        source: "import requests\n\nurl = \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate\"\n\npayload = {\n    \"operation\": \"apply\",\n    \"slug\": \"important\",\n    \"flag\": {\n        \"label\": \"Important\",\n        \"colorHex\": \"#0090FF\"\n    },\n    \"snapshotLabel\": \"Before important flag application\"\n}\nheaders = {\n    \"X-Disable-Hooks\": \"true\",\n    \"Authorization\": \"Bearer <token>\",\n    \"Content-Type\": \"application/json\"\n}\n\nresponse = requests.post(url, json=payload, headers=headers)\n\nprint(response.json())"
       - lang: ruby
         source: 'require ''uri''
 
           require ''net/http''
 
 
-          url = URI("https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate")
+          url = URI("https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate")
 
 
           http = Net::HTTP.new(url.host, url.port)
@@ -11502,7 +11502,7 @@ paths:
 
           puts response.read_body'
       - lang: swift
-        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\",\n  \"Content-Type\": \"application/json\"\n]\nlet parameters = [\n  \"operation\": \"apply\",\n  \"slug\": \"important\",\n  \"flag\": [\n    \"label\": \"Important\",\n    \"colorHex\": \"#0090FF\"\n  ],\n  \"snapshotLabel\": \"Before important flag application\"\n] as [String : Any]\n\nlet postData = JSONSerialization.data(withJSONObject: parameters, options: [])\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"POST\"\nrequest.allHTTPHeaderFields = headers\nrequest.httpBody = postData as Data\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
+        source: "import Foundation\n\nlet headers = [\n  \"X-Disable-Hooks\": \"true\",\n  \"Authorization\": \"Bearer <token>\",\n  \"Content-Type\": \"application/json\"\n]\nlet parameters = [\n  \"operation\": \"apply\",\n  \"slug\": \"important\",\n  \"flag\": [\n    \"label\": \"Important\",\n    \"colorHex\": \"#0090FF\"\n  ],\n  \"snapshotLabel\": \"Before important flag application\"\n] as [String : Any]\n\nlet postData = JSONSerialization.data(withJSONObject: parameters, options: [])\n\nlet request = NSMutableURLRequest(url: NSURL(string: \"https://api.x.flatfile.com/v1/workbooks/us_wb_YOUR_ID/flags/bulk-mutate\")! as URL,\n                                        cachePolicy: .useProtocolCachePolicy,\n                                    timeoutInterval: 10.0)\nrequest.httpMethod = \"POST\"\nrequest.allHTTPHeaderFields = headers\nrequest.httpBody = postData as Data\n\nlet session = URLSession.shared\nlet dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in\n  if (error != nil) {\n    print(error as Any)\n  } else {\n    let httpResponse = response as? HTTPURLResponse\n    print(httpResponse)\n  }\n})\n\ndataTask.resume()"
       - lang: node
         source: "import { FlatfileClient } from \"@flatfile/api\";\n\nconst client = new FlatfileClient({ token: \"YOUR_TOKEN\" });\nawait client.flags.bulkMutate(\"us_wb_YOUR_ID\", {\n    operation: \"apply\",\n    slug: \"important\",\n    flag: {\n        label: \"Important\",\n        colorHex: \"#0090FF\"\n    },\n    snapshotLabel: \"Before important flag application\"\n});\n"
       tags:
