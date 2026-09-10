@@ -1,0 +1,12 @@
+# Rung: Observed. Source: collection analysis style-observations.md — "Flatfile
+# (product name; never 'flatfile' in prose)". Prevalence: capitalized "Flatfile"
+# appears in prose on 85 of 98 sampled prose pages; the only lowercase
+# occurrences are in code spans/blocks (npx flatfile, const flatfile,
+# @flatfile/*) or the flatfile.com domain, both scoped out below.
+extends: existence
+message: "Use 'Flatfile' (capitalized product name), not 'flatfile' — observed convention across the docs prose (85 of 98 pages; not a rule the team stated)."
+level: suggestion
+nonword: true
+scope: text
+tokens:
+  - '(?<![@/\w.])flatfile(?![@/\w.\-])'
