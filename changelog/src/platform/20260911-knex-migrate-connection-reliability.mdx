@@ -1,0 +1,11 @@
+### September 11, 2026
+
+## dataxp
+
+**More reliable data operations under heavy load**
+
+Migrating a workbook to newer storage could previously fail with a spurious connection error when its underlying storage was slow to start up. These migrations now wait for the target to be ready and complete successfully.
+
+Streaming or exporting the records of a large sheet could previously stop before finishing. These operations now run to completion.
+
+Record counts also stay accurate and consistent during bursts of activity. Counts could previously lag, briefly move backward, or get recomputed redundantly. They're now computed once and kept consistent, so the counts you see and the `sheet:counts-updated` events you receive are more dependable. These improvements apply automatically, with nothing for you to configure or do.
