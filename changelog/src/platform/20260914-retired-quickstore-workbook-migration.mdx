@@ -1,0 +1,9 @@
+### September 14, 2026
+
+## dataxp
+
+**Workbooks still migrate when their older storage has already been retired**
+
+When Flatfile moves a workbook onto newer storage, the older storage backing that workbook has sometimes already been retired. Previously, the migration could fail in that case, leaving the workbook unable to move onto newer storage.
+
+Now Flatfile detects when the older storage is gone and completes the move by restoring the workbook from a saved export of its data, so the workbook comes across successfully instead of being left behind. This happens automatically, with nothing to configure or do.
