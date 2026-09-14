@@ -1,0 +1,9 @@
+### September 14, 2026
+
+## dataxp
+
+**Records load reliably while a Workbook is moving to newer storage**
+
+When Flatfile moves a Workbook onto newer storage, opening its Space could previously fail to load records, and in some cases reads returned stale data or updates were lost while the move was in progress.
+
+Now, while a Workbook is being moved, Flatfile returns a retryable response for requests against that Workbook's Sheets (loading records, mapping, exporting, and similar). In the app, the Space shows a loading state and keeps retrying on its own, so records load once the move completes. API and listener clients receive the same retryable response during the move. In-progress reads and writes are no longer served from the old storage. This happens automatically, with nothing to configure or do.
