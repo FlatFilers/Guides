@@ -1,0 +1,9 @@
+### September 18, 2026
+
+## dataxp
+
+**Workbooks recover on their own when their database host is retired**
+
+A Workbook is backed by a database host, and that host can be retired while the Workbook is still in use. Previously, when this happened, the Workbook could stop working entirely. Its data couldn't be read, it couldn't be rebuilt, and it couldn't even be deleted, so recovering it took manual intervention.
+
+Now Flatfile recognizes when a Workbook's database host is no longer reachable and recovers the Workbook on its own. It either reconnects the Workbook to the current database or, at most once an hour, moves it to a healthy one. Cleaning up or deleting a Workbook in this state now succeeds as well, even when the old host is gone. This happens automatically, with nothing to configure or do.
