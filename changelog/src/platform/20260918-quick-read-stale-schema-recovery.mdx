@@ -1,0 +1,9 @@
+### September 18, 2026
+
+## dataxp
+
+**More Reliable Record Reads After Adding a Field**
+
+Reading records that reference a newly added field is now more reliable. Right after you added a field, a read that filtered or searched on that column could fail as if the field were missing. This happened for a brief window, while Flatfile's cached view of the schema caught up.
+
+Those reads now recover on their own. Flatfile refreshes its view of the schema and retries the read once, so the transient error no longer surfaces during that window. Reading or streaming records that reference a genuinely missing or invalid field still returns the same error as before, and unrelated errors are unaffected.
