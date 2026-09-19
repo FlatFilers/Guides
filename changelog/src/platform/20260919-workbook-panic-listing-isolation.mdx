@@ -1,0 +1,9 @@
+### September 19, 2026
+
+## spaces
+
+A Space that contains a Workbook with a corrupted database now finishes loading and lists its
+healthy Workbooks. Previously, a single corrupted Workbook made the entire Workbook list fail,
+so the Space could not load even when its other Workbooks were unaffected.
+
+The affected Workbook is temporarily left out of the list until it recovers.
