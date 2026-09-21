@@ -1,0 +1,11 @@
+### September 21, 2026
+
+## dataxp
+
+**More Reliable Large Concurrent Imports**
+
+Large, multi-part imports are now more reliable when several of them run at the same time. Previously, when many large imports ran concurrently on the same shared processing instance, they could exhaust its resources and fail. Now, when too many large imports would run at once on the same instance, the additional ones are briefly held. They are automatically retried a few moments later instead of failing.
+
+This release also fixes a case where a duplicate job trigger could incorrectly cause an already-running import to fail.
+
+Normal imports and typical usage are unaffected. Only unusually large imports running concurrently on the same instance are ever briefly deferred.
