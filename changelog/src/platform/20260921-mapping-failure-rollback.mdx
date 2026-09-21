@@ -2,8 +2,8 @@
 
 ## dataxp
 
-**Reliable Rollback for Failed and Canceled Large Imports**
+**Reliable Record Counts and Rollback for Large Imports**
 
-We've improved how large, multi-part imports recover when they fail or are canceled. Previously, such an import could strand partial records in the destination Sheet. It could also leave the import unable to be finalized, keeping the Submit step blocked.
+We've made large, multi-part mapping imports more reliable. When an import finishes, the destination Sheet's record counts now settle on the correct total. Previously, those counts could freeze or get stuck showing errors — sometimes even after every part had finished processing — so the Sheet never showed the true totals.
 
-Now the rollback runs reliably to completion. A failed or canceled large import leaves no leftover records, reports accurate record counts, and no longer blocks you from finalizing and submitting your import.
+Failed and canceled large imports now recover cleanly too. The rollback now runs reliably to completion. It leaves no leftover records, reports accurate record counts, and no longer blocks you from finalizing and submitting your import.
