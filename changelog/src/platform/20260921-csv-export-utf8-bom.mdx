@@ -1,0 +1,13 @@
+### September 21, 2026
+
+## files
+
+When you export (download) a Sheet or Workbook as CSV, non-ASCII characters now display
+correctly in Excel and Google Sheets. Accented names such as "José", curly quotes, and
+non-Latin scripts such as Japanese are no longer garbled.
+
+Previously, Excel and Google Sheets guessed the wrong text encoding, so "José" showed as
+"JosÃ©". The exported CSV now begins with a marker that tells those applications to read
+it as UTF-8.
+
+This applies to CSV exports only and happens automatically. There is no setting to change.
