@@ -1,0 +1,7 @@
+### September 21, 2026
+
+## dataxp
+
+**More reliable large imports**
+
+We're improving how large file imports handle momentary database issues. When a large import runs in parts, one part may hit a temporary database problem, such as a dropped connection, deadlock, or serialization conflict. That part will be retried automatically, up to three times with a short pause between attempts, rather than aborting the whole import. As a result, large imports will be more likely to finish even when a brief database issue occurs partway through. Errors that aren't temporary, such as running out of disk space, constraint violations, or statement timeouts, still fail right away, as before.
