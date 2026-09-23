@@ -1,0 +1,7 @@
+### September 23, 2026
+
+## spaces
+
+**Faster Workbook updates when Sheets change**
+
+Saving changes to a Workbook's Sheets is now significantly faster. Previously, these updates could take much longer than expected. The update repeated a database preparation step it had already completed earlier in the same request. That redundant step has been removed, so these updates now complete in a fraction of the time. The improvement applies automatically, and there is no change to the update request or its response.
