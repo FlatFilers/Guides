@@ -1,0 +1,9 @@
+### September 23, 2026
+
+## dataxp
+
+**Cleared column values no longer reappear after a failed or canceled clear**
+
+We fixed an issue where clearing a column's values could be silently undone when the clear operation later failed or was canceled. In those cases, Flatfile could restore the pre-clear snapshot before the operation's background work had fully stopped. That restore brought back the values you had just cleared.
+
+Flatfile now confirms that a clear operation's background work has completely stopped before it restores a snapshot. As a result, cleared data is no longer resurrected by a failed or canceled clear. If the work cannot be confirmed stopped within a short window, the job ends in an explicit failed state. It leaves your cleared data in place instead of partially restoring it. Either way, the result is consistent and predictable.
