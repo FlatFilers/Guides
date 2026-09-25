@@ -1,0 +1,9 @@
+### September 25, 2026
+
+## dataxp
+
+**Correct Record Counts and Visible Records After Large Mapping Imports**
+
+After a large mapping import finishes, the destination Sheet now shows its correct record counts, and its records stay visible in the table. Previously, on imports of hundreds of thousands of rows, the job could succeed while the Sheet's counts stayed at zero. The table could also show the imported records for a few seconds and then go blank.
+
+Record counts in an open Sheet also no longer jump back to an older total when several count updates arrive out of order.
