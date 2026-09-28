@@ -1,0 +1,13 @@
+### September 28, 2026
+
+## dataxp
+
+**More Reliable Large Concurrent Imports**
+
+Large, multi-part imports are now more reliable when several of them run at the same time. Previously, large imports that ran concurrently on the same shared processing instance could exhaust its resources and fail. Now, when too many large imports would run at once on one instance, the additional imports wait for capacity instead of failing. Each one starts automatically once a slot frees up.
+
+While an import waits, its mapping Job stays in the `ready` state. The Job's info message starts with `Deferred: waiting for a free big-map slot` and shows the number of parts and how many times the import has waited.
+
+This release also fixes a case where a duplicate Job trigger could cause an import that was already running to fail.
+
+Smaller imports, and a single large import running on its own, are never delayed.
