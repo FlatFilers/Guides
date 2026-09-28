@@ -595,6 +595,49 @@ outcome or plan subsequent actions accordingly.
 }
 ```
 
+When a Job that snapshotted a Sheet before changing its records fails or is canceled, Flatfile rolls the Sheet back to that snapshot. Mapping Jobs (`workbook:map`) always take this snapshot. After the rollback finishes, Flatfile emits a second `job:failed` event for the same Job. A canceled Job emits only this event. Its payload adds these fields to the standard Job payload:
+
+- `sheetId` and `workbookId`: the Sheet that was rolled back and its Workbook.
+- `counts`: the Sheet's record counts after the rollback. This field is absent when Flatfile can't read the counts.
+- `snapshotRestore.status`: `restored` when the rollback succeeded, or `failed` when it didn't.
+- `snapshotRestore.attempts`: the number of rollback attempts.
+- `snapshotRestore.error`: why the rollback failed, when it failed.
+
+Use `payload.status` to tell a failed Job (`failed`) from a canceled one (`canceled`). To handle each failed Job once, check for `snapshotRestore` in the payload.
+
+```json
+{
+  "domain": "job",
+  "topic": "job:failed",
+  "context": {
+    "accountId": "us_acc_1234",
+    "environmentId": "us_env_1234",
+    "spaceId": "us_sp_1234",
+    "workbookId": "us_wb_1234",
+    "jobId": "us_jb_1234",
+    "actorId": "us_usr_1234"
+  },
+  "payload": {
+    "job": "workbook:map",
+    "info": null,
+    "domain": "workbook",
+    "status": "failed",
+    "operation": "map",
+    "sheetId": "us_sh_1234",
+    "workbookId": "us_wb_1234",
+    "counts": {
+      "total": 0,
+      "valid": 0,
+      "error": 0
+    },
+    "snapshotRestore": {
+      "status": "restored",
+      "attempts": 1
+    }
+  }
+}
+```
+
 #### `job:deleted`
 
 <ParamField path="job:deleted" type="readonly">

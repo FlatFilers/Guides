@@ -243,7 +243,7 @@ Jobs fire the following Events during their lifecycle. In chronological order, t
 | `job:created`                   | Fires when a Job is created, but before it does anything.                                                                                                                          |
 | `job:ready`                     | Fires when a Job is ready to move into the execution stage, but before it does anything.                                                                                           |
 | `job:updated`                   | Fires when there is an update to a Job while it is executing.                                                                                                                      |
-| `job:completed` OR `job:failed` | `job:completed` fires when a Job is completed successfully, `job:failed` fires if a Job is completed but fails. One of these events will fire upon Job completion, but never both. |
+| `job:completed` OR `job:failed` | `job:completed` fires when a Job is completed successfully, `job:failed` fires if a Job is completed but fails. One of these events will fire upon Job completion, but never both. Jobs that snapshot a Sheet, such as mapping Jobs, fire a separate `job:failed` after Flatfile rolls the Sheet back from a failure or cancellation. See [`job:failed`](/learning-center/concepts/events#job-failed). |
 | `job:outcome-acknowledged`      | Fires when a user acknowledges the completion of a Job through a UI popup.                                                                                                         |
 
 You can listen on any of these events in your [Listener](/learning-center/concepts/listeners), but the most common event to listen for is `job:ready`.

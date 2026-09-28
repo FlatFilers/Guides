@@ -4,6 +4,8 @@
 
 **Reliable Record Counts and Rollback for Large Imports**
 
-We've made large, multi-part mapping imports more reliable. When an import finishes, the destination Sheet's record counts now settle on the correct total. Previously, those counts could freeze or get stuck showing errors — sometimes even after every part had finished processing — so the Sheet never showed the true totals.
+We've made large, multi-part mapping imports more reliable. When an import finishes, the destination Sheet's record counts now settle on the correct total. Previously, those counts could freeze or keep showing errors, sometimes after every part had finished processing.
 
 Failed and canceled large imports now recover cleanly too. The rollback now runs reliably to completion. It leaves no leftover records, reports accurate record counts, and no longer blocks you from finalizing and submitting your import.
+
+After the rollback finishes, Flatfile emits a `job:failed` event with the Sheet's updated record counts and the rollback result, including for canceled imports. If your Listener handles `job:failed`, see [`job:failed`](/learning-center/concepts/events#job-failed) so it handles each import once.
