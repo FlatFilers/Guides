@@ -1,0 +1,9 @@
+### September 28, 2026
+
+## dataxp
+
+**Record Counts Appear and Imports Finish After Large Uploads**
+
+After you upload a large file, the Sheet's record counts now appear in the Workbook sidebar, even when counting the records takes several minutes. Previously, the sidebar could keep showing zero records long after the upload finished.
+
+Imports also finish reliably when you start them before the record count appears. Previously, such an import could stop at around 90% and fail 10 to 15 minutes later. Exports, deletes, bulk edits, and other jobs that act on a whole Sheet also now use the Sheet's current record count. Previously, they could use the count from before the upload.
