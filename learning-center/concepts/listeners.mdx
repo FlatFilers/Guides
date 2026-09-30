@@ -219,6 +219,10 @@ crucial to manage them carefully to avoid race conditions and conflicts. When
 multiple Agents are listening to the same event topics, they can interfere with
 each other, leading to unpredictable outcomes.
 
+Every Agent whose topic and namespace filters match an Event runs on that Event
+once. When one Agent finishes with or acknowledges an Event, the other matching
+Agents still run on it. Overlapping Agents all act on the same data.
+
 ### Strategies for Conflict Avoidance
 
 1. **Event Filtering:** Ensure each Agent is configured to listen for specific

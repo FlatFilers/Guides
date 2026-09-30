@@ -17,7 +17,13 @@ could miss most of those commits. The commits then stayed open, and the Sheet
 kept showing "This action will be available after all hooks finish running."
 
 Now every agent subscribed to an event runs on it, even after another agent has
-finished with that event. No changes to your agent code are needed.
+finished with that event. Each agent still runs at most once per event, so a
+retried run doesn't process the same event twice. No changes to your agent
+code are needed.
+
+Acknowledging an event with `POST /v1/events/:eventId/ack` also no longer
+prevents hosted agents from running on it. Clients that poll for events aren't
+affected, because acknowledgment itself works the same way.
 
 Commits that were skipped before this fix aren't processed again
 automatically, and their records haven't been validated. To run your hooks on
