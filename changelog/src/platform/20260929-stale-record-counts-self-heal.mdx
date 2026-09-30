@@ -5,3 +5,5 @@
 **Stuck Record Counts Now Correct Themselves**
 
 If a Sheet's record counts fall behind its latest changes, Flatfile now detects this and recalculates the counts automatically, usually within a few minutes. Previously, an interrupted count update could leave a Sheet's counts stuck at an outdated total indefinitely. For example, after a large mapping import, a Sheet could keep showing every record as an error.
+
+Record counts that never appear for a Sheet also recover on their own. If counting a Sheet's records stalls, Flatfile now stops waiting on that count and calculates it again, so the counts appear within minutes. Previously, the Workbook sidebar could show zero records indefinitely. Requests for the Sheet's record counts also kept returning a `503` error saying the counts were still being computed.
