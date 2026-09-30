@@ -1,0 +1,23 @@
+### September 30, 2026
+
+## dataxp
+
+**Actions no longer stay disabled after large imports with `trackChanges`**
+
+On Workbooks with `trackChanges` enabled, actions and filters are disabled until
+all commits are complete. After large imports, some commits could stay open
+indefinitely. As a result, the Sheet kept showing "This action will be available
+after all hooks finish running" even after your hooks had finished.
+
+This happened when a listener, such as `@flatfile/plugin-record-hook`, tried to
+complete a commit before Flatfile had finished recording it. The completion
+request returned a 404 error and the commit was never marked complete.
+
+Flatfile now records each commit before it emits the `commit:created` event, so
+your listeners can complete the commit as soon as they receive the event. If a
+request to `POST /v1/commits/:commitId/complete` arrives before the commit is
+available, Flatfile waits up to about 15 seconds for it before returning a 404
+error. The same wait applies to commits that don't exist or that you can't
+access. Those requests now take about 15 seconds to return a 404 error.
+
+No changes to your listener code are needed.
