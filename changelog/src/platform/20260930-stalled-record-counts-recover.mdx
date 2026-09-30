@@ -1,0 +1,7 @@
+### September 30, 2026
+
+## dataxp
+
+**Record Counts No Longer Get Stuck at Zero**
+
+If counting a Sheet's records stalls or fails, Flatfile now abandons that attempt and calculates the counts again. The counts appear within minutes. Previously, a stalled count could leave the Workbook sidebar showing zero records indefinitely. Requests for the Sheet's record counts also kept returning a `503` error saying the counts were still being computed.
