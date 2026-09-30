@@ -1,0 +1,27 @@
+### September 30, 2026
+
+## core
+
+**Every deployed agent now runs on each event**
+
+When several agents in an Environment listen for the same event, each one
+should run. Under bursts of events, some agents could be skipped. A fast agent
+could finish handling an event before a slower agent's run started. When that
+happened, the slower agent never ran on that event and no execution was logged
+for it.
+
+This showed up most often during large mappings on Workbooks with
+`trackChanges` enabled. A mapping creates many `commit:created` events within
+seconds. Record hooks, such as those built with `@flatfile/plugin-record-hook`,
+could miss most of those commits. The commits then stayed open, and the Sheet
+kept showing "This action will be available after all hooks finish running."
+
+Now every agent subscribed to an event runs on it, even after another agent has
+finished with that event. No changes to your agent code are needed.
+
+Commits that were skipped before this fix aren't processed again
+automatically, and their records haven't been validated. To run your hooks on
+one of these commits, call `POST /v1/commits/:commitId/replay`. This emits the
+`commit:created` event again so your hooks can validate the records and
+complete the commit. Replaying is safer than completing the commit directly,
+which would skip validation.
