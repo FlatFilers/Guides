@@ -1,0 +1,7 @@
+### October 01, 2026
+
+## core
+
+**Faster Record Retrieval from Sheets**
+
+Fetching records with `GET /v1/sheets/{sheetId}/records` is now faster. Before returning records, the platform checks whether the Sheet's Workbook has an associated file. That check could add up to roughly half a second to each request. It now uses a dedicated database index, so it no longer slows down your records requests. The improvement applies automatically, with nothing for you to configure.
