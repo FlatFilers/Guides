@@ -4,6 +4,6 @@
 
 **Record Counts Update During Large Imports**
 
-During a large import, a Sheet's record counts in the Workbook sidebar now rise while records are written. The final counts also appear sooner once the import finishes writing.
+During a large import, a Sheet's record counts in the Workbook sidebar now rise while records are written. This includes Sheets with unique or composite-unique fields. The final counts also appear sooner once the import finishes writing.
 
-Previously, the counts could stay unchanged until the import finished. The final counts could then take close to a minute to appear.
+Previously, the counts could stay unchanged until the import finished. On large Sheets with unique fields, an error count taken during an import could run for many minutes. It also held up other operations on the Sheet until it finished.
