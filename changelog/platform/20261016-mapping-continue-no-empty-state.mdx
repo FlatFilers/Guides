@@ -1,0 +1,10 @@
+---
+title: "Upload prompt no longer appears after mapping"
+description: "The destination Sheet no longer shows its empty upload state while a mapping job starts or finishes"
+---
+
+<Update label="10-16-2026" tags={["spaces-ui"]}>
+Fixed an issue where the destination Sheet briefly showed its empty state during mapping. After a user selected **Continue**, the Sheet displayed "Drag and drop or upload a file to get started." Its **Upload file** and **Manually enter data** buttons were live. The same prompt could reappear right after the mapping job completed, while the record count already showed the imported records. Users could read this as a failed import and upload the same file again, which created duplicate records.
+
+Now, as soon as the mapping job starts, the destination Sheet shows the job-running overlay. Until the imported records appear, it shows a loading indicator in place of the upload prompt. A destination Sheet that has no records and no running job still shows the empty state with both buttons.
+</Update>
