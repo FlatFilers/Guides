@@ -1,0 +1,7 @@
+### October 20, 2026
+
+## core
+
+**Faster First Load for New Workbooks**
+
+The first records and record counts requests for a newly created Workbook now return faster. Previously, each of those requests re-checked the database schema that the Workbook build had just created, adding roughly 0.7 seconds to each one. The platform now records that the schema is verified when the build finishes, so those requests skip the check. The difference is most noticeable in embedded Flatfile, where opening the importer typically creates a new Space and Workbook. The improvement applies automatically, with nothing for you to configure.
