@@ -1,0 +1,7 @@
+### October 23, 2026
+
+## core
+
+**Faster Record Reads on Newly Created Sheets**
+
+Reading records from a newly created Sheet with unique fields is fast again after its first write. After a recent update, a new Sheet could go up to three hours without the database indexes that support uniqueness checks and record messages. During that window, paged reads of large Sheets, especially later pages, could slow down enough to time out. For example, a job that wrote records and then read the second page of 10,000 records could fail before finishing. New Sheets now get these indexes on their first write. A bulk import into one Sheet also no longer delays them for the Workbook's other Sheets. You don't need to change anything.
