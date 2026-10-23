@@ -1,0 +1,14 @@
+### October 23, 2026
+
+## dashboard
+
+**Mapping accuracy analytics retired**
+
+Match accuracy reporting has been removed from the dashboard. The App dashboard no longer shows the **Match accuracy** chart or stat card. The Mappings list no longer shows the **Accuracy**, **Changes Made**, and **Total Uploads** columns.
+
+The counts behind these figures are no longer updated, so they no longer reflect current mapping activity. Mapping itself is unchanged: mapping rules, programs, families, instructions, and suggested mappings from earlier uploads work as before.
+
+If you call the List families endpoint (`GET /mapping/families`), note the following:
+
+- The `sortBy` values `errors` and `count` are still accepted, but results are now sorted by time.
+- The `totalPrograms`, `totalRules`, and `totalCorrections` fields on each family remain in the response but are no longer updated. Don't use them as current values.
