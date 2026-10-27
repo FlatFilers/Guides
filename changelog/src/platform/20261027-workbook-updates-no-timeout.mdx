@@ -1,0 +1,7 @@
+### October 27, 2026
+
+## dataxp
+
+**Workbook Updates No Longer Time Out on Busy Sheets**
+
+Updating a Workbook no longer reapplies Flatfile's internal storage settings to every Sheet that already has them. Previously, a Workbook update could fail with a `400` error mentioning a statement timeout. This happened when one of its Sheets was being read at the same time, such as during a large records download. While the update waited, other requests to that Sheet slowed down. A failed update could also leave the Sheet's storage partly changed. Flatfile now applies these settings only to a Sheet that needs them, and applies them completely or not at all. A Sheet left partly changed is repaired the next time its Workbook is updated.
