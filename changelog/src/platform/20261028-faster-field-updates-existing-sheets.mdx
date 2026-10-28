@@ -1,0 +1,7 @@
+### October 28, 2026
+
+## dataxp
+
+**Faster Field Updates on Existing Sheets**
+
+Changing the fields of an existing Sheet is now faster, especially when the Sheet already holds records. This applies when you update a Workbook with new Sheet field configurations and when you add fields to a Sheet. Previously, each of these updates saved the Sheet's field definitions twice and updated internal version data on every record in the Sheet twice. Flatfile now does this work once. API responses are unchanged, and you don't need to change anything.
