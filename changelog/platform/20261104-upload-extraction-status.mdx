@@ -1,0 +1,17 @@
+---
+title: "Upload status now reflects the extraction job"
+description: "Slow extractions no longer show an unsupported file type error, and failed extractions show the actual reason"
+---
+
+<Update label="11-04-2026" tags={["spaces-ui"]}>
+Fixed an issue where uploading a file could show "Unsupported file type. Try another file type or reach out to Support." when nothing was wrong with the file. The error appeared when the extraction job hadn't started within 5 seconds of the upload, which is common for larger spreadsheets. The extraction often went on to complete, but users could read the error as a dead end and give up or upload a different file.
+
+Now, the upload status follows the extraction job and never reports an error because of elapsed time:
+
+- While the file waits for extraction, the upload stays in a processing state. If extraction still hasn't started after 2 minutes, users see "Still processing. Large files can take a few minutes — you can keep this page open."
+- When extraction completes, users see "Extraction completed." as before.
+- When extraction fails, users see the failed job's outcome message, such as "File is too large to parse. Try converting this file to CSV." If the job can't be loaded, users see "Extraction failed. Try again or reach out to Support."
+- The unsupported file type error appears only when the upload request or the extraction job reports an unsupported file type.
+
+This applies to uploads in both the Files view and Sheets. If your listener fails extraction jobs, the outcome message you pass to `api.jobs.fail` is the message users see.
+</Update>
