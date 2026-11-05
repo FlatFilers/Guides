@@ -44,4 +44,5 @@ Large datasets are processed in batches with streaming support to ensure memory 
 - <b>Point-In-Time Restoration</b>
 [Snapshots](https://reference.flatfile.com/api-reference/snapshots/) are used to capture point-in-time states of your Sheets, enabling version restoration when needed. 
 This feature proves particularly valuable for audit purposes and data recovery scenarios.
+Each Sheet keeps its five most recent Snapshots. When a new Snapshot is taken, older ones are permanently deleted. Retention never deletes the Sheet's `Original Dataset: Auto-generated` Snapshot or a Snapshot that an unfinished Job still needs for rollback.
 

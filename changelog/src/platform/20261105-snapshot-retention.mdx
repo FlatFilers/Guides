@@ -1,0 +1,11 @@
+### November 5, 2026
+
+## dataxp
+
+**Snapshot retention is now enforced**
+
+Each Sheet now keeps its five most recent Snapshots, as intended. Previously, older Snapshots were never cleaned up. On large Sheets, they could fill the database storage and cause deletes and other changes that take a Snapshot first to fail.
+
+Older Snapshots are now removed before a new Snapshot is taken, which frees space for the new one. Retention never removes the Sheet's `Original Dataset: Auto-generated` Snapshot or a Snapshot that an unfinished Job still needs for rollback. Cleanup had not been running before this release. As a result, the first Snapshot taken on each Sheet afterward can remove many older Snapshots from the Snapshot list.
+
+If database storage is still too full to take a Snapshot, the Job now fails with a "Not enough database storage" message. No records are changed.
